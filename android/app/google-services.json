@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1036303425157",
+    "project_id": "spam-detect-cfb50",
+    "storage_bucket": "spam-detect-cfb50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036303425157:android:2ada947334054edd8713ec",
+        "android_client_info": {
+          "package_name": "com.example.spam_delection_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChS9sWQVNwB0_KnbwRfGvfKo11asiTyso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
