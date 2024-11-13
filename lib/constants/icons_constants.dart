@@ -85,16 +85,11 @@ class IconConstants {
   static const String icEditSecurity = 'assets/icons/ic_edit_security.png';
   static const String icchangePass = 'assets/icons/ic_changePass.png';
   static const String icalternativeEmail = 'assets/icons/ic_alternative_mail.png';
-  static const String icviewArrow = 'assets/icons/ic_viewArrow.png';
-  static const String icspamCheck = 'assets/icons/ic_spamCheck.png';
-  static const String icClock = 'assets/icons/ic_clock.png';
-  static const String icsearchCheck = 'assets/icons/ic_searchCheck.png';
-  static const String icmessageCheck = 'assets/icons/ic_messageCheck.png';
-  static const String iccallAvater = 'assets/icons/ic_callAvtar.png';
-  static const String icaddCall = 'assets/icons/ic_addCall.png';
-  static const String icprevoiusBack = 'assets/icons/ic_previoudback.png';
-  static const String icbackCircle = 'assets/icons/ic_balckCircle.png';
-  static const String icggadd = 'assets/icons/ic_gg_add.png';
-  static const String icspamtriangle = 'assets/icons/ic_triangle.png';
-  static const String icspambolcked='assets/icons/ic_blocked.png';
+  static const String icviewArrow='assets/icons/ic_viewArrow.png';
+  static const String icspamCheck='assets/icons/ic_spamCheck.png';
+  static const String icClock='assets/icons/ic_clock.png';
+  static const String icsearchCheck='assets/icons/ic_searchCheck.png';
+  static const String icmessageCheck='assets/icons/ic_messageCheck.png';
+  static const String iccallAvater='assets/icons/ic_callAvtar.png';
+  static const String icaddCall='assets/icons/ic_addCall.png';
 }

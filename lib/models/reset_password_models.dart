@@ -1,5 +1,4 @@
 /// To parse this JSON data, do
-library;
 //
 //     final resetResponse = resetResponseFromJson(jsonString);
 

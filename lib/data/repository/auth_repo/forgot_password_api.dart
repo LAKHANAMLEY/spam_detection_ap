@@ -1,17 +1,18 @@
 import 'dart:convert';
 
-// import 'package:spam_delection_app/utils/get_device_token.dart';
-import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
+import 'package:spam_delection_app/utils/api_constants/user_model.dart';
 import 'package:spam_delection_app/utils/api_keys/api_key_constants.dart';
+import 'package:spam_delection_app/utils/get_device_token.dart';
+import 'package:http/http.dart'as http;
 
 import '../../../models/forgot_password_model.dart';
 
 Future<ForgotResponse> forgotPassword({required String email}) async {
-  // String? deviceToken = await getDeviceToken();
-  // String deviceType = getDeviceType();
+  String? deviceToken = await getDeviceToken();
+  String deviceType = getDeviceType();
 
-  var body = {
+  var body ={
     'email': email,
   };
 //karo login
@@ -29,7 +30,7 @@ Future<ForgotResponse> forgotPassword({required String email}) async {
     print(response.body);
     final data = json.decode(response.body);
     return ForgotResponse.fromJson(data);
-  } else {
+  } else{
     throw Exception(response.body);
   }
 }

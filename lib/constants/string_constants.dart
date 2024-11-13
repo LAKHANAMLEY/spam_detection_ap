@@ -46,7 +46,7 @@ class StringConstants {
   static const String checkmailtext = 'Please check your mail';
   static const String haveActext = 'Have an account?';
   static const String continutext = 'Continue';
-  static const String welcometext = '""Welcome to BROADLINK Prosuct Your Mobile Defender! Effortlessly block unwanted calls, messages and keep your device clean. Let\'s get started and take control of your communication!';
+  static const String welcometext = '"Welcome to TEXAS EDITIONYour Mobile Defender!Effortlessly block unwanted calls, messages and keep your device clean. Let\'s get started and take control of your communication!"';
 
 
   static const String emailMessage = 'Please enter email address';
@@ -66,9 +66,6 @@ class StringConstants {
   static const String loginusingEmail = 'Login with Email';
   static const String registerwithEmail = 'Register with Email';
   static const String successfultext = 'Successful';
-  static const String registersuccessfultext='Registration Successful';
-  static const String congratsregistertext='Congratulations, your account has been successfully created.';
-
   static const String yeytext = 'Yey! Lakhan';
   static const String fromtext = 'from now on, you are part of us!';
   static const String exploretext = "Explore Home page";
@@ -94,8 +91,6 @@ class StringConstants {
   static const verifyproceedtext = "Verify and Proceed";
   static const subscriptiontext='Please Active Your Subscription';
 
-
-  static const blockNumber='Block Numbers';
   static const spamcallstext='Spam calls identified';
   static const timesavestext='Time saved from spammers';
   static const unknowntext='Unknown number identified';

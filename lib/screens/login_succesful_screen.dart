@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
+import 'package:spam_delection_app/screens/home_screen.dart';
 
 import '../constants/icons_constants.dart';
+import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
 
 class LoginSuccessful extends StatefulWidget {
-  const LoginSuccessful({super.key, this.firstname});
-  final String? firstname;
+  const LoginSuccessful({super.key});
   static String routeName = './LoginSuccessful';
 
   @override
@@ -21,17 +22,17 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
         appBar: AppBar(
-          backgroundColor: AppColor.secondryColor,
-          leading: GestureDetector(
-            onTap: () {},
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 2 / 100,
+        backgroundColor: AppColor.secondryColor,
+        leading:GestureDetector(
+        onTap: (){},
+        child: Container(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Image.asset(
                   IconConstants.backIcon,
                 ),
               ),
+              height: MediaQuery.of(context).size.height * 2 / 100,
             ),
           ),
           title: Image.asset(
@@ -44,9 +45,9 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
             child: SingleChildScrollView(
                 child: Column(children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 10 / 100,
+            height: MediaQuery.of(context).size.height * 10/ 100,
           ),
-          const Center(
+          Center(
               child: Text(
             StringConstants.successfultext,
             style: TextStyle(
@@ -58,34 +59,17 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
-          Text(
-            'Yey! ${widget.firstname}',
-            style: TextStyle(
-                color: AppColor.yellowlightColor,
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 2 / 100,
-          ),
-          Text(
-            StringConstants.fromtext,
-            style: TextStyle(color: AppColor.gracyColor),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 5 / 100,
-          ),
-          Image.asset(
-            IconConstants.icsuccesfulLogo,
-            height: MediaQuery.of(context).size.height * 20 / 100,
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
-          AppButton(
-              text: StringConstants.exploretext,
-              onPress: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
-              })
+                  Text(StringConstants.yeytext,style: TextStyle(color: AppColor.yellowlightColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                  SizedBox(height:MediaQuery.of(context).size.height * 2/ 100 ,),
+                  Text(StringConstants.fromtext,style: TextStyle(color:AppColor.gracyColor),),
+                  SizedBox(height:MediaQuery.of(context).size.height * 5 / 100 ,),
+                  Image.asset(IconConstants.icsuccesfulLogo,height: MediaQuery.of(context).size.height * 20/ 100,),
+                  SizedBox(height:MediaQuery.of(context).size.height * 5 / 100),
+                  AppButton(text: StringConstants.exploretext,
+                      onPress: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                  })
+                  
         ]))));
   }
 }

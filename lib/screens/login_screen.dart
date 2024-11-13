@@ -1,16 +1,31 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:spam_delection_app/data/repository/auth_repo/login_api.dart';
-import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
+import 'package:spam_delection_app/globals/app_data.dart';
+import 'package:spam_delection_app/screens/forgot_password_screen.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
+
 import 'package:spam_delection_app/screens/login_succesful_screen.dart';
 import 'package:spam_delection_app/screens/otp_verify_screen.dart';
+import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
 
 import '../constants/icons_constants.dart';
+import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
+import '../globals/appbutton.dart';
 import '../globals/colors.dart';
+import 'dart:io';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+import '../utils/api_constants/user_model.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -28,14 +43,14 @@ class _LoginState extends State<Login> {
   bool isPasswordVisible = true;
   bool isConfirmPasswordVisible = true;
   bool isApiCalling = false;
-  bool agreeToTerms = false; //ab kro test // ok
+  bool agreeToTerms =
+      false; //ab kro test // ok
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   // final TextEditingController _phoneController = TextEditingController();//itne controller ki need nahi hai
-  // String? _verificationId;
+  String? _verificationId;
 
-  String?
-      enteredPhone; // sir next screen per navigate hprha hai // otp ka option nhi aaya otp abhi tak// mahi ayega apne jo dala h firebase pr wo dalo
+  String? enteredPhone;// sir next screen per navigate hprha hai // otp ka option nhi aaya otp abhi tak// mahi ayega apne jo dala h firebase pr wo dalo
 
   Future<void> _verifyPhoneNumber() async {
     await _auth.verifyPhoneNumber(
@@ -43,7 +58,7 @@ class _LoginState extends State<Login> {
       verificationCompleted: (PhoneAuthCredential credential) async {
         await _auth.signInWithCredential(credential);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
               content:
                   Text('Phone number automatically verified and signed in!')),
         );
@@ -55,7 +70,7 @@ class _LoginState extends State<Login> {
       },
       codeSent: (String verificationId, int? resendToken) {
         setState(() {
-          // _verificationId = verificationId;
+          _verificationId = verificationId;
         });
         // Navigate to OTP Verification Screen
         Navigator.of(context).push(MaterialPageRoute(
@@ -66,7 +81,7 @@ class _LoginState extends State<Login> {
         ));
       },
       codeAutoRetrievalTimeout: (String verificationId) {
-        // _verificationId = verificationId;
+        _verificationId = verificationId;
       },
     );
   }
@@ -368,7 +383,7 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.all(20),
                 child: Center(
                     child: Text(
-                  StringConstants.plsvalidtext, // this one
+                  StringConstants.plsvalidtext,// this one
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.verifyColor,
@@ -387,7 +402,7 @@ class _LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
+                        Container(
                           height: MediaQuery.of(context).size.height * 12 / 100,
                           width: MediaQuery.of(context).size.width * 18 / 100,
                           child: Center(
@@ -407,7 +422,7 @@ class _LoginState extends State<Login> {
                                 Toogletab = 1;
                               });
                             },
-                            child: SizedBox(
+                            child: Container(
                               height:
                                   MediaQuery.of(context).size.height * 12 / 100,
                               width:
@@ -425,7 +440,7 @@ class _LoginState extends State<Login> {
                 height: MediaQuery.of(context).size.height * 5 / 100,
               ),
               if (Toogletab == 1) ...[
-                SizedBox(
+                Container(
                   width: MediaQuery.sizeOf(context).width * 90 / 100,
                   child: TextFormField(
                     controller: emailController,
@@ -443,7 +458,8 @@ class _LoginState extends State<Login> {
                       focusedBorder: const OutlineInputBorder(
                         borderSide:
                             BorderSide(color: AppColor.fillColor, width: 1.5),
-                        borderRadius: BorderRadius.all(Radius.circular(2)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(2)),
                       ),
                       filled: true,
                       fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -462,7 +478,7 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: MediaQuery.sizeOf(context).height * 3 / 100,
                 ),
-                SizedBox(
+                Container(
                   width: MediaQuery.sizeOf(context).width * 90 / 100,
                   child: TextFormField(
                     obscureText: true,
@@ -481,7 +497,8 @@ class _LoginState extends State<Login> {
                         focusedBorder: const OutlineInputBorder(
                           borderSide:
                               BorderSide(color: AppColor.fillColor, width: 1.5),
-                          borderRadius: BorderRadius.all(Radius.circular(2)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(2)),
                         ),
                         filled: true,
                         fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -511,7 +528,6 @@ class _LoginState extends State<Login> {
                             });
                             login(email: email, password: password)
                                 .then((loginResponse) {
-                              SharedPref.saveUserData(loginResponse.data);
                               setState(() {
                                 _isLoading = false;
                               });
@@ -522,7 +538,7 @@ class _LoginState extends State<Login> {
                               } else {
                                 setState(() {
                                   _errorMessage =
-                                      loginResponse.message.toString();
+                                      '${loginResponse.message.toString()}';
                                 });
                               }
                             });
@@ -606,14 +622,15 @@ class _LoginState extends State<Login> {
                       focusedBorder: const OutlineInputBorder(
                         borderSide:
                             BorderSide(color: AppColor.fillColor, width: 1.5),
-                        borderRadius: BorderRadius.all(Radius.circular(2)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(2)),
                       ),
                       filled: true,
                       fillColor: AppColor.fillColor.withOpacity(0.2),
                     ),
                     initialCountryCode: 'IN',
                     onChanged: (phone) {
-                      enteredPhone = phone.completeNumber;
+                       enteredPhone = phone.completeNumber;
                       print(phone.completeNumber);
                       print(phone.countryCode);
                     },
@@ -717,4 +734,8 @@ class _LoginState extends State<Login> {
           ),
         ));
   }
+}
+
+class SharedPreferences {
+  static getInstance() {}
 }

@@ -1,10 +1,13 @@
+import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:spam_delection_app/screens/login_succesful_screen.dart';
+import 'package:spam_delection_app/screens/reset_password_screen.dart';
 
 import '../constants/icons_constants.dart';
+import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/appbutton.dart';
@@ -25,7 +28,7 @@ class OtpVerify extends StatefulWidget {
 }
 
 class _ForgotOtpVerifyState extends State<OtpVerify> {
-  final GlobalKey<FormState> _forgotOtpFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _forgotOtpFormKey = new GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _otpController = TextEditingController();
 
@@ -38,7 +41,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
       );
       await _auth.signInWithCredential(credential);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Phone number verified and user signed in successfully!'),
+        content: const Text('Phone number verified and user signed in successfully!'),
       ));
 
       Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginSuccessful()));
@@ -134,13 +137,13 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
             Navigator.pop(context);
           },
           child: SizedBox(
-            height: MediaQuery.of(context).size.height * 2 / 100,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Image.asset(IconConstants.backIcon,
               ),
 
             ),
+            height: MediaQuery.of(context).size.height * 2 / 100,
           ),
         ),
         title: Image.asset(IconConstants.icBroadlogo,height:MediaQuery.of(context).size.height * 5/ 100, ),
@@ -280,7 +283,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                   pin2FocusNode!.requestFocus();
                                 },
                                 onChanged: (value) {
-                                  if (value.isEmpty) {
+                                  if (value.length == 0) {
                                     secondInputController.text = '';
                                     previousField(value, pin1FocusNode!);
                                   } else {
@@ -318,7 +321,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                 style: TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.w500,
-                                    color: (secondInputController.text.isNotEmpty)
+                                    color: (secondInputController.text.length > 0)
                                         ? AppColor.deepyelloeColor
                                         : AppColor.deepyelloeColor),
                               ),
@@ -368,7 +371,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                 style: TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.w700,
-                                    color: (thirdInputController.text.isNotEmpty)
+                                    color: (thirdInputController.text.length > 0)
                                         ? AppColor.deepyelloeColor
                                         : AppColor.deepyelloeColor),
                                 focusNode: pin3FocusNode,
@@ -377,7 +380,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                 },
                                 onChanged: (value) {
                                   print('hello');
-                                  if (value.isEmpty) {
+                                  if (value.length == 0) {
                                     thirdInputController.text = '';
                                     previousField(value, pin2FocusNode!);
                                   } else {
@@ -443,7 +446,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                   pin4FocusNode!.requestFocus();
                                 },
                                 onChanged: (value) {
-                                  if (value.isEmpty) {
+                                  if (value.length == 0) {
                                     forthInputController.text = '';
                                     previousField(value, pin3FocusNode!);
                                   } else {
@@ -498,7 +501,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                           style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.w700,
-                              color: (thirdInputController.text.isNotEmpty)
+                              color: (thirdInputController.text.length > 0)
                                   ? AppColor.deepyelloeColor
                                   : AppColor.deepyelloeColor),
                           focusNode: pin5FocusNode,
@@ -507,7 +510,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                           },
                           onChanged: (value) {
                             print('hello');
-                            if (value.isEmpty) {
+                            if (value.length == 0) {
                               fifthInputController.text = '';
                               previousField(value, pin4FocusNode!);
                             } else {
@@ -572,7 +575,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                             pin6FocusNode?.requestFocus();
                           },
                           onChanged: (value) {
-                            if (value.isEmpty) {
+                            if (value.length == 0) {
                               sixthInputController.text = '';
                               previousField(value, pin5FocusNode!);
                             } else {

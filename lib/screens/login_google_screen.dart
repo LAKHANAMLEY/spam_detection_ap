@@ -9,6 +9,7 @@ import 'package:spam_delection_app/screens/welcome_screen.dart';
 
 
 import '../constants/icons_constants.dart';
+import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
@@ -40,17 +41,17 @@ class _LoginGoogleState extends State<LoginGoogle> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: SizedBox(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 2 / 100,
+            child: Container(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Image.asset(IconConstants.backIcon,
                 ),
 
               ),
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height * 2 / 100,
             ),
           ),
           title: Image.asset(IconConstants.icBroadlogo, height: MediaQuery
@@ -68,7 +69,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                         .size
                         .height * 6 / 100,
                   ),
-                  const Center(
+                  Center(
                       child: Text(
                         StringConstants.logintext,
                         style: TextStyle(
@@ -91,10 +92,10 @@ class _LoginGoogleState extends State<LoginGoogle> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const LoginSuccessful()));
+                                  builder: (context) => LoginSuccessful()));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
+                            SnackBar(
                                 content:
                                 Text(
                                     'Google Sign-In failed. Please try again.')),
@@ -103,7 +104,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                       } catch (e) {
                         print('Error during Google Sign-In: $e');
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
+                          SnackBar(
                               content:
                               Text('An error occurred during Google Sign-In.')),
                         );
@@ -132,7 +133,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                             height: MediaQuery
                                 .sizeOf(context)
                                 .height * 6 / 100,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(IconConstants.icgoogleLogo),
                                   fit: BoxFit.cover),
@@ -143,7 +144,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                               .of(context)
                               .size
                               .width * 4 / 100,),
-                          const Text(StringConstants.loginGoogletext,
+                          Text(StringConstants.loginGoogletext,
                             style: TextStyle(color: AppColor.gracyColor,
                                 fontFamily: AppFont.fontFamily,
                                 fontSize: 18,
@@ -180,7 +181,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                             height: MediaQuery
                                 .sizeOf(context)
                                 .height * 6 / 100,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(IconConstants.icappleLogo),
                                   fit: BoxFit.cover),
@@ -191,7 +192,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                               .of(context)
                               .size
                               .width * 4 / 100,),
-                          const Text(StringConstants.loginAppletext, style: TextStyle(
+                          Text(StringConstants.loginAppletext, style: TextStyle(
                               color: AppColor.gracyColor,
                               fontFamily: AppFont.fontFamily,
                               fontSize: 18,
@@ -206,7 +207,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                       .height * 8 / 100,),
                   Row(children: <Widget>[
                     Expanded(
-                      child: Container(
+                      child: new Container(
                           width: MediaQuery
                               .sizeOf(context)
                               .width * 6 / 100,
@@ -220,11 +221,11 @@ class _LoginGoogleState extends State<LoginGoogle> {
 
                           )),
                     ),
-                    const Text("or", style: TextStyle(color: AppColor.primaryColor,
+                    Text("or", style: TextStyle(color: AppColor.primaryColor,
                         fontWeight: FontWeight.w600,
                         fontSize: 18),),
                     Expanded(
-                      child: Container(
+                      child: new Container(
                           margin: const EdgeInsets.only(left: 10, right: 50),
                           child: Divider(
                             color: AppColor.gracyColor,
@@ -241,7 +242,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                   AppButton(
                       text: StringConstants.loginusingEmail, onPress: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Login()));
+                        MaterialPageRoute(builder: (context) => Login()));
                   }),
 
 
@@ -252,7 +253,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                         .height * 4 / 100,
                   ),
                   TextButton(
-                    child: const Text(
+                    child: Text(
                       'Logout',
                       style: TextStyle(fontSize: 18,color:AppColor.yellowlightColor),
                     ),
@@ -260,15 +261,15 @@ class _LoginGoogleState extends State<LoginGoogle> {
                       bool signOutSuccess = await signOutFromGoogle();
                       if (signOutSuccess) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text(
+                          SnackBar(content: Text(
                               'Successfully signed out from Google.')),
                         );
                         // Navigate to login or home screen after sign out
                         Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => const Welcome()));
+                            MaterialPageRoute(builder: (context) => Welcome()));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text(
+                          SnackBar(content: Text(
                               'Failed to sign out. Please try again.')),
                         );
                       }
@@ -283,7 +284,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(StringConstants.donttext,
+                      Text(StringConstants.donttext,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontFamily: AppFont.fontFamily,
@@ -301,9 +302,9 @@ class _LoginGoogleState extends State<LoginGoogle> {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      const RegisterGoogle()));
+                                      RegisterGoogle()));
                         },
-                        child: const Text(StringConstants.registertext,
+                        child: Text(StringConstants.registertext,
                             style: TextStyle(
                                 color: AppColor.yellowlightColor,
                                 fontWeight: FontWeight.bold,

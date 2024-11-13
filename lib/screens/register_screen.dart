@@ -1,17 +1,26 @@
+import 'dart:convert';
+
+import 'package:date_picker_plus/date_picker_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/data/repository/auth_repo/sign_up_api.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
 import 'package:spam_delection_app/screens/forgot_password_screen.dart';
 import 'package:spam_delection_app/screens/login_screen.dart';
-import 'package:spam_delection_app/screens/registration_sucessful_screen.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:http/http.dart' as http;
+import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
+import 'package:spam_delection_app/models/sign_up_model.dart';
 
+import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
 import '../models/country_list_model.dart';
+import '../models/sign_up_model.dart';
+import 'login_succesful_screen.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -25,7 +34,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   int SelectTab = 0;
   int Toogletab = 0;
-  // final bool _obscureText = true;
+  bool _obscureText = true;
   bool isCheckBoxValue = false;
   bool isPasswordVisible = true;
   bool isConfirmPasswordVisible = true;
@@ -157,19 +166,19 @@ class _RegisterState extends State<Register> {
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: const BorderRadius.all(Radius.circular(2)),
                 ),
                 filled: true,
                 fillColor: AppColor.fillColor.withOpacity(0.2),
                 suffixIcon: GestureDetector(
                   onTap: () {},
                   child: SizedBox(
-                    height: 10,
-                    width: 10,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Image.asset(IconConstants.icUsername),
                     ),
+                    height: 10,
+                    width: 10,
                   ),
                 ),
               ),
@@ -195,19 +204,19 @@ class _RegisterState extends State<Register> {
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: const BorderRadius.all(Radius.circular(2)),
                 ),
                 filled: true,
                 fillColor: AppColor.fillColor.withOpacity(0.2),
                 suffixIcon: GestureDetector(
                   onTap: () {},
                   child: SizedBox(
-                    height: 10,
-                    width: 10,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Image.asset(IconConstants.icUsername),
                     ),
+                    height: 10,
+                    width: 10,
                   ),
                 ),
               ),
@@ -233,7 +242,7 @@ class _RegisterState extends State<Register> {
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: const BorderRadius.all(Radius.circular(2)),
                 ),
                 filled: true,
                 fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -305,7 +314,7 @@ class _RegisterState extends State<Register> {
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: const BorderRadius.all(Radius.circular(2)),
                 ),
                 filled: true,
                 fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -322,8 +331,8 @@ class _RegisterState extends State<Register> {
               onChanged: (phone) {
                 phoneNumber = phone;
                 enteredPhone = phone.completeNumber;
-                // print(phone.completeNumber);
-                // print(phone.countryCode);
+                print(phone.completeNumber);
+                print(phone.countryCode);
               },
             ),
           )),
@@ -347,7 +356,7 @@ class _RegisterState extends State<Register> {
                   focusedBorder: const OutlineInputBorder(
                     borderSide:
                         BorderSide(color: AppColor.fillColor, width: 1.5),
-                    borderRadius: BorderRadius.all(Radius.circular(2)),
+                    borderRadius: const BorderRadius.all(Radius.circular(2)),
                   ),
                   filled: true,
                   fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -398,7 +407,7 @@ class _RegisterState extends State<Register> {
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Color(0xffE1E6EB), width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: const BorderRadius.all(Radius.circular(2)),
                 ),
                 filled: true,
                 fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -509,11 +518,11 @@ class _RegisterState extends State<Register> {
                         //var response
                         if (response.statusCode == 200) {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const RegistrationSucessful()));
+                            builder: (context) => const LoginSuccessful(),
+                          ));
                         } else {
                           setState(() {
-                            _errorMessage = response.message.toString();
+                            _errorMessage = '${response.message.toString()}';
                           });
                         }
                       });

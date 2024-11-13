@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
+import 'package:spam_delection_app/constants/image_constants.dart';
 import 'package:spam_delection_app/globals/colors.dart';
 import 'welcome_screen.dart';
 
 class Splash extends StatefulWidget {
-  const Splash({super.key});
+  Splash({super.key});
   static String routeName = './Splash';// iski ek alag se class bana lena AppRoutes krke
 
   @override
@@ -16,11 +17,11 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     Future.delayed(
-      const Duration(seconds: 3),
+      Duration(seconds: 3),
           () =>
        Navigator.push(
        context,
-        MaterialPageRoute(builder: (context) => const Welcome()),
+        MaterialPageRoute(builder: (context) => Welcome()),
 
       ),
     );

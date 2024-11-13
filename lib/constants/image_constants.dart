@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 
 class ImageConstants {
   static const String imageLogo = 'assets/images/image_logo.png';

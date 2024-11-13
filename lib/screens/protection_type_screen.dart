@@ -49,7 +49,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
               ),
               const Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 70,right: 70),
+                    padding: EdgeInsets.only(left: 60,right: 60),
                     child: Text(
                       StringConstants.protectiontext,textAlign: TextAlign.center,
                       style: TextStyle(
@@ -63,7 +63,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
               const Padding(
-                padding: EdgeInsets.only(left: 30,right: 30),
+                padding: EdgeInsets.only(left: 25,right: 25),
                 child: Center(
                     child: Text(
                       StringConstants.selectaccountext,
@@ -104,7 +104,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                         height: MediaQuery
                             .sizeOf(context)
                             .height * 6 / 100,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(IconConstants.covidprotectionshield),
                              ),
@@ -114,7 +114,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                           .of(context)
                           .size
                           .width * 4 / 100,),
-                      const Text(StringConstants.personalProtectiontext,
+                      Text(StringConstants.personalProtectiontext,
                         style: TextStyle(color: AppColor.gracyColor,
                             fontFamily: AppFont.fontFamily,
                             fontSize: 18,
@@ -126,7 +126,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
               SizedBox(height: MediaQuery.of(context).size.height*5/100,),
               GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const CorpoateLogin()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>CorpoateLogin()));
                 },
                 child: Container(
                   width: MediaQuery
@@ -151,7 +151,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                         height: MediaQuery
                             .sizeOf(context)
                             .height * 6 / 100,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(IconConstants.icCorporate),
                           ),
@@ -161,7 +161,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                           .of(context)
                           .size
                           .width * 4 / 100,),
-                      const Text(StringConstants.corpotateprotectiontext,
+                      Text(StringConstants.corpotateprotectiontext,
                         style: TextStyle(color: AppColor.secondryColor,
                             fontFamily: AppFont.fontFamily,
                             fontSize: 18,
@@ -172,7 +172,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height*5/100,),
               AppButton(text: StringConstants.continutext,onPress: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginGoogle()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginGoogle()));
 
               },
 

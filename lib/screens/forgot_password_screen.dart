@@ -2,15 +2,20 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
+import 'package:spam_delection_app/globals/constants.dart';
+import 'package:spam_delection_app/models/forgot_password_model.dart';
 import 'package:spam_delection_app/screens/forgot_otp_verify_screen.dart';
+import 'package:spam_delection_app/screens/otp_verify_screen.dart';
 import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
 import 'package:http/http.dart' as http;
 
 import '../constants/icons_constants.dart';
+import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 import '../data/repository/auth_repo/forgot_password_api.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
+import 'login_succesful_screen.dart';
 // wait sir
 // ab check kro
 class ForgotPassword extends StatefulWidget {
@@ -57,7 +62,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         ));
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('An error occurred. Please try again.'),
       ));
     }
@@ -149,9 +154,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           SizedBox(
           height: MediaQuery.of(context).size.height * 8 / 100,
               ),
-                const Center(
+                Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 50,right: 50),
+                    padding: const EdgeInsets.only(left: 50,right: 50),
                     child: Text(
                                 StringConstants.forgottext,textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -164,8 +169,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-                const Padding(
-                  padding: EdgeInsets.all(18),
+                Padding(
+                  padding: const EdgeInsets.all(18),
                   child: Text(
                     StringConstants.emailtext,
                     textAlign: TextAlign.center,
@@ -178,7 +183,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height*4/100,),
-                SizedBox(
+                Container(
                   width: MediaQuery.sizeOf(context).width * 90/ 100,
                   child: TextFormField(
                     controller: _emailController,
@@ -194,7 +199,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         borderSide: BorderSide(
                             color: AppColor.fillColor, width: 1.5),
                         borderRadius:
-                        BorderRadius.all(Radius.circular(2)),
+                        const BorderRadius.all(Radius.circular(2)),
                       ),
                       filled: true,
                       fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -210,7 +215,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100,),
-                const Text(StringConstants.checkmailtext,style: TextStyle(color: AppColor.remainColor,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),),
+                Text(StringConstants.checkmailtext,style: TextStyle(color: AppColor.remainColor,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),),
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100,),
                 if (_errorMessage != null)
                   Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
@@ -241,7 +246,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           ));
                         } else {
                           setState(() {
-                            _errorMessage = response.message.toString();
+                            _errorMessage = '${response.message.toString()}';
                           });
                         }
                       });
