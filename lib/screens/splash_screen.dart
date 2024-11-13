@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
-import 'package:spam_delection_app/constants/image_constants.dart';
 import 'package:spam_delection_app/globals/colors.dart';
 import 'welcome_screen.dart';
 
 class Splash extends StatefulWidget {
-  Splash({super.key});
+  const Splash({super.key});
   static String routeName = './Splash';
 
   @override
@@ -17,11 +16,11 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     Future.delayed(
-      Duration(seconds: 3),
+      const Duration(seconds: 3),
           () =>
        Navigator.push(
        context,
-        MaterialPageRoute(builder: (context) => Welcome()),
+        MaterialPageRoute(builder: (context) => const Welcome()),
 
       ),
     );

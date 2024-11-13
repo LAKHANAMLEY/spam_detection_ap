@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
 
 import '../constants/icons_constants.dart';
-import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
@@ -24,14 +23,14 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
         backgroundColor: AppColor.secondryColor,
         leading:GestureDetector(
         onTap: (){},
-        child: Container(
+        child: SizedBox(
+              height: MediaQuery.of(context).size.height * 2 / 100,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Image.asset(
                   IconConstants.backIcon,
                 ),
               ),
-              height: MediaQuery.of(context).size.height * 2 / 100,
             ),
           ),
           title: Image.asset(
@@ -46,7 +45,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 10/ 100,
           ),
-          Center(
+          const Center(
               child: Text(
             StringConstants.successfultext,
             style: TextStyle(
@@ -58,9 +57,9 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
-                  Text(StringConstants.yeytext,style: TextStyle(color: AppColor.yellowlightColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                  const Text(StringConstants.yeytext,style: TextStyle(color: AppColor.yellowlightColor,fontSize: 18,fontWeight: FontWeight.bold),),
                   SizedBox(height:MediaQuery.of(context).size.height * 2/ 100 ,),
-                  Text(StringConstants.fromtext,style: TextStyle(color:AppColor.gracyColor),),
+                  const Text(StringConstants.fromtext,style: TextStyle(color:AppColor.gracyColor),),
                   SizedBox(height:MediaQuery.of(context).size.height * 5 / 100 ,),
                   Image.asset(IconConstants.icsuccesfulLogo,height: MediaQuery.of(context).size.height * 20/ 100,),
                   SizedBox(height:MediaQuery.of(context).size.height * 5 / 100),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/globals/constants.dart';
 import 'package:spam_delection_app/screens/forgot_otp_verify_screen.dart';
 
 import '../constants/icons_constants.dart';
-import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
@@ -82,14 +80,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           onTap: (){
             Navigator.pop(context);
           },
-          child: Container(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 2 / 100,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Image.asset(IconConstants.backIcon,
               ),
 
             ),
-            height: MediaQuery.of(context).size.height * 2 / 100,
           ),
         ),
         title: Image.asset(IconConstants.icBroadlogo,height:MediaQuery.of(context).size.height * 5/ 100, ),
@@ -102,9 +100,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           SizedBox(
           height: MediaQuery.of(context).size.height * 8 / 100,
               ),
-                Center(
+                const Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 50,right: 50),
+                    padding: EdgeInsets.only(left: 50,right: 50),
                     child: Text(
                                 StringConstants.forgottext,textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -117,8 +115,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-                Padding(
-                  padding: const EdgeInsets.all(18),
+                const Padding(
+                  padding: EdgeInsets.all(18),
                   child: Text(
                     StringConstants.emailtext,
                     textAlign: TextAlign.center,
@@ -131,7 +129,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height*4/100,),
-                Container(
+                SizedBox(
                   width: MediaQuery.sizeOf(context).width * 90/ 100,
                   child: TextFormField(
                     decoration: InputDecoration(
@@ -147,7 +145,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         borderSide: BorderSide(
                             color: AppColor.fillColor, width: 1.5),
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(2)),
+                        BorderRadius.all(Radius.circular(2)),
                       ),
                       filled: true,
                       fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -163,12 +161,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100,),
-                Text(StringConstants.checkmailtext,style: TextStyle(color: AppColor.remainColor,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),),
+                const Text(StringConstants.checkmailtext,style: TextStyle(color: AppColor.remainColor,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),),
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100,),
                 AppButton(
                     text: StringConstants.continutext,
                     onPress: (){
-                      Navigator.push(context,MaterialPageRoute(builder: (context)=>ForgotOtpVerify()) );
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=>const ForgotOtpVerify()) );
           
                     }
                 ),
