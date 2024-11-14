@@ -1,8 +1,11 @@
+import 'package:fast_contacts/fast_contacts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_bloc.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
+import 'package:spam_delection_app/data/repository/contact/sync_contacts_api.dart';
 import 'package:spam_delection_app/globals/app_fonts.dart';
 import 'package:spam_delection_app/globals/colors.dart';
 import 'package:spam_delection_app/models/contact_list_response.dart';
@@ -72,10 +75,43 @@ class _CallLogState extends State<CallLog> {
 
   var contactListBloc = ApiBloc(ApiBlocInitialState());
 
+  Future<PermissionStatus?> permissionRequest(Permission permission) async {
+    var status = await permission.status;
+    switch (status) {
+      case PermissionStatus.denied:
+        debugPrint("$status");
+        status = await permission.request();
+      case PermissionStatus.granted:
+        debugPrint("$status");
+      case PermissionStatus.restricted:
+        debugPrint("$status");
+        status = await permission.request();
+      case PermissionStatus.limited:
+        debugPrint("$status");
+      case PermissionStatus.permanentlyDenied:
+        debugPrint("$status");
+      case PermissionStatus.provisional:
+        debugPrint("$status");
+    }
+    return status;
+  }
+
+  getLocalContacts() async {
+    permissionRequest(Permission.contacts).then((status) async {
+      if (status == PermissionStatus.granted) {
+        final contacts = await FastContacts.getAllContacts();
+        syncContacts(contacts);
+      } else {
+        print("$status");
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     contactListBloc.add(GetContactEvent());
+    getLocalContacts();
     // items = duplicateItems;
   }
 
@@ -94,25 +130,25 @@ class _CallLogState extends State<CallLog> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-          leading: Image.asset(
-            IconConstants.icdrawer,
-            height: MediaQuery.of(context).size.height * 4 / 100,
-            width: MediaQuery.of(context).size.width * 4 / 100,
-          ),
-          title: Image.asset(
-            IconConstants.iccallAvater,
-            height: MediaQuery.of(context).size.height * 6 / 100,
-          ),
-          actions: [
-            Image.asset(
-              IconConstants.icMoreDetails,
-              height: MediaQuery.of(context).size.height * 3 / 100,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 3 / 100,
-            ),
-          ]),
+      // appBar: AppBar(
+      //     leading: Image.asset(
+      //       IconConstants.icdrawer,
+      //       height: MediaQuery.of(context).size.height * 4 / 100,
+      //       width: MediaQuery.of(context).size.width * 4 / 100,
+      //     ),
+      //     title: Image.asset(
+      //       IconConstants.iccallAvater,
+      //       height: MediaQuery.of(context).size.height * 6 / 100,
+      //     ),
+      //     actions: [
+      //       Image.asset(
+      //         IconConstants.icMoreDetails,
+      //         height: MediaQuery.of(context).size.height * 3 / 100,
+      //       ),
+      //       SizedBox(
+      //         width: MediaQuery.of(context).size.width * 3 / 100,
+      //       ),
+      //     ]),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -161,6 +197,11 @@ class _CallLogState extends State<CallLog> {
                   builder: (context, state) {
                     if (state is GetContactState) {
                       duplicateItems = state.value.contactslist ?? [];
+                      if (items.isEmpty) {
+                        return const Center(
+                          child: Text('No contacts'),
+                        );
+                      }
                       return ListView.builder(
                         itemCount: items.length,
                         // shrinkWrap: true,

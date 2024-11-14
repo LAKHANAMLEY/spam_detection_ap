@@ -18,7 +18,7 @@ Future<LoginResponse> login(
     'device_type': deviceType,
     'user_role': "user"
   };
-//karo login
+
   final response = await http.post(
     Uri.parse(ApiUrlConstants.endPointEmailPassword),
     headers: <String, String>{
