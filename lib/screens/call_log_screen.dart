@@ -178,7 +178,8 @@ class _CallLogState extends State<CallLog> {
           width: MediaQuery.of(context).size.width * 6 / 100,
         ),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>AddContact()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => AddContact()));
         },
       ),
     );
