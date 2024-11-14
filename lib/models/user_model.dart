@@ -4,14 +4,15 @@
 
 import 'dart:convert';
 
-LoginResponse loginResponseFromJson(String str) => LoginResponse.fromJson(json.decode(str));
+LoginResponse loginResponseFromJson(String str) =>
+    LoginResponse.fromJson(json.decode(str));
 
 String loginResponseToJson(LoginResponse data) => json.encode(data.toJson());
 
 class LoginResponse {
   final int? statusCode;
   final dynamic message;
-  final Data? data;
+  final User? data;
 
   LoginResponse({
     this.statusCode,
@@ -22,7 +23,7 @@ class LoginResponse {
   LoginResponse copyWith({
     int? statusCode,
     dynamic message,
-    Data? data,
+    User? data,
   }) =>
       LoginResponse(
         statusCode: statusCode ?? this.statusCode,
@@ -31,19 +32,19 @@ class LoginResponse {
       );
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
-    statusCode: json["status_code"],
-    message: json["message"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
-  );
+        statusCode: json["status_code"],
+        message: json["message"],
+        data: json["data"] == null ? null : User.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status_code": statusCode,
-    "message": message,
-    "data": data?.toJson(),
-  };
+        "status_code": statusCode,
+        "message": message,
+        "data": data?.toJson(),
+      };
 }
 
-class Data {
+class User {
   final String? userId;
   final String? userName;
   final String? firstName;
@@ -65,7 +66,7 @@ class Data {
   final String? country;
   final String? token;
 
-  Data({
+  User({
     this.userId,
     this.userName,
     this.firstName,
@@ -88,7 +89,7 @@ class Data {
     this.token,
   });
 
-  Data copyWith({
+  User copyWith({
     String? userId,
     String? userName,
     String? firstName,
@@ -110,7 +111,7 @@ class Data {
     String? country,
     String? token,
   }) =>
-      Data(
+      User(
         userId: userId ?? this.userId,
         userName: userName ?? this.userName,
         firstName: firstName ?? this.firstName,
@@ -133,49 +134,50 @@ class Data {
         token: token ?? this.token,
       );
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    userId: json["user_id"],
-    userName: json["user_name"],
-    firstName: json["first_name"],
-    lastName: json["last_name"],
-    email: json["email"],
-    phone: json["phone"],
-    userRole: json["user_role"],
-    isEmailVerify: json["is_email_verify"],
-    photo: json["photo"],
-    supportPin: json["support_pin"],
-    gender: json["gender"],
-    dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
-    countryId: json["country_id"],
-    state: json["state"],
-    city: json["city"],
-    zip: json["zip"],
-    address: json["address"],
-    address2: json["address2"],
-    country: json["country"],
-    token: json["token"],
-  );
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        userId: json["user_id"],
+        userName: json["user_name"],
+        firstName: json["first_name"],
+        lastName: json["last_name"],
+        email: json["email"],
+        phone: json["phone"],
+        userRole: json["user_role"],
+        isEmailVerify: json["is_email_verify"],
+        photo: json["photo"],
+        supportPin: json["support_pin"],
+        gender: json["gender"],
+        dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+        countryId: json["country_id"],
+        state: json["state"],
+        city: json["city"],
+        zip: json["zip"],
+        address: json["address"],
+        address2: json["address2"],
+        country: json["country"],
+        token: json["token"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "user_id": userId,
-    "user_name": userName,
-    "first_name": firstName,
-    "last_name": lastName,
-    "email": email,
-    "phone": phone,
-    "user_role": userRole,
-    "is_email_verify": isEmailVerify,
-    "photo": photo,
-    "support_pin": supportPin,
-    "gender": gender,
-    "dob": "${dob!.year.toString().padLeft(4, '0')}-${dob!.month.toString().padLeft(2, '0')}-${dob!.day.toString().padLeft(2, '0')}",
-    "country_id": countryId,
-    "state": state,
-    "city": city,
-    "zip": zip,
-    "address": address,
-    "address2": address2,
-    "country": country,
-    "token": token,
-  };
+        "user_id": userId,
+        "user_name": userName,
+        "first_name": firstName,
+        "last_name": lastName,
+        "email": email,
+        "phone": phone,
+        "user_role": userRole,
+        "is_email_verify": isEmailVerify,
+        "photo": photo,
+        "support_pin": supportPin,
+        "gender": gender,
+        "dob":
+            "${dob!.year.toString().padLeft(4, '0')}-${dob!.month.toString().padLeft(2, '0')}-${dob!.day.toString().padLeft(2, '0')}",
+        "country_id": countryId,
+        "state": state,
+        "city": city,
+        "zip": zip,
+        "address": address,
+        "address2": address2,
+        "country": country,
+        "token": token,
+      };
 }
