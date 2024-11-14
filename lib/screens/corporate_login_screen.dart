@@ -105,8 +105,8 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                           child: Image.asset(
                             IconConstants
                                 .iccorporateSuff, // Adjust the path as necessary
-                            width: MediaQuery.of(context).size.width * 3 / 100,
-                            height: MediaQuery.of(context).size.height * 3 / 100,
+                            width: MediaQuery.of(context).size.width * 2 / 100,
+                            height: MediaQuery.of(context).size.height * 2/ 100,
                           ),
                         ),
                       ),
@@ -144,8 +144,8 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                           child: Image.asset(
                             IconConstants
                                 .icEmailadd, // Adjust the path as necessary
-                            width: MediaQuery.of(context).size.width * 3 / 100,
-                            height: MediaQuery.of(context).size.height * 3 / 100,
+                            width: MediaQuery.of(context).size.width * 1 / 100,
+                            height: MediaQuery.of(context).size.height * 1/ 100,
                           ),
                         ),
                       ),

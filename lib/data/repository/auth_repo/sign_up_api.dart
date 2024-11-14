@@ -21,7 +21,7 @@ Future<SignUpResponse> signup({required String email, required String password,r
     'country_code':countrycode,//signup kro//working // or kuch jo samajh nhi aa hra? //wait ab firebase se otp nhi aarha hai // phle aa rha tha?
     'device_token': deviceToken ?? '',// manually add kr rhe hai to ho rha hai but phone per otp nahi aarha ek baar check kr lena pls// ok for now leave it next api implement kro time nhi h
     'device_type': deviceType,//okay sir forgot password pe work kr rha hu // ok do it
-    'user_role': "user"
+    //'user_role': "user"
 
   };
 

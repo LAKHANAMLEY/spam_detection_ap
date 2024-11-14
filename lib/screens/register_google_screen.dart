@@ -93,7 +93,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                             ),
                           ),
                           SizedBox(width: MediaQuery.of(context).size.width*4/100,),
-                          Text(StringConstants.loginGoogletext,style: TextStyle(color: AppColor.gracyColor,fontFamily: AppFont.fontFamily,fontSize: 18,fontWeight: FontWeight.w600),)
+                          Text(StringConstants.registerGoogletext,style: TextStyle(color: AppColor.gracyColor,fontFamily: AppFont.fontFamily,fontSize: 18,fontWeight: FontWeight.w600),)
                         ],
                       ),
                     ),
@@ -124,7 +124,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                             ),
                           ),
                           SizedBox(width: MediaQuery.of(context).size.width*4/100,),
-                          Text(StringConstants.loginAppletext,style: TextStyle(color: AppColor.gracyColor,fontFamily: AppFont.fontFamily,fontSize: 18,fontWeight: FontWeight.w600),)
+                          Text(StringConstants.registerAppletext,style: TextStyle(color: AppColor.gracyColor,fontFamily: AppFont.fontFamily,fontSize: 18,fontWeight: FontWeight.w600),)
                         ],
                       ),
                     ),

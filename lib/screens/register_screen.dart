@@ -11,6 +11,7 @@ import 'package:spam_delection_app/screens/forgot_password_screen.dart';
 import 'package:spam_delection_app/screens/login_screen.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:http/http.dart' as http;
+import 'package:spam_delection_app/screens/registration_sucessful_screen.dart';
 import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
 import 'package:spam_delection_app/models/sign_up_model.dart';
 
@@ -20,7 +21,6 @@ import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
 import '../models/country_list_model.dart';
 import '../models/sign_up_model.dart';
-import 'login_succesful_screen.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -518,8 +518,7 @@ class _RegisterState extends State<Register> {
                         //var response
                         if (response.statusCode == 200) {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const LoginSuccessful(),
-                          ));
+                            builder: (context) => const RegistrationSucessful()));
                         } else {
                           setState(() {
                             _errorMessage = '${response.message.toString()}';
