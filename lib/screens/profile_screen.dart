@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spam_delection_app/constants/image_constants.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
 import 'package:spam_delection_app/globals/app_fonts.dart';
 
@@ -60,7 +59,7 @@ IconConstants.icspamCheck,
        ],
       ),
       body: Container(
-        margin: EdgeInsets.all(16.0),
+        margin: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16.0),
@@ -75,6 +74,9 @@ IconConstants.icspamCheck,
                     backgroundColor: AppColor.greylightColor,
                     radius: 45.0,
                     child: CircleAvatar(
+                      radius: 48.0,
+                      backgroundImage: const AssetImage(
+                          IconConstants.icAvater),
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: CircleAvatar(
@@ -83,16 +85,13 @@ IconConstants.icspamCheck,
                           child: Image.asset(IconConstants.icCamera,height: MediaQuery.of(context).size.height*2/100,)
                         ),
                       ),
-                      radius: 48.0,
-                      backgroundImage: AssetImage(
-                          IconConstants.icAvater),
                     ),
                   ),
                 ),
                 Center(
                   child: Container(
-                    padding: EdgeInsets.only(top: 16.0),
-                    child: Text(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: const Text(
                       'Micheal Smith',
                       style: TextStyle(
                         fontFamily: AppFont.fontFamily,
@@ -104,8 +103,8 @@ IconConstants.icspamCheck,
                 ),
                 Center(
                   child: Container(
-                    padding: EdgeInsets.only(top: 8.0),
-                    child: Text(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: const Text(
                       'Pin- *****47589',
                       style: TextStyle(
                         fontFamily: AppFont.fontFamily,
@@ -116,10 +115,10 @@ IconConstants.icspamCheck,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height*2/100,),
                 Container(
-                  margin: EdgeInsets.only(left: 20,right: 20),
+                  margin: const EdgeInsets.only(left: 20,right: 20),
                   height: MediaQuery.of(context).size.height*10/100,
                    width: MediaQuery.of(context).size.height*80/100,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColor.callColor,
                       borderRadius: BorderRadius.all(Radius.circular(6.0)),
                 ),
@@ -129,7 +128,7 @@ IconConstants.icspamCheck,
                   children: [
                     Image.asset(IconConstants.icpremiumStar,height: MediaQuery.of(context).size.height*5/100,width:MediaQuery.of(context).size.width*5/100 ,),
                     SizedBox(width: MediaQuery.of(context).size.width*4/100,),
-                    Text(StringConstants.upgradetext,style: TextStyle(color: AppColor.secondryColor,fontSize:20,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w700 ),)
+                    const Text(StringConstants.upgradetext,style: TextStyle(color: AppColor.secondryColor,fontSize:20,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w700 ),)
                   ],
                 ),
                 ),
@@ -139,7 +138,7 @@ IconConstants.icspamCheck,
                   width: MediaQuery.of(context).size.width*90/100,
                   decoration: BoxDecoration(
                     color: AppColor.whitedeep,
-                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(6.0)),
                     border: Border.all(color: AppColor.vanishColor),
                   ),
                   child: Padding(
@@ -152,20 +151,20 @@ IconConstants.icspamCheck,
                              child: Text("Last 30 days",style: TextStyle(color: AppColor.lastColor,fontSize: 18,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),textAlign: TextAlign.start,)),
                         SizedBox(height: MediaQuery.of(context).size.height*2/100,),
                         GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio:1.2/1.2),
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio:1.2/1.2),
                           itemCount: 4,
                           primary: false,
                           shrinkWrap: true,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               child: Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.all(Radius.circular(4)),
                                   color: AppColor.secondryColor
                                 ),
                                 child: Container(
-                                  margin: EdgeInsets.all(8),
+                                  margin: const EdgeInsets.all(8),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -174,10 +173,10 @@ IconConstants.icspamCheck,
                                           children: [
                                             Image.asset(imageUrl[index],height: MediaQuery.of(context).size.height*5/100,width: MediaQuery.of(context).size.width*5/100,),
                                             SizedBox(width: MediaQuery.of(context).size.height*2/100,),
-                                            Text(cardTexts[index],style: TextStyle(color: AppColor.borderstekColor,fontSize: 20,fontFamily: AppFont.fontFamily),)
+                                            Text(cardTexts[index],style: const TextStyle(color: AppColor.borderstekColor,fontSize: 20,fontFamily: AppFont.fontFamily),)
                                           ]
                                       ),
-                                      Text(SpamTexts[index],style: TextStyle(color: AppColor.spelledColor,fontFamily: AppFont.fontFamily,fontSize: 16)),
+                                      Text(SpamTexts[index],style: const TextStyle(color: AppColor.spelledColor,fontFamily: AppFont.fontFamily,fontSize: 16)),
                                     ],
                                   ),
                                 ),
@@ -197,7 +196,7 @@ IconConstants.icspamCheck,
                   height: MediaQuery.of(context).size.height*7/100,
                   width: MediaQuery.of(context).size.height*90/100,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(2.0)
+                    borderRadius: const BorderRadius.all(Radius.circular(2.0)
                     ),
                     border: Border.all(color: AppColor.greyarrowColor,width: 1
                     ),
@@ -210,7 +209,7 @@ IconConstants.icspamCheck,
                       children: [
                         Image.asset(IconConstants.icEdit,height: MediaQuery.of(context).size.height*5/100,width: MediaQuery.of(context).size.width*5/100,),
                         SizedBox(width: MediaQuery.of(context).size.width*2/100,),
-                        Text('Edit Profile',style: TextStyle(color: AppColor.ThumbColor,fontSize: 18),),
+                        const Text('Edit Profile',style: TextStyle(color: AppColor.ThumbColor,fontSize: 18),),
                         SizedBox(width: MediaQuery.of(context).size.width*46/100,),
                         Image.asset(IconConstants.icviewArrow,height: MediaQuery.of(context).size.height*6/100,width: MediaQuery.of(context).size.width*6/100,)
                       ],
@@ -223,7 +222,7 @@ IconConstants.icspamCheck,
                   width: MediaQuery.of(context).size.height*90/100,
                   decoration: BoxDecoration(
             
-                      borderRadius: BorderRadius.all(Radius.circular(2.0)
+                      borderRadius: const BorderRadius.all(Radius.circular(2.0)
                       ),
                       border: Border.all(color: AppColor.greyarrowColor,width: 1
                       ),
@@ -236,7 +235,7 @@ IconConstants.icspamCheck,
                       children: [
                         Image.asset(IconConstants.icEditSecurity,height: MediaQuery.of(context).size.height*5/100,width: MediaQuery.of(context).size.width*5/100,),
                         SizedBox(width: MediaQuery.of(context).size.width*2/100,),
-                        Text('Edit Security Pin',style: TextStyle(color: AppColor.ThumbColor,fontSize: 18),),
+                        const Text('Edit Security Pin',style: TextStyle(color: AppColor.ThumbColor,fontSize: 18),),
                         SizedBox(width: MediaQuery.of(context).size.width*34/100,),
                         Image.asset(IconConstants.icviewArrow,height: MediaQuery.of(context).size.height*6/100,width: MediaQuery.of(context).size.width*6/100,)
             
@@ -250,7 +249,7 @@ IconConstants.icspamCheck,
                   height: MediaQuery.of(context).size.height*7/100,
                   width: MediaQuery.of(context).size.height*90/100,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(2.0)
+                      borderRadius: const BorderRadius.all(Radius.circular(2.0)
                       ),
                       border: Border.all(color: AppColor.greyarrowColor,width: 1
                       ),
@@ -263,7 +262,7 @@ IconConstants.icspamCheck,
                       children: [
                         Image.asset(IconConstants.icchangePass,height: MediaQuery.of(context).size.height*5/100,width: MediaQuery.of(context).size.width*5/100 ,),
                         SizedBox(width: MediaQuery.of(context).size.width*2/100,),
-                        Text('Change Password',style: TextStyle(color: AppColor.ThumbColor,fontSize: 18),),
+                        const Text('Change Password',style: TextStyle(color: AppColor.ThumbColor,fontSize: 18),),
                         SizedBox(width: MediaQuery.of(context).size.width*30/100,),
                         Image.asset(IconConstants.icviewArrow,height: MediaQuery.of(context).size.height*6/100,width: MediaQuery.of(context).size.width*6/100,)
             
@@ -278,7 +277,7 @@ IconConstants.icspamCheck,
                   width: MediaQuery.of(context).size.height*90/100,
                   decoration: BoxDecoration(
             
-                      borderRadius: BorderRadius.all(Radius.circular(2.0)
+                      borderRadius: const BorderRadius.all(Radius.circular(2.0)
                       ),
                       border: Border.all(color: AppColor.greyarrowColor,width: 1
                       ),
@@ -296,7 +295,7 @@ IconConstants.icspamCheck,
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 2 / 100,
                         ),
-                        Text(
+                        const Text(
                           ' Add Alertantive Email',
                           style:
                               TextStyle(color: AppColor.ThumbColor, fontSize: 18),

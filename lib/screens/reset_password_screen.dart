@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/screens/register_screen.dart';
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
 
 import '../constants/icons_constants.dart';
-import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 import '../data/repository/auth_repo/reset_password_api.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
-import 'login_succesful_screen.dart';
 
 
 class ResetPassword extends StatefulWidget {
@@ -58,14 +54,14 @@ class _ResetPasswordState extends State<ResetPassword> {
           onTap: (){
             Navigator.pop(context);
           },
-          child: Container(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 2 / 100,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Image.asset(IconConstants.backIcon,
               ),
 
             ),
-            height: MediaQuery.of(context).size.height * 2 / 100,
           ),
         ),
         title: Image.asset(IconConstants.icBroadlogo,height:MediaQuery.of(context).size.height * 5/ 100, ),
@@ -78,9 +74,9 @@ class _ResetPasswordState extends State<ResetPassword> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 4/ 100,
           ),
-              Center(
+              const Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 60,right: 50),
+                    padding: EdgeInsets.only(left: 60,right: 50),
                     child: Text(
                       StringConstants.resetpasstext,textAlign: TextAlign.center,
                       style: TextStyle(
@@ -93,8 +89,8 @@ class _ResetPasswordState extends State<ResetPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-            Padding(
-              padding: const EdgeInsets.all(18),
+            const Padding(
+              padding: EdgeInsets.all(18),
               child: Text(
                 StringConstants.resetMessage,
                 textAlign: TextAlign.center,
@@ -109,7 +105,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 4 / 100,
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.sizeOf(context).width * 90/ 100,
                 child: TextFormField(
                   controller: passwordController,
@@ -130,7 +126,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       borderSide: BorderSide(
                           color: AppColor.fillColor, width: 1.0),
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(2)),
+                      BorderRadius.all(Radius.circular(2)),
                     ),
                     filled: true,
                     fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -147,7 +143,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 4 / 100,),
-              Container(
+              SizedBox(
                 width: MediaQuery.sizeOf(context).width * 90/ 100,
                 child: TextFormField(
                   controller: confirmpasswordController,
@@ -167,7 +163,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       borderSide: BorderSide(
                           color: AppColor.fillColor, width: 1.0),
                       borderRadius:
-                      const BorderRadius.all(Radius.circular(2)),
+                      BorderRadius.all(Radius.circular(2)),
                     ),
 
                     filled: true,
@@ -219,7 +215,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         ));
                       } else {
                         setState(() {
-                          _errorMessage = '${response.message.toString()}';
+                          _errorMessage = response.message.toString();
                         });
                       }
                     });
