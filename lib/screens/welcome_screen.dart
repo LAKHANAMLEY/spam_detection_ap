@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
-import 'package:spam_delection_app/screens/blocked_number_screen.dart';
-import 'package:spam_delection_app/screens/call_log_screen.dart';
-import 'package:spam_delection_app/screens/home_screen.dart';
-import 'package:spam_delection_app/screens/login_google_screen.dart';
-
 import 'package:spam_delection_app/screens/protection_type_screen.dart';
 
 import '../globals/app_fonts.dart';
