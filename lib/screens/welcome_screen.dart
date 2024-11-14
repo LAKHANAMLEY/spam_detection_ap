@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
+import 'package:spam_delection_app/screens/blocked_number_screen.dart';
 import 'package:spam_delection_app/screens/call_log_screen.dart';
 import 'package:spam_delection_app/screens/home_screen.dart';
 import 'package:spam_delection_app/screens/login_google_screen.dart';
@@ -87,7 +88,7 @@ class _WelcomeState extends State<Welcome> {
               Text(StringConstants.weltext,style: TextStyle(color: AppColor.bluelightColor,fontSize:35,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),),
               SizedBox(height: MediaQuery.of(context).size.height*5/100),
               Padding(
-                padding: EdgeInsets.only(left: 20,right: 20),
+                padding: EdgeInsets.only(left: 25,right: 25),
                 child: Center(
              child: Text(StringConstants.welcometext,textAlign: TextAlign.center,
               style: TextStyle(
@@ -104,7 +105,7 @@ class _WelcomeState extends State<Welcome> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ProtectionType()));
+                            builder: (context) => BlockedNumber()));
           
                     // forgotPasswordUserValidation(
                     //    emailTextEditingController.text);

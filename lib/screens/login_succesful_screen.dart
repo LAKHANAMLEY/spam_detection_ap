@@ -9,7 +9,8 @@ import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
 
 class LoginSuccessful extends StatefulWidget {
-  const LoginSuccessful({super.key});
+  const LoginSuccessful({super.key,this.firstname});
+  final String? firstname;
   static String routeName = './LoginSuccessful';
 
   @override
@@ -59,7 +60,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
-                  Text(StringConstants.yeytext,style: TextStyle(color: AppColor.yellowlightColor,fontSize: 18,fontWeight: FontWeight.bold),),
+                  Text( 'Yey! ${widget.firstname}',style: TextStyle(color: AppColor.yellowlightColor,fontSize: 18,fontWeight: FontWeight.bold),),
                   SizedBox(height:MediaQuery.of(context).size.height * 2/ 100 ,),
                   Text(StringConstants.fromtext,style: TextStyle(color:AppColor.gracyColor),),
                   SizedBox(height:MediaQuery.of(context).size.height * 5 / 100 ,),

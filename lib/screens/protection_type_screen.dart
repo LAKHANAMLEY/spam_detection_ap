@@ -49,7 +49,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
               ),
               const Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 60,right: 60),
+                    padding: EdgeInsets.only(left: 70,right: 70),
                     child: Text(
                       StringConstants.protectiontext,textAlign: TextAlign.center,
                       style: TextStyle(
@@ -63,7 +63,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
               const Padding(
-                padding: EdgeInsets.only(left: 25,right: 25),
+                padding: EdgeInsets.only(left: 30,right: 30),
                 child: Center(
                     child: Text(
                       StringConstants.selectaccountext,
