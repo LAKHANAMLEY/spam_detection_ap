@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 
 import '../bloc/localization_bloc/localization_bloc.dart';
 import '../bloc/localization_bloc/localization_bloc_states.dart';
@@ -21,4 +19,4 @@ class AppLocalizations {
 }
 
 final localizationBloc =
-LocalizationBloc(ChangeLocaleState(const Locale("en")));
+    LocalizationBloc(ChangeLocaleState(const Locale("en")));

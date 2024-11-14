@@ -5,7 +5,8 @@ library;
 
 import 'dart:convert';
 
-ForgotResponse forgotResponseFromJson(String str) => ForgotResponse.fromJson(json.decode(str));
+ForgotResponse forgotResponseFromJson(String str) =>
+    ForgotResponse.fromJson(json.decode(str));
 
 String forgotResponseToJson(ForgotResponse data) => json.encode(data.toJson());
 
@@ -19,12 +20,12 @@ class ForgotResponse {
   });
 
   factory ForgotResponse.fromJson(Map<String, dynamic> json) => ForgotResponse(
-    statusCode: json["status_code"],
-    message: json["message"],
-  );
+        statusCode: json["status_code"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status_code": statusCode,
-    "message": message,
-  };
+        "status_code": statusCode,
+        "message": message,
+      };
 }

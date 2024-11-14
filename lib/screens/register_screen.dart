@@ -186,7 +186,6 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: lastnameController,
               decoration: InputDecoration(
-
                 hintText: 'Last name',
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
@@ -246,8 +245,6 @@ class _RegisterState extends State<Register> {
               ),
             ),
           ),
-
-
           SizedBox(
             height: MediaQuery.of(context).size.height * 3 / 100,
           ),
