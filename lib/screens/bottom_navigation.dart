@@ -171,8 +171,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   ),
                   PopupMenuItem(
                     child: GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>BlockedNumber()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => BlockedNumber()));
                       },
                       child: Row(
                         children: [
