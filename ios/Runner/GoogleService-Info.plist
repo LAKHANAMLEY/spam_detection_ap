@@ -1,0 +1,14 @@
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+       <key>CFBundleTypeRole</key>
+       <string>Editor</string>
+       <key>CFBundleURLSchemes</key>
+       <array>
+          <string>com.googleusercontent.apps.1036303425157-ua0gfbcrr286aehm05559bk9ueta15s5</string>
+       </array>
+    </dict>
+</array>
+
+<key>GIDClientID</key>
+<string>1036303425157-ua0gfbcrr286aehm05559bk9ueta15s5.apps.googleusercontent.com</string>
