@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/screens/login_google_screen.dart';
-import 'package:spam_delection_app/screens/login_screen.dart';
 import 'package:spam_delection_app/screens/register_screen.dart';
 
 import '../constants/icons_constants.dart';
-import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/appbutton.dart';
@@ -31,17 +29,17 @@ class _RegisterFirstState extends State<RegisterGoogle> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Container(
+            child: SizedBox(
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height * 2 / 100,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Image.asset(IconConstants.backIcon,
                 ),
 
               ),
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 2 / 100,
             ),
           ),
           title: Image.asset(IconConstants.icBroadlogo, height: MediaQuery
@@ -56,7 +54,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 6 / 100,
                   ),
-                  Center(
+                  const Center(
                       child: Text(
                         StringConstants.registertext,
                         style: TextStyle(
@@ -85,7 +83,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                           Container(
                             width: MediaQuery.sizeOf(context).width * 10/ 100,
                             height: MediaQuery.sizeOf(context).height * 6/ 100,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image:AssetImage(IconConstants.icgoogleLogo),
                                   fit:BoxFit.cover),
@@ -93,7 +91,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                             ),
                           ),
                           SizedBox(width: MediaQuery.of(context).size.width*4/100,),
-                          Text(StringConstants.loginGoogletext,style: TextStyle(color: AppColor.gracyColor,fontFamily: AppFont.fontFamily,fontSize: 18,fontWeight: FontWeight.w600),)
+                          const Text(StringConstants.loginGoogletext,style: TextStyle(color: AppColor.gracyColor,fontFamily: AppFont.fontFamily,fontSize: 18,fontWeight: FontWeight.w600),)
                         ],
                       ),
                     ),
@@ -116,7 +114,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                           Container(
                             width: MediaQuery.sizeOf(context).width * 10/ 100,
                             height: MediaQuery.sizeOf(context).height * 6/ 100,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image:AssetImage(IconConstants.icappleLogo),
                                   fit:BoxFit.cover),
@@ -124,7 +122,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                             ),
                           ),
                           SizedBox(width: MediaQuery.of(context).size.width*4/100,),
-                          Text(StringConstants.loginAppletext,style: TextStyle(color: AppColor.gracyColor,fontFamily: AppFont.fontFamily,fontSize: 18,fontWeight: FontWeight.w600),)
+                          const Text(StringConstants.loginAppletext,style: TextStyle(color: AppColor.gracyColor,fontFamily: AppFont.fontFamily,fontSize: 18,fontWeight: FontWeight.w600),)
                         ],
                       ),
                     ),
@@ -132,7 +130,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   SizedBox(height:  MediaQuery.of(context).size.height*8/100,),
                   Row(children: <Widget>[
                     Expanded(
-                      child: new Container(
+                      child: Container(
                           width:  MediaQuery.sizeOf(context).width * 6/ 100,
                           margin: const EdgeInsets.only(left: 50.0, right: 10.0),
                           child: Divider(
@@ -140,9 +138,9 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                             height: MediaQuery.sizeOf(context).height * 6/ 100,
                           )),
                     ),
-                    Text("or",style: TextStyle(color:AppColor.primaryColor,fontWeight: FontWeight.w600,fontSize: 18),),
+                    const Text("or",style: TextStyle(color:AppColor.primaryColor,fontWeight: FontWeight.w600,fontSize: 18),),
                     Expanded(
-                      child: new Container(
+                      child: Container(
                           margin: const EdgeInsets.only(left: 10, right: 50),
                           child: Divider(
                             color: AppColor.gracyColor,
@@ -153,7 +151,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   SizedBox(height:  MediaQuery.of(context).size.height*8/100,),
                   AppButton(
                       text: StringConstants.registerwithEmail, onPress: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Register()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const Register()));
 
                   }),
                   SizedBox(
@@ -162,7 +160,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(StringConstants.alreadyHaveAnAccount,
+                      const Text(StringConstants.alreadyHaveAnAccount,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontFamily: AppFont.fontFamily,
@@ -176,9 +174,9 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                            Navigator.push(
                               context,
                              MaterialPageRoute(
-                                builder: (BuildContext context) => LoginGoogle()));
+                                builder: (BuildContext context) => const LoginGoogle()));
                         },
-                        child: Text(StringConstants.logintext,
+                        child: const Text(StringConstants.logintext,
                             style: TextStyle(
                                 color: AppColor.yellowlightColor,
                                 fontWeight: FontWeight.bold,

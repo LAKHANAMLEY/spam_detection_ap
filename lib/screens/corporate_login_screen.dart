@@ -61,7 +61,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                 fontFamily: AppFont.fontFamily,
                 fontWeight: FontWeight.w600),
           )),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(20),
                     child: Center(
                         child: Text(
@@ -77,7 +77,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 5/ 100,
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.sizeOf(context).width * 90 / 100,
                     child: TextFormField(
                       controller: corpoarteidController,
@@ -96,7 +96,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                           borderSide:
                           BorderSide(color: AppColor.fillColor, width: 1.5),
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(2)),
+                          BorderRadius.all(Radius.circular(2)),
                         ),
                         filled: true,
                         fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -116,7 +116,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                     height: MediaQuery.sizeOf(context).height * 3 / 100,
                   ),
 
-                  Container(
+                  SizedBox(
                     width: MediaQuery.sizeOf(context).width * 90 / 100,
                     child: TextFormField(
                       controller: emailController,
@@ -135,7 +135,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                           borderSide:
                           BorderSide(color: AppColor.fillColor, width: 1.5),
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(2)),
+                          BorderRadius.all(Radius.circular(2)),
                         ),
                         filled: true,
                         fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -154,7 +154,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 3 / 100,
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.sizeOf(context).width * 90 / 100,
                     child: TextFormField(
                       controller: passwordController,
@@ -174,7 +174,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                             borderSide:
                             BorderSide(color: AppColor.fillColor, width: 1.5),
                             borderRadius:
-                            const BorderRadius.all(Radius.circular(2)),
+                            BorderRadius.all(Radius.circular(2)),
                           ),
                           filled: true,
                           fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -215,7 +215,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                           } else {
                             setState(() {
                               _errorMessage =
-                              '${CorporateResponse.message.toString()}';
+                              CorporateResponse.message.toString();
                             });
                           }
                         });

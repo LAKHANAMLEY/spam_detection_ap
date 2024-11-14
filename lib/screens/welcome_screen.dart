@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
-import 'package:spam_delection_app/screens/call_log_screen.dart';
-import 'package:spam_delection_app/screens/home_screen.dart';
-import 'package:spam_delection_app/screens/login_google_screen.dart';
 
 import 'package:spam_delection_app/screens/protection_type_screen.dart';
-import 'package:spam_delection_app/screens/register_screen.dart';
-import 'register_screen.dart';
 
 import '../globals/app_fonts.dart';
 import '../globals/appbutton.dart';
@@ -55,10 +50,10 @@ class _WelcomeState extends State<Welcome> {
                           width: MediaQuery.of(context).size.width * 2 / 100,
                           height: MediaQuery.of(context).size.height * 2/ 100,
                         ),
-                        hint: Center(
+                        hint: const Center(
                           child: Text(
                             StringConstants.englishtext,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: AppColor.fillColor,
                                 fontSize: 14,
                                 fontFamily: AppFont.fontFamily,
@@ -84,9 +79,9 @@ class _WelcomeState extends State<Welcome> {
               SizedBox(height: MediaQuery.of(context).size.height*5/100,),
               Image.asset(IconConstants.icBroadlogo,height: MediaQuery.of(context).size.height*8/100,width: MediaQuery.of(context).size.width*50/100),
               SizedBox(height: MediaQuery.of(context).size.height*5/100,),
-              Text(StringConstants.weltext,style: TextStyle(color: AppColor.bluelightColor,fontSize:35,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),),
+              const Text(StringConstants.weltext,style: TextStyle(color: AppColor.bluelightColor,fontSize:35,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),),
               SizedBox(height: MediaQuery.of(context).size.height*5/100),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(left: 20,right: 20),
                 child: Center(
              child: Text(StringConstants.welcometext,textAlign: TextAlign.center,
@@ -104,7 +99,7 @@ class _WelcomeState extends State<Welcome> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ProtectionType()));
+                            builder: (context) => const ProtectionType()));
           
                     // forgotPasswordUserValidation(
                     //    emailTextEditingController.text);
