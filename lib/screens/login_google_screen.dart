@@ -5,16 +5,11 @@ import 'package:spam_delection_app/globals/appbutton.dart';
 import 'package:spam_delection_app/screens/login_screen.dart';
 import 'package:spam_delection_app/screens/login_succesful_screen.dart';
 import 'package:spam_delection_app/screens/register_google_screen.dart';
-import 'package:spam_delection_app/screens/welcome_screen.dart';
-
 
 import '../constants/icons_constants.dart';
 import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
-
-
-
 
 class LoginGoogle extends StatefulWidget {
   const LoginGoogle({super.key});
@@ -29,7 +24,6 @@ class _LoginGoogleState extends State<LoginGoogle> {
 
   get googleSignIn => null;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,292 +35,247 @@ class _LoginGoogleState extends State<LoginGoogle> {
               Navigator.pop(context);
             },
             child: SizedBox(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 2 / 100,
+              height: MediaQuery.of(context).size.height * 2 / 100,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Image.asset(IconConstants.backIcon,
+                child: Image.asset(
+                  IconConstants.backIcon,
                 ),
-
               ),
             ),
           ),
-          title: Image.asset(IconConstants.icBroadlogo, height: MediaQuery
-              .of(context)
-              .size
-              .height * 5 / 100,),
+          title: Image.asset(
+            IconConstants.icBroadlogo,
+            height: MediaQuery.of(context).size.height * 5 / 100,
+          ),
           centerTitle: true,
         ),
         body: SafeArea(
             child: SingleChildScrollView(
                 child: Column(children: [
-                  SizedBox(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 6 / 100,
-                  ),
-                  const Center(
-                      child: Text(
-                        StringConstants.logintext,
-                        style: TextStyle(
-                            color: AppColor.bluelightColor,
-                            fontSize: 35,
-                            fontFamily: AppFont.fontFamily,
-                            fontWeight: FontWeight.w600),
-                      )),
-                  SizedBox(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 8 / 100,
-                  ),
-                  GestureDetector(
-                    onTap: () async {
-                      try {
-                        userCredential.value = await signInWithGoogle();
-                        if (userCredential.value != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginSuccessful()));
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content:
-                                Text(
-                                    'Google Sign-In failed. Please try again.')),
-                          );
-                        }
-                      } catch (e) {
-                        print('Error during Google Sign-In: $e');
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content:
-                              Text('An error occurred during Google Sign-In.')),
-                        );
-                      }
-                    },
-                    child: Container(
-                      width: MediaQuery
-                          .sizeOf(context)
-                          .width * 90 / 100,
-                      height: MediaQuery
-                          .sizeOf(context)
-                          .height * 8 / 100,
-                      decoration: BoxDecoration(
-                        color: AppColor.fillColor.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(2),
-                        border: Border.all(color: AppColor.fillColor),
-
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery
-                                .sizeOf(context)
-                                .width * 10 / 100,
-                            height: MediaQuery
-                                .sizeOf(context)
-                                .height * 6 / 100,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(IconConstants.icgoogleLogo),
-                                  fit: BoxFit.cover),
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          SizedBox(width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * 4 / 100,),
-                          const Text(StringConstants.loginGoogletext,
-                            style: TextStyle(color: AppColor.gracyColor,
-                                fontFamily: AppFont.fontFamily,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600),)
-                        ],
-                      ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 6 / 100,
+          ),
+          const Center(
+              child: Text(
+            StringConstants.logintext,
+            style: TextStyle(
+                color: AppColor.bluelightColor,
+                fontSize: 35,
+                fontFamily: AppFont.fontFamily,
+                fontWeight: FontWeight.w600),
+          )),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 8 / 100,
+          ),
+          GestureDetector(
+            onTap: () async {
+              try {
+                userCredential.value = await signInWithGoogle();
+                if (userCredential.value != null) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginSuccessful()));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content:
+                            Text('Google Sign-In failed. Please try again.')),
+                  );
+                }
+              } catch (e) {
+                print('Error during Google Sign-In: $e');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                      content:
+                          Text('An error occurred during Google Sign-In.')),
+                );
+              }
+            },
+            child: Container(
+              width: MediaQuery.sizeOf(context).width * 90 / 100,
+              height: MediaQuery.sizeOf(context).height * 8 / 100,
+              decoration: BoxDecoration(
+                color: AppColor.fillColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(2),
+                border: Border.all(color: AppColor.fillColor),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: MediaQuery.sizeOf(context).width * 10 / 100,
+                    height: MediaQuery.sizeOf(context).height * 6 / 100,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(IconConstants.icgoogleLogo),
+                          fit: BoxFit.cover),
+                      shape: BoxShape.circle,
                     ),
                   ),
-                  SizedBox(height: MediaQuery
-                      .sizeOf(context)
-                      .height * 4 / 100,),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      width: MediaQuery
-                          .sizeOf(context)
-                          .width * 90 / 100,
-                      height: MediaQuery
-                          .sizeOf(context)
-                          .height * 8 / 100,
-                      decoration: BoxDecoration(
-                        color: AppColor.fillColor.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(2),
-                        border: Border.all(color: AppColor.fillColor),
-
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery
-                                .sizeOf(context)
-                                .width * 10 / 100,
-                            height: MediaQuery
-                                .sizeOf(context)
-                                .height * 6 / 100,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(IconConstants.icappleLogo),
-                                  fit: BoxFit.cover),
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          SizedBox(width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * 4 / 100,),
-                          const Text(StringConstants.loginAppletext, style: TextStyle(
-                              color: AppColor.gracyColor,
-                              fontFamily: AppFont.fontFamily,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),)
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 8 / 100,),
-                  Row(children: <Widget>[
-                    Expanded(
-                      child: Container(
-                          width: MediaQuery
-                              .sizeOf(context)
-                              .width * 6 / 100,
-                          margin: const EdgeInsets.only(
-                              left: 50.0, right: 10.0),
-                          child: Divider(
-                            color: AppColor.gracyColor,
-                            height: MediaQuery
-                                .sizeOf(context)
-                                .height * 6 / 100,
-
-                          )),
-                    ),
-                    const Text("or", style: TextStyle(color: AppColor.primaryColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18),),
-                    Expanded(
-                      child: Container(
-                          margin: const EdgeInsets.only(left: 10, right: 50),
-                          child: Divider(
-                            color: AppColor.gracyColor,
-                            height: MediaQuery
-                                .sizeOf(context)
-                                .height * 6 / 100,
-                          )),
-                    ),
-                  ]),
-                  SizedBox(height: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 8 / 100,),
-                  AppButton(
-                      text: StringConstants.loginusingEmail, onPress: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Login()));
-                  }),
-
-
                   SizedBox(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 4 / 100,
+                    width: MediaQuery.of(context).size.width * 4 / 100,
                   ),
-                  TextButton(
-                    child: const Text(
-                      'Logout',
-                      style: TextStyle(fontSize: 18,color:AppColor.yellowlightColor),
+                  const Text(
+                    StringConstants.loginGoogletext,
+                    style: TextStyle(
+                        color: AppColor.gracyColor,
+                        fontFamily: AppFont.fontFamily,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height * 4 / 100,
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              width: MediaQuery.sizeOf(context).width * 90 / 100,
+              height: MediaQuery.sizeOf(context).height * 8 / 100,
+              decoration: BoxDecoration(
+                color: AppColor.fillColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(2),
+                border: Border.all(color: AppColor.fillColor),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: MediaQuery.sizeOf(context).width * 10 / 100,
+                    height: MediaQuery.sizeOf(context).height * 6 / 100,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(IconConstants.icappleLogo),
+                          fit: BoxFit.cover),
+                      shape: BoxShape.circle,
                     ),
-                    onPressed: () async {
-                      bool signOutSuccess = await signOutFromGoogle();
-                      if (signOutSuccess) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text(
-                              'Successfully signed out from Google.')),
-                        );
-                        // Navigate to login or home screen after sign out
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => const Welcome()));
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text(
-                              'Failed to sign out. Please try again.')),
-                        );
-                      }
-                    },
                   ),
                   SizedBox(
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 2 / 100,
+                    width: MediaQuery.of(context).size.width * 4 / 100,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(StringConstants.donttext,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontFamily: AppFont.fontFamily,
-                            color: AppColor.greylightColor, fontSize: 15),
+                  const Text(
+                    StringConstants.loginAppletext,
+                    style: TextStyle(
+                        color: AppColor.gracyColor,
+                        fontFamily: AppFont.fontFamily,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 8 / 100,
+          ),
+          Row(children: <Widget>[
+            Expanded(
+              child: Container(
+                  width: MediaQuery.sizeOf(context).width * 6 / 100,
+                  margin: const EdgeInsets.only(left: 50.0, right: 10.0),
+                  child: Divider(
+                    color: AppColor.gracyColor,
+                    height: MediaQuery.sizeOf(context).height * 6 / 100,
+                  )),
+            ),
+            const Text(
+              "or",
+              style: TextStyle(
+                  color: AppColor.primaryColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18),
+            ),
+            Expanded(
+              child: Container(
+                  margin: const EdgeInsets.only(left: 10, right: 50),
+                  child: Divider(
+                    color: AppColor.gracyColor,
+                    height: MediaQuery.sizeOf(context).height * 6 / 100,
+                  )),
+            ),
+          ]),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 8 / 100,
+          ),
+          AppButton(
+              text: StringConstants.loginusingEmail,
+              onPress: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Login()));
+              }),
 
-                      ),
-                      SizedBox(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * 1 / 100),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const RegisterGoogle()));
-                        },
-                        child: const Text(StringConstants.registertext,
-                            style: TextStyle(
-                                color: AppColor.yellowlightColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15)),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                      height: MediaQuery
-                          .of(context)
-                          .size
-                          .height * 5 / 100),
-
-                ]))));
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 4 / 100,
+          ),
+          // TextButton(
+          //   child: const Text(
+          //     'Logout',
+          //     style: TextStyle(fontSize: 18,color:AppColor.yellowlightColor),
+          //   ),
+          //   onPressed: () async {
+          //     bool signOutSuccess = await signOutFromGoogle();
+          //     if (signOutSuccess) {
+          //       ScaffoldMessenger.of(context).showSnackBar(
+          //         const SnackBar(content: Text(
+          //             'Successfully signed out from Google.')),
+          //       );
+          //       // Navigate to login or home screen after sign out
+          //       Navigator.pushReplacement(context,
+          //           MaterialPageRoute(builder: (context) => const Welcome()));
+          //     } else {
+          //       ScaffoldMessenger.of(context).showSnackBar(
+          //         const SnackBar(content: Text(
+          //             'Failed to sign out. Please try again.')),
+          //       );
+          //     }
+          //   },
+          // ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 2 / 100,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                StringConstants.donttext,
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontFamily: AppFont.fontFamily,
+                    color: AppColor.greylightColor,
+                    fontSize: 15),
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 1 / 100),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const RegisterGoogle()));
+                },
+                child: const Text(StringConstants.registertext,
+                    style: TextStyle(
+                        color: AppColor.yellowlightColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15)),
+              ),
+            ],
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
+        ]))));
   }
-
 
   Future<dynamic> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
       final GoogleSignInAuthentication? googleAuth =
-      await googleUser?.authentication;
+          await googleUser?.authentication;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
@@ -338,18 +287,16 @@ class _LoginGoogleState extends State<LoginGoogle> {
       print('exception->$e');
     }
   }
+
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   Future<bool> signOutFromGoogle() async {
     try {
-
       await _googleSignIn.disconnect();
 
       await _googleSignIn.signOut();
 
-
       return true;
     } catch (e) {
-
       print('Error signing out from Google: $e');
       return false;
     }

@@ -1,4 +1,11 @@
+import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
+import 'package:spam_delection_app/utils/api_keys/api_key_constants.dart';
+
 class ApiUrlConstants {
+  static Future<Map<String, String>> headers() async => <String, String>{
+        "X-API-KEY": ApiKeyConstants.apiKey,
+        "Authorization": await SharedPref.getToken()
+      };
   static String baseUrl = 'https://broadlinkprotect.com/api/v1';
 
   static String endPointEmailPassword =
@@ -30,4 +37,6 @@ class ApiUrlConstants {
       '$baseUrl/auth/corporate-login?lang=en';
 
   static String contactList = '$baseUrl/contacts/contacts-list';
+
+  static String syncContacts = '$baseUrl/contacts/sync-contact';
 }
