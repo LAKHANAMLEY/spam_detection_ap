@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
+import 'package:spam_delection_app/screens/edit_profile_screen.dart';
 import 'package:spam_delection_app/screens/protection_type_screen.dart';
 
 import '../globals/app_fonts.dart';
@@ -52,10 +53,10 @@ class _WelcomeState extends State<Welcome> {
                             height:
                                 MediaQuery.of(context).size.height * 2 / 100,
                           ),
-                          hint: const Center(
+                          hint: Center(
                             child: Text(
                               StringConstants.englishtext,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: AppColor.fillColor,
                                   fontSize: 14,
                                   fontFamily: AppFont.fontFamily,
@@ -87,7 +88,7 @@ class _WelcomeState extends State<Welcome> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 5 / 100,
                 ),
-                const Text(
+                Text(
                   StringConstants.weltext,
                   style: TextStyle(
                       color: AppColor.bluelightColor,
@@ -97,7 +98,7 @@ class _WelcomeState extends State<Welcome> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
                 Padding(
-                  padding: EdgeInsets.only(left: 25, right: 25),
+                  padding: EdgeInsets.only(left: 20, right: 20),
                   child: Center(
                     child: Text(
                       StringConstants.welcometext,
@@ -118,7 +119,7 @@ class _WelcomeState extends State<Welcome> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProtectionType()));
+                              builder: (context) => EditProfile()));
 
                       // forgotPasswordUserValidation(
                       //    emailTextEditingController.text);

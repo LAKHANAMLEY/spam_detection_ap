@@ -96,5 +96,8 @@ class IconConstants {
   static const String icbackCircle = 'assets/icons/ic_balckCircle.png';
   static const String icggadd = 'assets/icons/ic_gg_add.png';
   static const String icspamtriangle = 'assets/icons/ic_triangle.png';
-  static const String icspambolcked='assets/icons/ic_blocked.png';
+  static const String icspambolcked = 'assets/icons/ic_blocked.png';
+  static const String icmaleIcon = 'assets/icons/ic_maleIcon.png';
+  static const String icfemaleIcon = 'assets/icons/ic_femaleIcon.png';
+  static const String iccopyRight='assets/icons/ic_copyRight.png';
 }
