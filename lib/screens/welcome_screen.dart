@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
-import 'package:spam_delection_app/screens/edit_profile_screen.dart';
+import 'package:spam_delection_app/screens/protection_type_screen.dart';
 
 import '../globals/app_fonts.dart';
 import '../globals/appbutton.dart';
@@ -118,7 +118,7 @@ class _WelcomeState extends State<Welcome> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const EditProfile()));
+                              builder: (context) => const ProtectionType()));
 
                       // forgotPasswordUserValidation(
                       //    emailTextEditingController.text);
