@@ -7,7 +7,7 @@ class ImageConstants {
   static const String imageHomeBg = 'assets/images/image_home_bg.png';
   static const String applogo = 'assets/images/ic_applogo.png';
   static const String imageProfile='assets/images/image_profile.png';
-  static const String backIcon = 'assets/images/ic_back.png';
+ // static const String backIcon = 'assets/images/ic_back.png';
   static const String imageRobert='assets/images/image_robort.png';
   static const String imageJames='assets/images/image_james.png';
   static const String imageMarshal='assets/images/image_marshal.png';
