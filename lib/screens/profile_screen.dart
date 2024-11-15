@@ -8,7 +8,6 @@ import 'package:spam_delection_app/screens/edit_security_pin.dart';
 import '../constants/icons_constants.dart';
 import '../globals/colors.dart';
 
-
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -17,25 +16,18 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final List<String> imageUrl=[
-IconConstants.icspamCheck,
+  final List<String> imageUrl = [
+    IconConstants.icspamCheck,
     IconConstants.icClock,
     IconConstants.icsearchCheck,
     IconConstants.icmessageCheck
   ];
-  final List<String> cardTexts=[
-    '3',
-    '68s',
-    '25',
-    '38'
-
-  ];
-  final List<String> SpamTexts=[
+  final List<String> cardTexts = ['3', '68s', '25', '38'];
+  final List<String> SpamTexts = [
     StringConstants.spamcallstext,
-  StringConstants.timesavestext,
-  StringConstants.unknowntext,
-  StringConstants.messagestext,
-
+    StringConstants.timesavestext,
+    StringConstants.unknowntext,
+    StringConstants.messagestext,
   ];
   @override
   Widget build(BuildContext context) {
@@ -54,12 +46,15 @@ IconConstants.icspamCheck,
             ),
           ),
         ),
-       actions: [
-         Padding(
-           padding: const EdgeInsets.only(right: 20),
-           child: Image.asset(IconConstants.icsettingPro,height: MediaQuery.of(context).size.height*3/100,),
-         )
-       ],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Image.asset(
+              IconConstants.icsettingPro,
+              height: MediaQuery.of(context).size.height * 3 / 100,
+            ),
+          )
+        ],
       ),
       body: Container(
         margin: const EdgeInsets.all(16.0),
@@ -78,15 +73,17 @@ IconConstants.icspamCheck,
                     radius: 45.0,
                     child: CircleAvatar(
                       radius: 48.0,
-                      backgroundImage: const AssetImage(
-                          IconConstants.icAvater),
+                      backgroundImage: const AssetImage(IconConstants.icAvater),
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: CircleAvatar(
-                          backgroundColor: AppColor.callColor,
-                          radius: 12.0,
-                          child: Image.asset(IconConstants.icCamera,height: MediaQuery.of(context).size.height*2/100,)
-                        ),
+                            backgroundColor: AppColor.callColor,
+                            radius: 12.0,
+                            child: Image.asset(
+                              IconConstants.icCamera,
+                              height:
+                                  MediaQuery.of(context).size.height * 2 / 100,
+                            )),
                       ),
                     ),
                   ),
@@ -116,29 +113,46 @@ IconConstants.icspamCheck,
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*2/100,),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 2 / 100,
+                ),
                 Container(
-                  margin: const EdgeInsets.only(left: 20,right: 20),
-                  height: MediaQuery.of(context).size.height*10/100,
-                   width: MediaQuery.of(context).size.height*80/100,
-                decoration: const BoxDecoration(
-                  color: AppColor.callColor,
-                      borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                  margin: const EdgeInsets.only(left: 20, right: 20),
+                  height: MediaQuery.of(context).size.height * 10 / 100,
+                  width: MediaQuery.of(context).size.height * 80 / 100,
+                  decoration: const BoxDecoration(
+                    color: AppColor.callColor,
+                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        IconConstants.icpremiumStar,
+                        height: MediaQuery.of(context).size.height * 5 / 100,
+                        width: MediaQuery.of(context).size.width * 5 / 100,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 4 / 100,
+                      ),
+                      const Text(
+                        StringConstants.upgradetext,
+                        style: TextStyle(
+                            color: AppColor.secondryColor,
+                            fontSize: 20,
+                            fontFamily: AppFont.fontFamily,
+                            fontWeight: FontWeight.w700),
+                      )
+                    ],
+                  ),
                 ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(IconConstants.icpremiumStar,height: MediaQuery.of(context).size.height*5/100,width:MediaQuery.of(context).size.width*5/100 ,),
-                    SizedBox(width: MediaQuery.of(context).size.width*4/100,),
-                    const Text(StringConstants.upgradetext,style: TextStyle(color: AppColor.secondryColor,fontSize:20,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w700 ),)
-                  ],
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 5 / 100,
                 ),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height*5/100,),
                 Container(
-                  height: MediaQuery.of(context).size.height*55/100,
-                  width: MediaQuery.of(context).size.width*90/100,
+                  height: MediaQuery.of(context).size.height * 55 / 100,
+                  width: MediaQuery.of(context).size.width * 90 / 100,
                   decoration: BoxDecoration(
                     color: AppColor.whitedeep,
                     borderRadius: const BorderRadius.all(Radius.circular(6.0)),
@@ -148,13 +162,28 @@ IconConstants.icspamCheck,
                     padding: const EdgeInsets.all(10),
                     child: Column(
                       children: [
-                        SizedBox(height:MediaQuery.of(context).size.height*2/100,),
-                         const Align(
-                           alignment: Alignment.centerLeft,
-                             child: Text("Last 30 days",style: TextStyle(color: AppColor.lastColor,fontSize: 18,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),textAlign: TextAlign.start,)),
-                        SizedBox(height: MediaQuery.of(context).size.height*2/100,),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Last 30 days",
+                              style: TextStyle(
+                                  color: AppColor.lastColor,
+                                  fontSize: 18,
+                                  fontFamily: AppFont.fontFamily,
+                                  fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.start,
+                            )),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
                         GridView.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio:1.2/1.2),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 1.2 / 1.2),
                           itemCount: 4,
                           primary: false,
                           shrinkWrap: true,
@@ -163,49 +192,73 @@ IconConstants.icspamCheck,
                               padding: const EdgeInsets.all(8),
                               child: Container(
                                 decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                                  color: AppColor.secondryColor
-                                ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(4)),
+                                    color: AppColor.secondryColor),
                                 child: Container(
                                   margin: const EdgeInsets.all(8),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Row(
-                                          children: [
-                                            Image.asset(imageUrl[index],height: MediaQuery.of(context).size.height*5/100,width: MediaQuery.of(context).size.width*5/100,),
-                                            SizedBox(width: MediaQuery.of(context).size.height*2/100,),
-                                            Text(cardTexts[index],style: const TextStyle(color: AppColor.borderstekColor,fontSize: 20,fontFamily: AppFont.fontFamily),)
-                                          ]
-                                      ),
-                                      Text(SpamTexts[index],style: const TextStyle(color: AppColor.spelledColor,fontFamily: AppFont.fontFamily,fontSize: 16)),
+                                      Row(children: [
+                                        Image.asset(
+                                          imageUrl[index],
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              5 /
+                                              100,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              5 /
+                                              100,
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              2 /
+                                              100,
+                                        ),
+                                        Text(
+                                          cardTexts[index],
+                                          style: const TextStyle(
+                                              color: AppColor.borderstekColor,
+                                              fontSize: 20,
+                                              fontFamily: AppFont.fontFamily),
+                                        )
+                                      ]),
+                                      Text(SpamTexts[index],
+                                          style: const TextStyle(
+                                              color: AppColor.spelledColor,
+                                              fontFamily: AppFont.fontFamily,
+                                              fontSize: 16)),
                                     ],
                                   ),
                                 ),
-
-
                               ),
                             );
-
                           },
-                                        ),
+                        ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*4/100,),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 4 / 100,
+                ),
                 Container(
-                  height: MediaQuery.of(context).size.height*7/100,
-                  width: MediaQuery.of(context).size.height*90/100,
+                  height: MediaQuery.of(context).size.height * 7 / 100,
+                  width: MediaQuery.of(context).size.height * 90 / 100,
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(2.0)
-                    ),
-                    border: Border.all(color: AppColor.greyarrowColor,width: 1
-                    ),
-                    color: AppColor.secondryColor
-            
-                  ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(2.0)),
+                      border:
+                          Border.all(color: AppColor.greyarrowColor, width: 1),
+                      color: AppColor.secondryColor),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -227,12 +280,16 @@ IconConstants.icspamCheck,
                           width: MediaQuery.of(context).size.width * 46 / 100,
                         ),
                         GestureDetector(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>EditProfile()));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditProfile()));
                           },
                           child: Image.asset(
                             IconConstants.icviewArrow,
-                            height: MediaQuery.of(context).size.height * 6 / 100,
+                            height:
+                                MediaQuery.of(context).size.height * 6 / 100,
                             width: MediaQuery.of(context).size.width * 6 / 100,
                           ),
                         )
@@ -240,19 +297,18 @@ IconConstants.icspamCheck,
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*2/100,),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 2 / 100,
+                ),
                 Container(
-                  height: MediaQuery.of(context).size.height*7/100,
-                  width: MediaQuery.of(context).size.height*90/100,
+                  height: MediaQuery.of(context).size.height * 7 / 100,
+                  width: MediaQuery.of(context).size.height * 90 / 100,
                   decoration: BoxDecoration(
-            
-                      borderRadius: const BorderRadius.all(Radius.circular(2.0)
-                      ),
-                      border: Border.all(color: AppColor.greyarrowColor,width: 1
-                      ),
-                      color: AppColor.secondryColor
-            
-                  ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(2.0)),
+                      border:
+                          Border.all(color: AppColor.greyarrowColor, width: 1),
+                      color: AppColor.secondryColor),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -274,12 +330,16 @@ IconConstants.icspamCheck,
                           width: MediaQuery.of(context).size.width * 34 / 100,
                         ),
                         GestureDetector(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>EditSecurityPin()));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditSecurityPin()));
                           },
                           child: Image.asset(
                             IconConstants.icviewArrow,
-                            height: MediaQuery.of(context).size.height * 6 / 100,
+                            height:
+                                MediaQuery.of(context).size.height * 6 / 100,
                             width: MediaQuery.of(context).size.width * 6 / 100,
                           ),
                         )
@@ -287,18 +347,18 @@ IconConstants.icspamCheck,
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*2/100,),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 2 / 100,
+                ),
                 Container(
-                  height: MediaQuery.of(context).size.height*7/100,
-                  width: MediaQuery.of(context).size.height*90/100,
+                  height: MediaQuery.of(context).size.height * 7 / 100,
+                  width: MediaQuery.of(context).size.height * 90 / 100,
                   decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(2.0)
-                      ),
-                      border: Border.all(color: AppColor.greyarrowColor,width: 1
-                      ),
-                      color: AppColor.secondryColor
-            
-                  ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(2.0)),
+                      border:
+                          Border.all(color: AppColor.greyarrowColor, width: 1),
+                      color: AppColor.secondryColor),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -320,12 +380,16 @@ IconConstants.icspamCheck,
                           width: MediaQuery.of(context).size.width * 30 / 100,
                         ),
                         GestureDetector(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ChangePassword()));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChangePassword()));
                           },
                           child: Image.asset(
                             IconConstants.icviewArrow,
-                            height: MediaQuery.of(context).size.height * 6 / 100,
+                            height:
+                                MediaQuery.of(context).size.height * 6 / 100,
                             width: MediaQuery.of(context).size.width * 6 / 100,
                           ),
                         )
@@ -333,53 +397,54 @@ IconConstants.icspamCheck,
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*2/100,),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 2 / 100,
+                ),
                 Container(
-                  height: MediaQuery.of(context).size.height*7/100,
-                  width: MediaQuery.of(context).size.height*90/100,
+                  height: MediaQuery.of(context).size.height * 7 / 100,
+                  width: MediaQuery.of(context).size.height * 90 / 100,
                   decoration: BoxDecoration(
-            
-                      borderRadius: const BorderRadius.all(Radius.circular(2.0)
-                      ),
-                      border: Border.all(color: AppColor.greyarrowColor,width: 1
-                      ),
-                      color: AppColor.secondryColor
-            
-                  ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(2.0)),
+                      border:
+                          Border.all(color: AppColor.greyarrowColor, width: 1),
+                      color: AppColor.secondryColor),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
                         Image.asset(
                           IconConstants.icalternativeEmail,
-                          height: MediaQuery.of(context).size.height*6/100,width: MediaQuery.of(context).size.width*6/100,
+                          height: MediaQuery.of(context).size.height * 6 / 100,
+                          width: MediaQuery.of(context).size.width * 6 / 100,
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 2 / 100,
                         ),
                         const Text(
                           ' Add Alertantive Email',
-                          style:
-                              TextStyle(color: AppColor.ThumbColor, fontSize: 18),
+                          style: TextStyle(
+                              color: AppColor.ThumbColor, fontSize: 18),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 20 / 100,
                         ),
                         Image.asset(
                           IconConstants.icviewArrow,
-                          height: MediaQuery.of(context).size.height * 6/ 100,width: MediaQuery.of(context).size.width*6/100,
+                          height: MediaQuery.of(context).size.height * 6 / 100,
+                          width: MediaQuery.of(context).size.width * 6 / 100,
                         )
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*5/100,),
-            
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 5 / 100,
+                ),
               ],
             ),
           ),
         ),
-
       ),
     );
   }
