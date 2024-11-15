@@ -75,6 +75,10 @@ class StringConstants {
   static const String reentertext = 'Re-enter Password';
   static const String passwordtext = 'Password';
   static const String minimumtext = '“Minimum 8 characters are required, must include a minimum of one uppercase, one lowercase and one special character';
+  static const String currentPass='Current password';
+  static const String  newPass='New password';
+  static const  String confirmPass='Confirm  new password';
+  static const String ChangePass='Change Password';
 
 
   static const emailValidMessage = "Please enter valid email address";
@@ -101,6 +105,7 @@ class StringConstants {
   static const unknowntext='Unknown number identified';
   static const messagestext='Messages moved to spam';
 
+  static const copyrighttext='2024 BROADLINK';
   static const  messagescreenedtext='Your messages are currently being screened by Detect AI to identity potential scams.';
   static const  emailscreenedtext='Your emails are currently being screened by Protect AI todetect potential scam and safe guard yourdata and financials.';
    static const corporateIdtext='Corporate ID';

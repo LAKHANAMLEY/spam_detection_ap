@@ -37,7 +37,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
         title: Image.asset(IconConstants.icBroadlogo, height: MediaQuery
             .of(context)
             .size
-            .height * 5 / 100,),
+            .height * 5 / 100,
+        width: MediaQuery.of(context).size.width*5/100,),
         centerTitle: true,
       ),
       body: SafeArea(

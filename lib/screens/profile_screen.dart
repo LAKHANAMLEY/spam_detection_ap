@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
 import 'package:spam_delection_app/globals/app_fonts.dart';
+import 'package:spam_delection_app/screens/change_password_screen.dart';
+import 'package:spam_delection_app/screens/edit_profile_screen.dart';
 
 import '../constants/icons_constants.dart';
 import '../globals/colors.dart';
@@ -61,7 +63,7 @@ IconConstants.icspamCheck,
       body: Container(
         margin: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColor.secondryColor,
           borderRadius: BorderRadius.circular(16.0),
         ),
         child: SafeArea(
@@ -207,11 +209,32 @@ IconConstants.icspamCheck,
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        Image.asset(IconConstants.icEdit,height: MediaQuery.of(context).size.height*5/100,width: MediaQuery.of(context).size.width*5/100,),
-                        SizedBox(width: MediaQuery.of(context).size.width*2/100,),
-                        const Text('Edit Profile',style: TextStyle(color: AppColor.ThumbColor,fontSize: 18),),
-                        SizedBox(width: MediaQuery.of(context).size.width*46/100,),
-                        Image.asset(IconConstants.icviewArrow,height: MediaQuery.of(context).size.height*6/100,width: MediaQuery.of(context).size.width*6/100,)
+                        Image.asset(
+                          IconConstants.icEdit,
+                          height: MediaQuery.of(context).size.height * 5 / 100,
+                          width: MediaQuery.of(context).size.width * 5 / 100,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 2 / 100,
+                        ),
+                        const Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                              color: AppColor.ThumbColor, fontSize: 18),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 46 / 100,
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>EditProfile()));
+                          },
+                          child: Image.asset(
+                            IconConstants.icviewArrow,
+                            height: MediaQuery.of(context).size.height * 6 / 100,
+                            width: MediaQuery.of(context).size.width * 6 / 100,
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -260,13 +283,32 @@ IconConstants.icspamCheck,
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        Image.asset(IconConstants.icchangePass,height: MediaQuery.of(context).size.height*5/100,width: MediaQuery.of(context).size.width*5/100 ,),
-                        SizedBox(width: MediaQuery.of(context).size.width*2/100,),
-                        const Text('Change Password',style: TextStyle(color: AppColor.ThumbColor,fontSize: 18),),
-                        SizedBox(width: MediaQuery.of(context).size.width*30/100,),
-                        Image.asset(IconConstants.icviewArrow,height: MediaQuery.of(context).size.height*6/100,width: MediaQuery.of(context).size.width*6/100,)
-            
-            
+                        Image.asset(
+                          IconConstants.icchangePass,
+                          height: MediaQuery.of(context).size.height * 5 / 100,
+                          width: MediaQuery.of(context).size.width * 5 / 100,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 2 / 100,
+                        ),
+                        const Text(
+                          'Change Password',
+                          style: TextStyle(
+                              color: AppColor.ThumbColor, fontSize: 18),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 30 / 100,
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ChangePassword()));
+                          },
+                          child: Image.asset(
+                            IconConstants.icviewArrow,
+                            height: MediaQuery.of(context).size.height * 6 / 100,
+                            width: MediaQuery.of(context).size.width * 6 / 100,
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -301,7 +343,7 @@ IconConstants.icspamCheck,
                               TextStyle(color: AppColor.ThumbColor, fontSize: 18),
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 32 / 100,
+                          width: MediaQuery.of(context).size.width * 20 / 100,
                         ),
                         Image.asset(
                           IconConstants.icviewArrow,
