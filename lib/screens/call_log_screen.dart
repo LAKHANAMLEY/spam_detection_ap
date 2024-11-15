@@ -210,7 +210,7 @@ class _CallLogState extends State<CallLog> {
                             leading: Image.network(
                               items[index].name!, //TODO: image path
                               errorBuilder: (context, error, stackTrace) =>
-                                  const Icon(Icons.error),
+                                  const Icon(Icons.person),
                               width:
                                   MediaQuery.of(context).size.width * 12 / 100,
                               height:
