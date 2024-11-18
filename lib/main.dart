@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:spam_delection_app/globals/app_commom_widgets.dart';
 import 'package:spam_delection_app/screens/splash_screen.dart';
-
 
 import 'app_route/route.dart';
 
-void main()async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -14,11 +14,10 @@ void main()async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Spam_Detection_App',
+      title: AppConstants.projectName,
       /*localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -31,9 +30,7 @@ class MyApp extends StatelessWidget {
 
        */
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-
-      ),
+      theme: ThemeData(),
       routes: routes,
       home: const Splash(),
     );

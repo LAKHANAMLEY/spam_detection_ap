@@ -39,4 +39,6 @@ class ApiUrlConstants {
   static String contactList = '$baseUrl/contacts/contacts-list';
 
   static String syncContacts = '$baseUrl/contacts/sync-contact';
+
+  static String changePassword = '$baseUrl/user/changepassword?lang=en';
 }
