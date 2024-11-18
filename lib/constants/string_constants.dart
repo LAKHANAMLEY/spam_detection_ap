@@ -58,6 +58,8 @@ class StringConstants {
   static const String resendtext = 'Resend';
   static const String resetpasstext = 'Reset Password';
   static const String resetMessage = 'Please enter a new password to secure your account.';
+  static const String pinMessage = 'Please enter a new pin to secure your account.';
+
   static const String registerGoogletext = 'Register with Google';
   static const String registerAppletext = 'Register with Apple';
 
@@ -79,7 +81,7 @@ class StringConstants {
   static const String  newPass='New password';
   static const  String confirmPass='Confirm  new password';
   static const String ChangePass='Change Password';
-
+  static const String ChangeSecurity='Change Security Pin';
 
   static const emailValidMessage = "Please enter valid email address";
   static const descriptionMessage = "Please enter message";
@@ -100,6 +102,7 @@ class StringConstants {
 
 
   static const blockNumber='Block Numbers';
+  static const addMember='Add Member';
   static const spamcallstext='Spam calls identified';
   static const timesavestext='Time saved from spammers';
   static const unknowntext='Unknown number identified';
@@ -107,7 +110,7 @@ class StringConstants {
 
   static const copyrighttext='2024 BROADLINK';
   static const  messagescreenedtext='Your messages are currently being screened by Detect AI to identity potential scams.';
-  static const  emailscreenedtext='Your emails are currently being screened by Protect AI todetect potential scam and safe guard yourdata and financials.';
+  static const  emailscreenedtext='Your emails are currently being screened by Protect AI to detect potential scam and safe guard yourdata and financials.';
    static const corporateIdtext='Corporate ID';
    static const corporateId='Please enter your valid Email / Corporate ID';
    static const corpotateprotectiontext='Corporate Protection';

@@ -18,6 +18,7 @@ class ProtectionType extends StatefulWidget {
 }
 
 class _ProtectionTypeState extends State<ProtectionType> {
+  int Selectedtab=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,8 +38,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
         title: Image.asset(IconConstants.icBroadlogo, height: MediaQuery
             .of(context)
             .size
-            .height * 5 / 100,
-        width: MediaQuery.of(context).size.width*5/100,),
+            .height * 35 / 100,
+          width: MediaQuery.of(context).size.width*35/100,),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -80,6 +81,9 @@ class _ProtectionTypeState extends State<ProtectionType> {
               SizedBox(height: MediaQuery.of(context).size.height*5/100,),
               GestureDetector(
                 onTap: (){
+                  setState(() {
+                    Selectedtab =0;
+                  });
 
                 },
                 child: Container(
@@ -90,7 +94,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                       .sizeOf(context)
                       .height * 8 / 100,
                   decoration: BoxDecoration(
-                    color: AppColor.fillColor.withOpacity(0.2),
+                    color: Selectedtab == 1 ? AppColor.fillColor.withOpacity(0.2): AppColor.callColor,
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(color: AppColor.fillColor),
 
@@ -105,18 +109,19 @@ class _ProtectionTypeState extends State<ProtectionType> {
                         height: MediaQuery
                             .sizeOf(context)
                             .height * 6 / 100,
-                        decoration: const BoxDecoration(
+                        decoration:  BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage(IconConstants.covidprotectionshield),
-                             ),
+                            colorFilter: ColorFilter.mode(Selectedtab == 1 ? AppColor.callColor: AppColor.secondryColor,BlendMode.srcIn),
+                            image: AssetImage(IconConstants.covidprotectionshield),
+                          ),
                         ),
                       ),
                       SizedBox(width: MediaQuery
                           .of(context)
                           .size
                           .width * 4 / 100,),
-                      const Text(StringConstants.personalProtectiontext,
-                        style: TextStyle(color: AppColor.gracyColor,
+                      Text(StringConstants.personalProtectiontext,
+                        style: TextStyle(color: Selectedtab == 1? AppColor.gracyColor: AppColor.secondryColor,
                             fontFamily: AppFont.fontFamily,
                             fontSize: 18,
                             fontWeight: FontWeight.w600),)
@@ -127,7 +132,9 @@ class _ProtectionTypeState extends State<ProtectionType> {
               SizedBox(height: MediaQuery.of(context).size.height*5/100,),
               GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>const CorpoateLogin()));
+                  setState(() {
+                    Selectedtab = 1;
+                  });
                 },
                 child: Container(
                   width: MediaQuery
@@ -137,10 +144,9 @@ class _ProtectionTypeState extends State<ProtectionType> {
                       .sizeOf(context)
                       .height * 8 / 100,
                   decoration: BoxDecoration(
-                    color: AppColor.callColor,
+                    color: Selectedtab == 1 ? AppColor.callColor: AppColor.fillColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(color: AppColor.fillColor),
-
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -152,8 +158,9 @@ class _ProtectionTypeState extends State<ProtectionType> {
                         height: MediaQuery
                             .sizeOf(context)
                             .height * 6 / 100,
-                        decoration: const BoxDecoration(
+                        decoration:  BoxDecoration(
                           image: DecorationImage(
+                            colorFilter: ColorFilter.mode(Selectedtab == 1 ? AppColor.secondryColor: AppColor.callColor,BlendMode.srcIn),
                             image: AssetImage(IconConstants.icCorporate),
                           ),
                         ),
@@ -162,20 +169,31 @@ class _ProtectionTypeState extends State<ProtectionType> {
                           .of(context)
                           .size
                           .width * 4 / 100,),
-                      const Text(StringConstants.corpotateprotectiontext,
-                        style: TextStyle(color: AppColor.secondryColor,
+                      Text(StringConstants.corpotateprotectiontext,
+                        style: TextStyle( color: Selectedtab == 1 ? AppColor.secondryColor: AppColor.gracyColor,
                             fontFamily: AppFont.fontFamily,
                             fontSize: 18,
-                            fontWeight: FontWeight.w500),)
+                            fontWeight: FontWeight.w600),)
                     ],
                   ),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height*5/100,),
-              AppButton(text: StringConstants.continutext,onPress: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginGoogle()));
-
-              },
+              AppButton(text: StringConstants.continutext,onPress: () {
+                if (Selectedtab == 0) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginGoogle()),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CorpoateLogin()),
+                  );
+                }
+              }
 
               )
             ],

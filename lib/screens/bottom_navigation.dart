@@ -5,6 +5,7 @@ import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/image_constants.dart';
 import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
 import 'package:spam_delection_app/globals/colors.dart';
+import 'package:spam_delection_app/screens/blocked_number_screen.dart';
 import 'package:spam_delection_app/screens/call_log_screen.dart';
 import 'package:spam_delection_app/screens/chat_screen.dart';
 import 'package:spam_delection_app/screens/home_screen.dart';
@@ -169,18 +170,23 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     ),
                   ),
                   PopupMenuItem(
-                    child: Row(
-                      children: [
-                        Image.asset(IconConstants.icBlockCall),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 5 / 100,
-                        ),
-                        const Text('Blocked Calls',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600))
-                      ],
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>BlockedNumber()));
+                      },
+                      child: Row(
+                        children: [
+                          Image.asset(IconConstants.icBlockCall),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 5 / 100,
+                          ),
+                          const Text('Blocked Calls',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600))
+                        ],
+                      ),
                     ),
                   ),
                   PopupMenuItem(

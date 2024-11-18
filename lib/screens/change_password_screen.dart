@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_bloc.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
 
 import '../constants/icons_constants.dart';
@@ -17,10 +15,9 @@ class ChangePassword extends StatefulWidget {
 
 class _ChangePasswordState extends State<ChangePassword> {
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmpasswordController =
+  final TextEditingController newpasswordController = TextEditingController();
+  final TextEditingController confirmnewpasswordController =
       TextEditingController();
-  final changePasswordBloc = ApiBloc(ApiBlocInitialState());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,7 +118,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             SizedBox(
               width: MediaQuery.sizeOf(context).width * 90 / 100,
               child: TextFormField(
-                controller: confirmpasswordController,
+                controller: newpasswordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: StringConstants.newPass,
@@ -155,7 +152,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             SizedBox(
               width: MediaQuery.sizeOf(context).width * 90 / 100,
               child: TextFormField(
-                controller: confirmpasswordController,
+                controller: confirmnewpasswordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: StringConstants.confirmPass,
