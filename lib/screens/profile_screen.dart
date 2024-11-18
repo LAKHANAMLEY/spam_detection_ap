@@ -3,6 +3,7 @@ import 'package:spam_delection_app/constants/string_constants.dart';
 import 'package:spam_delection_app/globals/app_fonts.dart';
 import 'package:spam_delection_app/screens/change_password_screen.dart';
 import 'package:spam_delection_app/screens/edit_profile_screen.dart';
+import 'package:spam_delection_app/screens/edit_security_pin.dart';
 
 import '../constants/icons_constants.dart';
 import '../globals/colors.dart';
@@ -256,13 +257,32 @@ IconConstants.icspamCheck,
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        Image.asset(IconConstants.icEditSecurity,height: MediaQuery.of(context).size.height*5/100,width: MediaQuery.of(context).size.width*5/100,),
-                        SizedBox(width: MediaQuery.of(context).size.width*2/100,),
-                        const Text('Edit Security Pin',style: TextStyle(color: AppColor.ThumbColor,fontSize: 18),),
-                        SizedBox(width: MediaQuery.of(context).size.width*34/100,),
-                        Image.asset(IconConstants.icviewArrow,height: MediaQuery.of(context).size.height*6/100,width: MediaQuery.of(context).size.width*6/100,)
-            
-            
+                        Image.asset(
+                          IconConstants.icEditSecurity,
+                          height: MediaQuery.of(context).size.height * 5 / 100,
+                          width: MediaQuery.of(context).size.width * 5 / 100,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 2 / 100,
+                        ),
+                        const Text(
+                          'Edit Security Pin',
+                          style: TextStyle(
+                              color: AppColor.ThumbColor, fontSize: 18),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 34 / 100,
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>EditSecurityPin()));
+                          },
+                          child: Image.asset(
+                            IconConstants.icviewArrow,
+                            height: MediaQuery.of(context).size.height * 6 / 100,
+                            width: MediaQuery.of(context).size.width * 6 / 100,
+                          ),
+                        )
                       ],
                     ),
                   ),

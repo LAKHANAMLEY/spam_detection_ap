@@ -9,6 +9,7 @@ import 'package:spam_delection_app/data/repository/contact/sync_contacts_api.dar
 import 'package:spam_delection_app/globals/app_fonts.dart';
 import 'package:spam_delection_app/globals/colors.dart';
 import 'package:spam_delection_app/models/contact_list_response.dart';
+import 'package:spam_delection_app/screens/add_contact_screen.dart';
 import 'package:spam_delection_app/screens/loader.dart';
 
 import '../constants/icons_constants.dart';
@@ -159,7 +160,7 @@ class _CallLogState extends State<CallLog> {
                 controller: editingController,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search),
-                  hintText: "Search names & more",
+                  hintText: "Search number,names & more",
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(6)),
                   ),
@@ -176,7 +177,7 @@ class _CallLogState extends State<CallLog> {
                     borderSide:
                         const BorderSide(width: 0.5, color: Color(0xffE1E6EB)),
                   ),
-                  fillColor: Colors.white,
+                  fillColor: AppColor.whiteLight.withOpacity(0.2),
                   filled: true,
                 ),
               ),
@@ -237,14 +238,16 @@ class _CallLogState extends State<CallLog> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.callColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(8.0),
         ),
         child: Image.asset(
           IconConstants.icaddCall,
           height: MediaQuery.of(context).size.height * 6 / 100,
           width: MediaQuery.of(context).size.width * 6 / 100,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>AddContact()));
+        },
       ),
     );
   }
