@@ -16,7 +16,8 @@ class ChangePassword extends StatefulWidget {
 
 class _ChangePasswordState extends State<ChangePassword> {
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmpasswordController = TextEditingController();
+  final TextEditingController newpasswordController = TextEditingController();
+  final TextEditingController confirmnewpasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,7 +116,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             SizedBox(
               width: MediaQuery.sizeOf(context).width * 90 / 100,
               child: TextFormField(
-                controller: confirmpasswordController,
+                controller: newpasswordController,
                 obscureText: true,
                 decoration: InputDecoration(
 
@@ -150,7 +151,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 90 / 100,
                   child: TextFormField(
-                    controller: confirmpasswordController,
+                    controller: confirmnewpasswordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: StringConstants.confirmPass,

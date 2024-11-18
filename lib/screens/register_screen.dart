@@ -183,9 +183,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: lastnameController,
               decoration: InputDecoration(
-                //  labelText: StringConstants.usertext,
-                //  labelStyle: const TextStyle(
-                //     color: AppColor.lightfillColor, fontWeight: FontWeight.w500),
+
                 hintText: 'Last name',
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
@@ -221,9 +219,6 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: emailController,
               decoration: InputDecoration(
-                //labelText: StringConstants.emailadresstext,
-                //labelStyle: const TextStyle(
-                //   color: AppColor.lightfillColor, fontWeight: FontWeight.w800),
                 hintText: 'Enter your email',
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
@@ -249,42 +244,6 @@ class _RegisterState extends State<Register> {
             ),
           ),
 
-          /*SizedBox(
-              width: MediaQuery.sizeOf(context).width * 90/ 100,
-              child: TextFormField(
-                controller: phonenumberController,
-                decoration: InputDecoration(
-                 // labelText: StringConstants.phonetext,
-                  //labelStyle: const TextStyle(
-                     // color: AppColor.lightfillColor, fontWeight: FontWeight.w800),
-                  hintText: 'Enter Your Phone Number',
-                  hintStyle: const TextStyle(color: AppColor.lightfillColor),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(2),
-                    borderSide: const BorderSide(
-                        width: 1.5, color: AppColor.fillColor),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: AppColor.fillColor, width: 1.5),
-                    borderRadius:
-                    const BorderRadius.all(Radius.circular(2)),
-                  ),
-                  filled: true,
-                  fillColor: AppColor.fillColor.withOpacity(0.2),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(
-                      IconConstants.icCalladd, // Adjust the path as necessary
-                      width:MediaQuery.of(context).size.width*3/100,
-                      height: MediaQuery.of(context).size.height*3/100,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-             */
 
           SizedBox(
             height: MediaQuery.of(context).size.height * 3 / 100,
@@ -328,56 +287,6 @@ class _RegisterState extends State<Register> {
             ),
           )),
           SizedBox(
-            width: MediaQuery.sizeOf(context).width * 90 / 100,
-            child: TextFormField(
-              readOnly: true,
-              controller:
-                  dateofbirthController, //ese controller every field me assign karo
-              decoration: InputDecoration(
-                  // labelText: 'Date of Birth',
-                  //  labelStyle: const TextStyle(
-                  //   color: AppColor.lightfillColor, fontWeight: FontWeight.w800),
-                  hintText: 'Date of Birth',
-                  hintStyle: const TextStyle(color: AppColor.lightfillColor),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(2),
-                    borderSide:
-                        const BorderSide(width: 1.5, color: AppColor.fillColor),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: AppColor.fillColor, width: 1.5),
-                    borderRadius: BorderRadius.all(Radius.circular(2)),
-                  ),
-                  filled: true,
-                  fillColor: AppColor.fillColor.withOpacity(0.2),
-                  /* IconButton(
-                      icon: Icon(Icons.calendar_today),
-                      color: Colors.red,
-                      onPressed: () async{
-
-                        DateTime?  pickeddate=  await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1990),
-                            lastDate: DateTime(2024));
-                        if(pickeddate!=null){
-                          print('Date selected:${pickeddate.day}-${pickeddate.month}-${pickeddate.year}');
-                          setState(() {
-                            _date.text = DateFormat('yyyy-MM-dd').format(pickeddate);
-                          });
-                        }
-                      },
-                    )
-                    */
-                  suffixIcon: GestureDetector(
-                      onTap: () async {
-                        _pickDate(context);
-                      },
-                      child: Image.asset(IconConstants.icDate))),
-            ),
-          ),
-          SizedBox(
             height: MediaQuery.of(context).size.height * 3 / 100,
           ),
           SizedBox(
@@ -386,9 +295,6 @@ class _RegisterState extends State<Register> {
               controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
-                // labelText: 'Password',
-                //  labelStyle: const TextStyle(
-                //  color: AppColor.lightfillColor, fontWeight: FontWeight.w800),
                 hintText: 'Enter Your password',
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(

@@ -41,5 +41,6 @@ class AppColor {
   static const Color spelledColor=Color(0xff9F9CA3);
   static const Color borderstekColor=Color(0xff5A6072);
   static const Color lastColor= Color(0xff301A46);
+  static const Color whiteLight=Color(0xffE1E6EB);
 
 }
