@@ -5,7 +5,8 @@ library;
 
 import 'dart:convert';
 
-ResetResponse resetResponseFromJson(String str) => ResetResponse.fromJson(json.decode(str));
+ResetResponse resetResponseFromJson(String str) =>
+    ResetResponse.fromJson(json.decode(str));
 
 String resetResponseToJson(ResetResponse data) => json.encode(data.toJson());
 
@@ -19,12 +20,12 @@ class ResetResponse {
   });
 
   factory ResetResponse.fromJson(Map<String, dynamic> json) => ResetResponse(
-    statusCode: json["status_code"],
-    message: json["message"],
-  );
+        statusCode: json["status_code"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status_code": statusCode,
-    "message": message,
-  };
+        "status_code": statusCode,
+        "message": message,
+      };
 }

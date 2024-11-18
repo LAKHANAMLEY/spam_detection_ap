@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/image_constants.dart';
+import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
 import 'package:spam_delection_app/globals/colors.dart';
 import 'package:spam_delection_app/screens/blocked_number_screen.dart';
 import 'package:spam_delection_app/screens/call_log_screen.dart';
@@ -53,12 +54,23 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   //             Text('Successfully signed out from Google.')),
                   //   );
                   // Navigate to login or home screen after sign out
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(
-                      builder: (context) => const ProtectionType(),
-                    ),
-                    (route) => false,
-                  );
+                  SharedPref.clearAll().then((isCleared) {
+                    if (isCleared) {
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                          builder: (context) => const ProtectionType(),
+                        ),
+                        (route) => false,
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content:
+                                Text('Failed to sign out. Please try again.')),
+                      );
+                    }
+                  });
+
                   // Navigator.pushReplacement(
                   //     context,
                   //     MaterialPageRoute(

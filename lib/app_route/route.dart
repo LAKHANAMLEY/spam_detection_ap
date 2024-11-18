@@ -16,7 +16,7 @@ class AppRoutes {
 }
 
 final Map<String, WidgetBuilder> routes = {
-  Splash.routeName: (context) => const Splash(),
+  // Splash.routeName: (context) => const Splash(),
   AppRoutes.splash: (context) => const Splash(),
   Welcome.routeName: (context) => const Welcome(),
   Register.routeName: (context) => const Register(),
