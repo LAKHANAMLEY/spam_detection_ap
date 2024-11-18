@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
 import 'package:spam_delection_app/screens/edit_profile_screen.dart';
-import 'package:spam_delection_app/screens/protection_type_screen.dart';
 
 import '../globals/app_fonts.dart';
 import '../globals/appbutton.dart';
@@ -53,10 +52,10 @@ class _WelcomeState extends State<Welcome> {
                             height:
                                 MediaQuery.of(context).size.height * 2 / 100,
                           ),
-                          hint: Center(
+                          hint: const Center(
                             child: Text(
                               StringConstants.englishtext,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   color: AppColor.fillColor,
                                   fontSize: 14,
                                   fontFamily: AppFont.fontFamily,
@@ -88,7 +87,7 @@ class _WelcomeState extends State<Welcome> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 5 / 100,
                 ),
-                Text(
+                const Text(
                   StringConstants.weltext,
                   style: TextStyle(
                       color: AppColor.bluelightColor,
@@ -97,7 +96,7 @@ class _WelcomeState extends State<Welcome> {
                       fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: Center(
                     child: Text(
@@ -119,7 +118,7 @@ class _WelcomeState extends State<Welcome> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => EditProfile()));
+                              builder: (context) => const EditProfile()));
 
                       // forgotPasswordUserValidation(
                       //    emailTextEditingController.text);

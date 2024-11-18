@@ -10,6 +10,7 @@ import 'package:spam_delection_app/globals/app_fonts.dart';
 import 'package:spam_delection_app/globals/colors.dart';
 import 'package:spam_delection_app/models/contact_list_response.dart';
 import 'package:spam_delection_app/screens/loader.dart';
+import 'package:spam_delection_app/utils/permission_request.dart';
 
 import '../constants/icons_constants.dart';
 
@@ -21,80 +22,11 @@ class CallLog extends StatefulWidget {
 }
 
 class _CallLogState extends State<CallLog> {
-  List<Contactslist> duplicateItems = [
-    // {'name': 'Robert Adams', 'imagePath': ImageConstants.imageRobert},
-    // {'name': 'James Rich', 'imagePath': ImageConstants.imageJames},
-    // {
-    //   'name': 'Marshal Jam',
-    //   'imagePath': ImageConstants.imageMarshal,
-    // },
-    // {
-    //   'name': 'Root Lee',
-    //   'imagePath': ImageConstants.imageRoot,
-    // },
-    // {
-    //   'name': 'Lasey Ray',
-    //   'imagePath': ImageConstants.imageLasey,
-    // },
-    // {
-    //   'name': 'Same Tale',
-    //   'imagePath': ImageConstants.imageSame,
-    // },
-    // {
-    //   'name': 'Joann Short',
-    //   'imagePath': ImageConstants.imageJoann,
-    // },
-    // {
-    //   'name': 'Kevin Price',
-    //   'imagePath': ImageConstants.imageKelvin,
-    // },
-    // {
-    //   'name': 'Kevin Price',
-    //   'imagePath': ImageConstants.imageKelvin,
-    // },
-    // {
-    //   'name': 'Kevin Price',
-    //   'imagePath': ImageConstants.imageKelvin,
-    // },
-    // {
-    //   'name': 'Kevin Price',
-    //   'imagePath': ImageConstants.imageKelvin,
-    // },
-    // {
-    //   'name': 'Kevin Price',
-    //   'imagePath': ImageConstants.imageKelvin,
-    // },
-    // {
-    //   'name': 'Kevin Price',
-    //   'imagePath': ImageConstants.imageKelvin,
-    // },
-  ];
-
-  late List<Contactslist> items;
+  List<Contactslist> contacts = [];
+  late List<Contactslist> filteredContacts;
   final TextEditingController editingController = TextEditingController();
 
   var contactListBloc = ApiBloc(ApiBlocInitialState());
-
-  Future<PermissionStatus?> permissionRequest(Permission permission) async {
-    var status = await permission.status;
-    switch (status) {
-      case PermissionStatus.denied:
-        debugPrint("$status");
-        status = await permission.request();
-      case PermissionStatus.granted:
-        debugPrint("$status");
-      case PermissionStatus.restricted:
-        debugPrint("$status");
-        status = await permission.request();
-      case PermissionStatus.limited:
-        debugPrint("$status");
-      case PermissionStatus.permanentlyDenied:
-        debugPrint("$status");
-      case PermissionStatus.provisional:
-        debugPrint("$status");
-    }
-    return status;
-  }
 
   getLocalContacts() async {
     permissionRequest(Permission.contacts).then((status) async {
@@ -117,7 +49,7 @@ class _CallLogState extends State<CallLog> {
 
   void filterSearchResults(String query) {
     setState(() {
-      items = duplicateItems
+      filteredContacts = contacts
           .where(
               (item) => item.name!.toLowerCase().contains(query.toLowerCase()))
           .toList();
@@ -190,25 +122,25 @@ class _CallLogState extends State<CallLog> {
                   listener: (context, state) {
                     if (state is GetContactState) {
                       // filterSearchResults("");
-                      duplicateItems = state.value.contactslist ?? [];
-                      items = duplicateItems;
+                      contacts = state.value.contactslist ?? [];
+                      filteredContacts = contacts;
                     }
                   },
                   builder: (context, state) {
                     if (state is GetContactState) {
-                      duplicateItems = state.value.contactslist ?? [];
-                      if (items.isEmpty) {
+                      contacts = state.value.contactslist ?? [];
+                      if (filteredContacts.isEmpty) {
                         return const Center(
                           child: Text('No contacts'),
                         );
                       }
                       return ListView.builder(
-                        itemCount: items.length,
+                        itemCount: filteredContacts.length,
                         // shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return ListTile(
                             leading: Image.network(
-                              items[index].name!, //TODO: image path
+                              filteredContacts[index].name!, //TODO: image path
                               errorBuilder: (context, error, stackTrace) =>
                                   const Icon(Icons.person),
                               width:
@@ -217,7 +149,7 @@ class _CallLogState extends State<CallLog> {
                                   MediaQuery.of(context).size.height * 12 / 100,
                             ),
                             title: Text(
-                              items[index].name ?? "",
+                              filteredContacts[index].name ?? "",
                               style: const TextStyle(
                                   color: AppColor.primaryColor,
                                   fontWeight: FontWeight.w600,

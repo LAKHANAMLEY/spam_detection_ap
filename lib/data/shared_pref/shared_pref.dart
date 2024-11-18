@@ -37,6 +37,11 @@ class SharedPref {
     pref.setString(zip, user?.zip ?? "");
   }
 
+  static Future<bool> clearAll() async {
+    var pref = await SharedPreferences.getInstance();
+    return pref.clear();
+  }
+
   static Future<bool> getIsLogin() async {
     var pref = await SharedPreferences.getInstance();
     return pref.getBool(isLogin) ?? false;
