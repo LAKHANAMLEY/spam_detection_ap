@@ -67,49 +67,42 @@ class _ProfileState extends State<Profile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  child: CircleAvatar(
-                    backgroundColor: AppColor.greylightColor,
-                    radius: 45.0,
+                Center(
+                  child: SizedBox(
                     child: CircleAvatar(
-                      radius: 48.0,
-                      backgroundImage: const AssetImage(IconConstants.icAvater),
+                      backgroundColor: AppColor.vanishColor.withOpacity(0.2),
+                      radius: 43.0,
+                      backgroundImage: const AssetImage(
+                        IconConstants.iccircleAvater,),
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: CircleAvatar(
                             backgroundColor: AppColor.callColor,
                             radius: 12.0,
-                            child: Image.asset(
-                              IconConstants.icCamera,
-                              height:
-                                  MediaQuery.of(context).size.height * 2 / 100,
-                            )),
+                            child: Image.asset(IconConstants.icCamera,height: MediaQuery.of(context).size.height*2/100,)
+                        ),
                       ),
                     ),
                   ),
                 ),
+                SizedBox(height: MediaQuery.of(context).size.height*1/100,),
                 Center(
-                  child: Container(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: const Text(
-                      'Micheal Smith',
-                      style: TextStyle(
-                        fontFamily: AppFont.fontFamily,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 24.0,
-                      ),
+                  child: const Text(
+                    'Micheal Smith',
+                    style: TextStyle(
+                      fontFamily: AppFont.fontFamily,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 24.0,
                     ),
                   ),
                 ),
                 Center(
-                  child: Container(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: const Text(
-                      'Pin- *****47589',
-                      style: TextStyle(
-                        fontFamily: AppFont.fontFamily,
-                        fontSize: 16.0,
-                      ),
+                  child: const Text(
+                    'Pin- *****47589',
+                    style: TextStyle(
+                      color: AppColor.borderstekColor,
+                      fontFamily: AppFont.fontFamily,
+                      fontSize: 16.0,
                     ),
                   ),
                 ),
@@ -118,7 +111,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 20, right: 20),
-                  height: MediaQuery.of(context).size.height * 10 / 100,
+                  height: MediaQuery.of(context).size.height * 9 / 100,
                   width: MediaQuery.of(context).size.height * 80 / 100,
                   decoration: const BoxDecoration(
                     color: AppColor.callColor,
@@ -130,8 +123,8 @@ class _ProfileState extends State<Profile> {
                     children: [
                       Image.asset(
                         IconConstants.icpremiumStar,
-                        height: MediaQuery.of(context).size.height * 5 / 100,
-                        width: MediaQuery.of(context).size.width * 5 / 100,
+                        height: MediaQuery.of(context).size.height * 10 / 100,
+                        width: MediaQuery.of(context).size.width * 10 / 100,
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 4 / 100,
@@ -274,7 +267,7 @@ class _ProfileState extends State<Profile> {
                         const Text(
                           'Edit Profile',
                           style: TextStyle(
-                              color: AppColor.ThumbColor, fontSize: 18),
+                              color: AppColor.thumbColor, fontSize: 18),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 46 / 100,
@@ -324,7 +317,7 @@ class _ProfileState extends State<Profile> {
                         const Text(
                           'Edit Security Pin',
                           style: TextStyle(
-                              color: AppColor.ThumbColor, fontSize: 18),
+                              color: AppColor.thumbColor, fontSize: 18),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 34 / 100,
@@ -374,7 +367,7 @@ class _ProfileState extends State<Profile> {
                         const Text(
                           'Change Password',
                           style: TextStyle(
-                              color: AppColor.ThumbColor, fontSize: 18),
+                              color: AppColor.thumbColor, fontSize: 18),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 30 / 100,
@@ -424,7 +417,7 @@ class _ProfileState extends State<Profile> {
                         const Text(
                           ' Add Alertantive Email',
                           style: TextStyle(
-                              color: AppColor.ThumbColor, fontSize: 18),
+                              color: AppColor.thumbColor, fontSize: 18),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 20 / 100,

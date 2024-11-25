@@ -139,7 +139,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
           ),
         ),
-        title: Image.asset(IconConstants.icBroadlogo,height:MediaQuery.of(context).size.height * 5/ 100, ),
+        title: Image.asset(IconConstants.icBroadlogo,
+          height: MediaQuery.of(context).size.height * 38 / 100,
+          width: MediaQuery.of(context).size.width * 38/ 100, ),
         centerTitle: true,
       ),
       body: SafeArea(

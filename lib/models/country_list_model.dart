@@ -27,7 +27,7 @@ class CountriesResponse {
     "countrylist": countrylist == null ? [] : List<dynamic>.from(countrylist!.map((x) => x.toJson())),
   };
 
-  static fetchCountries() {}
+  static fetchCountriesResponse() {}
 }
 
 class Countrylist {

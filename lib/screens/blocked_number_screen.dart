@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
+import 'package:spam_delection_app/data/repository/block_repo/block_contact_list_api.dart';
 import 'package:spam_delection_app/globals/app_fonts.dart';
+import 'package:spam_delection_app/models/block_contacts_list_model.dart';
 
 import '../constants/icons_constants.dart';
 import '../globals/colors.dart';
@@ -13,7 +15,15 @@ class BlockedNumber extends StatefulWidget {
 }
 
 class _BlockedNumberState extends State<BlockedNumber> {
-  final List<Map<String, String>> duplicateItems = [
+
+  late Future<BlockedContactListResponse> _blockedContacts;
+
+  @override
+  void initState() {
+    super.initState();
+    _blockedContacts = blockContact();
+  }
+ /* final List<Map<String, String>> duplicateItems = [
     {
       'Number': '+233 840 945 232',
       'imagePath': IconConstants.icspamtriangle,
@@ -35,12 +45,16 @@ class _BlockedNumberState extends State<BlockedNumber> {
       'iconConst': IconConstants.icspambolcked
     },
   ];
-  late List<Map<String, String>> items;
+
+  */
+  /*late List<Map<String, String>> items;
   @override
   void initState() {
     super.initState();
     items = duplicateItems;
   }
+
+   */
 
   int Toogletab = 0;
   @override
@@ -187,6 +201,32 @@ class _BlockedNumberState extends State<BlockedNumber> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 4 / 100,
               ),
+              FutureBuilder<BlockedContactListResponse>(
+                future: _blockedContacts,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else if (snapshot.hasData) {
+                    final contacts = snapshot.data!.contacts??[];
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: contacts.length,
+                      itemBuilder: (context, index) {
+                        final contact = contacts[index];
+                        return ListTile(
+                          title: Text(contact.name),
+                         // subtitle: Text(contact.phone),
+                        );
+                      },
+                    );
+                  } else {
+                    return Center(child: Text('No blocked contacts found.'));
+                  }
+                },
+              ),
+              /*
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: items.length,
@@ -217,6 +257,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
                   );
                 },
               ),
+              */
             ] else
               ...[]
           ]),

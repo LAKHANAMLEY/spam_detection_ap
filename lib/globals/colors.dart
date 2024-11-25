@@ -33,8 +33,11 @@ class AppColor {
 
   static const Color callColor=Color(0xff301A46);
   static const Color callUpdateColor=Color(0xffFFE8E3);
+  static const Color redColor=Color(0xffD63614);
+  static const Color greyColor=Color(0xff8E9398);
 
-  static const Color ThumbColor=Color(0xff636B81);
+
+  static const Color thumbColor=Color(0xff636B81);
   static const Color greyarrowColor=Color(0xffEFE9E9);
   static const Color vanishColor=Color(0xffB2B8BD);
   static const Color whitedeep=Color(0xffF6F6F6);
@@ -42,5 +45,8 @@ class AppColor {
   static const Color borderstekColor=Color(0xff5A6072);
   static const Color lastColor= Color(0xff301A46);
   static const Color whiteLight=Color(0xffE1E6EB);
-
+  static const Color yellowdecentColor=Color(0xffFFEAB7);
+  static const Color yellowColor=Color(0xffFFE2AB04);
+  static const Color decentgreyColor=Color(0xffD6D3D3);
+  static const Color whitedecentColor=Color(0xffF6F6F6);
 }

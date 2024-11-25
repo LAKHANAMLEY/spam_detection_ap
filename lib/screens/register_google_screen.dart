@@ -39,7 +39,8 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           ),
           title: Image.asset(
             IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 5 / 100,
+            height: MediaQuery.of(context).size.height * 38 / 100,
+            width: MediaQuery.of(context).size.width * 38 / 100,
           ),
           centerTitle: true,
         ),
@@ -49,7 +50,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 6 / 100,
           ),
-          const Center(
+          Center(
               child: Text(
             StringConstants.registertext,
             style: TextStyle(
@@ -75,9 +76,9 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: MediaQuery.sizeOf(context).width * 10 / 100,
-                    height: MediaQuery.sizeOf(context).height * 6 / 100,
-                    decoration: const BoxDecoration(
+                    width: MediaQuery.sizeOf(context).width * 8 / 100,
+                    height: MediaQuery.sizeOf(context).height * 4 / 100,
+                    decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(IconConstants.icgoogleLogo),
                           fit: BoxFit.cover),
@@ -87,8 +88,8 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 4 / 100,
                   ),
-                  const Text(
-                    StringConstants.loginGoogletext,
+                  Text(
+                    StringConstants.registerGoogletext,
                     style: TextStyle(
                         color: AppColor.gracyColor,
                         fontFamily: AppFont.fontFamily,
@@ -116,9 +117,9 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: MediaQuery.sizeOf(context).width * 10 / 100,
-                    height: MediaQuery.sizeOf(context).height * 6 / 100,
-                    decoration: const BoxDecoration(
+                    width: MediaQuery.sizeOf(context).width * 8 / 100,
+                    height: MediaQuery.sizeOf(context).height * 4 / 100,
+                    decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(IconConstants.icappleLogo),
                           fit: BoxFit.cover),
@@ -128,8 +129,8 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 4 / 100,
                   ),
-                  const Text(
-                    StringConstants.loginAppletext,
+                  Text(
+                    StringConstants.registerAppletext,
                     style: TextStyle(
                         color: AppColor.gracyColor,
                         fontFamily: AppFont.fontFamily,
@@ -145,7 +146,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           ),
           Row(children: <Widget>[
             Expanded(
-              child: Container(
+              child: new Container(
                   width: MediaQuery.sizeOf(context).width * 6 / 100,
                   margin: const EdgeInsets.only(left: 50.0, right: 10.0),
                   child: Divider(
@@ -153,7 +154,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                     height: MediaQuery.sizeOf(context).height * 6 / 100,
                   )),
             ),
-            const Text(
+            Text(
               "or",
               style: TextStyle(
                   color: AppColor.primaryColor,
@@ -161,7 +162,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   fontSize: 18),
             ),
             Expanded(
-              child: Container(
+              child: new Container(
                   margin: const EdgeInsets.only(left: 10, right: 50),
                   child: Divider(
                     color: AppColor.gracyColor,
@@ -176,7 +177,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
               text: StringConstants.registerwithEmail,
               onPress: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Register()));
+                    MaterialPageRoute(builder: (context) => Register()));
               }),
           SizedBox(
             height: MediaQuery.of(context).size.height * 10 / 100,
@@ -184,7 +185,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 StringConstants.alreadyHaveAnAccount,
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
@@ -198,10 +199,9 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const LoginGoogle()));
+                          builder: (BuildContext context) => LoginGoogle()));
                 },
-                child: const Text(StringConstants.logintext,
+                child: Text(StringConstants.logintext,
                     style: TextStyle(
                         color: AppColor.yellowlightColor,
                         fontWeight: FontWeight.bold,

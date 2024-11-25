@@ -99,5 +99,12 @@ class IconConstants {
   static const String icspambolcked = 'assets/icons/ic_blocked.png';
   static const String icmaleIcon = 'assets/icons/ic_maleIcon.png';
   static const String icfemaleIcon = 'assets/icons/ic_femaleIcon.png';
-  static const String iccopyRight='assets/icons/ic_copyRight.png';
+  static const String iccopyRight = 'assets/icons/ic_copyRight.png';
+  static const String icspamCircle = 'assets/icons/ic_spamCircle.png';
+  static const String icfluentCall = 'assets/icons/ic_fluentCall.png';
+  static const String icbluespam = 'assets/icons/ic_bluespam.png';
+  static const String icphonebold='assets/icons/ic_phone_bold.png';
+  static const String icsubsription='assets/icons/ic_subscription.png';
+  static const String icpremiumprotection='assets/icons/ic_premium_plan.png';
+  static const String iccircleAvater='assets/icons/ic_circleAvatar.png';
 }

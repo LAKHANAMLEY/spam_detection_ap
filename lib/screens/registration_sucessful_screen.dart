@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spam_delection_app/screens/bottom_navigation.dart';
 
 import '../constants/icons_constants.dart';
 import '../constants/string_constants.dart';
@@ -36,7 +37,8 @@ class _RegistrationSucessfulState extends State<RegistrationSucessful> {
           ),
           title: Image.asset(
             IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 5 / 100,
+            height: MediaQuery.of(context).size.height * 38 / 100,
+            width: MediaQuery.of(context).size.width * 38 / 100,
           ),
           centerTitle: true,
         ),
@@ -46,8 +48,8 @@ class _RegistrationSucessfulState extends State<RegistrationSucessful> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 10/ 100,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10,right: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10,right: 10),
                     child: Center(
                         child: Text(
                           StringConstants.registersuccessfultext,textAlign: TextAlign.center,
@@ -59,21 +61,40 @@ class _RegistrationSucessfulState extends State<RegistrationSucessful> {
                         )),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 2 / 100,
-                  ),
-                  Text('Yey! ${widget.firstname?? 'User'}',style: TextStyle(color: AppColor.yellowlightColor,fontSize: 18,fontWeight: FontWeight.bold),),
-                  SizedBox(height:MediaQuery.of(context).size.height * 2/ 100 ,),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20,right: 20),
-                    child: Text(StringConstants.congratsregistertext,textAlign:TextAlign.center,style: TextStyle(color:AppColor.gracyColor),),
-                  ),
-                  SizedBox(height:MediaQuery.of(context).size.height * 5 / 100 ,),
-                  Image.asset(IconConstants.icsuccesfulLogo,height: MediaQuery.of(context).size.height * 20/ 100,),
-                  SizedBox(height:MediaQuery.of(context).size.height * 5 / 100),
-                  AppButton(text: StringConstants.exploretext,
-                      onPress: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
-                      })
+            height: MediaQuery.of(context).size.height * 2 / 100,
+          ),
+          Text(
+            'Yey! ${widget.firstname ?? 'User'}',
+            style: const TextStyle(
+                color: AppColor.yellowlightColor,
+                fontSize: 18,
+                fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 2 / 100,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 20, right: 20),
+            child: Text(
+              StringConstants.congratsregistertext,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: AppColor.gracyColor),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 5 / 100,
+          ),
+          Image.asset(
+            IconConstants.icsuccesfulLogo,
+            height: MediaQuery.of(context).size.height * 20 / 100,
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
+          AppButton(
+              text: StringConstants.exploretext,
+              onPress: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => BottomNavigation()));
+              })
 
                 ])))
 

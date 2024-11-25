@@ -12,6 +12,8 @@ import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
 import '../models/country_list_model.dart';
+import 'package:spam_delection_app/data/repository/auth_repo/countries_api.dart';
+
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -52,7 +54,7 @@ class _RegisterState extends State<Register> {
 
   Future<void> _loadCountries() async {
     try {
-      final countryData = await CountriesResponse.fetchCountries();
+      final countryData = await CountriesResponse.fetchCountriesResponse();
       setState(() {
         countries = countryData;
         isLoading = false;
@@ -107,7 +109,8 @@ class _RegisterState extends State<Register> {
           ),
           title: Image.asset(
             IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 5 / 100,
+            height: MediaQuery.of(context).size.height * 38 / 100,
+            width: MediaQuery.of(context).size.width * 38 / 100,
           ),
           centerTitle: true,
         ),
@@ -127,7 +130,7 @@ class _RegisterState extends State<Register> {
                 fontWeight: FontWeight.w600),
           )),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 2 / 100,
+            height: MediaQuery.of(context).size.height * 1/ 100,
           ),
           const Padding(
             padding: EdgeInsets.all(20),
@@ -219,7 +222,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: emailController,
               decoration: InputDecoration(
-                hintText: 'Enter your email',
+                hintText: 'Email Address',
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),
@@ -254,7 +257,7 @@ class _RegisterState extends State<Register> {
             child: IntlPhoneField(
               controller: phonenumberController,
               decoration: InputDecoration(
-                hintText: "Enter Phone Number",
+                hintText: "Phone Number",
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 //labelText: 'Phone Number',
                 enabledBorder: OutlineInputBorder(
@@ -286,6 +289,56 @@ class _RegisterState extends State<Register> {
               },
             ),
           )),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 1 / 100,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 90 / 100,
+                    child: TextFormField(
+                      readOnly: true,
+                      controller:
+                      dateofbirthController, //ese controller every field me assign karo
+                      decoration: InputDecoration(
+                          hintText: 'Date of Birth',
+                          hintStyle: const TextStyle(color: AppColor.lightfillColor),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(2),
+                            borderSide:
+                            const BorderSide(width: 1.5, color: AppColor.fillColor),
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide:
+                            BorderSide(color: AppColor.fillColor, width: 1.5),
+                            borderRadius: BorderRadius.all(Radius.circular(2)),
+                          ),
+                          filled: true,
+                          fillColor: AppColor.fillColor.withOpacity(0.2),
+                          /* IconButton(
+                      icon: Icon(Icons.calendar_today),
+                      color: Colors.red,
+                      onPressed: () async{
+
+                        DateTime?  pickeddate=  await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1990),
+                            lastDate: DateTime(2024));
+                        if(pickeddate!=null){
+                          print('Date selected:${pickeddate.day}-${pickeddate.month}-${pickeddate.year}');
+                          setState(() {
+                            _date.text = DateFormat('yyyy-MM-dd').format(pickeddate);
+                          });
+                        }
+                      },
+                    )
+                    */
+                          suffixIcon: GestureDetector(
+                              onTap: () async {
+                                _pickDate(context);
+                              },
+                              child: Image.asset(IconConstants.icDate))),
+                    ),
+                  ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 3 / 100,
           ),
@@ -295,7 +348,7 @@ class _RegisterState extends State<Register> {
               controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
-                hintText: 'Enter Your password',
+                hintText: 'Password',
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),

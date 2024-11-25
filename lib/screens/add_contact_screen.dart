@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:spam_delection_app/data/repository/call_log_repo/add_contacts_api.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
+import 'package:spam_delection_app/screens/call_log_screen.dart';
 import 'package:spam_delection_app/screens/widgets/custom_textfiled.dart';
 
 import '../constants/icons_constants.dart';
@@ -38,7 +40,7 @@ class _AddContactState extends State<AddContact> {
 
   PhoneNumber? phoneNumber;
 
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController fullnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phonenumberController = TextEditingController();
   final TextEditingController _numberController = TextEditingController();
@@ -70,7 +72,14 @@ class _AddContactState extends State<AddContact> {
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
         ),
-        title: Text('Add Contact',style: TextStyle(color: AppColor.callColor,fontFamily: AppFont.fontFamily,fontSize: 18,fontWeight: FontWeight.w600),),
+        title: Text(
+          'Add Contact',
+          style: TextStyle(
+              color: AppColor.callColor,
+              fontFamily: AppFont.fontFamily,
+              fontSize: 18,
+              fontWeight: FontWeight.w600),
+        ),
 
         //centerTitle: true,
       ),
@@ -82,7 +91,7 @@ class _AddContactState extends State<AddContact> {
               SizedBox(
                 width: MediaQuery.sizeOf(context).width * 90 / 100,
                 child: TextFormField(
-                  controller: nameController,
+                  controller: fullnameController,
                   decoration: InputDecoration(
                     hintText: 'Full name',
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
@@ -232,9 +241,56 @@ class _AddContactState extends State<AddContact> {
                 ),
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height*2/100,),
-              AppButton(text: "Add Contact",onPress: (){},
-              )
+              if (_errorMessage != null)
+                Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 2 / 100,
+              ),
+              _isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : AppButton(
+                text: StringConstants.addcontactext,
+                onPress: () {
+                  final email = emailController.text;
+                  final phone = phonenumberController.text;
+                  final fullname = fullnameController.text;
+                  final numbertype = _numberController.text;
+
+
+
+                  if (email.isNotEmpty && fullname.isNotEmpty) {
+                    setState(() {
+                      _isLoading = true;
+                    });
+                    addContact(
+                      email: email,
+                      fullname: fullname,
+                      phonenumber: phone,
+                      countrycode: phoneNumber?.countryCode,
+                      numbertype: numbertype,
+                    ).then((response) {
+                      setState(() {
+                        _isLoading = false;
+                      });
+                      // class SignUpResponse
+                      //var response
+                      if (response.statusCode == 200) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                            const CallLog()));
+                      } else {
+                        setState(() {
+                          _errorMessage = response.message.toString();
+                        });
+                      }
+                    });
+                  } else {
+                    setState(() {
+                      _errorMessage = 'Please enter the all fields.';
+                    });
+                  }
+                },
+              ),
             ],
 
           

@@ -14,6 +14,7 @@ import 'package:spam_delection_app/screens/loader.dart';
 import 'package:spam_delection_app/utils/permission_request.dart';
 
 import '../constants/icons_constants.dart';
+//import '../data/repository/contact_repo/sync_contacts_api.dart';
 
 class CallLog extends StatefulWidget {
   const CallLog({super.key});
