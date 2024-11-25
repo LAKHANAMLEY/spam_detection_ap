@@ -39,7 +39,8 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           ),
           title: Image.asset(
             IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 5 / 100,
+            height: MediaQuery.of(context).size.height * 38 / 100,
+            width: MediaQuery.of(context).size.width * 38 / 100,
           ),
           centerTitle: true,
         ),
@@ -75,8 +76,8 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: MediaQuery.sizeOf(context).width * 10 / 100,
-                    height: MediaQuery.sizeOf(context).height * 6 / 100,
+                    width: MediaQuery.sizeOf(context).width * 8 / 100,
+                    height: MediaQuery.sizeOf(context).height * 4 / 100,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(IconConstants.icgoogleLogo),
@@ -116,8 +117,8 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: MediaQuery.sizeOf(context).width * 10 / 100,
-                    height: MediaQuery.sizeOf(context).height * 6 / 100,
+                    width: MediaQuery.sizeOf(context).width * 8 / 100,
+                    height: MediaQuery.sizeOf(context).height * 4 / 100,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(IconConstants.icappleLogo),

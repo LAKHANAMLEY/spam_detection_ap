@@ -143,7 +143,8 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
             ),
           ),
         ),
-        title: Image.asset(IconConstants.icBroadlogo,height:MediaQuery.of(context).size.height * 5/ 100, ),
+        title: Image.asset(IconConstants.icBroadlogo, height: MediaQuery.of(context).size.height * 35 / 100,
+          width: MediaQuery.of(context).size.width * 35 / 100 ),
         centerTitle: true,
       ),
       body: SafeArea(

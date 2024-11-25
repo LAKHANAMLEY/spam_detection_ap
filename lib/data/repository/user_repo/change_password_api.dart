@@ -4,7 +4,9 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/models/response.dart';
 import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
 
-Future<Response> changePassword({
+import '../../../models/change_password_model.dart';
+
+Future<ChangePasswordResponse> changePassword({
   required String currentPassword,
   required String newPassword,
   required String confirmNewPassword,
@@ -20,7 +22,7 @@ Future<Response> changePassword({
   );
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
-    return Response.fromJson(jsonData);
+    return ChangePasswordResponse.fromJson(jsonData);
   } else {
     throw Exception(response.body);
   }

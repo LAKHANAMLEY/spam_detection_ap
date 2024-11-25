@@ -358,7 +358,7 @@ class SecurityOption extends StatelessWidget {
                   Text(
                     description,
                     style: const TextStyle(
-                        color: AppColor.ThumbColor, fontSize: 14),
+                        color: AppColor.thumbColor, fontSize: 14),
                   ),
                 ],
               ),

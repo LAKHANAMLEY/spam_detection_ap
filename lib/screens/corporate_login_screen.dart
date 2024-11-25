@@ -42,7 +42,8 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
           ),
           title: Image.asset(
             IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 5 / 100,
+            height: MediaQuery.of(context).size.height * 38 / 100,
+            width: MediaQuery.of(context).size.width * 38 / 100,
           ),
           centerTitle: true,
         ),
@@ -179,8 +180,12 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                           filled: true,
                           fillColor: AppColor.fillColor.withOpacity(0.2),
                           counterText: '',
-                          suffixIcon: Image.asset(IconConstants.icLockadd)),
-                    ),
+                  suffixIcon: Image.asset(
+                    IconConstants.icLockadd,
+                    height: MediaQuery.of(context).size.height * 2 / 100,
+                    width: MediaQuery.of(context).size.width * 2 / 100,
+                  )),
+            ),
                   ),
                   SizedBox(
                     height: MediaQuery.sizeOf(context).height * 5 / 100,

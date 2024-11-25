@@ -6,6 +6,7 @@ import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
 import 'package:spam_delection_app/screens/login_succesful_screen.dart';
 import 'package:spam_delection_app/screens/otp_verify_screen.dart';
+import 'package:spam_delection_app/screens/register_screen.dart';
 
 import '../constants/icons_constants.dart';
 import '../constants/string_constants.dart';
@@ -342,7 +343,8 @@ class _LoginState extends State<Login> {
           ),
           title: Image.asset(
             IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 5 / 100,
+            height: MediaQuery.of(context).size.height * 35 / 100,
+            width: MediaQuery.of(context).size.width * 35 / 100,
           ),
           centerTitle: true,
         ),
@@ -573,7 +575,7 @@ class _LoginState extends State<Login> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    const LoginSuccessful()));
+                                    const Register()));
                       },
                       child: const Text(StringConstants.registertext,
                           style: TextStyle(
@@ -696,12 +698,12 @@ class _LoginState extends State<Login> {
                         width: MediaQuery.of(context).size.width * 2 / 100),
                     InkWell(
                       onTap: () {
-                        /* Navigator.push(
+                        Navigator.push(
                          context,
                          MaterialPageRoute(
-                           builder: (BuildContext context) => RegisterScreen()));
+                           builder: (BuildContext context) => Register()));
 
-                      */
+
                       },
                       child: const Text(StringConstants.registertext,
                           style: TextStyle(

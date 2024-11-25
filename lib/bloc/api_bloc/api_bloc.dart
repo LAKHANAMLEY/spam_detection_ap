@@ -6,6 +6,7 @@ import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
 import 'package:spam_delection_app/data/repository/contact/get_contacts_api.dart';
 import 'package:spam_delection_app/data/repository/contact/sync_contacts_api.dart';
 import 'package:spam_delection_app/data/repository/user_repo/change_password_api.dart';
+import 'package:spam_delection_app/models/response.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
   ApiBloc(super.initialState) {
@@ -31,7 +32,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
               newPassword: event.newPassword,
               confirmNewPassword: event.confirmNewPassword)
           .then((value) {
-        emit(ChangePasswordState(value));
+        emit(ChangePasswordState(value as Response));
       });
     }
   }

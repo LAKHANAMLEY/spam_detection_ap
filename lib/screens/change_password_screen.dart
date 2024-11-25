@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:spam_delection_app/data/repository/user_repo/change_password_api.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
+import 'package:spam_delection_app/screens/edit_profile_screen.dart';
 
 import '../constants/icons_constants.dart';
 import '../constants/string_constants.dart';
@@ -14,7 +16,24 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  final TextEditingController passwordController = TextEditingController();
+  int SelectTab = 0;
+  int Toogletab = 0;
+  // final bool _obscureText = true;
+  bool isCheckBoxValue = false;
+  bool isPasswordVisible = true;
+  bool isConfirmPasswordVisible = true;
+  bool isApiCalling = false;
+  bool agreeToTerms = false;
+
+  bool _isLoading = false;
+  String? _errorMessage;
+  String? enteredPhone;
+
+  List<dynamic> countries = [];
+  bool isLoading = true;
+  String? selectedCountryCode;
+  String? selectedCountryName;
+  final TextEditingController currentpasswordController = TextEditingController();
   final TextEditingController newpasswordController = TextEditingController();
   final TextEditingController confirmnewpasswordController =
       TextEditingController();
@@ -54,7 +73,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 child: Padding(
               padding: EdgeInsets.only(left: 60, right: 50),
               child: Text(
-                StringConstants.ChangePass,
+                StringConstants.changePass,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: AppColor.bluelightColor,
@@ -84,7 +103,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             SizedBox(
               width: MediaQuery.sizeOf(context).width * 90 / 100,
               child: TextFormField(
-                controller: passwordController,
+                controller: currentpasswordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: StringConstants.currentPass,
@@ -181,9 +200,53 @@ class _ChangePasswordState extends State<ChangePassword> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 4 / 100,
+              height: MediaQuery.of(context).size.height * 2 / 100,
             ),
-            AppButton(text: "Reset Password", onPress: () {})
+            if (_errorMessage != null)
+              Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 2 / 100,
+            ),
+            _isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : AppButton(
+              text: StringConstants.resetpasstext,
+              onPress: () {
+
+                final currentpassword = currentpasswordController.text;
+                final newpassword = newpasswordController.text;
+                final confirmnewpassword = confirmnewpasswordController.text;
+                if (currentpassword.isNotEmpty && newpassword.isNotEmpty&& confirmnewpassword.isNotEmpty) {
+                  setState(() {
+                    _isLoading = true;
+                  });
+                  changePassword(
+                    currentPassword: currentpassword,
+                    newPassword: newpassword,
+                    confirmNewPassword: confirmnewpassword,
+                  ).then((response) {
+                    setState(() {
+                      _isLoading = false;
+                    });
+                    // class SignUpResponse
+                    //var response
+                    if (response.statusCode == 200) {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                          const EditProfile()));
+                    } else {
+                      setState(() {
+                        _errorMessage = response.message.toString();
+                      });
+                    }
+                  });
+                } else {
+                  setState(() {
+                    _errorMessage = 'Please enter the all fields.';
+                  });
+                }
+              },
+            ),
           ]),
         ),
       ),

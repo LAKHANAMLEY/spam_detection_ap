@@ -32,13 +32,15 @@ class _ProtectionTypeState extends State<ProtectionType> {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Image.asset(
               IconConstants.backIcon,
+              height: MediaQuery.of(context).size.height * 2/ 100,
+              width: MediaQuery.of(context).size.width * 2 / 100,
             ),
           ),
         ),
         title: Image.asset(
           IconConstants.icBroadlogo,
-          height: MediaQuery.of(context).size.height * 35 / 100,
-          width: MediaQuery.of(context).size.width * 35 / 100,
+          height: MediaQuery.of(context).size.height * 38 / 100,
+          width: MediaQuery.of(context).size.width * 38 / 100,
         ),
         centerTitle: true,
       ),
@@ -101,8 +103,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: MediaQuery.sizeOf(context).width * 10 / 100,
-                        height: MediaQuery.sizeOf(context).height * 6 / 100,
+                        width: MediaQuery.sizeOf(context).width * 8 / 100,
+                        height: MediaQuery.sizeOf(context).height * 8 / 100,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             colorFilter: ColorFilter.mode(
@@ -155,8 +157,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: MediaQuery.sizeOf(context).width * 10 / 100,
-                        height: MediaQuery.sizeOf(context).height * 6 / 100,
+                        width: MediaQuery.sizeOf(context).width * 8 / 100,
+                        height: MediaQuery.sizeOf(context).height * 8 / 100,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             colorFilter: ColorFilter.mode(
