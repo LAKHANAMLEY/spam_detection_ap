@@ -33,3 +33,31 @@ class ChangePasswordEvent extends ApiEvent {
         confirmNewPassword,
       ];
 }
+
+//yha phle event create krege
+
+// ye parameters pass kar diye
+class MarkSpamEvent extends ApiEvent {
+  final String contactId;
+  final String comment;
+  final String numberType;
+  final String categoryId;
+  final String phone;
+  MarkSpamEvent(
+      {required this.contactId,
+      required this.comment,
+      required this.numberType,
+      required this.categoryId,
+      required this.phone,
+
+      });
+
+  @override
+  List<Object?> get props => [
+    contactId,
+    comment,
+    numberType,
+    categoryId,
+    phone
+  ];
+}
