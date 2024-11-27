@@ -4,6 +4,7 @@ import 'package:spam_delection_app/globals/app_fonts.dart';
 import 'package:spam_delection_app/screens/change_password_screen.dart';
 import 'package:spam_delection_app/screens/edit_profile_screen.dart';
 import 'package:spam_delection_app/screens/edit_security_pin.dart';
+import 'package:spam_delection_app/screens/spam_list_screen.dart';
 
 import '../constants/icons_constants.dart';
 import '../globals/colors.dart';
@@ -181,55 +182,62 @@ class _ProfileState extends State<Profile> {
                           primary: false,
                           shrinkWrap: true,
                           itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4)),
-                                    color: AppColor.secondryColor),
+                            return InkWell(
+                              onTap: (){
+                                if(index==0){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SpamList()));
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
                                 child: Container(
-                                  margin: const EdgeInsets.all(8),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Row(children: [
-                                        Image.asset(
-                                          imageUrl[index],
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              5 /
-                                              100,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              5 /
-                                              100,
-                                        ),
-                                        SizedBox(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              2 /
-                                              100,
-                                        ),
-                                        Text(
-                                          cardTexts[index],
-                                          style: const TextStyle(
-                                              color: AppColor.borderstekColor,
-                                              fontSize: 20,
-                                              fontFamily: AppFont.fontFamily),
-                                        )
-                                      ]),
-                                      Text(SpamTexts[index],
-                                          style: const TextStyle(
-                                              color: AppColor.spelledColor,
-                                              fontFamily: AppFont.fontFamily,
-                                              fontSize: 16)),
-                                    ],
+                                  decoration: const BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(4)),
+                                      color: AppColor.secondryColor),
+                                  child: Container(
+                                    margin: const EdgeInsets.all(8),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Row(children: [
+                                          Image.asset(
+                                            imageUrl[index],
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                5 /
+                                                100,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                5 /
+                                                100,
+                                          ),
+                                          SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                2 /
+                                                100,
+                                          ),
+                                          Text(
+                                            cardTexts[index],
+                                            style: const TextStyle(
+                                                color: AppColor.borderstekColor,
+                                                fontSize: 20,
+                                                fontFamily: AppFont.fontFamily),
+                                          )
+                                        ]),
+                                        Text(SpamTexts[index],
+                                            style: const TextStyle(
+                                                color: AppColor.spelledColor,
+                                                fontFamily: AppFont.fontFamily,
+                                                fontSize: 16)),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

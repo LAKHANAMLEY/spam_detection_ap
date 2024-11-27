@@ -10,7 +10,7 @@ String spamListResponseToJson(SpamListResponse data) => json.encode(data.toJson(
 
 class SpamListResponse {
   final int? statusCode;
-  final List<Spamcontactslist>? spamcontactslist;
+  final List<SpamData>? spamcontactslist;
 
   SpamListResponse({
     this.statusCode,
@@ -19,7 +19,7 @@ class SpamListResponse {
 
   factory SpamListResponse.fromJson(Map<String, dynamic> json) => SpamListResponse(
     statusCode: json["status_code"],
-    spamcontactslist: json["spamcontactslist"] == null ? [] : List<Spamcontactslist>.from(json["spamcontactslist"]!.map((x) => Spamcontactslist.fromJson(x))),
+    spamcontactslist: json["spamcontactslist"] == null ? [] : List<SpamData>.from(json["spamcontactslist"]!.map((x) => SpamData.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -28,7 +28,8 @@ class SpamListResponse {
   };
 }
 
-class Spamcontactslist {
+class SpamData {
+  final String? name;
   final String? id;
   final String? comments;
   final String? numberType;
@@ -36,7 +37,9 @@ class Spamcontactslist {
   final String? categoryName;
   final String? categoryId;
 
-  Spamcontactslist({
+
+  SpamData({
+    this.name,
     this.id,
     this.comments,
     this.numberType,
@@ -45,7 +48,8 @@ class Spamcontactslist {
     this.categoryId,
   });
 
-  factory Spamcontactslist.fromJson(Map<String, dynamic> json) => Spamcontactslist(
+  factory SpamData.fromJson(Map<String, dynamic> json) => SpamData(
+    name: json["name"],
     id: json["id"],
     comments: json["comments"],
     numberType: json["number_type"],
@@ -55,6 +59,7 @@ class Spamcontactslist {
   );
 
   Map<String, dynamic> toJson() => {
+    "name": name,
     "id": id,
     "comments": comments,
     "number_type": numberType,
