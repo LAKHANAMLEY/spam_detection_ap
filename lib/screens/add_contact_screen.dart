@@ -61,7 +61,9 @@ class _AddContactState extends State<AddContact> {
       appBar: AppBar(
         backgroundColor: AppColor.secondryColor,
         leading:GestureDetector(
-          onTap: (){},
+          onTap: (){
+            Navigator.pop(context);
+          },
           child: Container(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),

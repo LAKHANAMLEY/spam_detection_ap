@@ -16,6 +16,7 @@ import 'package:spam_delection_app/globals/colors.dart';
 import 'package:spam_delection_app/models/category_list_model.dart';
 import 'package:spam_delection_app/models/contact_list_response.dart';
 import 'package:spam_delection_app/screens/add_contact_screen.dart';
+import 'package:spam_delection_app/screens/check_spam_screen.dart';
 import 'package:spam_delection_app/screens/loader.dart';
 import 'package:spam_delection_app/utils/permission_request.dart';
 
@@ -40,6 +41,7 @@ class _CallLogState extends State<CallLog> {
   late List<Contactslist> filteredContacts;
   final TextEditingController editingController = TextEditingController();
   final TextEditingController commentController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   var contactListBloc = ApiBloc(ApiBlocInitialState());
 
@@ -84,7 +86,7 @@ class _CallLogState extends State<CallLog> {
   void initState() {
     super.initState();
     contactListBloc.add(GetContactEvent());
-    //markSpamBloc.add()
+
     getLocalContacts();
     fetchCategories();
   }
@@ -152,7 +154,7 @@ class _CallLogState extends State<CallLog> {
                               color: AppColor.primaryColor,
                               fontSize: 18,
                               fontFamily: AppFont.fontFamily,
-                              fontWeight: FontWeight.w500),
+                              fontWeight: FontWeight.w600),
                         ),
                         SizedBox(
                             height:
@@ -163,7 +165,7 @@ class _CallLogState extends State<CallLog> {
                               color: AppColor.primaryColor,
                               fontSize: 12,
                               fontFamily: AppFont.fontFamily,
-                              fontWeight: FontWeight.w400),
+                              fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 1 / 100,
@@ -253,7 +255,7 @@ class _CallLogState extends State<CallLog> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 2 / 100,
                         ),
-                        const Align(child: Text("Write a comment")),
+                        const Align(child: Text("Write a comment",style: TextStyle(color: AppColor.primaryColor,fontSize: 12,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w400),)),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 2 / 100,
                         ),
@@ -321,6 +323,36 @@ class _CallLogState extends State<CallLog> {
                                             },
                                           ),
                                         ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        Container(
+                          height: MediaQuery.sizeOf(context).width * 20 / 100,
+                          width: MediaQuery.sizeOf(context).width * 90 / 100,
+                          child: TextFormField(
+                            controller: phoneController,
+                            //obscureText: true,
+                            decoration: InputDecoration(
+                              hintText: 'Phone Number',
+                              hintStyle: const TextStyle(
+                                  color: AppColor.lightfillColor),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(2),
+                                borderSide: const BorderSide(
+                                    width: 1.5, color: AppColor.fillColor),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color(0xffE1E6EB), width: 1.5),
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(2)),
+                              ),
+                              filled: true,
+                              fillColor: AppColor.fillColor.withOpacity(0.2),
+                              counterText: '',
+                            ),
+                          ),
                         ),
                         SizedBox(
                             height:
@@ -438,42 +470,47 @@ class _CallLogState extends State<CallLog> {
                         );
                       }
 
-                      return ListView.builder(
-                        itemCount: filteredContacts.length,
-                        // shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            leading: Image.network(
-                              filteredContacts[index].name!, //TODO: image path
-                              errorBuilder: (context, error, stackTrace) =>
-                                  const Icon(Icons.person),
-                              width:
-                                  MediaQuery.of(context).size.width * 12 / 100,
-                              height:
-                                  MediaQuery.of(context).size.height * 12 / 100,
-                            ),
-                            title: Text(
-                              filteredContacts[index].name ?? "",
-                              style: const TextStyle(
-                                  color: AppColor.primaryColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18,
-                                  fontFamily: AppFont.fontFamily),
-                            ),
-                            trailing: PopupMenuButton(
-                              itemBuilder: (context) => [
-                                PopupMenuItem(
-                                  child: const Text("Report Number"),
-                                  onTap: () {
-                                    //pass the contact parameter here in the function
-                                    _showEditOptions(context,
-                                        contact: filteredContacts[index]);
-                                  },
-                                ),
-                              ],
-                            ),
-                          );
+                      return GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CheckSpam()));
                         },
+                        child: ListView.builder(
+                          itemCount: filteredContacts.length,
+                          // shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              leading: Image.network(
+                                filteredContacts[index].name!, //TODO: image path
+                                errorBuilder: (context, error, stackTrace) =>
+                                    const Icon(Icons.person),
+                                width:
+                                    MediaQuery.of(context).size.width * 12 / 100,
+                                height:
+                                    MediaQuery.of(context).size.height * 12 / 100,
+                              ),
+                              title: Text(
+                                filteredContacts[index].name ?? "",
+                                style: const TextStyle(
+                                    color: AppColor.primaryColor,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                    fontFamily: AppFont.fontFamily),
+                              ),
+                              trailing: PopupMenuButton(
+                                itemBuilder: (context) => [
+                                  PopupMenuItem(
+                                    child: const Text("Report Number"),
+                                    onTap: () {
+                                      //pass the contact parameter here in the function
+                                      _showEditOptions(context,
+                                          contact: filteredContacts[index]);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       );
                     }
                     return const Loader();

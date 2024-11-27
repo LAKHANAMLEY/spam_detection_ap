@@ -150,4 +150,6 @@ class StringConstants {
   static const spamdetecttext='Spam Call Blocking And AI Protect Scam Detection';
   static const continuepurchasetext='Continue to Purchase';
   static const editprofiletext='Edit Profile';
+  static const identifiedtext='IDENTIFIED BY SPAM DETECTOR';
+
 }
