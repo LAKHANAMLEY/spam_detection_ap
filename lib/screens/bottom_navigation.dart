@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:spam_delection_app/app_route/route.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/image_constants.dart';
 import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
@@ -121,6 +122,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
               PopupMenuButton(
                 itemBuilder: (context) => [
                   PopupMenuItem(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.callLogs);
+                    },
                     child: Row(
                       children: [
                         Image.asset(IconConstants.icOutgoing),
@@ -175,7 +179,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => BlockedNumber()));
+                                builder: (context) => const BlockedNumber()));
                       },
                       child: Row(
                         children: [
@@ -360,26 +364,31 @@ class _BottomNavigationState extends State<BottomNavigation> {
           items: <Widget>[
             Image.asset(
               IconConstants.icHome,
+              color: getColor(0),
               height: MediaQuery.of(context).size.height * 6 / 100,
               width: MediaQuery.of(context).size.width * 6 / 100,
             ),
             Image.asset(
               IconConstants.icChat,
+              color: getColor(1),
               height: MediaQuery.of(context).size.height * 6 / 100,
               width: MediaQuery.of(context).size.width * 6 / 100,
             ),
             Image.asset(
               IconConstants.icPhone,
+              color: getColor(2),
               height: MediaQuery.of(context).size.height * 6 / 100,
               width: MediaQuery.of(context).size.width * 6 / 100,
             ),
             Image.asset(
               IconConstants.icPremium,
+              color: getColor(3),
               height: MediaQuery.of(context).size.height * 6 / 100,
               width: MediaQuery.of(context).size.width * 6 / 100,
             ),
             Image.asset(
               IconConstants.icSetting,
+              color: getColor(4),
               height: MediaQuery.of(context).size.height * 6 / 100,
               width: MediaQuery.of(context).size.width * 6 / 100,
             ),
@@ -411,5 +420,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
       debugPrint('Error signing out from Google: $e');
       return false;
     }
+  }
+
+  Color? getColor(int i) {
+    if (_page == i) {
+      return Colors.white;
+    }
+    return Colors.white;
   }
 }

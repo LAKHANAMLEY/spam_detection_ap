@@ -7,6 +7,7 @@ abstract class ApiEvent extends Equatable {
 }
 
 class GetContactEvent extends ApiEvent {}
+
 class GetSpamEvent extends ApiEvent {}
 
 class SyncContactEvent extends ApiEvent {
@@ -44,35 +45,29 @@ class MarkSpamEvent extends ApiEvent {
   final String numberType;
   final String categoryId;
   final String phone;
-  MarkSpamEvent(
-      {required this.contactId,
-      required this.comment,
-      required this.numberType,
-      required this.categoryId,
-      required this.phone,
-
-      });
+  MarkSpamEvent({
+    required this.contactId,
+    required this.comment,
+    required this.numberType,
+    required this.categoryId,
+    required this.phone,
+  });
 
   @override
-  List<Object?> get props => [
-    contactId,
-    comment,
-    numberType,
-    categoryId,
-    phone
-  ];
+  List<Object?> get props =>
+      [contactId, comment, numberType, categoryId, phone];
 }
-
 
 class RemoveSpamEvent extends ApiEvent {
   final String contactId;
-  RemoveSpamEvent(
-      {required this.contactId,
-
-      });
+  RemoveSpamEvent({
+    required this.contactId,
+  });
 
   @override
   List<Object?> get props => [
-    contactId,
-  ];
+        contactId,
+      ];
 }
+
+class GetDeviceCallLogEvent extends ApiEvent {}
