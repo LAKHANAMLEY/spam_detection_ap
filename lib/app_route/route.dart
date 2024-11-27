@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spam_delection_app/screens/device_call_logs.dart';
 import 'package:spam_delection_app/screens/forgot_otp_verify_screen.dart';
 import 'package:spam_delection_app/screens/forgot_password_screen.dart';
 import 'package:spam_delection_app/screens/login_google_screen.dart';
@@ -13,11 +14,13 @@ import 'package:spam_delection_app/screens/welcome_screen.dart';
 class AppRoutes {
   static const splash = "/splash";
   static const welcome = "/welcome";
+  static const callLogs = "/callLogs";
 }
 
 final Map<String, WidgetBuilder> routes = {
   // Splash.routeName: (context) => const Splash(),
   AppRoutes.splash: (context) => const Splash(),
+  AppRoutes.callLogs: (context) => const DeviceCallLogs(),
   Welcome.routeName: (context) => const Welcome(),
   Register.routeName: (context) => const Register(),
   ForgotPassword.routeName: (context) => const ForgotPassword(),

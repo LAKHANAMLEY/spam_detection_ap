@@ -1,21 +1,25 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/models/user_model.dart';
+import 'package:spam_delection_app/models/sign_up_model.dart';
 import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
 import 'package:spam_delection_app/utils/get_device_token.dart';
 
-Future<LoginResponse> login(
-    {required String email, required String password}) async {
+Future<SignUpResponse> socialSignUp({
+  required String email,
+  required String signupMethod,
+  required String firstName,
+  required String lastName,
+}) async {
   String? deviceToken = await getDeviceToken();
   String deviceType = getDeviceType();
-
   var body = {
     'email': email,
-    'password': password,
+    'signup_method': signupMethod,
+    'first_name': firstName,
+    'last_name': lastName,
     'device_token': deviceToken ?? '',
     'device_type': deviceType,
-    'user_role': "user"
   };
 
   final response = await http.post(
@@ -25,7 +29,7 @@ Future<LoginResponse> login(
   );
   if (response.statusCode == 200) {
     final data = json.decode(response.body);
-    return LoginResponse.fromJson(data);
+    return SignUpResponse.fromJson(data);
   } else {
     throw Exception(response.body);
   }
