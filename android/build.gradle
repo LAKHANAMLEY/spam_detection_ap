@@ -6,6 +6,10 @@ allprojects {
 }
 
 rootProject.buildDir = "../build"
+
+//android {
+//    namespace 'io.flutter.plugins.firebase.auth'
+//}
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
