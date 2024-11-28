@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:image_picker/image_picker.dart';
+
 LoginResponse loginResponseFromJson(String str) =>
     LoginResponse.fromJson(json.decode(str));
 
@@ -47,56 +49,69 @@ class LoginResponse {
 class User {
   final String? userId;
   final String? userName;
+  final String? name;
   final String? firstName;
   final String? lastName;
   final String? email;
   final String? phone;
   final String? userRole;
+  final String? countryCode;
+  final String? crn;
+  final String? corporateId;
   final String? isEmailVerify;
   final String? photo;
   final String? supportPin;
-  final dynamic gender;
+  final String? gender;
   final DateTime? dob;
   final String? countryId;
-  final dynamic state;
-  final dynamic city;
-  final dynamic zip;
-  final dynamic address;
-  final dynamic address2;
+  final String? state;
+  final String? city;
+  final String? zip;
+  final String? address;
+  final String? address2;
   final String? country;
   final String? token;
+  final XFile? photoFile;
 
-  User({
-    this.userId,
-    this.userName,
-    this.firstName,
-    this.lastName,
-    this.email,
-    this.phone,
-    this.userRole,
-    this.isEmailVerify,
-    this.photo,
-    this.supportPin,
-    this.gender,
-    this.dob,
-    this.countryId,
-    this.state,
-    this.city,
-    this.zip,
-    this.address,
-    this.address2,
-    this.country,
-    this.token,
-  });
+  User(
+      {this.userId,
+      this.userName,
+      this.name,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.phone,
+      this.userRole,
+      this.countryCode,
+      this.crn,
+      this.corporateId,
+      this.isEmailVerify,
+      this.photo,
+      this.supportPin,
+      this.gender,
+      this.dob,
+      this.countryId,
+      this.state,
+      this.city,
+      this.zip,
+      this.address,
+      this.address2,
+      this.country,
+      this.token,
+      this.photoFile});
 
   User copyWith({
     String? userId,
     String? userName,
+    String? name,
     String? firstName,
     String? lastName,
     String? email,
     String? phone,
     String? userRole,
+    dynamic countryCode,
+    String? crn,
+    String? corporateId,
     String? isEmailVerify,
     String? photo,
     String? supportPin,
@@ -114,11 +129,15 @@ class User {
       User(
         userId: userId ?? this.userId,
         userName: userName ?? this.userName,
+        name: name ?? this.name,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         email: email ?? this.email,
         phone: phone ?? this.phone,
         userRole: userRole ?? this.userRole,
+        countryCode: countryCode ?? this.countryCode,
+        crn: crn ?? this.crn,
+        corporateId: corporateId ?? corporateId,
         isEmailVerify: isEmailVerify ?? this.isEmailVerify,
         photo: photo ?? this.photo,
         supportPin: supportPin ?? this.supportPin,
@@ -137,11 +156,15 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => User(
         userId: json["user_id"],
         userName: json["user_name"],
+        name: json["name"],
         firstName: json["first_name"],
         lastName: json["last_name"],
         email: json["email"],
         phone: json["phone"],
         userRole: json["user_role"],
+        countryCode: json["country_code"],
+        crn: json["crn"],
+        corporateId: json["corporate_id"],
         isEmailVerify: json["is_email_verify"],
         photo: json["photo"],
         supportPin: json["support_pin"],
@@ -160,11 +183,15 @@ class User {
   Map<String, dynamic> toJson() => {
         "user_id": userId,
         "user_name": userName,
+        "name": name,
         "first_name": firstName,
         "last_name": lastName,
         "email": email,
         "phone": phone,
         "user_role": userRole,
+        "country_code": countryCode,
+        "crn": crn,
+        "corporate_id": corporateId,
         "is_email_verify": isEmailVerify,
         "photo": photo,
         "support_pin": supportPin,

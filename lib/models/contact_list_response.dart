@@ -12,7 +12,7 @@ String contactListResponseToJson(ContactListResponse data) =>
 
 class ContactListResponse {
   final int? statusCode;
-  final List<Contactslist>? contactslist;
+  final List<ContactData>? contactslist;
 
   ContactListResponse({
     this.statusCode,
@@ -21,7 +21,7 @@ class ContactListResponse {
 
   ContactListResponse copyWith({
     int? statusCode,
-    List<Contactslist>? contactslist,
+    List<ContactData>? contactslist,
   }) =>
       ContactListResponse(
         statusCode: statusCode ?? this.statusCode,
@@ -33,8 +33,8 @@ class ContactListResponse {
         statusCode: json["status_code"],
         contactslist: json["contactslist"] == null
             ? []
-            : List<Contactslist>.from(
-                json["contactslist"]!.map((x) => Contactslist.fromJson(x))),
+            : List<ContactData>.from(
+                json["contactslist"]!.map((x) => ContactData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -45,7 +45,7 @@ class ContactListResponse {
       };
 }
 
-class Contactslist {
+class ContactData {
   final String? id;
   final String? name;
   final String? countryCode;
@@ -54,7 +54,7 @@ class Contactslist {
   final String? numberType;
   final int? isSpam;
 
-  Contactslist({
+  ContactData({
     this.id,
     this.name,
     this.countryCode,
@@ -64,7 +64,7 @@ class Contactslist {
     this.isSpam,
   });
 
-  Contactslist copyWith({
+  ContactData copyWith({
     String? id,
     String? name,
     String? countryCode,
@@ -73,7 +73,7 @@ class Contactslist {
     String? numberType,
     int? isSpam,
   }) =>
-      Contactslist(
+      ContactData(
         id: id ?? this.id,
         name: name ?? this.name,
         countryCode: countryCode ?? this.countryCode,
@@ -83,7 +83,7 @@ class Contactslist {
         isSpam: isSpam ?? this.isSpam,
       );
 
-  factory Contactslist.fromJson(Map<String, dynamic> json) => Contactslist(
+  factory ContactData.fromJson(Map<String, dynamic> json) => ContactData(
         id: json["id"],
         name: json["name"],
         countryCode: json["country_code"],

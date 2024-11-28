@@ -1,40 +1,60 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/models/change_security_pin_model.dart';
 import 'package:spam_delection_app/models/edit_profile_model.dart';
-import 'package:spam_delection_app/models/response.dart';
+import 'package:spam_delection_app/models/user_model.dart';
 import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
 
 Future<EditProfileResponse> editProfile({
-  required String firstname,
-  required String lastname,
-  required String dateofbirth,
-  required String gender,
-  required String state,
-  required String city,
-  required String zip,
-  required String addressFirst,
-  required String addressSecond,
-  required String photo,
-
+  // required String firstname,
+  // required String lastname,
+  // required String dateofbirth,
+  // required String gender,
+  // required String state,
+  // required String city,
+  // required String zip,
+  // required String addressFirst,
+  // required String addressSecond,
+  // required XFile? photo,
+  required User? user,
 }) async {
-  final response = await http.post(
+  final body = {
+    "first_name": user?.firstName ?? "",
+    "last_name": user?.lastName ?? "",
+    "dob": user?.dob?.toString() ?? "",
+    "gender": user?.gender ?? "",
+    'state': user?.state ?? "",
+    'city': user?.city ?? "",
+    'zip': user?.zip ?? "",
+    'address': user?.address ?? "",
+    'address2': user?.address2 ?? "",
+    // 'photo': photo,
+  };
+
+  var request = http.MultipartRequest(
+    "POST",
     Uri.parse(ApiUrlConstants.endPointEditProfile),
-    headers: await ApiUrlConstants.headers(),
-    body: {
-      "first_name": firstname,
-      "last_name": lastname,
-      "dob": dateofbirth,
-      "gender": gender,
-      'state':state,
-      'city':city,
-      'zip':zip,
-      'address':addressFirst,
-      'address2':addressSecond,
-      'photo':photo,
-    },
   );
+
+  request.headers.addAll(await ApiUrlConstants.headers());
+  request.fields.addAll(body);
+  var photo = user?.photoFile;
+  if (photo != null && photo.path.isNotEmpty) {
+    if (photo.mimeType == "http") {
+      request.fields["photo"] = photo.path;
+    } else {
+      request.files.add(await http.MultipartFile.fromPath("photo", photo.path));
+    }
+  }
+
+  print(body);
+  // final response = await http.post(
+  //   Uri.parse(ApiUrlConstants.endPointEditProfile),
+  //   headers: await ApiUrlConstants.headers(),
+  //   body: body,
+  // );
+  var streamedResponse = await request.send();
+  var response = await http.Response.fromStream(streamedResponse);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
     return EditProfileResponse.fromJson(jsonData);

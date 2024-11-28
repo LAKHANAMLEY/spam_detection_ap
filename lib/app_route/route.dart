@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:spam_delection_app/screens/check_spam_screen.dart';
 import 'package:spam_delection_app/screens/device_call_logs.dart';
 import 'package:spam_delection_app/screens/forgot_otp_verify_screen.dart';
 import 'package:spam_delection_app/screens/forgot_password_screen.dart';
 import 'package:spam_delection_app/screens/login_google_screen.dart';
 import 'package:spam_delection_app/screens/login_succesful_screen.dart';
 import 'package:spam_delection_app/screens/otp_verify_screen.dart';
+import 'package:spam_delection_app/screens/protection_type_screen.dart';
 import 'package:spam_delection_app/screens/register_google_screen.dart';
 import 'package:spam_delection_app/screens/register_screen.dart';
 import 'package:spam_delection_app/screens/reset_password_screen.dart';
@@ -14,13 +16,17 @@ import 'package:spam_delection_app/screens/welcome_screen.dart';
 class AppRoutes {
   static const splash = "/splash";
   static const welcome = "/welcome";
+  static const protectionType = "/protectionType";
   static const callLogs = "/callLogs";
+  static const contactDetail = "/contactDetail";
 }
 
 final Map<String, WidgetBuilder> routes = {
-  // Splash.routeName: (context) => const Splash(),
   AppRoutes.splash: (context) => const Splash(),
+  AppRoutes.welcome: (context) => const Welcome(),
+  AppRoutes.protectionType: (context) => const ProtectionType(),
   AppRoutes.callLogs: (context) => const DeviceCallLogs(),
+  AppRoutes.contactDetail: (context) => const CheckSpam(),
   Welcome.routeName: (context) => const Welcome(),
   Register.routeName: (context) => const Register(),
   ForgotPassword.routeName: (context) => const ForgotPassword(),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:spam_delection_app/constants/string_constants.dart';
+import 'package:spam_delection_app/models/contact_list_response.dart';
+import 'package:spam_delection_app/utils/helpers.dart';
 
 import '../constants/icons_constants.dart';
-import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
 
 class CheckSpam extends StatefulWidget {
-  const CheckSpam({super.key});
+  final ContactData? contact;
+
+  const CheckSpam({super.key, this.contact});
 
   @override
   State<CheckSpam> createState() => _CheckSpamState();
@@ -15,10 +17,12 @@ class CheckSpam extends StatefulWidget {
 class _CheckSpamState extends State<CheckSpam> {
   @override
   Widget build(BuildContext context) {
-    final expandedHeight = 280.0;
-    final collapsedHeight = 60.0;
-    return CustomScrollView(
-      slivers: [
+    var argument = args(context) as CheckSpam;
+    var contact = argument.contact;
+    const expandedHeight = 280.0;
+    const collapsedHeight = 60.0;
+    return Scaffold(
+      body: CustomScrollView(slivers: [
         SliverAppBar(
           expandedHeight: expandedHeight,
           collapsedHeight: collapsedHeight,
@@ -30,8 +34,12 @@ class _CheckSpamState extends State<CheckSpam> {
             collapseMode: CollapseMode.pin,
             title: Padding(
               padding: const EdgeInsets.all(20),
-              child: Text('Vyapar App',textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 22, color: Colors.black,)),
+              child: Text(contact?.name ?? "",
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    color: Colors.black,
+                  )),
             ),
             background: Stack(
               children: [
@@ -39,23 +47,20 @@ class _CheckSpamState extends State<CheckSpam> {
                   alignment: Alignment.topCenter,
                   child: Container(
                     height: expandedHeight - collapsedHeight - 80,
-                    decoration: const BoxDecoration(
-                     color: AppColor.redColor
-                    ),
+                    decoration: const BoxDecoration(color: AppColor.redColor),
                   ),
                 ),
                 Positioned(
                   bottom: collapsedHeight + 30,
                   left: MediaQuery.of(context).size.width / 2 - 50,
                   child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: ShapeDecoration(
+                    padding: const EdgeInsets.all(5),
+                    decoration: const ShapeDecoration(
                       color: Colors.white,
                       shape: CircleBorder(),
                     ),
-                    child: CircleAvatar(
-                      backgroundImage:
-                      AssetImage(IconConstants.icspamCircle),
+                    child: const CircleAvatar(
+                      backgroundImage: AssetImage(IconConstants.icspamCircle),
                       radius: 45,
                     ),
                   ),
@@ -66,12 +71,14 @@ class _CheckSpamState extends State<CheckSpam> {
         ),
         SliverToBoxAdapter(
           child: Container(
-            height: MediaQuery.of(context).size.height * 0.6, // Adjust container height
-            width: MediaQuery.of(context).size.width*90/100,
+            height: MediaQuery.of(context).size.height *
+                0.6, // Adjust container height
+            width: MediaQuery.of(context).size.width * 90 / 100,
             //padding: const EdgeInsets.symmetric(vertical: 20),
             color: AppColor.vanishColor,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Ensures even spacing
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              // Ensures even spacing
               children: [
                 ActionButton(label: 'Message', icon: Icons.message),
                 ActionButton(label: 'Not Spam', icon: Icons.check_circle),
@@ -80,11 +87,8 @@ class _CheckSpamState extends State<CheckSpam> {
             ),
           ),
         ),
-
-  ]
-          );
-
-
+      ]),
+    );
   }
 }
 
@@ -102,16 +106,16 @@ class ActionButton extends StatelessWidget {
         CircleAvatar(
           radius: 30,
           backgroundColor: Colors.grey.shade300,
-          child: Icon(icon, color: Colors.black, size: 28), // Icon size adjusted
+          child:
+              Icon(icon, color: Colors.black, size: 28), // Icon size adjusted
         ),
         const SizedBox(height: 8), // Spacing between icon and text
         Text(
           label,
-          style: TextStyle(fontSize: 14, color: Colors.black), // Text styling
+          style: const TextStyle(
+              fontSize: 14, color: Colors.black), // Text styling
         ),
       ],
     );
   }
 }
-
-

@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
+import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
+import 'package:spam_delection_app/globals/app_constants.dart';
 import 'package:spam_delection_app/globals/app_fonts.dart';
+import 'package:spam_delection_app/models/user_model.dart';
 import 'package:spam_delection_app/screens/change_password_screen.dart';
 import 'package:spam_delection_app/screens/edit_profile_screen.dart';
 import 'package:spam_delection_app/screens/edit_security_pin.dart';
+import 'package:spam_delection_app/screens/loader.dart';
 import 'package:spam_delection_app/screens/spam_list_screen.dart';
+import 'package:spam_delection_app/screens/widgets/custom_dialog.dart';
+import 'package:spam_delection_app/utils/api_constants/http_status_codes.dart';
+import 'package:spam_delection_app/utils/session_expired.dart';
 
 import '../constants/icons_constants.dart';
 import '../globals/colors.dart';
@@ -24,12 +33,19 @@ class _ProfileState extends State<Profile> {
     IconConstants.icmessageCheck
   ];
   final List<String> cardTexts = ['3', '68s', '25', '38'];
-  final List<String> SpamTexts = [
+  final List<String> spamTexts = [
     StringConstants.spamcallstext,
     StringConstants.timesavestext,
     StringConstants.unknowntext,
     StringConstants.messagestext,
   ];
+
+  @override
+  void initState() {
+    userBloc.add(GetUserProfileEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,396 +73,516 @@ class _ProfileState extends State<Profile> {
           )
         ],
       ),
-      body: Container(
-        margin: const EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          color: AppColor.secondryColor,
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: SizedBox(
-                    child: CircleAvatar(
-                      backgroundColor: AppColor.vanishColor.withOpacity(0.2),
-                      radius: 43.0,
-                      backgroundImage: const AssetImage(
-                        IconConstants.iccircleAvater,),
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child: CircleAvatar(
-                            backgroundColor: AppColor.callColor,
-                            radius: 12.0,
-                            child: Image.asset(IconConstants.icCamera,height: MediaQuery.of(context).size.height*2/100,)
-                        ),
-                      ),
-                    ),
-                  ),
+      body: BlocConsumer(
+          bloc: userBloc,
+          listener: (context, state) {
+            if (state is GetUserProfileState) {
+              if (state.value.statusCode == 200) {
+              } else if (state.value.statusCode ==
+                  HTTPStatusCodes.sessionExpired) {
+                sessionExpired(context, state.value.message ?? "");
+              } else {
+                showCustomDialog(context,
+                    dialogType: DialogType.failed,
+                    subTitle: state.value.message);
+              }
+            }
+            // if (state is UpdateProfileState) {
+            //   if (state.value.statusCode == 200) {
+            //     showCustomDialog(context,
+            //         subTitle: state.value.message,
+            //         dialogType: DialogType.success);
+            //   } else if (state.value.statusCode ==
+            //       HTTPStatusCodes.sessionExpired) {
+            //     sessionExpired(context, state.value.message ?? "");
+            //   } else {
+            //     showCustomDialog(context,
+            //         subTitle: state.value.message,
+            //         dialogType: DialogType.failed);
+            //   }
+            // }
+          },
+          builder: (context, state) {
+            if (state is GetUserProfileState && state.value.data != null) {
+              var user = User.fromJson(state.value.data);
+              return Container(
+                margin: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: AppColor.secondryColor,
+                  borderRadius: BorderRadius.circular(16.0),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*1/100,),
-                Center(
-                  child: const Text(
-                    'Micheal Smith',
-                    style: TextStyle(
-                      fontFamily: AppFont.fontFamily,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 24.0,
-                    ),
-                  ),
-                ),
-                Center(
-                  child: const Text(
-                    'Pin- *****47589',
-                    style: TextStyle(
-                      color: AppColor.borderstekColor,
-                      fontFamily: AppFont.fontFamily,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 2 / 100,
-                ),
-                Container(
-                  margin: const EdgeInsets.only(left: 20, right: 20),
-                  height: MediaQuery.of(context).size.height * 9 / 100,
-                  width: MediaQuery.of(context).size.height * 80 / 100,
-                  decoration: const BoxDecoration(
-                    color: AppColor.callColor,
-                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        IconConstants.icpremiumStar,
-                        height: MediaQuery.of(context).size.height * 10 / 100,
-                        width: MediaQuery.of(context).size.width * 10 / 100,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 4 / 100,
-                      ),
-                      const Text(
-                        StringConstants.upgradetext,
-                        style: TextStyle(
-                            color: AppColor.secondryColor,
-                            fontSize: 20,
-                            fontFamily: AppFont.fontFamily,
-                            fontWeight: FontWeight.w700),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 5 / 100,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 55 / 100,
-                  width: MediaQuery.of(context).size.width * 90 / 100,
-                  decoration: BoxDecoration(
-                    color: AppColor.whitedeep,
-                    borderRadius: const BorderRadius.all(Radius.circular(6.0)),
-                    border: Border.all(color: AppColor.vanishColor),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
+                child: SafeArea(
+                  child: SingleChildScrollView(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
-                        const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Last 30 days",
-                              style: TextStyle(
-                                  color: AppColor.lastColor,
-                                  fontSize: 18,
-                                  fontFamily: AppFont.fontFamily,
-                                  fontWeight: FontWeight.w600),
-                              textAlign: TextAlign.start,
-                            )),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
-                        GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 1.2 / 1.2),
-                          itemCount: 4,
-                          primary: false,
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) {
-                            return InkWell(
-                              onTap: (){
-                                if(index==0){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>SpamList()));
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8),
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(4)),
-                                      color: AppColor.secondryColor),
-                                  child: Container(
-                                    margin: const EdgeInsets.all(8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Row(children: [
-                                          Image.asset(
-                                            imageUrl[index],
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                5 /
-                                                100,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                5 /
-                                                100,
-                                          ),
-                                          SizedBox(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                2 /
-                                                100,
-                                          ),
-                                          Text(
-                                            cardTexts[index],
-                                            style: const TextStyle(
-                                                color: AppColor.borderstekColor,
-                                                fontSize: 20,
-                                                fontFamily: AppFont.fontFamily),
-                                          )
-                                        ]),
-                                        Text(SpamTexts[index],
-                                            style: const TextStyle(
-                                                color: AppColor.spelledColor,
-                                                fontFamily: AppFont.fontFamily,
-                                                fontSize: 16)),
-                                      ],
+                        Center(
+                          child: SizedBox(
+                            child: CircleAvatar(
+                              backgroundColor:
+                                  AppColor.vanishColor.withOpacity(0.2),
+                              radius: 43.0,
+                              backgroundImage: (user.photo?.isNotEmpty ?? false)
+                                  ? NetworkImage(
+                                      user.photo ?? "",
+                                    )
+                                  : const AssetImage(
+                                      IconConstants.iccircleAvater,
                                     ),
-                                  ),
-                                ),
+                              child: Align(
+                                alignment: Alignment.bottomRight,
+                                child: CircleAvatar(
+                                    backgroundColor: AppColor.callColor,
+                                    radius: 12.0,
+                                    child: Image.asset(
+                                      IconConstants.icCamera,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              2 /
+                                              100,
+                                    )),
                               ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 4 / 100,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 7 / 100,
-                  width: MediaQuery.of(context).size.height * 90 / 100,
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(2.0)),
-                      border:
-                          Border.all(color: AppColor.greyarrowColor, width: 1),
-                      color: AppColor.secondryColor),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          IconConstants.icEdit,
-                          height: MediaQuery.of(context).size.height * 5 / 100,
-                          width: MediaQuery.of(context).size.width * 5 / 100,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 2 / 100,
-                        ),
-                        const Text(
-                          'Edit Profile',
-                          style: TextStyle(
-                              color: AppColor.thumbColor, fontSize: 18),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 46 / 100,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => EditProfile()));
-                          },
-                          child: Image.asset(
-                            IconConstants.icviewArrow,
-                            height:
-                                MediaQuery.of(context).size.height * 6 / 100,
-                            width: MediaQuery.of(context).size.width * 6 / 100,
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 2 / 100,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 7 / 100,
-                  width: MediaQuery.of(context).size.height * 90 / 100,
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(2.0)),
-                      border:
-                          Border.all(color: AppColor.greyarrowColor, width: 1),
-                      color: AppColor.secondryColor),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          IconConstants.icEditSecurity,
-                          height: MediaQuery.of(context).size.height * 5 / 100,
-                          width: MediaQuery.of(context).size.width * 5 / 100,
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 2 / 100,
+                          height: MediaQuery.of(context).size.height * 1 / 100,
                         ),
-                        const Text(
-                          'Edit Security Pin',
-                          style: TextStyle(
-                              color: AppColor.thumbColor, fontSize: 18),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 34 / 100,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => EditSecurityPin()));
-                          },
-                          child: Image.asset(
-                            IconConstants.icviewArrow,
-                            height:
-                                MediaQuery.of(context).size.height * 6 / 100,
-                            width: MediaQuery.of(context).size.width * 6 / 100,
+                        Center(
+                          child: Text(
+                            user.name ?? "",
+                            style: const TextStyle(
+                              fontFamily: AppFont.fontFamily,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 24.0,
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 2 / 100,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 7 / 100,
-                  width: MediaQuery.of(context).size.height * 90 / 100,
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(2.0)),
-                      border:
-                          Border.all(color: AppColor.greyarrowColor, width: 1),
-                      color: AppColor.secondryColor),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          IconConstants.icchangePass,
-                          height: MediaQuery.of(context).size.height * 5 / 100,
-                          width: MediaQuery.of(context).size.width * 5 / 100,
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 2 / 100,
-                        ),
-                        const Text(
-                          'Change Password',
-                          style: TextStyle(
-                              color: AppColor.thumbColor, fontSize: 18),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 30 / 100,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ChangePassword()));
-                          },
-                          child: Image.asset(
-                            IconConstants.icviewArrow,
-                            height:
-                                MediaQuery.of(context).size.height * 6 / 100,
-                            width: MediaQuery.of(context).size.width * 6 / 100,
+                        Center(
+                          child: Text(
+                            '${user.email}',
+                            style: const TextStyle(
+                              color: AppColor.borderstekColor,
+                              fontFamily: AppFont.fontFamily,
+                              fontSize: 16.0,
+                            ),
                           ),
-                        )
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 20, right: 20),
+                          height: MediaQuery.of(context).size.height * 9 / 100,
+                          width: MediaQuery.of(context).size.height * 80 / 100,
+                          decoration: const BoxDecoration(
+                            color: AppColor.callColor,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(6.0)),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                IconConstants.icpremiumStar,
+                                height: MediaQuery.of(context).size.height *
+                                    10 /
+                                    100,
+                                width: MediaQuery.of(context).size.width *
+                                    10 /
+                                    100,
+                              ),
+                              SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.width * 4 / 100,
+                              ),
+                              const Text(
+                                StringConstants.upgradetext,
+                                style: TextStyle(
+                                    color: AppColor.secondryColor,
+                                    fontSize: 20,
+                                    fontFamily: AppFont.fontFamily,
+                                    fontWeight: FontWeight.w700),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 5 / 100,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 55 / 100,
+                          width: MediaQuery.of(context).size.width * 90 / 100,
+                          decoration: BoxDecoration(
+                            color: AppColor.whitedeep,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(6.0)),
+                            border: Border.all(color: AppColor.vanishColor),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height *
+                                      2 /
+                                      100,
+                                ),
+                                const Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "Last 30 days",
+                                      style: TextStyle(
+                                          color: AppColor.lastColor,
+                                          fontSize: 18,
+                                          fontFamily: AppFont.fontFamily,
+                                          fontWeight: FontWeight.w600),
+                                      textAlign: TextAlign.start,
+                                    )),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.height *
+                                      2 /
+                                      100,
+                                ),
+                                GridView.builder(
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          childAspectRatio: 1.2 / 1.2),
+                                  itemCount: 4,
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        if (index == 0) {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const SpamList()));
+                                        }
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(4)),
+                                              color: AppColor.secondryColor),
+                                          child: Container(
+                                            margin: const EdgeInsets.all(8),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Row(children: [
+                                                  Image.asset(
+                                                    imageUrl[index],
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            5 /
+                                                            100,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            5 /
+                                                            100,
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            2 /
+                                                            100,
+                                                  ),
+                                                  Text(
+                                                    cardTexts[index],
+                                                    style: const TextStyle(
+                                                        color: AppColor
+                                                            .borderstekColor,
+                                                        fontSize: 20,
+                                                        fontFamily:
+                                                            AppFont.fontFamily),
+                                                  )
+                                                ]),
+                                                Text(spamTexts[index],
+                                                    style: const TextStyle(
+                                                        color: AppColor
+                                                            .spelledColor,
+                                                        fontFamily:
+                                                            AppFont.fontFamily,
+                                                        fontSize: 16)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 4 / 100,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 7 / 100,
+                          width: MediaQuery.of(context).size.height * 90 / 100,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(2.0)),
+                              border: Border.all(
+                                  color: AppColor.greyarrowColor, width: 1),
+                              color: AppColor.secondryColor),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  IconConstants.icEdit,
+                                  height: MediaQuery.of(context).size.height *
+                                      5 /
+                                      100,
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      2 /
+                                      100,
+                                ),
+                                const Text(
+                                  'Edit Profile',
+                                  style: TextStyle(
+                                      color: AppColor.thumbColor, fontSize: 18),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      46 /
+                                      100,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const EditProfile()));
+                                  },
+                                  child: Image.asset(
+                                    IconConstants.icviewArrow,
+                                    height: MediaQuery.of(context).size.height *
+                                        6 /
+                                        100,
+                                    width: MediaQuery.of(context).size.width *
+                                        6 /
+                                        100,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 7 / 100,
+                          width: MediaQuery.of(context).size.height * 90 / 100,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(2.0)),
+                              border: Border.all(
+                                  color: AppColor.greyarrowColor, width: 1),
+                              color: AppColor.secondryColor),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  IconConstants.icEditSecurity,
+                                  height: MediaQuery.of(context).size.height *
+                                      5 /
+                                      100,
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      2 /
+                                      100,
+                                ),
+                                const Text(
+                                  'Edit Security Pin',
+                                  style: TextStyle(
+                                      color: AppColor.thumbColor, fontSize: 18),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      34 /
+                                      100,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const EditSecurityPin()));
+                                  },
+                                  child: Image.asset(
+                                    IconConstants.icviewArrow,
+                                    height: MediaQuery.of(context).size.height *
+                                        6 /
+                                        100,
+                                    width: MediaQuery.of(context).size.width *
+                                        6 /
+                                        100,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 7 / 100,
+                          width: MediaQuery.of(context).size.height * 90 / 100,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(2.0)),
+                              border: Border.all(
+                                  color: AppColor.greyarrowColor, width: 1),
+                              color: AppColor.secondryColor),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  IconConstants.icchangePass,
+                                  height: MediaQuery.of(context).size.height *
+                                      5 /
+                                      100,
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      2 /
+                                      100,
+                                ),
+                                const Text(
+                                  'Change Password',
+                                  style: TextStyle(
+                                      color: AppColor.thumbColor, fontSize: 18),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      30 /
+                                      100,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ChangePassword()));
+                                  },
+                                  child: Image.asset(
+                                    IconConstants.icviewArrow,
+                                    height: MediaQuery.of(context).size.height *
+                                        6 /
+                                        100,
+                                    width: MediaQuery.of(context).size.width *
+                                        6 /
+                                        100,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 7 / 100,
+                          width: MediaQuery.of(context).size.height * 90 / 100,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(2.0)),
+                              border: Border.all(
+                                  color: AppColor.greyarrowColor, width: 1),
+                              color: AppColor.secondryColor),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  IconConstants.icalternativeEmail,
+                                  height: MediaQuery.of(context).size.height *
+                                      6 /
+                                      100,
+                                  width: MediaQuery.of(context).size.width *
+                                      6 /
+                                      100,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      2 /
+                                      100,
+                                ),
+                                const Text(
+                                  ' Add Alertantive Email',
+                                  style: TextStyle(
+                                      color: AppColor.thumbColor, fontSize: 18),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      20 /
+                                      100,
+                                ),
+                                Image.asset(
+                                  IconConstants.icviewArrow,
+                                  height: MediaQuery.of(context).size.height *
+                                      6 /
+                                      100,
+                                  width: MediaQuery.of(context).size.width *
+                                      6 /
+                                      100,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 5 / 100,
+                        ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 2 / 100,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height * 7 / 100,
-                  width: MediaQuery.of(context).size.height * 90 / 100,
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(2.0)),
-                      border:
-                          Border.all(color: AppColor.greyarrowColor, width: 1),
-                      color: AppColor.secondryColor),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          IconConstants.icalternativeEmail,
-                          height: MediaQuery.of(context).size.height * 6 / 100,
-                          width: MediaQuery.of(context).size.width * 6 / 100,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 2 / 100,
-                        ),
-                        const Text(
-                          ' Add Alertantive Email',
-                          style: TextStyle(
-                              color: AppColor.thumbColor, fontSize: 18),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 20 / 100,
-                        ),
-                        Image.asset(
-                          IconConstants.icviewArrow,
-                          height: MediaQuery.of(context).size.height * 6 / 100,
-                          width: MediaQuery.of(context).size.width * 6 / 100,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 5 / 100,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+              );
+            }
+            return const Loader();
+          }),
     );
   }
 }

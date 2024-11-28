@@ -95,6 +95,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
 
 class CallLogListItem extends StatelessWidget {
   final CallLogEntry callLog;
+
   const CallLogListItem({
     super.key,
     required this.callLog,
@@ -106,7 +107,7 @@ class CallLogListItem extends StatelessWidget {
       leading: Icon(getIcon(callLog.callType)),
       title: Text(callLog.name ?? ""),
       subtitle: Text(callLog.number ?? ""),
-      trailing: Text(callLog.timestamp?.toDate().format() ?? ""),
+      trailing: Text(callLog.timestamp?.toDate().formatDateTime() ?? ""),
     );
   }
 }

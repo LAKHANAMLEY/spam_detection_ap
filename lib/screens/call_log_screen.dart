@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:spam_delection_app/app_route/route.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_bloc.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
@@ -14,6 +15,7 @@ import 'package:spam_delection_app/globals/colors.dart';
 import 'package:spam_delection_app/models/category_list_model.dart';
 import 'package:spam_delection_app/models/contact_list_response.dart';
 import 'package:spam_delection_app/screens/add_contact_screen.dart';
+import 'package:spam_delection_app/screens/check_spam_screen.dart';
 import 'package:spam_delection_app/screens/loader.dart';
 import 'package:spam_delection_app/screens/widgets/custom_dialog.dart';
 import 'package:spam_delection_app/utils/permission_request.dart';
@@ -30,8 +32,8 @@ class CallLog extends StatefulWidget {
 class _CallLogState extends State<CallLog> {
   final TextEditingController editingController = TextEditingController();
 
-  List<Contactslist> contacts = [];
-  late List<Contactslist> filteredContacts;
+  List<ContactData> contacts = [];
+  late List<ContactData> filteredContacts;
 
   var contactListBloc = ApiBloc(ApiBlocInitialState());
 
@@ -188,8 +190,9 @@ class _CallLogState extends State<CallLog> {
 }
 
 class ContactListItem extends StatefulWidget {
-  final Contactslist contact;
+  final ContactData contact;
   final ApiBloc markSpamBloc;
+
   const ContactListItem({
     super.key,
     required this.contact,
@@ -210,6 +213,7 @@ class _ContactListItemState extends State<ContactListItem> {
   List<CategoryData> categories = [];
 
   String? numberType;
+
   Future<void> fetchCategories() async {
     setState(() {
       isLoading = true;
@@ -240,6 +244,12 @@ class _ContactListItemState extends State<ContactListItem> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        Navigator.pushNamed(context, AppRoutes.contactDetail,
+            arguments: CheckSpam(
+              contact: widget.contact,
+            ));
+      },
       leading: Image.network(
         widget.contact.name!, //TODO: image path
         errorBuilder: (context, error, stackTrace) => const Icon(Icons.person),
@@ -269,7 +279,7 @@ class _ContactListItemState extends State<ContactListItem> {
   }
 
   void _showReportBottomSheet(BuildContext context,
-      {required Contactslist contact}) {
+      {required ContactData contact}) {
     showModalBottomSheet(
       isScrollControlled: true,
       backgroundColor: AppColor.secondryColor,

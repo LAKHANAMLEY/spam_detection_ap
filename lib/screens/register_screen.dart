@@ -12,8 +12,7 @@ import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
 import '../models/country_list_model.dart';
-import 'package:spam_delection_app/data/repository/auth_repo/countries_api.dart';
-
+import 'package:spam_delection_app/data/repository/setting_repo/countries_api.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -130,7 +129,7 @@ class _RegisterState extends State<Register> {
                 fontWeight: FontWeight.w600),
           )),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 1/ 100,
+            height: MediaQuery.of(context).size.height * 1 / 100,
           ),
           const Padding(
             padding: EdgeInsets.all(20),
@@ -186,7 +185,6 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: lastnameController,
               decoration: InputDecoration(
-
                 hintText: 'Last name',
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
@@ -246,8 +244,6 @@ class _RegisterState extends State<Register> {
               ),
             ),
           ),
-
-
           SizedBox(
             height: MediaQuery.of(context).size.height * 3 / 100,
           ),
@@ -289,31 +285,31 @@ class _RegisterState extends State<Register> {
               },
             ),
           )),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 1 / 100,
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 1 / 100,
+          ),
+          SizedBox(
+            width: MediaQuery.sizeOf(context).width * 90 / 100,
+            child: TextFormField(
+              readOnly: true,
+              controller:
+                  dateofbirthController, //ese controller every field me assign karo
+              decoration: InputDecoration(
+                  hintText: 'Date of Birth',
+                  hintStyle: const TextStyle(color: AppColor.lightfillColor),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(2),
+                    borderSide:
+                        const BorderSide(width: 1.5, color: AppColor.fillColor),
                   ),
-                  SizedBox(
-                    width: MediaQuery.sizeOf(context).width * 90 / 100,
-                    child: TextFormField(
-                      readOnly: true,
-                      controller:
-                      dateofbirthController, //ese controller every field me assign karo
-                      decoration: InputDecoration(
-                          hintText: 'Date of Birth',
-                          hintStyle: const TextStyle(color: AppColor.lightfillColor),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(2),
-                            borderSide:
-                            const BorderSide(width: 1.5, color: AppColor.fillColor),
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide:
-                            BorderSide(color: AppColor.fillColor, width: 1.5),
-                            borderRadius: BorderRadius.all(Radius.circular(2)),
-                          ),
-                          filled: true,
-                          fillColor: AppColor.fillColor.withOpacity(0.2),
-                          /* IconButton(
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: AppColor.fillColor, width: 1.5),
+                    borderRadius: BorderRadius.all(Radius.circular(2)),
+                  ),
+                  filled: true,
+                  fillColor: AppColor.fillColor.withOpacity(0.2),
+                  /* IconButton(
                       icon: Icon(Icons.calendar_today),
                       color: Colors.red,
                       onPressed: () async{
@@ -332,13 +328,13 @@ class _RegisterState extends State<Register> {
                       },
                     )
                     */
-                          suffixIcon: GestureDetector(
-                              onTap: () async {
-                                _pickDate(context);
-                              },
-                              child: Image.asset(IconConstants.icDate))),
-                    ),
-                  ),
+                  suffixIcon: GestureDetector(
+                      onTap: () async {
+                        _pickDate(context);
+                      },
+                      child: Image.asset(IconConstants.icDate))),
+            ),
+          ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 3 / 100,
           ),

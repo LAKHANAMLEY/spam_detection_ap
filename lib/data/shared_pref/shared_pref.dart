@@ -29,7 +29,9 @@ class SharedPref {
     pref.setString(userId, user?.userId ?? "");
     pref.setString(userName, user?.userName ?? "");
     pref.setString(userRole, user?.userRole ?? "");
-    pref.setString(token, user?.token ?? "");
+    if (user?.token?.isNotEmpty ?? false) {
+      pref.setString(token, user?.token ?? "");
+    }
     pref.setString(city, user?.city ?? "");
     pref.setString(country, user?.country ?? "");
     pref.setString(countryId, user?.countryId ?? "");

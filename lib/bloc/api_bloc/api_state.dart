@@ -1,8 +1,10 @@
 import 'package:call_log/call_log.dart';
 import 'package:equatable/equatable.dart';
 import 'package:spam_delection_app/models/contact_list_response.dart';
+import 'package:spam_delection_app/models/edit_profile_model.dart';
 import 'package:spam_delection_app/models/mark_spam_model.dart';
 import 'package:spam_delection_app/models/response.dart';
+import 'package:spam_delection_app/models/sign_up_model.dart';
 import 'package:spam_delection_app/models/spam_list_model.dart';
 
 abstract class ApiState extends Equatable {
@@ -18,28 +20,36 @@ class ApiErrorState extends ApiState {}
 
 class GetContactState extends ApiState {
   final ContactListResponse value;
+
   GetContactState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class GetSpamState extends ApiState {
   final SpamListResponse value;
+
   GetSpamState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class SyncContactState extends ApiState {
   final ContactListResponse value;
+
   SyncContactState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class ChangePasswordState extends ApiState {
   final Response value;
+
   ChangePasswordState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -47,7 +57,9 @@ class ChangePasswordState extends ApiState {
 //yaha state create karege
 class MarkSpamState extends ApiState {
   final MarkSpamResponse value;
+
   MarkSpamState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -55,14 +67,45 @@ class MarkSpamState extends ApiState {
 
 class RemoveSpamState extends ApiState {
   final Response value;
+
   RemoveSpamState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class GetDeviceCallLogState extends ApiState {
   final List<CallLogEntry> value;
+
   GetDeviceCallLogState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class SocialSignUpState extends ApiState {
+  final SignUpResponse value;
+
+  SocialSignUpState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class GetUserProfileState extends ApiState {
+  final Response value;
+
+  GetUserProfileState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class UpdateProfileState extends ApiState {
+  final EditProfileResponse value;
+
+  UpdateProfileState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
