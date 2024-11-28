@@ -6,6 +6,7 @@ import 'package:spam_delection_app/data/repository/auth_repo/sign_up_api.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
 import 'package:spam_delection_app/screens/forgot_password_screen.dart';
 import 'package:spam_delection_app/screens/login_screen.dart';
+import 'package:spam_delection_app/screens/login_succesful_screen.dart';
 import 'package:spam_delection_app/screens/registration_sucessful_screen.dart';
 
 import '../constants/string_constants.dart';
