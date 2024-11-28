@@ -4,6 +4,7 @@ import 'package:spam_delection_app/globals/app_fonts.dart';
 import 'package:spam_delection_app/screens/change_password_screen.dart';
 import 'package:spam_delection_app/screens/edit_profile_screen.dart';
 import 'package:spam_delection_app/screens/edit_security_pin.dart';
+import 'package:spam_delection_app/screens/plans_type_screen.dart';
 import 'package:spam_delection_app/screens/spam_list_screen.dart';
 
 import '../constants/icons_constants.dart';
@@ -110,35 +111,40 @@ class _ProfileState extends State<Profile> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 2 / 100,
                 ),
-                Container(
-                  margin: const EdgeInsets.only(left: 20, right: 20),
-                  height: MediaQuery.of(context).size.height * 9 / 100,
-                  width: MediaQuery.of(context).size.height * 80 / 100,
-                  decoration: const BoxDecoration(
-                    color: AppColor.callColor,
-                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        IconConstants.icpremiumStar,
-                        height: MediaQuery.of(context).size.height * 10 / 100,
-                        width: MediaQuery.of(context).size.width * 10 / 100,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 4 / 100,
-                      ),
-                      const Text(
-                        StringConstants.upgradetext,
-                        style: TextStyle(
-                            color: AppColor.secondryColor,
-                            fontSize: 20,
-                            fontFamily: AppFont.fontFamily,
-                            fontWeight: FontWeight.w700),
-                      )
-                    ],
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>PlanType()));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 20, right: 20),
+                    height: MediaQuery.of(context).size.height * 9 / 100,
+                    width: MediaQuery.of(context).size.height * 80 / 100,
+                    decoration: const BoxDecoration(
+                      color: AppColor.callColor,
+                      borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          IconConstants.icpremiumStar,
+                          height: MediaQuery.of(context).size.height * 10 / 100,
+                          width: MediaQuery.of(context).size.width * 10 / 100,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 4 / 100,
+                        ),
+                        const Text(
+                          StringConstants.upgradetext,
+                          style: TextStyle(
+                              color: AppColor.secondryColor,
+                              fontSize: 20,
+                              fontFamily: AppFont.fontFamily,
+                              fontWeight: FontWeight.w700),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(

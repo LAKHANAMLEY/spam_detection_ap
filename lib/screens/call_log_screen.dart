@@ -469,7 +469,6 @@ class _CallLogState extends State<CallLog> {
                           child: Text('No contacts'),
                         );
                       }
-
                       return GestureDetector(
                         onTap: (){
                           Navigator.push(context, MaterialPageRoute(builder: (context)=>CheckSpam()));
