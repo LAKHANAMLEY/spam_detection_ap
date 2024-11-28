@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spam_delection_app/app_route/route.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
@@ -171,41 +172,49 @@ class _ProfileState extends State<Profile> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 2 / 100,
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 20, right: 20),
-                          height: MediaQuery.of(context).size.height * 9 / 100,
-                          width: MediaQuery.of(context).size.height * 80 / 100,
-                          decoration: const BoxDecoration(
-                            color: AppColor.callColor,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(6.0)),
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                IconConstants.icpremiumStar,
-                                height: MediaQuery.of(context).size.height *
-                                    10 /
-                                    100,
-                                width: MediaQuery.of(context).size.width *
-                                    10 /
-                                    100,
-                              ),
-                              SizedBox(
-                                width:
-                                    MediaQuery.of(context).size.width * 4 / 100,
-                              ),
-                              const Text(
-                                StringConstants.upgradetext,
-                                style: TextStyle(
-                                    color: AppColor.secondryColor,
-                                    fontSize: 20,
-                                    fontFamily: AppFont.fontFamily,
-                                    fontWeight: FontWeight.w700),
-                              )
-                            ],
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, AppRoutes.planType);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 20, right: 20),
+                            height:
+                                MediaQuery.of(context).size.height * 9 / 100,
+                            width:
+                                MediaQuery.of(context).size.height * 80 / 100,
+                            decoration: const BoxDecoration(
+                              color: AppColor.callColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6.0)),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  IconConstants.icpremiumStar,
+                                  height: MediaQuery.of(context).size.height *
+                                      10 /
+                                      100,
+                                  width: MediaQuery.of(context).size.width *
+                                      10 /
+                                      100,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      4 /
+                                      100,
+                                ),
+                                const Text(
+                                  StringConstants.upgradetext,
+                                  style: TextStyle(
+                                      color: AppColor.secondryColor,
+                                      fontSize: 20,
+                                      fontFamily: AppFont.fontFamily,
+                                      fontWeight: FontWeight.w700),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(

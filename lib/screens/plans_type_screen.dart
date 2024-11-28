@@ -67,14 +67,17 @@ class _PlanTypeState extends State<PlanType> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 1 / 100,
               ),
-              const Text(
-                StringConstants.blockspamtext,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: AppColor.verifyColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: AppFont.fontFamily),
+              Padding(
+                padding: const EdgeInsets.only(left: 20,right: 20),
+                child: const Text(
+                  StringConstants.blockspamtext,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColor.verifyColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: AppFont.fontFamily),
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,

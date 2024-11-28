@@ -6,6 +6,7 @@ import 'package:spam_delection_app/screens/forgot_password_screen.dart';
 import 'package:spam_delection_app/screens/login_google_screen.dart';
 import 'package:spam_delection_app/screens/login_succesful_screen.dart';
 import 'package:spam_delection_app/screens/otp_verify_screen.dart';
+import 'package:spam_delection_app/screens/plans_type_screen.dart';
 import 'package:spam_delection_app/screens/protection_type_screen.dart';
 import 'package:spam_delection_app/screens/register_google_screen.dart';
 import 'package:spam_delection_app/screens/register_screen.dart';
@@ -19,6 +20,7 @@ class AppRoutes {
   static const protectionType = "/protectionType";
   static const callLogs = "/callLogs";
   static const contactDetail = "/contactDetail";
+  static const planType = "/planType";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -27,6 +29,7 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.protectionType: (context) => const ProtectionType(),
   AppRoutes.callLogs: (context) => const DeviceCallLogs(),
   AppRoutes.contactDetail: (context) => const CheckSpam(),
+  AppRoutes.planType: (context) => const PlanType(),
   Welcome.routeName: (context) => const Welcome(),
   Register.routeName: (context) => const Register(),
   ForgotPassword.routeName: (context) => const ForgotPassword(),

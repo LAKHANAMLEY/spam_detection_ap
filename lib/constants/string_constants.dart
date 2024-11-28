@@ -151,5 +151,15 @@ class StringConstants {
   static const continuepurchasetext='Continue to Purchase';
   static const editprofiletext='Edit Profile';
   static const identifiedtext='IDENTIFIED BY SPAM DETECTOR';
+  static const spamreportext="Spam Report";
+  static const liketext="68k 103%";
+
+  static const usallytext="Usually Calls";
+  static const Amtext="11AM-2PM";
+
+  static const callactivitytext="Call Activity";
+  static const milliontext="5.6M calls/60 days";
+
+
 
 }

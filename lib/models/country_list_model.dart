@@ -10,7 +10,7 @@ String countriesResponseToJson(CountriesResponse data) => json.encode(data.toJso
 
 class CountriesResponse {
   final int? statusCode;
-  final List<Countrylist>? countrylist;
+  final List<CountryData>? countrylist;
 
   CountriesResponse({
     this.statusCode,
@@ -19,7 +19,7 @@ class CountriesResponse {
 
   factory CountriesResponse.fromJson(Map<String, dynamic> json) => CountriesResponse(
     statusCode: json["status_code"],
-    countrylist: json["countrylist"] == null ? [] : List<Countrylist>.from(json["countrylist"]!.map((x) => Countrylist.fromJson(x))),
+    countrylist: json["countrylist"] == null ? [] : List<CountryData>.from(json["countrylist"]!.map((x) => CountryData.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -30,7 +30,7 @@ class CountriesResponse {
   static fetchCountriesResponse() {}
 }
 
-class Countrylist {
+class CountryData {
   final String? id;
   final String? code;
   final String? nicename;
@@ -39,7 +39,7 @@ class Countrylist {
   final String? numcode;
   final String? phonecode;
 
-  Countrylist({
+  CountryData({
     this.id,
     this.code,
     this.nicename,
@@ -49,7 +49,7 @@ class Countrylist {
     this.phonecode,
   });
 
-  factory Countrylist.fromJson(Map<String, dynamic> json) => Countrylist(
+  factory CountryData.fromJson(Map<String, dynamic> json) => CountryData(
     id: json["id"],
     code: json["code"],
     nicename: json["nicename"],

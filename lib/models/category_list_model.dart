@@ -22,6 +22,7 @@ class CategoryListResponse {
     categorylist: json["categorylist"] == null ? [] : List<CategoryData>.from(json["categorylist"]!.map((x) => CategoryData.fromJson(x))),
   );
 
+
   Map<String, dynamic> toJson() => {
     "status_code": statusCode,
     "categorylist": categorylist == null ? [] : List<dynamic>.from(categorylist!.map((x) => x.toJson())),

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
-import 'package:spam_delection_app/screens/all_calls_screen.dart';
-import 'package:spam_delection_app/screens/edit_profile_screen.dart';
-import 'package:spam_delection_app/screens/plans_type_screen.dart';
-import 'package:spam_delection_app/screens/profile_screen.dart';
+import 'package:spam_delection_app/models/country_language_model.dart';
 import 'package:spam_delection_app/screens/protection_type_screen.dart';
 
+import '../data/repository/setting_repo/country_language_api.dart';
 import '../globals/app_fonts.dart';
 import '../globals/appbutton.dart';
 import '../globals/colors.dart';
-import 'add_member_screen.dart';
+//import 'add_member_screen.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -21,8 +19,38 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  String? _selectedItem;
-  final List<String> _items = ['English', 'Spanish', 'French'];
+  LanguageData? selectedCategory;
+  bool isLoading = false;
+  String? errorMessage;
+
+  List<LanguageData> categories = [];
+  Future<void> fetchLanguagies() async {
+    setState(() {
+      isLoading = true;
+      errorMessage = null;
+    });
+
+    try {
+      final fetchedCategories = await ApiService.fetchLanguagies();
+      print(fetchedCategories.toString());
+      setState(() {
+        categories = fetchedCategories.languagelist ?? [];
+        isLoading = false;
+      });
+    } catch (error) {
+      setState(() {
+        errorMessage = 'Failed to load categories: $error';
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchLanguagies();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,54 +62,34 @@ class _WelcomeState extends State<Welcome> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 5 / 100,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 25 / 100,
-                      height: MediaQuery.of(context).size.height * 4 / 100,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: AppColor.yellowlightColor, width: 1.5),
-                        borderRadius: BorderRadius.circular(3),
-                        color: AppColor.secondryColor.withOpacity(0.2),
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: DropdownButton<String>(
-                          value: _selectedItem,
-                          icon: Image.asset(
-                            IconConstants.icdrowback,
-                            width: MediaQuery.of(context).size.width * 2 / 100,
-                            height:
-                                MediaQuery.of(context).size.height * 2 / 100,
-                          ),
-                          hint: const Center(
-                            child: Text(
-                              StringConstants.englishtext,
-                              style: TextStyle(
-                                  color: AppColor.fillColor,
-                                  fontSize: 14,
-                                  fontFamily: AppFont.fontFamily,
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          items: _items.map((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _selectedItem = newValue;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
+                Center(
+                  child: isLoading
+                      ? const CircularProgressIndicator()
+                      : errorMessage != null
+                          ? Text(errorMessage!)
+                          : categories.isEmpty
+                              ? const Text('No categories available.')
+                              : Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: DropdownButton<LanguageData>(
+                                    hint: const Text('Select Language'),
+                                    value: selectedCategory,
+                                    isExpanded: true,
+                                    items: categories.map((category) {
+                                      return DropdownMenuItem<LanguageData>(
+                                        value: category,
+                                        child: Text(category.name ?? ""),
+                                      );
+                                    }).toList(),
+                                    onChanged: (LanguageData? value) {
+                                      setState(() {
+                                        selectedCategory = value;
+                                      });
+                                      print(selectedCategory?.name ?? "");
+                                    },
+                                  ),
+                                ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 5 / 100,

@@ -33,6 +33,8 @@ class ApiUrlConstants {
       '$baseUrl/auth/resetpassword-by-otp?lang=en';
   static String endPointCountriesList = '$baseUrl/settings/get-country-list';
 
+  static String endPointLanguageList = '$baseUrl/settings/get-language-list';
+
   static String endPointCorporateLogin =
       '$baseUrl/auth/corporate-login?lang=en';
 

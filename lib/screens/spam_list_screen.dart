@@ -123,21 +123,17 @@ class _SpamListState extends State<SpamList> {
     bloc: spamListBloc,
     listener: (context, state) {
     if (state is GetSpamState) {
-    // filterSearchResults("");
+
     contacts = state.value.spamcontactslist?? [];
     filteredContacts = contacts;
     }
-    //yaha remove spam handle karege
+
       if(state is RemoveSpamState){
         if(state.value.statusCode==200){
-          //handle success
           showDialog(context: context, builder: (context) => AlertDialog(title: Text(state.value.message??""),),);
         }else{
-          //handle failure
-          //ek common dialog bana lege success ya fail k liye to bar bar ye type nhi krna pdega
           showDialog(context: context, builder: (context) => AlertDialog(title: Text(state.value.message??""),),);
         }
-        //yaha fir se list get karege api fail ho ya success
         spamListBloc.add(GetSpamEvent());
       }
     },
