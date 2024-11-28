@@ -61,7 +61,9 @@ class _SpamListState extends State<SpamList> {
       appBar: AppBar(
         backgroundColor: AppColor.secondryColor,
         leading: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Image.asset(
