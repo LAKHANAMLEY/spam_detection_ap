@@ -15,92 +15,103 @@ class CheckSpam extends StatefulWidget {
 class _CheckSpamState extends State<CheckSpam> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColor.secondryColor,
-        appBar: AppBar(
-          backgroundColor: AppColor.redColor,
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Image.asset(
-                  IconConstants.icbackCircle, color: AppColor.secondryColor,
+    final expandedHeight = 280.0;
+    final collapsedHeight = 60.0;
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          expandedHeight: expandedHeight,
+          collapsedHeight: collapsedHeight,
+          floating: true,
+          pinned: true,
+          snap: true,
+          backgroundColor: Colors.white,
+          flexibleSpace: FlexibleSpaceBar(
+            collapseMode: CollapseMode.pin,
+            title: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text('Vyapar App',textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 22, color: Colors.black,)),
+            ),
+            background: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: expandedHeight - collapsedHeight - 80,
+                    decoration: const BoxDecoration(
+                     color: AppColor.redColor
+                    ),
+                  ),
                 ),
-              ),
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 2 / 100,
+                Positioned(
+                  bottom: collapsedHeight + 30,
+                  left: MediaQuery.of(context).size.width / 2 - 50,
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: ShapeDecoration(
+                      color: Colors.white,
+                      shape: CircleBorder(),
+                    ),
+                    child: CircleAvatar(
+                      backgroundImage:
+                      AssetImage(IconConstants.icspamCircle),
+                      radius: 45,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          title: Text(
-
-            StringConstants.identifiedtext,
-            style: TextStyle(
-                color: AppColor.secondryColor.withOpacity(0.2),
-                fontFamily: AppFont.fontFamily,
-                fontSize: 12,
-                fontWeight: FontWeight.w500),
-          ),
-          centerTitle: true,
         ),
-        body: Stack(
-            children: [
-              // Main content
-              Column(
-                children: [
-                  // Space for AppBar
-                  Container(
-                    height: kToolbarHeight + MediaQuery
-                        .of(context)
-                        .padding
-                        .top,
-                    color: Colors.red, // AppBar background color
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text("Main Content Here"),
-                    ),
-                  ),
-                ],
-              ),
+        SliverToBoxAdapter(
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.6, // Adjust container height
+            width: MediaQuery.of(context).size.width*90/100,
+            //padding: const EdgeInsets.symmetric(vertical: 20),
+            color: AppColor.vanishColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Ensures even spacing
+              children: [
+                ActionButton(label: 'Message', icon: Icons.message),
+                ActionButton(label: 'Not Spam', icon: Icons.check_circle),
+                ActionButton(label: 'Block', icon: Icons.block),
+              ],
+            ),
+          ),
+        ),
 
-              // Positioned Stack (with AppBar overlay)
-              Positioned(
-                top: MediaQuery
-                    .of(context)
-                    .padding
-                    .top, // To account for status bar
-                left: 16, // Padding from left
-                child: Row(
-                  children: [
-                    // Back Button
-                    IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.white),
-                      onPressed: () {},
-                    ),
-                    SizedBox(width: 16),
-                    // Positioned Avatar
-                    CircleAvatar(
-                      radius: 20,
-                      backgroundImage: NetworkImage(
-                        'https://via.placeholder.com/150', // Replace with avatar image URL
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    // Title
-                    Text(
-                      "User Name",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                  ],
-                ),
-              ),
-            ]
-        )
+  ]
+          );
+
+
+  }
+}
+
+class ActionButton extends StatelessWidget {
+  final String label;
+  final IconData icon;
+
+  const ActionButton({required this.label, required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min, // Ensures buttons fit the row properly
+      children: [
+        CircleAvatar(
+          radius: 30,
+          backgroundColor: Colors.grey.shade300,
+          child: Icon(icon, color: Colors.black, size: 28), // Icon size adjusted
+        ),
+        const SizedBox(height: 8), // Spacing between icon and text
+        Text(
+          label,
+          style: TextStyle(fontSize: 14, color: Colors.black), // Text styling
+        ),
+      ],
     );
   }
 }
+
+
