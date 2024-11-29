@@ -1,21 +1,19 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/globals/appbutton.dart';
 import 'package:spam_delection_app/screens/forgot_otp_verify_screen.dart';
 import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
-import 'package:http/http.dart' as http;
 
 import '../constants/icons_constants.dart';
 import '../constants/string_constants.dart';
 import '../data/repository/auth_repo/forgot_password_api.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
-// wait sir
-// ab check kro
+
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
-  static String routeName = './ForgotPassword';
 
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
@@ -44,13 +42,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         body: json.encode({'email': email}),
       );
       if (response.statusCode == 200) {
-
         final data = json.decode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(data['message'] ?? 'Check your email for reset instructions.'),
+          content: Text(
+              data['message'] ?? 'Check your email for reset instructions.'),
         ));
       } else {
-
         final errorData = json.decode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(errorData['error'] ?? 'Failed to send reset email.'),
@@ -66,8 +63,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       _isLoading = false;
     });
   }
-
-
 
   /*@override
   void initState() {
@@ -125,138 +120,156 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
         backgroundColor: AppColor.secondryColor,
-        leading:GestureDetector(
-          onTap: (){
-            Navigator.pop(context);
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Image.asset(IconConstants.backIcon,
-            ),
-
-          ),
-        ),
-        title: Image.asset(IconConstants.icBroadlogo,
-          height: MediaQuery.of(context).size.height * 38 / 100,
-          width: MediaQuery.of(context).size.width * 38/ 100, ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-              children: [
-          SizedBox(
-          height: MediaQuery.of(context).size.height * 8 / 100,
+        appBar: AppBar(
+          backgroundColor: AppColor.secondryColor,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Image.asset(
+                IconConstants.backIcon,
               ),
-                const Center(
+            ),
+          ),
+          title: Image.asset(
+            IconConstants.icBroadlogo,
+            height: MediaQuery.of(context).size.height * 38 / 100,
+            width: MediaQuery.of(context).size.width * 38 / 100,
+          ),
+          centerTitle: true,
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 8 / 100,
+              ),
+              const Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 50,right: 50),
-                    child: Text(
-                                StringConstants.forgottext,textAlign: TextAlign.center,
-                                style: TextStyle(
+                padding: EdgeInsets.only(left: 50, right: 50),
+                child: Text(
+                  StringConstants.forgottext,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
                       color: AppColor.bluelightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600),
-                              ),
-                  )),
+                ),
+              )),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-                const Padding(
-                  padding: EdgeInsets.all(18),
-                  child: Text(
-                    StringConstants.emailtext,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: AppColor.verifyColor,
+              const Padding(
+                padding: EdgeInsets.all(18),
+                child: Text(
+                  StringConstants.emailtext,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColor.verifyColor,
+                      fontFamily: AppFont.fontFamily,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 4 / 100,
+              ),
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width * 90 / 100,
+                child: TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    hintText: StringConstants.emailadresstext,
+                    hintStyle: const TextStyle(
+                        color: AppColor.lightfillColor,
                         fontFamily: AppFont.fontFamily,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500
+                        fontWeight: FontWeight.w600),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(2),
+                      borderSide: const BorderSide(
+                          width: 1.5, color: AppColor.fillColor),
                     ),
-                  ),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height*4/100,),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width * 90/ 100,
-                  child: TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      hintText: StringConstants.emailadresstext,
-                      hintStyle: const TextStyle(color: AppColor.lightfillColor,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(2),
-                        borderSide: const BorderSide(
-                            width: 1.5, color: AppColor.fillColor),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: AppColor.fillColor, width: 1.5),
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(2)),
-                      ),
-                      filled: true,
-                      fillColor: AppColor.fillColor.withOpacity(0.2),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          IconConstants.icEmailadd, // Adjust the path as necessary
-                          width:MediaQuery.of(context).size.width*3/100,
-                          height: MediaQuery.of(context).size.height*3/100,
-                        ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: AppColor.fillColor, width: 1.5),
+                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                    ),
+                    filled: true,
+                    fillColor: AppColor.fillColor.withOpacity(0.2),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        IconConstants
+                            .icEmailadd, // Adjust the path as necessary
+                        width: MediaQuery.of(context).size.width * 3 / 100,
+                        height: MediaQuery.of(context).size.height * 3 / 100,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 5 / 100,),
-                const Text(StringConstants.checkmailtext,style: TextStyle(color: AppColor.remainColor,fontFamily: AppFont.fontFamily,fontWeight: FontWeight.w600),),
-                SizedBox(height: MediaQuery.of(context).size.height * 5 / 100,),
-                if (_errorMessage != null)
-                  Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 2 / 100,
-                ),
-                _isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : AppButton(
-                  text: StringConstants.continutext,
-                  onPress: () {
-                    final email = _emailController.text;
-                    if (email.isNotEmpty) {
-                      setState(() {
-                        _isLoading = true;
-                      });
-                      forgotPassword(
-                        email: email,
-                      ).then((response) {
-                        setState(() {
-                          _isLoading = false;
-                        });
-                        // class SignUpResponse
-                        //var response
-                        if (response.statusCode == 200) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>  ForgotOtpVerify(email: email,),
-                          ));
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 5 / 100,
+              ),
+              const Text(
+                StringConstants.checkmailtext,
+                style: TextStyle(
+                    color: AppColor.remainColor,
+                    fontFamily: AppFont.fontFamily,
+                    fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 5 / 100,
+              ),
+              if (_errorMessage != null)
+                Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 2 / 100,
+              ),
+              _isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : AppButton(
+                      text: StringConstants.continutext,
+                      onPress: () {
+                        final email = _emailController.text;
+                        if (email.isNotEmpty) {
+                          setState(() {
+                            _isLoading = true;
+                          });
+                          forgotPassword(
+                            email: email,
+                          ).then((response) {
+                            setState(() {
+                              _isLoading = false;
+                            });
+                            // class SignUpResponse
+                            //var response
+                            if (response.statusCode == 200) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ForgotOtpVerify(
+                                  email: email,
+                                ),
+                              ));
+                            } else {
+                              setState(() {
+                                _errorMessage = response.message.toString();
+                              });
+                            }
+                          });
                         } else {
                           setState(() {
-                            _errorMessage = response.message.toString();
+                            _errorMessage = 'Please enter email address';
                           });
                         }
-                      });
-                    } else {
-                      setState(() {
-                        _errorMessage = 'Please enter email address';
-                      });
-                    }
-                  },
-        ),
+                      },
+                    ),
             ]),
-        ),
-      ));
+          ),
+        ));
   }
 }
 

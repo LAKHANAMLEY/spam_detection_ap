@@ -212,7 +212,9 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                         });
                         if (response.statusCode == 200) {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const LoginSuccessful(),
+                            builder: (context) => LoginSuccessful(
+                              user: response.data,
+                            ),
                           ));
                         } else {
                           setState(() {

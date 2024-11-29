@@ -9,9 +9,11 @@ import 'package:spam_delection_app/extensions/date_time_ext.dart';
 import 'package:spam_delection_app/extensions/timestamp_ext.dart';
 import 'package:spam_delection_app/screens/widgets/custom_app_bar.dart';
 import 'package:spam_delection_app/screens/widgets/custom_textfiled.dart';
+import 'package:spam_delection_app/utils/helpers.dart';
 
 class DeviceCallLogs extends StatefulWidget {
-  const DeviceCallLogs({super.key});
+  final bool? showAppBar;
+  const DeviceCallLogs({super.key, this.showAppBar = true});
 
   @override
   State<DeviceCallLogs> createState() => _DeviceCallLogsState();
@@ -48,10 +50,13 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
 
   @override
   Widget build(BuildContext context) {
+    var argument = args(context) as DeviceCallLogs?;
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: "Call logs",
-      ),
+      appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
+          ? const CustomAppBar(
+              title: "Call logs",
+            )
+          : null,
       body: BlocConsumer(
           bloc: getDeviceCallLogBloc,
           listener: (context, state) {
@@ -69,6 +74,10 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                     children: [
                       CustomTextField(
                         controller: searchController,
+                        prefix: const Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                        ),
                         hintText: "Search here",
                         onChanged: (p0) {
                           filter();

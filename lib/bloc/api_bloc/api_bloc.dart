@@ -7,6 +7,7 @@ import 'package:spam_delection_app/data/repository/auth_repo/social_signup_api.d
 import 'package:spam_delection_app/data/repository/call_log_repo/get_device_call_logs.dart';
 import 'package:spam_delection_app/data/repository/contact/get_contacts_api.dart';
 import 'package:spam_delection_app/data/repository/contact/sync_contacts_api.dart';
+import 'package:spam_delection_app/data/repository/setting_repo/category_list_api.dart';
 import 'package:spam_delection_app/data/repository/spam_repo/mark_spam_contacts_api.dart';
 import 'package:spam_delection_app/data/repository/spam_repo/remove_mark_spam_contacts_api.dart';
 import 'package:spam_delection_app/data/repository/spam_repo/spam_list_api.dart';
@@ -25,6 +26,13 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await getContacts().then((value) {
         emit(GetContactState(value));
+      });
+    }
+
+    if (event is GetCategoryListEvent) {
+      emit(ApiLoadingState());
+      await getCategories().then((value) {
+        emit(GetCategoryListState(value));
       });
     }
 

@@ -9,6 +9,8 @@ abstract class ApiEvent extends Equatable {
 
 class GetContactEvent extends ApiEvent {}
 
+class GetCategoryListEvent extends ApiEvent {}
+
 class GetSpamEvent extends ApiEvent {}
 
 class SyncContactEvent extends ApiEvent {

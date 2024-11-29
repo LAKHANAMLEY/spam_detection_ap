@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:spam_delection_app/screens/check_spam_screen.dart';
+import 'package:spam_delection_app/screens/bottom_navigation.dart';
+import 'package:spam_delection_app/screens/contact_detail_screen.dart';
+import 'package:spam_delection_app/screens/contact_list_screen.dart';
 import 'package:spam_delection_app/screens/device_call_logs.dart';
 import 'package:spam_delection_app/screens/forgot_otp_verify_screen.dart';
 import 'package:spam_delection_app/screens/forgot_password_screen.dart';
@@ -18,25 +20,36 @@ class AppRoutes {
   static const splash = "/splash";
   static const welcome = "/welcome";
   static const protectionType = "/protectionType";
+  static const bottomNavigation = "/bottomNavigation";
   static const callLogs = "/callLogs";
+  static const contactList = "/contactList";
   static const contactDetail = "/contactDetail";
   static const planType = "/planType";
+  static const register = "/register";
+  static const forgotPwd = "/forgotPwd";
+  static const forgotOTPVerification = "/forgotOTPVerification";
+  static const resetPassword = "/resetPassword";
+  static const loginWithGoogle = "/loginWithGoogle";
+  static const registerWithGoogle = "/registerWithGoogle";
+  static const loginSuccess = "/loginSuccess";
+  static const otpVerification = "/otpVerification";
 }
 
 final Map<String, WidgetBuilder> routes = {
   AppRoutes.splash: (context) => const Splash(),
   AppRoutes.welcome: (context) => const Welcome(),
   AppRoutes.protectionType: (context) => const ProtectionType(),
+  AppRoutes.bottomNavigation: (context) => const BottomNavigation(),
   AppRoutes.callLogs: (context) => const DeviceCallLogs(),
-  AppRoutes.contactDetail: (context) => const CheckSpam(),
+  AppRoutes.contactList: (context) => const ContactList(),
+  AppRoutes.contactDetail: (context) => const ContactDetail(),
   AppRoutes.planType: (context) => const PlanType(),
-  Welcome.routeName: (context) => const Welcome(),
-  Register.routeName: (context) => const Register(),
-  ForgotPassword.routeName: (context) => const ForgotPassword(),
-  ForgotOtpVerify.routeName: (context) => const ForgotOtpVerify(),
-  ResetPassword.routeName: (context) => const ResetPassword(),
-  LoginGoogle.routeName: (context) => const LoginGoogle(),
-  RegisterGoogle.routeName: (context) => const RegisterGoogle(),
-  LoginSuccessful.routeName: (context) => const LoginSuccessful(),
-  OtpVerify.routeName: (context) => const OtpVerify(),
+  AppRoutes.register: (context) => const Register(),
+  AppRoutes.forgotPwd: (context) => const ForgotPassword(),
+  AppRoutes.forgotOTPVerification: (context) => const ForgotOtpVerify(),
+  AppRoutes.resetPassword: (context) => const ResetPassword(),
+  AppRoutes.loginWithGoogle: (context) => const LoginGoogle(),
+  AppRoutes.registerWithGoogle: (context) => const RegisterGoogle(),
+  AppRoutes.loginSuccess: (context) => const LoginSuccessful(),
+  AppRoutes.otpVerification: (context) => const OtpVerify(),
 };

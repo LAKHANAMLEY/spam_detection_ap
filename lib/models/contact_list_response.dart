@@ -13,11 +13,9 @@ String contactListResponseToJson(ContactListResponse data) =>
 class ContactListResponse {
   final int? statusCode;
   final List<ContactData>? contactslist;
+  final String? message;
 
-  ContactListResponse({
-    this.statusCode,
-    this.contactslist,
-  });
+  ContactListResponse({this.statusCode, this.contactslist, this.message});
 
   ContactListResponse copyWith({
     int? statusCode,
@@ -35,6 +33,7 @@ class ContactListResponse {
             ? []
             : List<ContactData>.from(
                 json["contactslist"]!.map((x) => ContactData.fromJson(x))),
+        message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -42,6 +41,7 @@ class ContactListResponse {
         "contactslist": contactslist == null
             ? []
             : List<dynamic>.from(contactslist!.map((x) => x.toJson())),
+        "message": message
       };
 }
 

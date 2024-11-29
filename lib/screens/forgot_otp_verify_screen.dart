@@ -9,21 +9,15 @@ import '../globals/appbutton.dart';
 import '../globals/colors.dart';
 import 'forgot_password_screen.dart';
 
-
-
-class ForgotOtpVerify extends StatefulWidget {// understand all things
-  final String? email;// isme only email lege prev screen se otp isi s
-
-  const ForgotOtpVerify({super.key, this.email});// ese optional banate h
-  static String routeName = './ForgotOtpVerify';
+class ForgotOtpVerify extends StatefulWidget {
+  final String? email;
+  const ForgotOtpVerify({super.key, this.email});
 
   @override
   State<ForgotOtpVerify> createState() => _ForgotOtpVerifyState();
 }
 
 class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
-
-
   final GlobalKey<FormState> _forgotOtpFormKey = GlobalKey<FormState>();
 
   FocusNode? pin1FocusNode;
@@ -47,7 +41,6 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
   String fifthInput = '';
   String sixInput = '';
 
-
   @override
   void initState() {
     super.initState();
@@ -59,23 +52,29 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
     pin6FocusNode = FocusNode();
   }
 
-  forgotOtpUserValidation(String firstInput, String secondInput,
-      String thirdInput, String fourthInput, String fifthInput,
+  forgotOtpUserValidation(
+      String firstInput,
+      String secondInput,
+      String thirdInput,
+      String fourthInput,
+      String fifthInput,
       String sixthInput) async {
-    var otpInput = (firstInput + secondInput + thirdInput + fourthInput +
-        fifthInput + sixthInput);
+    var otpInput = (firstInput +
+        secondInput +
+        thirdInput +
+        fourthInput +
+        fifthInput +
+        sixthInput);
     if (otpInput.isEmpty) {
-      SnackBarToastMessage.showSnackBar(
-          context, StringConstants.otpMessage);
+      SnackBarToastMessage.showSnackBar(context, StringConstants.otpMessage);
       return false;
     } else if (otpInput.length < 4) {
       SnackBarToastMessage.showSnackBar(
           context, StringConstants.otpMinLenthMessage);
       return false;
     } else {
-      forgotOtpUserApiCall(
-          firstInput, secondInput, thirdInput, fourthInput, fifthInput,
-          sixthInput);
+      forgotOtpUserApiCall(firstInput, secondInput, thirdInput, fourthInput,
+          fifthInput, sixthInput);
     }
   }
 
@@ -85,8 +84,18 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
 
     // Navigator.pushNamed(context, AppRoutes.splash);// ese navigate krna route k through kr rhe ho to
 
-    Navigator.push(context,
-      MaterialPageRoute(builder: (context) => ResetPassword(email: widget.email, code: firstInput+secondInput+thirdInput+fourthInput+fifthInput+sixthInput,)),
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => ResetPassword(
+                email: widget.email,
+                code: firstInput +
+                    secondInput +
+                    thirdInput +
+                    fourthInput +
+                    fifthInput +
+                    sixthInput,
+              )),
     );
     print("Call Update Api");
   }
@@ -112,7 +121,6 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
     focusNode.requestFocus();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,22 +132,20 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
             Navigator.pop(context);
           },
           child: SizedBox(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height * 2 / 100,
+            height: MediaQuery.of(context).size.height * 2 / 100,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(IconConstants.backIcon,
+              child: Image.asset(
+                IconConstants.backIcon,
               ),
-
             ),
           ),
         ),
-        title: Image.asset(IconConstants.icBroadlogo,
+        title: Image.asset(
+          IconConstants.icBroadlogo,
           height: MediaQuery.of(context).size.height * 38 / 100,
           width: MediaQuery.of(context).size.width * 38 / 100,
-          ),
+        ),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -147,28 +153,23 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height * 8 / 100,
+                height: MediaQuery.of(context).size.height * 8 / 100,
               ),
               const Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 50, right: 50),
-                    child: Text(
-                      StringConstants.forgottext, textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: AppColor.bluelightColor,
-                          fontSize: 35,
-                          fontFamily: AppFont.fontFamily,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  )),
+                padding: EdgeInsets.only(left: 50, right: 50),
+                child: Text(
+                  StringConstants.forgottext,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColor.bluelightColor,
+                      fontSize: 35,
+                      fontFamily: AppFont.fontFamily,
+                      fontWeight: FontWeight.w600),
+                ),
+              )),
               SizedBox(
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height * 2 / 100,
+                height: MediaQuery.of(context).size.height * 2 / 100,
               ),
               const Padding(
                 padding: EdgeInsets.all(18),
@@ -180,8 +181,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                         color: AppColor.verifyColor,
                         fontFamily: AppFont.fontFamily,
                         fontSize: 16,
-                        fontWeight: FontWeight.w500
-                    ),
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
@@ -194,16 +194,10 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 5 / 100,
+                        height: MediaQuery.of(context).size.height * 5 / 100,
                       ),
                       SizedBox(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * 90 / 100,
+                          width: MediaQuery.of(context).size.width * 90 / 100,
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -213,7 +207,6 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                   child: Center(
                                     child: TextFormField(
                                       controller: firstInputController,
-
                                       cursorColor: AppColor.yellowlightColor,
                                       autofocus: true,
                                       readOnly: false,
@@ -229,11 +222,11 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                         ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                              color: firstInputController.text
-                                                  .isNotEmpty
+                                              color: firstInputController
+                                                      .text.isNotEmpty
                                                   ? AppColor.deepyelloeColor
                                                   : AppColor.fillColor
-                                                  .withOpacity(0.2),
+                                                      .withOpacity(0.2),
                                               width: 1.5),
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(2)),
@@ -245,16 +238,16 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(2)),
                                         ),
-                                        contentPadding: const EdgeInsets.all((12)),
-                                        fillColor: AppColor.fillColor
-                                            .withOpacity(0.2),
+                                        contentPadding:
+                                            const EdgeInsets.all((12)),
+                                        fillColor:
+                                            AppColor.fillColor.withOpacity(0.2),
                                         filled: true,
                                       ),
                                       style: const TextStyle(
                                           fontSize: 28,
                                           fontWeight: FontWeight.w500,
-                                          color:
-                                          AppColor.deepyelloeColor),
+                                          color: AppColor.deepyelloeColor),
                                       keyboardType: TextInputType.number,
                                       inputFormatters: <TextInputFormatter>[
                                         FilteringTextInputFormatter.allow(
@@ -315,11 +308,11 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: secondInputController.text
-                                                .isNotEmpty
+                                            color: secondInputController
+                                                    .text.isNotEmpty
                                                 ? AppColor.deepyelloeColor
                                                 : AppColor.fillColor
-                                                .withOpacity(0.2),
+                                                    .withOpacity(0.2),
                                             width: 1.5),
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(2.0)),
@@ -331,15 +324,17 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(2.0)),
                                       ),
-                                      contentPadding: const EdgeInsets.all((12)),
-                                      fillColor: AppColor.fillColor.withOpacity(
-                                          0.2),
+                                      contentPadding:
+                                          const EdgeInsets.all((12)),
+                                      fillColor:
+                                          AppColor.fillColor.withOpacity(0.2),
                                       filled: true,
                                     ),
                                     style: TextStyle(
                                         fontSize: 28,
                                         fontWeight: FontWeight.w500,
-                                        color: (secondInputController.text.isNotEmpty)
+                                        color: (secondInputController
+                                                .text.isNotEmpty)
                                             ? AppColor.deepyelloeColor
                                             : AppColor.deepyelloeColor),
                                   ),
@@ -371,11 +366,12 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: (thirdInputController.text
-                                                .isNotEmpty)
+                                            color: (thirdInputController
+                                                    .text.isNotEmpty)
                                                 ? AppColor.deepyelloeColor
                                                 : AppColor.fillColor
-                                                .withOpacity(0.2), width: 1.5),
+                                                    .withOpacity(0.2),
+                                            width: 1.5),
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(2.0)),
                                       ),
@@ -386,15 +382,17 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(2.0)),
                                       ),
-                                      contentPadding: const EdgeInsets.all((12)),
+                                      contentPadding:
+                                          const EdgeInsets.all((12)),
                                       fillColor:
-                                      AppColor.fillColor.withOpacity(0.2),
+                                          AppColor.fillColor.withOpacity(0.2),
                                       filled: true,
                                     ),
                                     style: TextStyle(
                                         fontSize: 28,
                                         fontWeight: FontWeight.w700,
-                                        color: (thirdInputController.text.isNotEmpty)
+                                        color: (thirdInputController
+                                                .text.isNotEmpty)
                                             ? AppColor.deepyelloeColor
                                             : AppColor.deepyelloeColor),
                                     focusNode: pin3FocusNode,
@@ -442,11 +440,11 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: (forthInputController.text
-                                                .isNotEmpty)
+                                            color: (forthInputController
+                                                    .text.isNotEmpty)
                                                 ? AppColor.deepyelloeColor
                                                 : AppColor.fillColor
-                                                .withOpacity(0.2),
+                                                    .withOpacity(0.2),
                                             width: 1.5),
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(2.0)),
@@ -458,16 +456,17 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(2.0)),
                                       ),
-                                      contentPadding: const EdgeInsets.all((12)),
+                                      contentPadding:
+                                          const EdgeInsets.all((12)),
                                       fillColor:
-                                      AppColor.fillColor.withOpacity(0.2),
+                                          AppColor.fillColor.withOpacity(0.2),
                                       filled: true,
                                     ),
                                     style: TextStyle(
                                         fontSize: 28,
                                         fontWeight: FontWeight.w500,
-                                        color: (forthInputController.text
-                                            .isNotEmpty)
+                                        color: (forthInputController
+                                                .text.isNotEmpty)
                                             ? AppColor.deepyelloeColor
                                             : AppColor.deepyelloeColor),
                                     onTap: () {
@@ -511,11 +510,12 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: (thirdInputController.text
-                                                .isNotEmpty)
+                                            color: (thirdInputController
+                                                    .text.isNotEmpty)
                                                 ? AppColor.deepyelloeColor
                                                 : AppColor.fillColor
-                                                .withOpacity(0.2), width: 1.5),
+                                                    .withOpacity(0.2),
+                                            width: 1.5),
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(2.0)),
                                       ),
@@ -526,16 +526,17 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(2.0)),
                                       ),
-                                      contentPadding: const EdgeInsets.all(
-                                          (12)),
+                                      contentPadding:
+                                          const EdgeInsets.all((12)),
                                       fillColor:
-                                      AppColor.fillColor.withOpacity(0.2),
+                                          AppColor.fillColor.withOpacity(0.2),
                                       filled: true,
                                     ),
                                     style: TextStyle(
                                         fontSize: 28,
                                         fontWeight: FontWeight.w700,
-                                        color: (thirdInputController.text.isNotEmpty)
+                                        color: (thirdInputController
+                                                .text.isNotEmpty)
                                             ? AppColor.deepyelloeColor
                                             : AppColor.deepyelloeColor),
                                     focusNode: pin5FocusNode,
@@ -583,11 +584,11 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: (forthInputController.text
-                                                .isNotEmpty)
+                                            color: (forthInputController
+                                                    .text.isNotEmpty)
                                                 ? AppColor.deepyelloeColor
                                                 : AppColor.fillColor
-                                                .withOpacity(0.2),
+                                                    .withOpacity(0.2),
                                             width: 1.5),
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(2.0)),
@@ -599,17 +600,17 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(2.0)),
                                       ),
-                                      contentPadding: const EdgeInsets.all(
-                                          (12)),
+                                      contentPadding:
+                                          const EdgeInsets.all((12)),
                                       fillColor:
-                                      AppColor.fillColor.withOpacity(0.2),
+                                          AppColor.fillColor.withOpacity(0.2),
                                       filled: true,
                                     ),
                                     style: TextStyle(
                                         fontSize: 28,
                                         fontWeight: FontWeight.w500,
-                                        color: (forthInputController.text
-                                            .isNotEmpty)
+                                        color: (forthInputController
+                                                .text.isNotEmpty)
                                             ? AppColor.deepyelloeColor
                                             : AppColor.deepyelloeColor),
                                     onTap: () {
@@ -625,30 +626,24 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                     },
                                   ),
                                 ),
-                              ]
-                          )
-                      ),
+                              ])),
                       SizedBox(
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 4 / 100,
+                        height: MediaQuery.of(context).size.height * 4 / 100,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(StringConstants.didtext,
+                          const Text(
+                            StringConstants.didtext,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: AppFont.fontFamily,
-                                color: AppColor.greylightColor, fontSize: 15),
-
+                                color: AppColor.greylightColor,
+                                fontSize: 15),
                           ),
                           SizedBox(
-                              width: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 2 / 100),
+                              width:
+                                  MediaQuery.of(context).size.width * 2 / 100),
                           InkWell(
                             onTap: () {
                               // Navigator.push(
@@ -665,10 +660,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                         ],
                       ),
                       SizedBox(
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 5 / 100),
+                          height: MediaQuery.of(context).size.height * 5 / 100),
                       AppButton(
                           text: StringConstants.continutext,
                           onPress: () {
@@ -681,18 +673,13 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                               sixthInputController.text,
                             );
                           }),
-
                       SizedBox(
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 4 / 100,
+                        height: MediaQuery.of(context).size.height * 4 / 100,
                       ),
                     ],
                   ),
                 ),
               ),
-
             ],
           ),
         ),

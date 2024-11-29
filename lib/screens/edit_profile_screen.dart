@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
+import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_event.dart';
 import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
 import 'package:spam_delection_app/extensions/date_time_ext.dart';
 import 'package:spam_delection_app/globals/app_constants.dart';
@@ -180,6 +181,7 @@ class _EditProfileState extends State<EditProfile> {
                   if (state.value.statusCode == 200) {
                     if (state.value.data != null) {
                       updateData(User.fromJson(state.value.data));
+                      sharedPrefBloc.add(GetUserDataFromLocalEvent());
                     }
                   } else if (state.value.statusCode ==
                       HTTPStatusCodes.sessionExpired) {

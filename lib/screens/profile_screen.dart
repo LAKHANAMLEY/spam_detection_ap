@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spam_delection_app/app_route/route.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
+import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_event.dart';
+import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_state.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
 import 'package:spam_delection_app/globals/app_constants.dart';
 import 'package:spam_delection_app/globals/app_fonts.dart';
-import 'package:spam_delection_app/models/user_model.dart';
 import 'package:spam_delection_app/screens/change_password_screen.dart';
 import 'package:spam_delection_app/screens/edit_profile_screen.dart';
 import 'package:spam_delection_app/screens/edit_security_pin.dart';
 import 'package:spam_delection_app/screens/loader.dart';
 import 'package:spam_delection_app/screens/spam_list_screen.dart';
-import 'package:spam_delection_app/screens/widgets/custom_dialog.dart';
-import 'package:spam_delection_app/utils/api_constants/http_status_codes.dart';
-import 'package:spam_delection_app/utils/session_expired.dart';
 
 import '../constants/icons_constants.dart';
 import '../globals/colors.dart';
@@ -43,7 +39,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   void initState() {
-    userBloc.add(GetUserProfileEvent());
+    // userBloc.add(GetUserProfileEvent());
+    sharedPrefBloc.add(GetUserDataFromLocalEvent());
     super.initState();
   }
 
@@ -75,19 +72,20 @@ class _ProfileState extends State<Profile> {
         ],
       ),
       body: BlocConsumer(
-          bloc: userBloc,
+          bloc: sharedPrefBloc,
           listener: (context, state) {
-            if (state is GetUserProfileState) {
-              if (state.value.statusCode == 200) {
-              } else if (state.value.statusCode ==
-                  HTTPStatusCodes.sessionExpired) {
-                sessionExpired(context, state.value.message ?? "");
-              } else {
-                showCustomDialog(context,
-                    dialogType: DialogType.failed,
-                    subTitle: state.value.message);
-              }
-            }
+            if (state is GetUserDataFromLocalState) {}
+            // if (state is GetUserProfileState) {
+            //   if (state.value.statusCode == 200) {
+            //   } else if (state.value.statusCode ==
+            //       HTTPStatusCodes.sessionExpired) {
+            //     sessionExpired(context, state.value.message ?? "");
+            //   } else {
+            //     showCustomDialog(context,
+            //         dialogType: DialogType.failed,
+            //         subTitle: state.value.message);
+            //   }
+            // }
             // if (state is UpdateProfileState) {
             //   if (state.value.statusCode == 200) {
             //     showCustomDialog(context,
@@ -104,8 +102,9 @@ class _ProfileState extends State<Profile> {
             // }
           },
           builder: (context, state) {
-            if (state is GetUserProfileState && state.value.data != null) {
-              var user = User.fromJson(state.value.data);
+            if (state is GetUserDataFromLocalState) {
+              // var user = User.fromJson(state.value.data);
+              var user = state.user;
               return Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(

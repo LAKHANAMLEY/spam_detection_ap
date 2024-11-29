@@ -1,5 +1,6 @@
 import 'package:call_log/call_log.dart';
 import 'package:equatable/equatable.dart';
+import 'package:spam_delection_app/models/category_list_model.dart';
 import 'package:spam_delection_app/models/contact_list_response.dart';
 import 'package:spam_delection_app/models/edit_profile_model.dart';
 import 'package:spam_delection_app/models/mark_spam_model.dart';
@@ -22,6 +23,15 @@ class GetContactState extends ApiState {
   final ContactListResponse value;
 
   GetContactState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class GetCategoryListState extends ApiState {
+  final CategoryListResponse value;
+
+  GetCategoryListState(this.value);
 
   @override
   List<Object?> get props => [value];

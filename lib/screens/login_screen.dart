@@ -21,8 +21,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  int SelectTab = 0;
-  int Toogletab = 0;
+  int tabIndex = 0;
   bool isValue = false;
   bool obscureText = true;
   bool isCheckBoxValue = false;
@@ -35,12 +34,12 @@ class _LoginState extends State<Login> {
   // final TextEditingController _phoneController = TextEditingController();//itne controller ki need nahi hai
   // String? _verificationId;
 
-  String?
-      enteredPhone; // sir next screen per navigate hprha hai // otp ka option nhi aaya otp abhi tak// mahi ayega apne jo dala h firebase pr wo dalo
+  // String? enteredPhone;
+  String? countryCode;
 
   Future<void> _verifyPhoneNumber() async {
     await _auth.verifyPhoneNumber(
-      phoneNumber: enteredPhone,
+      phoneNumber: (countryCode ?? "") + phoneController.text,
       verificationCompleted: (PhoneAuthCredential credential) async {
         await _auth.signInWithCredential(credential);
         ScaffoldMessenger.of(context).showSnackBar(
@@ -62,7 +61,8 @@ class _LoginState extends State<Login> {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => OtpVerify(
             verificationId: verificationId,
-            phoneNumber: enteredPhone,
+            phoneNumber: phoneController.text,
+            countryCode: countryCode ?? "",
           ),
         ));
       },
@@ -382,7 +382,7 @@ class _LoginState extends State<Login> {
               GestureDetector(
                   onTap: () {
                     setState(() {
-                      Toogletab = 0;
+                      tabIndex = 0;
                     });
                   },
                   child: Row(
@@ -393,7 +393,7 @@ class _LoginState extends State<Login> {
                           height: MediaQuery.of(context).size.height * 12 / 100,
                           width: MediaQuery.of(context).size.width * 18 / 100,
                           child: Center(
-                            child: Toogletab == 1
+                            child: tabIndex == 1
                                 ? Image.asset(IconConstants
                                     .icphoneunSelect) // Show secondary image
                                 : Image.asset(IconConstants
@@ -406,7 +406,7 @@ class _LoginState extends State<Login> {
                         GestureDetector(
                             onTap: () {
                               setState(() {
-                                Toogletab = 1;
+                                tabIndex = 1;
                               });
                             },
                             child: SizedBox(
@@ -415,7 +415,7 @@ class _LoginState extends State<Login> {
                               width:
                                   MediaQuery.of(context).size.width * 18 / 100,
                               child: Center(
-                                child: Toogletab == 1
+                                child: tabIndex == 1
                                     ? Image.asset(IconConstants
                                         .icemailSelect) // Show secondary image
                                     : Image.asset(IconConstants
@@ -426,7 +426,7 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 5 / 100,
               ),
-              if (Toogletab == 1) ...[
+              if (tabIndex == 1) ...[
                 SizedBox(
                   width: MediaQuery.sizeOf(context).width * 90 / 100,
                   child: TextFormField(
@@ -519,7 +519,8 @@ class _LoginState extends State<Login> {
                               });
                               if (loginResponse.statusCode == 200) {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const LoginSuccessful(),
+                                  builder: (context) =>
+                                      LoginSuccessful(user: loginResponse.data),
                                 ));
                               } else {
                                 setState(() {
@@ -615,7 +616,8 @@ class _LoginState extends State<Login> {
                     ),
                     initialCountryCode: 'IN',
                     onChanged: (phone) {
-                      enteredPhone = phone.completeNumber;
+                      countryCode = phone.countryCode;
+                      // enteredPhone = phone.completeNumber;
                       print(phone.completeNumber);
                       print(phone.countryCode);
                     },
@@ -699,11 +701,9 @@ class _LoginState extends State<Login> {
                     InkWell(
                       onTap: () {
                         Navigator.push(
-                         context,
-                         MaterialPageRoute(
-                           builder: (BuildContext context) => Register()));
-
-
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => Register()));
                       },
                       child: const Text(StringConstants.registertext,
                           style: TextStyle(

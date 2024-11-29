@@ -1,63 +1,54 @@
-import 'package:fast_contacts/fast_contacts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:spam_delection_app/app_route/route.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_bloc.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
-import 'package:spam_delection_app/data/repository/contact/sync_contacts_api.dart';
-import 'package:spam_delection_app/data/repository/setting_repo/category_list_api.dart';
+import 'package:spam_delection_app/data/repository/contact/get_device_contacts.dart';
+import 'package:spam_delection_app/globals/app_constants.dart';
 import 'package:spam_delection_app/globals/app_fonts.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
 import 'package:spam_delection_app/globals/colors.dart';
 import 'package:spam_delection_app/models/category_list_model.dart';
 import 'package:spam_delection_app/models/contact_list_response.dart';
 import 'package:spam_delection_app/screens/add_contact_screen.dart';
-import 'package:spam_delection_app/screens/check_spam_screen.dart';
+import 'package:spam_delection_app/screens/contact_detail_screen.dart';
 import 'package:spam_delection_app/screens/loader.dart';
+import 'package:spam_delection_app/screens/widgets/custom_app_bar.dart';
 import 'package:spam_delection_app/screens/widgets/custom_dialog.dart';
-import 'package:spam_delection_app/utils/permission_request.dart';
+import 'package:spam_delection_app/utils/api_constants/http_status_codes.dart';
+import 'package:spam_delection_app/utils/session_expired.dart';
+import 'package:spam_delection_app/utils/toast.dart';
 
 import '../constants/icons_constants.dart';
 
-class CallLog extends StatefulWidget {
-  const CallLog({super.key});
+class ContactList extends StatefulWidget {
+  const ContactList({super.key});
 
   @override
-  State<CallLog> createState() => _CallLogState();
+  State<ContactList> createState() => _ContactListState();
 }
 
-class _CallLogState extends State<CallLog> {
+class _ContactListState extends State<ContactList> {
   final TextEditingController editingController = TextEditingController();
 
   List<ContactData> contacts = [];
   late List<ContactData> filteredContacts;
 
-  var contactListBloc = ApiBloc(ApiBlocInitialState());
-
   var markSpamBloc =
       ApiBloc(ApiBlocInitialState()); //ye variable define kr dia bloc ka
-
-  getLocalContacts() async {
-    permissionRequest(Permission.contacts).then((status) async {
-      if (status == PermissionStatus.granted) {
-        final contacts = await FastContacts.getAllContacts();
-        syncContacts(contacts);
-      } else {
-        print("$status");
-      }
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    contactListBloc.add(GetContactEvent());
-
-    getLocalContacts();
-    // fetchCategories();
+    getLocalContacts().then((contacts) {
+      if (contacts != null) {
+        contactListBloc.add(SyncContactEvent(contacts: contacts));
+      } else {
+        contactListBloc.add(GetContactEvent());
+      }
+    });
   }
 
   void filterSearchResults(String query) {
@@ -73,6 +64,7 @@ class _CallLogState extends State<CallLog> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
+      appBar: const CustomAppBar(title: "Contact list"),
       body: SafeArea(
         child: BlocConsumer(
             bloc: markSpamBloc,
@@ -138,8 +130,28 @@ class _CallLogState extends State<CallLog> {
                           listener: (context, state) {
                             if (state is GetContactState) {
                               // filterSearchResults("");
-                              contacts = state.value.contactslist ?? [];
-                              filteredContacts = contacts;
+                              if (state.value.statusCode == 200) {
+                                contacts = state.value.contactslist ?? [];
+                                filteredContacts = contacts;
+                              } else if (state.value.statusCode ==
+                                  HTTPStatusCodes.sessionExpired) {
+                                sessionExpired(
+                                    context, state.value.message ?? "");
+                              } else {
+                                showToast(state.value.message);
+                              }
+                            }
+                            if (state is SyncContactState) {
+                              if (state.value.statusCode == 200) {
+                                showToast(state.value.message);
+                              } else if (state.value.statusCode ==
+                                  HTTPStatusCodes.sessionExpired) {
+                                sessionExpired(
+                                    context, state.value.message ?? "");
+                              } else {
+                                showToast(state.value.message);
+                              }
+                              contactListBloc.add(GetContactEvent());
                             }
                           },
                           builder: (context, state) {
@@ -208,36 +220,16 @@ class _ContactListItemState extends State<ContactListItem> {
   final TextEditingController phoneController = TextEditingController();
 
   CategoryData? selectedCategory;
-  String? errorMessage;
-  bool isLoading = false;
-  List<CategoryData> categories = [];
+  // String? errorMessage;
+  // bool isLoading = false;
+  // List<CategoryData> categories = [];
 
   String? numberType;
 
-  Future<void> fetchCategories() async {
-    setState(() {
-      isLoading = true;
-      errorMessage = null;
-    });
-
-    try {
-      final fetchedCategories = await ApiService.fetchCategories();
-      print(fetchedCategories.toString());
-      setState(() {
-        categories = fetchedCategories.categorylist ?? [];
-        isLoading = false;
-      });
-    } catch (error) {
-      setState(() {
-        errorMessage = 'Failed to load categories: $error';
-        isLoading = false;
-      });
-    }
-  }
+  var categoryListBloc = ApiBloc(ApiBlocInitialState());
 
   @override
   void initState() {
-    fetchCategories();
     super.initState();
   }
 
@@ -246,7 +238,7 @@ class _ContactListItemState extends State<ContactListItem> {
     return ListTile(
       onTap: () {
         Navigator.pushNamed(context, AppRoutes.contactDetail,
-            arguments: CheckSpam(
+            arguments: ContactDetail(
               contact: widget.contact,
             ));
       },
@@ -269,7 +261,7 @@ class _ContactListItemState extends State<ContactListItem> {
           PopupMenuItem(
             child: const Text("Report Number"),
             onTap: () {
-              //pass the contact parameter here in the function
+              categoryListBloc.add(GetCategoryListEvent());
               _showReportBottomSheet(context, contact: widget.contact);
             },
           ),
@@ -440,12 +432,14 @@ class _ContactListItemState extends State<ContactListItem> {
                     height: MediaQuery.of(context).size.height * 2 / 100,
                   ),
                   const Text("What type of spam was it?"),
-                  Center(
-                    child: isLoading
-                        ? const CircularProgressIndicator()
-                        : errorMessage != null
-                            ? Text(errorMessage!)
-                            : categories.isEmpty
+                  BlocBuilder(
+                      bloc: categoryListBloc,
+                      builder: (context, state) {
+                        if (state is GetCategoryListState) {
+                          List<CategoryData> categories =
+                              state.value.categorylist ?? [];
+                          return Center(
+                            child: categories.isEmpty
                                 ? const Text('No categories available.')
                                 : Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -468,7 +462,10 @@ class _ContactListItemState extends State<ContactListItem> {
                                       },
                                     ),
                                   ),
-                  ),
+                          );
+                        }
+                        return const Loader();
+                      }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 2 / 100,
                   ),

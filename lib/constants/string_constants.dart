@@ -37,7 +37,7 @@ class StringConstants {
   static const String francetext = 'France';
   static const String remembertext = 'Remember me';
   static const String forgottext = 'Forgot Password';
-  static const String otptext = 'GeT OTP';
+  static const String otptext = 'Get OTP';
   static const String cretetext = 'Create Account';
   static const String weltext = "WELCOME";
   static const String emailadresstext = "Email Address";
@@ -102,7 +102,7 @@ class StringConstants {
   static const passwordNameessage = "Please enter your password";
   static const englishtext = 'English';
   static const protectiontext = "Protection Type";
-  static const addcontactext='Add Contact';
+  static const addcontactext = 'Add Contact';
   static const selectaccountext =
       'Please select the type of account you will be setting up today.';
   static const otpverifivcationtext = 'OTP Verification';
@@ -132,34 +132,37 @@ class StringConstants {
       'You Are Protected Against All The Dangerous Phone Numbers From Our Security Database';
   static const spamCalltext =
       'All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam.';
-  static const smsdisabled='Spam SMS protection is disabled';
-  static const smsautomaticallytext='Set Broadlink Product as default SMS app to filter spam messages automatically ';
-  static const incomingtext='incoming';
-  static const outgoingtext='outgoing';
-  static const jobspamtext='Job fraud 133 spam report';
-  static  const blockspamtext='Block All Scam, Telemarketing And Fraud Calls Thanks To AI-Blocking Accuracy.';
-  static const selectionplantext='Choose Your Plan';
-  static const dollartext='\$7.99/mth';
-  static const callblockingtext='Spam call blocking and AI Protect scam detection';
-  static const smsblockingtext='Spam call blocking, AI Protect scam detection and SMS protect';
-  static const emailblockingtext='Spam call blocking, AI Protect scam detection, SMS protect & Email';
-  static const callbunbletext='Call & SMS Bundle';
-  static const dollarpointtext='\$11.98/mth';
-  static const completebunbletext='Complete Protection Bundle';
-  static const dollarhightext='\$14.99/mth';
-  static const spamdetecttext='Spam Call Blocking And AI Protect Scam Detection';
-  static const continuepurchasetext='Continue to Purchase';
-  static const editprofiletext='Edit Profile';
-  static const identifiedtext='IDENTIFIED BY SPAM DETECTOR';
-  static const spamreportext="Spam Report";
-  static const liketext="68k 103%";
+  static const smsdisabled = 'Spam SMS protection is disabled';
+  static const smsautomaticallytext =
+      'Set Broadlink Product as default SMS app to filter spam messages automatically ';
+  static const incomingtext = 'incoming';
+  static const outgoingtext = 'outgoing';
+  static const jobspamtext = 'Job fraud 133 spam report';
+  static const blockspamtext =
+      'Block All Scam, Telemarketing And Fraud Calls Thanks To AI-Blocking Accuracy.';
+  static const selectionplantext = 'Choose Your Plan';
+  static const dollartext = '\$7.99/mth';
+  static const callblockingtext =
+      'Spam call blocking and AI Protect scam detection';
+  static const smsblockingtext =
+      'Spam call blocking, AI Protect scam detection and SMS protect';
+  static const emailblockingtext =
+      'Spam call blocking, AI Protect scam detection, SMS protect & Email';
+  static const callbunbletext = 'Call & SMS Bundle';
+  static const dollarpointtext = '\$11.98/mth';
+  static const completebunbletext = 'Complete Protection Bundle';
+  static const dollarhightext = '\$14.99/mth';
+  static const spamdetecttext =
+      'Spam Call Blocking And AI Protect Scam Detection';
+  static const continuepurchasetext = 'Continue to Purchase';
+  static const editprofiletext = 'Edit Profile';
+  static const identifiedtext = 'IDENTIFIED BY SPAM DETECTOR';
+  static const spamreportext = "Spam Report";
+  static const liketext = "68k 103%";
 
-  static const usallytext="Usually Calls";
-  static const Amtext="11AM-2PM";
+  static const usallytext = "Usually Calls";
+  static const Amtext = "11AM-2PM";
 
-  static const callactivitytext="Call Activity";
-  static const milliontext="5.6M calls/60 days";
-
-
-
+  static const callactivitytext = "Call Activity";
+  static const milliontext = "5.6M calls/60 days";
 }

@@ -1,19 +1,30 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:spam_delection_app/app_route/route.dart';
+import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
+import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
+import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_event.dart';
+import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_state.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/image_constants.dart';
-import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
+import 'package:spam_delection_app/data/repository/contact/get_device_contacts.dart';
+import 'package:spam_delection_app/globals/app_constants.dart';
 import 'package:spam_delection_app/globals/colors.dart';
 import 'package:spam_delection_app/screens/blocked_number_screen.dart';
-import 'package:spam_delection_app/screens/call_log_screen.dart';
 import 'package:spam_delection_app/screens/chat_screen.dart';
+import 'package:spam_delection_app/screens/device_call_logs.dart';
 import 'package:spam_delection_app/screens/home_screen.dart';
+import 'package:spam_delection_app/screens/loader.dart';
 import 'package:spam_delection_app/screens/premium_plan.dart';
 import 'package:spam_delection_app/screens/profile_screen.dart';
-import 'package:spam_delection_app/screens/protection_type_screen.dart';
 import 'package:spam_delection_app/screens/setting_screen.dart';
+import 'package:spam_delection_app/screens/widgets/custom_app_bar.dart';
+import 'package:spam_delection_app/screens/widgets/custom_drawer.dart';
+import 'package:spam_delection_app/utils/api_constants/http_status_codes.dart';
+import 'package:spam_delection_app/utils/session_expired.dart';
+import 'package:spam_delection_app/utils/toast.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -28,7 +39,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final List<Widget> _pages = [
     const HomeScreen(),
     const ChatScreen(),
-    const CallLog(),
+    // const ContactList(),
+    const DeviceCallLogs(showAppBar: false),
     const PremiumPlan(),
     const Setting(),
   ];
@@ -37,63 +49,19 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @override
+  void initState() {
+    sharedPrefBloc.add(GetUserDataFromLocalEvent());
+    getAndSyncContacts();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         key: _key,
-        drawer: Drawer(
-          backgroundColor: AppColor.callColor,
-          child: ListView(
-            children: [
-              DrawerHeader(child: Image.asset(IconConstants.icBroadlogo)),
-              ListTile(
-                onTap: () async {
-                  // bool signOutSuccess = await signOutFromGoogle();
-                  // if (signOutSuccess) {
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //     const SnackBar(
-                  //         content:
-                  //             Text('Successfully signed out from Google.')),
-                  //   );
-                  // Navigate to login or home screen after sign out
-                  SharedPref.clearAll().then((isCleared) {
-                    if (isCleared) {
-                      Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (context) => const ProtectionType(),
-                        ),
-                        (route) => false,
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content:
-                                Text('Failed to sign out. Please try again.')),
-                      );
-                    }
-                  });
-
-                  // Navigator.pushReplacement(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const Welcome()));
-                  // } else {
-                  // ScaffoldMessenger.of(context).showSnackBar(
-                  //   const SnackBar(
-                  //       content:
-                  //           Text('Failed to sign out. Please try again.')),
-                  // );
-                  // }
-                },
-                leading: const Icon(Icons.logout, color: Colors.white),
-                title: const Text(
-                  "Logout",
-                  style: TextStyle(color: Colors.white),
-                ),
-              )
-            ],
-          ),
-        ),
-        appBar: AppBar(
+        drawer: const CustomDrawer(),
+        appBar: CustomAppBar(
+            centerTitle: false,
             leading: InkWell(
               onTap: () {
                 _key.currentState!.openDrawer();
@@ -103,14 +71,27 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 height: MediaQuery.of(context).size.height * 4 / 100,
               ),
             ),
-            title: GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Profile()));
-              },
-              child: Image.asset(ImageConstants.imageProfile,
-                  height: MediaQuery.of(context).size.height * 6 / 100),
-            ),
+            title: "",
+            titleWidget: BlocBuilder(
+                bloc: sharedPrefBloc,
+                builder: (context, state) {
+                  if (state is GetUserDataFromLocalState) {
+                    var photo = state.user.photo;
+                    return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Profile()));
+                        },
+                        child: CircleAvatar(
+                            backgroundImage: (photo?.isNotEmpty ?? false)
+                                ? NetworkImage(photo ?? "")
+                                : const AssetImage(
+                                    ImageConstants.imageProfile)));
+                  }
+                  return const Loader();
+                }),
             actions: [
               Image.asset(
                 IconConstants.icNotification,
@@ -427,5 +408,36 @@ class _BottomNavigationState extends State<BottomNavigation> {
       return Colors.white;
     }
     return Colors.white;
+  }
+
+  void getAndSyncContacts() {
+    contactListBloc.stream.listen((state) {
+      if (state is GetContactState) {
+        // filterSearchResults("");
+        if (state.value.statusCode == 200) {
+        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+          sessionExpired(context, state.value.message ?? "");
+        } else {
+          showToast(state.value.message);
+        }
+      }
+      if (state is SyncContactState) {
+        if (state.value.statusCode == 200) {
+          showToast(state.value.message);
+        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+          sessionExpired(context, state.value.message ?? "");
+        } else {
+          showToast(state.value.message);
+        }
+        contactListBloc.add(GetContactEvent());
+      }
+    });
+    getLocalContacts().then((contacts) {
+      if (contacts != null) {
+        contactListBloc.add(SyncContactEvent(contacts: contacts));
+      } else {
+        contactListBloc.add(GetContactEvent());
+      }
+    });
   }
 }

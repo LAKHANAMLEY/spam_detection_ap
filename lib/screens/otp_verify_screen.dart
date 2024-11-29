@@ -1,8 +1,11 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:spam_delection_app/data/repository/auth_repo/login_with_phone_api.dart';
 import 'package:spam_delection_app/screens/login_succesful_screen.dart';
+import 'package:spam_delection_app/screens/widgets/custom_dialog.dart';
+import 'package:spam_delection_app/utils/api_constants/http_status_codes.dart';
+import 'package:spam_delection_app/utils/session_expired.dart';
 
 import '../constants/icons_constants.dart';
 import '../constants/string_constants.dart';
@@ -11,14 +14,17 @@ import '../globals/appbutton.dart';
 import '../globals/colors.dart';
 import 'forgot_password_screen.dart';
 
-
-
 class OtpVerify extends StatefulWidget {
-  const OtpVerify({super.key,  this.verificationId,  this.phoneNumber});
-  static String routeName = './OtpVerify';
+  const OtpVerify({
+    super.key,
+    this.verificationId,
+    this.phoneNumber,
+    this.countryCode,
+  });
 
   final String? verificationId;
   final String? phoneNumber;
+  final String? countryCode;
 
   @override
   State<OtpVerify> createState() => _ForgotOtpVerifyState();
@@ -30,18 +36,41 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
   final TextEditingController _otpController = TextEditingController();
 
   Future<void> _signInWithOtp() async {
-    _otpController.text = firstInputController.text+secondInputController.text+thirdInputController.text+forthInputController.text+fifthInputController.text+sixthInputController.text;
+    _otpController.text = firstInputController.text +
+        secondInputController.text +
+        thirdInputController.text +
+        forthInputController.text +
+        fifthInputController.text +
+        sixthInputController.text;
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: widget.verificationId??"",
-        smsCode: _otpController.text,//yes sir sabhi me controller nahi diye sorry sir// yes but sabhi ko add v krna pdega
+        verificationId: widget.verificationId ?? "",
+        smsCode: _otpController
+            .text, //yes sir sabhi me controller nahi diye sorry sir// yes but sabhi ko add v krna pdega
       );
       await _auth.signInWithCredential(credential);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Phone number verified and user signed in successfully!'),
       ));
 
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginSuccessful()));
+      loginWithPhone(
+              countryCode: widget.countryCode ?? "",
+              phone: widget.phoneNumber ?? "")
+          .then((response) {
+        if (response.statusCode == 200) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => LoginSuccessful(
+                        user: response.data,
+                      )));
+        } else if (response.statusCode == HTTPStatusCodes.sessionExpired) {
+          sessionExpired(context, response.message);
+        } else {
+          showCustomDialog(context,
+              dialogType: DialogType.failed, subTitle: response.message);
+        }
+      });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Invalid OTP or verification failed')),
@@ -81,25 +110,35 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
     pin6FocusNode = FocusNode();
   }
 
-  forgotOtpUserValidation(String firstInput, String secondInput,
-      String thirdInput, String fourthInput,String fifthInput,String sixthInput) async {
-    var otpInput = (firstInput + secondInput + thirdInput + fourthInput + fifthInput + sixthInput);
+  forgotOtpUserValidation(
+      String firstInput,
+      String secondInput,
+      String thirdInput,
+      String fourthInput,
+      String fifthInput,
+      String sixthInput) async {
+    var otpInput = (firstInput +
+        secondInput +
+        thirdInput +
+        fourthInput +
+        fifthInput +
+        sixthInput);
     if (otpInput.isEmpty) {
-      SnackBarToastMessage.showSnackBar(
-          context, StringConstants.otpMessage);
+      SnackBarToastMessage.showSnackBar(context, StringConstants.otpMessage);
       return false;
     } else if (otpInput.length < 4) {
       SnackBarToastMessage.showSnackBar(
           context, StringConstants.otpMinLenthMessage);
       return false;
     } else {
-      OtpUserApiCall(firstInput, secondInput, thirdInput, fourthInput,fifthInput,sixthInput);
+      OtpUserApiCall(firstInput, secondInput, thirdInput, fourthInput,
+          fifthInput, sixthInput);
     }
   }
 
   OtpUserApiCall(String firstInput, String secondInput, String thirdInput,
-      String fourthInput,String fifthInput,String sixthInput) async {
-   // Navigator.push(context, MaterialPageRoute(builder: (context) => const ResetPassword(email: email,)),);
+      String fourthInput, String fifthInput, String sixthInput) async {
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => const ResetPassword(email: email,)),);
     print("Call Update Api");
   }
 
@@ -119,6 +158,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
       focusNode.requestFocus();
     }
   }
+
   void previousField(String value, FocusNode focusNode) {
     focusNode.requestFocus();
   }
@@ -129,22 +169,23 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
       backgroundColor: AppColor.secondryColor,
       appBar: AppBar(
         backgroundColor: AppColor.secondryColor,
-        leading:GestureDetector(
-          onTap: (){
+        leading: GestureDetector(
+          onTap: () {
             Navigator.pop(context);
           },
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(IconConstants.backIcon,
+              child: Image.asset(
+                IconConstants.backIcon,
               ),
-
             ),
           ),
         ),
-        title: Image.asset(IconConstants.icBroadlogo, height: MediaQuery.of(context).size.height * 35 / 100,
-          width: MediaQuery.of(context).size.width * 35 / 100 ),
+        title: Image.asset(IconConstants.icBroadlogo,
+            height: MediaQuery.of(context).size.height * 35 / 100,
+            width: MediaQuery.of(context).size.width * 35 / 100),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -156,16 +197,17 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
               ),
               const Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 50,right: 50),
-                    child: Text(
-                      StringConstants.otpverifivcationtext,textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: AppColor.bluelightColor,
-                          fontSize: 35,
-                          fontFamily: AppFont.fontFamily,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  )),
+                padding: EdgeInsets.only(left: 50, right: 50),
+                child: Text(
+                  StringConstants.otpverifivcationtext,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: AppColor.bluelightColor,
+                      fontSize: 35,
+                      fontFamily: AppFont.fontFamily,
+                      fontWeight: FontWeight.w600),
+                ),
+              )),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
@@ -179,8 +221,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                         color: AppColor.verifyColor,
                         fontFamily: AppFont.fontFamily,
                         fontSize: 16,
-                        fontWeight: FontWeight.w500
-                    ),
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
               ),
@@ -213,34 +254,38 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     counterText: '',
                                     border: const OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          color: AppColor.fillColor, width: 1.5),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(2)),
+                                          color: AppColor.fillColor,
+                                          width: 1.5),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(2)),
                                     ),
-                                    enabledBorder:  OutlineInputBorder(
+                                    enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          color:  firstInputController.text.isNotEmpty
+                                          color: firstInputController
+                                                  .text.isNotEmpty
                                               ? AppColor.deepyelloeColor
-                                              : AppColor.fillColor.withOpacity(0.2),
+                                              : AppColor.fillColor
+                                                  .withOpacity(0.2),
                                           width: 1.5),
                                       borderRadius: const BorderRadius.all(
                                           Radius.circular(2)),
                                     ),
                                     focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          color: AppColor.fillColor, width: 1.5),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(2)),
+                                          color: AppColor.fillColor,
+                                          width: 1.5),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(2)),
                                     ),
                                     contentPadding: const EdgeInsets.all((12)),
-                                    fillColor: AppColor.fillColor.withOpacity(0.2),
+                                    fillColor:
+                                        AppColor.fillColor.withOpacity(0.2),
                                     filled: true,
                                   ),
                                   style: const TextStyle(
                                       fontSize: 28,
                                       fontWeight: FontWeight.w500,
-                                      color:
-                                      AppColor.deepyelloeColor),
+                                      color: AppColor.deepyelloeColor),
                                   keyboardType: TextInputType.number,
                                   inputFormatters: <TextInputFormatter>[
                                     FilteringTextInputFormatter.allow(
@@ -250,12 +295,14 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                   textAlign: TextAlign.center,
                                   maxLength: 1,
                                   onTap: () {
-                                    pin1FocusNode!.requestFocus();//understand sir// now check
+                                    pin1FocusNode!
+                                        .requestFocus(); //understand sir// now check
                                   },
                                   onChanged: (value) {
                                     print(firstInputController.text.length);
                                     print(firstInputController.text);
-                                    firstInputController.text = value;//is line ki need nahi thi agar controller assign kr dete to
+                                    firstInputController.text =
+                                        value; //is line ki need nahi thi agar controller assign kr dete to
                                     nextField(value, pin2FocusNode!);
                                   },
                                 ),
@@ -294,14 +341,16 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                   border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColor.fillColor, width: 1.5),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(2.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0)),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: secondInputController.text.isNotEmpty
+                                        color: secondInputController
+                                                .text.isNotEmpty
                                             ? AppColor.deepyelloeColor
-                                            : AppColor.fillColor.withOpacity(0.2),
+                                            : AppColor.fillColor
+                                                .withOpacity(0.2),
                                         width: 1.5),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(2.0)),
@@ -309,19 +358,21 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                   focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColor.fillColor, width: 1.5),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(2.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0)),
                                   ),
                                   contentPadding: const EdgeInsets.all((12)),
-                                  fillColor: AppColor.fillColor.withOpacity(0.2),
+                                  fillColor:
+                                      AppColor.fillColor.withOpacity(0.2),
                                   filled: true,
                                 ),
                                 style: TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.w500,
-                                    color: (secondInputController.text.isNotEmpty)
-                                        ? AppColor.deepyelloeColor
-                                        : AppColor.deepyelloeColor),
+                                    color:
+                                        (secondInputController.text.isNotEmpty)
+                                            ? AppColor.deepyelloeColor
+                                            : AppColor.deepyelloeColor),
                               ),
                             ),
                             SizedBox(
@@ -344,34 +395,38 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                   border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColor.fillColor, width: 1.5),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(2.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0)),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: (thirdInputController.text.isNotEmpty)
+                                        color: (thirdInputController
+                                                .text.isNotEmpty)
                                             ? AppColor.deepyelloeColor
-                                            : AppColor.fillColor.withOpacity(0.2), width: 1.5),
+                                            : AppColor.fillColor
+                                                .withOpacity(0.2),
+                                        width: 1.5),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(2.0)),
                                   ),
                                   focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColor.fillColor, width: 1.5),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(2.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0)),
                                   ),
                                   contentPadding: const EdgeInsets.all((12)),
                                   fillColor:
-                                  AppColor.fillColor.withOpacity(0.2),
+                                      AppColor.fillColor.withOpacity(0.2),
                                   filled: true,
                                 ),
                                 style: TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.w700,
-                                    color: (thirdInputController.text.isNotEmpty)
-                                        ? AppColor.deepyelloeColor
-                                        : AppColor.deepyelloeColor),
+                                    color:
+                                        (thirdInputController.text.isNotEmpty)
+                                            ? AppColor.deepyelloeColor
+                                            : AppColor.deepyelloeColor),
                                 focusNode: pin3FocusNode,
                                 onTap: () {
                                   pin3FocusNode!.requestFocus();
@@ -410,14 +465,16 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                   border: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColor.fillColor, width: 1.5),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(2.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0)),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: (forthInputController.text.isNotEmpty)
+                                        color: (forthInputController
+                                                .text.isNotEmpty)
                                             ? AppColor.deepyelloeColor
-                                            : AppColor.fillColor.withOpacity(0.2),
+                                            : AppColor.fillColor
+                                                .withOpacity(0.2),
                                         width: 1.5),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(2.0)),
@@ -425,20 +482,21 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                   focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: AppColor.fillColor, width: 1.5),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(2.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0)),
                                   ),
                                   contentPadding: const EdgeInsets.all((12)),
                                   fillColor:
-                                  AppColor.fillColor.withOpacity(0.2),
+                                      AppColor.fillColor.withOpacity(0.2),
                                   filled: true,
                                 ),
                                 style: TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.w500,
-                                    color: (forthInputController.text.isNotEmpty)
-                                        ? AppColor.deepyelloeColor
-                                        : AppColor.deepyelloeColor),
+                                    color:
+                                        (forthInputController.text.isNotEmpty)
+                                            ? AppColor.deepyelloeColor
+                                            : AppColor.deepyelloeColor),
                                 focusNode: pin4FocusNode,
                                 onTap: () {
                                   pin4FocusNode!.requestFocus();
@@ -454,152 +512,161 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                 },
                               ),
                             ),
-                      SizedBox(
-                        width: 50,
-                        height: 55,
-                        child: TextFormField(
-                          cursorColor: AppColor.primaryColor,
-                          maxLength: 1,
-                          autofocus: true,
-                          // readOnly: true,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: <TextInputFormatter>[
-                            FilteringTextInputFormatter.allow(
-                                RegExp(r'[0-9]')),
-                            FilteringTextInputFormatter.digitsOnly,
+                            SizedBox(
+                              width: 50,
+                              height: 55,
+                              child: TextFormField(
+                                cursorColor: AppColor.primaryColor,
+                                maxLength: 1,
+                                autofocus: true,
+                                // readOnly: true,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'[0-9]')),
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                                textAlign: TextAlign.center,
+                                decoration: InputDecoration(
+                                  counterText: '',
+                                  border: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColor.fillColor, width: 1.5),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0)),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: (thirdInputController
+                                                .text.isNotEmpty)
+                                            ? AppColor.deepyelloeColor
+                                            : AppColor.fillColor
+                                                .withOpacity(0.2),
+                                        width: 1.5),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(2.0)),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColor.fillColor, width: 1.5),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0)),
+                                  ),
+                                  contentPadding: const EdgeInsets.all((12)),
+                                  fillColor:
+                                      AppColor.fillColor.withOpacity(0.2),
+                                  filled: true,
+                                ),
+                                style: TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.w700,
+                                    color:
+                                        (thirdInputController.text.isNotEmpty)
+                                            ? AppColor.deepyelloeColor
+                                            : AppColor.deepyelloeColor),
+                                focusNode: pin5FocusNode,
+                                onTap: () {
+                                  pin5FocusNode!.requestFocus();
+                                },
+                                onChanged: (value) {
+                                  print('hello');
+                                  if (value.isEmpty) {
+                                    fifthInputController.text = '';
+                                    previousField(value, pin4FocusNode!);
+                                  } else {
+                                    nextField(value, pin6FocusNode!);
+                                    fifthInputController.text = value;
+                                  }
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              width: 50,
+                              height: 55,
+                              child: TextFormField(
+                                cursorColor: AppColor.yellowlightColor,
+                                focusNode: pin6FocusNode,
+                                autofocus: true,
+                                readOnly: false,
+                                maxLength: 1,
+                                // obscureText: true,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'[0-9]')),
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                                textAlign: TextAlign.center,
+                                decoration: InputDecoration(
+                                  counterText: '',
+                                  border: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColor.fillColor, width: 1.5),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0)),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: (forthInputController
+                                                .text.isNotEmpty)
+                                            ? AppColor.deepyelloeColor
+                                            : AppColor.fillColor
+                                                .withOpacity(0.2),
+                                        width: 1.5),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(2.0)),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColor.fillColor, width: 1.5),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0)),
+                                  ),
+                                  contentPadding: const EdgeInsets.all((12)),
+                                  fillColor:
+                                      AppColor.fillColor.withOpacity(0.2),
+                                  filled: true,
+                                ),
+                                style: TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.w500,
+                                    color:
+                                        (forthInputController.text.isNotEmpty)
+                                            ? AppColor.deepyelloeColor
+                                            : AppColor.deepyelloeColor),
+                                onTap: () {
+                                  pin6FocusNode?.requestFocus();
+                                },
+                                onChanged: (value) {
+                                  if (value.isEmpty) {
+                                    sixthInputController.text = '';
+                                    previousField(value, pin5FocusNode!);
+                                  } else {
+                                    sixthInputController.text = value;
+                                  }
+                                },
+                              ),
+                            ),
                           ],
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            counterText: '',
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: AppColor.fillColor, width: 1.5),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(2.0)),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: (thirdInputController.text.isNotEmpty)
-                                      ? AppColor.deepyelloeColor
-                                      : AppColor.fillColor.withOpacity(0.2), width: 1.5),
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(2.0)),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: AppColor.fillColor, width: 1.5),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(2.0)),
-                            ),
-                            contentPadding: const EdgeInsets.all((12)),
-                            fillColor:
-                            AppColor.fillColor.withOpacity(0.2),
-                            filled: true,
-                          ),
-                          style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w700,
-                              color: (thirdInputController.text.isNotEmpty)
-                                  ? AppColor.deepyelloeColor
-                                  : AppColor.deepyelloeColor),
-                          focusNode: pin5FocusNode,
-                          onTap: () {
-                            pin5FocusNode!.requestFocus();
-                          },
-                          onChanged: (value) {
-                            print('hello');
-                            if (value.isEmpty) {
-                              fifthInputController.text = '';
-                              previousField(value, pin4FocusNode!);
-                            } else {
-                              nextField(value, pin6FocusNode!);
-                              fifthInputController.text = value;
-                            }
-                          },
                         ),
                       ),
-                      SizedBox(
-                        width: 50,
-                        height: 55,
-                        child: TextFormField(
-                          cursorColor: AppColor.yellowlightColor,
-                          focusNode: pin6FocusNode,
-                          autofocus: true,
-                          readOnly: false,
-                          maxLength: 1,
-                          // obscureText: true,
-                          keyboardType: TextInputType.number,
-                          inputFormatters: <TextInputFormatter>[
-                            FilteringTextInputFormatter.allow(
-                                RegExp(r'[0-9]')),
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            counterText: '',
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: AppColor.fillColor, width: 1.5),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(2.0)),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: (forthInputController.text.isNotEmpty)
-                                      ? AppColor.deepyelloeColor
-                                      : AppColor.fillColor.withOpacity(0.2),
-                                  width: 1.5),
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(2.0)),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: AppColor.fillColor, width: 1.5),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(2.0)),
-                            ),
-                            contentPadding: const EdgeInsets.all((12)),
-                            fillColor:
-                            AppColor.fillColor.withOpacity(0.2),
-                            filled: true,
-                          ),
-                          style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w500,
-                              color: (forthInputController.text.isNotEmpty)
-                                  ? AppColor.deepyelloeColor
-                                  : AppColor.deepyelloeColor),
-                          onTap: () {
-                            pin6FocusNode?.requestFocus();
-                          },
-                          onChanged: (value) {
-                            if (value.isEmpty) {
-                              sixthInputController.text = '';
-                              previousField(value, pin5FocusNode!);
-                            } else {
-                              sixthInputController.text = value;
-                            }
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 4 / 100,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(StringConstants.didtext,
+                          const Text(
+                            StringConstants.didtext,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: AppFont.fontFamily,
-                                color: AppColor.greylightColor,fontSize: 15),
-
+                                color: AppColor.greylightColor,
+                                fontSize: 15),
                           ),
                           SizedBox(
-                              width: MediaQuery.of(context).size.width * 2 / 100),
+                              width:
+                                  MediaQuery.of(context).size.width * 2 / 100),
                           InkWell(
                             onTap: () {
                               // Navigator.push(
@@ -618,10 +685,9 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 5 / 100),
                       AppButton(
-                          text: StringConstants.verifyproceedtext,
-                          onPress: _signInWithOtp,
-                          ),
-
+                        text: StringConstants.verifyproceedtext,
+                        onPress: _signInWithOtp,
+                      ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 4 / 100,
                       ),
@@ -629,13 +695,10 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
       ),
-
-
     );
   }
 }

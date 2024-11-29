@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_bloc.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
+import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_bloc.dart';
+import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_state.dart';
 
 int language = 0;
 var userBloc = ApiBloc(ApiBlocInitialState());
+var sharedPrefBloc = SharedPrefBloc(SharedPrefInitialState());
+var contactListBloc = ApiBloc(ApiBlocInitialState());
 
 class AppConstant {
   static const int appStatus = 0;

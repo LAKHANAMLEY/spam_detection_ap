@@ -10,7 +10,6 @@ import '../globals/colors.dart';
 
 class RegisterGoogle extends StatefulWidget {
   const RegisterGoogle({super.key});
-  static String routeName = './RegisterFirst';
 
   @override
   State<RegisterGoogle> createState() => _RegisterFirstState();

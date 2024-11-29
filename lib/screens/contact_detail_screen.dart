@@ -7,21 +7,21 @@ import 'package:spam_delection_app/utils/helpers.dart';
 import '../constants/icons_constants.dart';
 import '../globals/colors.dart';
 
-class CheckSpam extends StatefulWidget {
+class ContactDetail extends StatefulWidget {
   final ContactData? contact;
 
-  const CheckSpam({super.key, this.contact});
+  const ContactDetail({super.key, this.contact});
 
   @override
-  State<CheckSpam> createState() => _CheckSpamState();
+  State<ContactDetail> createState() => _ContactDetailState();
 }
 
-class _CheckSpamState extends State<CheckSpam> {
+class _ContactDetailState extends State<ContactDetail> {
   final double expandedHeight = 280.0;
   final double collapsedHeight = 100.0;
   @override
   Widget build(BuildContext context) {
-    var argument = args(context) as CheckSpam;
+    var argument = args(context) as ContactDetail;
     var contact = argument.contact;
     const expandedHeight = 280.0;
     const collapsedHeight = 60.0;

@@ -22,8 +22,6 @@ import '../globals/colors.dart';
 class LoginGoogle extends StatefulWidget {
   const LoginGoogle({super.key});
 
-  static String routeName = './LoginGoogle';
-
   @override
   State<LoginGoogle> createState() => _LoginGoogleState();
 }
@@ -72,7 +70,9 @@ class _LoginGoogleState extends State<LoginGoogle> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LoginSuccessful()));
+                              builder: (context) => LoginSuccessful(
+                                    user: state.value.data,
+                                  )));
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,

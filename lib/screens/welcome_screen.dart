@@ -12,7 +12,6 @@ import '../globals/colors.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
-  static String routeName = './Welcome';
 
   @override
   State<Welcome> createState() => _WelcomeState();

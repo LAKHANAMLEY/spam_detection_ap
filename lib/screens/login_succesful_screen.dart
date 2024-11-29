@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:spam_delection_app/app_route/route.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/screens/bottom_navigation.dart';
+import 'package:spam_delection_app/models/user_model.dart';
 
 import '../constants/icons_constants.dart';
 import '../constants/string_constants.dart';
@@ -8,9 +9,8 @@ import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
 
 class LoginSuccessful extends StatefulWidget {
-  const LoginSuccessful({super.key, this.firstname});
-  final String? firstname;
-  static String routeName = './LoginSuccessful';
+  const LoginSuccessful({super.key, this.user});
+  final User? user;
 
   @override
   State<LoginSuccessful> createState() => _LoginSuccessfulState();
@@ -61,8 +61,8 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
           Text(
-            'Yey! ${widget.firstname}',
-            style: TextStyle(
+            'Yey! ${widget.user?.name}',
+            style: const TextStyle(
                 color: AppColor.yellowlightColor,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
@@ -70,7 +70,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
-          Text(
+          const Text(
             StringConstants.fromtext,
             style: TextStyle(color: AppColor.gracyColor),
           ),
@@ -85,10 +85,11 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           AppButton(
               text: StringConstants.exploretext,
               onPress: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const BottomNavigation()));
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AppRoutes.bottomNavigation,
+                  (route) => false,
+                );
               })
         ]))));
   }

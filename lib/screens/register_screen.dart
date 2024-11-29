@@ -12,12 +12,9 @@ import '../constants/string_constants.dart';
 import '../globals/app_fonts.dart';
 import '../globals/colors.dart';
 import '../models/country_list_model.dart';
-import 'package:spam_delection_app/data/repository/setting_repo/countries_api.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
-
-  static String routeName = './Register';
 
   @override
   State<Register> createState() => _RegisterState();
