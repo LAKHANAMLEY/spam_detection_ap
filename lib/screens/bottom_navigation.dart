@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:spam_delection_app/app_route/route.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
@@ -14,6 +15,11 @@ import 'package:spam_delection_app/screens/premium_plan.dart';
 import 'package:spam_delection_app/screens/profile_screen.dart';
 import 'package:spam_delection_app/screens/protection_type_screen.dart';
 import 'package:spam_delection_app/screens/setting_screen.dart';
+import 'package:spam_delection_app/screens/widgets/custom_dialog.dart';
+
+import '../bloc/api_bloc/api_state.dart';
+import '../utils/api_constants/http_status_codes.dart';
+import '../utils/session_expired.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -103,14 +109,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 height: MediaQuery.of(context).size.height * 4 / 100,
               ),
             ),
-            title: GestureDetector(
+            title:
+            GestureDetector(
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const Profile()));
               },
-              child: Image.asset(ImageConstants.imageProfile,
-                  height: MediaQuery.of(context).size.height * 6 / 100),
-            ),
+              child: Image.asset(ImageConstants.imageProfile,height:MediaQuery.of(context).size.height*8/100,width:MediaQuery.of(context).size.width*8/100 )
+              ),
+
             actions: [
               Image.asset(
                 IconConstants.icNotification,

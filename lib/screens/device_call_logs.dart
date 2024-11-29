@@ -7,6 +7,7 @@ import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
 import 'package:spam_delection_app/extensions/date_time_ext.dart';
 import 'package:spam_delection_app/extensions/timestamp_ext.dart';
+import 'package:spam_delection_app/globals/colors.dart';
 import 'package:spam_delection_app/screens/widgets/custom_app_bar.dart';
 import 'package:spam_delection_app/screens/widgets/custom_textfiled.dart';
 
@@ -49,6 +50,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.secondryColor,
       appBar: const CustomAppBar(
         title: "Call logs",
       ),
