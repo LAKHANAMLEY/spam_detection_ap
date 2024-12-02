@@ -81,6 +81,7 @@ class _ContactDetailState extends State<ContactDetail> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ActionButton(
+
                             label: 'Message',
                             icon: Icons.message,
                           ),
@@ -101,7 +102,7 @@ class _ContactDetailState extends State<ContactDetail> {
             children: [
               Container(
                 margin:
-                    EdgeInsets.all(16.0), // Adds margin around the container
+                    EdgeInsets.all(16.0),
                 height: MediaQuery.of(context).size.height * 10 / 100,
                 width: MediaQuery.of(context).size.width * 90 / 100,
                 decoration: BoxDecoration(

@@ -20,14 +20,21 @@ import 'package:spam_delection_app/data/repository/user_repo/edit_profile_api.da
 import 'package:spam_delection_app/data/repository/user_repo/get_user_profile_api.dart';
 import 'package:spam_delection_app/models/response.dart';
 
+import '../../data/repository/block_repo/block_contact_list_api.dart';
+import '../../data/repository/call_log_repo/get_call_log/get_call_log_list_api.dart';
+import '../../data/repository/call_log_repo/get_call_log/syn_call_log_api.dart';
+import '../../data/repository/corporate_repo/edit_profile_corporate_api.dart';
 import '../../data/repository/family_member_repo/add_member_api.dart';
 import '../../data/repository/family_member_repo/delete_member_api.dart';
 import '../../data/repository/family_member_repo/edit_member_api.dart';
+import '../../data/repository/family_member_repo/family_member_details_api.dart';
 import '../../data/repository/family_member_repo/family_members_list_api.dart';
 import '../../data/repository/setting_repo/call_type_api.dart';
+import '../../data/repository/setting_repo/number_type_api.dart';
 import '../../data/repository/staff_repo/staff_delete_member_api.dart';
 import '../../data/repository/staff_repo/staff_edit_member_api.dart';
 import '../../data/repository/staff_repo/staff_member_list_api.dart';
+import '../../models/user_model.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
   ApiBloc(super.initialState) {
@@ -131,6 +138,16 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(GetFamilyMemberListState(value));
       });
     }
+// get family member details
+
+    if (event is GetFamilyMemberDetailEvent) {
+      emit(ApiLoadingState());
+      await getFamilyDetail().then((value) {
+        emit(GetFamilyMemberDetailState(value));
+      });
+    }
+
+
 
     // family add member
     if (event is FamilyAddMemberEvent) {
@@ -186,6 +203,16 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(GetCallDurationState(value));
       });
     }
+
+    // Number type
+
+    if (event is GetNumberTypeEvent) {
+      emit(ApiLoadingState());
+      await getNumberType().then((value) {
+        emit(GetNumberTypeState(value));
+      });
+    }
+
     // call type
 
     if (event is GetCallTypeEvent) {
@@ -195,6 +222,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       });
     }
     //contact
+    // block
+
+    if (event is GetBlockContactEvent) {
+      emit(ApiLoadingState());
+      await blockContact().then((value) {
+        emit(GetBlockContactState(value));
+      });
+    }
     // unblock
     if (event is UnBlockEvent) {
       emit(ApiLoadingState());
@@ -207,7 +242,29 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     }
     //corporate
     // edit profile
-    /////////
+
+    if (event is CorporateEditProfileEvent) {
+      emit(ApiLoadingState());
+      await corpoarteEditProfile(user: event.user).then((value) {
+        emit(CorporateEditProfileState(value));
+      });
+    }
+// call log
+    //syn call log
+    if (event is SyncCallLogEvent) {
+      emit(ApiLoadingState());
+      await syncCallLog(event.contacts).then((value) {
+        emit(SyncCallLogState(value));
+      });
+    }
+    // get call log list
+    if (event is GetCallLogListEvent) {
+      emit(ApiLoadingState());
+      await getCallLog().then((value) {
+        emit(GetCallLogListState(value));
+      });
+    }
+
 
     // staff
     //get staff member list

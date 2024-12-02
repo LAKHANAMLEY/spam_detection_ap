@@ -2,6 +2,7 @@ import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:spam_delection_app/app_route/route.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_bloc.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
@@ -10,6 +11,11 @@ import 'package:spam_delection_app/extensions/timestamp_ext.dart';
 import 'package:spam_delection_app/screens/widgets/custom_app_bar.dart';
 import 'package:spam_delection_app/screens/widgets/custom_textfiled.dart';
 import 'package:spam_delection_app/utils/helpers.dart';
+
+import '../constants/icons_constants.dart';
+import '../globals/app_fonts.dart';
+import '../globals/colors.dart';
+import 'contact_detail_screen.dart';
 
 class DeviceCallLogs extends StatefulWidget {
   final bool? showAppBar;
@@ -30,6 +36,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
   @override
   void initState() {
     super.initState();
+
     getDeviceCallLogBloc.add(GetDeviceCallLogEvent());
   }
 
@@ -51,7 +58,9 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
   @override
   Widget build(BuildContext context) {
     var argument = args(context) as DeviceCallLogs?;
+
     return Scaffold(
+      backgroundColor: AppColor.secondryColor,
       appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
           ? const CustomAppBar(
               title: "Call logs",
@@ -94,13 +103,31 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                     CallLogListItem(
                                         callLog: filteredCallLogs[index])),
                       ),
+
                     ],
                   ),
                 ));
+
           }),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColor.callColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Image.asset(
+          IconConstants.icUsername,
+          color: AppColor.secondryColor,
+          height: MediaQuery.of(context).size.height * 6 / 100,
+          width: MediaQuery.of(context).size.width * 6 / 100,
+        ),
+        onPressed: () {
+         Navigator.pushNamed(context, AppRoutes.contactList);
+        },
+      ),
     );
   }
 }
+
 
 class CallLogListItem extends StatelessWidget {
   final CallLogEntry callLog;
@@ -120,6 +147,7 @@ class CallLogListItem extends StatelessWidget {
     );
   }
 }
+
 
 IconData getIcon(CallType? callType) {
   switch (callType) {

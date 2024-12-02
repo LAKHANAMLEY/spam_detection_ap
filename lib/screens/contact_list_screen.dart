@@ -34,7 +34,8 @@ class _ContactListState extends State<ContactList> {
   final TextEditingController editingController = TextEditingController();
 
   List<ContactData> contacts = [];
-  late List<ContactData> filteredContacts;
+  List<ContactData> filteredContacts = [];
+
 
   var markSpamBloc =
       ApiBloc(ApiBlocInitialState()); //ye variable define kr dia bloc ka

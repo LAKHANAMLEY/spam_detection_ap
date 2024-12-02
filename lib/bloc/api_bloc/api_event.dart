@@ -2,6 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:fast_contacts/src/model/contact.dart';
 import 'package:spam_delection_app/models/user_model.dart';
 
+import '../../models/corporate_login_model.dart';
+
 abstract class ApiEvent extends Equatable {
   @override
   List<Object?> get props => [];
@@ -17,6 +19,18 @@ class SyncContactEvent extends ApiEvent {
   final List<Contact> contacts;
 
   SyncContactEvent({
+    required this.contacts,
+  });
+
+  @override
+  List<Object?> get props => [contacts];
+}
+// synCall log
+
+class SyncCallLogEvent extends ApiEvent {
+  final List<Contact> contacts;
+
+  SyncCallLogEvent({
     required this.contacts,
   });
 
@@ -108,6 +122,8 @@ class GetUserProfileEvent extends ApiEvent {}
 // family member
 // family member list
 class GetFamilyMemberListEvent extends ApiEvent {}
+//// family member Detail
+ class GetFamilyMemberDetailEvent extends ApiEvent {}
 // add member
 class FamilyAddMemberEvent extends ApiEvent {
   final String email;
@@ -169,11 +185,20 @@ class GetPlanListEvent extends ApiEvent {}
 // setting
 // Call Duration
 class GetCallDurationEvent extends ApiEvent {}
+
+
+// Number type
+
+class GetNumberTypeEvent extends ApiEvent {}
 // call type
 
 class GetCallTypeEvent extends ApiEvent {}
 
 // contact
+// block
+class GetBlockContactEvent extends ApiEvent {}
+
+
 // unblock
 class UnBlockEvent extends ApiEvent {
 
@@ -188,6 +213,21 @@ class UnBlockEvent extends ApiEvent {
   @override
   List<Object?> get props => [ contactId,comments];
 }
+
+// corporate
+//edit Profile
+
+class CorporateEditProfileEvent extends ApiEvent {
+  final UserData? user;
+
+  CorporateEditProfileEvent({required this.user});
+  @override
+  List<Object?> get props => [user];
+}
+// call Log
+//Get Call log List
+
+class GetCallLogListEvent extends ApiEvent {}
 // Staff member list
 
 class GetStaffMemberListEvent extends ApiEvent {}

@@ -1,15 +1,21 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/models/common_response_model.dart';
-import 'package:spam_delection_app/models/country_list_model.dart';
-import 'package:spam_delection_app/models/family_member_list_model.dart';
+import 'package:spam_delection_app/models/add_contact_model.dart';
+import 'package:spam_delection_app/models/response.dart';
 import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
 
-Future<CommonResponse> getFamilyDetail() async {
-  final response = await http.get(
-    Uri.parse(ApiUrlConstants.endPointFamilyMemberDetails),
+import '../../../../models/common_response_model.dart';
+Future<CommonResponse> deleteAllContact({
+  required callid,
+
+}) async {
+  final response = await http.post(
+    Uri.parse(ApiUrlConstants.endPointDeleteAllCallLog),
     headers: await ApiUrlConstants.headers(),
+    body: {
+      //
+    },
   );
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);

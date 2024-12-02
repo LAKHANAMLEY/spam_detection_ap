@@ -107,4 +107,5 @@ class IconConstants {
   static const String icsubsription='assets/icons/ic_subscription.png';
   static const String icpremiumprotection='assets/icons/ic_premium_plan.png';
   static const String iccircleAvater='assets/icons/ic_circleAvatar.png';
+  static const String icContacts='assets/icons/ic_contacts.png';
 }
