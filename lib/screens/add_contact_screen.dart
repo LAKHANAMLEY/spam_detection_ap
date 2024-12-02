@@ -1,14 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_field/phone_number.dart';
-import 'package:spam_delection_app/data/repository/contact/add_contacts_api.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/screens/contact_list_screen.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class AddContact extends StatefulWidget {
   const AddContact({super.key});
@@ -69,17 +59,17 @@ class _AddContactState extends State<AddContact> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Container(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 2 / 100,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Image.asset(
                 IconConstants.icbackCircle,
               ),
             ),
-            height: MediaQuery.of(context).size.height * 2 / 100,
           ),
         ),
-        title: Text(
+        title: const Text(
           'Add Contact',
           style: TextStyle(
               color: AppColor.callColor,

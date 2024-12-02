@@ -1,32 +1,4 @@
-import 'dart:async';
-
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:spam_delection_app/app_route/route.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
-import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_event.dart';
-import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_state.dart';
-import 'package:spam_delection_app/constants/icons_constants.dart';
-import 'package:spam_delection_app/constants/image_constants.dart';
-import 'package:spam_delection_app/data/repository/contact/get_device_contacts.dart';
-import 'package:spam_delection_app/globals/app_constants.dart';
-import 'package:spam_delection_app/globals/colors.dart';
-import 'package:spam_delection_app/screens/blocked_number_screen.dart';
-import 'package:spam_delection_app/screens/chat_screen.dart';
-import 'package:spam_delection_app/screens/device_call_logs.dart';
-import 'package:spam_delection_app/screens/home_screen.dart';
-import 'package:spam_delection_app/screens/loader.dart';
-import 'package:spam_delection_app/screens/premium_plan.dart';
-import 'package:spam_delection_app/screens/profile_screen.dart';
-import 'package:spam_delection_app/screens/setting_screen.dart';
-import 'package:spam_delection_app/screens/widgets/custom_app_bar.dart';
-import 'package:spam_delection_app/screens/widgets/custom_drawer.dart';
-import 'package:spam_delection_app/utils/api_constants/http_status_codes.dart';
-import 'package:spam_delection_app/utils/session_expired.dart';
-import 'package:spam_delection_app/utils/toast.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});

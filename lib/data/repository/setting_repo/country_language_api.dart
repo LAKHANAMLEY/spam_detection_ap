@@ -1,19 +1,16 @@
-import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/models/country_language_model.dart';
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
-import '../../../models/category_list_model.dart';
-class ApiService {
+import 'package:spam_delection_app/lib.dart';
 
+class ApiService {
   static Future<CountryLanguageResponse> fetchLanguagies() async {
     final url = Uri.parse(ApiUrlConstants.endPointLanguageList);
     try {
-      final response = await http.get(url, headers:await ApiUrlConstants.headers());
+      final response =
+          await http.get(url, headers: await ApiUrlConstants.headers());
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
         print(jsonResponse.toString());
-
 
         // if (jsonResponse.containsKey('data') && jsonResponse['data'] is List) {
         //   final List<dynamic> data = jsonResponse['data'];
@@ -30,5 +27,4 @@ class ApiService {
       throw Exception('Error fetching categories: $error');
     }
   }
-
 }

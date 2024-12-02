@@ -1,16 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/screens/forgot_otp_verify_screen.dart';
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../data/repository/auth_repo/forgot_password_api.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});

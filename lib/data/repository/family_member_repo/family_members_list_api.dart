@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/models/country_list_model.dart';
-import 'package:spam_delection_app/models/family_member_list_model.dart';
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
+import 'package:spam_delection_app/lib.dart';
 
 Future<FamilyMemberListResponse> getFamilyList() async {
   final response = await http.get(

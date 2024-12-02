@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/constants/string_constants.dart';
-import 'package:spam_delection_app/data/repository/block_repo/block_contact_list_api.dart';
-import 'package:spam_delection_app/globals/app_fonts.dart';
-import 'package:spam_delection_app/models/block_contacts_list_model.dart';
-
-import '../constants/icons_constants.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class BlockedNumber extends StatefulWidget {
   const BlockedNumber({super.key});
@@ -15,7 +8,6 @@ class BlockedNumber extends StatefulWidget {
 }
 
 class _BlockedNumberState extends State<BlockedNumber> {
-
   late Future<BlockedContactListResponse> _blockedContacts;
 
   @override
@@ -23,7 +15,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
     super.initState();
     _blockedContacts = blockContact();
   }
- /* final List<Map<String, String>> duplicateItems = [
+  /* final List<Map<String, String>> duplicateItems = [
     {
       'Number': '+233 840 945 232',
       'imagePath': IconConstants.icspamtriangle,
@@ -67,17 +59,17 @@ class _BlockedNumberState extends State<BlockedNumber> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Container(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 2 / 100,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Image.asset(
                 IconConstants.icbackCircle,
               ),
             ),
-            height: MediaQuery.of(context).size.height * 2 / 100,
           ),
         ),
-        title: Text(
+        title: const Text(
           StringConstants.blockNumber,
           style: TextStyle(
               color: AppColor.callColor,
@@ -91,7 +83,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
         child: SingleChildScrollView(
           child: Column(children: [
             Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width * 90 / 100,
               child: TextFormField(
                 readOnly: true,
@@ -106,7 +98,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
                   focusedBorder: const OutlineInputBorder(
                     borderSide:
                         BorderSide(color: AppColor.fillColor, width: 1.5),
-                    borderRadius: const BorderRadius.all(Radius.circular(2)),
+                    borderRadius: BorderRadius.all(Radius.circular(2)),
                   ),
                   filled: true,
                   fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -133,7 +125,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
               child: Container(
                 height: MediaQuery.of(context).size.height * 8 / 100,
                 width: MediaQuery.of(context).size.width * 90 / 100,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: AppColor.secondryColor,
                 ),
                 child: Row(
@@ -207,11 +199,11 @@ class _BlockedNumberState extends State<BlockedNumber> {
                 future: _blockedContacts,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else if (snapshot.hasData) {
-                    final contacts = snapshot.data!.contacts??[];
+                    final contacts = snapshot.data!.contacts ?? [];
                     return ListView.builder(
                       shrinkWrap: true,
                       itemCount: contacts.length,
@@ -219,12 +211,13 @@ class _BlockedNumberState extends State<BlockedNumber> {
                         final contact = contacts[index];
                         return ListTile(
                           title: Text(contact.name),
-                         // subtitle: Text(contact.phone),
+                          // subtitle: Text(contact.phone),
                         );
                       },
                     );
                   } else {
-                    return Center(child: Text('No blocked contacts found.'));
+                    return const Center(
+                        child: Text('No blocked contacts found.'));
                   }
                 },
               ),

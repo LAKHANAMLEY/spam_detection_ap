@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/models/contact_list_response.dart';
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
+import 'package:spam_delection_app/lib.dart';
 
 Future<ContactListResponse> getContacts() async {
   final response = await http.post(

@@ -1,25 +1,4 @@
-import 'package:call_e_log/call_log.dart';
-import 'package:equatable/equatable.dart';
-import 'package:spam_delection_app/models/add_member_model.dart';
-import 'package:spam_delection_app/models/block_contacts_list_model.dart';
-import 'package:spam_delection_app/models/call_duration_model.dart';
-import 'package:spam_delection_app/models/call_logs_model.dart';
-import 'package:spam_delection_app/models/category_list_model.dart';
-import 'package:spam_delection_app/models/common_response_model.dart';
-import 'package:spam_delection_app/models/contact_list_response.dart';
-import 'package:spam_delection_app/models/edit_profile_model.dart';
-import 'package:spam_delection_app/models/family_delete_member_model.dart';
-import 'package:spam_delection_app/models/family_edit_member_model.dart';
-import 'package:spam_delection_app/models/family_member_list_model.dart';
-import 'package:spam_delection_app/models/mark_spam_model.dart';
-import 'package:spam_delection_app/models/number_type_model.dart';
-import 'package:spam_delection_app/models/plan_list_model.dart';
-import 'package:spam_delection_app/models/response.dart';
-import 'package:spam_delection_app/models/sign_up_model.dart';
-import 'package:spam_delection_app/models/spam_list_model.dart';
-import 'package:spam_delection_app/models/staff_member_list_model.dart';
-
-import '../../models/call_type_model.dart';
+import 'package:spam_delection_app/lib.dart';
 
 abstract class ApiState extends Equatable {
   @override
@@ -139,9 +118,10 @@ class GetFamilyMemberListState extends ApiState {
   @override
   List<Object?> get props => [value];
 }
+
 // family member  Details
 class GetFamilyMemberDetailState extends ApiState {
-  final CommonResponse value;
+  final Response value;
   GetFamilyMemberDetailState(this.value);
   @override
   List<Object?> get props => [value];
@@ -191,8 +171,6 @@ class GetCallDurationState extends ApiState {
   List<Object?> get props => [value];
 }
 
-
-
 // Number type
 
 class GetNumberTypeState extends ApiState {
@@ -222,43 +200,20 @@ class GetBlockContactState extends ApiState {
 
 // unBlock
 class UnBlockState extends ApiState {
-  final CommonResponse value;
+  final Response value;
   UnBlockState(this.value);
   @override
   List<Object?> get props => [value];
 }
 //corporate
 
-
 class CorporateEditProfileState extends ApiState {
-  final CommonResponse value;
+  final Response value;
   CorporateEditProfileState(this.value);
   @override
   List<Object?> get props => [value];
 }
-// call Log
 
-//sync
-class SyncCallLogState extends ApiState {
-  final ContactListResponse value;
-
-  SyncCallLogState(this.value);
-
-  @override
-  List<Object?> get props => [value];
-}
-//get call log list
-
-class GetCallLogListState extends ApiState {
-  final CommonResponse value;
-
-  GetCallLogListState(this.value);
-
-  @override
-  List<Object?> get props => [value];
-}
-
-// staff
 // staff member list
 class GetStaffMemberListState extends ApiState {
   final StaffMemberListResponse value;
@@ -271,7 +226,7 @@ class GetStaffMemberListState extends ApiState {
 
 // staff  member
 class GetStaffAddMemberListState extends ApiState {
-  final CommonResponse value;
+  final Response value;
 
   GetStaffAddMemberListState(this.value);
 
@@ -281,7 +236,7 @@ class GetStaffAddMemberListState extends ApiState {
 
 // staff add member
 class StaffAddMemberState extends ApiState {
-  final CommonResponse value;
+  final Response value;
   StaffAddMemberState(this.value);
   @override
   List<Object?> get props => [value];
@@ -289,7 +244,7 @@ class StaffAddMemberState extends ApiState {
 
 // staff edit member
 class StaffEditMemberState extends ApiState {
-  final CommonResponse value;
+  final Response value;
   StaffEditMemberState(this.value);
   @override
   List<Object?> get props => [value];
@@ -297,7 +252,7 @@ class StaffEditMemberState extends ApiState {
 
 // staff delete member
 class StaffDeleteMemberState extends ApiState {
-  final CommonResponse value;
+  final Response value;
   StaffDeleteMemberState(this.value);
   @override
   List<Object?> get props => [value];

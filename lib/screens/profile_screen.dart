@@ -1,19 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spam_delection_app/app_route/route.dart';
-import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_event.dart';
-import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_state.dart';
-import 'package:spam_delection_app/constants/string_constants.dart';
-import 'package:spam_delection_app/globals/app_constants.dart';
-import 'package:spam_delection_app/globals/app_fonts.dart';
-import 'package:spam_delection_app/screens/change_password_screen.dart';
-import 'package:spam_delection_app/screens/edit_profile_screen.dart';
-import 'package:spam_delection_app/screens/edit_security_pin.dart';
-import 'package:spam_delection_app/screens/loader.dart';
-import 'package:spam_delection_app/screens/spam_list_screen.dart';
-
-import '../constants/icons_constants.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});

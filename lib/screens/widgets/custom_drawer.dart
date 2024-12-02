@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/app_route/route.dart';
-import 'package:spam_delection_app/constants/icons_constants.dart';
-import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
-import 'package:spam_delection_app/globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -18,8 +14,8 @@ class CustomDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, AppRoutes.contactList);
             },
-            leading: Icon(Icons.person, color: Colors.white),
-            title: Text(
+            leading: const Icon(Icons.person, color: Colors.white),
+            title: const Text(
               "Contact list",
               style: TextStyle(color: Colors.white),
             ),

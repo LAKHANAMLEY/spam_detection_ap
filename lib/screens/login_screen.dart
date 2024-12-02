@@ -1,17 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:spam_delection_app/data/repository/auth_repo/login_api.dart';
-import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/screens/login_succesful_screen.dart';
-import 'package:spam_delection_app/screens/otp_verify_screen.dart';
-import 'package:spam_delection_app/screens/register_screen.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -703,7 +691,8 @@ class _LoginState extends State<Login> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => Register()));
+                                builder: (BuildContext context) =>
+                                    const Register()));
                       },
                       child: const Text(StringConstants.registertext,
                           style: TextStyle(

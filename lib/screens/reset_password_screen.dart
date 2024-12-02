@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/screens/register_screen.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../data/repository/auth_repo/reset_password_api.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class ResetPassword extends StatefulWidget {
   final String? email;

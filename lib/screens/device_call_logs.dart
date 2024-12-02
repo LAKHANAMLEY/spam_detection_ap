@@ -1,20 +1,4 @@
-import 'dart:async';
-
-import 'package:call_e_log/call_log.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
-import 'package:spam_delection_app/extensions/date_time_ext.dart';
-import 'package:spam_delection_app/globals/app_constants.dart';
-import 'package:spam_delection_app/models/call_logs_model.dart';
-import 'package:spam_delection_app/screens/widgets/custom_app_bar.dart';
-import 'package:spam_delection_app/screens/widgets/custom_textfiled.dart';
-import 'package:spam_delection_app/utils/api_constants/http_status_codes.dart';
-import 'package:spam_delection_app/utils/helpers.dart';
-import 'package:spam_delection_app/utils/session_expired.dart';
-import 'package:spam_delection_app/utils/toast.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class DeviceCallLogs extends StatefulWidget {
   final bool? showAppBar;
@@ -85,12 +69,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
           listener: (context, state) {
             if (state is GetDeviceCallLogState) {
               var deviceCallLogs = state.value;
-              if (deviceCallLogs != null) {
-                callLogsListBloc
-                    .add(SyncCallLogEvent(callLogs: deviceCallLogs));
-              } else {
-                callLogsListBloc.add(GetCallLogsEvent());
-              }
+              callLogsListBloc.add(SyncCallLogEvent(callLogs: deviceCallLogs));
             }
             if (state is GetCallLogsState) {
               if (state.value.statusCode == 200) {

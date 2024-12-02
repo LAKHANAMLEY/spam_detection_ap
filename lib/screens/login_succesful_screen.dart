@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/app_route/route.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/models/user_model.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class LoginSuccessful extends StatefulWidget {
   const LoginSuccessful({super.key, this.user});

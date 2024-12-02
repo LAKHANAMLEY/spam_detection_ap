@@ -46,7 +46,7 @@ class AppColor {
   static const Color lastColor= Color(0xff301A46);
   static const Color whiteLight=Color(0xffE1E6EB);
   static const Color yellowdecentColor=Color(0xffFFEAB7);
-  static const Color yellowColor=Color(0xffFFE2AB04);
+  static const Color yellowColor=Color(0xffffe2ab04);
   static const Color decentgreyColor=Color(0xffD6D3D3);
   static const Color whitedecentColor=Color(0xffF6F6F6);
 }

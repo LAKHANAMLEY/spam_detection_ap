@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:pricing_cards/pricing_cards.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
-
+import 'package:spam_delection_app/lib.dart';
 
 class PlanDetail extends StatefulWidget {
   const PlanDetail({super.key});
@@ -16,7 +8,7 @@ class PlanDetail extends StatefulWidget {
 }
 
 class _PlanDetailState extends State<PlanDetail> {
-  int Selectedtab=0;
+  int Selectedtab = 0;
   int _selection = 0;
   int SelectedPlan = 0;
   @override
@@ -25,17 +17,17 @@ class _PlanDetailState extends State<PlanDetail> {
       backgroundColor: AppColor.secondryColor,
       appBar: AppBar(
         backgroundColor: AppColor.secondryColor,
-        leading:GestureDetector(
-          onTap: (){
+        leading: GestureDetector(
+          onTap: () {
             Navigator.pop(context);
           },
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(IconConstants.backIcon,
+              child: Image.asset(
+                IconConstants.backIcon,
               ),
-
             ),
           ),
         ),
@@ -48,11 +40,9 @@ class _PlanDetailState extends State<PlanDetail> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-          SizedBox(
-          height: MediaQuery.of(context).size.height * 3 / 100),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 3 / 100),
             Image.asset(
               IconConstants.icpremiumprotection,
               height: MediaQuery.of(context).size.height * 15 / 100,
@@ -70,23 +60,25 @@ class _PlanDetailState extends State<PlanDetail> {
                     fontWeight: FontWeight.w600),
               ),
             )),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 1 / 100,
-                ),
-                Padding(
-               padding: EdgeInsets.only(left: 50, right: 50),
-                  child: const Text(
-                    StringConstants.spamdetecttext,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: AppColor.verifyColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: AppFont.fontFamily),
-                  ),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height*2/100,),
-                Container(
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 1 / 100,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 50, right: 50),
+              child: Text(
+                StringConstants.spamdetecttext,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: AppColor.verifyColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: AppFont.fontFamily),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 2 / 100,
+            ),
+            SizedBox(
                 height: MediaQuery.of(context).size.height * 8 / 100,
                 width: MediaQuery.of(context).size.width * 90 / 100,
                 //color: AppColor.redColor,
@@ -104,23 +96,28 @@ class _PlanDetailState extends State<PlanDetail> {
                           child: Stack(
                             children: <Widget>[
                               Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 6 / 100,
-                                width: MediaQuery.of(context).size.width * 28/ 100,
+                                height: MediaQuery.of(context).size.height *
+                                    6 /
+                                    100,
+                                width: MediaQuery.of(context).size.width *
+                                    28 /
+                                    100,
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                       color: _selection == 1
                                           ? AppColor.callColor
-                                          : AppColor.callColor, width: 1),
+                                          : AppColor.callColor,
+                                      width: 1),
                                   color: Selectedtab == 1
                                       ? AppColor.callColor
                                       : AppColor.callColor,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(4)),
                                 ),
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: <Widget>[
                                   Radio(
                                     //focusColor: AppColor.decentgreyColor,
@@ -128,7 +125,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                         ? AppColor.borderstekColor
                                         : AppColor.secondryColor,
                                     groupValue: _selection,
-                                    onChanged: (_selectTime) {
+                                    onChanged: (selectTime) {
                                       selectTime(int timeSelected) {
                                         setState(() {
                                           _selection = timeSelected;
@@ -137,10 +134,9 @@ class _PlanDetailState extends State<PlanDetail> {
                                     },
                                     value: 0,
                                   ),
-          
                                   Text(
                                     'Calls',
-                                    style:  TextStyle(
+                                    style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontFamily: AppFont.fontFamily,
                                         color: _selection == 1
@@ -162,32 +158,38 @@ class _PlanDetailState extends State<PlanDetail> {
                           child: Stack(
                             children: <Widget>[
                               SizedBox(
-                                width: MediaQuery.of(context).size.width * 5 / 100,
+                                width:
+                                    MediaQuery.of(context).size.width * 5 / 100,
                               ),
                               Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 6 / 100,
-                                width: MediaQuery.of(context).size.width * 28 / 100,
+                                height: MediaQuery.of(context).size.height *
+                                    6 /
+                                    100,
+                                width: MediaQuery.of(context).size.width *
+                                    28 /
+                                    100,
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: AppColor.borderstekColor, width: 1),
+                                      color: AppColor.borderstekColor,
+                                      width: 1),
                                   color: _selection == 1
                                       ? AppColor.callColor
                                       : AppColor.secondryColor,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(4)),
                                 ),
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width * 2 / 100,
+                                width:
+                                    MediaQuery.of(context).size.width * 2 / 100,
                               ),
                               Row(
                                 children: <Widget>[
                                   Radio(
-                                   // focusColor: AppColor.decentgreyColor,
+                                    // focusColor: AppColor.decentgreyColor,
                                     activeColor: AppColor.decentgreyColor,
                                     groupValue: _selection,
-                                    onChanged: (_selectTime) {
+                                    onChanged: (selectTime) {
                                       selectTime(int timeSelected) {
                                         setState(() {
                                           _selection = timeSelected;
@@ -196,9 +198,9 @@ class _PlanDetailState extends State<PlanDetail> {
                                     },
                                     value: 0,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Sms',
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontFamily: AppFont.fontFamily,
                                         color: AppColor.callColor,
@@ -218,30 +220,36 @@ class _PlanDetailState extends State<PlanDetail> {
                           child: Stack(
                             children: <Widget>[
                               SizedBox(
-                                width: MediaQuery.of(context).size.width * 5 / 100,
+                                width:
+                                    MediaQuery.of(context).size.width * 5 / 100,
                               ),
                               Container(
-                                height:
-                                MediaQuery.of(context).size.height * 6 / 100,
-                                width: MediaQuery.of(context).size.width * 28 / 100,
+                                height: MediaQuery.of(context).size.height *
+                                    6 /
+                                    100,
+                                width: MediaQuery.of(context).size.width *
+                                    28 /
+                                    100,
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: AppColor.borderstekColor, width: 1),
+                                      color: AppColor.borderstekColor,
+                                      width: 1),
                                   color: AppColor.secondryColor,
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(4)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(4)),
                                 ),
                               ),
                               SizedBox(
-                                width: MediaQuery.of(context).size.width * 2 / 100,
+                                width:
+                                    MediaQuery.of(context).size.width * 2 / 100,
                               ),
                               Row(
                                 children: <Widget>[
                                   Radio(
-                                   // focusColor: AppColor.decentgreyColor,
+                                    // focusColor: AppColor.decentgreyColor,
                                     activeColor: AppColor.decentgreyColor,
                                     groupValue: _selection,
-                                    onChanged: (_selectTime) {
+                                    onChanged: (selectTime) {
                                       selectTime(int timeSelected) {
                                         setState(() {
                                           _selection = timeSelected;
@@ -250,9 +258,9 @@ class _PlanDetailState extends State<PlanDetail> {
                                     },
                                     value: 0,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Email',
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontFamily: AppFont.fontFamily,
                                         color: AppColor.callColor,
@@ -267,301 +275,316 @@ class _PlanDetailState extends State<PlanDetail> {
                     ),
                   ],
                 )),
-                Padding(
-                  padding: const EdgeInsets.all(18),
-                  child: SizedBox(
-                    height:MediaQuery.of(context).size.width * 46 / 100,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              SelectedPlan = 0;
-                            //  Navigator.push(context, MaterialPageRoute(builder: (context)=>PlanDetail()));
-                            });
-                          },
-                          child: Card(
-                            elevation: 2.0, // Optional: adds shadow to the card
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8), // Applies general rounding to the card if needed
-                            ),
-                            child: Column(
-                              children: [
-                                // Top Section
-                                Container(
-                                  height: MediaQuery.of(context).size.height * 10 / 100,
-                                  width: MediaQuery.of(context).size.width * 40 / 100,
-                                  decoration: BoxDecoration(
-                                    color: SelectedPlan == 0
-                                        ? AppColor.yellowdeep
-                                        : AppColor.decentgreyColor,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(8),
-                                      topRight: Radius.circular(8),
-                                    ),
-                                    border: Border.all(
-                                      color: AppColor.whitedecentColor,
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center, // Centers the text vertically
-                                      children: [
-                                        Text(
-                                          "1",
-                                          style: TextStyle(
-                                            color: AppColor.secondryColor,
-                                            fontSize: 20,
-                                            fontFamily: AppFont.fontFamily,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Text(
-                                          "Month",
-                                          style: TextStyle(
-                                            color: AppColor.secondryColor,
-                                            fontSize: 20,
-                                            fontFamily: AppFont.fontFamily,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+            Padding(
+              padding: const EdgeInsets.all(18),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.width * 46 / 100,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          SelectedPlan = 0;
+                          //  Navigator.push(context, MaterialPageRoute(builder: (context)=>PlanDetail()));
+                        });
+                      },
+                      child: Card(
+                        elevation: 2.0, // Optional: adds shadow to the card
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              8), // Applies general rounding to the card if needed
+                        ),
+                        child: Column(
+                          children: [
+                            // Top Section
+                            Container(
+                              height:
+                                  MediaQuery.of(context).size.height * 10 / 100,
+                              width:
+                                  MediaQuery.of(context).size.width * 40 / 100,
+                              decoration: BoxDecoration(
+                                color: SelectedPlan == 0
+                                    ? AppColor.yellowdeep
+                                    : AppColor.decentgreyColor,
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  topRight: Radius.circular(8),
                                 ),
-                                Container(
-                                  height: MediaQuery.of(context).size.height * 12/ 100,
-                                  width: MediaQuery.of(context).size.width * 40 / 100,
-                                  decoration: BoxDecoration(
-                                    color: AppColor.secondryColor,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(6),
-                                      bottomRight: Radius.circular(6),
-                                    ),
-                                    border: Border.all(
-                                      color: AppColor.vanishColor,
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "\$7.99",
-                                      textAlign: TextAlign.center,
+                                border: Border.all(
+                                  color: AppColor.whitedecentColor,
+                                  width: 0.5,
+                                ),
+                              ),
+                              child: const Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .center, // Centers the text vertically
+                                  children: [
+                                    Text(
+                                      "1",
                                       style: TextStyle(
-                                        color: AppColor.primaryColor,
+                                        color: AppColor.secondryColor,
                                         fontSize: 20,
                                         fontFamily: AppFont.fontFamily,
                                         fontWeight: FontWeight.w600,
-
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: MediaQuery.of(context).size.width*2/100,),
-                        GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              SelectedPlan= 1;
-                              //  Navigator.push(context, MaterialPageRoute(builder: (context)=>PlanDetail()));
-                            });
-                          },
-                          child: Card(
-                            elevation: 2.0, // Optional: adds shadow to the card
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8), // Applies general rounding to the card if needed
-                            ),
-                            child: Column(
-                              children: [
-                                // Top Section
-                                Container(
-                                  height: MediaQuery.of(context).size.height * 10 / 100,
-                                  width: MediaQuery.of(context).size.width * 40 / 100,
-                                  decoration: BoxDecoration(
-                                    color: SelectedPlan == 1
-                                        ? AppColor.yellowdeep
-                                        : AppColor.decentgreyColor,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(8),
-                                      topRight: Radius.circular(8),
-                                    ),
-                                    border: Border.all(
-                                      color: AppColor.whitedecentColor,
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center, // Centers the text vertically
-                                      children: [
-                                        Text(
-                                          "3",
-                                          style: TextStyle(
-                                            color: AppColor.secondryColor,
-                                            fontSize: 20,
-                                            fontFamily: AppFont.fontFamily,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Text(
-                                          "Month",
-                                          style: TextStyle(
-                                            color: AppColor.secondryColor,
-                                            fontSize: 20,
-                                            fontFamily: AppFont.fontFamily,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: MediaQuery.of(context).size.height * 12/ 100,
-                                  width: MediaQuery.of(context).size.width * 40 / 100,
-                                  decoration: BoxDecoration(
-                                    color: AppColor.secondryColor,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(6),
-                                      bottomRight: Radius.circular(6),
-                                    ),
-                                    border: Border.all(
-                                      color: AppColor.vanishColor,
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "\$20",
-                                      textAlign: TextAlign.center,
+                                    Text(
+                                      "Month",
                                       style: TextStyle(
-                                        color: AppColor.primaryColor,
+                                        color: AppColor.secondryColor,
                                         fontSize: 20,
                                         fontFamily: AppFont.fontFamily,
                                         fontWeight: FontWeight.w600,
-
                                       ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height:
+                                  MediaQuery.of(context).size.height * 12 / 100,
+                              width:
+                                  MediaQuery.of(context).size.width * 40 / 100,
+                              decoration: BoxDecoration(
+                                color: AppColor.secondryColor,
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(6),
+                                  bottomRight: Radius.circular(6),
+                                ),
+                                border: Border.all(
+                                  color: AppColor.vanishColor,
+                                  width: 0.5,
+                                ),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "\$7.99",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: AppColor.primaryColor,
+                                    fontSize: 20,
+                                    fontFamily: AppFont.fontFamily,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
-                        SizedBox(width: MediaQuery.of(context).size.width*2/100,),
-                        GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              SelectedPlan = 2;
-                              //  Navigator.push(context, MaterialPageRoute(builder: (context)=>PlanDetail()));
-                            });
-                          },
-                          child: Card(
-                            elevation: 2.0, // Optional: adds shadow to the card
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8), // Applies general rounding to the card if needed
-                            ),
-                            child: Column(
-                              children: [
-                                // Top Section
-                                Container(
-                                  height: MediaQuery.of(context).size.height * 10 / 100,
-                                  width: MediaQuery.of(context).size.width * 40 / 100,
-                                  decoration: BoxDecoration(
-                                    color: SelectedPlan == 2
-                                        ? AppColor.yellowdeep
-                                        : AppColor.decentgreyColor,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(8),
-                                      topRight: Radius.circular(8),
-                                    ),
-                                    border: Border.all(
-                                      color: AppColor.whitedecentColor,
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center, // Centers the text vertically
-                                      children: [
-                                        Text(
-                                          "9",
-                                          style: TextStyle(
-                                            color: AppColor.secondryColor,
-                                            fontSize: 20,
-                                            fontFamily: AppFont.fontFamily,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        Text(
-                                          "Month",
-                                          style: TextStyle(
-                                            color: AppColor.secondryColor,
-                                            fontSize: 20,
-                                            fontFamily: AppFont.fontFamily,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: MediaQuery.of(context).size.height * 12/ 100,
-                                  width: MediaQuery.of(context).size.width * 40 / 100,
-                                  decoration: BoxDecoration(
-                                    color: AppColor.secondryColor,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(6),
-                                      bottomRight: Radius.circular(6),
-                                    ),
-                                    border: Border.all(
-                                      color: AppColor.vanishColor,
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "\$50",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: AppColor.primaryColor,
-                                        fontSize: 20,
-                                        fontFamily: AppFont.fontFamily,
-                                        fontWeight: FontWeight.w600,
-
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        // Add more Card widgets here as needed
-                      ],
+                      ),
                     ),
-                  ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 2 / 100,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          SelectedPlan = 1;
+                          //  Navigator.push(context, MaterialPageRoute(builder: (context)=>PlanDetail()));
+                        });
+                      },
+                      child: Card(
+                        elevation: 2.0, // Optional: adds shadow to the card
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              8), // Applies general rounding to the card if needed
+                        ),
+                        child: Column(
+                          children: [
+                            // Top Section
+                            Container(
+                              height:
+                                  MediaQuery.of(context).size.height * 10 / 100,
+                              width:
+                                  MediaQuery.of(context).size.width * 40 / 100,
+                              decoration: BoxDecoration(
+                                color: SelectedPlan == 1
+                                    ? AppColor.yellowdeep
+                                    : AppColor.decentgreyColor,
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  topRight: Radius.circular(8),
+                                ),
+                                border: Border.all(
+                                  color: AppColor.whitedecentColor,
+                                  width: 0.5,
+                                ),
+                              ),
+                              child: const Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .center, // Centers the text vertically
+                                  children: [
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        color: AppColor.secondryColor,
+                                        fontSize: 20,
+                                        fontFamily: AppFont.fontFamily,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Month",
+                                      style: TextStyle(
+                                        color: AppColor.secondryColor,
+                                        fontSize: 20,
+                                        fontFamily: AppFont.fontFamily,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height:
+                                  MediaQuery.of(context).size.height * 12 / 100,
+                              width:
+                                  MediaQuery.of(context).size.width * 40 / 100,
+                              decoration: BoxDecoration(
+                                color: AppColor.secondryColor,
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(6),
+                                  bottomRight: Radius.circular(6),
+                                ),
+                                border: Border.all(
+                                  color: AppColor.vanishColor,
+                                  width: 0.5,
+                                ),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "\$20",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: AppColor.primaryColor,
+                                    fontSize: 20,
+                                    fontFamily: AppFont.fontFamily,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 2 / 100,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          SelectedPlan = 2;
+                          //  Navigator.push(context, MaterialPageRoute(builder: (context)=>PlanDetail()));
+                        });
+                      },
+                      child: Card(
+                        elevation: 2.0, // Optional: adds shadow to the card
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              8), // Applies general rounding to the card if needed
+                        ),
+                        child: Column(
+                          children: [
+                            // Top Section
+                            Container(
+                              height:
+                                  MediaQuery.of(context).size.height * 10 / 100,
+                              width:
+                                  MediaQuery.of(context).size.width * 40 / 100,
+                              decoration: BoxDecoration(
+                                color: SelectedPlan == 2
+                                    ? AppColor.yellowdeep
+                                    : AppColor.decentgreyColor,
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(8),
+                                  topRight: Radius.circular(8),
+                                ),
+                                border: Border.all(
+                                  color: AppColor.whitedecentColor,
+                                  width: 0.5,
+                                ),
+                              ),
+                              child: const Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .center, // Centers the text vertically
+                                  children: [
+                                    Text(
+                                      "9",
+                                      style: TextStyle(
+                                        color: AppColor.secondryColor,
+                                        fontSize: 20,
+                                        fontFamily: AppFont.fontFamily,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Month",
+                                      style: TextStyle(
+                                        color: AppColor.secondryColor,
+                                        fontSize: 20,
+                                        fontFamily: AppFont.fontFamily,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height:
+                                  MediaQuery.of(context).size.height * 12 / 100,
+                              width:
+                                  MediaQuery.of(context).size.width * 40 / 100,
+                              decoration: BoxDecoration(
+                                color: AppColor.secondryColor,
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(6),
+                                  bottomRight: Radius.circular(6),
+                                ),
+                                border: Border.all(
+                                  color: AppColor.vanishColor,
+                                  width: 0.5,
+                                ),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "\$50",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: AppColor.primaryColor,
+                                    fontSize: 20,
+                                    fontFamily: AppFont.fontFamily,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // Add more Card widgets here as needed
+                  ],
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height*5/100,),
-                AppButton(
-                  text: StringConstants.continuepurchasetext,
-                  onPress: (){},
-                )
-          
-              ]
-          ),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 5 / 100,
+            ),
+            AppButton(
+              text: StringConstants.continuepurchasetext,
+              onPress: () {},
+            )
+          ]),
         ),
       ),
-
-
     );
-
   }
-
-  }
+}

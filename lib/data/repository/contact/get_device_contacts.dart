@@ -1,6 +1,5 @@
-import 'package:fast_contacts/fast_contacts.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:spam_delection_app/utils/permission_request.dart';
+import 'package:spam_delection_app/lib.dart';
 
 Future<List<Contact>?> getLocalContacts() async {
   await permissionRequest(Permission.contacts).then((status) async {

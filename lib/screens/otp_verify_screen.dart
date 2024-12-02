@@ -1,18 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:spam_delection_app/data/repository/auth_repo/login_with_phone_api.dart';
-import 'package:spam_delection_app/screens/login_succesful_screen.dart';
-import 'package:spam_delection_app/screens/widgets/custom_dialog.dart';
-import 'package:spam_delection_app/utils/api_constants/http_status_codes.dart';
-import 'package:spam_delection_app/utils/session_expired.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/appbutton.dart';
-import '../globals/colors.dart';
-import 'forgot_password_screen.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class OtpVerify extends StatefulWidget {
   const OtpVerify({

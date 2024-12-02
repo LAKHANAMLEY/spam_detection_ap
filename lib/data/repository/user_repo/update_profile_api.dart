@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
-
-import '../../../models/update_profile_model.dart';
+import 'package:spam_delection_app/lib.dart';
 
 Future<UpdateProfileResponse> updateProfile({
   required String firstname,

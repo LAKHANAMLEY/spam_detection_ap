@@ -1,10 +1,5 @@
-import 'dart:convert';
-
-import 'package:call_e_log/call_log.dart';
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/extensions/timestamp_ext.dart';
-import 'package:spam_delection_app/models/response.dart';
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
+import 'package:spam_delection_app/lib.dart';
 
 Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
   var body = [];

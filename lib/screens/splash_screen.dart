@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/app_route/route.dart';
-import 'package:spam_delection_app/constants/icons_constants.dart';
-import 'package:spam_delection_app/constants/string_constants.dart';
-import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
-import 'package:spam_delection_app/globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

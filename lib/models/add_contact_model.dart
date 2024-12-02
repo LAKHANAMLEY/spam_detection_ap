@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-AddContactResponse addContactResponseFromJson(String str) => AddContactResponse.fromJson(json.decode(str));
+AddContactResponse addContactResponseFromJson(String str) =>
+    AddContactResponse.fromJson(json.decode(str));
 
-String addContactResponseToJson(AddContactResponse data) => json.encode(data.toJson());
+String addContactResponseToJson(AddContactResponse data) =>
+    json.encode(data.toJson());
 
 class AddContactResponse {
   final int? statusCode;
@@ -17,13 +19,14 @@ class AddContactResponse {
     this.message,
   });
 
-  factory AddContactResponse.fromJson(Map<String, dynamic> json) => AddContactResponse(
-    statusCode: json["status_code"],
-    message: json["message"],
-  );
+  factory AddContactResponse.fromJson(Map<String, dynamic> json) =>
+      AddContactResponse(
+        statusCode: json["status_code"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status_code": statusCode,
-    "message": message,
-  };
+        "status_code": statusCode,
+        "message": message,
+      };
 }

@@ -1,17 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_field/phone_number.dart';
-import 'package:spam_delection_app/constants/icons_constants.dart';
-import 'package:spam_delection_app/data/repository/auth_repo/sign_up_api.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/screens/forgot_password_screen.dart';
-import 'package:spam_delection_app/screens/login_screen.dart';
-import 'package:spam_delection_app/screens/registration_sucessful_screen.dart';
-
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
-import '../models/country_list_model.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});

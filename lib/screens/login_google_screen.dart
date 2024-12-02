@@ -1,23 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_bloc.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
-import 'package:spam_delection_app/data/repository/auth_repo/sign_in_with_google.dart';
-import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/screens/loader.dart';
-import 'package:spam_delection_app/screens/login_screen.dart';
-import 'package:spam_delection_app/screens/login_succesful_screen.dart';
-import 'package:spam_delection_app/screens/register_google_screen.dart';
-import 'package:spam_delection_app/screens/widgets/custom_dialog.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class LoginGoogle extends StatefulWidget {
   const LoginGoogle({super.key});

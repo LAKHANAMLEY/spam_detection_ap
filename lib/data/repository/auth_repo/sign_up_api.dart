@@ -1,10 +1,5 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/models/sign_up_model.dart';
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
-import 'package:spam_delection_app/utils/api_keys/api_key_constants.dart';
-import 'package:spam_delection_app/utils/get_device_token.dart';
+import 'package:spam_delection_app/lib.dart';
 
 Future<SignUpResponse> signup(
     {required String email,

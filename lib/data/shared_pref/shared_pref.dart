@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spam_delection_app/models/user_model.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class SharedPref {
   static const String _isLogin = "isLogin";

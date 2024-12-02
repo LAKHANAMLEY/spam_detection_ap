@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/screens/login_google_screen.dart';
-import 'package:spam_delection_app/screens/register_screen.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/appbutton.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class RegisterGoogle extends StatefulWidget {
   const RegisterGoogle({super.key});
@@ -49,7 +41,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 6 / 100,
           ),
-          Center(
+          const Center(
               child: Text(
             StringConstants.registertext,
             style: TextStyle(
@@ -77,7 +69,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   Container(
                     width: MediaQuery.sizeOf(context).width * 8 / 100,
                     height: MediaQuery.sizeOf(context).height * 4 / 100,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(IconConstants.icgoogleLogo),
                           fit: BoxFit.cover),
@@ -87,7 +79,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 4 / 100,
                   ),
-                  Text(
+                  const Text(
                     StringConstants.registerGoogletext,
                     style: TextStyle(
                         color: AppColor.gracyColor,
@@ -118,7 +110,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   Container(
                     width: MediaQuery.sizeOf(context).width * 8 / 100,
                     height: MediaQuery.sizeOf(context).height * 4 / 100,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(IconConstants.icappleLogo),
                           fit: BoxFit.cover),
@@ -128,7 +120,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 4 / 100,
                   ),
-                  Text(
+                  const Text(
                     StringConstants.registerAppletext,
                     style: TextStyle(
                         color: AppColor.gracyColor,
@@ -145,7 +137,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           ),
           Row(children: <Widget>[
             Expanded(
-              child: new Container(
+              child: Container(
                   width: MediaQuery.sizeOf(context).width * 6 / 100,
                   margin: const EdgeInsets.only(left: 50.0, right: 10.0),
                   child: Divider(
@@ -153,7 +145,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                     height: MediaQuery.sizeOf(context).height * 6 / 100,
                   )),
             ),
-            Text(
+            const Text(
               "or",
               style: TextStyle(
                   color: AppColor.primaryColor,
@@ -161,7 +153,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   fontSize: 18),
             ),
             Expanded(
-              child: new Container(
+              child: Container(
                   margin: const EdgeInsets.only(left: 10, right: 50),
                   child: Divider(
                     color: AppColor.gracyColor,
@@ -176,7 +168,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
               text: StringConstants.registerwithEmail,
               onPress: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Register()));
+                    MaterialPageRoute(builder: (context) => const Register()));
               }),
           SizedBox(
             height: MediaQuery.of(context).size.height * 10 / 100,
@@ -184,7 +176,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 StringConstants.alreadyHaveAnAccount,
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
@@ -198,9 +190,10 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => LoginGoogle()));
+                          builder: (BuildContext context) =>
+                              const LoginGoogle()));
                 },
-                child: Text(StringConstants.logintext,
+                child: const Text(StringConstants.logintext,
                     style: TextStyle(
                         color: AppColor.yellowlightColor,
                         fontWeight: FontWeight.bold,

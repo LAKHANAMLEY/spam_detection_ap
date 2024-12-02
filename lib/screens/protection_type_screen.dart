@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/screens/corporate_login_screen.dart';
-import 'package:spam_delection_app/screens/login_google_screen.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class ProtectionType extends StatefulWidget {
   const ProtectionType({super.key});
@@ -32,7 +24,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Image.asset(
               IconConstants.backIcon,
-              height: MediaQuery.of(context).size.height * 2/ 100,
+              height: MediaQuery.of(context).size.height * 2 / 100,
               width: MediaQuery.of(context).size.width * 2 / 100,
             ),
           ),
@@ -112,8 +104,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                     ? AppColor.callColor
                                     : AppColor.secondryColor,
                                 BlendMode.srcIn),
-                            image:
-                                AssetImage(IconConstants.covidprotectionshield),
+                            image: const AssetImage(
+                                IconConstants.covidprotectionshield),
                           ),
                         ),
                       ),
@@ -166,7 +158,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                     ? AppColor.secondryColor
                                     : AppColor.callColor,
                                 BlendMode.srcIn),
-                            image: AssetImage(IconConstants.icCorporate),
+                            image: const AssetImage(IconConstants.icCorporate),
                           ),
                         ),
                       ),

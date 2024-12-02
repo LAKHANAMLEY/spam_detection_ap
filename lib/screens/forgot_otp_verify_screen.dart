@@ -1,13 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:spam_delection_app/screens/reset_password_screen.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/appbutton.dart';
-import '../globals/colors.dart';
-import 'forgot_password_screen.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class ForgotOtpVerify extends StatefulWidget {
   final String? email;

@@ -1,27 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:spam_delection_app/app_route/route.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_bloc.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
-import 'package:spam_delection_app/data/repository/contact/get_device_contacts.dart';
-import 'package:spam_delection_app/globals/app_constants.dart';
-import 'package:spam_delection_app/globals/app_fonts.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/globals/colors.dart';
-import 'package:spam_delection_app/models/category_list_model.dart';
-import 'package:spam_delection_app/models/contact_list_response.dart';
-import 'package:spam_delection_app/screens/add_contact_screen.dart';
-import 'package:spam_delection_app/screens/contact_detail_screen.dart';
-import 'package:spam_delection_app/screens/loader.dart';
-import 'package:spam_delection_app/screens/widgets/custom_app_bar.dart';
-import 'package:spam_delection_app/screens/widgets/custom_dialog.dart';
-import 'package:spam_delection_app/utils/api_constants/http_status_codes.dart';
-import 'package:spam_delection_app/utils/session_expired.dart';
-import 'package:spam_delection_app/utils/toast.dart';
-
-import '../constants/icons_constants.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class ContactList extends StatefulWidget {
   const ContactList({super.key});

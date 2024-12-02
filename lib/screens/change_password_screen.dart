@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/data/repository/user_repo/change_password_api.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/screens/edit_profile_screen.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
@@ -33,7 +25,8 @@ class _ChangePasswordState extends State<ChangePassword> {
   bool isLoading = true;
   String? selectedCountryCode;
   String? selectedCountryName;
-  final TextEditingController currentpasswordController = TextEditingController();
+  final TextEditingController currentpasswordController =
+      TextEditingController();
   final TextEditingController newpasswordController = TextEditingController();
   final TextEditingController confirmnewpasswordController =
       TextEditingController();
@@ -210,43 +203,44 @@ class _ChangePasswordState extends State<ChangePassword> {
             _isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : AppButton(
-              text: StringConstants.resetpasstext,
-              onPress: () {
-
-                final currentpassword = currentpasswordController.text;
-                final newpassword = newpasswordController.text;
-                final confirmnewpassword = confirmnewpasswordController.text;
-                if (currentpassword.isNotEmpty && newpassword.isNotEmpty&& confirmnewpassword.isNotEmpty) {
-                  setState(() {
-                    _isLoading = true;
-                  });
-                  changePassword(
-                    currentPassword: currentpassword,
-                    newPassword: newpassword,
-                    confirmNewPassword: confirmnewpassword,
-                  ).then((response) {
-                    setState(() {
-                      _isLoading = false;
-                    });
-                    // class SignUpResponse
-                    //var response
-                    if (response.statusCode == 200) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                          const EditProfile()));
-                    } else {
-                      setState(() {
-                        _errorMessage = response.message.toString();
-                      });
-                    }
-                  });
-                } else {
-                  setState(() {
-                    _errorMessage = 'Please enter the all fields.';
-                  });
-                }
-              },
-            ),
+                    text: StringConstants.resetpasstext,
+                    onPress: () {
+                      final currentpassword = currentpasswordController.text;
+                      final newpassword = newpasswordController.text;
+                      final confirmnewpassword =
+                          confirmnewpasswordController.text;
+                      if (currentpassword.isNotEmpty &&
+                          newpassword.isNotEmpty &&
+                          confirmnewpassword.isNotEmpty) {
+                        setState(() {
+                          _isLoading = true;
+                        });
+                        changePassword(
+                          currentPassword: currentpassword,
+                          newPassword: newpassword,
+                          confirmNewPassword: confirmnewpassword,
+                        ).then((response) {
+                          setState(() {
+                            _isLoading = false;
+                          });
+                          // class SignUpResponse
+                          //var response
+                          if (response.statusCode == 200) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const EditProfile()));
+                          } else {
+                            setState(() {
+                              _errorMessage = response.message.toString();
+                            });
+                          }
+                        });
+                      } else {
+                        setState(() {
+                          _errorMessage = 'Please enter the all fields.';
+                        });
+                      }
+                    },
+                  ),
           ]),
         ),
       ),

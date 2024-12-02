@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/app_route/route.dart';
-import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
-import 'package:spam_delection_app/utils/toast.dart';
+import 'package:spam_delection_app/lib.dart';
 
 sessionExpired(context, String msg) {
   showToast(msg);

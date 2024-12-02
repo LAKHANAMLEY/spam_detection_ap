@@ -1,9 +1,4 @@
-import 'package:call_e_log/call_log.dart';
-import 'package:equatable/equatable.dart';
-import 'package:fast_contacts/src/model/contact.dart';
-import 'package:spam_delection_app/models/user_model.dart';
-
-import '../../models/corporate_login_model.dart';
+import 'package:spam_delection_app/lib.dart';
 
 abstract class ApiEvent extends Equatable {
   @override
@@ -20,18 +15,6 @@ class SyncContactEvent extends ApiEvent {
   final List<Contact> contacts;
 
   SyncContactEvent({
-    required this.contacts,
-  });
-
-  @override
-  List<Object?> get props => [contacts];
-}
-// synCall log
-
-class SyncCallLogEvent extends ApiEvent {
-  final List<Contact> contacts;
-
-  SyncCallLogEvent({
     required this.contacts,
   });
 
@@ -234,12 +217,8 @@ class CorporateEditProfileEvent extends ApiEvent {
   @override
   List<Object?> get props => [user];
 }
-// call Log
-//Get Call log List
 
-class GetCallLogListEvent extends ApiEvent {}
 // Staff member list
-
 class GetStaffMemberListEvent extends ApiEvent {}
 
 // staff add member

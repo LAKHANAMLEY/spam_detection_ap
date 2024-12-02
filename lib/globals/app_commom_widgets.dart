@@ -1,9 +1,4 @@
-
-import 'package:flutter/material.dart';
-
-
-import '../bloc/localization_bloc/localization_bloc.dart';
-import '../bloc/localization_bloc/localization_bloc_states.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class AppConstants {
   static const String projectName = "Spam detector";
@@ -21,4 +16,4 @@ class AppLocalizations {
 }
 
 final localizationBloc =
-LocalizationBloc(ChangeLocaleState(const Locale("en")));
+    LocalizationBloc(ChangeLocaleState(const Locale("en")));

@@ -1,14 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_bloc.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
-
-import '../constants/icons_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
-import '../models/spam_list_model.dart';
-import 'loader.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class SpamList extends StatefulWidget {
   const SpamList({super.key});

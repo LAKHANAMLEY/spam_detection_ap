@@ -1,25 +1,4 @@
-import 'dart:io';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
-import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_event.dart';
-import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
-import 'package:spam_delection_app/extensions/date_time_ext.dart';
-import 'package:spam_delection_app/globals/app_constants.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/models/user_model.dart';
-import 'package:spam_delection_app/screens/loader.dart';
-import 'package:spam_delection_app/screens/widgets/custom_app_bar.dart';
-import 'package:spam_delection_app/screens/widgets/custom_dialog.dart';
-import 'package:spam_delection_app/utils/api_constants/http_status_codes.dart';
-import 'package:spam_delection_app/utils/session_expired.dart';
-
-import '../constants/icons_constants.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});

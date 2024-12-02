@@ -1,13 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/data/repository/auth_repo/corporate_login_api.dart';
-import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
-import 'package:spam_delection_app/globals/appbutton.dart';
-import 'package:spam_delection_app/screens/login_succesful_screen.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class CorpoateLogin extends StatefulWidget {
   const CorpoateLogin({super.key});

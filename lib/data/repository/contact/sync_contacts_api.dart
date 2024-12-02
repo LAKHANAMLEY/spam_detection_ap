@@ -1,9 +1,5 @@
-import 'dart:convert';
-
-import 'package:fast_contacts/fast_contacts.dart';
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/models/contact_list_response.dart';
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
+import 'package:spam_delection_app/lib.dart';
 
 Future<ContactListResponse> syncContacts(List<Contact> contacts) async {
   var headers = await ApiUrlConstants.headers();

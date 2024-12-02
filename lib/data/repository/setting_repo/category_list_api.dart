@@ -1,9 +1,5 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
-
-import '../../../models/category_list_model.dart';
+import 'package:spam_delection_app/lib.dart';
 
 Future<CategoryListResponse> getCategories() async {
   final url = Uri.parse(ApiUrlConstants.endPointCategoryList);

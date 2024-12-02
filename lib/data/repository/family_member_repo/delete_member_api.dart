@@ -1,11 +1,8 @@
-import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
-import '../../../models/family_delete_member_model.dart';
+import 'package:spam_delection_app/lib.dart';
 
 Future<FamilyDeleteMemberResponse> familyDeleteMember({
   required familyId,
-
 }) async {
   final response = await http.post(
     Uri.parse(ApiUrlConstants.endPointFamilyEditMember),

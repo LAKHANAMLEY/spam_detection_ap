@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/constants/icons_constants.dart';
-import 'package:spam_delection_app/globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;

@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_field/phone_number.dart';
-
-import '../constants/icons_constants.dart';
-import '../constants/string_constants.dart';
-import '../globals/app_fonts.dart';
-import '../globals/colors.dart';
-
+import 'package:spam_delection_app/lib.dart';
 
 class AddMember extends StatefulWidget {
   const AddMember({super.key});
@@ -33,19 +25,26 @@ class _AddMemberState extends State<AddMember> {
       backgroundColor: AppColor.secondryColor,
       appBar: AppBar(
         backgroundColor: AppColor.secondryColor,
-        leading:GestureDetector(
-          onTap: (){},
-          child: Container(
+        leading: GestureDetector(
+          onTap: () {},
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 2 / 100,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Image.asset(
                 IconConstants.icbackCircle,
               ),
             ),
-            height: MediaQuery.of(context).size.height * 2 / 100,
           ),
         ),
-        title: Text(StringConstants.addMember,style: TextStyle(color: AppColor.callColor,fontFamily: AppFont.fontFamily,fontSize: 18,fontWeight: FontWeight.w600),),
+        title: const Text(
+          StringConstants.addMember,
+          style: TextStyle(
+              color: AppColor.callColor,
+              fontFamily: AppFont.fontFamily,
+              fontSize: 18,
+              fontWeight: FontWeight.w600),
+        ),
         //centerTitle: true,
       ),
       body: SafeArea(
@@ -62,11 +61,12 @@ class _AddMemberState extends State<AddMember> {
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
-                      borderSide:
-                      const BorderSide(width: 1.5, color: AppColor.fillColor),
+                      borderSide: const BorderSide(
+                          width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
+                      borderSide:
+                          BorderSide(color: AppColor.fillColor, width: 1.5),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
                     filled: true,
@@ -93,16 +93,16 @@ class _AddMemberState extends State<AddMember> {
                 child: TextFormField(
                   controller: lastnameController,
                   decoration: InputDecoration(
-          
                     hintText: 'Last name',
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
-                      borderSide:
-                      const BorderSide(width: 1.5, color: AppColor.fillColor),
+                      borderSide: const BorderSide(
+                          width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
+                      borderSide:
+                          BorderSide(color: AppColor.fillColor, width: 1.5),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
                     filled: true,
@@ -133,11 +133,12 @@ class _AddMemberState extends State<AddMember> {
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
-                      borderSide:
-                      const BorderSide(width: 1.5, color: AppColor.fillColor),
+                      borderSide: const BorderSide(
+                          width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
+                      borderSide:
+                          BorderSide(color: AppColor.fillColor, width: 1.5),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
                     filled: true,
@@ -145,7 +146,8 @@ class _AddMemberState extends State<AddMember> {
                     suffixIcon: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                        IconConstants.icEmailadd, // Adjust the path as necessary
+                        IconConstants
+                            .icEmailadd, // Adjust the path as necessary
                         width: MediaQuery.of(context).size.width * 3 / 100,
                         height: MediaQuery.of(context).size.height * 3 / 100,
                       ),
@@ -166,11 +168,12 @@ class _AddMemberState extends State<AddMember> {
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
-                      borderSide:
-                      const BorderSide(width: 1.5, color: AppColor.fillColor),
+                      borderSide: const BorderSide(
+                          width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xffE1E6EB), width: 1.5),
+                      borderSide:
+                          BorderSide(color: Color(0xffE1E6EB), width: 1.5),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
                     filled: true,
@@ -195,16 +198,16 @@ class _AddMemberState extends State<AddMember> {
                 child: TextFormField(
                   controller: lastnameController,
                   decoration: InputDecoration(
-          
                     hintText: 'Relation',
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
-                      borderSide:
-                      const BorderSide(width: 1.5, color: AppColor.fillColor),
+                      borderSide: const BorderSide(
+                          width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
+                      borderSide:
+                          BorderSide(color: AppColor.fillColor, width: 1.5),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
                     filled: true,
@@ -231,16 +234,16 @@ class _AddMemberState extends State<AddMember> {
                 child: TextFormField(
                   controller: lastnameController,
                   decoration: InputDecoration(
-          
                     hintText: 'Support pin',
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
-                      borderSide:
-                      const BorderSide(width: 1.5, color: AppColor.fillColor),
+                      borderSide: const BorderSide(
+                          width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
+                      borderSide:
+                          BorderSide(color: AppColor.fillColor, width: 1.5),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
                     filled: true,
@@ -261,7 +264,6 @@ class _AddMemberState extends State<AddMember> {
                   ),
                 ),
               ),
-          
               SizedBox(
                 height: MediaQuery.of(context).size.height * 3 / 100,
               ),
@@ -275,11 +277,12 @@ class _AddMemberState extends State<AddMember> {
                     //labelText: 'Phone Number',
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
-                      borderSide:
-                      const BorderSide(width: 1.5, color: AppColor.fillColor),
+                      borderSide: const BorderSide(
+                          width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
+                      borderSide:
+                          BorderSide(color: AppColor.fillColor, width: 1.5),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
                     filled: true,
@@ -302,7 +305,6 @@ class _AddMemberState extends State<AddMember> {
                   },
                 ),
               ),
-          
             ],
           ),
         ),

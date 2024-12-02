@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/constants/string_constants.dart';
-import 'package:spam_delection_app/globals/app_fonts.dart';
-
-import '../constants/icons_constants.dart';
-import '../globals/colors.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

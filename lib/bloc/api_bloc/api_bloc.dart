@@ -1,42 +1,4 @@
-import 'dart:async';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
-import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
-import 'package:spam_delection_app/data/repository/auth_repo/social_signup_api.dart';
-import 'package:spam_delection_app/data/repository/block_repo/block_unlock_contact_api.dart';
-import 'package:spam_delection_app/data/repository/call_log_repo/get_call_logs.dart';
-import 'package:spam_delection_app/data/repository/call_log_repo/get_device_call_logs.dart';
-import 'package:spam_delection_app/data/repository/call_log_repo/sync_call_log.dart';
-import 'package:spam_delection_app/data/repository/contact/get_contacts_api.dart';
-import 'package:spam_delection_app/data/repository/contact/sync_contacts_api.dart';
-import 'package:spam_delection_app/data/repository/plans_repo/plans_list_api.dart';
-import 'package:spam_delection_app/data/repository/setting_repo/call_duration_unit_api.dart';
-import 'package:spam_delection_app/data/repository/setting_repo/category_list_api.dart';
-import 'package:spam_delection_app/data/repository/spam_repo/mark_spam_contacts_api.dart';
-import 'package:spam_delection_app/data/repository/spam_repo/remove_mark_spam_contacts_api.dart';
-import 'package:spam_delection_app/data/repository/spam_repo/spam_list_api.dart';
-import 'package:spam_delection_app/data/repository/staff_repo/staff_add_member_api.dart';
-import 'package:spam_delection_app/data/repository/user_repo/change_password_api.dart';
-import 'package:spam_delection_app/data/repository/user_repo/edit_profile_api.dart';
-import 'package:spam_delection_app/data/repository/user_repo/get_user_profile_api.dart';
-import 'package:spam_delection_app/models/response.dart';
-
-import '../../data/repository/block_repo/block_contact_list_api.dart';
-import '../../data/repository/call_log_repo/get_call_log/get_call_log_list_api.dart';
-import '../../data/repository/call_log_repo/get_call_log/syn_call_log_api.dart';
-import '../../data/repository/corporate_repo/edit_profile_corporate_api.dart';
-import '../../data/repository/family_member_repo/add_member_api.dart';
-import '../../data/repository/family_member_repo/delete_member_api.dart';
-import '../../data/repository/family_member_repo/edit_member_api.dart';
-import '../../data/repository/family_member_repo/family_member_details_api.dart';
-import '../../data/repository/family_member_repo/family_members_list_api.dart';
-import '../../data/repository/setting_repo/call_type_api.dart';
-import '../../data/repository/setting_repo/number_type_api.dart';
-import '../../data/repository/staff_repo/staff_delete_member_api.dart';
-import '../../data/repository/staff_repo/staff_edit_member_api.dart';
-import '../../data/repository/staff_repo/staff_member_list_api.dart';
-import '../../models/user_model.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
   ApiBloc(super.initialState) {
@@ -149,8 +111,6 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       });
     }
 
-
-
     // family add member
     if (event is FamilyAddMemberEvent) {
       emit(ApiLoadingState());
@@ -251,22 +211,6 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(CorporateEditProfileState(value));
       });
     }
-// call log
-    //syn call log
-    if (event is SyncCallLogEvent) {
-      emit(ApiLoadingState());
-      await syncCallLog(event.contacts).then((value) {
-        emit(SyncCallLogState(value));
-      });
-    }
-    // get call log list
-    if (event is GetCallLogListEvent) {
-      emit(ApiLoadingState());
-      await getCallLog().then((value) {
-        emit(GetCallLogListState(value));
-      });
-    }
-
 
     // staff
     //get staff member list

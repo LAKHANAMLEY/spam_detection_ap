@@ -1,20 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:spam_delection_app/screens/bottom_navigation.dart';
-import 'package:spam_delection_app/screens/contact_detail_screen.dart';
-import 'package:spam_delection_app/screens/contact_list_screen.dart';
-import 'package:spam_delection_app/screens/device_call_logs.dart';
-import 'package:spam_delection_app/screens/forgot_otp_verify_screen.dart';
-import 'package:spam_delection_app/screens/forgot_password_screen.dart';
-import 'package:spam_delection_app/screens/login_google_screen.dart';
-import 'package:spam_delection_app/screens/login_succesful_screen.dart';
-import 'package:spam_delection_app/screens/otp_verify_screen.dart';
-import 'package:spam_delection_app/screens/plans_type_screen.dart';
-import 'package:spam_delection_app/screens/protection_type_screen.dart';
-import 'package:spam_delection_app/screens/register_google_screen.dart';
-import 'package:spam_delection_app/screens/register_screen.dart';
-import 'package:spam_delection_app/screens/reset_password_screen.dart';
-import 'package:spam_delection_app/screens/splash_screen.dart';
-import 'package:spam_delection_app/screens/welcome_screen.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class AppRoutes {
   static const splash = "/splash";
@@ -33,7 +17,7 @@ class AppRoutes {
   static const registerWithGoogle = "/registerWithGoogle";
   static const loginSuccess = "/loginSuccess";
   static const otpVerification = "/otpVerification";
- // static const contactDetail = "/contactDetail";
+  // static const contactDetail = "/contactDetail";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -53,5 +37,5 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.registerWithGoogle: (context) => const RegisterGoogle(),
   AppRoutes.loginSuccess: (context) => const LoginSuccessful(),
   AppRoutes.otpVerification: (context) => const OtpVerify(),
- // AppRoutes.contactDetail: (context) => const ContactDetail(),
+  // AppRoutes.contactDetail: (context) => const ContactDetail(),
 };

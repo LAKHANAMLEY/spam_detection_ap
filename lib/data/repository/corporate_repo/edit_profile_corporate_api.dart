@@ -1,14 +1,7 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:spam_delection_app/models/common_response_model.dart';
-import 'package:spam_delection_app/models/edit_profile_model.dart';
-import 'package:spam_delection_app/models/user_model.dart';
-import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
+import 'package:spam_delection_app/lib.dart';
 
-import '../../../models/corporate_login_model.dart';
-
-Future<CommonResponse> corpoarteEditProfile({
+Future<Response> corpoarteEditProfile({
   // required String firstname,
   // required String lastname,
   // required String dateofbirth,
@@ -54,7 +47,7 @@ Future<CommonResponse> corpoarteEditProfile({
   var response = await http.Response.fromStream(streamedResponse);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
-    return CommonResponse.fromJson(jsonData);
+    return Response.fromJson(jsonData);
   } else {
     throw Exception(response.body);
   }
@@ -65,4 +58,3 @@ extension on String {
 
   get path => null;
 }
-
