@@ -118,31 +118,51 @@ class _ProfileState extends State<Profile> {
                       children: [
                         Center(
                           child: SizedBox(
-                            child: CircleAvatar(
-                              backgroundColor:
-                                  AppColor.vanishColor.withOpacity(0.2),
-                              radius: 43.0,
-                              backgroundImage: (user.photo?.isNotEmpty ?? false)
-                                  ? NetworkImage(
+                            child: (user.photo?.isNotEmpty ?? false)
+                                ? CircleAvatar(
+                                    backgroundColor:
+                                        AppColor.vanishColor.withOpacity(0.2),
+                                    radius: 43.0,
+                                    backgroundImage: NetworkImage(
                                       user.photo ?? "",
-                                    )
-                                  : const AssetImage(
+                                    ),
+                                    child: Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: CircleAvatar(
+                                          backgroundColor: AppColor.callColor,
+                                          radius: 12.0,
+                                          child: Image.asset(
+                                            IconConstants.icCamera,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                2 /
+                                                100,
+                                          )),
+                                    ),
+                                  )
+                                : CircleAvatar(
+                                    backgroundColor:
+                                        AppColor.vanishColor.withOpacity(0.2),
+                                    radius: 43.0,
+                                    backgroundImage: const AssetImage(
                                       IconConstants.iccircleAvater,
                                     ),
-                              child: Align(
-                                alignment: Alignment.bottomRight,
-                                child: CircleAvatar(
-                                    backgroundColor: AppColor.callColor,
-                                    radius: 12.0,
-                                    child: Image.asset(
-                                      IconConstants.icCamera,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              2 /
-                                              100,
-                                    )),
-                              ),
-                            ),
+                                    child: Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: CircleAvatar(
+                                          backgroundColor: AppColor.callColor,
+                                          radius: 12.0,
+                                          child: Image.asset(
+                                            IconConstants.icCamera,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                2 /
+                                                100,
+                                          )),
+                                    ),
+                                  ),
                           ),
                         ),
                         SizedBox(
@@ -344,126 +364,29 @@ class _ProfileState extends State<Profile> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 4 / 100,
                         ),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 7 / 100,
-                          width: MediaQuery.of(context).size.height * 90 / 100,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(2.0)),
-                              border: Border.all(
-                                  color: AppColor.greyarrowColor, width: 1),
-                              color: AppColor.secondryColor),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  IconConstants.icEdit,
-                                  height: MediaQuery.of(context).size.height *
-                                      5 /
-                                      100,
-                                  width: MediaQuery.of(context).size.width *
-                                      5 /
-                                      100,
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      2 /
-                                      100,
-                                ),
-                                const Text(
-                                  'Edit Profile',
-                                  style: TextStyle(
-                                      color: AppColor.thumbColor, fontSize: 18),
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      46 /
-                                      100,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const EditProfile()));
-                                  },
-                                  child: Image.asset(
-                                    IconConstants.icviewArrow,
-                                    height: MediaQuery.of(context).size.height *
-                                        6 /
-                                        100,
-                                    width: MediaQuery.of(context).size.width *
-                                        6 /
-                                        100,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
+                        SubMenu(
+                          title: 'Edit Profile',
+                          icon: IconConstants.icEdit,
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const EditProfile()));
+                          },
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 2 / 100,
                         ),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 7 / 100,
-                          width: MediaQuery.of(context).size.height * 90 / 100,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(2.0)),
-                              border: Border.all(
-                                  color: AppColor.greyarrowColor, width: 1),
-                              color: AppColor.secondryColor),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  IconConstants.icEditSecurity,
-                                  height: MediaQuery.of(context).size.height *
-                                      5 /
-                                      100,
-                                  width: MediaQuery.of(context).size.width *
-                                      5 /
-                                      100,
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      2 /
-                                      100,
-                                ),
-                                const Text(
-                                  'Edit Security Pin',
-                                  style: TextStyle(
-                                      color: AppColor.thumbColor, fontSize: 18),
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      34 /
-                                      100,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const EditSecurityPin()));
-                                  },
-                                  child: Image.asset(
-                                    IconConstants.icviewArrow,
-                                    height: MediaQuery.of(context).size.height *
-                                        6 /
-                                        100,
-                                    width: MediaQuery.of(context).size.width *
-                                        6 /
-                                        100,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
+                        SubMenu(
+                          title: 'Edit Security Pin',
+                          icon: IconConstants.icEditSecurity,
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const EditSecurityPin()));
+                          },
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 2 / 100,
@@ -591,6 +514,63 @@ class _ProfileState extends State<Profile> {
             }
             return const Loader();
           }),
+    );
+  }
+}
+
+class SubMenu extends StatelessWidget {
+  final String title;
+  final String icon;
+  final void Function()? onTap;
+  const SubMenu(
+      {super.key, required this.title, this.onTap, required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        // height: MediaQuery.of(context).size.height * 7 / 100,
+        // width: MediaQuery.of(context).size.height * 90 / 100,
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(2.0)),
+            border: Border.all(color: AppColor.greyarrowColor, width: 1),
+            color: AppColor.secondryColor),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Image.asset(
+                    icon,
+                    height: MediaQuery.of(context).size.height * 5 / 100,
+                    width: MediaQuery.of(context).size.width * 5 / 100,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 2 / 100,
+                  ),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                        color: AppColor.thumbColor, fontSize: 18),
+                  ),
+                ],
+              ),
+
+              // SizedBox(
+              //   width: MediaQuery.of(context).size.width * 46 / 100,
+              // ),
+              Image.asset(
+                IconConstants.icviewArrow,
+                height: MediaQuery.of(context).size.height * 6 / 100,
+                width: MediaQuery.of(context).size.width * 6 / 100,
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

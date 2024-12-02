@@ -218,37 +218,87 @@ class _EditProfileState extends State<EditProfile> {
                         children: [
                           Center(
                             child: SizedBox(
-                              child: CircleAvatar(
-                                backgroundColor:
-                                    AppColor.vanishColor.withOpacity(0.2),
-                                radius: 43.0,
-                                backgroundImage: _selectedImage == null
-                                    ? const AssetImage(
-                                        IconConstants.iccircleAvater)
-                                    : _selectedImage?.mimeType == "http"
-                                        ? NetworkImage(
-                                            _selectedImage?.path ?? "")
-                                        : FileImage(
-                                            File(_selectedImage?.path ?? "")),
-                                child: Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: CircleAvatar(
-                                      backgroundColor: AppColor.callColor,
-                                      radius: 12.0,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            _showEditOptions(context);
-                                          },
-                                          child: Image.asset(
-                                            IconConstants.icCamera,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                2 /
-                                                100,
-                                          ))),
-                                ),
-                              ),
+                              child: _selectedImage == null
+                                  ? CircleAvatar(
+                                      backgroundColor:
+                                          AppColor.vanishColor.withOpacity(0.2),
+                                      radius: 43.0,
+                                      backgroundImage: const AssetImage(
+                                          IconConstants.iccircleAvater),
+                                      child: Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: CircleAvatar(
+                                            backgroundColor: AppColor.callColor,
+                                            radius: 12.0,
+                                            child: GestureDetector(
+                                                onTap: () {
+                                                  _showEditOptions(context);
+                                                },
+                                                child: Image.asset(
+                                                  IconConstants.icCamera,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      2 /
+                                                      100,
+                                                ))),
+                                      ),
+                                    )
+                                  : _selectedImage?.mimeType == "http"
+                                      ? CircleAvatar(
+                                          backgroundColor: AppColor.vanishColor
+                                              .withOpacity(0.2),
+                                          radius: 43.0,
+                                          backgroundImage: NetworkImage(
+                                              _selectedImage?.path ?? ""),
+                                          child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: CircleAvatar(
+                                                backgroundColor:
+                                                    AppColor.callColor,
+                                                radius: 12.0,
+                                                child: GestureDetector(
+                                                    onTap: () {
+                                                      _showEditOptions(context);
+                                                    },
+                                                    child: Image.asset(
+                                                      IconConstants.icCamera,
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              2 /
+                                                              100,
+                                                    ))),
+                                          ),
+                                        )
+                                      : CircleAvatar(
+                                          backgroundColor: AppColor.vanishColor
+                                              .withOpacity(0.2),
+                                          radius: 43.0,
+                                          backgroundImage: FileImage(
+                                              File(_selectedImage?.path ?? "")),
+                                          child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: CircleAvatar(
+                                                backgroundColor:
+                                                    AppColor.callColor,
+                                                radius: 12.0,
+                                                child: GestureDetector(
+                                                    onTap: () {
+                                                      _showEditOptions(context);
+                                                    },
+                                                    child: Image.asset(
+                                                      IconConstants.icCamera,
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              2 /
+                                                              100,
+                                                    ))),
+                                          ),
+                                        ),
                             ),
                           ),
                           SizedBox(

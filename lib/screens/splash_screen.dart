@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:spam_delection_app/app_route/route.dart';
 import 'package:spam_delection_app/constants/icons_constants.dart';
 import 'package:spam_delection_app/constants/string_constants.dart';
 import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
 import 'package:spam_delection_app/globals/colors.dart';
-import 'package:spam_delection_app/screens/bottom_navigation.dart';
-
-import 'welcome_screen.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -21,12 +19,10 @@ class SplashState extends State<Splash> {
     SharedPref.getIsLogin().then((isLogin) {
       Future.delayed(
         const Duration(seconds: 3),
-        () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  isLogin ? const BottomNavigation() : const Welcome()),
-        ),
+        () => Navigator.pushNamedAndRemoveUntil(
+            context,
+            isLogin ? AppRoutes.bottomNavigation : AppRoutes.welcome,
+            (route) => false),
       );
     });
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
-import 'package:spam_delection_app/data/repository/call_log_repo/add_contacts_api.dart';
+import 'package:spam_delection_app/data/repository/contact/add_contacts_api.dart';
 import 'package:spam_delection_app/globals/appbutton.dart';
 import 'package:spam_delection_app/screens/contact_list_screen.dart';
 

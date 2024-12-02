@@ -1,3 +1,3 @@
 extension TimeStampExt on int {
-  DateTime toDate() => DateTime.fromMillisecondsSinceEpoch(this);
+  DateTime toDateTime() => DateTime.fromMillisecondsSinceEpoch(this);
 }

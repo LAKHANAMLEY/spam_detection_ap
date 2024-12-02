@@ -7,24 +7,21 @@ import 'package:spam_delection_app/utils/api_constants/api_uri_constants.dart';
 
 import '../../../models/change_password_model.dart';
 
-Future<AddContactResponse> addContact({
-  required String fullname,
-  required String email,
-  required String numbertype,
-     required phonenumber,
-         required countrycode
-
-}) async {
+Future<AddContactResponse> addContact(
+    {required String fullname,
+    required String email,
+    required String numbertype,
+    required phonenumber,
+    required countrycode}) async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointAddConstants),
+    Uri.parse(ApiUrlConstants.addContact),
     headers: await ApiUrlConstants.headers(),
     body: {
       'name': fullname,
       'email': email,
       'number_type': numbertype,
       'country_code': countrycode,
-       'phone': phonenumber,
-
+      'phone': phonenumber,
     },
   );
   if (response.statusCode == 200) {

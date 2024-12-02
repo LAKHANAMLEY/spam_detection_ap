@@ -1,7 +1,8 @@
-import 'package:call_log/call_log.dart';
+import 'package:call_e_log/call_log.dart';
 import 'package:equatable/equatable.dart';
 import 'package:spam_delection_app/models/add_member_model.dart';
 import 'package:spam_delection_app/models/call_duration_model.dart';
+import 'package:spam_delection_app/models/call_logs_model.dart';
 import 'package:spam_delection_app/models/category_list_model.dart';
 import 'package:spam_delection_app/models/common_response_model.dart';
 import 'package:spam_delection_app/models/contact_list_response.dart';
@@ -239,6 +240,20 @@ class StaffEditMemberState extends ApiState {
 class StaffDeleteMemberState extends ApiState {
   final CommonResponse value;
   StaffDeleteMemberState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
+
+class SyncCallLogState extends ApiState {
+  final Response value;
+  SyncCallLogState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
+
+class GetCallLogsState extends ApiState {
+  final CallLogsListResponse value;
+  GetCallLogsState(this.value);
   @override
   List<Object?> get props => [value];
 }

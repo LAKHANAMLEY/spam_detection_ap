@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-int language = 0;
+// int language = 0;
 
 class AppData {
   static const int appStatus = 0;

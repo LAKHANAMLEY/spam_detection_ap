@@ -5,7 +5,9 @@ import 'package:spam_delection_app/bloc/api_bloc/api_event.dart';
 import 'package:spam_delection_app/bloc/api_bloc/api_state.dart';
 import 'package:spam_delection_app/data/repository/auth_repo/social_signup_api.dart';
 import 'package:spam_delection_app/data/repository/block_repo/block_unlock_contact_api.dart';
+import 'package:spam_delection_app/data/repository/call_log_repo/get_call_logs.dart';
 import 'package:spam_delection_app/data/repository/call_log_repo/get_device_call_logs.dart';
+import 'package:spam_delection_app/data/repository/call_log_repo/sync_call_log.dart';
 import 'package:spam_delection_app/data/repository/contact/get_contacts_api.dart';
 import 'package:spam_delection_app/data/repository/contact/sync_contacts_api.dart';
 import 'package:spam_delection_app/data/repository/plans_repo/plans_list_api.dart';
@@ -255,6 +257,22 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         staffId: event.staffId,
       ).then((value) {
         emit(StaffDeleteMemberState(value));
+      });
+    }
+
+    if (event is SyncCallLogEvent) {
+      emit(ApiLoadingState());
+      await syncCallLog(
+        callLogs: event.callLogs,
+      ).then((value) {
+        emit(SyncCallLogState(value));
+      });
+    }
+
+    if (event is GetCallLogsEvent) {
+      emit(ApiLoadingState());
+      await getCallLogs().then((value) {
+        emit(GetCallLogsState(value));
       });
     }
   }

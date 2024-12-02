@@ -9,6 +9,7 @@ int language = 0;
 var userBloc = ApiBloc(ApiBlocInitialState());
 var sharedPrefBloc = SharedPrefBloc(SharedPrefInitialState());
 var contactListBloc = ApiBloc(ApiBlocInitialState());
+var callLogsListBloc = ApiBloc(ApiBlocInitialState());
 
 class AppConstant {
   static const int appStatus = 0;

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,11 +50,19 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
+  StreamSubscription<ApiState>? streamSubs;
+
   @override
   void initState() {
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     getAndSyncContacts();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    streamSubs?.cancel();
+    super.dispose();
   }
 
   @override
@@ -78,17 +88,19 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   if (state is GetUserDataFromLocalState) {
                     var photo = state.user.photo;
                     return GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Profile()));
-                        },
-                        child: CircleAvatar(
-                            backgroundImage: (photo?.isNotEmpty ?? false)
-                                ? NetworkImage(photo ?? "")
-                                : const AssetImage(
-                                    ImageConstants.imageProfile)));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Profile()));
+                      },
+                      child: (photo?.isNotEmpty ?? false)
+                          ? CircleAvatar(
+                              backgroundImage: NetworkImage(photo ?? ""))
+                          : const CircleAvatar(
+                              backgroundImage:
+                                  AssetImage(ImageConstants.imageProfile)),
+                    );
                   }
                   return const Loader();
                 }),
@@ -411,7 +423,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   }
 
   void getAndSyncContacts() {
-    contactListBloc.stream.listen((state) {
+    streamSubs = contactListBloc.stream.listen((state) {
       if (state is GetContactState) {
         // filterSearchResults("");
         if (state.value.statusCode == 200) {

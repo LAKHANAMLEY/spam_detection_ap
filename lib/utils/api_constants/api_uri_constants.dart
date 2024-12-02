@@ -84,12 +84,16 @@ class ApiUrlConstants {
   static String endPointRemoveMarkSpam =
       '$baseUrl/contacts/remove-spam-contacts';
 
-  //call_log
-  static String endPointAddConstants = '$baseUrl/contacts/add-contacts';
+  //contact
+  static String addContact = '$baseUrl/contacts/add-contacts';
   static String endPointEditContacts = '$baseUrl/contacts/edit-contacts';
   static String endPointDeleteContacts = '$baseUrl/contacts/delete-contacts';
   static String endPointCheckSpamContacts =
       '$baseUrl/contacts/is-phone-number-spam';
+
+  //call logs
+  static String syncCallLogs = "$baseUrl/contacts/sync-call-log";
+  static String getCallLogs = "$baseUrl/contacts/call-log-list";
 
   // corporate
   static String endPointCorporateEditProfile =
