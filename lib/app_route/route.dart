@@ -33,6 +33,7 @@ class AppRoutes {
   static const registerWithGoogle = "/registerWithGoogle";
   static const loginSuccess = "/loginSuccess";
   static const otpVerification = "/otpVerification";
+ // static const contactDetail = "/contactDetail";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -52,4 +53,5 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.registerWithGoogle: (context) => const RegisterGoogle(),
   AppRoutes.loginSuccess: (context) => const LoginSuccessful(),
   AppRoutes.otpVerification: (context) => const OtpVerify(),
+ // AppRoutes.contactDetail: (context) => const ContactDetail(),
 };

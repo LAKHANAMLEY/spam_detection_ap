@@ -172,6 +172,7 @@ class _ProfileState extends State<Profile> {
                           child: Text(
                             user.name ?? "",
                             style: const TextStyle(
+                              color: AppColor.primaryColor,
                               fontFamily: AppFont.fontFamily,
                               fontWeight: FontWeight.w700,
                               fontSize: 24.0,

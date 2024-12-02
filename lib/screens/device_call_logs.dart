@@ -72,7 +72,9 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
   @override
   Widget build(BuildContext context) {
     var argument = args(context) as DeviceCallLogs?;
+
     return Scaffold(
+      backgroundColor: AppColor.secondryColor,
       appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
           ? const CustomAppBar(
               title: "Call logs",
@@ -146,6 +148,21 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                   ),
                 ));
           }),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColor.callColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Image.asset(
+          IconConstants.icUsername,
+          color: AppColor.secondryColor,
+          height: MediaQuery.of(context).size.height * 6 / 100,
+          width: MediaQuery.of(context).size.width * 6 / 100,
+        ),
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.contactList);
+        },
+      ),
     );
   }
 }

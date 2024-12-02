@@ -33,6 +33,7 @@ class _SpamListState extends State<SpamList> {
   @override
   void initState() {
     super.initState();
+    filteredContacts = [];
     spamListBloc.add(GetSpamEvent());
   }
 

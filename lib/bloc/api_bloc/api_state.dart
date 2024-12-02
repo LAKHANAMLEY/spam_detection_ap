@@ -1,6 +1,7 @@
 import 'package:call_e_log/call_log.dart';
 import 'package:equatable/equatable.dart';
 import 'package:spam_delection_app/models/add_member_model.dart';
+import 'package:spam_delection_app/models/block_contacts_list_model.dart';
 import 'package:spam_delection_app/models/call_duration_model.dart';
 import 'package:spam_delection_app/models/call_logs_model.dart';
 import 'package:spam_delection_app/models/category_list_model.dart';
@@ -11,6 +12,7 @@ import 'package:spam_delection_app/models/family_delete_member_model.dart';
 import 'package:spam_delection_app/models/family_edit_member_model.dart';
 import 'package:spam_delection_app/models/family_member_list_model.dart';
 import 'package:spam_delection_app/models/mark_spam_model.dart';
+import 'package:spam_delection_app/models/number_type_model.dart';
 import 'package:spam_delection_app/models/plan_list_model.dart';
 import 'package:spam_delection_app/models/response.dart';
 import 'package:spam_delection_app/models/sign_up_model.dart';
@@ -137,6 +139,13 @@ class GetFamilyMemberListState extends ApiState {
   @override
   List<Object?> get props => [value];
 }
+// family member  Details
+class GetFamilyMemberDetailState extends ApiState {
+  final CommonResponse value;
+  GetFamilyMemberDetailState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
 
 // add member
 class FamilyAddMemberState extends ApiState {
@@ -181,6 +190,17 @@ class GetCallDurationState extends ApiState {
   @override
   List<Object?> get props => [value];
 }
+
+
+
+// Number type
+
+class GetNumberTypeState extends ApiState {
+  final NumberTypeResponse value;
+  GetNumberTypeState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
 // call type
 
 class GetCallTypeState extends ApiState {
@@ -191,10 +211,49 @@ class GetCallTypeState extends ApiState {
 }
 
 // contact
+// block
+
+class GetBlockContactState extends ApiState {
+  final BlockedContactListResponse value;
+  GetBlockContactState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
+
 // unBlock
 class UnBlockState extends ApiState {
   final CommonResponse value;
   UnBlockState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
+//corporate
+
+
+class CorporateEditProfileState extends ApiState {
+  final CommonResponse value;
+  CorporateEditProfileState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
+// call Log
+
+//sync
+class SyncCallLogState extends ApiState {
+  final ContactListResponse value;
+
+  SyncCallLogState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+//get call log list
+
+class GetCallLogListState extends ApiState {
+  final CommonResponse value;
+
+  GetCallLogListState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
