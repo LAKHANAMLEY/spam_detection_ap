@@ -179,7 +179,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                       textAlign: TextAlign.center,
                                     ),
                                     Text(
-                                      StringConstants.Amtext,
+                                      StringConstants.amtext,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           color: AppColor.primaryColor,

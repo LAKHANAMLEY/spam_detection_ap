@@ -62,7 +62,7 @@ class CustomTextField extends StatelessWidget {
           // padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
               color: isDarkMode ? Colors.white : Colors.white24,
-              border: Border.all(color: Color(0xffE1E6EB), width: 1.0),
+              border: Border.all(color: const Color(0xffE1E6EB), width: 1.0),
               borderRadius: BorderRadius.circular(10)),
           // // constraints: const BoxConstraints(maxHeight: 60, minHeight: 0),
           margin: const EdgeInsets.symmetric(vertical: 10),

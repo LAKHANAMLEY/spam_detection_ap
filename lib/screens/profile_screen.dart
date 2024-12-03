@@ -261,7 +261,7 @@ class _ProfileState extends State<Profile> {
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: Container(
+                                  child: SizedBox(
                                     width: MediaQuery.of(context).size.width *
                                         40 /
                                         100,
@@ -292,9 +292,9 @@ class _ProfileState extends State<Profile> {
                                               100,
                                           color: AppColor.callColor,
                                         ),
-                                        hint: Text(
+                                        hint: const Text(
                                           "Last  30 days",
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                               color: AppColor.callColor,
                                               fontSize: 14,
                                               fontFamily: AppFont.fontFamily,

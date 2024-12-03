@@ -236,16 +236,6 @@ class GetStaffMemberDetailState extends ApiState {
   List<Object?> get props => [value];
 }
 
-// staff member detail
-class GetStaffMemberDetailState extends ApiState {
-  final StaffMemberListResponse value;
-
-  GetStaffMemberDetailState(this.value);
-
-  @override
-  List<Object?> get props => [value];
-}
-
 class StaffAddMemberState extends ApiState {
   final Response value;
   StaffAddMemberState(this.value);

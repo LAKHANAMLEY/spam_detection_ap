@@ -1,4 +1,3 @@
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ContactList extends StatefulWidget {
