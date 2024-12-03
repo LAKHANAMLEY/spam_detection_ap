@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<NotificationTypeResponse> getcallDuration() async {
+Future<NotificationTypeResponse> notificationType() async {
   final response = await http.get(
     Uri.parse(ApiUrlConstants.endPointNotificationType),
     headers: await ApiUrlConstants.headers(),

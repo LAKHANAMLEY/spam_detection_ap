@@ -115,7 +115,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                         controller: searchController,
                         prefix: const Icon(
                           Icons.search,
-                          color: Colors.grey,
+                          color: Colors.red,
                         ),
                         hintText: "Search numbers, names & more",
                         onChanged: (p0) {
@@ -127,11 +127,17 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                             ? const Center(
                                 child: Text("No data"),
                               )
-                            : ListView.builder(
-                                itemCount: filteredCallLogs.length,
-                                itemBuilder: (context, index) =>
-                                    CallLogListItem(
-                                        callLog: filteredCallLogs[index])),
+                            : GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, AppRoutes.contactDetail);
+                                },
+                                child: ListView.builder(
+                                    itemCount: filteredCallLogs.length,
+                                    itemBuilder: (context, index) =>
+                                        CallLogListItem(
+                                            callLog: filteredCallLogs[index])),
+                              ),
                       ),
                     ],
                   ),

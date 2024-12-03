@@ -76,8 +76,8 @@ class _ContactListState extends State<ContactList> {
                         onChanged: (value) => filterSearchResults(value),
                         controller: editingController,
                         decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.search),
-                          hintText: "Search number, names & more",
+                          prefixIcon: const Icon(Icons.search,color: AppColor.redColor,),
+                          hintText: "Search numbers, names & more",
                           border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(6)),
                           ),

@@ -221,6 +221,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       });
     }
 
+    //get staff member Details
+    if (event is GetStaffMemberDetailEvent) {
+      emit(ApiLoadingState());
+      await getStaffList().then((value) {
+        emit(GetStaffMemberDetailState(value));
+      });
+    }
+
     // staff  Add member
     if (event is StaffAddMemberEvent) {
       emit(ApiLoadingState());
@@ -251,7 +259,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(StaffEditMemberState(value));
       });
     }
-    //
+    //staff delete member
     if (event is StaffDeleteMemberEvent) {
       emit(ApiLoadingState());
       await staffDeleteMember(
@@ -288,6 +296,37 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await deleteAllCallLogs().then((value) {
         emit(DeleteAllCallLogState(value));
+      });
+    }
+
+    // notifications
+    // notification list
+    /*if (event is NotificationListEvent) {
+      emit(ApiLoadingState());
+      await notificationList(
+      ).then((value) {
+        emit(NotificationListState(value));
+      });
+    }
+
+     */
+    //notification Enabled
+    if (event is EnabledNotificationEvent) {
+      emit(ApiLoadingState());
+      await enableNotification(
+              notificationOne: event.notificationOne,
+              notificationReceive: event.notificationReceive,
+              notificationPush: event.notificationPush)
+          .then((value) {
+        emit(EnabledNotificationState(value));
+      });
+    }
+
+    // notification Type
+    if (event is NotificationTypeEvent) {
+      emit(ApiLoadingState());
+      await notificationType().then((value) {
+        emit(NotificationTypeState(value));
       });
     }
   }

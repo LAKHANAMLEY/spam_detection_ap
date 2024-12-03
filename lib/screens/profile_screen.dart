@@ -14,12 +14,28 @@ class _ProfileState extends State<Profile> {
     IconConstants.icsearchCheck,
     IconConstants.icmessageCheck
   ];
-  final List<String> cardTexts = ['3', '68s', '25', '38'];
+  final List<String> cardTexts = ['3', '68s' ,'25', '38'];
+  /*List<Map<String, dynamic>> allSpamCalls = [
+    {'imageUrl':  IconConstants.icspamCheck, 'cardTexts': '68s', 'type': 'Last 30 days'},
+    {'imageUrl':  IconConstants.icClock, 'number': '+0987654321', 'type': 'Last 30 days'},
+    {'imageUrl': IconConstants.icsearchCheck, 'number': '+1122334455', 'type': 'All time'},
+    {'imageUrl': IconConstants.icmessageCheck, 'number': '+4455667788', 'type': 'All time'},
+  ];
+   */
+
   final List<String> spamTexts = [
     StringConstants.spamcallstext,
     StringConstants.timesavestext,
     StringConstants.unknowntext,
     StringConstants.messagestext,
+  ];
+  String? _selectedItem;
+  final List<String> _items = [
+    'Last 30 days',
+    'Last 3 months ',
+    'Last 6 months',
+    'This year',
+    'All time'
   ];
 
   @override
@@ -226,7 +242,7 @@ class _ProfileState extends State<Profile> {
                           height: MediaQuery.of(context).size.height * 5 / 100,
                         ),
                         Container(
-                          height: MediaQuery.of(context).size.height * 55 / 100,
+                          height: MediaQuery.of(context).size.height * 56 / 100,
                           width: MediaQuery.of(context).size.width * 90 / 100,
                           decoration: BoxDecoration(
                             color: AppColor.whitedeep,
@@ -243,21 +259,61 @@ class _ProfileState extends State<Profile> {
                                       2 /
                                       100,
                                 ),
-                                const Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Last 30 days",
-                                      style: TextStyle(
-                                          color: AppColor.lastColor,
-                                          fontSize: 18,
-                                          fontFamily: AppFont.fontFamily,
-                                          fontWeight: FontWeight.w600),
-                                      textAlign: TextAlign.start,
-                                    )),
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      2 /
-                                      100,
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        40 /
+                                        100,
+                                    height: MediaQuery.of(context).size.height *
+                                        6 /
+                                        100,
+                                    /*decoration: BoxDecoration(
+                                      border: Border.all(color: AppColor.themeColor),
+                                      borderRadius: BorderRadius.circular(3),
+                                      color: AppColor.secondryColor.withOpacity(0.7),
+                                    ),
+                                     */
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: DropdownButton<String>(
+                                        value: _selectedItem,
+                                        icon: Image.asset(
+                                          IconConstants.icDrop,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              3 /
+                                              100,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              3 /
+                                              100,
+                                          color: AppColor.callColor,
+                                        ),
+                                        hint: Text(
+                                          "Last  30 days",
+                                          style: const TextStyle(
+                                              color: AppColor.callColor,
+                                              fontSize: 14,
+                                              fontFamily: AppFont.fontFamily,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        items: _items.map((String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                        onChanged: (String? newValue) {
+                                          setState(() {
+                                            _selectedItem = newValue;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 GridView.builder(
                                   gridDelegate:

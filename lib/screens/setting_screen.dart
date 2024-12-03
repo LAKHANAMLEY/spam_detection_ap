@@ -10,8 +10,8 @@ class Setting extends StatefulWidget {
 class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+    return Scaffold();}}
+        /*backgroundColor: AppColor.secondryColor,
         appBar: AppBar(
           backgroundColor: AppColor.secondryColor,
           leading: GestureDetector(
@@ -115,3 +115,4 @@ class _SettingState extends State<Setting> {
         ));
   }
 }
+*/

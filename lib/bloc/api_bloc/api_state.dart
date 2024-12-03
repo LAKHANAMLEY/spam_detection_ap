@@ -216,11 +216,31 @@ class GetStaffMemberListState extends ApiState {
   List<Object?> get props => [value];
 }
 
-// staff  member
+// staff add  member
 class GetStaffAddMemberListState extends ApiState {
   final Response value;
 
   GetStaffAddMemberListState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// staff member detail
+class GetStaffMemberDetailState extends ApiState {
+  final StaffMemberListResponse value;
+
+  GetStaffMemberDetailState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// staff member detail
+class GetStaffMemberDetailState extends ApiState {
+  final StaffMemberListResponse value;
+
+  GetStaffMemberDetailState(this.value);
 
   @override
   List<Object?> get props => [value];
@@ -271,6 +291,31 @@ class DeleteCallLogState extends ApiState {
 class DeleteAllCallLogState extends ApiState {
   final Response value;
   DeleteAllCallLogState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
+
+//  notification
+// notification List
+class NotificationListState extends ApiState {
+  final NotificationResponse value;
+  NotificationListState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
+
+// notification Enabled
+class EnabledNotificationState extends ApiState {
+  final EnabledNotificationResponse value;
+  EnabledNotificationState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
+
+// notification Type
+class NotificationTypeState extends ApiState {
+  final NotificationTypeResponse value;
+  NotificationTypeState(this.value);
   @override
   List<Object?> get props => [value];
 }
