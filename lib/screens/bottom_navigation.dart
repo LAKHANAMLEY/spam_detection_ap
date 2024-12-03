@@ -14,7 +14,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
     const HomeScreen(),
     const ChatScreen(),
     // const ContactList(),
-    const DeviceCallLogs(showAppBar: false),
+    const DeviceCallLogs(
+      showAppBar: false,
+    ),
     const PremiumPlan(),
     const Setting(),
   ];
@@ -88,7 +90,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 itemBuilder: (context) => [
                   PopupMenuItem(
                     onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.callLogs);
+                      Navigator.pushNamed(context, AppRoutes.callLogs,
+                          arguments:
+                              DeviceCallLogs(filterBy: CallType.outgoing.name));
                     },
                     child: Row(
                       children: [
@@ -107,6 +111,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     ),
                   ),
                   PopupMenuItem(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.callLogs,
+                          arguments:
+                              DeviceCallLogs(filterBy: CallType.incoming.name));
+                    },
                     child: Row(
                       children: [
                         Image.asset(
@@ -124,6 +133,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     ),
                   ),
                   PopupMenuItem(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.callLogs,
+                          arguments:
+                              DeviceCallLogs(filterBy: CallType.missed.name));
+                    },
                     child: Row(
                       children: [
                         Image.asset(IconConstants.icMissedCall),
@@ -139,29 +153,30 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     ),
                   ),
                   PopupMenuItem(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const BlockedNumber()));
-                      },
-                      child: Row(
-                        children: [
-                          Image.asset(IconConstants.icBlockCall),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 5 / 100,
-                          ),
-                          const Text('Blocked Calls',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600))
-                        ],
-                      ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BlockedNumber()));
+                    },
+                    child: Row(
+                      children: [
+                        Image.asset(IconConstants.icBlockCall),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 5 / 100,
+                        ),
+                        const Text('Blocked Calls',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600))
+                      ],
                     ),
                   ),
                   PopupMenuItem(
+                    onTap: () {
+                      callLogsListBloc.add(DeleteAllCallLogEvent());
+                    },
                     child: Row(
                       children: [
                         Image.asset(IconConstants.icDelete),

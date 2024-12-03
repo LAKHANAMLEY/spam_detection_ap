@@ -9,9 +9,13 @@ Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
       'call_log[$i][simdisplayname]': log.simDisplayName ?? "",
       'call_log[$i][phoneaccountid]': log.phoneAccountId ?? "",
       'call_log[$i][name]': log.name ?? "",
-      'call_log[$i][mobile_no]': log.number ?? "",
-      'call_log[$i][call_type]': log.callType.toString(),
-      'call_log[$i][call_time]': log.timestamp?.toDateTime().toString() ?? "",
+      'call_log[$i][country_code]':
+          log.number?.separeatePhoneAndPhoneCode().phoneCode ?? "",
+      'call_log[$i][mobile_no]':
+          log.number?.separeatePhoneAndPhoneCode().phone ?? "",
+      'call_log[$i][call_type]': log.callType?.name ?? "",
+      'call_log[$i][call_time]':
+          log.timestamp?.toDateTime().toString().splitFirstBy(".") ?? "",
       'call_log[$i][call_duration]': log.duration.toString(),
       'call_log[$i][call_duration_unit]': '1' //1 sec 2 min 3 horus
     });
@@ -27,13 +31,6 @@ Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
   for (var field in body) {
     request.fields.addAll(field);
   }
-
-  // var body = callLogs.map((e) => <String, dynamic>{}).toList();
-  // final response = await http.post(
-  //   Uri.parse(ApiUrlConstants.syncCallLogs),
-  //   headers: await ApiUrlConstants.headers(),
-  //   body: jsonEncode(body),
-  // );
 
   var streamedResponse = await request.send();
   var response = await http.Response.fromStream(streamedResponse);

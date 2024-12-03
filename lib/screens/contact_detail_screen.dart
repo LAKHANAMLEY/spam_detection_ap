@@ -20,156 +20,159 @@ class _ContactDetailState extends State<ContactDetail> {
     const collapsedHeight = 60.0;
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      body: CustomScrollView(slivers: [
-        SliverAppBar(
-          expandedHeight: expandedHeight,
-          collapsedHeight: collapsedHeight,
-          floating: true,
-          pinned: true,
-          snap: true,
-          backgroundColor: Colors.white,
-          flexibleSpace: FlexibleSpaceBar(
-            collapseMode: CollapseMode.pin,
-            background: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 20 / 100,
-                    decoration: const BoxDecoration(color: AppColor.redColor),
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: expandedHeight,
+            collapsedHeight: collapsedHeight,
+            floating: true,
+            pinned: true,
+            snap: true,
+            backgroundColor: Colors.white,
+            flexibleSpace: FlexibleSpaceBar(
+              collapseMode: CollapseMode.pin,
+              background: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      height: 150,
+                      decoration: const BoxDecoration(color: AppColor.redColor),
+                    ),
                   ),
-                ),
-                Positioned(
-                  left: 9,
-                  right: 8,
-                  top: 80,
-                  bottom: 3,
-                  //bottom: collapsedHeight + 30,
-                  // left: MediaQuery.of(context).size.width / 2 - 50,
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: const ShapeDecoration(
-                          color: Colors.white,
-                          shape: CircleBorder(),
-                        ),
-                        child: const CircleAvatar(
-                          backgroundImage:
-                              AssetImage(IconConstants.icspamCircle),
-                          radius: 45,
-                        ),
-                      ),
-                      Text(
-                        contact?.name ?? "",
-                        style: const TextStyle(
-                            color: AppColor.primaryColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 2 / 100,
-                      ),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ActionButton(
-                            label: 'Message',
-                            icon: Icons.message,
+                  Positioned(
+                    left: 9,
+                    right: 8,
+                    top: 80,
+                    bottom: 3,
+                    //bottom: collapsedHeight + 30,
+                    // left: MediaQuery.of(context).size.width / 2 - 50,
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(5),
+                          decoration: const ShapeDecoration(
+                            color: Colors.white,
+                            shape: CircleBorder(),
                           ),
-                          ActionButton(
-                              label: 'Not Spam', icon: Icons.check_circle),
-                          ActionButton(label: 'Block', icon: Icons.block),
-                        ],
-                      ),
-                    ],
+                          child: const CircleAvatar(
+                            backgroundImage:
+                                AssetImage(IconConstants.icspamCircle),
+                            radius: 45,
+                          ),
+                        ),
+                        Text(
+                          contact?.name ?? "",
+                          style: const TextStyle(
+                              color: AppColor.primaryColor,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ActionButton(
+                              label: 'Message',
+                              icon: Icons.message,
+                            ),
+                            ActionButton(
+                                label: 'Not Spam', icon: Icons.check_circle),
+                            ActionButton(label: 'Block', icon: Icons.block),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-        SliverToBoxAdapter(
-          child: Column(
-            children: [
-              Container(
-                margin: const EdgeInsets.all(16.0),
-                height: MediaQuery.of(context).size.height * 10 / 100,
-                width: MediaQuery.of(context).size.width * 90 / 100,
-                decoration: BoxDecoration(
-                    color: AppColor.secondryColor,
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(color: AppColor.fillColor)),
-                child: const ListTile(
-                  leading: Icon(Icons.phone, color: AppColor.primaryColor),
-                  title: Text(
-                    '1800 208 2244',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(16.0),
+                  height: MediaQuery.of(context).size.height * 10 / 100,
+                  width: MediaQuery.of(context).size.width * 90 / 100,
+                  decoration: BoxDecoration(
+                      color: AppColor.secondryColor,
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(color: AppColor.fillColor)),
+                  child: ListTile(
+                    leading:
+                        const Icon(Icons.phone, color: AppColor.primaryColor),
+                    title: Text(
+                      contact?.mobileNo ?? "",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(contact?.numberType ?? ""),
                   ),
-                  subtitle: Text('Other'),
                 ),
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 20 / 100,
-                width: MediaQuery.of(context).size.width * 90 / 100,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: AppColor.fillColor,
-                    )),
-                child: IntrinsicHeight(
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          child: Column(children: [
-                            Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 10 / 100,
-                              width:
-                                  MediaQuery.of(context).size.width * 45 / 100,
-                              decoration: const BoxDecoration(
-                                  border: Border(
-                                right: BorderSide(
-                                  //
-                                  color: AppColor.fillColor,
-                                ),
-                              )),
-                              child: const Center(
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    children: [
-                                      Text(StringConstants.spamreportext),
-                                      Text(
-                                        StringConstants.liketext,
-                                        style: TextStyle(
-                                            color: AppColor.primaryColor,
-                                            fontWeight: FontWeight.w600,
-                                            fontFamily: AppFont.fontFamily),
-                                      ),
-                                    ],
+                Container(
+                  height: MediaQuery.of(context).size.height * 20 / 100,
+                  width: MediaQuery.of(context).size.width * 90 / 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: AppColor.fillColor,
+                      )),
+                  child: IntrinsicHeight(
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: Column(children: [
+                              Container(
+                                height: MediaQuery.of(context).size.height *
+                                    10 /
+                                    100,
+                                width: MediaQuery.of(context).size.width *
+                                    45 /
+                                    100,
+                                decoration: const BoxDecoration(
+                                    border: Border(
+                                  right: BorderSide(
+                                    //
+                                    color: AppColor.fillColor,
                                   ),
+                                )),
+                                child: const Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(StringConstants.spamreportext),
+                                    Text(
+                                      StringConstants.liketext,
+                                      style: TextStyle(
+                                          color: AppColor.primaryColor,
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: AppFont.fontFamily),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                            Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 9 / 100,
-                              width:
-                                  MediaQuery.of(context).size.width * 45 / 100,
-                              decoration: const BoxDecoration(
-                                  border: Border(
-                                right: BorderSide(
-                                  color: AppColor.fillColor,
-                                ),
-                                top: BorderSide(
-                                  color: AppColor.fillColor,
-                                ),
-                              )),
-                              child: const Align(
-                                alignment: Alignment.center,
-                                child: Column(
+                              Container(
+                                height: MediaQuery.of(context).size.height *
+                                    9 /
+                                    100,
+                                width: MediaQuery.of(context).size.width *
+                                    45 /
+                                    100,
+                                decoration: const BoxDecoration(
+                                    border: Border(
+                                  right: BorderSide(
+                                    color: AppColor.fillColor,
+                                  ),
+                                  top: BorderSide(
+                                    color: AppColor.fillColor,
+                                  ),
+                                )),
+                                child: const Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
                                       StringConstants.usallytext,
@@ -186,16 +189,15 @@ class _ContactDetailState extends State<ContactDetail> {
                                   ],
                                 ),
                               ),
-                            ),
-                          ]),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            height:
-                                MediaQuery.of(context).size.height * 10 / 100,
-                            child: const Align(
-                              alignment: Alignment.center,
-                              child: Column(
+                            ]),
+                          ),
+                          Expanded(
+                            child: SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 10 / 100,
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
                                     StringConstants.callactivitytext,
@@ -210,33 +212,33 @@ class _ContactDetailState extends State<ContactDetail> {
                               ),
                             ),
                           ),
-                        ),
-                      ]),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(
-                    16.0), // Adds margin around the container
-                height: MediaQuery.of(context).size.height * 10 / 100,
-                width: MediaQuery.of(context).size.width * 90 / 100,
-                decoration: BoxDecoration(
-                    color: AppColor.secondryColor,
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(color: AppColor.fillColor)),
-                child: const ListTile(
-                  leading:
-                      Icon(Icons.location_on, color: AppColor.primaryColor),
-                  title: Text(
-                    'More info available',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                        ]),
                   ),
-                  subtitle: Text('Upgrade to Premium to view'),
                 ),
-              ),
-            ],
+                Container(
+                  margin: const EdgeInsets.all(
+                      16.0), // Adds margin around the container
+                  height: MediaQuery.of(context).size.height * 10 / 100,
+                  width: MediaQuery.of(context).size.width * 90 / 100,
+                  decoration: BoxDecoration(
+                      color: AppColor.secondryColor,
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(color: AppColor.fillColor)),
+                  child: const ListTile(
+                    leading:
+                        Icon(Icons.location_on, color: AppColor.primaryColor),
+                    title: Text(
+                      'More info available',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text('Upgrade to Premium to view'),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

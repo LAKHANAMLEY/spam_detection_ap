@@ -105,14 +105,10 @@ class UpdateProfileEvent extends ApiEvent {
 
 class GetUserProfileEvent extends ApiEvent {}
 
-// family member
-// family member list
 class GetFamilyMemberListEvent extends ApiEvent {}
 
-//// family member Detail
 class GetFamilyMemberDetailEvent extends ApiEvent {}
 
-// add member
 class FamilyAddMemberEvent extends ApiEvent {
   final String email;
   final String password;
@@ -146,7 +142,6 @@ class FamilyAddMemberEvent extends ApiEvent {
       ];
 }
 
-// edit member
 class FamilyEditMemberEvent extends ApiEvent {
   final String firstName;
   final String lastName;
@@ -165,7 +160,6 @@ class FamilyEditMemberEvent extends ApiEvent {
       [firstName, lastName, relation, supportpin, familyId];
 }
 
-// delete member
 class FamilyDeleteMemberEvent extends ApiEvent {
   final String familyId;
 
@@ -176,25 +170,16 @@ class FamilyDeleteMemberEvent extends ApiEvent {
   List<Object?> get props => [familyId];
 }
 
-//Plan List
 class GetPlanListEvent extends ApiEvent {}
 
-// setting
-// Call Duration
 class GetCallDurationEvent extends ApiEvent {}
 
-// Number type
-
 class GetNumberTypeEvent extends ApiEvent {}
-// call type
 
 class GetCallTypeEvent extends ApiEvent {}
 
-// contact
-// block
 class GetBlockContactEvent extends ApiEvent {}
 
-// unblock
 class UnBlockEvent extends ApiEvent {
   final String contactId;
   final String comments;
@@ -207,9 +192,6 @@ class UnBlockEvent extends ApiEvent {
   List<Object?> get props => [contactId, comments];
 }
 
-// corporate
-//edit Profile
-
 class CorporateEditProfileEvent extends ApiEvent {
   final UserData? user;
 
@@ -218,10 +200,8 @@ class CorporateEditProfileEvent extends ApiEvent {
   List<Object?> get props => [user];
 }
 
-// Staff member list
 class GetStaffMemberListEvent extends ApiEvent {}
 
-// staff add member
 class StaffAddMemberEvent extends ApiEvent {
   final String email;
   final String password;
@@ -255,8 +235,6 @@ class StaffAddMemberEvent extends ApiEvent {
       ];
 }
 
-// staff edit member
-// staff add member
 class StaffEditMemberEvent extends ApiEvent {
   final String firstName;
   final String lastName;
@@ -279,7 +257,6 @@ class StaffEditMemberEvent extends ApiEvent {
       [firstName, lastName, position, supportpin, staffId, photo];
 }
 
-// staff delete member
 class StaffDeleteMemberEvent extends ApiEvent {
   final String staffId;
 
@@ -303,3 +280,16 @@ class SyncCallLogEvent extends ApiEvent {
 }
 
 class GetCallLogsEvent extends ApiEvent {}
+
+class DeleteCallLogEvent extends ApiEvent {
+  final String id;
+
+  DeleteCallLogEvent({
+    required this.id,
+  });
+
+  @override
+  List<Object?> get props => [id];
+}
+
+class DeleteAllCallLogEvent extends ApiEvent {}

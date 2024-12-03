@@ -2,7 +2,8 @@ import 'package:spam_delection_app/lib.dart';
 
 class DeviceCallLogs extends StatefulWidget {
   final bool? showAppBar;
-  const DeviceCallLogs({super.key, this.showAppBar = true});
+  final String filterBy;
+  const DeviceCallLogs({super.key, this.showAppBar = true, this.filterBy = ""});
 
   @override
   State<DeviceCallLogs> createState() => _DeviceCallLogsState();
@@ -19,29 +20,24 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
   @override
   void initState() {
     super.initState();
-    // streamSubs = callLogsListBloc.stream.listen((state) {
-    //   if (state is GetDeviceCallLogState) {
-    //     var deviceCallLogs = state.value;
-    //     if (deviceCallLogs != null) {
-    //       callLogsListBloc.add(SyncCallLogEvent(callLogs: deviceCallLogs));
-    //     } else {
-    //       callLogsListBloc.add(GetCallLogsEvent());
-    //     }
-    //   }
-    // });
     callLogsListBloc.add(GetDeviceCallLogEvent());
   }
 
   filter() {
+    var argument = args(context) as DeviceCallLogs?;
     filteredCallLogs = callLogs
         .where((e) =>
-            (e.name
+            ((e.name
+                        ?.toLowerCase()
+                        .contains(searchController.text.toLowerCase()) ??
+                    false) ||
+                (e.mobileNo
+                        ?.toLowerCase()
+                        .contains(searchController.text.toLowerCase()) ??
+                    false)) &&
+            (e.callType
                     ?.toLowerCase()
-                    .contains(searchController.text.toLowerCase()) ??
-                false) ||
-            (e.mobileNo
-                    ?.toLowerCase()
-                    .contains(searchController.text.toLowerCase()) ??
+                    .contains(argument?.filterBy.toLowerCase() ?? "") ??
                 false))
         .toList();
     setState(() {});
@@ -60,8 +56,8 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
       appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
-          ? const CustomAppBar(
-              title: "Call logs",
+          ? CustomAppBar(
+              title: appLocalization(context).callLogs,
             )
           : null,
       body: BlocConsumer(
@@ -74,7 +70,8 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
             if (state is GetCallLogsState) {
               if (state.value.statusCode == 200) {
                 callLogs = state.value.callloglist ?? [];
-                filteredCallLogs = callLogs;
+                // filteredCallLogs = callLogs;
+                filter();
               } else if (state.value.statusCode ==
                   HTTPStatusCodes.sessionExpired) {
                 sessionExpired(context, state.value.message ?? "");
@@ -85,6 +82,19 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
             if (state is SyncCallLogState) {
               if (state.value.statusCode == 200) {
                 showToast(state.value.message);
+              } else if (state.value.statusCode ==
+                  HTTPStatusCodes.sessionExpired) {
+                sessionExpired(context, state.value.message ?? "");
+              } else {
+                showToast(state.value.message);
+              }
+              callLogsListBloc.add(GetCallLogsEvent());
+            }
+            if (state is DeleteAllCallLogState) {
+              if (state.value.statusCode == 200) {
+                showCustomDialog(context,
+                    dialogType: DialogType.success,
+                    subTitle: state.value.message ?? "");
               } else if (state.value.statusCode ==
                   HTTPStatusCodes.sessionExpired) {
                 sessionExpired(context, state.value.message ?? "");
@@ -107,7 +117,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                           Icons.search,
                           color: Colors.grey,
                         ),
-                        hintText: "Search here",
+                        hintText: "Search numbers, names & more",
                         onChanged: (p0) {
                           filter();
                         },
@@ -157,15 +167,92 @@ class CallLogListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(getIcon(callLog.callType)),
-      title: Text(callLog.name ?? ""),
-      subtitle: Text(callLog.mobileNo ?? ""),
-      trailing: Text(callLog.callTime?.formatDateTime() ?? ""),
+      onTap: () {
+        Navigator.pushNamed(context, AppRoutes.contactDetail,
+            arguments: ContactDetail(
+              contact: ContactData(
+                  countryCode: callLog.countryCode,
+                  mobileNo: callLog.mobileNo,
+                  name: callLog.name,
+                  numberType: callLog.callType,
+                  id: callLog.id,
+                  email: callLog.simdisplayname),
+            ));
+      },
+      leading: Icon(getCallTypeIcon(callLog.callType),
+          color: getCallTypeColor(callLog.callType)),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Text(
+              (callLog.name?.isNotEmpty ?? false)
+                  ? callLog.name ?? ""
+                  : callLog.countryCode?.isNotEmpty ?? false
+                      ? "+${callLog.countryCode} ${callLog.mobileNo ?? ""}"
+                      : callLog.mobileNo ?? "",
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          10.width(),
+          Text(
+            callLog.callTime?.formatDateTime() ?? "",
+            style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
+          ),
+        ],
+      ),
+      subtitle: Row(
+        children: [
+          Text(callLog.callDuration?.convertInMinSec() ?? ""),
+          2.width(),
+          const Circle(),
+          2.width(),
+          Text(
+            callLog.callType ?? "",
+            style: textTheme(context)
+                .bodyMedium
+                ?.copyWith(color: getCallTypeColor(callLog.callType)),
+          ),
+        ],
+      ),
+      // trailing: Text(callLog.callTime?.formatDateTime() ?? ""),
     );
   }
 }
 
-IconData getIcon(String? callLogType) {
+Color getCallTypeColor(String? callLogType) {
+  var callType = getCallLogType(callLogType);
+  switch (callType) {
+    case CallType.incoming:
+      return Colors.grey;
+    case CallType.outgoing:
+      return Colors.grey;
+    case CallType.missed:
+      return Colors.red;
+    case CallType.voiceMail:
+      return Colors.grey;
+    case CallType.rejected:
+      return Colors.red;
+    case CallType.blocked:
+      return Colors.red;
+    case CallType.answeredExternally:
+      return Colors.grey;
+    case CallType.unknown:
+      return Colors.grey;
+    case CallType.wifiIncoming:
+      return Colors.grey;
+    case CallType.wifiOutgoing:
+      return Colors.grey;
+    case null:
+      return Colors.grey;
+    default:
+      return Colors.grey;
+  }
+}
+
+IconData getCallTypeIcon(String? callLogType) {
   var callType = getCallLogType(callLogType);
   switch (callType) {
     case CallType.incoming:

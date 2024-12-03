@@ -10,24 +10,25 @@ Future<ContactListResponse> syncContacts(List<Contact> contacts) async {
     // var imageUint8List = await FastContacts.getContactImage(contacts[i].id);
     // request.files.add(http.MultipartFile.fromBytes(
     //     "contacts_list[$i][image]", imageUint8List?.toList() ?? []));
-    request.fields["contacts_list[$i][phone]"] =
-        contacts[i].phones.isNotEmpty ? contacts[i].phones.first.number : "";
+    request.fields["contacts_list[$i][phone]"] = contacts[i].phones.isNotEmpty
+        ? contacts[i].phones.first.number.separeatePhoneAndPhoneCode().phone
+        : "";
     request.fields["contacts_list[$i][number_type]"] =
         contacts[i].phones.isNotEmpty ? contacts[i].phones.first.label : "";
     request.fields["contacts_list[$i][name]"] = contacts[i].displayName;
     request.fields["contacts_list[$i][country_code]"] =
-        "+91"; //TODO: getCountryCode
+        contacts[i].phones.isNotEmpty
+            ? contacts[i]
+                    .phones
+                    .first
+                    .number
+                    .separeatePhoneAndPhoneCode()
+                    .phoneCode ??
+                ""
+            : "";
     request.fields["contacts_list[$i][email]"] =
         contacts[i].emails.isNotEmpty ? contacts[i].emails.first.address : "";
   }
-
-  // request.fields.addAll({
-  //   'contacts_list[0][phone]': '7410258963',
-  //   'contacts_list[0][number_type]': 'Home',
-  //   'contacts_list[0][name]': 'raju kewats',
-  //   'contacts_list[0][country_code]': '91',
-  //   'contacts_list[0][email]': 'rajuk@gmail.com',
-  // });
 
   request.headers.addAll(headers);
 

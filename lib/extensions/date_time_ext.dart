@@ -1,7 +1,8 @@
 import 'package:intl/intl.dart';
 
 extension DateTimeExt on DateTime {
-  String formatDateTime() => DateFormat('dd MMM yyyy hh:mm a').format(this);
+  String formatDateTime() =>
+      DateFormat('dd MMM yyyy hh:mm a', 'en').format(this);
 
   String formatDate() => DateFormat('dd MMM yyyy').format(this);
 

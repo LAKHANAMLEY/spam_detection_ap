@@ -2,6 +2,7 @@ export 'dart:async';
 export 'dart:convert';
 export 'dart:io';
 
+// export 'package:flutter_gen/gen_l10n/app_localizations.dart';
 export 'package:call_e_log/call_log.dart';
 export 'package:curved_navigation_bar/curved_navigation_bar.dart';
 export 'package:equatable/equatable.dart';

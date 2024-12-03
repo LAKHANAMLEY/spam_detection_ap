@@ -52,6 +52,7 @@ class CallLogData {
   final String? simdisplayname;
   final String? name;
   final String? callType;
+  final String? countryCode;
   final String? mobileNo;
   final DateTime? callTime;
   final String? callDuration;
@@ -65,6 +66,7 @@ class CallLogData {
     this.simdisplayname,
     this.name,
     this.callType,
+    this.countryCode,
     this.mobileNo,
     this.callTime,
     this.callDuration,
@@ -79,6 +81,7 @@ class CallLogData {
     String? simdisplayname,
     String? name,
     String? callType,
+    String? countryCode,
     String? mobileNo,
     DateTime? callTime,
     String? callDuration,
@@ -92,6 +95,7 @@ class CallLogData {
         simdisplayname: simdisplayname ?? this.simdisplayname,
         name: name ?? this.name,
         callType: callType ?? this.callType,
+        countryCode: countryCode ?? this.countryCode,
         mobileNo: mobileNo ?? this.mobileNo,
         callTime: callTime ?? this.callTime,
         callDuration: callDuration ?? this.callDuration,
@@ -106,6 +110,7 @@ class CallLogData {
         simdisplayname: json["simdisplayname"],
         name: json["name"],
         callType: json["call_type"],
+        countryCode: json["country_code"],
         mobileNo: json["mobile_no"],
         callTime: json["call_time"] == null
             ? null
@@ -122,6 +127,7 @@ class CallLogData {
         "simdisplayname": simdisplayname,
         "name": name,
         "call_type": callType,
+        "country_code": countryCode,
         "mobile_no": mobileNo,
         "call_time": callTime?.toIso8601String(),
         "call_duration": callDuration,

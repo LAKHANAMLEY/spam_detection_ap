@@ -56,7 +56,6 @@ class ChangePasswordState extends ApiState {
   List<Object?> get props => [value];
 }
 
-//yaha state create karege
 class MarkSpamState extends ApiState {
   final MarkSpamResponse value;
 
@@ -65,7 +64,6 @@ class MarkSpamState extends ApiState {
   @override
   List<Object?> get props => [value];
 }
-//ye mene apko all thins type krke batai h aap uper wali state/event ko copy paste kr skte h ok
 
 class RemoveSpamState extends ApiState {
   final Response value;
@@ -110,8 +108,6 @@ class UpdateProfileState extends ApiState {
   List<Object?> get props => [value];
 }
 
-// family member
-//  family member list
 class GetFamilyMemberListState extends ApiState {
   final FamilyMemberListResponse value;
   GetFamilyMemberListState(this.value);
@@ -119,7 +115,6 @@ class GetFamilyMemberListState extends ApiState {
   List<Object?> get props => [value];
 }
 
-// family member  Details
 class GetFamilyMemberDetailState extends ApiState {
   final Response value;
   GetFamilyMemberDetailState(this.value);
@@ -188,9 +183,6 @@ class GetCallTypeState extends ApiState {
   List<Object?> get props => [value];
 }
 
-// contact
-// block
-
 class GetBlockContactState extends ApiState {
   final BlockedContactListResponse value;
   GetBlockContactState(this.value);
@@ -234,7 +226,6 @@ class GetStaffAddMemberListState extends ApiState {
   List<Object?> get props => [value];
 }
 
-// staff add member
 class StaffAddMemberState extends ApiState {
   final Response value;
   StaffAddMemberState(this.value);
@@ -242,7 +233,6 @@ class StaffAddMemberState extends ApiState {
   List<Object?> get props => [value];
 }
 
-// staff edit member
 class StaffEditMemberState extends ApiState {
   final Response value;
   StaffEditMemberState(this.value);
@@ -250,7 +240,6 @@ class StaffEditMemberState extends ApiState {
   List<Object?> get props => [value];
 }
 
-// staff delete member
 class StaffDeleteMemberState extends ApiState {
   final Response value;
   StaffDeleteMemberState(this.value);
@@ -268,6 +257,20 @@ class SyncCallLogState extends ApiState {
 class GetCallLogsState extends ApiState {
   final CallLogsListResponse value;
   GetCallLogsState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
+
+class DeleteCallLogState extends ApiState {
+  final Response value;
+  DeleteCallLogState(this.value);
+  @override
+  List<Object?> get props => [value];
+}
+
+class DeleteAllCallLogState extends ApiState {
+  final Response value;
+  DeleteAllCallLogState(this.value);
   @override
   List<Object?> get props => [value];
 }

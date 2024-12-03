@@ -8,9 +8,6 @@ class AddContact extends StatefulWidget {
 }
 
 class _AddContactState extends State<AddContact> {
-  int SelectTab = 0;
-  int Toogletab = 0;
-  // final bool _obscureText = true;
   bool isCheckBoxValue = false;
   bool isPasswordVisible = true;
   bool isConfirmPasswordVisible = true;
@@ -69,9 +66,10 @@ class _AddContactState extends State<AddContact> {
             ),
           ),
         ),
-        title: const Text(
+        // ignore: prefer_const_constructors
+        title: Text(
           'Add Contact',
-          style: TextStyle(
+          style: const TextStyle(
               color: AppColor.callColor,
               fontFamily: AppFont.fontFamily,
               fontSize: 18,

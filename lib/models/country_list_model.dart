@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-CountriesResponse countriesResponseFromJson(String str) => CountriesResponse.fromJson(json.decode(str));
+CountriesResponse countriesResponseFromJson(String str) =>
+    CountriesResponse.fromJson(json.decode(str));
 
-String countriesResponseToJson(CountriesResponse data) => json.encode(data.toJson());
+String countriesResponseToJson(CountriesResponse data) =>
+    json.encode(data.toJson());
 
 class CountriesResponse {
   final int? statusCode;
@@ -17,15 +19,21 @@ class CountriesResponse {
     this.countrylist,
   });
 
-  factory CountriesResponse.fromJson(Map<String, dynamic> json) => CountriesResponse(
-    statusCode: json["status_code"],
-    countrylist: json["countrylist"] == null ? [] : List<CountryData>.from(json["countrylist"]!.map((x) => CountryData.fromJson(x))),
-  );
+  factory CountriesResponse.fromJson(Map<String, dynamic> json) =>
+      CountriesResponse(
+        statusCode: json["status_code"],
+        countrylist: json["countrylist"] == null
+            ? []
+            : List<CountryData>.from(
+                json["countrylist"]!.map((x) => CountryData.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status_code": statusCode,
-    "countrylist": countrylist == null ? [] : List<dynamic>.from(countrylist!.map((x) => x.toJson())),
-  };
+        "status_code": statusCode,
+        "countrylist": countrylist == null
+            ? []
+            : List<dynamic>.from(countrylist!.map((x) => x.toJson())),
+      };
 
   static fetchCountriesResponse() {}
 }
@@ -50,22 +58,22 @@ class CountryData {
   });
 
   factory CountryData.fromJson(Map<String, dynamic> json) => CountryData(
-    id: json["id"],
-    code: json["code"],
-    nicename: json["nicename"],
-    name: json["name"],
-    iso: json["iso"],
-    numcode: json["numcode"],
-    phonecode: json["phonecode"],
-  );
+        id: json["id"],
+        code: json["code"],
+        nicename: json["nicename"],
+        name: json["name"],
+        iso: json["iso"],
+        numcode: json["numcode"],
+        phonecode: json["phonecode"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "code": code,
-    "nicename": nicename,
-    "name": name,
-    "iso": iso,
-    "numcode": numcode,
-    "phonecode": phonecode,
-  };
+        "id": id,
+        "code": code,
+        "nicename": nicename,
+        "name": name,
+        "iso": iso,
+        "numcode": numcode,
+        "phonecode": phonecode,
+      };
 }

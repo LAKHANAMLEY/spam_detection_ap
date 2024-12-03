@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:spam_delection_app/lib.dart';
 
 int language = 0;
@@ -6,8 +7,19 @@ var userBloc = ApiBloc(ApiBlocInitialState());
 var sharedPrefBloc = SharedPrefBloc(SharedPrefInitialState());
 var contactListBloc = ApiBloc(ApiBlocInitialState());
 var callLogsListBloc = ApiBloc(ApiBlocInitialState());
+final localizationBloc =
+    LocalizationBloc(ChangeLocaleState(const Locale("en")));
 
-class AppConstant {
+Size screenSize(BuildContext context) => MediaQuery.of(context).size;
+bool isDarkMode(BuildContext context) =>
+    Theme.of(context).brightness == Brightness.dark;
+TextTheme textTheme(context) => Theme.of(context).textTheme;
+AppLocalizations appLocalization(context) => AppLocalizations.of(context)!;
+S getText(context) => S.of(context);
+
+class AppConstants {
+  static const String projectName = "Spam detector";
+
   static const int appStatus = 0;
   static const TextStyle appBarTitleStyle = TextStyle(
     fontSize: 22,
@@ -34,4 +46,6 @@ class AppConstant {
     statusBarIconBrightness: Brightness.dark,
     statusBarBrightness: Brightness.light,
   );
+
+  static CountryData? selectedCountry;
 }
