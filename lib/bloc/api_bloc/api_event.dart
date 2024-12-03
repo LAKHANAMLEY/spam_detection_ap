@@ -221,6 +221,9 @@ class CorporateEditProfileEvent extends ApiEvent {
 // Staff member list
 class GetStaffMemberListEvent extends ApiEvent {}
 
+// Staff member Detail
+class GetStaffMemberDetailEvent extends ApiEvent {}
+
 // staff add member
 class StaffAddMemberEvent extends ApiEvent {
   final String email;
@@ -254,7 +257,6 @@ class StaffAddMemberEvent extends ApiEvent {
         password
       ];
 }
-
 // staff edit member
 // staff add member
 class StaffEditMemberEvent extends ApiEvent {
@@ -303,3 +305,37 @@ class SyncCallLogEvent extends ApiEvent {
 }
 
 class GetCallLogsEvent extends ApiEvent {}
+// notification
+// notification list
+/*class NotificationListEvent extends ApiEvent {
+
+}
+    NotificationListEvent({
+  required this.notificationPush,
+});
+
+@override
+List<Object?> get props => [notificationPush];
+}
+
+ */
+// notification enabled
+class EnabledNotificationEvent extends ApiEvent {
+  final String notificationOne;
+  final String notificationReceive;
+  final String notificationPush;
+
+
+  EnabledNotificationEvent({
+    required this.notificationOne,
+    required this.notificationReceive,
+    required this.notificationPush,
+
+  });
+  @override
+  List<Object?> get props =>
+      [notificationOne,notificationReceive,notificationPush];
+}
+// notification type
+
+class NotificationTypeEvent extends ApiEvent {}

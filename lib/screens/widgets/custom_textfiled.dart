@@ -3,6 +3,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
+
   final String? labelText;
   final String? hintText;
   final Widget? suffix;
@@ -41,7 +42,9 @@ class CustomTextField extends StatelessWidget {
       this.maxLines = 1,
       this.autofocus = false,
       this.inputFormatters,
-      this.height = 70});
+      this.height = 70
+
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +58,11 @@ class CustomTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          // height: height,
+           height: MediaQuery.of(context).size.height*8/100,
           // padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
               color: isDarkMode ? Colors.white : Colors.white24,
-              border: Border.all(color: Colors.grey),
+              border: Border.all(color: Color(0xffE1E6EB), width: 1.0),
               borderRadius: BorderRadius.circular(10)),
           // // constraints: const BoxConstraints(maxHeight: 60, minHeight: 0),
           margin: const EdgeInsets.symmetric(vertical: 10),
@@ -82,6 +85,7 @@ class CustomTextField extends StatelessWidget {
                       ),
                   textAlign: textAlign,
                   decoration: InputDecoration(
+                      fillColor: AppColor.whiteLight.withOpacity(0.2),
                       labelText: labelText,
                       floatingLabelStyle: const TextStyle(
                         color: AppColor.appbgColor,

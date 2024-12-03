@@ -9,9 +9,7 @@ Future<NotificationResponse> notificationList({
   final response = await http.post(
     Uri.parse(ApiUrlConstants.endPointNotificationList),
     headers: await ApiUrlConstants.headers(),
-    body: {
-      //
-    },
+   //body: {},
   );
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);

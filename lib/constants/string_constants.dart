@@ -161,7 +161,7 @@ class StringConstants {
   static const liketext = "68k 103%";
 
   static const usallytext = "Usually Calls";
-  static const Amtext = "11AM-2PM";
+  static const amtext = "11AM-2PM";
 
   static const callactivitytext = "Call Activity";
   static const milliontext = "5.6M calls/60 days";

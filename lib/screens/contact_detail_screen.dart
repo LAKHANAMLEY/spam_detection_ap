@@ -35,7 +35,7 @@ class _ContactDetailState extends State<ContactDetail> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Container(
-                    height: MediaQuery.of(context).size.height * 20 / 100,
+                    height: 150,
                     decoration: const BoxDecoration(color: AppColor.redColor),
                   ),
                 ),
@@ -67,9 +67,7 @@ class _ContactDetailState extends State<ContactDetail> {
                             fontSize: 18,
                             fontWeight: FontWeight.w400),
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 2 / 100,
-                      ),
+                      SizedBox(height: 10),
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -135,22 +133,19 @@ class _ContactDetailState extends State<ContactDetail> {
                                   color: AppColor.fillColor,
                                 ),
                               )),
-                              child: const Center(
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    children: [
-                                      Text(StringConstants.spamreportext),
-                                      Text(
-                                        StringConstants.liketext,
-                                        style: TextStyle(
-                                            color: AppColor.primaryColor,
-                                            fontWeight: FontWeight.w600,
-                                            fontFamily: AppFont.fontFamily),
-                                      ),
-                                    ],
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(StringConstants.spamreportext),
+                                  Text(
+                                    StringConstants.liketext,
+                                    style: TextStyle(
+                                        color: AppColor.primaryColor,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: AppFont.fontFamily),
                                   ),
-                                ),
+                                ],
                               ),
                             ),
                             Container(
@@ -167,24 +162,19 @@ class _ContactDetailState extends State<ContactDetail> {
                                   color: AppColor.fillColor,
                                 ),
                               )),
-                              child: const Align(
-                                alignment: Alignment.center,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      StringConstants.usallytext,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    Text(
-                                      StringConstants.Amtext,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: AppColor.primaryColor,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: AppFont.fontFamily),
-                                    ),
-                                  ],
-                                ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(StringConstants.usallytext),
+                                  Text(
+                                    StringConstants.amtext,
+                                    style: TextStyle(
+                                        color: AppColor.primaryColor,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: AppFont.fontFamily),
+                                  ),
+                                ],
                               ),
                             ),
                           ]),
@@ -193,21 +183,19 @@ class _ContactDetailState extends State<ContactDetail> {
                           child: SizedBox(
                             height:
                                 MediaQuery.of(context).size.height * 10 / 100,
-                            child: const Align(
-                              alignment: Alignment.center,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    StringConstants.callactivitytext,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: AppColor.primaryColor,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: AppFont.fontFamily),
-                                  ),
-                                  Text(StringConstants.milliontext),
-                                ],
-                              ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(StringConstants.callactivitytext),
+                                Text(
+                                  StringConstants.milliontext,
+                                  style: TextStyle(
+                                      color: AppColor.primaryColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: AppFont.fontFamily),
+                                ),
+                              ],
                             ),
                           ),
                         ),
