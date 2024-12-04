@@ -8,34 +8,43 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int _page = 0;
+  int _page = 2;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final List<Widget> _pages = [
     const HomeScreen(),
-    const ChatScreen(),
+    // const ChatScreen(),
+    const MessagesScreen(),
     // const ContactList(),
     const DeviceCallLogs(
       showAppBar: false,
     ),
-    const PremiumPlan(),
-    const Setting(),
+    const PlanType(
+      showAppBar: false,
+    ),
+    // const Setting(),
+    const Profile(
+      showAppBar: false,
+    ),
   ];
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   StreamSubscription<ApiState>? streamSubs;
+  StreamSubscription<ApiState>? streamSubsCallLog;
 
   @override
   void initState() {
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     getAndSyncContacts();
+    getAndSyncCallLogs();
     super.initState();
   }
 
   @override
   void dispose() {
     streamSubs?.cancel();
+    streamSubsCallLog?.cancel();
     super.dispose();
   }
 
@@ -193,148 +202,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   )
                 ],
               ),
-              // GestureDetector(
-              //   onTap: () {
-              //     showDialog(
-              //         context: context,
-              //         builder: (BuildContext context) {
-              //           return AlertDialog(
-              //             shape: const RoundedRectangleBorder(
-              //               borderRadius: BorderRadius.all(Radius.circular(8)),
-              //             ),
-              //             backgroundColor: AppColor.callUpdateColor,
-              //             content: Align(
-              //               alignment: Alignment.topRight,
-              //               child: SizedBox(
-              //                 height:
-              //                     MediaQuery.of(context).size.height * 40 / 100,
-              //                 child: Column(
-              //                   crossAxisAlignment: CrossAxisAlignment.start,
-              //                   children: [
-              //                     SizedBox(
-              //                       height: MediaQuery.of(context).size.height *
-              //                           3 /
-              //                           100,
-              //                     ),
-              //                     // Row(
-              //                     //   children: [
-              //                     //     Image.asset(IconConstants.icOutgoing),
-              //                     //     SizedBox(
-              //                     //       width:
-              //                     //           MediaQuery.of(context).size.width *
-              //                     //               5 /
-              //                     //               100,
-              //                     //     ),
-              //                     //     const Text(
-              //                     //       'Outgoing Calls',
-              //                     //       style: TextStyle(
-              //                     //           color: Colors.black,
-              //                     //           fontSize: 18,
-              //                     //           fontWeight: FontWeight.w600),
-              //                     //     )
-              //                     //   ],
-              //                     // ),
-              //                     // SizedBox(
-              //                     //   height: MediaQuery.of(context).size.height *
-              //                     //       4 /
-              //                     //       100,
-              //                     // ),
-              //                     // Row(
-              //                     //   children: [
-              //                     //     Image.asset(
-              //                     //       IconConstants.icIncoming,
-              //                     //     ),
-              //                     //     SizedBox(
-              //                     //       width:
-              //                     //           MediaQuery.of(context).size.width *
-              //                     //               5 /
-              //                     //               100,
-              //                     //     ),
-              //                     //     const Text('Incomig Calls',
-              //                     //         style: TextStyle(
-              //                     //             color: Colors.black,
-              //                     //             fontSize: 18,
-              //                     //             fontWeight: FontWeight.w600))
-              //                     //   ],
-              //                     // ),
-              //                     // SizedBox(
-              //                     //   height: MediaQuery.of(context).size.height *
-              //                     //       4 /
-              //                     //       100,
-              //                     // ),
-              //                     // Row(
-              //                     //   children: [
-              //                     //     Image.asset(IconConstants.icMissedCall),
-              //                     //     SizedBox(
-              //                     //       width:
-              //                     //           MediaQuery.of(context).size.width *
-              //                     //               5 /
-              //                     //               100,
-              //                     //     ),
-              //                     //     const Text('Missed Calls',
-              //                     //         style: TextStyle(
-              //                     //             color: Colors.black,
-              //                     //             fontSize: 18,
-              //                     //             fontWeight: FontWeight.w600))
-              //                     //   ],
-              //                     // ),
-              //                     // SizedBox(
-              //                     //   height: MediaQuery.of(context).size.height *
-              //                     //       4 /
-              //                     //       100,
-              //                     // ),
-              //                     // Row(
-              //                     //   children: [
-              //                     //     Image.asset(IconConstants.icBlockCall),
-              //                     //     SizedBox(
-              //                     //       width:
-              //                     //           MediaQuery.of(context).size.width *
-              //                     //               5 /
-              //                     //               100,
-              //                     //     ),
-              //                     //     const Text('Blocked Calls',
-              //                     //         style: TextStyle(
-              //                     //             color: Colors.black,
-              //                     //             fontSize: 18,
-              //                     //             fontWeight: FontWeight.w600))
-              //                     //   ],
-              //                     // ),
-              //                     // SizedBox(
-              //                     //   height: MediaQuery.of(context).size.height *
-              //                     //       4 /
-              //                     //       100,
-              //                     // ),
-              //                     // Row(
-              //                     //   children: [
-              //                     //     Image.asset(IconConstants.icDelete),
-              //                     //     SizedBox(
-              //                     //       width:
-              //                     //           MediaQuery.of(context).size.width *
-              //                     //               5 /
-              //                     //               100,
-              //                     //     ),
-              //                     //     const Text('Delete all Calls',
-              //                     //         style: TextStyle(
-              //                     //             color: Colors.black,
-              //                     //             fontSize: 18,
-              //                     //             fontWeight: FontWeight.w600))
-              //                     //   ],
-              //                     // ),
-              //                   ],
-              //                 ),
-              //               ),
-              //             ),
-              //           );
-              //         });
-              //   },
-              //   child: Image.asset(
-              //     IconConstants.icMoreDetails,
-              //     height: MediaQuery.of(context).size.height * 3 / 100,
-              //   ),
-              // ),
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width * 6 / 100,
-              // ),
             ]),
         body: _pages[_page],
         bottomNavigationBar: CurvedNavigationBar(
@@ -375,14 +242,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
           ],
           color: AppColor.callColor,
           buttonBackgroundColor: AppColor.yellowdeep,
-          backgroundColor: AppColor.secondryColor,
+          backgroundColor: AppColor.whiteLight,
           animationCurve: Curves.easeInOut,
           animationDuration: const Duration(milliseconds: 600),
           onTap: (index) {
             setState(() {
               _page = index;
-              // _pages = _page;
-              //_pages[_page];
             });
           },
           letIndexChange: (index) => true,
@@ -430,13 +295,42 @@ class _BottomNavigationState extends State<BottomNavigation> {
         }
         contactListBloc.add(GetContactEvent());
       }
-    });
-    getLocalContacts().then((contacts) {
-      if (contacts != null) {
-        contactListBloc.add(SyncContactEvent(contacts: contacts));
-      } else {
-        contactListBloc.add(GetContactEvent());
+      if (state is GetDeviceContactState) {
+        var contacts = state.value;
+        if (contacts != null) {
+          contactListBloc.add(SyncContactEvent(contacts: contacts));
+        }
       }
     });
+    contactListBloc.add(GetDeviceContactEvent());
+  }
+
+  void getAndSyncCallLogs() {
+    streamSubsCallLog = callLogsListBloc.stream.listen((state) {
+      if (state is GetCallLogsState) {
+        // filterSearchResults("");
+        if (state.value.statusCode == 200) {
+        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+          sessionExpired(context, state.value.message ?? "");
+        } else {
+          showToast(state.value.message);
+        }
+      }
+      if (state is SyncCallLogState) {
+        if (state.value.statusCode == 200) {
+          showToast(state.value.message);
+        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+          sessionExpired(context, state.value.message ?? "");
+        } else {
+          showToast(state.value.message);
+        }
+        callLogsListBloc.add(GetCallLogsEvent());
+      }
+      if (state is GetDeviceCallLogState) {
+        var deviceCallLogs = state.value;
+        callLogsListBloc.add(SyncCallLogEvent(callLogs: deviceCallLogs));
+      }
+    });
+    callLogsListBloc.add(GetDeviceCallLogEvent());
   }
 }

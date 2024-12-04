@@ -23,7 +23,6 @@ class _SpamListState extends State<SpamList> {
   @override
   void initState() {
     super.initState();
-    filteredContacts = [];
     spamListBloc.add(GetSpamEvent());
   }
 
@@ -65,118 +64,85 @@ class _SpamListState extends State<SpamList> {
         //centerTitle: true,
       ),
       body: SafeArea(
-          child: Column(children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextField(
+          child: Column(
+        children: <Widget>[
+          CustomTextField(
             onChanged: (value) => filterSearchResults(value),
             controller: editingController,
-            decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.search),
-              hintText: "Search number,names & more",
-              border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-              ),
-              hintStyle: const TextStyle(
-                color: Color(0xffB2B8BD),
-              ),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xffE1E6EB), width: 1.0),
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide:
-                    const BorderSide(width: 0.5, color: Color(0xffE1E6EB)),
-              ),
-              fillColor: AppColor.whiteLight.withOpacity(0.2),
-              filled: true,
-            ),
+            prefix: const Icon(Icons.search),
+            hintText: "Search number, names & more",
           ),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 2 / 100,
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 2 / 100,
-        ),
-        Expanded(
-            child: BlocConsumer(
-                bloc: spamListBloc,
-                listener: (context, state) {
-                  if (state is GetSpamState) {
-                    contacts = state.value.spamcontactslist ?? [];
-                    filteredContacts = contacts;
-                  }
-
-                  if (state is RemoveSpamState) {
-                    if (state.value.statusCode == 200) {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text(state.value.message ?? ""),
-                        ),
-                      );
-                    } else {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text(state.value.message ?? ""),
-                        ),
-                      );
+          Expanded(
+              child: BlocConsumer(
+                  bloc: spamListBloc,
+                  listener: (context, state) {
+                    if (state is GetSpamState) {
+                      contacts = state.value.spamcontactslist ?? [];
+                      filteredContacts = contacts;
                     }
-                    spamListBloc.add(GetSpamEvent());
-                  }
-                },
-                builder: (context, state) {
-                  if (state is GetSpamState) {
-                    contacts = state.value.spamcontactslist ?? [];
-                    if (filteredContacts.isEmpty) {
-                      return const Center(
-                        child: Text('No contacts'),
-                      );
+                    if (state is RemoveSpamState) {
+                      if (state.value.statusCode == 200) {
+                        showCustomDialog(context,
+                            dialogType: DialogType.success,
+                            subTitle: state.value.message);
+                      } else {
+                        showCustomDialog(context,
+                            dialogType: DialogType.failed,
+                            subTitle: state.value.message);
+                      }
+                      spamListBloc.add(GetSpamEvent());
                     }
-
-                    return ListView.builder(
-                      itemCount: filteredContacts.length,
-                      // shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Image.network(
-                            filteredContacts[index].name!, //TODO: image path
-                            errorBuilder: (context, error, stackTrace) =>
-                                const Icon(Icons.person),
-                            width: MediaQuery.of(context).size.width * 12 / 100,
-                            height:
-                                MediaQuery.of(context).size.height * 12 / 100,
-                          ),
-                          title: Text(
-                            filteredContacts[index].name ?? "",
-                            style: const TextStyle(
-                                color: AppColor.primaryColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                fontFamily: AppFont.fontFamily),
-                          ),
-                          trailing: PopupMenuButton(
-                            itemBuilder: (context) => [
-                              PopupMenuItem(
-                                child: const Text("Remove spam"),
-                                onTap: () {
-                                  spamListBloc.add(RemoveSpamEvent(
-                                      contactId:
-                                          filteredContacts[index].id ?? ""));
-                                },
-                              ),
-                            ],
-                          ),
+                  },
+                  builder: (context, state) {
+                    if (state is GetSpamState) {
+                      contacts = state.value.spamcontactslist ?? [];
+                      if (filteredContacts.isEmpty) {
+                        return const Center(
+                          child: Text('No contacts'),
                         );
-                      },
-                    );
-                  }
-                  return const Loader();
-                }))
-      ])),
+                      }
+                      return ListView.builder(
+                        itemCount: filteredContacts.length,
+                        // shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: Image.network(
+                              filteredContacts[index].name!, //TODO: image path
+                              errorBuilder: (context, error, stackTrace) =>
+                                  const Icon(Icons.person),
+                              width:
+                                  MediaQuery.of(context).size.width * 12 / 100,
+                              height:
+                                  MediaQuery.of(context).size.height * 12 / 100,
+                            ),
+                            title: Text(
+                              filteredContacts[index].name ?? "",
+                              style: const TextStyle(
+                                  color: AppColor.primaryColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18,
+                                  fontFamily: AppFont.fontFamily),
+                            ),
+                            trailing: PopupMenuButton(
+                              itemBuilder: (context) => [
+                                PopupMenuItem(
+                                  child: const Text("Remove spam"),
+                                  onTap: () {
+                                    spamListBloc.add(RemoveSpamEvent(
+                                        contactId:
+                                            filteredContacts[index].id ?? ""));
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }
+                    return const Loader();
+                  }))
+        ],
+      )),
     );
   }
 }

@@ -16,6 +16,8 @@ Future<MarkSpamResponse> markSpam({
     'phone': phone,
   };
 
+  print(body);
+
   final response = await http.post(
     Uri.parse(ApiUrlConstants.endPointMarkSpamContacts),
     headers: await ApiUrlConstants.headers(),

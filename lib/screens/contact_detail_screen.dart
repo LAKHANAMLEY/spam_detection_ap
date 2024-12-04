@@ -37,7 +37,10 @@ class _ContactDetailState extends State<ContactDetail> {
                     alignment: Alignment.topCenter,
                     child: Container(
                       height: 150,
-                      decoration: const BoxDecoration(color: AppColor.redColor),
+                      decoration: BoxDecoration(
+                          color: contact?.isSpam == 1
+                              ? AppColor.redColor
+                              : AppColor.greenColor),
                     ),
                   ),
                   Positioned(
@@ -55,14 +58,15 @@ class _ContactDetailState extends State<ContactDetail> {
                             color: Colors.white,
                             shape: CircleBorder(),
                           ),
-                          child: const CircleAvatar(
-                            backgroundImage:
-                                AssetImage(IconConstants.icspamCircle),
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage(contact?.isSpam == 1
+                                ? IconConstants.icspamCircle
+                                : IconConstants.icspamCheck),
                             radius: 45,
                           ),
                         ),
                         Text(
-                          contact?.name ?? "",
+                          contact?.name ?? contact?.mobileNo ?? "",
                           style: const TextStyle(
                               color: AppColor.primaryColor,
                               fontSize: 18,
@@ -71,16 +75,20 @@ class _ContactDetailState extends State<ContactDetail> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            ActionButton(
+                            const ActionButton(
                               label: 'Message',
                               icon: Icons.message,
                             ),
-                            ActionButton(
-                                label: 'Not Spam', icon: Icons.check_circle),
-                            ActionButton(label: 'Block', icon: Icons.block),
+                            contact?.isSpam == 1
+                                ? const ActionButton(
+                                    label: 'Not Spam', icon: Icons.check_circle)
+                                : const ActionButton(
+                                    label: 'Report', icon: Icons.report),
+                            const ActionButton(
+                                label: 'Block', icon: Icons.block),
                           ],
                         ),
                       ],

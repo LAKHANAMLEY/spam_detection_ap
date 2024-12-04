@@ -477,5 +477,6 @@
   "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword": "Your new password must be different from previously used password.",
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
-  "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done."
+  "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
+  "callProtection": "Call Protection"
 }

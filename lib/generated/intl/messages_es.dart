@@ -96,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Factures et abonnements"),
         "callLogs":
             MessageLookupByLibrary.simpleMessage("Registros de llamadas"),
+        "callProtection":
+            MessageLookupByLibrary.simpleMessage("Protección de llamadas"),
         "camera": MessageLookupByLibrary.simpleMessage("Caméra"),
         "cancel": MessageLookupByLibrary.simpleMessage("Annuler"),
         "cantAddMoreAccountsForThisBankYouHaveReachedTheLimit":

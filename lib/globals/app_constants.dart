@@ -29,6 +29,9 @@ class AppConstants {
   static final RegExp emailValidatorRegExp =
       RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
+  static final RegExp specialCharAndSpaceRegex =
+      RegExp(r'[^\d]'); //special char, space, alphabets
+
   static const TextStyle textFilledStyle =
       TextStyle(color: Colors.grey, fontWeight: FontWeight.w500, fontSize: 14);
 

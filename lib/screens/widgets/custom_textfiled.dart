@@ -42,9 +42,7 @@ class CustomTextField extends StatelessWidget {
       this.maxLines = 1,
       this.autofocus = false,
       this.inputFormatters,
-      this.height = 70
-
-      });
+      this.height = 70});
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +56,14 @@ class CustomTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-           height: MediaQuery.of(context).size.height*8/100,
+          height: MediaQuery.of(context).size.height * 8 / 100,
           // padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
-              color: isDarkMode ? Colors.white : Colors.white24,
+              color: isDarkMode ? Colors.white : Colors.white,
               border: Border.all(color: const Color(0xffE1E6EB), width: 1.0),
               borderRadius: BorderRadius.circular(10)),
           // // constraints: const BoxConstraints(maxHeight: 60, minHeight: 0),
-          margin: const EdgeInsets.symmetric(vertical: 10),
+          margin: const EdgeInsets.all(5),
           child: Row(
             children: [
               if (prefix != null) prefix!,

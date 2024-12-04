@@ -5,6 +5,8 @@ abstract class ApiEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class GetDeviceContactEvent extends ApiEvent {}
+
 class GetContactEvent extends ApiEvent {}
 
 class GetCategoryListEvent extends ApiEvent {}

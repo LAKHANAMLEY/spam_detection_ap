@@ -4835,6 +4835,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Call Protection`
+  String get callProtection {
+    return Intl.message(
+      'Call Protection',
+      name: 'callProtection',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

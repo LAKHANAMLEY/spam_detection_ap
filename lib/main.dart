@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
+      theme: ThemeConstants.lightTheme,
+      darkTheme: ThemeConstants.darkTheme,
       routes: routes,
       home: const Splash(),
     );
