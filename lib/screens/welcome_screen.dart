@@ -80,7 +80,7 @@ class _WelcomeState extends State<Welcome> {
                                       //ab language change work krega protection type check kro
                                       print(selectedLanguage?.name ?? "");
                                       localizationBloc.add(ChangeLocaleEvent(Locale.fromSubtags(languageCode:  selectedLanguage?.id??"")));
-;                                    },
+},
                                   ),
                                 ),
                 ),
@@ -95,7 +95,7 @@ class _WelcomeState extends State<Welcome> {
                 ),
                  Text(
                  appLocalization(context).welcome,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.bluelightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
@@ -103,12 +103,12 @@ class _WelcomeState extends State<Welcome> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
                  Padding(
-                  padding: EdgeInsets.only(left: 20, right: 20),
+                  padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Center(
                     child: Text(
                       appLocalization(context).welcomeTxt,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: AppColor.lightblurColor,
                           fontSize: 15,
                           fontFamily: AppFont.fontFamily),

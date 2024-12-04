@@ -43,7 +43,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
            Center(
               child: Text(
                 appLocalization(context).successful,
-            style: TextStyle(
+            style: const TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
                 fontFamily: AppFont.fontFamily,
@@ -64,7 +64,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           ),
            Text(
             appLocalization(context).fromNowOnYouArePartOfUs,
-            style: TextStyle(color: AppColor.gracyColor),
+            style: const TextStyle(color: AppColor.gracyColor),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 5 / 100,

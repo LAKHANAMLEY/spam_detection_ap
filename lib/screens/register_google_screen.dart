@@ -44,7 +44,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           Center(
               child: Text(
                 appLocalization(context).register,
-            style: TextStyle(
+            style: const TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
                 fontFamily: AppFont.fontFamily,
@@ -81,7 +81,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   ),
                    Text(
                     appLocalization(context).registerWithGoogle,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: AppColor.gracyColor,
                         fontFamily: AppFont.fontFamily,
                         fontSize: 18,
@@ -147,7 +147,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
             ),
              Text(
               appLocalization(context).orTxt,
-              style: TextStyle(
+              style: const TextStyle(
                   color: AppColor.primaryColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 18),
@@ -178,7 +178,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
             children: [
                Text(
                 appLocalization(context).alreadyHaveAnAccount,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontFamily: AppFont.fontFamily,
                     color: AppColor.greylightColor,
@@ -195,7 +195,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                 },
                 child:  Text(
                     appLocalization(context).login,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: AppColor.yellowlightColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 15)),

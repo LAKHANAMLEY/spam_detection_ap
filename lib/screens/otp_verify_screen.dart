@@ -185,11 +185,11 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
               ),
               Center(
                   child: Padding(
-                padding: EdgeInsets.only(left: 50, right: 50),
+                padding: const EdgeInsets.only(left: 50, right: 50),
                 child: Text(
                   appLocalization(context).otpVerification,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.bluelightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
@@ -646,7 +646,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                         children: [
                            Text(
                              appLocalization(context).didTxt,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: AppFont.fontFamily,
                                 color: AppColor.greylightColor,
@@ -664,7 +664,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                             },
                             child: Text(
                                 appLocalization(context).resendOtp,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: AppColor.yellowlightColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15)),

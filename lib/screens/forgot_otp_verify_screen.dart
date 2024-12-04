@@ -149,11 +149,11 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
               ),
               Center(
                   child: Padding(
-                padding: EdgeInsets.only(left: 50, right: 50),
+                padding: const EdgeInsets.only(left: 50, right: 50),
                 child: Text(
                   appLocalization(context).forgotPassword,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.bluelightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
@@ -164,12 +164,12 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
                Padding(
-                padding: EdgeInsets.all(18),
+                padding: const EdgeInsets.all(18),
                 child: Center(
                   child: Text(
                     appLocalization(context).enterCode,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: AppColor.verifyColor,
                         fontFamily: AppFont.fontFamily,
                         fontSize: 16,
@@ -627,7 +627,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                         children: [
                           Text(
                             appLocalization(context).didRecieveCode,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: AppFont.fontFamily,
                                 color: AppColor.greylightColor,
@@ -644,7 +644,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                               //       builder: (BuildContext context) => RegisterScreen()));
                             },
                             child: Text( appLocalization(context).resend,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: AppColor.yellowlightColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15)),

@@ -54,7 +54,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Frais d\'administration"),
         "alignQRCodeWithinFrameToScan": MessageLookupByLibrary.simpleMessage(
             "Placez le QR code dans le cadre"),
+        "allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam":
+            MessageLookupByLibrary.simpleMessage(
+                "Actualmente se han bloqueado todas las llamadas de spam a su número de teléfono Puede perder una llamada importante si número de la persona que llama está marcado por la red como spam."),
         "allTransactions": MessageLookupByLibrary.simpleMessage("Transactions"),
+        "alreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("¿Ya tienes una cuenta?"),
         "alreadyPaid": MessageLookupByLibrary.simpleMessage("Déjà payé"),
         "amount": MessageLookupByLibrary.simpleMessage("Montante"),
         "amountRequestedSuccessfully":
@@ -94,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "billers": MessageLookupByLibrary.simpleMessage("Fournisseurs"),
         "billsNSubscriptions":
             MessageLookupByLibrary.simpleMessage("Factures et abonnements"),
+        "blockedCalls":
+            MessageLookupByLibrary.simpleMessage("Llamadas bloqueadas"),
         "callLogs":
             MessageLookupByLibrary.simpleMessage("Registros de llamadas"),
         "callProtection":
@@ -126,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Confirmer le nouveau mot de passe"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirmer le mot de passe"),
+        "congratulationScreated": MessageLookupByLibrary.simpleMessage(
+            "Felicitaciones, su cuenta ha sido creada exitosamente."),
         "congratulationsYourAccountHasBeenSuccessfullyCreated":
             MessageLookupByLibrary.simpleMessage(
                 "Félicitations, votre compte a été créé avec succès."),
@@ -135,8 +144,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactPermission":
             MessageLookupByLibrary.simpleMessage("Autorisation de contact"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contactez-nous"),
-        "continue1": MessageLookupByLibrary.simpleMessage("Continuer"),
+        "continueTxt": MessageLookupByLibrary.simpleMessage("Continuar"),
         "copied": MessageLookupByLibrary.simpleMessage("Copied"),
+        "corporateID":
+            MessageLookupByLibrary.simpleMessage("Identificación corporativa"),
+        "corporateProtection":
+            MessageLookupByLibrary.simpleMessage("Protección corporativa"),
         "country": MessageLookupByLibrary.simpleMessage("Pays"),
         "countryCode": MessageLookupByLibrary.simpleMessage("Code postal"),
         "coupons": MessageLookupByLibrary.simpleMessage("Coupons"),
@@ -146,14 +159,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "data": MessageLookupByLibrary.simpleMessage("Données"),
         "dataBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Explorez l\'achat de forfaits de données avant votre visite pour bénéficier potentiellement de tarifs réduits."),
+        "dateOfBirth":
+            MessageLookupByLibrary.simpleMessage("Fecha de nacimiento"),
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Débité de"),
         "delete": MessageLookupByLibrary.simpleMessage("Supprimer"),
+        "deleteCalls":
+            MessageLookupByLibrary.simpleMessage("Eliminar todas las llamadas"),
         "description": MessageLookupByLibrary.simpleMessage("Description: "),
         "details": MessageLookupByLibrary.simpleMessage("Détails"),
         "developerModeDialogDiscription": MessageLookupByLibrary.simpleMessage(
             "Le mode développeur est activé, veuillez le désactiver pour accéder à l\'application BCTPay"),
-        "didntReceiveCode": MessageLookupByLibrary.simpleMessage(
-            "Vous n\'avez pas reçu de code ?"),
+        "didRecieveCode":
+            MessageLookupByLibrary.simpleMessage("¿No recibiste el código?"),
+        "didTxt": MessageLookupByLibrary.simpleMessage("¿No recibiste OTP?"),
         "discount": MessageLookupByLibrary.simpleMessage("Rabais"),
         "doYouReallyWantToDeleteThisAccount":
             MessageLookupByLibrary.simpleMessage(
@@ -172,6 +190,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "documentType":
             MessageLookupByLibrary.simpleMessage("Type de document"),
         "done": MessageLookupByLibrary.simpleMessage("Fait"),
+        "dontHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("¿No tienes una cuenta?"),
         "dontWorryItHappensPleaseEnterTheAdressAssociatedWithYourAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Ne vous inquiètez pas! Ca arrive. Saisissez l\'adresse associée à votre compte."),
@@ -188,8 +208,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "editProfile": MessageLookupByLibrary.simpleMessage("Editer le profil"),
         "education": MessageLookupByLibrary.simpleMessage("Éducation"),
         "electricity": MessageLookupByLibrary.simpleMessage("Électricité"),
-        "emailAddress": MessageLookupByLibrary.simpleMessage("Adresse e-mail"),
+        "emailAddress": MessageLookupByLibrary.simpleMessage(
+            "Dirección de correo electrónico"),
         "enjoy": MessageLookupByLibrary.simpleMessage("Apprécier"),
+        "enjoyMember": MessageLookupByLibrary.simpleMessage(
+            "Disfruta de todos los beneficios de ser un miembro explorador"),
         "enterAccountHolderName": MessageLookupByLibrary.simpleMessage(
             "Entrez le nom du titulaire du compte"),
         "enterAccountNumber":
@@ -207,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterCity": MessageLookupByLibrary.simpleMessage("Entrez la ville"),
         "enterClientId":
             MessageLookupByLibrary.simpleMessage("Entrez l\'ID client"),
+        "enterCode": MessageLookupByLibrary.simpleMessage(
+            "Ingresa el código de 4 dígitos que recibiste en tu correo electrónico"),
         "enterConfirmNewPassword": MessageLookupByLibrary.simpleMessage(
             "Entrez confirmer le nouveau mot de passe"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -229,6 +254,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterMomoId": MessageLookupByLibrary.simpleMessage("Entrez Momo ID"),
         "enterNewPassword": MessageLookupByLibrary.simpleMessage(
             "Entrez un nouveau mot de passe"),
+        "enterOTPSent":
+            MessageLookupByLibrary.simpleMessage("Ingrese el OTP enviado a"),
         "enterOldPassword": MessageLookupByLibrary.simpleMessage(
             "Entrez l\'ancien mot de passe"),
         "enterPassword":
@@ -242,6 +269,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Entrez le code PIN"),
         "enterTxnId":
             MessageLookupByLibrary.simpleMessage("Entrez l\'ID de transaction"),
+        "enterVerificationProcess": MessageLookupByLibrary.simpleMessage(
+            "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 4 dígitos a tu correo electrónico."),
         "enterWalletPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "Entrez le numéro de téléphone du portefeuille"),
         "enterYourFirstName":
@@ -252,6 +281,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Entrez votre nom de famille"),
         "error": MessageLookupByLibrary.simpleMessage("Erreur"),
         "expired": MessageLookupByLibrary.simpleMessage("Expiré"),
+        "exploreHomePage": MessageLookupByLibrary.simpleMessage(
+            "Explorar la página de inicio"),
         "failed": MessageLookupByLibrary.simpleMessage("Échoué..."),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "faster": MessageLookupByLibrary.simpleMessage("Plus rapide"),
@@ -263,18 +294,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("Prénom"),
         "forYou": MessageLookupByLibrary.simpleMessage("Pour toi"),
         "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("Mot de passe oublié"),
+            MessageLookupByLibrary.simpleMessage("Has olvidado tu contraseña"),
         "from": MessageLookupByLibrary.simpleMessage("Depuis"),
+        "fromNowOnYouArePartOfUs": MessageLookupByLibrary.simpleMessage(
+            "A partir de ahora, eres parte de nosotros!"),
         "frontImage": MessageLookupByLibrary.simpleMessage("Image avant"),
         "fullName": MessageLookupByLibrary.simpleMessage("Nom complet"),
         "gallery": MessageLookupByLibrary.simpleMessage("Galerie"),
         "gender": MessageLookupByLibrary.simpleMessage("Genre"),
+        "getStarted": MessageLookupByLibrary.simpleMessage("Empezar"),
         "giftCard": MessageLookupByLibrary.simpleMessage("Carte cadeau"),
         "giftCardBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Choisissez la marque de carte-cadeau spécifique et la valeur souhaitée en fonction de vos besoins et préférences."),
         "goBack": MessageLookupByLibrary.simpleMessage("Go back"),
         "goals": MessageLookupByLibrary.simpleMessage("Objectifs"),
         "grossTotal": MessageLookupByLibrary.simpleMessage("Total brut"),
+        "haveAnAccount":
+            MessageLookupByLibrary.simpleMessage("tener una cuenta?"),
         "helloThereSignInToContinue": MessageLookupByLibrary.simpleMessage(
             "Bonjour, connectez-vous pour continuer"),
         "helpNSupport": MessageLookupByLibrary.simpleMessage("Support d\'aide"),
@@ -296,6 +332,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "includesALetterDigitAndSpecialCharacter":
             MessageLookupByLibrary.simpleMessage(
                 "Comprend une lettre, un chiffre et un caractère spécial"),
+        "incomingCalls":
+            MessageLookupByLibrary.simpleMessage("Llamadas entrantes"),
         "info": MessageLookupByLibrary.simpleMessage("Info"),
         "institutionCode":
             MessageLookupByLibrary.simpleMessage("Code de l\'institution"),
@@ -331,8 +369,15 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Laissez-nous un message sur vos questions ou vos demandes et quelqu\'un de notre équipe sera bientôt en contact."),
         "light": MessageLookupByLibrary.simpleMessage("Lumière"),
         "linkedAccounts": MessageLookupByLibrary.simpleMessage("Comptes liés"),
+        "login": MessageLookupByLibrary.simpleMessage("Acceso"),
         "loginNow":
             MessageLookupByLibrary.simpleMessage("Connexion maintenant"),
+        "loginWithApple":
+            MessageLookupByLibrary.simpleMessage("Iniciar sesión con Apple"),
+        "loginWithEmail": MessageLookupByLibrary.simpleMessage(
+            "Iniciar sesión con correo electrónico"),
+        "loginWithGoogle":
+            MessageLookupByLibrary.simpleMessage("Iniciar sesión con Google"),
         "logout": MessageLookupByLibrary.simpleMessage("Se déconnecter"),
         "makeOnline": MessageLookupByLibrary.simpleMessage("Faire en ligne"),
         "male": MessageLookupByLibrary.simpleMessage("Mâle"),
@@ -343,6 +388,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "minimumOrderValueIs": MessageLookupByLibrary.simpleMessage(
             "La valeur minimale de la commande est"),
         "minimumTransferLimitIs": m1,
+        "missedCalls":
+            MessageLookupByLibrary.simpleMessage("Llamadas perdidas"),
         "mobileNo": MessageLookupByLibrary.simpleMessage("Numéro de portable"),
         "mobileNumber":
             MessageLookupByLibrary.simpleMessage("Numéro de portable"),
@@ -420,15 +467,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ouvrir un compte Ecobank Xpress"),
         "openXpressAccountViewTitle": MessageLookupByLibrary.simpleMessage(
             "Ouvrez instantanément un compte Ecobank Xpress avec BCTPay"),
+        "orTxt": MessageLookupByLibrary.simpleMessage("O"),
         "orangeMoney": MessageLookupByLibrary.simpleMessage("Orange Money"),
         "other": MessageLookupByLibrary.simpleMessage("Autre"),
         "otp": MessageLookupByLibrary.simpleMessage("OTP"),
+        "otpVerification":
+            MessageLookupByLibrary.simpleMessage("Verificación de OTP"),
+        "outgoingCalls":
+            MessageLookupByLibrary.simpleMessage("Llamadas salientes"),
         "ownedBy": MessageLookupByLibrary.simpleMessage("Propriétaire"),
         "paid": MessageLookupByLibrary.simpleMessage("Payé"),
         "paidTo": MessageLookupByLibrary.simpleMessage("Versée à"),
         "panCard": MessageLookupByLibrary.simpleMessage("Carte panoramique"),
         "passport": MessageLookupByLibrary.simpleMessage("Passeport"),
-        "password": MessageLookupByLibrary.simpleMessage("Mot de passe"),
+        "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
         "passwordIsNotMatching": MessageLookupByLibrary.simpleMessage(
             "Le mot de passe ne correspond pas"),
         "pay": MessageLookupByLibrary.simpleMessage("Payer"),
@@ -450,17 +502,25 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Statut de paiement"),
         "paymentSuccess":
             MessageLookupByLibrary.simpleMessage("Succès de paiement!"),
+        "personalProtection":
+            MessageLookupByLibrary.simpleMessage("Protección Personal"),
         "phoneNumber":
-            MessageLookupByLibrary.simpleMessage("Numéro de téléphone: "),
+            MessageLookupByLibrary.simpleMessage("Número de teléfono"),
         "pinCode": MessageLookupByLibrary.simpleMessage("Code PIN"),
         "pleaseAcceptTermsAndConditions": MessageLookupByLibrary.simpleMessage(
             "Veuillez accepter les conditions générales"),
+        "pleaseActiveYourSubscription": MessageLookupByLibrary.simpleMessage(
+            "Por favor activa tu suscripción"),
         "pleaseAddAtleastOneactiveAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Veuillez ajouter au moins un compte actif"),
+        "pleaseCheckMail":
+            MessageLookupByLibrary.simpleMessage("Por favor revisa tu correo"),
         "pleaseCheckYourNetworkConnection":
             MessageLookupByLibrary.simpleMessage(
                 "Veuillez vérifier votre connexion réseau."),
+        "pleaseCorporateID": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese su correo electrónico válido / ID corporativo"),
         "pleaseEnterAccountHolderName": MessageLookupByLibrary.simpleMessage(
             "Veuillez saisir le nom du titulaire du compte"),
         "pleaseEnterAccountNumber": MessageLookupByLibrary.simpleMessage(
@@ -518,6 +578,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Veuillez saisir l\'adresse e-mail valide"),
         "pleaseLoginToContinue": MessageLookupByLibrary.simpleMessage(
             "Veuillez vous connecter pour continuer"),
+        "pleaseSecureAccount": MessageLookupByLibrary.simpleMessage(
+            "Ingrese una nueva contraseña para proteger su cuenta."),
         "pleaseSelectAllMandatoryField": MessageLookupByLibrary.simpleMessage(
             "Veuillez sélectionner tous les champs obligatoires"),
         "pleaseSelectBackImage": MessageLookupByLibrary.simpleMessage(
@@ -532,6 +594,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Veuillez sélectionner votre état"),
         "pleaseSignUpToContinue": MessageLookupByLibrary.simpleMessage(
             "Veuillez vous inscrire pour continuer"),
+        "pleaseTxt": MessageLookupByLibrary.simpleMessage(
+            "Seleccione el tipo de cuenta que va a configurar hoy."),
+        "pleaseVerify": MessageLookupByLibrary.simpleMessage(
+            "Ingrese su número de teléfono válido, le enviaremos un código de 4 dígitos para verificar."),
         "poweredBy":
             MessageLookupByLibrary.simpleMessage("2024 @ Propulsé par BCTPay"),
         "prev": MessageLookupByLibrary.simpleMessage("Précédente"),
@@ -545,6 +611,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "productTax":
             MessageLookupByLibrary.simpleMessage("Taxe sur les produits"),
         "profile": MessageLookupByLibrary.simpleMessage("Profil"),
+        "protectAIEmail": MessageLookupByLibrary.simpleMessage(
+            "Proteja el correo electrónico de IA"),
+        "protectAIMessages":
+            MessageLookupByLibrary.simpleMessage("Proteger mensajes de IA"),
+        "protectionType":
+            MessageLookupByLibrary.simpleMessage("Protección Tipo"),
         "qrscan": MessageLookupByLibrary.simpleMessage("Numérisation QR"),
         "quantity": MessageLookupByLibrary.simpleMessage("Quantité"),
         "queries": MessageLookupByLibrary.simpleMessage("Requêtes"),
@@ -571,13 +643,23 @@ class MessageLookup extends MessageLookupByLibrary {
             "La recharge a été réalisée avec succès"),
         "recoverPassword":
             MessageLookupByLibrary.simpleMessage("Récupérer le mot de passe"),
+        "register": MessageLookupByLibrary.simpleMessage("Registro"),
         "registerNow":
             MessageLookupByLibrary.simpleMessage("S\'inscrire maintenant"),
+        "registerWithApple":
+            MessageLookupByLibrary.simpleMessage("Regístrate en Apple"),
+        "registerWithEmail": MessageLookupByLibrary.simpleMessage(
+            "Regístrese con correo electrónico"),
+        "registerWithGoogle":
+            MessageLookupByLibrary.simpleMessage("Regístrate en Google"),
+        "registrationSuccessful":
+            MessageLookupByLibrary.simpleMessage("Registro exitoso"),
         "reject": MessageLookupByLibrary.simpleMessage("Rejeter"),
         "rejected": MessageLookupByLibrary.simpleMessage("Rejetée"),
-        "rememberMe":
-            MessageLookupByLibrary.simpleMessage("Souviens-toi de moi"),
+        "rememberMe": MessageLookupByLibrary.simpleMessage("Acuérdate de mí"),
         "rent": MessageLookupByLibrary.simpleMessage("Loyer"),
+        "renterPassword": MessageLookupByLibrary.simpleMessage(
+            "Escriba la contraseña otra vez"),
         "request": MessageLookupByLibrary.simpleMessage("Demande"),
         "requestAgain":
             MessageLookupByLibrary.simpleMessage("Demander à nouveau"),
@@ -594,11 +676,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestToPay": MessageLookupByLibrary.simpleMessage("Demander"),
         "requestingFrom": MessageLookupByLibrary.simpleMessage("Demander à"),
         "rescan": MessageLookupByLibrary.simpleMessage("Sauveteur"),
+        "resend": MessageLookupByLibrary.simpleMessage("Reenviar"),
+        "resendOtp": MessageLookupByLibrary.simpleMessage("Reenviar OTP"),
         "resendVerificationLink": MessageLookupByLibrary.simpleMessage(
             "Renvoyer le lien de vérification"),
         "reset": MessageLookupByLibrary.simpleMessage("Réinitialiser"),
-        "resetPassword": MessageLookupByLibrary.simpleMessage(
-            "Réinitialisez le mot de passe"),
+        "resetPassword":
+            MessageLookupByLibrary.simpleMessage("Restablecer contraseña"),
         "roaming": MessageLookupByLibrary.simpleMessage("Itinérance"),
         "save": MessageLookupByLibrary.simpleMessage("Sauvegarder"),
         "scan": MessageLookupByLibrary.simpleMessage("Scanner QR Code"),
@@ -669,6 +753,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "status": MessageLookupByLibrary.simpleMessage("Statut"),
         "submit": MessageLookupByLibrary.simpleMessage("Enrégistrer"),
         "success": MessageLookupByLibrary.simpleMessage("Succès!"),
+        "successful": MessageLookupByLibrary.simpleMessage("Exitoso"),
         "takeASelfie": MessageLookupByLibrary.simpleMessage("Prenez un selfie"),
         "tax": MessageLookupByLibrary.simpleMessage("IMPÔT"),
         "theme": MessageLookupByLibrary.simpleMessage("Thème"),
@@ -737,6 +822,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadYourAddressDocument": MessageLookupByLibrary.simpleMessage(
             "Téléchargez votre document d\'adresse"),
         "upto": MessageLookupByLibrary.simpleMessage("jusqu\'à"),
+        "userName": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
         "valid": MessageLookupByLibrary.simpleMessage("Valide"),
         "validFrom":
             MessageLookupByLibrary.simpleMessage("Valable à partir du"),
@@ -745,6 +831,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Le code de vérification"),
         "verified": MessageLookupByLibrary.simpleMessage("Vérifié"),
         "verify": MessageLookupByLibrary.simpleMessage("Vérifier"),
+        "verifyProceed":
+            MessageLookupByLibrary.simpleMessage("Verificar y continuar"),
         "viewAccount": MessageLookupByLibrary.simpleMessage("Voir le compte"),
         "viewPlan": MessageLookupByLibrary.simpleMessage("Voir le plan"),
         "voterIdCard": MessageLookupByLibrary.simpleMessage(
@@ -759,10 +847,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "weHaveSentTheCodeVerificationToYourMobileNumber":
             MessageLookupByLibrary.simpleMessage(
                 "Code de vérification envoyé à votre numéro mobile"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Bienvenido"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Bienvenue"),
+        "welcomeTxt": MessageLookupByLibrary.simpleMessage(
+            "¡Bienvenido a BROADLINK Prosuct, su defensor móvil! Bloquee sin esfuerzo las llamadas y los mensajes no deseados y mantenga limpio su dispositivo. ¡Comencemos y tomemos el control de su comunicación!"),
         "yes": MessageLookupByLibrary.simpleMessage("Oui"),
+        "yey": MessageLookupByLibrary.simpleMessage("¡Sí!"),
         "yoCanUpdateYourProfileFromHere": MessageLookupByLibrary.simpleMessage(
             "Vous pouvez mettre à jour votre profil à partir d\'ici"),
+        "youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase":
+            MessageLookupByLibrary.simpleMessage(
+                "Estás protegido contra todos los números de teléfono peligrosos de nuestra base de datos de seguridad"),
         "youCanDoAnyOnlinePaymentFromAnyCardOrAccountJustScanTheQRCodeNEnjoy":
             MessageLookupByLibrary.simpleMessage(
                 "Vous pouvez effectuer n\'importe quel paiement en ligne à partir de n\'importe quelle carte ou compte.Il suffit de scanner le QR code et de profiter."),
@@ -774,9 +869,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCantRetryYet": MessageLookupByLibrary.simpleMessage(
             "Vous ne pouvez pas encore réessayer!"),
         "your": MessageLookupByLibrary.simpleMessage("Ton"),
+        "yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials":
+            MessageLookupByLibrary.simpleMessage(
+                "Protect AI está analizando actualmente sus correos electrónicos para detectar posibles estafas y proteger sus datos y finanzas."),
         "yourGoalsWillHelpUsToFormulateTheRightRecommendationsForSuccess":
             MessageLookupByLibrary.simpleMessage(
                 "Vos objectifs nous aideront à formuler les bonnes recommandations de réussite."),
+        "yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams":
+            MessageLookupByLibrary.simpleMessage(
+                "Detect AI está analizando actualmente tus mensajes para identificar posibles estafas."),
         "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword":
             MessageLookupByLibrary.simpleMessage(
                 "Votre nouveau mot de passe doit être différent du mot de passe précédemment utilisé."),

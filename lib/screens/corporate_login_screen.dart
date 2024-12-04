@@ -47,19 +47,19 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
            Center(
               child: Text(
                 appLocalization(context).login,
-            style: TextStyle(
+            style: const TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
                 fontFamily: AppFont.fontFamily,
                 fontWeight: FontWeight.w600),
           )),
            Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Center(
                 child: Text(
                     appLocalization(context).pleaseCorporateID, // this one
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   color: AppColor.verifyColor,
                   fontFamily: AppFont.fontFamily,
                   fontSize: 16,
