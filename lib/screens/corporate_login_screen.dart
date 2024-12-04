@@ -44,20 +44,20 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 8 / 100,
           ),
-          const Center(
+           Center(
               child: Text(
-            StringConstants.logintext,
+                appLocalization(context).login,
             style: TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
                 fontFamily: AppFont.fontFamily,
                 fontWeight: FontWeight.w600),
           )),
-          const Padding(
+           Padding(
             padding: EdgeInsets.all(20),
             child: Center(
                 child: Text(
-              StringConstants.corporateId, // this one
+                    appLocalization(context).pleaseCorporateID, // this one
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: AppColor.verifyColor,
@@ -74,7 +74,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
             child: TextFormField(
               controller: corpoarteidController,
               decoration: InputDecoration(
-                hintText: StringConstants.corporateIdtext,
+                hintText:appLocalization(context).corporateID,
                 hintStyle: const TextStyle(
                     color: AppColor.lightfillColor,
                     fontFamily: AppFont.fontFamily,
@@ -110,7 +110,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
             child: TextFormField(
               controller: emailController,
               decoration: InputDecoration(
-                hintText: StringConstants.emailadresstext,
+                hintText: appLocalization(context).emailAddress,
                 hintStyle: const TextStyle(
                     color: AppColor.lightfillColor,
                     fontFamily: AppFont.fontFamily,
@@ -147,7 +147,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
               controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
-                  hintText: 'Password',
+                  hintText: appLocalization(context).password,
                   hintStyle: const TextStyle(
                       color: AppColor.lightfillColor,
                       fontWeight: FontWeight.w800,
@@ -183,7 +183,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
           _isLoading
               ? const Center(child: CircularProgressIndicator())
               : AppButton(
-                  text: StringConstants.logintext,
+                  text: appLocalization(context).login,
                   onPress: () {
                     final corporateid = corpoarteidController.text;
                     final email = emailController.text;

@@ -66,7 +66,7 @@
   "congratulationsYourAccountHasBeenSuccessfullyUpdated": "Congratulations, your account has been successfully updated.",
   "contactPermission": "Contact permission",
   "contactUs": "Contact us",
-  "continue1": "Continue",
+
   "copied": "Copied",
   "country": "Country",
   "countryCode": "Country code",
@@ -81,7 +81,7 @@
   "description": "Description: ",
   "details": "Details",
   "developerModeDialogDiscription": "Developer mode is enabled, please disable to access the BCTPay app",
-  "didntReceiveCode": "Didn't receive code?",
+
   "discount": "Discount",
   "doYouReallyWantToDeleteThisAccount": "Do you really want to delete this account ?",
   "doYouReallyWantToExitTheApp": "Do you really want to exit the app ?",
@@ -477,5 +477,85 @@
   "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword": "Your new password must be different from previously used password.",
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
-  "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done."
+  "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
+  "callProtection":"Call protection",
+  "pleaseActiveYourSubscription":"Please active your subscription",
+  "youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase":"You are protected against all the dangerous phone numbers from our security database",
+  "allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam":"All spam calls are currently being blocked from calling your telephone number you may miss important call if the caller number is flagged by the network as spam.",
+  "protectAIMessages":"Protect AI messages",
+  "yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams":"Your messages are currently being screened by Detect AI to identity potential scams.",
+  "protectAIEmail":"Protect AI email",
+  "yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials":"Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials",
+  "welcome":"WELCOME",
+  "welcomeTxt":"Welcome to BROADLINK Protect your mobile defender! Effortlessly block unwanted calls, messages and keep your device clean let's get started and take control of your communication!",
+
+  "getStarted":"Get started",
+  "protectionType":"Protection type",
+  "pleaseTxt":"Please select the type of account you will be setting up today.",
+  "personalProtection":"Personal protection",
+  "corporateProtection":"Corporate Protection",
+  "continueTxt":"Continue",
+  "pleaseCorporateID":"Please enter your valid Email / Corporate ID",
+  "corporateID":"Corporate ID",
+  "emailAddress":"Email address",
+  "password":"Password",
+
+  "login":"Login",
+  "loginWithGoogle":"Login With Google",
+  "loginWithApple":" Login With Apple",
+  "loginWithEmail":"Login with email",
+  "dontHaveAnAccount" :"Don’t have an account?",
+  "register":"Register",
+  "registerWithGoogle":"Register with Google",
+  "registerWithApple":"Register with Apple",
+  "registerWithEmail":"Register with email",
+  "alreadyHaveAnAccount":" Already have an account",
+  "orTxt":"Or",
+
+  "pleaseVerify":"Please enter your valid phone number, We will send you a 4 digit code to verify.",
+
+
+  "successful":"Successful",
+  "yey":"Yey!",
+  "fromNowOnYouArePartOfUs":"From now on you are part of us!",
+  "exploreHomePage":"Explore Home Page",
+
+  "enjoyMember":"Enjoy all the benefits of being an explorer member",
+  "userName":"User name",
+  "phoneNumber":"Phone Number",
+  "dateOfBirth":"Date of Birth",
+  "rememberMe":"Remember me",
+  "resetPassword":"Reset password",
+  "haveAnAccount":"Have an account?",
+
+  "otpVerification":" OTP Verification",
+  "didTxt":"Did't recieve Code?",
+  "resendOtp":"Resend Otp",
+  "enterOTPSent":"Enter the OTP Sent to",
+  "verifyProceed":"Verify and Proceed",
+
+   "forgotPassword":"Forgot Password",
+    "enterVerificationProcess":"Enter your email address for the verificationm process. We will send 4 digite code to your email.",
+    "pleaseCheckMail":"Please check your mail",
+
+    "enterCode":"Enter the 4 digit code that you received on your email",
+    "didRecieveCode":"Did't recieve Code?",
+    "resend":"Resend",
+
+    "pleaseSecureAccount":"Please enter a new password to secure your account.",
+    "renterPassword":"Re-enter Password",
+
+    "registrationSuccessful":"Registration Successful",
+    "congratulationScreated":"Congratulations, your account has been successfully created.",
+
+    "outgoingCalls":"Outgoing Calls",
+    "incomingCalls":"Incoming Calls",
+    "missedCalls":"Missed Calls",
+    "blockedCalls":"Blocked Calls",
+    "deleteCalls":"Delete all Calls"
+
+
+
+
+
 }

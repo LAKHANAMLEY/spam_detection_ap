@@ -183,11 +183,11 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 8 / 100,
               ),
-              const Center(
+              Center(
                   child: Padding(
                 padding: EdgeInsets.only(left: 50, right: 50),
                 child: Text(
-                  StringConstants.otpverifivcationtext,
+                  appLocalization(context).otpVerification,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.bluelightColor,
@@ -203,7 +203,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                 padding: const EdgeInsets.all(18),
                 child: Center(
                   child: Text(
-                    'Enter the OTP sent to ${widget.phoneNumber}',
+                    '${appLocalization(context).enterOTPSent} ${widget.phoneNumber}',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: AppColor.verifyColor,
@@ -644,8 +644,8 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            StringConstants.didtext,
+                           Text(
+                             appLocalization(context).didTxt,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: AppFont.fontFamily,
@@ -662,7 +662,8 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                               //    MaterialPageRoute(
                               //       builder: (BuildContext context) => RegisterScreen()));
                             },
-                            child: const Text(StringConstants.resendotptext,
+                            child: Text(
+                                appLocalization(context).resendOtp,
                                 style: TextStyle(
                                     color: AppColor.yellowlightColor,
                                     fontWeight: FontWeight.bold,
@@ -673,7 +674,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 5 / 100),
                       AppButton(
-                        text: StringConstants.verifyproceedtext,
+                        text: appLocalization(context).verifyProceed,
                         onPress: _signInWithOtp,
                       ),
                       SizedBox(

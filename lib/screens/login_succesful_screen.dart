@@ -40,9 +40,9 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 10 / 100,
           ),
-          const Center(
+           Center(
               child: Text(
-            StringConstants.successfultext,
+                appLocalization(context).successful,
             style: TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
@@ -53,7 +53,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
           Text(
-            'Yey! ${widget.user?.name}',
+            '${appLocalization(context).yey}, ${widget.user?.name ?? ''}',
             style: const TextStyle(
                 color: AppColor.yellowlightColor,
                 fontSize: 18,
@@ -62,8 +62,8 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
-          const Text(
-            StringConstants.fromtext,
+           Text(
+            appLocalization(context).fromNowOnYouArePartOfUs,
             style: TextStyle(color: AppColor.gracyColor),
           ),
           SizedBox(
@@ -75,7 +75,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
           AppButton(
-              text: StringConstants.exploretext,
+              text: appLocalization(context).exploreHomePage,
               onPress: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,

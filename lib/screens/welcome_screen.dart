@@ -9,11 +9,11 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  LanguageData? selectedCategory;
+  LanguageData? selectedLanguage;
   bool isLoading = false;
   String? errorMessage;
 
-  List<LanguageData> categories = [];
+  List<LanguageData> languages = [];
   Future<void> fetchLanguagies() async {
     setState(() {
       isLoading = true;
@@ -24,7 +24,7 @@ class _WelcomeState extends State<Welcome> {
       final fetchedCategories = await ApiService.fetchLanguagies();
       print(fetchedCategories.toString());
       setState(() {
-        categories = fetchedCategories.languagelist ?? [];
+        languages = fetchedCategories.languagelist ?? [];
         isLoading = false;
       });
     } catch (error) {
@@ -57,16 +57,16 @@ class _WelcomeState extends State<Welcome> {
                       ? const CircularProgressIndicator()
                       : errorMessage != null
                           ? Text(errorMessage!)
-                          : categories.isEmpty
+                          : languages.isEmpty
                               ? const Text('No categories available.')
                               : Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0),
                                   child: DropdownButton<LanguageData>(
                                     hint: const Text('Select Language'),
-                                    value: selectedCategory,
+                                    value: selectedLanguage,
                                     isExpanded: true,
-                                    items: categories.map((category) {
+                                    items: languages.map((category) {
                                       return DropdownMenuItem<LanguageData>(
                                         value: category,
                                         child: Text(category.name ?? ""),
@@ -74,10 +74,13 @@ class _WelcomeState extends State<Welcome> {
                                     }).toList(),
                                     onChanged: (LanguageData? value) {
                                       setState(() {
-                                        selectedCategory = value;
-                                      });
-                                      print(selectedCategory?.name ?? "");
-                                    },
+                                        selectedLanguage = value;
+                                      });// wait sir // understand sir
+
+                                      //ab language change work krega protection type check kro
+                                      print(selectedLanguage?.name ?? "");
+                                      localizationBloc.add(ChangeLocaleEvent(Locale.fromSubtags(languageCode:  selectedLanguage?.id??"")));
+;                                    },
                                   ),
                                 ),
                 ),
@@ -90,8 +93,8 @@ class _WelcomeState extends State<Welcome> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 5 / 100,
                 ),
-                const Text(
-                  StringConstants.weltext,
+                 Text(
+                 appLocalization(context).welcome,
                   style: TextStyle(
                       color: AppColor.bluelightColor,
                       fontSize: 35,
@@ -99,11 +102,11 @@ class _WelcomeState extends State<Welcome> {
                       fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: Center(
                     child: Text(
-                      StringConstants.welcometext,
+                      appLocalization(context).welcomeTxt,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: AppColor.lightblurColor,
@@ -116,7 +119,7 @@ class _WelcomeState extends State<Welcome> {
                   height: MediaQuery.of(context).size.height * 8 / 100,
                 ),
                 AppButton(
-                    text: StringConstants.getstarted,
+                    text:  appLocalization(context).getStarted,
                     onPress: () {
                       Navigator.push(
                           context,

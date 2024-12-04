@@ -43,11 +43,11 @@ class _ProtectionTypeState extends State<ProtectionType> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 8 / 100,
               ),
-              const Center(
+              Center(
                   child: Padding(
                 padding: EdgeInsets.only(left: 70, right: 70),
                 child: Text(
-                  StringConstants.protectiontext,
+                  appLocalization(context).protectionType,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.bluelightColor,
@@ -59,11 +59,11 @@ class _ProtectionTypeState extends State<ProtectionType> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(left: 30, right: 30),
                 child: Center(
                     child: Text(
-                  StringConstants.selectaccountext,
+                      appLocalization(context).pleaseTxt,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.verifyColor,
@@ -113,7 +113,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                         width: MediaQuery.of(context).size.width * 4 / 100,
                       ),
                       Text(
-                        StringConstants.personalProtectiontext,
+                        appLocalization(context).personalProtection,
                         style: TextStyle(
                             color: Selectedtab == 1
                                 ? AppColor.gracyColor
@@ -166,7 +166,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                         width: MediaQuery.of(context).size.width * 4 / 100,
                       ),
                       Text(
-                        StringConstants.corpotateprotectiontext,
+                        appLocalization(context).corporateProtection,
                         style: TextStyle(
                             color: Selectedtab == 1
                                 ? AppColor.secondryColor
@@ -183,7 +183,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                 height: MediaQuery.of(context).size.height * 5 / 100,
               ),
               AppButton(
-                  text: StringConstants.continutext,
+                  text:appLocalization(context).continueTxt,
                   onPress: () {
                     if (Selectedtab == 0) {
                       Navigator.push(
@@ -198,7 +198,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                             builder: (context) => const CorpoateLogin()),
                       );
                     }
-                  })
+                  }),
             ],
           ),
         ),

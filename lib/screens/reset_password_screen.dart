@@ -70,11 +70,11 @@ class _ResetPasswordState extends State<ResetPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 4 / 100,
               ),
-              const Center(
+              Center(
                   child: Padding(
                 padding: EdgeInsets.only(left: 60, right: 50),
                 child: Text(
-                  StringConstants.resetpasstext,
+                  appLocalization(context).resetPassword,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.bluelightColor,
@@ -86,10 +86,10 @@ class _ResetPasswordState extends State<ResetPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.all(18),
                 child: Text(
-                  StringConstants.resetMessage,
+                  appLocalization(context).pleaseSecureAccount,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.verifyColor,
@@ -110,7 +110,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     //labelText: StringConstants.phonetext,
                     //labelStyle: const TextStyle(
                     // color: AppColor.lightfillColor, fontWeight: FontWeight.w800),
-                    hintText: StringConstants.passwordtext,
+                    hintText:  appLocalization(context).password,
 
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
@@ -149,7 +149,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     //  labelText: StringConstants.phonetext,
                     // labelStyle: const TextStyle(
                     // color: AppColor.lightfillColor, fontWeight: FontWeight.w800),
-                    hintText: StringConstants.reentertext,
+                    hintText:  appLocalization(context).renterPassword,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -186,7 +186,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               _isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : AppButton(
-                      text: StringConstants.resetpasstext,
+                      text:  appLocalization(context).resetPassword,
                       onPress: () {
                         final password = passwordController.text;
                         final confirmPassword = confirmpasswordController.text;

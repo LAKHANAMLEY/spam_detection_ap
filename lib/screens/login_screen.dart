@@ -342,10 +342,10 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-              const Center(
+               Center(
                   child: Text(
-                StringConstants.logintext,
-                style: TextStyle(
+                    appLocalization(context).login,
+                style:  const TextStyle(
                     color: AppColor.bluelightColor,
                     fontSize: 35,
                     fontFamily: AppFont.fontFamily,
@@ -354,13 +354,13 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-              const Padding(
-                padding: EdgeInsets.all(20),
+               Padding(
+                padding:const EdgeInsets.all(20),
                 child: Center(
                     child: Text(
-                  StringConstants.plsvalidtext, // this one
+                      appLocalization(context).pleaseVerify,//
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const  TextStyle(
                       color: AppColor.verifyColor,
                       fontFamily: AppFont.fontFamily,
                       fontSize: 16,
@@ -420,7 +420,7 @@ class _LoginState extends State<Login> {
                   child: TextFormField(
                     controller: emailController,
                     decoration: InputDecoration(
-                      hintText: StringConstants.emailadresstext,
+                      hintText: appLocalization(context).emailAddress,
                       hintStyle: const TextStyle(
                           color: AppColor.lightfillColor,
                           fontFamily: AppFont.fontFamily,
@@ -458,7 +458,7 @@ class _LoginState extends State<Login> {
                     obscureText: true,
                     controller: passwordController,
                     decoration: InputDecoration(
-                        hintText: 'Password',
+                        hintText: appLocalization(context).password,
                         hintStyle: const TextStyle(
                             color: AppColor.lightfillColor,
                             fontWeight: FontWeight.w800,
@@ -491,7 +491,7 @@ class _LoginState extends State<Login> {
                 _isLoading
                     ? const Center(child: CircularProgressIndicator())
                     : AppButton(
-                        text: StringConstants.logintext,
+                        text: appLocalization(context).login,
                         onPress: () {
                           final email = emailController.text;
                           final password = passwordController.text;
@@ -548,8 +548,8 @@ class _LoginState extends State<Login> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      StringConstants.donttext,
+                     Text(
+                      appLocalization(context).dontHaveAnAccount,
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontFamily: AppFont.fontFamily,
@@ -583,7 +583,7 @@ class _LoginState extends State<Login> {
                     ///TODO:  need to implement api country picker dont use this package
                     controller: phoneController,
                     decoration: InputDecoration(
-                      hintText: "Enter Phone Number",
+                      hintText: appLocalization(context).phoneNumber,
                       hintStyle: const TextStyle(
                           color: AppColor.lightfillColor,
                           fontFamily: AppFont.fontFamily,

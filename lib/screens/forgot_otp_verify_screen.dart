@@ -147,11 +147,11 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 8 / 100,
               ),
-              const Center(
+              Center(
                   child: Padding(
                 padding: EdgeInsets.only(left: 50, right: 50),
                 child: Text(
-                  StringConstants.forgottext,
+                  appLocalization(context).forgotPassword,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.bluelightColor,
@@ -163,11 +163,11 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.all(18),
                 child: Center(
                   child: Text(
-                    StringConstants.otpverifytext,
+                    appLocalization(context).enterCode,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColor.verifyColor,
@@ -625,8 +625,8 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            StringConstants.didtext,
+                          Text(
+                            appLocalization(context).didRecieveCode,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: AppFont.fontFamily,
@@ -643,7 +643,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                               //    MaterialPageRoute(
                               //       builder: (BuildContext context) => RegisterScreen()));
                             },
-                            child: const Text(StringConstants.resendtext,
+                            child: Text( appLocalization(context).resend,
                                 style: TextStyle(
                                     color: AppColor.yellowlightColor,
                                     fontWeight: FontWeight.bold,
@@ -654,7 +654,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 5 / 100),
                       AppButton(
-                          text: StringConstants.continutext,
+                          text:  appLocalization(context).continueTxt,
                           onPress: () {
                             forgotOtpUserValidation(
                               firstInputController.text,

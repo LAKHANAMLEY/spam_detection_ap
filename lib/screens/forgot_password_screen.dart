@@ -137,11 +137,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 8 / 100,
               ),
-              const Center(
+               Center(
                   child: Padding(
                 padding: EdgeInsets.only(left: 50, right: 50),
                 child: Text(
-                  StringConstants.forgottext,
+                  appLocalization(context).forgotPassword,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.bluelightColor,
@@ -153,10 +153,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.all(18),
                 child: Text(
-                  StringConstants.emailtext,
+                  appLocalization(context).enterCode,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.verifyColor,
@@ -173,7 +173,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 child: TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                    hintText: StringConstants.emailadresstext,
+                    hintText: appLocalization(context).emailAddress,
                     hintStyle: const TextStyle(
                         color: AppColor.lightfillColor,
                         fontFamily: AppFont.fontFamily,
@@ -205,8 +205,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 5 / 100,
               ),
-              const Text(
-                StringConstants.checkmailtext,
+               Text(
+                appLocalization(context).pleaseCheckMail,
                 style: TextStyle(
                     color: AppColor.remainColor,
                     fontFamily: AppFont.fontFamily,
@@ -223,7 +223,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               _isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : AppButton(
-                      text: StringConstants.continutext,
+                      text: appLocalization(context).continueTxt,
                       onPress: () {
                         final email = _emailController.text;
                         if (email.isNotEmpty) {
