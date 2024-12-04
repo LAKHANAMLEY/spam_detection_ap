@@ -103,9 +103,9 @@ class _RegisterState extends State<Register> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
-          const Center(
+           Center(
               child: Text(
-            StringConstants.registertext,
+                appLocalization(context).register,
             style: TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
@@ -115,11 +115,11 @@ class _RegisterState extends State<Register> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 1 / 100,
           ),
-          const Padding(
+           Padding(
             padding: EdgeInsets.all(20),
             child: Center(
                 child: Text(
-              StringConstants.enjoytext,
+                  appLocalization(context).enjoyMember,
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: AppColor.bluelightColor,
@@ -134,7 +134,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: firstnameController,
               decoration: InputDecoration(
-                hintText: 'First name',
+                hintText:  appLocalization(context).userName,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),
@@ -169,7 +169,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: lastnameController,
               decoration: InputDecoration(
-                hintText: 'Last name',
+                hintText:  appLocalization(context).lastName,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),
@@ -204,7 +204,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: emailController,
               decoration: InputDecoration(
-                hintText: 'Email Address',
+                hintText: appLocalization(context).emailAddress,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),
@@ -237,7 +237,7 @@ class _RegisterState extends State<Register> {
             child: IntlPhoneField(
               controller: phonenumberController,
               decoration: InputDecoration(
-                hintText: "Phone Number",
+                hintText:appLocalization(context).phoneNumber,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 //labelText: 'Phone Number',
                 enabledBorder: OutlineInputBorder(
@@ -279,7 +279,7 @@ class _RegisterState extends State<Register> {
               controller:
                   dateofbirthController, //ese controller every field me assign karo
               decoration: InputDecoration(
-                  hintText: 'Date of Birth',
+                  hintText: appLocalization(context).dateOfBirth,
                   hintStyle: const TextStyle(color: AppColor.lightfillColor),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(2),
@@ -328,7 +328,7 @@ class _RegisterState extends State<Register> {
               controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
-                hintText: 'Password',
+                hintText: appLocalization(context).password,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),
@@ -383,8 +383,8 @@ class _RegisterState extends State<Register> {
                       Container(
                         width: MediaQuery.of(context).size.width * 30 / 100,
                         margin: const EdgeInsets.only(top: 6),
-                        child: const Text(
-                          StringConstants.remembertext,
+                        child: Text(
+                          appLocalization(context).rememberMe,
                           style: TextStyle(
                               color: AppColor.remainColor, fontSize: 15),
                         ),
@@ -393,8 +393,8 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 TextButton(
-                    child: const Text(
-                      StringConstants.resetext,
+                    child:  Text(
+                      appLocalization(context).resetPassword,
                       style: TextStyle(
                           fontSize: 14,
                           color: AppColor.yellowlightColor,
@@ -419,7 +419,7 @@ class _RegisterState extends State<Register> {
           _isLoading
               ? const Center(child: CircularProgressIndicator())
               : AppButton(
-                  text: StringConstants.registertext,
+                  text: appLocalization(context).register,
                   onPress: () {
                     final email = emailController.text;
                     final password = passwordController.text;
@@ -469,7 +469,7 @@ class _RegisterState extends State<Register> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(StringConstants.haveActext,
+               Text(appLocalization(context).dontHaveAnAccount,
                   style: TextStyle(
                       fontFamily: AppFont.fontFamily,
                       fontSize: 15,
@@ -483,7 +483,7 @@ class _RegisterState extends State<Register> {
                       MaterialPageRoute(
                           builder: (BuildContext context) => const Login()));
                 },
-                child: const Text(StringConstants.logintext,
+                child: Text(appLocalization(context).login,
                     style: TextStyle(
                         fontSize: 15,
                         color: AppColor.yellowlightColor,

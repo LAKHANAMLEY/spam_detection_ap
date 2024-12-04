@@ -71,9 +71,9 @@ class _LoginGoogleState extends State<LoginGoogle> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 6 / 100,
                       ),
-                      const Center(
+                       Center(
                           child: Text(
-                        StringConstants.logintext,
+                            appLocalization(context).login,
                         style: TextStyle(
                             color: AppColor.bluelightColor,
                             fontSize: 35,
@@ -140,8 +140,8 @@ class _LoginGoogleState extends State<LoginGoogle> {
                                 width:
                                     MediaQuery.of(context).size.width * 4 / 100,
                               ),
-                              const Text(
-                                StringConstants.loginGoogletext,
+                               Text(
+                                appLocalization(context).loginWithGoogle,
                                 style: TextStyle(
                                     color: AppColor.gracyColor,
                                     fontFamily: AppFont.fontFamily,
@@ -185,8 +185,8 @@ class _LoginGoogleState extends State<LoginGoogle> {
                                 width:
                                     MediaQuery.of(context).size.width * 4 / 100,
                               ),
-                              const Text(
-                                StringConstants.loginAppletext,
+                               Text(
+                                appLocalization(context).loginWithApple,
                                 style: TextStyle(
                                     color: AppColor.gracyColor,
                                     fontFamily: AppFont.fontFamily,
@@ -212,8 +212,8 @@ class _LoginGoogleState extends State<LoginGoogle> {
                                     MediaQuery.sizeOf(context).height * 6 / 100,
                               )),
                         ),
-                        const Text(
-                          "or",
+                         Text(
+                          appLocalization(context).orTxt,
                           style: TextStyle(
                               color: AppColor.primaryColor,
                               fontWeight: FontWeight.w600,
@@ -234,7 +234,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                         height: MediaQuery.of(context).size.height * 8 / 100,
                       ),
                       AppButton(
-                          text: StringConstants.loginusingEmail,
+                          text:appLocalization(context).loginWithEmail,
                           onPress: () {
                             Navigator.push(
                                 context,
@@ -274,8 +274,8 @@ class _LoginGoogleState extends State<LoginGoogle> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            StringConstants.donttext,
+                           Text(
+                          appLocalization(context).dontHaveAnAccount,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: AppFont.fontFamily,
@@ -293,7 +293,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                                       builder: (BuildContext context) =>
                                           const RegisterGoogle()));
                             },
-                            child: const Text(StringConstants.registertext,
+                            child: Text(appLocalization(context).register,
                                 style: TextStyle(
                                     color: AppColor.yellowlightColor,
                                     fontWeight: FontWeight.bold,

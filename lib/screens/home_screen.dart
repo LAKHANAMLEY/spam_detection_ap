@@ -33,8 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(
                       height: MediaQuery.of(context).size.height * 1 / 100),
-                  const Text(
-                    StringConstants.subscriptiontext,
+                  Text(
+                    appLocalization(context).pleaseActiveYourSubscription,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColor.yellowdeep,
@@ -45,8 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 1 / 100,
                   ),
-                  const Text(
-                    StringConstants.securitytext,
+                  Text(
+                    appLocalization(context)
+                        .youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColor.verifyColor,
@@ -59,8 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SecurityOption(
                     image: IconConstants.icplusCall,
-                    title: 'Call Protection',
-                    description: StringConstants.spamCalltext,
+                    title: appLocalization(context).callProtection,
+                    description: appLocalization(context)
+                        .allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam,
                     isEnabled: isCallProtectionEnabled,
                     onToggle: (value) {
                       setState(() {
@@ -70,8 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SecurityOption(
                     image: IconConstants.iclockMessages,
-                    title: 'Protect AI Messages',
-                    description: StringConstants.messagescreenedtext,
+                    title: appLocalization(context).protectAIMessages,
+                    description: appLocalization(context).yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams,
                     isEnabled: isMessageProtectionEnabled,
                     onToggle: (value) {
                       setState(() {
@@ -81,8 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SecurityOption(
                     image: IconConstants.iclockMail,
-                    title: 'Protect AI Email',
-                    description: StringConstants.emailscreenedtext,
+                    title: appLocalization(context).protectAIEmail,
+                    description:  appLocalization(context).yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials,
                     isEnabled: isEmailProtectionEnabled,
                     onToggle: (value) {
                       setState(() {

@@ -41,9 +41,9 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 6 / 100,
           ),
-          const Center(
+          Center(
               child: Text(
-            StringConstants.registertext,
+                appLocalization(context).register,
             style: TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
@@ -79,8 +79,8 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 4 / 100,
                   ),
-                  const Text(
-                    StringConstants.registerGoogletext,
+                   Text(
+                    appLocalization(context).registerWithGoogle,
                     style: TextStyle(
                         color: AppColor.gracyColor,
                         fontFamily: AppFont.fontFamily,
@@ -120,9 +120,9 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 4 / 100,
                   ),
-                  const Text(
-                    StringConstants.registerAppletext,
-                    style: TextStyle(
+                   Text(
+                    appLocalization(context).registerWithApple,
+                    style: const TextStyle(
                         color: AppColor.gracyColor,
                         fontFamily: AppFont.fontFamily,
                         fontSize: 18,
@@ -145,8 +145,8 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                     height: MediaQuery.sizeOf(context).height * 6 / 100,
                   )),
             ),
-            const Text(
-              "or",
+             Text(
+              appLocalization(context).orTxt,
               style: TextStyle(
                   color: AppColor.primaryColor,
                   fontWeight: FontWeight.w600,
@@ -165,7 +165,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
             height: MediaQuery.of(context).size.height * 8 / 100,
           ),
           AppButton(
-              text: StringConstants.registerwithEmail,
+              text:  appLocalization(context).registerWithEmail,
               onPress: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const Register()));
@@ -176,8 +176,8 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                StringConstants.alreadyHaveAnAccount,
+               Text(
+                appLocalization(context).alreadyHaveAnAccount,
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontFamily: AppFont.fontFamily,
@@ -193,7 +193,8 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                           builder: (BuildContext context) =>
                               const LoginGoogle()));
                 },
-                child: const Text(StringConstants.logintext,
+                child:  Text(
+                    appLocalization(context).login,
                     style: TextStyle(
                         color: AppColor.yellowlightColor,
                         fontWeight: FontWeight.bold,
