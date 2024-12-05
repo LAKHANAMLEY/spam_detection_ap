@@ -552,7 +552,45 @@
     "incomingCalls":"Incoming Calls",
     "missedCalls":"Missed Calls",
     "blockedCalls":"Blocked Calls",
-    "deleteCalls":"Delete all Calls"
+    "deleteCalls":"Delete all Calls",
+
+    "upgradePremium":"Upgrade to Premium",
+    "spamIdentified":"Spam calls identified",
+    "timeSpammers":"Time saved from spammers",
+    "unknownIdentified":"Unknown number identified",
+    "messagesSpam":"Messages moved  to spam",
+    "editProfile":"Edit Profile",
+    "editSecurityPin":"Edit security pin",
+    "changePassword":"Change password",
+    "addAlternativeEmail":"Add alternative email",
+
+    "chooseYourPlan":"Choose your plan ",
+    "blockAccuracy":"Block all scam, telemarketing and fraud calls thanks to AI -blocking accuracy.",
+    "spamScamDetection":"Spam call blocking and AI Protect scam detection",
+    "callSMSBundle":"Call & SMS Bundle",
+    "spamSMSProtect":"Spam call blocking, AI Protect scam detection and SMS protect",
+    "personalMth":"$7.99/mth",
+    "smsMth":"$11.98/mth",
+    "completeProtectionBundle":"Complete Protection Bundle",
+    "spamSMSEmail":"Spam call blocking, AI Protect scam detection, SMS protect & Email",
+    "completeMth":"$14.99/mth",
+
+    "calls":"Calls",
+    "sms":"Sms",
+    "email":"Email",
+    "month":"month",
+    "continuePurchase":"Continue to Purchase",
+    "searchMore":"Search numbers,names & more",
+    "fromUs":"from now on, you are part of us!",
+    "getOtp":"Get OTP",
+    "changeLanguage":"Change Language",
+    "changeALanguage":"Change a Language",
+    "cancelTxt":"Cancel",
+    "familyList":"Family List",
+    "relation":"Relation",
+    "supportPin":"Support Pin"
+
+
 
 
 

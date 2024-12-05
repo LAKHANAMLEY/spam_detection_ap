@@ -10,7 +10,7 @@ String familyMemberListResponseToJson(FamilyMemberListResponse data) => json.enc
 
 class FamilyMemberListResponse {
   final int? statusCode;
-  final List<Familymemberslist>? familymemberslist;
+  final List<FamilyData>? familymemberslist;
 
   FamilyMemberListResponse({
     this.statusCode,
@@ -19,7 +19,7 @@ class FamilyMemberListResponse {
 
   factory FamilyMemberListResponse.fromJson(Map<String, dynamic> json) => FamilyMemberListResponse(
     statusCode: json["status_code"],
-    familymemberslist: json["familymemberslist"] == null ? [] : List<Familymemberslist>.from(json["familymemberslist"]!.map((x) => Familymemberslist.fromJson(x))),
+    familymemberslist: json["familymemberslist"] == null ? [] : List<FamilyData>.from(json["familymemberslist"]!.map((x) => FamilyData.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -28,7 +28,7 @@ class FamilyMemberListResponse {
   };
 }
 
-class Familymemberslist {
+class FamilyData {
   final String? userId;
   final String? firstName;
   final String? lastName;
@@ -40,7 +40,7 @@ class Familymemberslist {
   final String? supportPin;
   final String? countryCode;
 
-  Familymemberslist({
+  FamilyData({
     this.userId,
     this.firstName,
     this.lastName,
@@ -53,7 +53,7 @@ class Familymemberslist {
     this.countryCode,
   });
 
-  factory Familymemberslist.fromJson(Map<String, dynamic> json) => Familymemberslist(
+  factory FamilyData.fromJson(Map<String, dynamic> json) => FamilyData(
     userId: json["user_id"],
     firstName: json["first_name"],
     lastName: json["last_name"],

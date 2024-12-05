@@ -1,4 +1,7 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/edit_family_number_screen.dart';
+
+
 
 class AppRoutes {
   static const splash = "/splash";
@@ -17,6 +20,9 @@ class AppRoutes {
   static const registerWithGoogle = "/registerWithGoogle";
   static const loginSuccess = "/loginSuccess";
   static const otpVerification = "/otpVerification";
+  static const familyMemberList = "/familyMemberList";
+  static const familyAddMember = "/familyAddMember";
+  static const familyEditMember = "/familyEditMember";
   // static const contactDetail = "/contactDetail";
 }
 
@@ -37,5 +43,11 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.registerWithGoogle: (context) => const RegisterGoogle(),
   AppRoutes.loginSuccess: (context) => const LoginSuccessful(),
   AppRoutes.otpVerification: (context) => const OtpVerify(),
+  AppRoutes.familyMemberList: (context) => const FamilyMemberList(),
+  AppRoutes.familyAddMember: (context) => const AddFamilyMember(),
+  AppRoutes.familyEditMember: (context) => const EditFamilyNumber(),
+
+
+
   // AppRoutes.contactDetail: (context) => const ContactDetail(),
 };

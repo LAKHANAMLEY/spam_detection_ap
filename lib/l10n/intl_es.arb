@@ -502,7 +502,7 @@
   "loginWithGoogle":"Iniciar sesión con Google",
   "loginWithApple":"Iniciar sesión con Apple",
   "loginWithEmail":"Iniciar sesión con correo electrónico",
-  "don’tHaveAnAccount?" :"¿No tienes una cuenta?",
+  "dontHaveAnAccount" :"¿No tienes una cuenta?",
   "register":"Registro",
 
   "registerWithGoogle":"Regístrate en Google",
@@ -512,7 +512,7 @@
   "pleaseVerify":"Ingrese su número de teléfono válido, le enviaremos un código de 4 dígitos para verificar.",
   "corporateProtection":"Protección corporativa",
   "continueTxt":"Continuar",
-  "or":"o",
+  "orTxt":"o",
 
   "successful":"Exitoso",
   "yey":"¡Sí!",
@@ -552,7 +552,44 @@
    "incomingCalls":"Llamadas entrantes",
    "missedCalls":"Llamadas perdidas",
    "blockedCalls":"Llamadas bloqueadas",
-   "deleteCalls":"Eliminar todas las llamadas"
+   "deleteCalls":"Eliminar todas las llamadas",
+
+   "upgradePremium":"Actualizar a Premium",
+    "spamIdentified":"Llamadas spam identificadas",
+    "timeSpammers":"Tiempo ahorrado frente a los spammers",
+    "unknownIdentified":"Número desconocido identificado",
+       "messagesSpam":"Mensajes movidos a spam",
+       "editProfile":"Editar perfil",
+       "editSecurityPin":"Editar pin de seguridad",
+       "changePassword":"Cambiar la contraseña",
+       "addAlternativeEmail":"Agregar correo electrónico alternativo",
+
+       "chooseYourPlan":"Elige tu plan",
+       "blockAccuracy":"Bloquea todas las llamadas fraudulentas, de telemarketing y de fraude gracias a la precisión del bloqueo de la IA.",
+       "spamScamDetection":"Bloqueo de llamadas spam y detección de estafas con AI Protect",
+       "callSMSBundle":"Paquete de llamadas y SMS",
+       "spamSMSProtect":"Bloqueo de llamadas spam, detección de estafas AI Protect y protección de SMS",
+       "personalMth":"$7,99/mes",
+       "smsMth":"$11,98/mes",
+       "completeProtectionBundle":"Paquete de protección completo",
+       "spamSMSEmail":"Bloqueo de llamadas spam, detección de estafas con AI Protect, protección de SMS y correo electrónico",
+       "completeMth":"$14,99/mes",
+
+       "calls":"llamadas",
+       "sms":"mensajes de texto",
+       "email":"Correo electrónico",
+       "month":"Mes",
+       "continuePurchase":"Continuar comprando",
+       "fromUs":"A partir de ahora, eres parte de nosotros!",
+        "changeLanguage":"Cambiar idioma",
+
+       "searchMore":"Buscar números, nombres y más",
+       "getOtp":"Obtener OTP",
+       "changeALanguage":"Cambiar un idioma",
+       "cancelTxt":"Cancelar",
+       "familyList":"Lista familiar",
+        "relation":"Relación",
+        "supportPin":"Pasador de soporte"
 
 
 }

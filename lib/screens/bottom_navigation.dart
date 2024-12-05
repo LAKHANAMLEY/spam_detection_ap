@@ -100,8 +100,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 5 / 100,
                         ),
-                        const Text(
-                          'Outgoing Calls',
+                         Text(
+                          appLocalization(context).outgoingCalls,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 18,
@@ -124,7 +124,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 5 / 100,
                         ),
-                        const Text('Incomig Calls',
+                        Text(
+                            appLocalization(context).incomingCalls,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 18,
@@ -144,7 +145,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 5 / 100,
                         ),
-                        const Text('Missed Calls',
+                         Text(appLocalization(context).missedCalls,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 18,
@@ -165,7 +166,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 5 / 100,
                         ),
-                        const Text('Blocked Calls',
+                         Text(appLocalization(context).blockedCalls,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 18,
@@ -183,7 +184,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 5 / 100,
                         ),
-                        const Text('Delete all Calls',
+                         Text(
+                             appLocalization(context).deleteCalls,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 18,

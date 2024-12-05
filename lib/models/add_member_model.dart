@@ -12,7 +12,7 @@ String familyMemberAddResponseToJson(FamilyMemberAddResponse data) =>
 
 class FamilyMemberAddResponse {
   final int? statusCode;
-  final String? message;
+  final dynamic message;
 
   FamilyMemberAddResponse({
     this.statusCode,

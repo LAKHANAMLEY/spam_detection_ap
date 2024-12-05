@@ -47,11 +47,11 @@ class _PlanDetailState extends State<PlanDetail> {
               IconConstants.icpremiumprotection,
               height: MediaQuery.of(context).size.height * 15 / 100,
             ),
-            const Center(
+             Center(
                 child: Padding(
               padding: EdgeInsets.only(left: 50, right: 50),
               child: Text(
-                StringConstants.personalProtectiontext,
+                appLocalization(context).personalProtection,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: AppColor.callColor,
@@ -63,10 +63,10 @@ class _PlanDetailState extends State<PlanDetail> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 1 / 100,
             ),
-            const Padding(
+             Padding(
               padding: EdgeInsets.only(left: 50, right: 50),
               child: Text(
-                StringConstants.spamdetecttext,
+                appLocalization(context).spamScamDetection,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: AppColor.verifyColor,
@@ -135,7 +135,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                     value: 0,
                                   ),
                                   Text(
-                                    'Calls',
+                                    appLocalization(context).calls,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontFamily: AppFont.fontFamily,
@@ -198,8 +198,8 @@ class _PlanDetailState extends State<PlanDetail> {
                                     },
                                     value: 0,
                                   ),
-                                  const Text(
-                                    'Sms',
+                                  Text(
+                                    appLocalization(context).sms,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontFamily: AppFont.fontFamily,
@@ -258,8 +258,8 @@ class _PlanDetailState extends State<PlanDetail> {
                                     },
                                     value: 0,
                                   ),
-                                  const Text(
-                                    'Email',
+                                   Text(
+                                     appLocalization(context).email,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontFamily: AppFont.fontFamily,
@@ -316,7 +316,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                   width: 0.5,
                                 ),
                               ),
-                              child: const Center(
+                              child:  Center(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment
                                       .center, // Centers the text vertically
@@ -331,7 +331,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                       ),
                                     ),
                                     Text(
-                                      "Month",
+                                      appLocalization(context).month,
                                       style: TextStyle(
                                         color: AppColor.secondryColor,
                                         fontSize: 20,
@@ -413,7 +413,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                   width: 0.5,
                                 ),
                               ),
-                              child: const Center(
+                              child:  Center(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment
                                       .center, // Centers the text vertically
@@ -428,7 +428,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                       ),
                                     ),
                                     Text(
-                                      "Month",
+                                      appLocalization(context).month,
                                       style: TextStyle(
                                         color: AppColor.secondryColor,
                                         fontSize: 20,
@@ -510,7 +510,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                   width: 0.5,
                                 ),
                               ),
-                              child: const Center(
+                              child:  Center(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment
                                       .center, // Centers the text vertically
@@ -525,7 +525,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                       ),
                                     ),
                                     Text(
-                                      "Month",
+                                      appLocalization(context).month,
                                       style: TextStyle(
                                         color: AppColor.secondryColor,
                                         fontSize: 20,
@@ -579,7 +579,7 @@ class _PlanDetailState extends State<PlanDetail> {
               height: MediaQuery.of(context).size.height * 5 / 100,
             ),
             AppButton(
-              text: StringConstants.continuepurchasetext,
+              text:  appLocalization(context).continuePurchase,
               onPress: () {},
             )
           ]),

@@ -142,6 +142,9 @@ export 'screens/premium_plan.dart';
 export 'screens/profile_screen.dart';
 export 'screens/protection_type_screen.dart';
 export 'screens/register_google_screen.dart';
+export 'screens/family_member_list.dart';
+export 'screens/add_family_member.dart';
+
 export 'screens/register_screen.dart';
 export 'screens/registration_sucessful_screen.dart';
 export 'screens/reset_password_screen.dart';
@@ -157,6 +160,7 @@ export 'screens/widgets/custom_textfiled.dart';
 export 'screens/widgets/error_widget.dart';
 export 'screens/widgets/progress_indicator_builder.dart';
 export 'utils/api_constants/api_uri_constants.dart';
+
 export 'utils/api_constants/http_status_codes.dart';
 export 'utils/api_keys/api_key_constants.dart';
 export 'utils/get_device_token.dart';
@@ -164,3 +168,4 @@ export 'utils/helpers.dart';
 export 'utils/permission_request.dart';
 export 'utils/session_expired.dart';
 export 'utils/toast.dart';
+
