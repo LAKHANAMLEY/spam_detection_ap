@@ -1,41 +1,25 @@
 import 'package:spam_delection_app/lib.dart';
 
 class PlanType extends StatefulWidget {
-  const PlanType({super.key});
+  final bool? showAppBar;
+  const PlanType({super.key, this.showAppBar = true});
 
   @override
   State<PlanType> createState() => _PlanTypeState();
 }
 
 class _PlanTypeState extends State<PlanType> {
-  int Selectedtab = 0;
+  int selectedTab = 0;
   @override
   Widget build(BuildContext context) {
+    var argument = args(context) as PlanType?;
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 2 / 100,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(
-                IconConstants.backIcon,
-              ),
-            ),
-          ),
-        ),
-        title: Image.asset(
-          IconConstants.icBroadlogo,
-          height: MediaQuery.of(context).size.height * 35 / 100,
-          width: MediaQuery.of(context).size.width * 35 / 100,
-        ),
-        centerTitle: true,
-      ),
+      appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
+          ? const CustomAppBar(
+              centerTitle: true,
+            )
+          : null,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -80,7 +64,7 @@ class _PlanTypeState extends State<PlanType> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    Selectedtab = 0;
+                    selectedTab = 0;
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -91,11 +75,11 @@ class _PlanTypeState extends State<PlanType> {
                   height: MediaQuery.of(context).size.height * 18 / 100,
                   width: MediaQuery.of(context).size.width * 90 / 100,
                   decoration: BoxDecoration(
-                      color: Selectedtab == 0
+                      color: selectedTab == 0
                           ? AppColor.yellowdecentColor
                           : AppColor.secondryColor,
                       border: Border.all(
-                        color: Selectedtab == 0
+                        color: selectedTab == 0
                             ? AppColor.yellowColor
                             : AppColor.thumbColor,
                       ),
@@ -148,18 +132,18 @@ class _PlanTypeState extends State<PlanType> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    Selectedtab = 1;
+                    selectedTab = 1;
                   });
                 },
                 child: Container(
                   height: MediaQuery.of(context).size.height * 18 / 100,
                   width: MediaQuery.of(context).size.width * 90 / 100,
                   decoration: BoxDecoration(
-                      color: Selectedtab == 1
+                      color: selectedTab == 1
                           ? AppColor.yellowdecentColor
                           : AppColor.secondryColor,
                       border: Border.all(
-                          color: Selectedtab == 1
+                          color: selectedTab == 1
                               ? AppColor.yellowColor
                               : AppColor.thumbColor),
                       borderRadius: BorderRadius.circular(6)),
@@ -211,18 +195,18 @@ class _PlanTypeState extends State<PlanType> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    Selectedtab = 2;
+                    selectedTab = 2;
                   });
                 },
                 child: Container(
                   height: MediaQuery.of(context).size.height * 20 / 100,
                   width: MediaQuery.of(context).size.width * 90 / 100,
                   decoration: BoxDecoration(
-                      color: Selectedtab == 2
+                      color: selectedTab == 2
                           ? AppColor.yellowdecentColor
                           : AppColor.secondryColor,
                       border: Border.all(
-                          color: Selectedtab == 2
+                          color: selectedTab == 2
                               ? AppColor.yellowColor
                               : AppColor.thumbColor),
                       borderRadius: BorderRadius.circular(6)),

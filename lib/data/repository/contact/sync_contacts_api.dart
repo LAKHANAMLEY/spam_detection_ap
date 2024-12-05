@@ -11,7 +11,13 @@ Future<ContactListResponse> syncContacts(List<Contact> contacts) async {
     // request.files.add(http.MultipartFile.fromBytes(
     //     "contacts_list[$i][image]", imageUint8List?.toList() ?? []));
     request.fields["contacts_list[$i][phone]"] = contacts[i].phones.isNotEmpty
-        ? contacts[i].phones.first.number.separeatePhoneAndPhoneCode().phone
+        ? contacts[i]
+            .phones
+            .first
+            .number
+            .separeatePhoneAndPhoneCode()
+            .phone
+            .replaceAll(AppConstants.specialCharAndSpaceRegex, "")
         : "";
     request.fields["contacts_list[$i][number_type]"] =
         contacts[i].phones.isNotEmpty ? contacts[i].phones.first.label : "";

@@ -550,7 +550,7 @@ class _LoginState extends State<Login> {
                   children: [
                      Text(
                       appLocalization(context).dontHaveAnAccount,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontFamily: AppFont.fontFamily,
                           color: AppColor.greylightColor,

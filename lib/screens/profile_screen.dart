@@ -1,7 +1,8 @@
 import 'package:spam_delection_app/lib.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  final bool? showAppBar;
+  const Profile({super.key, this.showAppBar = true});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -15,7 +16,7 @@ class _ProfileState extends State<Profile> {
     IconConstants.icsearchCheck,
     IconConstants.icmessageCheck
   ];
-  final List<String> cardTexts = ['3', '68s' ,'25', '38'];
+  final List<String> cardTexts = ['3', '68s', '25', '38'];
   /*List<Map<String, dynamic>> allSpamCalls = [
     {'imageUrl':  IconConstants.icspamCheck, 'cardTexts': '68s', 'type': 'Last 30 days'},
     {'imageUrl':  IconConstants.icClock, 'number': '+0987654321', 'type': 'Last 30 days'},
@@ -127,31 +128,22 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    var argument = args(context) as Profile?;
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Image.asset(
-              IconConstants.backIcon,
-            ),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Image.asset(
-              IconConstants.icsettingPro,
-              height: MediaQuery.of(context).size.height * 3 / 100,
-            ),
-          )
-        ],
-      ),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+      appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
+          ? CustomAppBar(
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Image.asset(
+                    IconConstants.icsettingPro,
+                    height: MediaQuery.of(context).size.height * 3 / 100,
+                  ),
+                )
+              ],
+            )
+          : null,
       body: BlocConsumer(
           bloc: sharedPrefBloc,
           listener: (context, state) {
@@ -483,9 +475,7 @@ class _ProfileState extends State<Profile> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 4 / 100,
-                        ),
+                        10.height(),
                         SubMenu(
                           title: appLocalization(context).editProfile,
                           icon: IconConstants.icEdit,
@@ -496,9 +486,7 @@ class _ProfileState extends State<Profile> {
                                     builder: (context) => const EditProfile()));
                           },
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
+                        10.height(),
                         SubMenu(
                           title: appLocalization(context).editSecurityPin,
                           icon: IconConstants.icEditSecurity,
@@ -510,9 +498,19 @@ class _ProfileState extends State<Profile> {
                                         const EditSecurityPin()));
                           },
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        10.height(),
+                        SubMenu(
+                          title: 'Change Password',
+                          icon: IconConstants.icchangePass,
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ChangePassword()));
+                          },
                         ),
+<<<<<<< HEAD
                         SubMenu(
                           title: appLocalization(context).changePassword,
                           icon: IconConstants.icchangePass,
@@ -528,12 +526,18 @@ class _ProfileState extends State<Profile> {
                         ),
                         SubMenu(
                           title: appLocalization(context).addAlternativeEmail,
+=======
+                        10.height(),
+                        SubMenu(
+                          title: 'Add Alertantive Email',
+>>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc
                           icon: IconConstants.icalternativeEmail,
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
+<<<<<<< HEAD
                                     const EditSecurityPin()));
                           },
                         ),
@@ -676,7 +680,12 @@ class _ProfileState extends State<Profile> {
                          */
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 5 / 100,
+=======
+                                        const ChangePassword()));
+                          },
+>>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc
                         ),
+                        10.height(),
                       ],
                     ),
                   ),
@@ -703,10 +712,14 @@ class SubMenu extends StatelessWidget {
       child: Container(
         // height: MediaQuery.of(context).size.height * 7 / 100,
         // width: MediaQuery.of(context).size.height * 90 / 100,
+        padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(2.0)),
-            border: Border.all(color: AppColor.greyarrowColor, width: 1),
+            border: Border.all(
+              color: AppColor.greyarrowColor,
+            ),
             color: AppColor.secondryColor),
+<<<<<<< HEAD
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -733,17 +746,38 @@ class SubMenu extends StatelessWidget {
                   ],
                 ),
               ),
+=======
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Image.asset(
+                  icon,
+                  height: MediaQuery.of(context).size.height * 5 / 100,
+                  width: MediaQuery.of(context).size.width * 5 / 100,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 2 / 100,
+                ),
+                Text(
+                  title,
+                  style:
+                      const TextStyle(color: AppColor.thumbColor, fontSize: 18),
+                ),
+              ],
+            ),
+>>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc
 
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width * 46 / 100,
-              // ),
-              Image.asset(
-                IconConstants.icviewArrow,
-                height: MediaQuery.of(context).size.height * 6 / 100,
-                width: MediaQuery.of(context).size.width * 6 / 100,
-              )
-            ],
-          ),
+            // SizedBox(
+            //   width: MediaQuery.of(context).size.width * 46 / 100,
+            // ),
+            Image.asset(
+              IconConstants.icviewArrow,
+              height: MediaQuery.of(context).size.height * 6 / 100,
+              width: MediaQuery.of(context).size.width * 6 / 100,
+            )
+          ],
         ),
       ),
     );

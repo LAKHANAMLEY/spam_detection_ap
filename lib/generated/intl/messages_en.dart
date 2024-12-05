@@ -52,8 +52,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "adminFee": MessageLookupByLibrary.simpleMessage("Admin fee"),
         "alignQRCodeWithinFrameToScan": MessageLookupByLibrary.simpleMessage(
             "Align QR code within frame to scan"),
+        "allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam":
+            MessageLookupByLibrary.simpleMessage(
+                "All spam calls are currently being blocked from calling your telephone number you may miss important call if the caller number is flagged by the network as spam."),
         "allTransactions":
             MessageLookupByLibrary.simpleMessage("All transactions"),
+        "alreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage(" Already have an account"),
         "alreadyPaid": MessageLookupByLibrary.simpleMessage("Already paid"),
         "amount": MessageLookupByLibrary.simpleMessage("Amount"),
         "amountRequestedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -93,7 +98,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "billers": MessageLookupByLibrary.simpleMessage("Billers"),
         "billsNSubscriptions":
             MessageLookupByLibrary.simpleMessage("Bills & Subscriptions"),
+        "blockedCalls": MessageLookupByLibrary.simpleMessage("Blocked Calls"),
         "callLogs": MessageLookupByLibrary.simpleMessage("Call logs"),
+        "callProtection":
+            MessageLookupByLibrary.simpleMessage("Call protection"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cantAddMoreAccountsForThisBankYouHaveReachedTheLimit":
@@ -121,6 +129,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirm new password"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "congratulationScreated": MessageLookupByLibrary.simpleMessage(
+            "Congratulations, your account has been successfully created."),
         "congratulationsYourAccountHasBeenSuccessfullyCreated":
             MessageLookupByLibrary.simpleMessage(
                 "Congratulations, your account has been successfully created."),
@@ -130,8 +140,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactPermission":
             MessageLookupByLibrary.simpleMessage("Contact permission"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact us"),
-        "continue1": MessageLookupByLibrary.simpleMessage("Continue"),
+        "continueTxt": MessageLookupByLibrary.simpleMessage("Continue"),
         "copied": MessageLookupByLibrary.simpleMessage("Copied"),
+        "corporateID": MessageLookupByLibrary.simpleMessage("Corporate ID"),
+        "corporateProtection":
+            MessageLookupByLibrary.simpleMessage("Corporate Protection"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
         "countryCode": MessageLookupByLibrary.simpleMessage("Country code"),
         "coupons": MessageLookupByLibrary.simpleMessage("Coupons"),
@@ -141,14 +154,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "data": MessageLookupByLibrary.simpleMessage("Data"),
         "dataBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Explore purchasing data packages before your visit to potentially benefit from discounted rates."),
+        "dateOfBirth": MessageLookupByLibrary.simpleMessage("Date of Birth"),
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Debited from"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteCalls": MessageLookupByLibrary.simpleMessage("Delete all Calls"),
         "description": MessageLookupByLibrary.simpleMessage("Description: "),
         "details": MessageLookupByLibrary.simpleMessage("Details"),
         "developerModeDialogDiscription": MessageLookupByLibrary.simpleMessage(
             "Developer mode is enabled, please disable to access the BCTPay app"),
-        "didntReceiveCode":
-            MessageLookupByLibrary.simpleMessage("Didn\'t receive code?"),
+        "didRecieveCode":
+            MessageLookupByLibrary.simpleMessage("Did\'t recieve Code?"),
+        "didTxt": MessageLookupByLibrary.simpleMessage("Did\'t recieve Code?"),
         "discount": MessageLookupByLibrary.simpleMessage("Discount"),
         "doYouReallyWantToDeleteThisAccount":
             MessageLookupByLibrary.simpleMessage(
@@ -166,6 +182,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "docType": MessageLookupByLibrary.simpleMessage("Doc type"),
         "documentType": MessageLookupByLibrary.simpleMessage("Document type"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
+        "dontHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
         "dontWorryItHappensPleaseEnterTheAdressAssociatedWithYourAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Don\'t worry! it happens. Please enter the adress associated with your account."),
@@ -184,6 +202,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "electricity": MessageLookupByLibrary.simpleMessage("Electricity"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email address"),
         "enjoy": MessageLookupByLibrary.simpleMessage("Enjoy"),
+        "enjoyMember": MessageLookupByLibrary.simpleMessage(
+            "Enjoy all the benefits of being an explorer member"),
         "enterAccountHolderName":
             MessageLookupByLibrary.simpleMessage("Enter account holder name"),
         "enterAccountNumber":
@@ -199,6 +219,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterCity": MessageLookupByLibrary.simpleMessage("Enter city"),
         "enterClientId":
             MessageLookupByLibrary.simpleMessage("Enter client ID"),
+        "enterCode": MessageLookupByLibrary.simpleMessage(
+            "Enter the 4 digit code that you received on your email"),
         "enterConfirmNewPassword":
             MessageLookupByLibrary.simpleMessage("Enter confirm new password"),
         "enterConfirmPassword":
@@ -219,6 +241,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterMomoId": MessageLookupByLibrary.simpleMessage("Enter MOMO ID"),
         "enterNewPassword":
             MessageLookupByLibrary.simpleMessage("Enter new password"),
+        "enterOTPSent":
+            MessageLookupByLibrary.simpleMessage("Enter the OTP Sent to"),
         "enterOldPassword":
             MessageLookupByLibrary.simpleMessage("Enter old password"),
         "enterPassword": MessageLookupByLibrary.simpleMessage("Enter password"),
@@ -230,6 +254,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterPinCode": MessageLookupByLibrary.simpleMessage("Enter pincode"),
         "enterTxnId":
             MessageLookupByLibrary.simpleMessage("Enter transaction ID"),
+        "enterVerificationProcess": MessageLookupByLibrary.simpleMessage(
+            "Enter your email address for the verificationm process. We will send 4 digite code to your email."),
         "enterWalletPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Enter wallet phone number"),
         "enterYourFirstName":
@@ -240,6 +266,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your last name"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "expired": MessageLookupByLibrary.simpleMessage("Expired"),
+        "exploreHomePage":
+            MessageLookupByLibrary.simpleMessage("Explore Home Page"),
         "failed": MessageLookupByLibrary.simpleMessage("Failed..."),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "faster": MessageLookupByLibrary.simpleMessage("Faster"),
@@ -251,18 +279,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
         "forYou": MessageLookupByLibrary.simpleMessage("For you"),
         "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("Forgot password"),
+            MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "from": MessageLookupByLibrary.simpleMessage("From"),
+        "fromNowOnYouArePartOfUs": MessageLookupByLibrary.simpleMessage(
+            "From now on you are part of us!"),
         "frontImage": MessageLookupByLibrary.simpleMessage("Front image"),
         "fullName": MessageLookupByLibrary.simpleMessage("Full name"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "getStarted": MessageLookupByLibrary.simpleMessage("Get started"),
         "giftCard": MessageLookupByLibrary.simpleMessage("Gift card"),
         "giftCardBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Choose the specific gift card brand and desired value based on your needs and preferences."),
         "goBack": MessageLookupByLibrary.simpleMessage("Go back"),
         "goals": MessageLookupByLibrary.simpleMessage("Goals"),
         "grossTotal": MessageLookupByLibrary.simpleMessage("Gross total"),
+        "haveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Have an account?"),
         "helloThereSignInToContinue": MessageLookupByLibrary.simpleMessage(
             "Hello there sign in to continue"),
         "helpNSupport": MessageLookupByLibrary.simpleMessage("Help & support"),
@@ -283,6 +316,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "includesALetterDigitAndSpecialCharacter":
             MessageLookupByLibrary.simpleMessage(
                 "Includes a letter, digit, and special character"),
+        "incomingCalls": MessageLookupByLibrary.simpleMessage("Incoming Calls"),
         "info": MessageLookupByLibrary.simpleMessage("Info"),
         "institutionCode":
             MessageLookupByLibrary.simpleMessage("Institution code"),
@@ -316,7 +350,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "light": MessageLookupByLibrary.simpleMessage("Light"),
         "linkedAccounts":
             MessageLookupByLibrary.simpleMessage("Linked accounts"),
+        "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginNow": MessageLookupByLibrary.simpleMessage("Login now"),
+        "loginWithApple":
+            MessageLookupByLibrary.simpleMessage(" Login With Apple"),
+        "loginWithEmail":
+            MessageLookupByLibrary.simpleMessage("Login with email"),
+        "loginWithGoogle":
+            MessageLookupByLibrary.simpleMessage("Login With Google"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "makeOnline": MessageLookupByLibrary.simpleMessage("Make online"),
         "male": MessageLookupByLibrary.simpleMessage("Male"),
@@ -327,6 +368,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "minimumOrderValueIs":
             MessageLookupByLibrary.simpleMessage("Minimum order value is"),
         "minimumTransferLimitIs": m1,
+        "missedCalls": MessageLookupByLibrary.simpleMessage("Missed Calls"),
         "mobileNo": MessageLookupByLibrary.simpleMessage("Mobile No."),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile number"),
         "mobileNumberDoesntExist": MessageLookupByLibrary.simpleMessage(
@@ -397,9 +439,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Open Ecobank Xpress account"),
         "openXpressAccountViewTitle": MessageLookupByLibrary.simpleMessage(
             "Open an Ecobank Xpress account instantly with BCTPay"),
+        "orTxt": MessageLookupByLibrary.simpleMessage("Or"),
         "orangeMoney": MessageLookupByLibrary.simpleMessage("Orange Money"),
         "other": MessageLookupByLibrary.simpleMessage("Other"),
         "otp": MessageLookupByLibrary.simpleMessage("OTP"),
+        "otpVerification":
+            MessageLookupByLibrary.simpleMessage(" OTP Verification"),
+        "outgoingCalls": MessageLookupByLibrary.simpleMessage("Outgoing Calls"),
         "ownedBy": MessageLookupByLibrary.simpleMessage("Owned by"),
         "paid": MessageLookupByLibrary.simpleMessage("Paid"),
         "paidTo": MessageLookupByLibrary.simpleMessage("Paid to"),
@@ -424,16 +470,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentStatus": MessageLookupByLibrary.simpleMessage("Payment status"),
         "paymentSuccess":
             MessageLookupByLibrary.simpleMessage("Payment success!"),
-        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number: "),
+        "personalProtection":
+            MessageLookupByLibrary.simpleMessage("Personal protection"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pinCode": MessageLookupByLibrary.simpleMessage("Pincode"),
         "pleaseAcceptTermsAndConditions": MessageLookupByLibrary.simpleMessage(
             "Please accept Terms & Conditions"),
+        "pleaseActiveYourSubscription": MessageLookupByLibrary.simpleMessage(
+            "Please active your subscription"),
         "pleaseAddAtleastOneactiveAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Please add atleast one active account"),
+        "pleaseCheckMail":
+            MessageLookupByLibrary.simpleMessage("Please check your mail"),
         "pleaseCheckYourNetworkConnection":
             MessageLookupByLibrary.simpleMessage(
                 "Please check your network connection."),
+        "pleaseCorporateID": MessageLookupByLibrary.simpleMessage(
+            "Please enter your valid Email / Corporate ID"),
         "pleaseEnterAccountHolderName": MessageLookupByLibrary.simpleMessage(
             "Please enter account holder name"),
         "pleaseEnterAccountNumber":
@@ -491,6 +545,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Please enter valid email address"),
         "pleaseLoginToContinue":
             MessageLookupByLibrary.simpleMessage("Please login to continue"),
+        "pleaseSecureAccount": MessageLookupByLibrary.simpleMessage(
+            "Please enter a new password to secure your account."),
         "pleaseSelectAllMandatoryField": MessageLookupByLibrary.simpleMessage(
             "Please select all mandatory field"),
         "pleaseSelectBackImage":
@@ -505,6 +561,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please select your state"),
         "pleaseSignUpToContinue":
             MessageLookupByLibrary.simpleMessage("Please sign up to continue"),
+        "pleaseTxt": MessageLookupByLibrary.simpleMessage(
+            "Please select the type of account you will be setting up today."),
+        "pleaseVerify": MessageLookupByLibrary.simpleMessage(
+            "Please enter your valid phone number, We will send you a 4 digit code to verify."),
         "poweredBy":
             MessageLookupByLibrary.simpleMessage("2024 @ Powered by BCTPay"),
         "prev": MessageLookupByLibrary.simpleMessage("Prev"),
@@ -515,6 +575,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "productName": MessageLookupByLibrary.simpleMessage("Product name"),
         "productTax": MessageLookupByLibrary.simpleMessage("Product TAX"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+        "protectAIEmail":
+            MessageLookupByLibrary.simpleMessage("Protect AI email"),
+        "protectAIMessages":
+            MessageLookupByLibrary.simpleMessage("Protect AI messages"),
+        "protectionType":
+            MessageLookupByLibrary.simpleMessage("Protection type"),
         "qrscan": MessageLookupByLibrary.simpleMessage("QR scan"),
         "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
         "queries": MessageLookupByLibrary.simpleMessage("Queries"),
@@ -540,11 +606,22 @@ class MessageLookup extends MessageLookupByLibrary {
             "Recharge has been successfully done"),
         "recoverPassword":
             MessageLookupByLibrary.simpleMessage("Recover password"),
+        "register": MessageLookupByLibrary.simpleMessage("Register"),
         "registerNow": MessageLookupByLibrary.simpleMessage("Register now"),
+        "registerWithApple":
+            MessageLookupByLibrary.simpleMessage("Register with Apple"),
+        "registerWithEmail":
+            MessageLookupByLibrary.simpleMessage("Register with email"),
+        "registerWithGoogle":
+            MessageLookupByLibrary.simpleMessage("Register with Google"),
+        "registrationSuccessful":
+            MessageLookupByLibrary.simpleMessage("Registration Successful"),
         "reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
         "rent": MessageLookupByLibrary.simpleMessage("Rent"),
+        "renterPassword":
+            MessageLookupByLibrary.simpleMessage("Re-enter Password"),
         "request": MessageLookupByLibrary.simpleMessage("Request"),
         "requestAgain": MessageLookupByLibrary.simpleMessage("Request again"),
         "requestAmount": MessageLookupByLibrary.simpleMessage("Request amount"),
@@ -560,6 +637,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestingFrom":
             MessageLookupByLibrary.simpleMessage("Requesting from"),
         "rescan": MessageLookupByLibrary.simpleMessage("Rescan"),
+        "resend": MessageLookupByLibrary.simpleMessage("Resend"),
+        "resendOtp": MessageLookupByLibrary.simpleMessage("Resend Otp"),
         "resendVerificationLink":
             MessageLookupByLibrary.simpleMessage("Resend verification link"),
         "reset": MessageLookupByLibrary.simpleMessage("Reset"),
@@ -626,6 +705,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "success": MessageLookupByLibrary.simpleMessage("Success!"),
+        "successful": MessageLookupByLibrary.simpleMessage("Successful"),
         "takeASelfie": MessageLookupByLibrary.simpleMessage("Take a selfie"),
         "tax": MessageLookupByLibrary.simpleMessage("TAX"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
@@ -687,6 +767,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadYourAddressDocument": MessageLookupByLibrary.simpleMessage(
             "Upload your address document"),
         "upto": MessageLookupByLibrary.simpleMessage("upto"),
+        "userName": MessageLookupByLibrary.simpleMessage("User name"),
         "valid": MessageLookupByLibrary.simpleMessage("Valid"),
         "validFrom": MessageLookupByLibrary.simpleMessage("Valid from"),
         "validity": MessageLookupByLibrary.simpleMessage("Validity"),
@@ -694,6 +775,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Verification code"),
         "verified": MessageLookupByLibrary.simpleMessage("Verified"),
         "verify": MessageLookupByLibrary.simpleMessage("Verify"),
+        "verifyProceed":
+            MessageLookupByLibrary.simpleMessage("Verify and Proceed"),
         "viewAccount": MessageLookupByLibrary.simpleMessage("View account"),
         "viewPlan": MessageLookupByLibrary.simpleMessage("View plan"),
         "voterIdCard": MessageLookupByLibrary.simpleMessage("Voter ID card"),
@@ -706,10 +789,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "weHaveSentTheCodeVerificationToYourMobileNumber":
             MessageLookupByLibrary.simpleMessage(
                 "We have sent the code verification to your mobile number"),
+        "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome back"),
+        "welcomeTxt": MessageLookupByLibrary.simpleMessage(
+            "Welcome to BROADLINK Protect your mobile defender! Effortlessly block unwanted calls, messages and keep your device clean let\'s get started and take control of your communication!"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
+        "yey": MessageLookupByLibrary.simpleMessage("Yey!"),
         "yoCanUpdateYourProfileFromHere": MessageLookupByLibrary.simpleMessage(
             "You can update your profile from here"),
+        "youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase":
+            MessageLookupByLibrary.simpleMessage(
+                "You are protected against all the dangerous phone numbers from our security database"),
         "youCanDoAnyOnlinePaymentFromAnyCardOrAccountJustScanTheQRCodeNEnjoy":
             MessageLookupByLibrary.simpleMessage(
                 "You can do any online payment from any card or account. Just scan the QR code & enjoy."),
@@ -721,9 +811,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCantRetryYet":
             MessageLookupByLibrary.simpleMessage("You can\'t retry yet!"),
         "your": MessageLookupByLibrary.simpleMessage("Your"),
+        "yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials":
+            MessageLookupByLibrary.simpleMessage(
+                "Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials"),
         "yourGoalsWillHelpUsToFormulateTheRightRecommendationsForSuccess":
             MessageLookupByLibrary.simpleMessage(
                 "Your goals will help us to formulate the right recommendations for success."),
+        "yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams":
+            MessageLookupByLibrary.simpleMessage(
+                "Your messages are currently being screened by Detect AI to identity potential scams."),
         "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword":
             MessageLookupByLibrary.simpleMessage(
                 "Your new password must be different from previously used password."),

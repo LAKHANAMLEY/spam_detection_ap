@@ -139,11 +139,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
                Center(
                   child: Padding(
-                padding: EdgeInsets.only(left: 50, right: 50),
+                padding: const EdgeInsets.only(left: 50, right: 50),
                 child: Text(
                   appLocalization(context).forgotPassword,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.bluelightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
@@ -154,11 +154,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
                Padding(
-                padding: EdgeInsets.all(18),
+                padding: const EdgeInsets.all(18),
                 child: Text(
                   appLocalization(context).enterCode,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.verifyColor,
                       fontFamily: AppFont.fontFamily,
                       fontSize: 16,
@@ -207,7 +207,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
                Text(
                 appLocalization(context).pleaseCheckMail,
-                style: TextStyle(
+                style: const TextStyle(
                     color: AppColor.remainColor,
                     fontFamily: AppFont.fontFamily,
                     fontWeight: FontWeight.w600),

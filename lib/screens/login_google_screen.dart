@@ -74,7 +74,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                        Center(
                           child: Text(
                             appLocalization(context).login,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: AppColor.bluelightColor,
                             fontSize: 35,
                             fontFamily: AppFont.fontFamily,
@@ -142,7 +142,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                               ),
                                Text(
                                 appLocalization(context).loginWithGoogle,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: AppColor.gracyColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontSize: 18,
@@ -187,7 +187,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                               ),
                                Text(
                                 appLocalization(context).loginWithApple,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: AppColor.gracyColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontSize: 18,
@@ -214,7 +214,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                         ),
                          Text(
                           appLocalization(context).orTxt,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.primaryColor,
                               fontWeight: FontWeight.w600,
                               fontSize: 18),
@@ -276,7 +276,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                         children: [
                            Text(
                           appLocalization(context).dontHaveAnAccount,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: AppFont.fontFamily,
                                 color: AppColor.greylightColor,
@@ -294,7 +294,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                                           const RegisterGoogle()));
                             },
                             child: Text(appLocalization(context).register,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: AppColor.yellowlightColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15)),

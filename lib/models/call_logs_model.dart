@@ -59,6 +59,9 @@ class CallLogData {
   final String? callDurationUnit;
   final String? contactListId;
   final String? callDurations;
+  final int? isSpam;
+  final int? isBlocked;
+  final int? markSpamByUser;
 
   CallLogData({
     this.id,
@@ -73,6 +76,9 @@ class CallLogData {
     this.callDurationUnit,
     this.contactListId,
     this.callDurations,
+    this.isSpam,
+    this.isBlocked,
+    this.markSpamByUser,
   });
 
   CallLogData copyWith({
@@ -88,6 +94,9 @@ class CallLogData {
     String? callDurationUnit,
     String? contactListId,
     String? callDurations,
+    int? isSpam,
+    int? isBlocked,
+    int? markSpamByUser,
   }) =>
       CallLogData(
         id: id ?? this.id,
@@ -102,6 +111,9 @@ class CallLogData {
         callDurationUnit: callDurationUnit ?? this.callDurationUnit,
         contactListId: contactListId ?? this.contactListId,
         callDurations: callDurations ?? this.callDurations,
+        isSpam: isSpam ?? this.isSpam,
+        isBlocked: isBlocked ?? this.isBlocked,
+        markSpamByUser: markSpamByUser ?? this.markSpamByUser,
       );
 
   factory CallLogData.fromJson(Map<String, dynamic> json) => CallLogData(
@@ -119,6 +131,9 @@ class CallLogData {
         callDurationUnit: json["call_duration_unit"],
         contactListId: json["contact_list_id"],
         callDurations: json["call_durations"],
+        isSpam: json["is_spam"],
+        isBlocked: json["is_blocked"],
+        markSpamByUser: json["markspambyuser"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -134,5 +149,8 @@ class CallLogData {
         "call_duration_unit": callDurationUnit,
         "contact_list_id": contactListId,
         "call_durations": callDurations,
+        "is_spam": isSpam,
+        "is_blocked": isBlocked,
+        "markspambyuser": markSpamByUser,
       };
 }

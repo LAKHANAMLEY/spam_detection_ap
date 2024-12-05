@@ -11,6 +11,15 @@ class ApiLoadingState extends ApiState {}
 
 class ApiErrorState extends ApiState {}
 
+class GetDeviceContactState extends ApiState {
+  final List<Contact>? value;
+
+  GetDeviceContactState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
 class GetContactState extends ApiState {
   final ContactListResponse value;
 

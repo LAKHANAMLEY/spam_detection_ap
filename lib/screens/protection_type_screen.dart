@@ -45,11 +45,11 @@ class _ProtectionTypeState extends State<ProtectionType> {
               ),
               Center(
                   child: Padding(
-                padding: EdgeInsets.only(left: 70, right: 70),
+                padding: const EdgeInsets.only(left: 70, right: 70),
                 child: Text(
                   appLocalization(context).protectionType,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.bluelightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
@@ -60,12 +60,12 @@ class _ProtectionTypeState extends State<ProtectionType> {
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
                Padding(
-                padding: EdgeInsets.only(left: 30, right: 30),
+                padding: const EdgeInsets.only(left: 30, right: 30),
                 child: Center(
                     child: Text(
                       appLocalization(context).pleaseTxt,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.verifyColor,
                       fontFamily: AppFont.fontFamily,
                       fontSize: 18,

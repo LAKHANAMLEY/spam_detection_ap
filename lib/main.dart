@@ -15,28 +15,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-      bloc: localizationBloc,
-      builder: (context, state) {
-        if(state is ChangeLocaleState) {
-          return MaterialApp(
-          title: AppConstants.projectName,
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            AppLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          debugShowCheckedModeBanner: false,
-          locale: state.locale,
-          theme: ThemeData(),
-          routes: routes,
-          home: const Splash(),
-        );
-        }
-     return const Loader();
-      }
-    );
+        bloc: localizationBloc,
+        builder: (context, state) {
+          if (state is ChangeLocaleState) {
+            return MaterialApp(
+              title: AppConstants.projectName,
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                AppLocalizations.delegate,
+              ],
+              supportedLocales: AppLocalizations.supportedLocales,
+              debugShowCheckedModeBanner: false,
+              locale: state.locale,
+              theme: ThemeConstants.lightTheme,
+              darkTheme: ThemeConstants.darkTheme,
+              routes: routes,
+              home: const Splash(),
+            );
+          }
+          return const Loader();
+        });
   }
 }

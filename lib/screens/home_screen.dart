@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     appLocalization(context).pleaseActiveYourSubscription,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: AppColor.yellowdeep,
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     appLocalization(context)
                         .youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: AppColor.verifyColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,

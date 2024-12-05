@@ -6,6 +6,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
   }
 
   FutureOr<void> eventHandler(ApiEvent event, Emitter<ApiState> emit) async {
+    if (event is GetDeviceContactEvent) {
+      emit(ApiLoadingState());
+      await getLocalContacts().then((value) {
+        emit(GetDeviceContactState(value));
+      });
+    }
     if (event is GetContactEvent) {
       emit(ApiLoadingState());
       await getContacts().then((value) {

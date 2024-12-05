@@ -72,11 +72,11 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               Center(
                   child: Padding(
-                padding: EdgeInsets.only(left: 60, right: 50),
+                padding: const EdgeInsets.only(left: 60, right: 50),
                 child: Text(
                   appLocalization(context).resetPassword,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.bluelightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
@@ -87,11 +87,11 @@ class _ResetPasswordState extends State<ResetPassword> {
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
                Padding(
-                padding: EdgeInsets.all(18),
+                padding: const EdgeInsets.all(18),
                 child: Text(
                   appLocalization(context).pleaseSecureAccount,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.verifyColor,
                       fontFamily: AppFont.fontFamily,
                       fontSize: 16,

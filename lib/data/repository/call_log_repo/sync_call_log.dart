@@ -11,8 +11,11 @@ Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
       'call_log[$i][name]': log.name ?? "",
       'call_log[$i][country_code]':
           log.number?.separeatePhoneAndPhoneCode().phoneCode ?? "",
-      'call_log[$i][mobile_no]':
-          log.number?.separeatePhoneAndPhoneCode().phone ?? "",
+      'call_log[$i][mobile_no]': log.number
+              ?.separeatePhoneAndPhoneCode()
+              .phone
+              .replaceAll(AppConstants.specialCharAndSpaceRegex, "") ??
+          "",
       'call_log[$i][call_type]': log.callType?.name ?? "",
       'call_log[$i][call_time]':
           log.timestamp?.toDateTime().toString().splitFirstBy(".") ?? "",

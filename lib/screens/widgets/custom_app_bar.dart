@@ -2,7 +2,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
-  final String title;
+  final String? title;
   final Widget? titleWidget;
   final List<Widget>? actions;
   final bool? centerTitle;
@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar(
       {super.key,
       this.leading,
-      required this.title,
+      this.title,
       this.actions,
       this.centerTitle = true,
       this.titleWidget,
@@ -50,12 +50,21 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: centerTitle,
       bottom: bottom,
       title: titleWidget ??
-          Text(
-            title,
-            // style: const TextStyle(color: Colors.white),
-            // style: textTheme.titleMedium,
-            style: const TextStyle(color: AppColor.callColor, fontSize: 18,fontWeight: FontWeight.w600),
-          ),
+          (title != null
+              ? Text(
+                  title ?? "",
+                  // style: const TextStyle(color: Colors.white),
+                  // style: textTheme.titleMedium,
+                  style: const TextStyle(
+                      color: AppColor.callColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600),
+                )
+              : Image.asset(
+                  IconConstants.icBroadlogo,
+                  height: MediaQuery.of(context).size.height * 38 / 100,
+                  width: MediaQuery.of(context).size.width * 38 / 100,
+                )),
       actions: actions,
     );
   }

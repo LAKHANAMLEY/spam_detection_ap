@@ -79,22 +79,22 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: AppBar(
-          backgroundColor: AppColor.secondryColor,
-          leading: GestureDetector(
-            onTap: () {},
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(
-                IconConstants.backIcon,
-              ),
-            ),
-          ),
-          title: Image.asset(
-            IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 38 / 100,
-            width: MediaQuery.of(context).size.width * 38 / 100,
-          ),
+        appBar: const CustomAppBar(
+          // backgroundColor: AppColor.secondryColor,
+          // leading: GestureDetector(
+          //   onTap: () {},
+          //   child: Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 10),
+          //     child: Image.asset(
+          //       IconConstants.backIcon,
+          //     ),
+          //   ),
+          // ),
+          // title: Image.asset(
+          //   IconConstants.icBroadlogo,
+          //   height: MediaQuery.of(context).size.height * 38 / 100,
+          //   width: MediaQuery.of(context).size.width * 38 / 100,
+          // ),
           centerTitle: true,
         ),
         body: SafeArea(
@@ -106,7 +106,7 @@ class _RegisterState extends State<Register> {
            Center(
               child: Text(
                 appLocalization(context).register,
-            style: TextStyle(
+            style: const TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
                 fontFamily: AppFont.fontFamily,
@@ -116,12 +116,12 @@ class _RegisterState extends State<Register> {
             height: MediaQuery.of(context).size.height * 1 / 100,
           ),
            Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Center(
                 child: Text(
                   appLocalization(context).enjoyMember,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   color: AppColor.bluelightColor,
                   fontFamily: AppFont.fontFamily,
                   fontSize: 18,
@@ -385,7 +385,7 @@ class _RegisterState extends State<Register> {
                         margin: const EdgeInsets.only(top: 6),
                         child: Text(
                           appLocalization(context).rememberMe,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.remainColor, fontSize: 15),
                         ),
                       ),
@@ -395,7 +395,7 @@ class _RegisterState extends State<Register> {
                 TextButton(
                     child:  Text(
                       appLocalization(context).resetPassword,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 14,
                           color: AppColor.yellowlightColor,
                           fontFamily: AppFont.fontFamily,
@@ -470,7 +470,7 @@ class _RegisterState extends State<Register> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
                Text(appLocalization(context).dontHaveAnAccount,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: AppFont.fontFamily,
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
@@ -484,7 +484,7 @@ class _RegisterState extends State<Register> {
                           builder: (BuildContext context) => const Login()));
                 },
                 child: Text(appLocalization(context).login,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 15,
                         color: AppColor.yellowlightColor,
                         fontWeight: FontWeight.bold)),
