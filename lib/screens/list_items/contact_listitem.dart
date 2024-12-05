@@ -2,12 +2,10 @@ import 'package:spam_delection_app/lib.dart';
 
 class ContactListItem extends StatefulWidget {
   final ContactData contact;
-  final ApiBloc markSpamBloc;
 
   const ContactListItem({
     super.key,
     required this.contact,
-    required this.markSpamBloc,
   });
 
   @override
@@ -64,7 +62,6 @@ class _ContactListItemState extends State<ContactListItem> {
                 builder: (BuildContext context) {
                   return ReportView(
                     contact: contact!,
-                    markSpamBloc: widget.markSpamBloc,
                   );
                 },
               );

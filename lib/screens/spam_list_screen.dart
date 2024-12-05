@@ -10,20 +10,12 @@ class SpamList extends StatefulWidget {
 class _SpamListState extends State<SpamList> {
   final TextEditingController editingController = TextEditingController();
   List<SpamData> contacts = [];
-  late List<SpamData> filteredContacts;
-  SpamData? selectedCategory;
-  bool isLoading = false;
-  String? errorMessage;
-
-  String? numberType;
-  List<SpamData> categories = [];
-
-  var spamListBloc = ApiBloc(ApiBlocInitialState());
+  List<SpamData> filteredContacts = [];
 
   @override
   void initState() {
     super.initState();
-    spamListBloc.add(GetSpamEvent());
+    markSpamBloc.add(GetSpamEvent());
   }
 
   void filterSearchResults(String query) {
@@ -38,7 +30,7 @@ class _SpamListState extends State<SpamList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
+      // backgroundColor: AppColor.secondryColor,
       appBar: AppBar(
         backgroundColor: AppColor.secondryColor,
         leading: GestureDetector(
@@ -74,7 +66,7 @@ class _SpamListState extends State<SpamList> {
           ),
           Expanded(
               child: BlocConsumer(
-                  bloc: spamListBloc,
+                  bloc: markSpamBloc,
                   listener: (context, state) {
                     if (state is GetSpamState) {
                       contacts = state.value.spamcontactslist ?? [];
@@ -85,12 +77,15 @@ class _SpamListState extends State<SpamList> {
                         showCustomDialog(context,
                             dialogType: DialogType.success,
                             subTitle: state.value.message);
+                      } else if (state.value.statusCode ==
+                          HTTPStatusCodes.sessionExpired) {
+                        sessionExpired(context, state.value.message);
                       } else {
                         showCustomDialog(context,
                             dialogType: DialogType.failed,
                             subTitle: state.value.message);
                       }
-                      spamListBloc.add(GetSpamEvent());
+                      markSpamBloc.add(GetSpamEvent());
                     }
                   },
                   builder: (context, state) {
@@ -103,39 +98,9 @@ class _SpamListState extends State<SpamList> {
                       }
                       return ListView.builder(
                         itemCount: filteredContacts.length,
-                        // shrinkWrap: true,
                         itemBuilder: (context, index) {
-                          return ListTile(
-                            leading: Image.network(
-                              filteredContacts[index].name!, //TODO: image path
-                              errorBuilder: (context, error, stackTrace) =>
-                                  const Icon(Icons.person),
-                              width:
-                                  MediaQuery.of(context).size.width * 12 / 100,
-                              height:
-                                  MediaQuery.of(context).size.height * 12 / 100,
-                            ),
-                            title: Text(
-                              filteredContacts[index].name ?? "",
-                              style: const TextStyle(
-                                  color: AppColor.primaryColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18,
-                                  fontFamily: AppFont.fontFamily),
-                            ),
-                            trailing: PopupMenuButton(
-                              itemBuilder: (context) => [
-                                PopupMenuItem(
-                                  child: const Text("Remove spam"),
-                                  onTap: () {
-                                    spamListBloc.add(RemoveSpamEvent(
-                                        contactId:
-                                            filteredContacts[index].id ?? ""));
-                                  },
-                                ),
-                              ],
-                            ),
-                          );
+                          return SpamListItem(
+                              spamContact: filteredContacts[index]);
                         },
                       );
                     }

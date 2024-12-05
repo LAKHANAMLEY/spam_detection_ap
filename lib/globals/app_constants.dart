@@ -7,6 +7,10 @@ var userBloc = ApiBloc(ApiBlocInitialState());
 var sharedPrefBloc = SharedPrefBloc(SharedPrefInitialState());
 var contactListBloc = ApiBloc(ApiBlocInitialState());
 var callLogsListBloc = ApiBloc(ApiBlocInitialState());
+var markSpamBloc = ApiBloc(ApiBlocInitialState());
+
+var selectBottomTabBloc = SelectionBloc(SelectIntState(2));
+
 final localizationBloc =
     LocalizationBloc(ChangeLocaleState(const Locale("en")));
 

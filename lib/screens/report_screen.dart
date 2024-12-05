@@ -2,9 +2,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class ReportView extends StatefulWidget {
   final ContactData contact;
-  final ApiBloc markSpamBloc;
-  const ReportView(
-      {super.key, required this.contact, required this.markSpamBloc});
+  const ReportView({super.key, required this.contact});
 
   @override
   State<ReportView> createState() => _ReportViewState();
@@ -195,7 +193,7 @@ class _ReportViewState extends State<ReportView> {
             AppButton(
               text: "Report",
               onPress: () {
-                widget.markSpamBloc.add(MarkSpamEvent(
+                markSpamBloc.add(MarkSpamEvent(
                     contactId: contact?.id ?? "",
                     comment: commentController.text,
                     numberType: numberType ?? "",

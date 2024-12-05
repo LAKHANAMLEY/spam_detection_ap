@@ -23,8 +23,6 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
 
   var showHideTextFieldBloc = SelectionBloc(SelectBoolState(true));
 
-  var markSpamBloc = ApiBloc(ApiBlocInitialState());
-
   @override
   void initState() {
     super.initState();
@@ -87,6 +85,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                   dialogType: DialogType.success,
                   subTitle: state.value.message,
                 );
+                callLogsListBloc.add(GetCallLogsEvent());
               } else if (state.value.statusCode ==
                   HTTPStatusCodes.sessionExpired) {
                 sessionExpired(context, state.value.message ?? "");
@@ -97,6 +96,38 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                   subTitle: state.value.message,
                 );
               }
+            }
+            if (state is RemoveSpamState) {
+              if (state.value.statusCode == 200) {
+                showCustomDialog(context,
+                    dialogType: DialogType.success,
+                    subTitle: state.value.message);
+              } else if (state.value.statusCode ==
+                  HTTPStatusCodes.sessionExpired) {
+                sessionExpired(context, state.value.message);
+              } else {
+                showCustomDialog(context,
+                    dialogType: DialogType.failed,
+                    subTitle: state.value.message);
+              }
+              callLogsListBloc.add(GetCallLogsEvent());
+              // markSpamBloc.add(GetSpamEvent());
+            }
+            if (state is BlockUnBlockState) {
+              if (state.value.statusCode == 200) {
+                showCustomDialog(context,
+                    dialogType: DialogType.success,
+                    subTitle: state.value.message);
+              } else if (state.value.statusCode ==
+                  HTTPStatusCodes.sessionExpired) {
+                sessionExpired(context, state.value.message);
+              } else {
+                showCustomDialog(context,
+                    dialogType: DialogType.failed,
+                    subTitle: state.value.message.toString());
+              }
+              callLogsListBloc.add(GetCallLogsEvent());
+              // markSpamBloc.add(GetSpamEvent());
             }
           },
           builder: (context, markSpamState) {
@@ -204,7 +235,6 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                       itemBuilder: (context, index) =>
                                           CallLogListItem(
                                             callLog: filteredCallLogs[index],
-                                            markSpamBloc: markSpamBloc,
                                           )),
                             ),
                           ],

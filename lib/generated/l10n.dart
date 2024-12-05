@@ -220,11 +220,33 @@ class S {
     );
   }
 
+  /// `All spam calls are currently being blocked from calling your telephone number you may miss important call if the caller number is flagged by the network as spam.`
+  String
+      get allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam {
+    return Intl.message(
+      'All spam calls are currently being blocked from calling your telephone number you may miss important call if the caller number is flagged by the network as spam.',
+      name:
+          'allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `All transactions`
   String get allTransactions {
     return Intl.message(
       'All transactions',
       name: 'allTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Already have an account`
+  String get alreadyHaveAnAccount {
+    return Intl.message(
+      ' Already have an account',
+      name: 'alreadyHaveAnAccount',
       desc: '',
       args: [],
     );
@@ -472,11 +494,31 @@ class S {
     );
   }
 
+  /// `Blocked Calls`
+  String get blockedCalls {
+    return Intl.message(
+      'Blocked Calls',
+      name: 'blockedCalls',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Call logs`
   String get callLogs {
     return Intl.message(
       'Call logs',
       name: 'callLogs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call protection`
+  String get callProtection {
+    return Intl.message(
+      'Call protection',
+      name: 'callProtection',
       desc: '',
       args: [],
     );
@@ -673,6 +715,16 @@ class S {
   }
 
   /// `Congratulations, your account has been successfully created.`
+  String get congratulationScreated {
+    return Intl.message(
+      'Congratulations, your account has been successfully created.',
+      name: 'congratulationScreated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations, your account has been successfully created.`
   String get congratulationsYourAccountHasBeenSuccessfullyCreated {
     return Intl.message(
       'Congratulations, your account has been successfully created.',
@@ -712,11 +764,41 @@ class S {
     );
   }
 
+  /// `Continue`
+  String get continueTxt {
+    return Intl.message(
+      'Continue',
+      name: 'continueTxt',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Copied`
   String get copied {
     return Intl.message(
       'Copied',
       name: 'copied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Corporate ID`
+  String get corporateID {
+    return Intl.message(
+      'Corporate ID',
+      name: 'corporateID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Corporate Protection`
+  String get corporateProtection {
+    return Intl.message(
+      'Corporate Protection',
+      name: 'corporateProtection',
       desc: '',
       args: [],
     );
@@ -802,6 +884,16 @@ class S {
     );
   }
 
+  /// `Date of Birth`
+  String get dateOfBirth {
+    return Intl.message(
+      'Date of Birth',
+      name: 'dateOfBirth',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Debited from`
   String get debitedFrom {
     return Intl.message(
@@ -817,6 +909,16 @@ class S {
     return Intl.message(
       'Delete',
       name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete all Calls`
+  String get deleteCalls {
+    return Intl.message(
+      'Delete all Calls',
+      name: 'deleteCalls',
       desc: '',
       args: [],
     );
@@ -847,6 +949,26 @@ class S {
     return Intl.message(
       'Developer mode is enabled, please disable to access the BCTPay app',
       name: 'developerModeDialogDiscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Did't recieve Code?`
+  String get didRecieveCode {
+    return Intl.message(
+      'Did\'t recieve Code?',
+      name: 'didRecieveCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Did't recieve Code?`
+  String get didTxt {
+    return Intl.message(
+      'Did\'t recieve Code?',
+      name: 'didTxt',
       desc: '',
       args: [],
     );
@@ -947,6 +1069,16 @@ class S {
     return Intl.message(
       'Done',
       name: 'done',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don’t have an account?`
+  String get dontHaveAnAccount {
+    return Intl.message(
+      'Don’t have an account?',
+      name: 'dontHaveAnAccount',
       desc: '',
       args: [],
     );
@@ -1082,6 +1214,16 @@ class S {
     );
   }
 
+  /// `Enjoy all the benefits of being an explorer member`
+  String get enjoyMember {
+    return Intl.message(
+      'Enjoy all the benefits of being an explorer member',
+      name: 'enjoyMember',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter account holder name`
   String get enterAccountHolderName {
     return Intl.message(
@@ -1167,6 +1309,16 @@ class S {
     return Intl.message(
       'Enter client ID',
       name: 'enterClientId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the 4 digit code that you received on your email`
+  String get enterCode {
+    return Intl.message(
+      'Enter the 4 digit code that you received on your email',
+      name: 'enterCode',
       desc: '',
       args: [],
     );
@@ -1292,6 +1444,16 @@ class S {
     );
   }
 
+  /// `Enter the OTP Sent to`
+  String get enterOTPSent {
+    return Intl.message(
+      'Enter the OTP Sent to',
+      name: 'enterOTPSent',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter old password`
   String get enterOldPassword {
     return Intl.message(
@@ -1352,6 +1514,16 @@ class S {
     );
   }
 
+  /// `Enter your email address for the verificationm process. We will send 4 digite code to your email.`
+  String get enterVerificationProcess {
+    return Intl.message(
+      'Enter your email address for the verificationm process. We will send 4 digite code to your email.',
+      name: 'enterVerificationProcess',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter wallet phone number`
   String get enterWalletPhoneNumber {
     return Intl.message(
@@ -1407,6 +1579,16 @@ class S {
     return Intl.message(
       'Expired',
       name: 'expired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Explore Home Page`
+  String get exploreHomePage {
+    return Intl.message(
+      'Explore Home Page',
+      name: 'exploreHomePage',
       desc: '',
       args: [],
     );
@@ -1522,6 +1704,16 @@ class S {
     );
   }
 
+  /// `From now on you are part of us!`
+  String get fromNowOnYouArePartOfUs {
+    return Intl.message(
+      'From now on you are part of us!',
+      name: 'fromNowOnYouArePartOfUs',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Front image`
   String get frontImage {
     return Intl.message(
@@ -1557,6 +1749,16 @@ class S {
     return Intl.message(
       'Gender',
       name: 'gender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get started`
+  String get getStarted {
+    return Intl.message(
+      'Get started',
+      name: 'getStarted',
       desc: '',
       args: [],
     );
@@ -1607,6 +1809,16 @@ class S {
     return Intl.message(
       'Gross total',
       name: 'grossTotal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have an account?`
+  String get haveAnAccount {
+    return Intl.message(
+      'Have an account?',
+      name: 'haveAnAccount',
       desc: '',
       args: [],
     );
@@ -1727,6 +1939,16 @@ class S {
     return Intl.message(
       'Includes a letter, digit, and special character',
       name: 'includesALetterDigitAndSpecialCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incoming Calls`
+  String get incomingCalls {
+    return Intl.message(
+      'Incoming Calls',
+      name: 'incomingCalls',
       desc: '',
       args: [],
     );
@@ -1974,11 +2196,51 @@ class S {
     );
   }
 
+  /// `Login`
+  String get login {
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Login now`
   String get loginNow {
     return Intl.message(
       'Login now',
       name: 'loginNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Login With Apple`
+  String get loginWithApple {
+    return Intl.message(
+      ' Login With Apple',
+      name: 'loginWithApple',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login with email`
+  String get loginWithEmail {
+    return Intl.message(
+      'Login with email',
+      name: 'loginWithEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login With Google`
+  String get loginWithGoogle {
+    return Intl.message(
+      'Login With Google',
+      name: 'loginWithGoogle',
       desc: '',
       args: [],
     );
@@ -2061,6 +2323,16 @@ class S {
       name: 'minimumTransferLimitIs',
       desc: '',
       args: [code],
+    );
+  }
+
+  /// `Missed Calls`
+  String get missedCalls {
+    return Intl.message(
+      'Missed Calls',
+      name: 'missedCalls',
+      desc: '',
+      args: [],
     );
   }
 
@@ -2574,6 +2846,16 @@ class S {
     );
   }
 
+  /// `Or`
+  String get orTxt {
+    return Intl.message(
+      'Or',
+      name: 'orTxt',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Orange Money`
   String get orangeMoney {
     return Intl.message(
@@ -2599,6 +2881,26 @@ class S {
     return Intl.message(
       'OTP',
       name: 'otp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` OTP Verification`
+  String get otpVerification {
+    return Intl.message(
+      ' OTP Verification',
+      name: 'otpVerification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Outgoing Calls`
+  String get outgoingCalls {
+    return Intl.message(
+      'Outgoing Calls',
+      name: 'outgoingCalls',
       desc: '',
       args: [],
     );
@@ -2794,6 +3096,16 @@ class S {
     );
   }
 
+  /// `Personal protection`
+  String get personalProtection {
+    return Intl.message(
+      'Personal protection',
+      name: 'personalProtection',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Phone Number`
   String get phoneNumber {
     return Intl.message(
@@ -2824,6 +3136,16 @@ class S {
     );
   }
 
+  /// `Please active your subscription`
+  String get pleaseActiveYourSubscription {
+    return Intl.message(
+      'Please active your subscription',
+      name: 'pleaseActiveYourSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please add atleast one active account`
   String get pleaseAddAtleastOneactiveAccount {
     return Intl.message(
@@ -2834,11 +3156,31 @@ class S {
     );
   }
 
+  /// `Please check your mail`
+  String get pleaseCheckMail {
+    return Intl.message(
+      'Please check your mail',
+      name: 'pleaseCheckMail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please check your network connection.`
   String get pleaseCheckYourNetworkConnection {
     return Intl.message(
       'Please check your network connection.',
       name: 'pleaseCheckYourNetworkConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your valid Email / Corporate ID`
+  String get pleaseCorporateID {
+    return Intl.message(
+      'Please enter your valid Email / Corporate ID',
+      name: 'pleaseCorporateID',
       desc: '',
       args: [],
     );
@@ -3114,6 +3456,16 @@ class S {
     );
   }
 
+  /// `Please enter a new password to secure your account.`
+  String get pleaseSecureAccount {
+    return Intl.message(
+      'Please enter a new password to secure your account.',
+      name: 'pleaseSecureAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please select all mandatory field`
   String get pleaseSelectAllMandatoryField {
     return Intl.message(
@@ -3179,6 +3531,26 @@ class S {
     return Intl.message(
       'Please sign up to continue',
       name: 'pleaseSignUpToContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select the type of account you will be setting up today.`
+  String get pleaseTxt {
+    return Intl.message(
+      'Please select the type of account you will be setting up today.',
+      name: 'pleaseTxt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your valid phone number, We will send you a 4 digit code to verify.`
+  String get pleaseVerify {
+    return Intl.message(
+      'Please enter your valid phone number, We will send you a 4 digit code to verify.',
+      name: 'pleaseVerify',
       desc: '',
       args: [],
     );
@@ -3269,6 +3641,36 @@ class S {
     return Intl.message(
       'Profile',
       name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Protect AI email`
+  String get protectAIEmail {
+    return Intl.message(
+      'Protect AI email',
+      name: 'protectAIEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Protect AI messages`
+  String get protectAIMessages {
+    return Intl.message(
+      'Protect AI messages',
+      name: 'protectAIMessages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Protection type`
+  String get protectionType {
+    return Intl.message(
+      'Protection type',
+      name: 'protectionType',
       desc: '',
       args: [],
     );
@@ -3454,11 +3856,61 @@ class S {
     );
   }
 
+  /// `Register`
+  String get register {
+    return Intl.message(
+      'Register',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Register now`
   String get registerNow {
     return Intl.message(
       'Register now',
       name: 'registerNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register with Apple`
+  String get registerWithApple {
+    return Intl.message(
+      'Register with Apple',
+      name: 'registerWithApple',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register with email`
+  String get registerWithEmail {
+    return Intl.message(
+      'Register with email',
+      name: 'registerWithEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register with Google`
+  String get registerWithGoogle {
+    return Intl.message(
+      'Register with Google',
+      name: 'registerWithGoogle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registration Successful`
+  String get registrationSuccessful {
+    return Intl.message(
+      'Registration Successful',
+      name: 'registrationSuccessful',
       desc: '',
       args: [],
     );
@@ -3499,6 +3951,16 @@ class S {
     return Intl.message(
       'Rent',
       name: 'rent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Re-enter Password`
+  String get renterPassword {
+    return Intl.message(
+      'Re-enter Password',
+      name: 'renterPassword',
       desc: '',
       args: [],
     );
@@ -3609,6 +4071,26 @@ class S {
     return Intl.message(
       'Rescan',
       name: 'rescan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get resend {
+    return Intl.message(
+      'Resend',
+      name: 'resend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend Otp`
+  String get resendOtp {
+    return Intl.message(
+      'Resend Otp',
+      name: 'resendOtp',
       desc: '',
       args: [],
     );
@@ -4114,6 +4596,16 @@ class S {
     );
   }
 
+  /// `Successful`
+  String get successful {
+    return Intl.message(
+      'Successful',
+      name: 'successful',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Take a selfie`
   String get takeASelfie {
     return Intl.message(
@@ -4534,6 +5026,16 @@ class S {
     );
   }
 
+  /// `User name`
+  String get userName {
+    return Intl.message(
+      'User name',
+      name: 'userName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Valid`
   String get valid {
     return Intl.message(
@@ -4589,6 +5091,16 @@ class S {
     return Intl.message(
       'Verify',
       name: 'verify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify and Proceed`
+  String get verifyProceed {
+    return Intl.message(
+      'Verify and Proceed',
+      name: 'verifyProceed',
       desc: '',
       args: [],
     );
@@ -4684,11 +5196,31 @@ class S {
     );
   }
 
+  /// `WELCOME`
+  String get welcome {
+    return Intl.message(
+      'WELCOME',
+      name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome back`
   String get welcomeBack {
     return Intl.message(
       'Welcome back',
       name: 'welcomeBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to BROADLINK Protect your mobile defender! Effortlessly block unwanted calls, messages and keep your device clean let's get started and take control of your communication!`
+  String get welcomeTxt {
+    return Intl.message(
+      'Welcome to BROADLINK Protect your mobile defender! Effortlessly block unwanted calls, messages and keep your device clean let\'s get started and take control of your communication!',
+      name: 'welcomeTxt',
       desc: '',
       args: [],
     );
@@ -4704,11 +5236,33 @@ class S {
     );
   }
 
+  /// `Yey!`
+  String get yey {
+    return Intl.message(
+      'Yey!',
+      name: 'yey',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You can update your profile from here`
   String get yoCanUpdateYourProfileFromHere {
     return Intl.message(
       'You can update your profile from here',
       name: 'yoCanUpdateYourProfileFromHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are protected against all the dangerous phone numbers from our security database`
+  String
+      get youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase {
+    return Intl.message(
+      'You are protected against all the dangerous phone numbers from our security database',
+      name:
+          'youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase',
       desc: '',
       args: [],
     );
@@ -4766,11 +5320,35 @@ class S {
     );
   }
 
+  /// `Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials`
+  String
+      get yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials {
+    return Intl.message(
+      'Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials',
+      name:
+          'yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Your goals will help us to formulate the right recommendations for success.`
   String get yourGoalsWillHelpUsToFormulateTheRightRecommendationsForSuccess {
     return Intl.message(
       'Your goals will help us to formulate the right recommendations for success.',
       name: 'yourGoalsWillHelpUsToFormulateTheRightRecommendationsForSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your messages are currently being screened by Detect AI to identity potential scams.`
+  String
+      get yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams {
+    return Intl.message(
+      'Your messages are currently being screened by Detect AI to identity potential scams.',
+      name:
+          'yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams',
       desc: '',
       args: [],
     );
@@ -4811,584 +5389,6 @@ class S {
     return Intl.message(
       'Your payment has been successfully done.',
       name: 'yourPaymentHasBeenSuccessfullyDone',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Call protection`
-  String get callProtection {
-    return Intl.message(
-      'Call protection',
-      name: 'callProtection',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please active your subscription`
-  String get pleaseActiveYourSubscription {
-    return Intl.message(
-      'Please active your subscription',
-      name: 'pleaseActiveYourSubscription',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `You are protected against all the dangerous phone numbers from our security database`
-  String
-      get youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase {
-    return Intl.message(
-      'You are protected against all the dangerous phone numbers from our security database',
-      name:
-          'youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `All spam calls are currently being blocked from calling your telephone number you may miss important call if the caller number is flagged by the network as spam.`
-  String
-      get allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam {
-    return Intl.message(
-      'All spam calls are currently being blocked from calling your telephone number you may miss important call if the caller number is flagged by the network as spam.',
-      name:
-          'allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Protect AI messages`
-  String get protectAIMessages {
-    return Intl.message(
-      'Protect AI messages',
-      name: 'protectAIMessages',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your messages are currently being screened by Detect AI to identity potential scams.`
-  String
-      get yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams {
-    return Intl.message(
-      'Your messages are currently being screened by Detect AI to identity potential scams.',
-      name:
-          'yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Protect AI email`
-  String get protectAIEmail {
-    return Intl.message(
-      'Protect AI email',
-      name: 'protectAIEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials`
-  String
-      get yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials {
-    return Intl.message(
-      'Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials',
-      name:
-          'yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `WELCOME`
-  String get welcome {
-    return Intl.message(
-      'WELCOME',
-      name: 'welcome',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Welcome to BROADLINK Protect your mobile defender! Effortlessly block unwanted calls, messages and keep your device clean let's get started and take control of your communication!`
-  String get welcomeTxt {
-    return Intl.message(
-      'Welcome to BROADLINK Protect your mobile defender! Effortlessly block unwanted calls, messages and keep your device clean let\'s get started and take control of your communication!',
-      name: 'welcomeTxt',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Get started`
-  String get getStarted {
-    return Intl.message(
-      'Get started',
-      name: 'getStarted',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Protection type`
-  String get protectionType {
-    return Intl.message(
-      'Protection type',
-      name: 'protectionType',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please select the type of account you will be setting up today.`
-  String get pleaseTxt {
-    return Intl.message(
-      'Please select the type of account you will be setting up today.',
-      name: 'pleaseTxt',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Personal protection`
-  String get personalProtection {
-    return Intl.message(
-      'Personal protection',
-      name: 'personalProtection',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Corporate Protection`
-  String get corporateProtection {
-    return Intl.message(
-      'Corporate Protection',
-      name: 'corporateProtection',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Continue`
-  String get continueTxt {
-    return Intl.message(
-      'Continue',
-      name: 'continueTxt',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter your valid Email / Corporate ID`
-  String get pleaseCorporateID {
-    return Intl.message(
-      'Please enter your valid Email / Corporate ID',
-      name: 'pleaseCorporateID',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Corporate ID`
-  String get corporateID {
-    return Intl.message(
-      'Corporate ID',
-      name: 'corporateID',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Login`
-  String get login {
-    return Intl.message(
-      'Login',
-      name: 'login',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Login With Google`
-  String get loginWithGoogle {
-    return Intl.message(
-      'Login With Google',
-      name: 'loginWithGoogle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// ` Login With Apple`
-  String get loginWithApple {
-    return Intl.message(
-      ' Login With Apple',
-      name: 'loginWithApple',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Login with email`
-  String get loginWithEmail {
-    return Intl.message(
-      'Login with email',
-      name: 'loginWithEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Don’t have an account?`
-  String get dontHaveAnAccount {
-    return Intl.message(
-      'Don’t have an account?',
-      name: 'dontHaveAnAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Register`
-  String get register {
-    return Intl.message(
-      'Register',
-      name: 'register',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Register with Google`
-  String get registerWithGoogle {
-    return Intl.message(
-      'Register with Google',
-      name: 'registerWithGoogle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Register with Apple`
-  String get registerWithApple {
-    return Intl.message(
-      'Register with Apple',
-      name: 'registerWithApple',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Register with email`
-  String get registerWithEmail {
-    return Intl.message(
-      'Register with email',
-      name: 'registerWithEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// ` Already have an account`
-  String get alreadyHaveAnAccount {
-    return Intl.message(
-      ' Already have an account',
-      name: 'alreadyHaveAnAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Or`
-  String get orTxt {
-    return Intl.message(
-      'Or',
-      name: 'orTxt',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter your valid phone number, We will send you a 4 digit code to verify.`
-  String get pleaseVerify {
-    return Intl.message(
-      'Please enter your valid phone number, We will send you a 4 digit code to verify.',
-      name: 'pleaseVerify',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Successful`
-  String get successful {
-    return Intl.message(
-      'Successful',
-      name: 'successful',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Yey!`
-  String get yey {
-    return Intl.message(
-      'Yey!',
-      name: 'yey',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `From now on you are part of us!`
-  String get fromNowOnYouArePartOfUs {
-    return Intl.message(
-      'From now on you are part of us!',
-      name: 'fromNowOnYouArePartOfUs',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Explore Home Page`
-  String get exploreHomePage {
-    return Intl.message(
-      'Explore Home Page',
-      name: 'exploreHomePage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enjoy all the benefits of being an explorer member`
-  String get enjoyMember {
-    return Intl.message(
-      'Enjoy all the benefits of being an explorer member',
-      name: 'enjoyMember',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `User name`
-  String get userName {
-    return Intl.message(
-      'User name',
-      name: 'userName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Date of Birth`
-  String get dateOfBirth {
-    return Intl.message(
-      'Date of Birth',
-      name: 'dateOfBirth',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Have an account?`
-  String get haveAnAccount {
-    return Intl.message(
-      'Have an account?',
-      name: 'haveAnAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// ` OTP Verification`
-  String get otpVerification {
-    return Intl.message(
-      ' OTP Verification',
-      name: 'otpVerification',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Did't recieve Code?`
-  String get didTxt {
-    return Intl.message(
-      'Did\'t recieve Code?',
-      name: 'didTxt',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Resend Otp`
-  String get resendOtp {
-    return Intl.message(
-      'Resend Otp',
-      name: 'resendOtp',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter the OTP Sent to`
-  String get enterOTPSent {
-    return Intl.message(
-      'Enter the OTP Sent to',
-      name: 'enterOTPSent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Verify and Proceed`
-  String get verifyProceed {
-    return Intl.message(
-      'Verify and Proceed',
-      name: 'verifyProceed',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter your email address for the verificationm process. We will send 4 digite code to your email.`
-  String get enterVerificationProcess {
-    return Intl.message(
-      'Enter your email address for the verificationm process. We will send 4 digite code to your email.',
-      name: 'enterVerificationProcess',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please check your mail`
-  String get pleaseCheckMail {
-    return Intl.message(
-      'Please check your mail',
-      name: 'pleaseCheckMail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter the 4 digit code that you received on your email`
-  String get enterCode {
-    return Intl.message(
-      'Enter the 4 digit code that you received on your email',
-      name: 'enterCode',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Did't recieve Code?`
-  String get didRecieveCode {
-    return Intl.message(
-      'Did\'t recieve Code?',
-      name: 'didRecieveCode',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Resend`
-  String get resend {
-    return Intl.message(
-      'Resend',
-      name: 'resend',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter a new password to secure your account.`
-  String get pleaseSecureAccount {
-    return Intl.message(
-      'Please enter a new password to secure your account.',
-      name: 'pleaseSecureAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Re-enter Password`
-  String get renterPassword {
-    return Intl.message(
-      'Re-enter Password',
-      name: 'renterPassword',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Registration Successful`
-  String get registrationSuccessful {
-    return Intl.message(
-      'Registration Successful',
-      name: 'registrationSuccessful',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Congratulations, your account has been successfully created.`
-  String get congratulationScreated {
-    return Intl.message(
-      'Congratulations, your account has been successfully created.',
-      name: 'congratulationScreated',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Outgoing Calls`
-  String get outgoingCalls {
-    return Intl.message(
-      'Outgoing Calls',
-      name: 'outgoingCalls',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Incoming Calls`
-  String get incomingCalls {
-    return Intl.message(
-      'Incoming Calls',
-      name: 'incomingCalls',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Missed Calls`
-  String get missedCalls {
-    return Intl.message(
-      'Missed Calls',
-      name: 'missedCalls',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Blocked Calls`
-  String get blockedCalls {
-    return Intl.message(
-      'Blocked Calls',
-      name: 'blockedCalls',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Delete all Calls`
-  String get deleteCalls {
-    return Intl.message(
-      'Delete all Calls',
-      name: 'deleteCalls',
       desc: '',
       args: [],
     );

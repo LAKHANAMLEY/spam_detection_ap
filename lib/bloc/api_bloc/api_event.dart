@@ -182,11 +182,11 @@ class GetCallTypeEvent extends ApiEvent {}
 
 class GetBlockContactEvent extends ApiEvent {}
 
-class UnBlockEvent extends ApiEvent {
+class BlockUnBlockEvent extends ApiEvent {
   final String contactId;
   final String comments;
 
-  UnBlockEvent({
+  BlockUnBlockEvent({
     required this.contactId,
     required this.comments,
   });

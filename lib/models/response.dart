@@ -10,7 +10,7 @@ String responseToJson(Response data) => json.encode(data.toJson());
 
 class Response {
   final int? statusCode;
-  final String? message;
+  final dynamic message;
   final dynamic data;
 
   Response({

@@ -9,7 +9,7 @@ class ProtectionType extends StatefulWidget {
 }
 
 class _ProtectionTypeState extends State<ProtectionType> {
-  int Selectedtab = 0;
+  int selectedTab = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,11 +59,11 @@ class _ProtectionTypeState extends State<ProtectionType> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.only(left: 30, right: 30),
                 child: Center(
                     child: Text(
-                      appLocalization(context).pleaseTxt,
+                  appLocalization(context).pleaseTxt,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       color: AppColor.verifyColor,
@@ -78,14 +78,14 @@ class _ProtectionTypeState extends State<ProtectionType> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    Selectedtab = 0;
+                    selectedTab = 0;
                   });
                 },
                 child: Container(
                   width: MediaQuery.sizeOf(context).width * 90 / 100,
                   height: MediaQuery.sizeOf(context).height * 8 / 100,
                   decoration: BoxDecoration(
-                    color: Selectedtab == 1
+                    color: selectedTab == 1
                         ? AppColor.fillColor.withOpacity(0.2)
                         : AppColor.callColor,
                     borderRadius: BorderRadius.circular(2),
@@ -100,7 +100,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             colorFilter: ColorFilter.mode(
-                                Selectedtab == 1
+                                selectedTab == 1
                                     ? AppColor.callColor
                                     : AppColor.secondryColor,
                                 BlendMode.srcIn),
@@ -115,7 +115,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                       Text(
                         appLocalization(context).personalProtection,
                         style: TextStyle(
-                            color: Selectedtab == 1
+                            color: selectedTab == 1
                                 ? AppColor.gracyColor
                                 : AppColor.secondryColor,
                             fontFamily: AppFont.fontFamily,
@@ -132,14 +132,14 @@ class _ProtectionTypeState extends State<ProtectionType> {
               GestureDetector(
                 onTap: () {
                   setState(() {
-                    Selectedtab = 1;
+                    selectedTab = 1;
                   });
                 },
                 child: Container(
                   width: MediaQuery.sizeOf(context).width * 90 / 100,
                   height: MediaQuery.sizeOf(context).height * 8 / 100,
                   decoration: BoxDecoration(
-                    color: Selectedtab == 1
+                    color: selectedTab == 1
                         ? AppColor.callColor
                         : AppColor.fillColor.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(2),
@@ -154,7 +154,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             colorFilter: ColorFilter.mode(
-                                Selectedtab == 1
+                                selectedTab == 1
                                     ? AppColor.secondryColor
                                     : AppColor.callColor,
                                 BlendMode.srcIn),
@@ -168,7 +168,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                       Text(
                         appLocalization(context).corporateProtection,
                         style: TextStyle(
-                            color: Selectedtab == 1
+                            color: selectedTab == 1
                                 ? AppColor.secondryColor
                                 : AppColor.gracyColor,
                             fontFamily: AppFont.fontFamily,
@@ -183,9 +183,9 @@ class _ProtectionTypeState extends State<ProtectionType> {
                 height: MediaQuery.of(context).size.height * 5 / 100,
               ),
               AppButton(
-                  text:appLocalization(context).continueTxt,
+                  text: appLocalization(context).continueTxt,
                   onPress: () {
-                    if (Selectedtab == 0) {
+                    if (selectedTab == 0) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(

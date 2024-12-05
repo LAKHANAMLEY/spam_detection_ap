@@ -66,7 +66,11 @@ class _ContactDetailState extends State<ContactDetail> {
                           ),
                         ),
                         Text(
-                          contact?.name ?? contact?.mobileNo ?? "",
+                          (contact?.name?.isNotEmpty ?? false)
+                              ? contact?.name ?? ""
+                              : contact?.countryCode?.isNotEmpty ?? false
+                                  ? "+${contact?.countryCode} ${contact?.mobileNo ?? ""}"
+                                  : contact?.mobileNo ?? "",
                           style: const TextStyle(
                               color: AppColor.primaryColor,
                               fontSize: 18,
@@ -83,12 +87,37 @@ class _ContactDetailState extends State<ContactDetail> {
                               icon: Icons.message,
                             ),
                             contact?.isSpam == 1
+                                ? ActionButton(
+                                    onTap: () {
+                                      markSpamBloc.add(RemoveSpamEvent(
+                                          contactId: contact?.id ?? ""));
+                                    },
+                                    label: 'Unmark Spam',
+                                    icon: Icons.check_circle)
+                                : ActionButton(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: AppColor.secondryColor,
+                                        context: context,
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.vertical(
+                                              top: Radius.circular(20.0)),
+                                        ),
+                                        builder: (BuildContext context) {
+                                          return ReportView(
+                                            contact: contact!,
+                                          );
+                                        },
+                                      );
+                                    },
+                                    label: 'Report',
+                                    icon: Icons.report),
+                            contact?.isBlocked == 1
                                 ? const ActionButton(
-                                    label: 'Not Spam', icon: Icons.check_circle)
+                                    label: 'Unblock', icon: Icons.block)
                                 : const ActionButton(
-                                    label: 'Report', icon: Icons.report),
-                            const ActionButton(
-                                label: 'Block', icon: Icons.block),
+                                    label: 'Block', icon: Icons.block),
                           ],
                         ),
                       ],
@@ -147,14 +176,15 @@ class _ContactDetailState extends State<ContactDetail> {
                                     color: AppColor.fillColor,
                                   ),
                                 )),
-                                child: const Column(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Text(StringConstants.spamreportext),
+                                    const Text(StringConstants.spamreportext),
                                     Text(
-                                      StringConstants.liketext,
-                                      style: TextStyle(
+                                      contact!.markSpamByUser?.toString() ??
+                                          "0",
+                                      style: const TextStyle(
                                           color: AppColor.primaryColor,
                                           fontWeight: FontWeight.w600,
                                           fontFamily: AppFont.fontFamily),
@@ -254,30 +284,39 @@ class _ContactDetailState extends State<ContactDetail> {
 class ActionButton extends StatelessWidget {
   final String label;
   final IconData icon;
+  final void Function()? onTap;
 
-  const ActionButton({super.key, required this.label, required this.icon});
+  const ActionButton({
+    super.key,
+    required this.label,
+    required this.icon,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min, // Ensures buttons fit the row properly
-      children: [
-        CircleAvatar(
-          radius: 30,
-          backgroundColor: Colors.grey.shade300,
-          child: Icon(icon,
-              color: AppColor.redColor, size: 28), // Icon size adjusted
-        ),
-        const SizedBox(height: 8),
-        DefaultTextStyle(
-          style: const TextStyle(
-              color: AppColor.primaryColor,
-              fontSize: 12,
-              fontFamily: AppFont.fontFamily,
-              fontWeight: FontWeight.w600),
-          child: Text(label),
-        )
-      ],
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min, // Ensures buttons fit the row properly
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.grey.shade300,
+            child: Icon(icon,
+                color: AppColor.redColor, size: 28), // Icon size adjusted
+          ),
+          const SizedBox(height: 8),
+          DefaultTextStyle(
+            style: const TextStyle(
+                color: AppColor.primaryColor,
+                fontSize: 12,
+                fontFamily: AppFont.fontFamily,
+                fontWeight: FontWeight.w600),
+            child: Text(label),
+          )
+        ],
+      ),
     );
   }
 }

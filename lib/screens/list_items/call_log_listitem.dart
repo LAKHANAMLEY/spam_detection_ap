@@ -2,12 +2,10 @@ import 'package:spam_delection_app/lib.dart';
 
 class CallLogListItem extends StatelessWidget {
   final CallLogData callLog;
-  final ApiBloc markSpamBloc;
 
   const CallLogListItem({
     super.key,
     required this.callLog,
-    required this.markSpamBloc,
   });
 
   @override
@@ -23,6 +21,8 @@ class CallLogListItem extends StatelessWidget {
                 numberType: callLog.callType,
                 id: callLog.contactListId,
                 isSpam: callLog.isSpam,
+                isBlocked: callLog.isBlocked,
+                markSpamByUser: callLog.markSpamByUser,
               ),
             ));
       },
@@ -58,14 +58,21 @@ class CallLogListItem extends StatelessWidget {
       ),
       subtitle: Row(
         children: [
-          Icon(getCallTypeIcon(callLog.callType),
-              color: getCallTypeColor(callLog.callType)),
-          Text(
-            callLog.callType ?? "",
-            style: textTheme(context)
-                .bodyMedium
-                ?.copyWith(color: getCallTypeColor(callLog.callType)),
-          ),
+          if (callLog.markSpamByUser != 0)
+            Text(
+              "${callLog.markSpamByUser} Spam reports",
+              style: textTheme(context).bodyMedium?.copyWith(color: Colors.red),
+            )
+          else ...[
+            Icon(getCallTypeIcon(callLog.callType),
+                color: getCallTypeColor(callLog.callType)),
+            Text(
+              callLog.callType ?? "",
+              style: textTheme(context)
+                  .bodyMedium
+                  ?.copyWith(color: getCallTypeColor(callLog.callType)),
+            ),
+          ],
           const Circle(),
           // 2.width(),
           Text(callLog.callDuration?.convertInMinSec() ?? ""),
@@ -103,12 +110,18 @@ class CallLogListItem extends StatelessWidget {
                             isSpam: callLog.isSpam,
                             countryCode: callLog.countryCode,
                           ),
-                          markSpamBloc: markSpamBloc,
                         );
                       },
                     );
                   },
-                  child: const Text("Report"))
+                  child: const Text("Report")),
+              PopupMenuItem(
+                  onTap: () {
+                    markSpamBloc.add(BlockUnBlockEvent(
+                        contactId: callLog.contactListId ?? "",
+                        comments: "block"));
+                  },
+                  child: Text(callLog.isBlocked == 1 ? "Unblock" : "Block"))
             ],
           ),
         ],

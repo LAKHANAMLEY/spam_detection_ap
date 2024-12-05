@@ -9,7 +9,14 @@ class ApiBlocInitialState extends ApiState {}
 
 class ApiLoadingState extends ApiState {}
 
-class ApiErrorState extends ApiState {}
+class ApiErrorState extends ApiState {
+  final String? value;
+
+  ApiErrorState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
 
 class GetDeviceContactState extends ApiState {
   final List<Contact>? value;
@@ -200,9 +207,9 @@ class GetBlockContactState extends ApiState {
 }
 
 // unBlock
-class UnBlockState extends ApiState {
+class BlockUnBlockState extends ApiState {
   final Response value;
-  UnBlockState(this.value);
+  BlockUnBlockState(this.value);
   @override
   List<Object?> get props => [value];
 }

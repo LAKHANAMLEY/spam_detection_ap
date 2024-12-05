@@ -1,3 +1,3 @@
 import 'package:fluttertoast/fluttertoast.dart';
 
-showToast(msg) => Fluttertoast.showToast(msg: msg);
+showToast(dynamic msg) => Fluttertoast.showToast(msg: msg?.toString() ?? "");

@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<Response> unBlockContact({
+Future<Response> blockUnblockContact({
   required String contactId,
   required String comment,
 }) async {

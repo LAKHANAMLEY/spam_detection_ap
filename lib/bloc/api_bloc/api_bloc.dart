@@ -199,13 +199,13 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       });
     }
     // unblock
-    if (event is UnBlockEvent) {
+    if (event is BlockUnBlockEvent) {
       emit(ApiLoadingState());
-      await unBlockContact(
+      await blockUnblockContact(
         contactId: event.contactId,
         comment: event.comments,
       ).then((value) {
-        emit(UnBlockState(value));
+        emit(BlockUnBlockState(value));
       });
     }
     //corporate

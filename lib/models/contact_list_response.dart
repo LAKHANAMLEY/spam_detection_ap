@@ -53,6 +53,8 @@ class ContactData {
   final String? email;
   final String? numberType;
   final int? isSpam;
+  final int? isBlocked;
+  final int? markSpamByUser;
 
   ContactData({
     this.id,
@@ -62,6 +64,8 @@ class ContactData {
     this.email,
     this.numberType,
     this.isSpam,
+    this.isBlocked,
+    this.markSpamByUser,
   });
 
   ContactData copyWith({
@@ -72,6 +76,8 @@ class ContactData {
     String? email,
     String? numberType,
     int? isSpam,
+    int? isBlocked,
+    int? markSpamByUser,
   }) =>
       ContactData(
         id: id ?? this.id,
@@ -81,6 +87,8 @@ class ContactData {
         email: email ?? this.email,
         numberType: numberType ?? this.numberType,
         isSpam: isSpam ?? this.isSpam,
+        isBlocked: isBlocked ?? this.isBlocked,
+        markSpamByUser: markSpamByUser ?? this.markSpamByUser,
       );
 
   factory ContactData.fromJson(Map<String, dynamic> json) => ContactData(
@@ -91,6 +99,8 @@ class ContactData {
         email: json["email"],
         numberType: json["number_type"],
         isSpam: json["is_spam"],
+        isBlocked: json["is_blocked"],
+        markSpamByUser: json["markspambyuser"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -101,5 +111,7 @@ class ContactData {
         "email": email,
         "number_type": numberType,
         "is_spam": isSpam,
+        "is_blocked": isBlocked,
+        "markspambyuser": markSpamByUser,
       };
 }

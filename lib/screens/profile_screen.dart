@@ -16,13 +16,6 @@ class _ProfileState extends State<Profile> {
     IconConstants.icmessageCheck
   ];
   final List<String> cardTexts = ['3', '68s', '25', '38'];
-  /*List<Map<String, dynamic>> allSpamCalls = [
-    {'imageUrl':  IconConstants.icspamCheck, 'cardTexts': '68s', 'type': 'Last 30 days'},
-    {'imageUrl':  IconConstants.icClock, 'number': '+0987654321', 'type': 'Last 30 days'},
-    {'imageUrl': IconConstants.icsearchCheck, 'number': '+1122334455', 'type': 'All time'},
-    {'imageUrl': IconConstants.icmessageCheck, 'number': '+4455667788', 'type': 'All time'},
-  ];
-   */
 
   final List<String> spamTexts = [
     StringConstants.spamcallstext,
@@ -187,7 +180,8 @@ class _ProfileState extends State<Profile> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, AppRoutes.planType);
+                            // Navigator.pushNamed(context, AppRoutes.planType);
+                            selectBottomTabBloc.add(SelectIntEvent(3));
                           },
                           child: Container(
                             margin: const EdgeInsets.only(left: 20, right: 20),

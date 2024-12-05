@@ -22,6 +22,8 @@ showCustomDialog(
   bool showCancelBtn = false,
   String? okBtnTxt,
   String? cancelBtnTxt,
+  Color? okBtnColor,
+  Color? cancelBtnColor,
 }) =>
     showDialog(
       context: context,
@@ -31,6 +33,7 @@ showCustomDialog(
         actions: actions ??
             [
               OutlinedButton(
+                  style: OutlinedButton.styleFrom(backgroundColor: okBtnColor),
                   onPressed: onOkPressed ??
                       () {
                         Navigator.pop(context);
@@ -38,6 +41,8 @@ showCustomDialog(
                   child: Text(okBtnTxt ?? "Ok")),
               if (showCancelBtn)
                 OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                        backgroundColor: cancelBtnColor),
                     onPressed: onCancelPressed ??
                         () {
                           Navigator.pop(context);

@@ -50,208 +50,227 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        key: _key,
-        drawer: const CustomDrawer(),
-        appBar: CustomAppBar(
-            centerTitle: false,
-            leading: InkWell(
-              onTap: () {
-                _key.currentState!.openDrawer();
-              },
-              child: Image.asset(
-                IconConstants.icdrawer,
-                height: MediaQuery.of(context).size.height * 4 / 100,
-              ),
-            ),
-            title: "",
-            titleWidget: BlocBuilder(
-                bloc: sharedPrefBloc,
-                builder: (context, state) {
-                  if (state is GetUserDataFromLocalState) {
-                    var photo = state.user.photo;
-                    return GestureDetector(
+    return BlocBuilder(
+        bloc: selectBottomTabBloc,
+        builder: (context, state) {
+          if (state is SelectIntState) {
+            _page = state.value;
+            return Scaffold(
+                key: _key,
+                drawer: const CustomDrawer(),
+                appBar: CustomAppBar(
+                    centerTitle: false,
+                    leading: InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Profile()));
+                        _key.currentState!.openDrawer();
                       },
-                      child: (photo?.isNotEmpty ?? false)
-                          ? CircleAvatar(
-                              backgroundImage: NetworkImage(photo ?? ""))
-                          : const CircleAvatar(
-                              backgroundImage:
-                                  AssetImage(ImageConstants.imageProfile)),
-                    );
-                  }
-                  return const Loader();
-                }),
-            actions: [
-              Image.asset(
-                IconConstants.icNotification,
-                height: MediaQuery.of(context).size.height * 3 / 100,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 5 / 100,
-              ),
-              PopupMenuButton(
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.callLogs,
-                          arguments:
-                              DeviceCallLogs(filterBy: CallType.outgoing.name));
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(IconConstants.icOutgoing),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 5 / 100,
-                        ),
-                        const Text(
-                          'Outgoing Calls',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
+                      child: Image.asset(
+                        IconConstants.icdrawer,
+                        height: MediaQuery.of(context).size.height * 4 / 100,
+                      ),
                     ),
-                  ),
-                  PopupMenuItem(
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.callLogs,
-                          arguments:
-                              DeviceCallLogs(filterBy: CallType.incoming.name));
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          IconConstants.icIncoming,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 5 / 100,
-                        ),
-                        const Text('Incomig Calls',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600))
-                      ],
+                    title: "",
+                    titleWidget: BlocBuilder(
+                        bloc: sharedPrefBloc,
+                        builder: (context, state) {
+                          if (state is GetUserDataFromLocalState) {
+                            var photo = state.user.photo;
+                            return GestureDetector(
+                              onTap: () {
+                                selectBottomTabBloc.add(SelectIntEvent(4));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => const Profile()));
+                              },
+                              child: (photo?.isNotEmpty ?? false)
+                                  ? CircleAvatar(
+                                      backgroundImage:
+                                          NetworkImage(photo ?? ""))
+                                  : const CircleAvatar(
+                                      backgroundImage: AssetImage(
+                                          ImageConstants.imageProfile)),
+                            );
+                          }
+                          return const Loader();
+                        }),
+                    actions: [
+                      Image.asset(
+                        IconConstants.icNotification,
+                        height: MediaQuery.of(context).size.height * 3 / 100,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 5 / 100,
+                      ),
+                      PopupMenuButton(
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            onTap: () {
+                              Navigator.pushNamed(context, AppRoutes.callLogs,
+                                  arguments: DeviceCallLogs(
+                                      filterBy: CallType.outgoing.name));
+                            },
+                            child: Row(
+                              children: [
+                                Image.asset(IconConstants.icOutgoing),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                const Text(
+                                  'Outgoing Calls',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                )
+                              ],
+                            ),
+                          ),
+                          PopupMenuItem(
+                            onTap: () {
+                              Navigator.pushNamed(context, AppRoutes.callLogs,
+                                  arguments: DeviceCallLogs(
+                                      filterBy: CallType.incoming.name));
+                            },
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  IconConstants.icIncoming,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                const Text('Incomig Calls',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600))
+                              ],
+                            ),
+                          ),
+                          PopupMenuItem(
+                            onTap: () {
+                              Navigator.pushNamed(context, AppRoutes.callLogs,
+                                  arguments: DeviceCallLogs(
+                                      filterBy: CallType.missed.name));
+                            },
+                            child: Row(
+                              children: [
+                                Image.asset(IconConstants.icMissedCall),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                const Text('Missed Calls',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600))
+                              ],
+                            ),
+                          ),
+                          PopupMenuItem(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const BlockedNumber()));
+                            },
+                            child: Row(
+                              children: [
+                                Image.asset(IconConstants.icBlockCall),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                const Text('Blocked Calls',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600))
+                              ],
+                            ),
+                          ),
+                          PopupMenuItem(
+                            onTap: () {
+                              callLogsListBloc.add(DeleteAllCallLogEvent());
+                            },
+                            child: Row(
+                              children: [
+                                Image.asset(IconConstants.icDelete),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                const Text('Delete all Calls',
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600))
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ]),
+                body: _pages[_page],
+                bottomNavigationBar: CurvedNavigationBar(
+                  key: _bottomNavigationKey,
+                  index: _page,
+                  height: 75,
+                  items: <Widget>[
+                    Image.asset(
+                      IconConstants.icHome,
+                      color: getColor(0),
+                      height: MediaQuery.of(context).size.height * 6 / 100,
+                      width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
-                  ),
-                  PopupMenuItem(
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.callLogs,
-                          arguments:
-                              DeviceCallLogs(filterBy: CallType.missed.name));
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(IconConstants.icMissedCall),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 5 / 100,
-                        ),
-                        const Text('Missed Calls',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600))
-                      ],
+                    Image.asset(
+                      IconConstants.icChat,
+                      color: getColor(1),
+                      height: MediaQuery.of(context).size.height * 6 / 100,
+                      width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
-                  ),
-                  PopupMenuItem(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BlockedNumber()));
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(IconConstants.icBlockCall),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 5 / 100,
-                        ),
-                        const Text('Blocked Calls',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600))
-                      ],
+                    Image.asset(
+                      IconConstants.icPhone,
+                      color: getColor(2),
+                      height: MediaQuery.of(context).size.height * 6 / 100,
+                      width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
-                  ),
-                  PopupMenuItem(
-                    onTap: () {
-                      callLogsListBloc.add(DeleteAllCallLogEvent());
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(IconConstants.icDelete),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 5 / 100,
-                        ),
-                        const Text('Delete all Calls',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600))
-                      ],
+                    Image.asset(
+                      IconConstants.icPremium,
+                      color: getColor(3),
+                      height: MediaQuery.of(context).size.height * 6 / 100,
+                      width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
-                  )
-                ],
-              ),
-            ]),
-        body: _pages[_page],
-        bottomNavigationBar: CurvedNavigationBar(
-          key: _bottomNavigationKey,
-          index: _page,
-          height: 75,
-          items: <Widget>[
-            Image.asset(
-              IconConstants.icHome,
-              color: getColor(0),
-              height: MediaQuery.of(context).size.height * 6 / 100,
-              width: MediaQuery.of(context).size.width * 6 / 100,
-            ),
-            Image.asset(
-              IconConstants.icChat,
-              color: getColor(1),
-              height: MediaQuery.of(context).size.height * 6 / 100,
-              width: MediaQuery.of(context).size.width * 6 / 100,
-            ),
-            Image.asset(
-              IconConstants.icPhone,
-              color: getColor(2),
-              height: MediaQuery.of(context).size.height * 6 / 100,
-              width: MediaQuery.of(context).size.width * 6 / 100,
-            ),
-            Image.asset(
-              IconConstants.icPremium,
-              color: getColor(3),
-              height: MediaQuery.of(context).size.height * 6 / 100,
-              width: MediaQuery.of(context).size.width * 6 / 100,
-            ),
-            Image.asset(
-              IconConstants.icSetting,
-              color: getColor(4),
-              height: MediaQuery.of(context).size.height * 6 / 100,
-              width: MediaQuery.of(context).size.width * 6 / 100,
-            ),
-          ],
-          color: AppColor.callColor,
-          buttonBackgroundColor: AppColor.yellowdeep,
-          backgroundColor: AppColor.whiteLight,
-          animationCurve: Curves.easeInOut,
-          animationDuration: const Duration(milliseconds: 600),
-          onTap: (index) {
-            setState(() {
-              _page = index;
-            });
-          },
-          letIndexChange: (index) => true,
-        ));
+                    Image.asset(
+                      IconConstants.icSetting,
+                      color: getColor(4),
+                      height: MediaQuery.of(context).size.height * 6 / 100,
+                      width: MediaQuery.of(context).size.width * 6 / 100,
+                    ),
+                  ],
+                  color: AppColor.callColor,
+                  buttonBackgroundColor: AppColor.yellowdeep,
+                  backgroundColor: AppColor.whiteLight,
+                  animationCurve: Curves.easeInOut,
+                  animationDuration: const Duration(milliseconds: 600),
+                  onTap: (index) {
+                    selectBottomTabBloc.add(SelectIntEvent(index));
+                  },
+                  letIndexChange: (index) => true,
+                ));
+          }
+          return const Loader();
+        });
   }
 
   Future<bool> signOutFromGoogle() async {

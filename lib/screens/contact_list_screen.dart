@@ -8,32 +8,29 @@ class ContactList extends StatefulWidget {
 }
 
 class _ContactListState extends State<ContactList> {
-  final TextEditingController editingController = TextEditingController();
+  final TextEditingController searchController = TextEditingController();
 
   List<ContactData> contacts = [];
   List<ContactData> filteredContacts = [];
 
-  var markSpamBloc = ApiBloc(ApiBlocInitialState());
   @override
   void initState() {
     super.initState();
     contactListBloc.add(GetContactEvent());
-    // getLocalContacts().then((contacts) {
-    //   if (contacts != null) {
-    //     contactListBloc.add(SyncContactEvent(contacts: contacts));
-    //   } else {
-    //     contactListBloc.add(GetContactEvent());
-    //   }
-    // });
   }
 
-  void filterSearchResults(String query) {
-    setState(() {
-      filteredContacts = contacts
-          .where(
-              (item) => item.name!.toLowerCase().contains(query.toLowerCase()))
-          .toList();
-    });
+  void filterSearchResults() {
+    filteredContacts = contacts
+        .where((contact) =>
+            contact.name!
+                .toLowerCase()
+                .contains(searchController.text.toLowerCase()) ||
+            contact.mobileNo!
+                .toLowerCase()
+                .contains(searchController.text.toLowerCase()))
+        .toList();
+
+    setState(() {});
   }
 
   @override
@@ -71,8 +68,10 @@ class _ContactListState extends State<ContactList> {
                 child: Column(
                   children: <Widget>[
                     CustomTextField(
-                      onChanged: (value) => filterSearchResults(value),
-                      controller: editingController,
+                      onChanged: (value) {
+                        filterSearchResults();
+                      },
+                      controller: searchController,
                       prefix: const Icon(
                         Icons.search,
                         color: AppColor.redColor,
@@ -94,17 +93,17 @@ class _ContactListState extends State<ContactList> {
                           bloc: contactListBloc,
                           listener: (context, state) {
                             if (state is GetDeviceContactState) {
-                              var contacts = state.value;
-                              if (contacts != null) {
-                                contactListBloc
-                                    .add(SyncContactEvent(contacts: contacts));
+                              var deviceContacts = state.value;
+                              if (deviceContacts != null) {
+                                contactListBloc.add(
+                                    SyncContactEvent(contacts: deviceContacts));
                               }
                             }
                             if (state is GetContactState) {
                               // filterSearchResults("");
                               if (state.value.statusCode == 200) {
                                 contacts = state.value.contactslist ?? [];
-                                filteredContacts = contacts;
+                                filterSearchResults();
                               } else if (state.value.statusCode ==
                                   HTTPStatusCodes.sessionExpired) {
                                 sessionExpired(
@@ -128,20 +127,17 @@ class _ContactListState extends State<ContactList> {
                           },
                           builder: (context, state) {
                             if (state is GetContactState) {
-                              contacts = state.value.contactslist ?? [];
                               if (filteredContacts.isEmpty) {
                                 return const Center(
                                   child: Text('No contacts'),
                                 );
                               }
-
                               return ListView.builder(
                                 itemCount: filteredContacts.length,
                                 // shrinkWrap: true,
                                 itemBuilder: (context, index) {
                                   return ContactListItem(
                                     contact: filteredContacts[index],
-                                    markSpamBloc: markSpamBloc,
                                   );
                                 },
                               );

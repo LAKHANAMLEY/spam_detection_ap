@@ -8,76 +8,21 @@ class BlockedNumber extends StatefulWidget {
 }
 
 class _BlockedNumberState extends State<BlockedNumber> {
-  late Future<BlockedContactListResponse> _blockedContacts;
+  // var blockContactsBloc = ApiBloc(ApiBlocInitialState());
 
   @override
   void initState() {
+    markSpamBloc.add(GetBlockContactEvent());
     super.initState();
-    _blockedContacts = blockContact();
-  }
-  /* final List<Map<String, String>> duplicateItems = [
-    {
-      'Number': '+233 840 945 232',
-      'imagePath': IconConstants.icspamtriangle,
-      'iconConst': IconConstants.icspambolcked
-    },
-    {
-      'Number': '+233 264 619 356',
-      'imagePath': IconConstants.icspamtriangle,
-      'iconConst': IconConstants.icspambolcked
-    },
-    {
-      'Number': '+233 365 574 603',
-      'imagePath': IconConstants.icspamtriangle,
-      'iconConst': IconConstants.icspambolcked
-    },
-    {
-      'Number': '+233 480 649 772',
-      'imagePath': IconConstants.icspamtriangle,
-      'iconConst': IconConstants.icspambolcked
-    },
-  ];
-
-  */
-  /*late List<Map<String, String>> items;
-  @override
-  void initState() {
-    super.initState();
-    items = duplicateItems;
   }
 
-   */
-
-  int Toogletab = 0;
+  int selectedTab = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 2 / 100,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(
-                IconConstants.icbackCircle,
-              ),
-            ),
-          ),
-        ),
-        title: const Text(
-          StringConstants.blockNumber,
-          style: TextStyle(
-              color: AppColor.callColor,
-              fontFamily: AppFont.fontFamily,
-              fontSize: 18,
-              fontWeight: FontWeight.w600),
-        ),
-        //centerTitle: true,
+      appBar: const CustomAppBar(
+        title: StringConstants.blockNumber,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -119,7 +64,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
             GestureDetector(
               onTap: () {
                 setState(() {
-                  Toogletab = 1;
+                  selectedTab = 0;
                 });
               },
               child: Container(
@@ -131,133 +76,140 @@ class _BlockedNumberState extends State<BlockedNumber> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * 6 / 100,
-                      width: MediaQuery.of(context).size.width * 40 / 100,
-                      decoration: BoxDecoration(
-                          color: Toogletab == 1
-                              ? AppColor.callColor
-                              : AppColor.secondryColor,
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(
-                            color: Toogletab == 1
-                                ? AppColor.callColor
-                                : AppColor.borderstekColor,
-                          )),
-                      child: Center(
-                          child: Text(
-                        "Recents ",
-                        style: TextStyle(
-                            color: Toogletab == 1
-                                ? AppColor.secondryColor
-                                : AppColor.callColor,
-                            fontSize: 18,
-                            fontFamily: AppFont.fontFamily,
-                            fontWeight: FontWeight.w600),
-                      )),
-                    ),
-                    GestureDetector(
+                    CustomTab(
+                        selectedTab: selectedTab,
+                        index: 0,
                         onTap: () {
                           setState(() {
-                            Toogletab = 0;
+                            selectedTab = 0;
                           });
                         },
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * 6 / 100,
-                          width: MediaQuery.of(context).size.width * 40 / 100,
-                          decoration: BoxDecoration(
-                              color: Toogletab == 1
-                                  ? AppColor.secondryColor
-                                  : AppColor.callColor,
-                              borderRadius: BorderRadius.circular(4),
-                              border: Border.all(
-                                color: Toogletab == 1
-                                    ? AppColor.borderstekColor
-                                    : AppColor.callColor,
-                              )),
-                          child: Center(
-                              child: Text(
-                            'Contacts',
-                            style: TextStyle(
-                                color: Toogletab == 1
-                                    ? AppColor.callColor
-                                    : AppColor.secondryColor,
-                                fontSize: 18,
-                                fontFamily: AppFont.fontFamily,
-                                fontWeight: FontWeight.w600),
-                          )),
-                        )),
+                        text: "Recents"),
+                    CustomTab(
+                        selectedTab: selectedTab,
+                        index: 1,
+                        onTap: () {
+                          setState(() {
+                            selectedTab = 1;
+                          });
+                        },
+                        text: "Contacts")
                   ],
                 ),
               ),
             ),
-            if (Toogletab == 1) ...[
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 4 / 100,
-              ),
-              FutureBuilder<BlockedContactListResponse>(
-                future: _blockedContacts,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'));
-                  } else if (snapshot.hasData) {
-                    final contacts = snapshot.data!.contacts ?? [];
+            if (selectedTab == 0) ...[
+              10.height(),
+              BlocConsumer(
+                bloc: markSpamBloc,
+                listener: (context, state) {
+                  if (state is BlockUnBlockState) {
+                    if (state.value.statusCode == 200) {
+                      showCustomDialog(context,
+                          dialogType: DialogType.success,
+                          subTitle: state.value.message);
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(context, state.value.message);
+                    } else {
+                      showCustomDialog(context,
+                          dialogType: DialogType.failed,
+                          subTitle: state.value.message.toString());
+                    }
+                    markSpamBloc.add(GetBlockContactEvent());
+                    // markSpamBloc.add(GetSpamEvent());
+                  }
+                },
+                builder: (context, state) {
+                  if (state is ApiErrorState) {
+                    return Center(child: Text('Error: ${state.value}'));
+                  }
+                  if (state is GetBlockContactState) {
+                    final contacts = state.value.blockcontactslist ?? [];
+                    if (contacts.isEmpty) {
+                      return Center(
+                        child: Text(appLocalization(context).noContacts),
+                      );
+                    }
                     return ListView.builder(
                       shrinkWrap: true,
                       itemCount: contacts.length,
                       itemBuilder: (context, index) {
                         final contact = contacts[index];
-                        return ListTile(
-                          title: Text(contact.name),
+                        return CustomListTile(
+                          leading: const CircleAvatar(
+                            backgroundImage:
+                                AssetImage(IconConstants.icspamCircle),
+                          ),
+                          title: Text(
+                            contact.name ?? "",
+                            style: textTheme(context).titleMedium,
+                          ),
+                          subtitle: Text(contact.mobileNo ?? ""),
+                          trailing: InkWell(
+                              onTap: () {
+                                markSpamBloc.add(BlockUnBlockEvent(
+                                    contactId: contact.id ?? "",
+                                    comments: "unblock"));
+                              },
+                              child: const Icon(Icons.delete)),
                           // subtitle: Text(contact.phone),
                         );
                       },
                     );
-                  } else {
-                    return const Center(
-                        child: Text('No blocked contacts found.'));
                   }
+                  return const Loader();
                 },
               ),
-              /*
-              ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: items.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final imagePath = items[index]['imagePath'] ?? 'Unknown';
-                  final iconConst = items[index]['iconConst'] ?? 'Unknown';
-                  final number = items[index]['Number'] ?? 'Unknown';
-                  return ListTile(
-                    leading: Image.asset(
-                      imagePath,
-                      width: MediaQuery.of(context).size.width * 8 / 100,
-                      height: MediaQuery.of(context).size.height * 8 / 100,
-                    ),
-                    title: Text(
-                      number,
-                      style: TextStyle(
-                          color: AppColor.gracyColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                          fontFamily: AppFont.fontFamily),
-                    ),
-                    trailing: Image.asset(
-                      iconConst,
-                      width: MediaQuery.of(context).size.width * 8 / 100,
-                      height: MediaQuery.of(context).size.height * 8 / 100,
-                    ),
-                  );
-                },
-              ),
-              */
             ] else
               ...[]
           ]),
         ),
       ),
     );
+  }
+}
+
+class CustomTab extends StatelessWidget {
+  final int index;
+  final int selectedTab;
+  final void Function() onTap;
+  final String text;
+  const CustomTab(
+      {super.key,
+      required this.selectedTab,
+      required this.onTap,
+      required this.text,
+      required this.index});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          height: MediaQuery.of(context).size.height * 6 / 100,
+          width: MediaQuery.of(context).size.width * 40 / 100,
+          decoration: BoxDecoration(
+              color: selectedTab == index
+                  ? AppColor.callColor
+                  : AppColor.secondryColor,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(
+                color: selectedTab == index
+                    ? AppColor.callColor
+                    : AppColor.borderstekColor,
+              )),
+          child: Center(
+              child: Text(
+            text,
+            style: TextStyle(
+                color: selectedTab == index
+                    ? AppColor.secondryColor
+                    : AppColor.callColor,
+                fontSize: 18,
+                fontFamily: AppFont.fontFamily,
+                fontWeight: FontWeight.w600),
+          )),
+        ));
   }
 }

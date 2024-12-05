@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-BlockedContactListResponse blockedContactListResponseFromJson(String str) => BlockedContactListResponse.fromJson(json.decode(str));
+BlockedContactListResponse blockedContactListResponseFromJson(String str) =>
+    BlockedContactListResponse.fromJson(json.decode(str));
 
-String blockedContactListResponseToJson(BlockedContactListResponse data) => json.encode(data.toJson());
+String blockedContactListResponseToJson(BlockedContactListResponse data) =>
+    json.encode(data.toJson());
 
 class BlockedContactListResponse {
   final int? statusCode;
@@ -17,18 +19,21 @@ class BlockedContactListResponse {
     this.blockcontactslist,
   });
 
-  factory BlockedContactListResponse.fromJson(Map<String, dynamic> json) => BlockedContactListResponse(
-    statusCode: json["status_code"],
-    blockcontactslist: json["blockcontactslist"] == null ? [] : List<Blockcontactslist>.from(json["blockcontactslist"]!.map((x) => Blockcontactslist.fromJson(x))),
-  );
-
-  get contacts => null;
-
+  factory BlockedContactListResponse.fromJson(Map<String, dynamic> json) =>
+      BlockedContactListResponse(
+        statusCode: json["status_code"],
+        blockcontactslist: json["blockcontactslist"] == null
+            ? []
+            : List<Blockcontactslist>.from(json["blockcontactslist"]!
+                .map((x) => Blockcontactslist.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status_code": statusCode,
-    "blockcontactslist": blockcontactslist == null ? [] : List<dynamic>.from(blockcontactslist!.map((x) => x.toJson())),
-  };
+        "status_code": statusCode,
+        "blockcontactslist": blockcontactslist == null
+            ? []
+            : List<dynamic>.from(blockcontactslist!.map((x) => x.toJson())),
+      };
 }
 
 class Blockcontactslist {
@@ -44,17 +49,18 @@ class Blockcontactslist {
     this.name,
   });
 
-  factory Blockcontactslist.fromJson(Map<String, dynamic> json) => Blockcontactslist(
-    id: json["id"],
-    mobileNo: json["mobile_no"],
-    comments: json["comments"],
-    name: json["name"],
-  );
+  factory Blockcontactslist.fromJson(Map<String, dynamic> json) =>
+      Blockcontactslist(
+        id: json["id"],
+        mobileNo: json["mobile_no"],
+        comments: json["comments"],
+        name: json["name"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "mobile_no": mobileNo,
-    "comments": comments,
-    "name": name,
-  };
+        "id": id,
+        "mobile_no": mobileNo,
+        "comments": comments,
+        "name": name,
+      };
 }

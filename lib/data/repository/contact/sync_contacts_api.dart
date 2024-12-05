@@ -34,6 +34,19 @@ Future<ContactListResponse> syncContacts(List<Contact> contacts) async {
             : "";
     request.fields["contacts_list[$i][email]"] =
         contacts[i].emails.isNotEmpty ? contacts[i].emails.first.address : "";
+//organization
+    // request.fields["contacts_list[$i][organization][company]"] =
+    //     contacts[i].emails.isNotEmpty
+    //         ? contacts[i].organization?.company ?? ""
+    //         : "";
+    // request.fields["contacts_list[$i][organization][department]"] =
+    //     contacts[i].emails.isNotEmpty
+    //         ? contacts[i].organization?.department ?? ""
+    //         : "";
+    // request.fields["contacts_list[$i][organization][jobDescription]"] =
+    //     contacts[i].emails.isNotEmpty
+    //         ? contacts[i].organization?.jobDescription ?? ""
+    //         : "";
   }
 
   request.headers.addAll(headers);
