@@ -30,11 +30,11 @@ class _PlanTypeState extends State<PlanType> {
                 IconConstants.icsubsription,
                 height: MediaQuery.of(context).size.height * 18 / 100,
               ),
-              const Center(
+               Center(
                   child: Padding(
                 padding: EdgeInsets.only(left: 50, right: 50),
                 child: Text(
-                  StringConstants.selectionplantext,
+                 appLocalization(context).chooseYourPlan,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.bluelightColor,
@@ -46,10 +46,10 @@ class _PlanTypeState extends State<PlanType> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 1 / 100,
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: Text(
-                  StringConstants.blockspamtext,
+                  appLocalization(context).blockAccuracy,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.verifyColor,
@@ -89,8 +89,8 @@ class _PlanTypeState extends State<PlanType> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          StringConstants.personalProtectiontext,
+                         Text(
+                          appLocalization(context).personalProtection,
                           style: TextStyle(
                               color: AppColor.callColor,
                               fontSize: 18,
@@ -101,8 +101,8 @@ class _PlanTypeState extends State<PlanType> {
                           height:
                               MediaQuery.of(context).size.height * 0.5 / 100,
                         ),
-                        const Text(
-                          StringConstants.callblockingtext,
+                         Text(
+                           appLocalization(context).spamScamDetection,
                           style: TextStyle(
                               color: AppColor.borderstekColor,
                               fontSize: 14,
@@ -113,8 +113,8 @@ class _PlanTypeState extends State<PlanType> {
                           height:
                               MediaQuery.of(context).size.height * 0.5 / 100,
                         ),
-                        const Text(
-                          StringConstants.dollartext,
+                         Text(
+                          appLocalization(context).personalMth,
                           style: TextStyle(
                               color: AppColor.callColor,
                               fontSize: 16,
@@ -152,8 +152,8 @@ class _PlanTypeState extends State<PlanType> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          StringConstants.callbunbletext,
+                         Text(
+                          appLocalization(context).callSMSBundle,
                           style: TextStyle(
                               color: AppColor.callColor,
                               fontSize: 18,
@@ -164,8 +164,8 @@ class _PlanTypeState extends State<PlanType> {
                           height:
                               MediaQuery.of(context).size.height * 0.5 / 100,
                         ),
-                        const Text(
-                          StringConstants.smsblockingtext,
+                         Text(
+                          appLocalization(context).spamSMSProtect,
                           style: TextStyle(
                               color: AppColor.borderstekColor,
                               fontSize: 14,
@@ -176,8 +176,8 @@ class _PlanTypeState extends State<PlanType> {
                           height:
                               MediaQuery.of(context).size.height * 0.5 / 100,
                         ),
-                        const Text(
-                          StringConstants.dollarpointtext,
+                         Text(
+                          appLocalization(context).smsMth,
                           style: TextStyle(
                               color: AppColor.callColor,
                               fontSize: 16,
@@ -199,7 +199,7 @@ class _PlanTypeState extends State<PlanType> {
                   });
                 },
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 18 / 100,
+                  height: MediaQuery.of(context).size.height * 20 / 100,
                   width: MediaQuery.of(context).size.width * 90 / 100,
                   decoration: BoxDecoration(
                       color: selectedTab == 2
@@ -215,8 +215,8 @@ class _PlanTypeState extends State<PlanType> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          StringConstants.completebunbletext,
+                         Text(
+                          appLocalization(context).completeProtectionBundle,
                           style: TextStyle(
                               color: AppColor.callColor,
                               fontSize: 18,
@@ -227,8 +227,8 @@ class _PlanTypeState extends State<PlanType> {
                           height:
                               MediaQuery.of(context).size.height * 0.5 / 100,
                         ),
-                        const Text(
-                          StringConstants.emailblockingtext,
+                         Text(
+                          appLocalization(context).spamSMSEmail,
                           style: TextStyle(
                               color: AppColor.borderstekColor,
                               fontSize: 14,
@@ -239,8 +239,8 @@ class _PlanTypeState extends State<PlanType> {
                           height:
                               MediaQuery.of(context).size.height * 0.5 / 100,
                         ),
-                        const Text(
-                          StringConstants.dollarhightext,
+                         Text(
+                          appLocalization(context).completeMth,
                           style: TextStyle(
                               color: AppColor.callColor,
                               fontSize: 16,

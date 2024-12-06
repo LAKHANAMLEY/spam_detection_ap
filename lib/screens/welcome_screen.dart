@@ -14,14 +14,14 @@ class _WelcomeState extends State<Welcome> {
   String? errorMessage;
 
   List<LanguageData> languages = [];
-  Future<void> fetchLanguagies() async {
+  Future<void> fetchLang() async {
     setState(() {
       isLoading = true;
       errorMessage = null;
     });
 
     try {
-      final fetchedCategories = await ApiService.fetchLanguagies();
+      final fetchedCategories = await fetchLanguages();
       print(fetchedCategories.toString());
       setState(() {
         languages = fetchedCategories.languagelist ?? [];
@@ -38,7 +38,7 @@ class _WelcomeState extends State<Welcome> {
   @override
   void initState() {
     super.initState();
-    fetchLanguagies();
+    fetchLang();
   }
 
   @override

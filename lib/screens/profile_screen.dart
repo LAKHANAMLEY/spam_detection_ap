@@ -9,6 +9,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  //LanguageData? selectedLanguage;
   final List<String> imageUrl = [
     IconConstants.icspamCheck,
     IconConstants.icClock,
@@ -18,11 +19,13 @@ class _ProfileState extends State<Profile> {
   final List<String> cardTexts = ['3', '68s', '25', '38'];
 
   final List<String> spamTexts = [
-    StringConstants.spamcallstext,
+    StringConstants.spamIdentifiedtext,
     StringConstants.timesavestext,
     StringConstants.unknowntext,
     StringConstants.messagestext,
   ];
+
+
   String? _selectedItem;
   final List<String> _items = [
     'Last 30 days',
@@ -31,12 +34,89 @@ class _ProfileState extends State<Profile> {
     'This year',
     'All time'
   ];
+  void _showEditOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+      ),
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                appLocalization(context).changeALanguage,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 16.0),
+              // ListTile(
+              //   leading: const Icon(Icons.language, color: Colors.blue),
+              //   title: const Text('English'),
+              //   onTap: () {
+              //     //Navigator.pop(context);
+              //     // Call your camera function here
+              //    // _takePhoto();
+              //   },
+              // ),
+              //yaha pr api se fetch krke list show krni thi
+              FutureBuilder(future: fetchLanguages(), builder: (context,AsyncSnapshot<CountryLanguageResponse> snapshot) {
+                if(snapshot.hasData){
+                  var languages = snapshot.data?.languagelist??[];
+
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: languages.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        leading: const Icon(Icons.language, color: Colors.green),
+                        title:  Text(languages[index].name??""),
+                        onTap: () {
+                          localizationBloc.add(ChangeLocaleEvent(Locale.fromSubtags(languageCode:  languages[index].id??"")));
+                          // Navigator.pop(context);
+                          // Call your gallery function here
+                          //_chooseFromGallery();
+                        },
+                      );
+                    }
+                  );
+                }return Loader();
+              },),
+              // ListTile(
+              //   leading: const Icon(Icons.language, color: Colors.green),
+              //   title: const Text('Spanish'),
+              //   onTap: () {
+              //     //localizationBloc.add(ChangeLocaleEvent(Locale.fromSubtags(languageCode:  selectedLanguage?.id??"")));
+              //    // Navigator.pop(context);
+              //     // Call your gallery function here
+              //     //_chooseFromGallery();
+              //   },
+              // ),
+              const SizedBox(height: 8.0),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  appLocalization(context).cancelTxt,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   @override
   void initState() {
     // userBloc.add(GetUserProfileEvent());
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
+
     super.initState();
+
   }
 
   @override
@@ -212,8 +292,8 @@ class _ProfileState extends State<Profile> {
                                       4 /
                                       100,
                                 ),
-                                const Text(
-                                  StringConstants.upgradetext,
+                                 Text(
+                                  appLocalization(context).upgradePremium,
                                   style: TextStyle(
                                       color: AppColor.secondryColor,
                                       fontSize: 20,
@@ -391,7 +471,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         10.height(),
                         SubMenu(
-                          title: 'Edit Profile',
+                          title: appLocalization(context).editProfile,
                           icon: IconConstants.icEdit,
                           onTap: () {
                             Navigator.push(
@@ -402,7 +482,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         10.height(),
                         SubMenu(
-                          title: 'Edit Security Pin',
+                          title: appLocalization(context).editSecurityPin,
                           icon: IconConstants.icEditSecurity,
                           onTap: () {
                             Navigator.push(
@@ -424,17 +504,180 @@ class _ProfileState extends State<Profile> {
                                         const ChangePassword()));
                           },
                         ),
+<<<<<<< HEAD
+                        SubMenu(
+                          title: appLocalization(context).changePassword,
+                          icon: IconConstants.icchangePass,
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const EditProfile()));
+                          },
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        SubMenu(
+                          title: appLocalization(context).addAlternativeEmail,
+=======
                         10.height(),
                         SubMenu(
                           title: 'Add Alertantive Email',
+>>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc
                           icon: IconConstants.icalternativeEmail,
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
+<<<<<<< HEAD
+                                    const EditSecurityPin()));
+                          },
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        SubMenu(
+                          title: appLocalization(context).changeLanguage,
+                          icon: IconConstants.icalternativeEmail,
+                          onTap: () {
+                            _showEditOptions(context);
+                          },
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        SubMenu(
+                          title: appLocalization(context).familyList,
+                          icon: IconConstants.icalternativeEmail,
+                          onTap: () {
+                            Navigator.pushNamed(context, AppRoutes.familyMemberList);
+                          },
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        /*Container(
+                          height: MediaQuery.of(context).size.height * 7 / 100,
+                          width: MediaQuery.of(context).size.height * 90 / 100,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(2.0)),
+                              border: Border.all(
+                                  color: AppColor.greyarrowColor, width: 1),
+                              color: AppColor.secondryColor),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  IconConstants.icchangePass,
+                                  height: MediaQuery.of(context).size.height *
+                                      5 /
+                                      100,
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      2 /
+                                      100,
+                                ),
+                                 Text(
+                                   appLocalization(context).changePassword,
+                                  style: TextStyle(
+                                      color: AppColor.thumbColor, fontSize: 18),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      30 /
+                                      100,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ChangePassword()));
+                                  },
+                                  child: Image.asset(
+                                    IconConstants.icviewArrow,
+                                    height: MediaQuery.of(context).size.height *
+                                        6 /
+                                        100,
+                                    width: MediaQuery.of(context).size.width *
+                                        6 /
+                                        100,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height * 7 / 100,
+                          width: MediaQuery.of(context).size.height * 90 / 100,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(2.0)),
+                              border: Border.all(
+                                  color: AppColor.greyarrowColor, width: 1),
+                              color: AppColor.secondryColor),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  IconConstants.icalternativeEmail,
+                                  height: MediaQuery.of(context).size.height *
+                                      6 /
+                                      100,
+                                  width: MediaQuery.of(context).size.width *
+                                      6 /
+                                      100,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      2 /
+                                      100,
+                                ),
+                                Text(
+                                  appLocalization(context).addAlternativeEmail,
+                                  style: TextStyle(
+                                      color: AppColor.thumbColor, fontSize: 18),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      20 /
+                                      100,
+                                ),
+                                Image.asset(
+                                  IconConstants.icviewArrow,
+                                  height: MediaQuery.of(context).size.height *
+                                      6 /
+                                      100,
+                                  width: MediaQuery.of(context).size.width *
+                                      6 /
+                                      100,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+
+                         */
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 5 / 100,
+=======
                                         const ChangePassword()));
                           },
+>>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc
                         ),
                         10.height(),
                       ],
@@ -470,6 +713,34 @@ class SubMenu extends StatelessWidget {
               color: AppColor.greyarrowColor,
             ),
             color: AppColor.secondryColor),
+<<<<<<< HEAD
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    Image.asset(
+                      icon,
+                      height: MediaQuery.of(context).size.height * 5 / 100,
+                      width: MediaQuery.of(context).size.width * 5 / 100,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 2 / 100,
+                    ),
+                    Expanded(
+                      child: Text(
+                        title ,
+                        style: const TextStyle(
+                            color: AppColor.thumbColor, fontSize: 18),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+=======
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -490,6 +761,7 @@ class SubMenu extends StatelessWidget {
                 ),
               ],
             ),
+>>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc
 
             // SizedBox(
             //   width: MediaQuery.of(context).size.width * 46 / 100,

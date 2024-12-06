@@ -566,7 +566,7 @@ class _LoginState extends State<Login> {
                                 builder: (BuildContext context) =>
                                     const Register()));
                       },
-                      child: const Text(StringConstants.registertext,
+                      child:  Text( appLocalization(context).register,
                           style: TextStyle(
                               color: AppColor.yellowlightColor,
                               fontWeight: FontWeight.bold,
@@ -650,7 +650,7 @@ class _LoginState extends State<Login> {
                */
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
                 AppButton(
-                  text: StringConstants.otptext,
+                  text:appLocalization(context).getOtp,
                   onPress: _verifyPhoneNumber,
                 ),
                 SizedBox(
@@ -676,8 +676,8 @@ class _LoginState extends State<Login> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      StringConstants.donttext,
+                    Text(
+                      appLocalization(context).dontHaveAnAccount,
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontFamily: AppFont.fontFamily,
@@ -694,7 +694,7 @@ class _LoginState extends State<Login> {
                                 builder: (BuildContext context) =>
                                     const Register()));
                       },
-                      child: const Text(StringConstants.registertext,
+                      child: Text( appLocalization(context).register,
                           style: TextStyle(
                               color: AppColor.yellowlightColor,
                               fontWeight: FontWeight.bold,
