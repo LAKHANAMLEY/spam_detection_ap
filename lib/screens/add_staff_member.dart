@@ -174,7 +174,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               },
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 2,
                           ),
                           AppButton(

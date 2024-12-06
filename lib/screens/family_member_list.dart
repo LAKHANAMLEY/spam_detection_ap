@@ -54,7 +54,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
         ),
         title: Text(
           appLocalization(context).familyList,
-          style: TextStyle(
+          style: const TextStyle(
               color: AppColor.callColor,
               fontFamily: AppFont.fontFamily,
               fontSize: 18,
@@ -71,7 +71,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
             onChanged: (value) => filterSearchResults(value),
             controller: editingController,
             decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search),
+              prefixIcon: const Icon(Icons.search),
               hintText: appLocalization(context).searchHere,
               border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(6)),

@@ -567,7 +567,7 @@ class _LoginState extends State<Login> {
                                     const Register()));
                       },
                       child:  Text( appLocalization(context).register,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.yellowlightColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 15)),
@@ -678,7 +678,7 @@ class _LoginState extends State<Login> {
                   children: [
                     Text(
                       appLocalization(context).dontHaveAnAccount,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           fontFamily: AppFont.fontFamily,
                           color: AppColor.greylightColor,
@@ -695,7 +695,7 @@ class _LoginState extends State<Login> {
                                     const Register()));
                       },
                       child: Text( appLocalization(context).register,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.yellowlightColor,
                               fontWeight: FontWeight.bold,
                               fontSize: 15)),

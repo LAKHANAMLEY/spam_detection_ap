@@ -40,7 +40,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: 'Staff List',
       ),
       backgroundColor: AppColor.secondryColor,
@@ -52,7 +52,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
             onChanged: (value) => filterSearchResults(value),
             controller: editingController,
             decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search),
+              prefixIcon: const Icon(Icons.search),
               hintText: appLocalization(context).searchHere,
               border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(6)),

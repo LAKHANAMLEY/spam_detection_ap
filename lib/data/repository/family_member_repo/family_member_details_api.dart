@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/family_member_details_model.dart';
 
 Future<FamilyMemberDetailsResponse> getFamilyDetail(String id) async {
   final response = await http.get(

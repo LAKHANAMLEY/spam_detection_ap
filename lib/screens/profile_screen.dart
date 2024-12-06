@@ -89,7 +89,7 @@ class _ProfileState extends State<Profile> {
                           );
                         });
                   }
-                  return Loader();
+                  return const Loader();
                 },
               ),
               // ListTile(
@@ -109,7 +109,7 @@ class _ProfileState extends State<Profile> {
                 },
                 child: Text(
                   appLocalization(context).cancelTxt,
-                  style: TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.red),
                 ),
               ),
             ],
@@ -302,7 +302,7 @@ class _ProfileState extends State<Profile> {
                                 ),
                                 Text(
                                   appLocalization(context).upgradePremium,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: AppColor.secondryColor,
                                       fontSize: 20,
                                       fontFamily: AppFont.fontFamily,

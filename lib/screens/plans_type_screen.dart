@@ -32,11 +32,11 @@ class _PlanTypeState extends State<PlanType> {
               ),
                Center(
                   child: Padding(
-                padding: EdgeInsets.only(left: 50, right: 50),
+                padding: const EdgeInsets.only(left: 50, right: 50),
                 child: Text(
                  appLocalization(context).chooseYourPlan,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.bluelightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
@@ -47,11 +47,11 @@ class _PlanTypeState extends State<PlanType> {
                 height: MediaQuery.of(context).size.height * 1 / 100,
               ),
                Padding(
-                padding: EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Text(
                   appLocalization(context).blockAccuracy,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.verifyColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -91,7 +91,7 @@ class _PlanTypeState extends State<PlanType> {
                       children: [
                          Text(
                           appLocalization(context).personalProtection,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.callColor,
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -103,7 +103,7 @@ class _PlanTypeState extends State<PlanType> {
                         ),
                          Text(
                            appLocalization(context).spamScamDetection,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.borderstekColor,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -115,7 +115,7 @@ class _PlanTypeState extends State<PlanType> {
                         ),
                          Text(
                           appLocalization(context).personalMth,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.callColor,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -154,7 +154,7 @@ class _PlanTypeState extends State<PlanType> {
                       children: [
                          Text(
                           appLocalization(context).callSMSBundle,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.callColor,
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -166,7 +166,7 @@ class _PlanTypeState extends State<PlanType> {
                         ),
                          Text(
                           appLocalization(context).spamSMSProtect,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.borderstekColor,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -178,7 +178,7 @@ class _PlanTypeState extends State<PlanType> {
                         ),
                          Text(
                           appLocalization(context).smsMth,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.callColor,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -217,7 +217,7 @@ class _PlanTypeState extends State<PlanType> {
                       children: [
                          Text(
                           appLocalization(context).completeProtectionBundle,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.callColor,
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
@@ -229,7 +229,7 @@ class _PlanTypeState extends State<PlanType> {
                         ),
                          Text(
                           appLocalization(context).spamSMSEmail,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.borderstekColor,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
@@ -241,7 +241,7 @@ class _PlanTypeState extends State<PlanType> {
                         ),
                          Text(
                           appLocalization(context).completeMth,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColor.callColor,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,

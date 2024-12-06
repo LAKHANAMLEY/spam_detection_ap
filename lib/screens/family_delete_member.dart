@@ -10,7 +10,7 @@ class FamilyDeleteMember extends StatefulWidget {
 class _FamilyDeleteMemberState extends State<FamilyDeleteMember> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: CustomAppBar(),
     );
   }

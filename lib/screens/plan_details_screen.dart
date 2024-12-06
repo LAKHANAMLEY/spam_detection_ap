@@ -49,11 +49,11 @@ class _PlanDetailState extends State<PlanDetail> {
             ),
              Center(
                 child: Padding(
-              padding: EdgeInsets.only(left: 50, right: 50),
+              padding: const EdgeInsets.only(left: 50, right: 50),
               child: Text(
                 appLocalization(context).personalProtection,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     color: AppColor.callColor,
                     fontSize: 25,
                     fontFamily: AppFont.fontFamily,
@@ -64,11 +64,11 @@ class _PlanDetailState extends State<PlanDetail> {
               height: MediaQuery.of(context).size.height * 1 / 100,
             ),
              Padding(
-              padding: EdgeInsets.only(left: 50, right: 50),
+              padding: const EdgeInsets.only(left: 50, right: 50),
               child: Text(
                 appLocalization(context).spamScamDetection,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     color: AppColor.verifyColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -200,7 +200,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                   ),
                                   Text(
                                     appLocalization(context).sms,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontFamily: AppFont.fontFamily,
                                         color: AppColor.callColor,
@@ -260,7 +260,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                   ),
                                    Text(
                                      appLocalization(context).email,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontFamily: AppFont.fontFamily,
                                         color: AppColor.callColor,
@@ -321,7 +321,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                   mainAxisAlignment: MainAxisAlignment
                                       .center, // Centers the text vertically
                                   children: [
-                                    Text(
+                                    const Text(
                                       "1",
                                       style: TextStyle(
                                         color: AppColor.secondryColor,
@@ -332,7 +332,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                     ),
                                     Text(
                                       appLocalization(context).month,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: AppColor.secondryColor,
                                         fontSize: 20,
                                         fontFamily: AppFont.fontFamily,
@@ -418,7 +418,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                   mainAxisAlignment: MainAxisAlignment
                                       .center, // Centers the text vertically
                                   children: [
-                                    Text(
+                                    const Text(
                                       "3",
                                       style: TextStyle(
                                         color: AppColor.secondryColor,
@@ -429,7 +429,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                     ),
                                     Text(
                                       appLocalization(context).month,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: AppColor.secondryColor,
                                         fontSize: 20,
                                         fontFamily: AppFont.fontFamily,
@@ -515,7 +515,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                   mainAxisAlignment: MainAxisAlignment
                                       .center, // Centers the text vertically
                                   children: [
-                                    Text(
+                                    const Text(
                                       "9",
                                       style: TextStyle(
                                         color: AppColor.secondryColor,
@@ -526,7 +526,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                     ),
                                     Text(
                                       appLocalization(context).month,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: AppColor.secondryColor,
                                         fontSize: 20,
                                         fontFamily: AppFont.fontFamily,

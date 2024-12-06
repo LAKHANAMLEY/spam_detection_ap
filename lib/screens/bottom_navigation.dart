@@ -120,7 +120,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                                 ),
                                 Text(
                                   appLocalization(context).outgoingCalls,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
@@ -145,7 +145,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                                       100,
                                 ),
                                 Text(appLocalization(context).incomingCalls,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600))
@@ -167,7 +167,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                                       100,
                                 ),
                                 Text(appLocalization(context).missedCalls,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600))
@@ -191,7 +191,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                                       100,
                                 ),
                                 Text(appLocalization(context).blockedCalls,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600))
@@ -211,7 +211,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                                       100,
                                 ),
                                 Text(appLocalization(context).deleteCalls,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.w600))
