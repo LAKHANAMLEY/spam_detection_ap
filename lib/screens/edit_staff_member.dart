@@ -1,16 +1,15 @@
 import 'package:spam_delection_app/lib.dart';
 
-class EditFamilyMember extends StatefulWidget {
-  final FamilyMember? familyMember;
+class EditStaffMember extends StatefulWidget {
+  final StaffMember? staffMember;
 
-  const EditFamilyMember({super.key, this.familyMember});
+  const EditStaffMember({super.key, this.staffMember});
 
   @override
-  State<EditFamilyMember> createState() => _EditFamilyMemberState();
+  State<EditStaffMember> createState() => _EditStaffMemberState();
 }
 
-class _EditFamilyMemberState extends State<EditFamilyMember> {
-  bool agreeToTerms = false;
+class _EditStaffMemberState extends State<EditStaffMember> {
   String? _errorMessage;
 
   final _formKey = GlobalKey<FormState>();
@@ -24,9 +23,9 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
   final ImagePicker _picker = ImagePicker();
   XFile? _selectedImage;
 
-  var familyMemberBloc = ApiBloc(ApiBlocInitialState());
+  var staffMemberBloc = ApiBloc(ApiBlocInitialState());
 
-  FamilyMember? familyMember;
+  StaffMember? staffMember;
 
   Future<void> _takePhoto() async {
     try {
@@ -112,10 +111,9 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((s) {
-      //iska use view render hone k bad ye call hota h
-      var arg = args(context) as EditFamilyMember;
-      familyMemberBloc
-          .add(GetFamilyMemberDetailEvent(arg.familyMember?.userId ?? ""));
+      var arg = args(context) as EditStaffMember;
+      staffMemberBloc
+          .add(GetStaffMemberDetailEvent(arg.staffMember?.userId ?? ""));
     });
 
     super.initState();
@@ -125,18 +123,18 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: const CustomAppBar(title: "Edit Member"),
+        appBar: const CustomAppBar(title: "Edit Staff Member"),
         body: SafeArea(
           child: BlocConsumer(
-              bloc: familyMemberBloc,
+              bloc: staffMemberBloc,
               listener: (context, state) {
-                if (state is GetFamilyMemberDetailState) {
+                if (state is GetStaffMemberDetailState) {
                   //yaha family member detail get krege
                   if (state.value.statusCode == 200) {
-                    if (state.value.familymemberdetails != null) {
-                      familyMember = state.value.familymemberdetails;
-                      if (familyMember != null) {
-                        updateData(familyMember!);
+                    if (state.value.staffmemberdetails != null) {
+                      staffMember = state.value.staffmemberdetails;
+                      if (staffMember != null) {
+                        updateData(staffMember!);
                       }
                       // sharedPrefBloc.add(GetUserDataFromLocalEvent());//ye shared pref se get kia h isko v comment krege
                     }
@@ -149,7 +147,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                         dialogType: DialogType.failed);
                   }
                 }
-                if (state is FamilyEditMemberState) {
+                if (state is StaffEditMemberState) {
                   //yha jb response milega jb aap edit family member api hit kroge
                   if (state.value.statusCode == 200) {
                     showCustomDialog(context,
@@ -164,8 +162,8 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                         dialogType: DialogType.failed);
                   }
                   //yaha jese hi member edit hota h uski detail again get krege
-                  familyMemberBloc.add(
-                      GetFamilyMemberDetailEvent(familyMember?.userId ?? ''));
+                  staffMemberBloc.add(
+                      GetStaffMemberDetailEvent(staffMember?.userId ?? ''));
                 }
               },
               builder: (context, state) {
@@ -283,43 +281,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                   }
                                   return null;
                                 },
-                                // okay sir but test align and suffic icon sab alag dekh rha hai
-                                //ab jitne text field h is screen pr sbhi ko cstm me convert kro or valida
-
-                                //error show krne k liye iska use krege
-                                //itna sb kuch type krne ki need nhi h custom text field ka use kro
-                                // decoration: InputDecoration(
-                                //   hintText: 'First name',
-                                //
-                                //   hintStyle: const TextStyle(
-                                //       color: AppColor.lightfillColor),
-                                //   enabledBorder: OutlineInputBorder(
-                                //     borderRadius: BorderRadius.circular(2),
-                                //     borderSide: const BorderSide(
-                                //         width: 1.5, color: AppColor.fillColor),
-                                //   ),
-                                //   focusedBorder: const OutlineInputBorder(
-                                //     borderSide: BorderSide(
-                                //         color: AppColor.fillColor, width: 1.5),
-                                //     borderRadius:
-                                //         BorderRadius.all(Radius.circular(2)),
-                                //   ),
-                                //   filled: true,
-                                //   fillColor: AppColor.fillColor.withOpacity(0.2),
-                                //   suffixIcon: GestureDetector(
-                                //     onTap: () {},
-                                //     child: SizedBox(
-                                //       height: 10,
-                                //       width: 10,
-                                //       child: Padding(
-                                //         padding: const EdgeInsets.symmetric(
-                                //             vertical: 10),
-                                //         child:
-                                //             Image.asset(IconConstants.icUsername),
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
                               ),
                               10.height(),
                               CustomTextField(
@@ -336,7 +297,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                               10.height(),
                               CustomTextField(
                                 controller: relationController,
-                                hintText: 'Relation',
+                                hintText: 'Position',
                                 suffix: Image.asset(IconConstants.icUsername),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
@@ -349,7 +310,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                               10.height(),
                               CustomTextField(
                                 controller: familyidController,
-                                hintText: 'Family Id',
+                                hintText: 'Staff Id',
                                 //suffix: Image.asset(IconConstants.icUsername),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
@@ -394,13 +355,12 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                     //mene only first name me add kia h aap baki kr lena
                                     if (_formKey.currentState?.validate() ??
                                         false) {
-                                      familyMemberBloc
-                                          .add(FamilyEditMemberEvent(
-                                              user: FamilyMember(
+                                      staffMemberBloc.add(StaffEditMemberEvent(
+                                          user: StaffMember(
                                         firstName: firstnameController.text,
                                         lastName: lastnameController.text,
                                         relation: relationController.text,
-                                        userId: familyMember?.userId ?? "",
+                                        userId: staffMember?.userId ?? "",
                                         supportPin: supportpinController.text,
                                         photo: _selectedImage?.path,
                                       )));
@@ -420,10 +380,8 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
         ));
   }
 
-  void updateData(FamilyMember user) {
-    familyMember = user;
-    //yaha data shared pref se get nahi hoga
-    //shared pref ko only current user k case me use kia h
+  void updateData(StaffMember user) {
+    staffMember = user;
     // SharedPrefer.saveUserData(user);// ye shared pref me save kia h data to isko remove krege
     _selectedImage = XFile(user.photo ?? "", mimeType: "http");
     firstnameController.text = user.firstName ?? "";

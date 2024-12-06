@@ -1,24 +1,17 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<Response> staffEditMember({
-  required String firstname,
-  required String lastname,
-  required position,
-  required supportpin,
-  required photo,
-  required staffId,
-}) async {
+Future<Response> staffEditMember({required StaffMember staffMember}) async {
   final response = await http.post(
     Uri.parse(ApiUrlConstants.endPointStaffEditMember),
     headers: await ApiUrlConstants.headers(),
     body: {
-      'first_name': firstname,
-      'last_name': lastname,
-      'position': position,
-      'photo': photo,
-      'staff_id': staffId,
-      'support_pin': supportpin,
+      'first_name': staffMember.firstName,
+      'last_name': staffMember.lastName,
+      'position': staffMember.relation,
+      'photo': staffMember.photo,
+      'staff_id': staffMember.userId,
+      'support_pin': staffMember.supportPin,
     },
   );
   if (response.statusCode == 200) {

@@ -11,10 +11,12 @@ String familyEditMemberResponseToJson(FamilyEditMemberResponse data) => json.enc
 class FamilyEditMemberResponse {
   final int? statusCode;
   final String? message;
+  final dynamic data;
 
   FamilyEditMemberResponse({
     this.statusCode,
     this.message,
+    this.data,
   });
 
   factory FamilyEditMemberResponse.fromJson(Map<String, dynamic> json) => FamilyEditMemberResponse(

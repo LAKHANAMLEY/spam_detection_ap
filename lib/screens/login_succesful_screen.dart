@@ -63,13 +63,8 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
            Text(
-<<<<<<< HEAD
              appLocalization(context).fromUs,
-            style: TextStyle(color: AppColor.gracyColor),
-=======
-            appLocalization(context).fromNowOnYouArePartOfUs,
             style: const TextStyle(color: AppColor.gracyColor),
->>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 5 / 100,

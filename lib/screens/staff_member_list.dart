@@ -1,29 +1,31 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/edit_family_number_screen.dart';
+import 'package:spam_delection_app/screens/add_staff_member.dart';
 
-class FamilyMemberList extends StatefulWidget {
-  const FamilyMemberList({super.key});
+import 'edit_staff_member.dart';
+
+class StaffMemberList extends StatefulWidget {
+  const StaffMemberList({super.key});
 
   @override
-  State<FamilyMemberList> createState() => _FamilyMemberListState();
+  State<StaffMemberList> createState() => _StaffMemberListState();
 }
 
-class _FamilyMemberListState extends State<FamilyMemberList> {
+class _StaffMemberListState extends State<StaffMemberList> {
   final TextEditingController editingController = TextEditingController();
-  List<FamilyMember> contacts = [];
-  late List<FamilyMember> filteredContacts;
-  FamilyMember? selectedCategory;
+  List<StaffMember> contacts = [];
+  late List<StaffMember> filteredContacts;
+  StaffMember? selectedCategory;
 
   String? numberType;
-  List<FamilyMember> categories = [];
+  List<StaffMemberList> categories = [];
 
-  var familyListBloc = ApiBloc(ApiBlocInitialState());
+  var staffListBloc = ApiBloc(ApiBlocInitialState());
 
   @override
   void initState() {
     super.initState();
     filteredContacts = [];
-    familyListBloc.add(GetFamilyMemberListEvent());
+    staffListBloc.add(GetStaffMemberListEvent());
   }
 
   void filterSearchResults(String query) {
@@ -38,31 +40,10 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Image.asset(
-              IconConstants.icbackCircle,
-            ),
-          ),
-        ),
-        title: Text(
-          appLocalization(context).familyList,
-          style: TextStyle(
-              color: AppColor.callColor,
-              fontFamily: AppFont.fontFamily,
-              fontSize: 18,
-              fontWeight: FontWeight.w600),
-        ),
-
-        //centerTitle: true,
+      appBar: CustomAppBar(
+        title: 'Staff List',
       ),
+      backgroundColor: AppColor.secondryColor,
       body: SafeArea(
           child: Column(children: <Widget>[
         Padding(
@@ -101,16 +82,16 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
         ),
         Expanded(
             child: BlocConsumer(
-                bloc: familyListBloc,
+                bloc: staffListBloc,
                 listener: (context, state) {
-                  if (state is GetFamilyMemberListState) {
-                    contacts = state.value.familymemberslist ?? [];
+                  if (state is GetStaffMemberListState) {
+                    contacts = state.value.staffmemberslist ?? [];
                     filteredContacts = contacts;
                   }
                 },
                 builder: (context, state) {
-                  if (state is GetFamilyMemberListState) {
-                    contacts = state.value.familymemberslist ?? [];
+                  if (state is GetStaffMemberListState) {
+                    contacts = state.value.staffmemberslist ?? [];
                     if (filteredContacts.isEmpty) {
                       return const Center(
                         child: Text('No contacts'),
@@ -142,23 +123,25 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                           trailing: PopupMenuButton(
                             itemBuilder: (context) => [
                               PopupMenuItem(
-                                child: const Text("Edit Member"),
+                                child: const Text("Edit Staff Member"),
                                 onTap: () {
                                   Navigator.pushNamed(
-                                      context, AppRoutes.familyEditMember,
-                                      arguments: EditFamilyMember(
-                                          familyMember:
+                                      context, AppRoutes.editStaffMember,
+                                      arguments: EditStaffMember(
+                                          staffMember:
                                               filteredContacts[index]));
                                 },
                               ),
                               PopupMenuItem(
                                 child: const Text("Delete Member "),
                                 onTap: () {
-                                  Navigator.pushNamed(
-                                      context, AppRoutes.familyEditMember,
-                                      arguments: EditFamilyMember(
-                                          familyMember:
+                                  /*Navigator.pushNamed(
+                                          context, AppRoutes.familyEditMember,
+                                          arguments: EditFamilyMember(
+                                              familyMember:
                                               filteredContacts[index]));
+
+                                       */
                                 },
                               ),
                             ],
@@ -182,7 +165,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
         ),
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AddFamilyMember()));
+              MaterialPageRoute(builder: (context) => const AddStaffMember()));
         },
       ),
     );

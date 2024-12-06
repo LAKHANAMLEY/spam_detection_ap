@@ -53,7 +53,7 @@ class ApiUrlConstants {
   //family_member
   static String endPointFamilyMembersList = '$baseUrl/family/getmemberslist';
   static String endPointFamilyMemberDetails =
-      '$baseUrl/family/getmemberdetails/49';
+      '$baseUrl/family/getmemberdetails/';
   static String endPointFamilyAddMember = '$baseUrl/family/add-member?lang=en';
   static String endPointFamilyEditMember =
       '$baseUrl/family/edit-member?lang=en';

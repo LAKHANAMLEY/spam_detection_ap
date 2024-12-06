@@ -8,17 +8,7 @@ class AddFamilyMember extends StatefulWidget {
 }
 
 class _AddFamilyMemberState extends State<AddFamilyMember> {
-  bool isCheckBoxValue = false;
-  bool isPasswordVisible = true;
-  bool isConfirmPasswordVisible = true;
-  bool isApiCalling = false;
-  bool agreeToTerms = false;
-
-  bool _isLoading = false;
-  String? _errorMessage;
   String? enteredPhone;
-
-  final TextEditingController phoneController = TextEditingController();
 
   PhoneNumber? phoneNumber;
 
@@ -30,10 +20,10 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  // final TextEditingController phonenumberController = TextEditingController();//double controlelr
   final TextEditingController relationController = TextEditingController();
- final TextEditingController countryCodeController = TextEditingController();
+  final TextEditingController countryCodeController = TextEditingController();
   final TextEditingController supportpinController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   var addMemberBloc = ApiBloc(ApiBlocInitialState());
 
@@ -51,9 +41,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const FamilyMemberList(
-
-                                  )));
+                              builder: (context) => const FamilyMemberList()));
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,
@@ -174,8 +162,8 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               suffixIcon: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Image.asset(
-                                  IconConstants
-                                      .icEmailadd, // Adjust the path as necessary
+                                  IconConstants.icEmailadd,
+                                  // Adjust the path as necessary
                                   width: MediaQuery.of(context).size.width *
                                       3 /
                                       100,
@@ -241,7 +229,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               ),
                               filled: true,
                               fillColor: AppColor.fillColor.withOpacity(0.2),
-                              suffixIcon: Padding(
+                              /*suffixIcon: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Image.asset(
                                   IconConstants
@@ -254,6 +242,8 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                       100,
                                 ),
                               ),
+
+                               */
                             ),
                           ),
                         ),
@@ -281,7 +271,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               ),
                               filled: true,
                               fillColor: AppColor.fillColor.withOpacity(0.2),
-                              suffixIcon: Padding(
+                              /*suffixIcon: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Image.asset(
                                   IconConstants
@@ -294,6 +284,8 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                       100,
                                 ),
                               ),
+
+                               */
                             ),
                           ),
                         ),
@@ -351,9 +343,9 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                         ),
                         //device connect kro
                         AppButton(
-                          text: "Add Member",
-                          onPress: () {
-                            /*if (emailController.text.isNotEmpty &&
+                            text: "Add Member",
+                            onPress: () {
+                              /*if (emailController.text.isNotEmpty &&
                                 passwordController.text.isNotEmpty &&
                                 firstnameController.text.isNotEmpty &&
                                 lastnameController.text.isNotEmpty &&
@@ -384,10 +376,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                             }
                             */
 
-
-                        ),
-
-
+                            ),
                       ]),
                     ),
                   );

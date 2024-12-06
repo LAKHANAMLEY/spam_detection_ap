@@ -1,7 +1,7 @@
 import 'package:spam_delection_app/lib.dart';
 import 'package:spam_delection_app/screens/edit_family_number_screen.dart';
-
-
+import 'package:spam_delection_app/screens/edit_staff_member.dart';
+import 'package:spam_delection_app/screens/staff_member_list.dart';
 
 class AppRoutes {
   static const splash = "/splash";
@@ -23,7 +23,10 @@ class AppRoutes {
   static const familyMemberList = "/familyMemberList";
   static const familyAddMember = "/familyAddMember";
   static const familyEditMember = "/familyEditMember";
-  // static const contactDetail = "/contactDetail";
+  static const staffMember = "/staffMember";
+  static const editStaffMember = "/editStaffMember";
+
+// static const contactDetail = "/contactDetail";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -45,9 +48,9 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.otpVerification: (context) => const OtpVerify(),
   AppRoutes.familyMemberList: (context) => const FamilyMemberList(),
   AppRoutes.familyAddMember: (context) => const AddFamilyMember(),
-  AppRoutes.familyEditMember: (context) => const EditFamilyNumber(),
-
-
+  AppRoutes.familyEditMember: (context) => const EditFamilyMember(),
+  AppRoutes.staffMember: (context) => const StaffMemberList(),
+  AppRoutes.editStaffMember: (context) => const EditStaffMember(),
 
   // AppRoutes.contactDetail: (context) => const ContactDetail(),
 };

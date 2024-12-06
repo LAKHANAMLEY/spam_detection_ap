@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 {
   "es": [
-    "fromNowOnYouArePartOfUs"
+    "staff"
   ]
 }
-=======
-{}
->>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc

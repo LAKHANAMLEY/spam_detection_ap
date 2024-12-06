@@ -3,6 +3,7 @@ import 'package:spam_delection_app/lib.dart';
 class DeviceCallLogs extends StatefulWidget {
   final bool? showAppBar;
   final String filterBy;
+
   const DeviceCallLogs({super.key, this.showAppBar = true, this.filterBy = ""});
 
   @override
@@ -167,6 +168,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                       child: !isVisible
                                           ? CustomTextField(
                                               controller: searchController,
+                                              fillColor: Colors.white,
                                               prefix: const Icon(
                                                 Icons.search,
                                                 color: Colors.red,

@@ -101,6 +101,7 @@ class UpdateProfileEvent extends ApiEvent {
   final User? user;
 
   UpdateProfileEvent({required this.user});
+
   @override
   List<Object?> get props => [user];
 }
@@ -109,7 +110,14 @@ class GetUserProfileEvent extends ApiEvent {}
 
 class GetFamilyMemberListEvent extends ApiEvent {}
 
-class GetFamilyMemberDetailEvent extends ApiEvent {}
+class GetFamilyMemberDetailEvent extends ApiEvent {
+  final String id;
+
+  GetFamilyMemberDetailEvent(this.id);
+
+  @override
+  List<Object?> get props => [id];
+}
 
 class FamilyAddMemberEvent extends ApiEvent {
   final String email;
@@ -131,6 +139,7 @@ class FamilyAddMemberEvent extends ApiEvent {
     required this.phone,
     required this.countrycode,
   });
+
   @override
   List<Object?> get props => [
         email,
@@ -144,7 +153,7 @@ class FamilyAddMemberEvent extends ApiEvent {
       ];
 }
 
-class FamilyEditMemberEvent extends ApiEvent {
+/*class FamilyEditMemberEvent extends ApiEvent {
   final String firstName;
   final String lastName;
   final String relation;
@@ -162,12 +171,24 @@ class FamilyEditMemberEvent extends ApiEvent {
       [firstName, lastName, relation, supportpin, familyId];
 }
 
+ */
+
+class FamilyEditMemberEvent extends ApiEvent {
+  final FamilyMember user;
+
+  FamilyEditMemberEvent({required this.user});
+
+  @override
+  List<Object?> get props => [user];
+}
+
 class FamilyDeleteMemberEvent extends ApiEvent {
   final String familyId;
 
   FamilyDeleteMemberEvent({
     required this.familyId,
   });
+
   @override
   List<Object?> get props => [familyId];
 }
@@ -190,6 +211,7 @@ class UnBlockEvent extends ApiEvent {
     required this.contactId,
     required this.comments,
   });
+
   @override
   List<Object?> get props => [contactId, comments];
 }
@@ -198,6 +220,7 @@ class CorporateEditProfileEvent extends ApiEvent {
   final UserData? user;
 
   CorporateEditProfileEvent({required this.user});
+
   @override
   List<Object?> get props => [user];
 }
@@ -205,7 +228,14 @@ class CorporateEditProfileEvent extends ApiEvent {
 class GetStaffMemberListEvent extends ApiEvent {}
 
 // Staff member Detail
-class GetStaffMemberDetailEvent extends ApiEvent {}
+class GetStaffMemberDetailEvent extends ApiEvent {
+  final String id;
+
+  GetStaffMemberDetailEvent(this.id);
+
+  @override
+  List<Object?> get props => [id];
+}
 
 class StaffAddMemberEvent extends ApiEvent {
   final String email;
@@ -227,6 +257,7 @@ class StaffAddMemberEvent extends ApiEvent {
     required this.phone,
     required this.countrycode,
   });
+
   @override
   List<Object?> get props => [
         email,
@@ -241,25 +272,12 @@ class StaffAddMemberEvent extends ApiEvent {
 }
 
 class StaffEditMemberEvent extends ApiEvent {
-  final String firstName;
-  final String lastName;
-  final String position;
-  final String staffId;
-  final String supportpin;
-  final String photo;
+  final StaffMember user;
 
-  StaffEditMemberEvent({
-    required this.firstName,
-    required this.lastName,
-    required this.position,
-    required this.supportpin,
-    required this.staffId,
-    required this.photo,
-  });
+  StaffEditMemberEvent({required this.user});
 
   @override
-  List<Object?> get props =>
-      [firstName, lastName, position, supportpin, staffId, photo];
+  List<Object?> get props => [user];
 }
 
 class StaffDeleteMemberEvent extends ApiEvent {
@@ -324,6 +342,7 @@ class EnabledNotificationEvent extends ApiEvent {
     required this.notificationReceive,
     required this.notificationPush,
   });
+
   @override
   List<Object?> get props =>
       [notificationOne, notificationReceive, notificationPush];

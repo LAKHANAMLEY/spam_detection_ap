@@ -19,9 +19,9 @@ Future<Response> staffAddMember({
       'last_name': lastname,
       'email': email,
       'password': password,
-      'postion': position,
+      'position': position,
       'phone': phone,
-      'countrycode': countrycode,
+      'country_code': countrycode,
       'support_pin': supportpin,
     },
   );

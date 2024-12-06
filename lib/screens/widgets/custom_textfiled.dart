@@ -22,6 +22,8 @@ class CustomTextField extends StatelessWidget {
   final bool autofocus;
   final List<TextInputFormatter>? inputFormatters;
   final double? height;
+  final Color? fillColor;
+
   const CustomTextField(
       {super.key,
       this.labelText,
@@ -42,7 +44,8 @@ class CustomTextField extends StatelessWidget {
       this.maxLines = 1,
       this.autofocus = false,
       this.inputFormatters,
-      this.height = 70});
+      this.height = 70,
+      this.fillColor});
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +62,12 @@ class CustomTextField extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 8 / 100,
           // padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
-              color: isDarkMode ? Colors.white : Colors.white,
-              border: Border.all(color: const Color(0xffE1E6EB), width: 1.0),
-              borderRadius: BorderRadius.circular(10)),
+              color: fillColor ??
+                  (isDarkMode
+                      ? Colors.white
+                      : AppColor.fillColor.withOpacity(0.2)),
+              border: Border.all(color: const Color(0xffE1E6EB), width: 1.5),
+              borderRadius: BorderRadius.circular(2)),
           // // constraints: const BoxConstraints(maxHeight: 60, minHeight: 0),
           margin: const EdgeInsets.all(5),
           child: Row(
