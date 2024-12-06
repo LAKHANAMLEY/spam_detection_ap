@@ -305,6 +305,8 @@ class _AddMemberState extends State<AddMember> {
                   },
                 ),
               ),
+              AppButton(text: "Submit", onPress: (){}),
+
             ],
           ),
         ),
@@ -312,3 +314,5 @@ class _AddMemberState extends State<AddMember> {
     );
   }
 }
+//work kr rhe h ye ki nhi?
+// wait sir check krte hai

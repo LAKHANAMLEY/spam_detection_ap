@@ -128,6 +128,7 @@ class StringConstants {
   static const corpotateprotectiontext = 'Corporate Protection';
   static const personalProtectiontext = 'Personal Protection';
   static const upgradetext = 'Upgrade to Premium';
+  static const spamIdentifiedtext='Spam calls identified';
   static const securitytext =
       'You Are Protected Against All The Dangerous Phone Numbers From Our Security Database';
   static const spamCalltext =

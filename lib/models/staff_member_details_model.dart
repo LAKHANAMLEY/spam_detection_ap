@@ -1,42 +1,42 @@
 // To parse this JSON data, do
 //
-//     final familyMemberListResponse = familyMemberListResponseFromJson(jsonString);
+//     final staffMemberDetailsResponse = staffMemberDetailsResponseFromJson(jsonString);
 
-import 'dart:convert';
+import 'package:spam_delection_app/lib.dart';
 
-FamilyMemberListResponse familyMemberListResponseFromJson(String str) =>
-    FamilyMemberListResponse.fromJson(json.decode(str));
+StaffMemberDetailsResponse staffMemberDetailsResponseFromJson(String str) =>
+    StaffMemberDetailsResponse.fromJson(json.decode(str));
 
-String familyMemberListResponseToJson(FamilyMemberListResponse data) =>
+String staffMemberDetailsResponseToJson(StaffMemberDetailsResponse data) =>
     json.encode(data.toJson());
 
-class FamilyMemberListResponse {
+class StaffMemberDetailsResponse {
   final int? statusCode;
-  final List<FamilyMember>? familymemberslist;
+  final StaffMember? staffmemberdetails;
+  final String? message;
 
-  FamilyMemberListResponse({
+  StaffMemberDetailsResponse({
     this.statusCode,
-    this.familymemberslist,
+    this.staffmemberdetails,
+    this.message,
   });
 
-  factory FamilyMemberListResponse.fromJson(Map<String, dynamic> json) =>
-      FamilyMemberListResponse(
+  factory StaffMemberDetailsResponse.fromJson(Map<String, dynamic> json) =>
+      StaffMemberDetailsResponse(
         statusCode: json["status_code"],
-        familymemberslist: json["familymemberslist"] == null
-            ? []
-            : List<FamilyMember>.from(json["familymemberslist"]!
-                .map((x) => FamilyMember.fromJson(x))),
+        staffmemberdetails: json["staffmemberdetails"] == null
+            ? null
+            : StaffMember.fromJson(json["staffmemberdetails"]),
       );
 
   Map<String, dynamic> toJson() => {
         "status_code": statusCode,
-        "familymemberslist": familymemberslist == null
-            ? []
-            : List<dynamic>.from(familymemberslist!.map((x) => x.toJson())),
+        "staffmemberdetails": staffmemberdetails?.toJson(),
+        "message": message,
       };
 }
 
-class FamilyMember {
+class Staffmemberdetails {
   final String? userId;
   final String? firstName;
   final String? lastName;
@@ -48,7 +48,7 @@ class FamilyMember {
   final String? supportPin;
   final String? countryCode;
 
-  FamilyMember({
+  Staffmemberdetails({
     this.userId,
     this.firstName,
     this.lastName,
@@ -61,7 +61,8 @@ class FamilyMember {
     this.countryCode,
   });
 
-  factory FamilyMember.fromJson(Map<String, dynamic> json) => FamilyMember(
+  factory Staffmemberdetails.fromJson(Map<String, dynamic> json) =>
+      Staffmemberdetails(
         userId: json["user_id"],
         firstName: json["first_name"],
         lastName: json["last_name"],

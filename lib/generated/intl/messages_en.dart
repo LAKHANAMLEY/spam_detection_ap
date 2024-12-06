@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Account holder name"),
         "accountNumber": MessageLookupByLibrary.simpleMessage("Account number"),
         "active": MessageLookupByLibrary.simpleMessage("Active"),
+        "addAlternativeEmail":
+            MessageLookupByLibrary.simpleMessage("Add alternative email"),
         "addBankAccount":
             MessageLookupByLibrary.simpleMessage("Add bank account"),
         "addBeneficiary":
@@ -98,22 +100,34 @@ class MessageLookup extends MessageLookupByLibrary {
         "billers": MessageLookupByLibrary.simpleMessage("Billers"),
         "billsNSubscriptions":
             MessageLookupByLibrary.simpleMessage("Bills & Subscriptions"),
+        "blockAccuracy": MessageLookupByLibrary.simpleMessage(
+            "Block all scam, telemarketing and fraud calls thanks to AI -blocking accuracy."),
         "blockedCalls": MessageLookupByLibrary.simpleMessage("Blocked Calls"),
         "callLogs": MessageLookupByLibrary.simpleMessage("Call logs"),
         "callProtection":
             MessageLookupByLibrary.simpleMessage("Call protection"),
+        "callSMSBundle":
+            MessageLookupByLibrary.simpleMessage("Call & SMS Bundle"),
+        "calls": MessageLookupByLibrary.simpleMessage("Calls"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelTxt": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cantAddMoreAccountsForThisBankYouHaveReachedTheLimit":
             MessageLookupByLibrary.simpleMessage(
                 "Can\'t add more accounts for this bank. You\'ve reached the limit."),
         "capture": MessageLookupByLibrary.simpleMessage("Capture"),
         "card": MessageLookupByLibrary.simpleMessage("Card"),
+        "changeALanguage":
+            MessageLookupByLibrary.simpleMessage("Change a Language"),
+        "changeLanguage":
+            MessageLookupByLibrary.simpleMessage("Change Language"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change password"),
         "checkBalance": MessageLookupByLibrary.simpleMessage("Check balance"),
         "checkBalanceBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Check Wallet balance as well as bank account balance or you can manage your accounts like you can add, active, inactive, set primary account or you can delete account."),
+        "chooseYourPlan":
+            MessageLookupByLibrary.simpleMessage("Choose your plan "),
         "city": MessageLookupByLibrary.simpleMessage("City"),
         "clearAllNotifications":
             MessageLookupByLibrary.simpleMessage("Clear all notifications"),
@@ -122,6 +136,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "closeQuery": MessageLookupByLibrary.simpleMessage("Close query"),
         "closed": MessageLookupByLibrary.simpleMessage("Closed"),
         "comment": MessageLookupByLibrary.simpleMessage("Comment"),
+        "completeMth": MessageLookupByLibrary.simpleMessage("\$14.99/mth"),
+        "completeProtectionBundle":
+            MessageLookupByLibrary.simpleMessage("Complete Protection Bundle"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmContactDialogDesc": MessageLookupByLibrary.simpleMessage(
             "Please confirm the contact number"),
@@ -140,6 +157,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactPermission":
             MessageLookupByLibrary.simpleMessage("Contact permission"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact us"),
+        "continuePurchase":
+            MessageLookupByLibrary.simpleMessage("Continue to Purchase"),
         "continueTxt": MessageLookupByLibrary.simpleMessage("Continue"),
         "copied": MessageLookupByLibrary.simpleMessage("Copied"),
         "corporateID": MessageLookupByLibrary.simpleMessage("Corporate ID"),
@@ -197,9 +216,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "dueOn": MessageLookupByLibrary.simpleMessage("Due on"),
         "easiestWayToManage":
             MessageLookupByLibrary.simpleMessage("Easiest way to manage"),
-        "editProfile": MessageLookupByLibrary.simpleMessage("Edit profile"),
+        "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "editSecurityPin":
+            MessageLookupByLibrary.simpleMessage("Edit security pin"),
         "education": MessageLookupByLibrary.simpleMessage("Education"),
         "electricity": MessageLookupByLibrary.simpleMessage("Electricity"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email address"),
         "enjoy": MessageLookupByLibrary.simpleMessage("Enjoy"),
         "enjoyMember": MessageLookupByLibrary.simpleMessage(
@@ -269,6 +291,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "exploreHomePage":
             MessageLookupByLibrary.simpleMessage("Explore Home Page"),
         "failed": MessageLookupByLibrary.simpleMessage("Failed..."),
+        "familyList": MessageLookupByLibrary.simpleMessage("Family List"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "faster": MessageLookupByLibrary.simpleMessage("Faster"),
         "feeDetails": MessageLookupByLibrary.simpleMessage("Fee details"),
@@ -283,10 +306,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "from": MessageLookupByLibrary.simpleMessage("From"),
         "fromNowOnYouArePartOfUs": MessageLookupByLibrary.simpleMessage(
             "From now on you are part of us!"),
+        "fromUs": MessageLookupByLibrary.simpleMessage(
+            "from now on, you are part of us!"),
         "frontImage": MessageLookupByLibrary.simpleMessage("Front image"),
         "fullName": MessageLookupByLibrary.simpleMessage("Full name"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "getOtp": MessageLookupByLibrary.simpleMessage("Get OTP"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get started"),
         "giftCard": MessageLookupByLibrary.simpleMessage("Gift card"),
         "giftCardBtnDescription": MessageLookupByLibrary.simpleMessage(
@@ -365,6 +391,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "meetYourBusiness":
             MessageLookupByLibrary.simpleMessage("Meet your business"),
         "message": MessageLookupByLibrary.simpleMessage("Message"),
+        "messagesSpam":
+            MessageLookupByLibrary.simpleMessage("Messages moved  to spam"),
         "minimumOrderValueIs":
             MessageLookupByLibrary.simpleMessage("Minimum order value is"),
         "minimumTransferLimitIs": m1,
@@ -378,6 +406,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobileRecharge":
             MessageLookupByLibrary.simpleMessage("Mobile recharge"),
         "momoId": MessageLookupByLibrary.simpleMessage("MOMO ID"),
+        "month": MessageLookupByLibrary.simpleMessage("month"),
         "mtnMoMo": MessageLookupByLibrary.simpleMessage("MTN MoMo"),
         "myBills": MessageLookupByLibrary.simpleMessage("My bills"),
         "myContact": MessageLookupByLibrary.simpleMessage("My contact"),
@@ -470,6 +499,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentStatus": MessageLookupByLibrary.simpleMessage("Payment status"),
         "paymentSuccess":
             MessageLookupByLibrary.simpleMessage("Payment success!"),
+        "personalMth": MessageLookupByLibrary.simpleMessage("\$7.99/mth"),
         "personalProtection":
             MessageLookupByLibrary.simpleMessage("Personal protection"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
@@ -618,6 +648,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Registration Successful"),
         "reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
+        "relation": MessageLookupByLibrary.simpleMessage("Relation"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
         "rent": MessageLookupByLibrary.simpleMessage("Rent"),
         "renterPassword":
@@ -655,6 +686,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchCountry": MessageLookupByLibrary.simpleMessage("Search country"),
         "searchHere": MessageLookupByLibrary.simpleMessage("Search here..."),
+        "searchMore":
+            MessageLookupByLibrary.simpleMessage("Search numbers,names & more"),
         "security": MessageLookupByLibrary.simpleMessage("Security"),
         "seeQueryHistory":
             MessageLookupByLibrary.simpleMessage("See query history"),
@@ -701,11 +734,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "sideMenu": MessageLookupByLibrary.simpleMessage("Side menu"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign in"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "sms": MessageLookupByLibrary.simpleMessage("Sms"),
+        "smsMth": MessageLookupByLibrary.simpleMessage("\$11.98/mth"),
+        "spamIdentified":
+            MessageLookupByLibrary.simpleMessage("Spam calls identified"),
+        "spamSMSEmail": MessageLookupByLibrary.simpleMessage(
+            "Spam call blocking, AI Protect scam detection, SMS protect & Email"),
+        "spamSMSProtect": MessageLookupByLibrary.simpleMessage(
+            "Spam call blocking, AI Protect scam detection and SMS protect"),
+        "spamScamDetection": MessageLookupByLibrary.simpleMessage(
+            "Spam call blocking and AI Protect scam detection"),
+        "staff": MessageLookupByLibrary.simpleMessage("Staff"),
         "state": MessageLookupByLibrary.simpleMessage("State"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "success": MessageLookupByLibrary.simpleMessage("Success!"),
         "successful": MessageLookupByLibrary.simpleMessage("Successful"),
+        "supportPin": MessageLookupByLibrary.simpleMessage("Support Pin"),
         "takeASelfie": MessageLookupByLibrary.simpleMessage("Take a selfie"),
         "tax": MessageLookupByLibrary.simpleMessage("TAX"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
@@ -714,6 +759,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "thisFuctionalityWillAvailableSoon":
             MessageLookupByLibrary.simpleMessage(
                 "This fuctionality will available soon"),
+        "timeSpammers":
+            MessageLookupByLibrary.simpleMessage("Time saved from spammers"),
         "tnc": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "toSelfAccount":
             MessageLookupByLibrary.simpleMessage("To self account"),
@@ -747,6 +794,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "transferTo": MessageLookupByLibrary.simpleMessage("Transfer to"),
         "tryAgain": MessageLookupByLibrary.simpleMessage("Try again.."),
         "unknown": MessageLookupByLibrary.simpleMessage("Unknown"),
+        "unknownIdentified":
+            MessageLookupByLibrary.simpleMessage("Unknown number identified"),
         "unlockBCTPay": MessageLookupByLibrary.simpleMessage("Unlock BCTPay"),
         "unlockNow": MessageLookupByLibrary.simpleMessage("Unlock now"),
         "unpaid": MessageLookupByLibrary.simpleMessage("Unpaid"),
@@ -757,6 +806,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Update beneficiary"),
         "updateKyc": MessageLookupByLibrary.simpleMessage("Update KYC"),
         "updateProfile": MessageLookupByLibrary.simpleMessage("Update profile"),
+        "upgradePremium":
+            MessageLookupByLibrary.simpleMessage("Upgrade to Premium"),
         "uploadBackImageOfDoc": MessageLookupByLibrary.simpleMessage(
             "Upload back image of document"),
         "uploadFollowingDocuments":

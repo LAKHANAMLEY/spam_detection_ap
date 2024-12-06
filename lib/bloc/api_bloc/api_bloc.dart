@@ -112,7 +112,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 
     if (event is GetFamilyMemberDetailEvent) {
       emit(ApiLoadingState());
-      await getFamilyDetail().then((value) {
+      await getFamilyDetail(event.id).then((value) {
         emit(GetFamilyMemberDetailState(value));
       });
     }
@@ -136,13 +136,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     // family edit member
     if (event is FamilyEditMemberEvent) {
       emit(ApiLoadingState());
-      await familyEditMember(
-        firstname: event.firstName,
-        lastname: event.lastName,
-        relation: event.relation,
-        supportpin: event.supportpin,
-        familyId: event.familyId,
-      ).then((value) {
+      await editFamilyMember(familyMember: event.user).then((value) {
         emit(FamilyEditMemberState(value));
       });
     }
@@ -230,7 +224,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     //get staff member Details
     if (event is GetStaffMemberDetailEvent) {
       emit(ApiLoadingState());
-      await getStaffList().then((value) {
+      await getStaffDetail().then((value) {
         emit(GetStaffMemberDetailState(value));
       });
     }
@@ -254,24 +248,8 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     // staff edit member
     if (event is StaffEditMemberEvent) {
       emit(ApiLoadingState());
-      await staffEditMember(
-        firstname: event.firstName,
-        lastname: event.lastName,
-        position: event.position,
-        supportpin: event.supportpin,
-        photo: event.photo,
-        staffId: event.staffId,
-      ).then((value) {
+      await staffEditMember(staffMember: event.user).then((value) {
         emit(StaffEditMemberState(value));
-      });
-    }
-    //staff delete member
-    if (event is StaffDeleteMemberEvent) {
-      emit(ApiLoadingState());
-      await staffDeleteMember(
-        staffId: event.staffId,
-      ).then((value) {
-        emit(StaffDeleteMemberState(value));
       });
     }
 

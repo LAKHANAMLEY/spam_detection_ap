@@ -1,5 +1,7 @@
 import 'package:spam_delection_app/lib.dart';
 
+import '../../models/staff_member_details_model.dart';
+
 abstract class ApiState extends Equatable {
   @override
   List<Object?> get props => [];
@@ -92,7 +94,9 @@ class RemoveSpamState extends ApiState {
 
 class GetDeviceCallLogState extends ApiState {
   final List<CallLogEntry> value;
+
   GetDeviceCallLogState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -126,14 +130,18 @@ class UpdateProfileState extends ApiState {
 
 class GetFamilyMemberListState extends ApiState {
   final FamilyMemberListResponse value;
+
   GetFamilyMemberListState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class GetFamilyMemberDetailState extends ApiState {
-  final Response value;
+  final FamilyMemberDetailsResponse value;
+
   GetFamilyMemberDetailState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -141,6 +149,7 @@ class GetFamilyMemberDetailState extends ApiState {
 // add member
 class FamilyAddMemberState extends ApiState {
   final FamilyMemberAddResponse value;
+
   FamilyAddMemberState(this.value);
 
   @override
@@ -149,7 +158,8 @@ class FamilyAddMemberState extends ApiState {
 
 // edit member
 class FamilyEditMemberState extends ApiState {
-  final FamilyEditMemberResponse value;
+  final Response value;
+
   FamilyEditMemberState(this.value);
 
   @override
@@ -159,6 +169,7 @@ class FamilyEditMemberState extends ApiState {
 // delete member
 class FamilyDeleteMemberState extends ApiState {
   final FamilyDeleteMemberResponse value;
+
   FamilyDeleteMemberState(this.value);
 
   @override
@@ -168,7 +179,9 @@ class FamilyDeleteMemberState extends ApiState {
 // Plan List
 class GetPlanListState extends ApiState {
   final PlanListResponse value;
+
   GetPlanListState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -177,7 +190,9 @@ class GetPlanListState extends ApiState {
 // call duration
 class GetCallDurationState extends ApiState {
   final CallDurationResponse value;
+
   GetCallDurationState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -186,7 +201,9 @@ class GetCallDurationState extends ApiState {
 
 class GetNumberTypeState extends ApiState {
   final NumberTypeResponse value;
+
   GetNumberTypeState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -194,14 +211,18 @@ class GetNumberTypeState extends ApiState {
 
 class GetCallTypeState extends ApiState {
   final CallTypeResponse value;
+
   GetCallTypeState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class GetBlockContactState extends ApiState {
   final BlockedContactListResponse value;
+
   GetBlockContactState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -217,7 +238,9 @@ class BlockUnBlockState extends ApiState {
 
 class CorporateEditProfileState extends ApiState {
   final Response value;
+
   CorporateEditProfileState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -244,7 +267,7 @@ class GetStaffAddMemberListState extends ApiState {
 
 // staff member detail
 class GetStaffMemberDetailState extends ApiState {
-  final StaffMemberListResponse value;
+  final StaffMemberDetailsResponse value;
 
   GetStaffMemberDetailState(this.value);
 
@@ -254,49 +277,63 @@ class GetStaffMemberDetailState extends ApiState {
 
 class StaffAddMemberState extends ApiState {
   final Response value;
+
   StaffAddMemberState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class StaffEditMemberState extends ApiState {
   final Response value;
+
   StaffEditMemberState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class StaffDeleteMemberState extends ApiState {
   final Response value;
+
   StaffDeleteMemberState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class SyncCallLogState extends ApiState {
   final Response value;
+
   SyncCallLogState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class GetCallLogsState extends ApiState {
   final CallLogsListResponse value;
+
   GetCallLogsState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class DeleteCallLogState extends ApiState {
   final Response value;
+
   DeleteCallLogState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
 
 class DeleteAllCallLogState extends ApiState {
   final Response value;
+
   DeleteAllCallLogState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -305,7 +342,9 @@ class DeleteAllCallLogState extends ApiState {
 // notification List
 class NotificationListState extends ApiState {
   final NotificationResponse value;
+
   NotificationListState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -313,7 +352,9 @@ class NotificationListState extends ApiState {
 // notification Enabled
 class EnabledNotificationState extends ApiState {
   final EnabledNotificationResponse value;
+
   EnabledNotificationState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -321,7 +362,9 @@ class EnabledNotificationState extends ApiState {
 // notification Type
 class NotificationTypeState extends ApiState {
   final NotificationTypeResponse value;
+
   NotificationTypeState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
