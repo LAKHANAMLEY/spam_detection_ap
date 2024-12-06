@@ -25,7 +25,6 @@ class _ProfileState extends State<Profile> {
     StringConstants.messagestext,
   ];
 
-
   String? _selectedItem;
   final List<String> _items = [
     'Last 30 days',
@@ -61,28 +60,36 @@ class _ProfileState extends State<Profile> {
               //   },
               // ),
               //yaha pr api se fetch krke list show krni thi
-              FutureBuilder(future: fetchLanguages(), builder: (context,AsyncSnapshot<CountryLanguageResponse> snapshot) {
-                if(snapshot.hasData){
-                  var languages = snapshot.data?.languagelist??[];
+              FutureBuilder(
+                future: fetchLanguages(),
+                builder:
+                    (context, AsyncSnapshot<CountryLanguageResponse> snapshot) {
+                  if (snapshot.hasData) {
+                    var languages = snapshot.data?.languagelist ?? [];
 
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: languages.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: const Icon(Icons.language, color: Colors.green),
-                        title:  Text(languages[index].name??""),
-                        onTap: () {
-                          localizationBloc.add(ChangeLocaleEvent(Locale.fromSubtags(languageCode:  languages[index].id??"")));
-                          // Navigator.pop(context);
-                          // Call your gallery function here
-                          //_chooseFromGallery();
-                        },
-                      );
-                    }
-                  );
-                }return Loader();
-              },),
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: languages.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading:
+                                const Icon(Icons.language, color: Colors.green),
+                            title: Text(languages[index].name ?? ""),
+                            onTap: () {
+                              localizationBloc.add(ChangeLocaleEvent(
+                                  Locale.fromSubtags(
+                                      languageCode:
+                                          languages[index].id ?? "")));
+                              // Navigator.pop(context);
+                              // Call your gallery function here
+                              //_chooseFromGallery();
+                            },
+                          );
+                        });
+                  }
+                  return Loader();
+                },
+              ),
               // ListTile(
               //   leading: const Icon(Icons.language, color: Colors.green),
               //   title: const Text('Spanish'),
@@ -116,7 +123,6 @@ class _ProfileState extends State<Profile> {
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
 
     super.initState();
-
   }
 
   @override
@@ -292,7 +298,7 @@ class _ProfileState extends State<Profile> {
                                       4 /
                                       100,
                                 ),
-                                 Text(
+                                Text(
                                   appLocalization(context).upgradePremium,
                                   style: TextStyle(
                                       color: AppColor.secondryColor,
@@ -504,7 +510,6 @@ class _ProfileState extends State<Profile> {
                                         const ChangePassword()));
                           },
                         ),
-<<<<<<< HEAD
                         SubMenu(
                           title: appLocalization(context).changePassword,
                           icon: IconConstants.icchangePass,
@@ -520,19 +525,13 @@ class _ProfileState extends State<Profile> {
                         ),
                         SubMenu(
                           title: appLocalization(context).addAlternativeEmail,
-=======
-                        10.height(),
-                        SubMenu(
-                          title: 'Add Alertantive Email',
->>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc
                           icon: IconConstants.icalternativeEmail,
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-<<<<<<< HEAD
-                                    const EditSecurityPin()));
+                                        const EditSecurityPin()));
                           },
                         ),
                         SizedBox(
@@ -552,7 +551,8 @@ class _ProfileState extends State<Profile> {
                           title: appLocalization(context).familyList,
                           icon: IconConstants.icalternativeEmail,
                           onTap: () {
-                            Navigator.pushNamed(context, AppRoutes.familyMemberList);
+                            Navigator.pushNamed(
+                                context, AppRoutes.familyMemberList);
                           },
                         ),
                         SizedBox(
@@ -674,10 +674,6 @@ class _ProfileState extends State<Profile> {
                          */
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 5 / 100,
-=======
-                                        const ChangePassword()));
-                          },
->>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc
                         ),
                         10.height(),
                       ],
@@ -702,78 +698,55 @@ class SubMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
-      child: Container(
-        // height: MediaQuery.of(context).size.height * 7 / 100,
-        // width: MediaQuery.of(context).size.height * 90 / 100,
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(2.0)),
-            border: Border.all(
-              color: AppColor.greyarrowColor,
-            ),
-            color: AppColor.secondryColor),
-<<<<<<< HEAD
-        child: Padding(
+        onTap: onTap,
+        child: Container(
+          // height: MediaQuery.of(context).size.height * 7 / 100,
+          // width: MediaQuery.of(context).size.height * 90 / 100,
           padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Row(
-                  children: [
-                    Image.asset(
-                      icon,
-                      height: MediaQuery.of(context).size.height * 5 / 100,
-                      width: MediaQuery.of(context).size.width * 5 / 100,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 2 / 100,
-                    ),
-                    Expanded(
-                      child: Text(
-                        title ,
-                        style: const TextStyle(
-                            color: AppColor.thumbColor, fontSize: 18),
-                      ),
-                    ),
-                  ],
-                ),
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(2.0)),
+              border: Border.all(
+                color: AppColor.greyarrowColor,
               ),
-=======
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+              color: AppColor.secondryColor),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        icon,
+                        height: MediaQuery.of(context).size.height * 5 / 100,
+                        width: MediaQuery.of(context).size.width * 5 / 100,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 2 / 100,
+                      ),
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: const TextStyle(
+                              color: AppColor.thumbColor, fontSize: 18),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // SizedBox(
+                //   width: MediaQuery.of(context).size.width * 46 / 100,
+                // ),
                 Image.asset(
-                  icon,
-                  height: MediaQuery.of(context).size.height * 5 / 100,
-                  width: MediaQuery.of(context).size.width * 5 / 100,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 2 / 100,
-                ),
-                Text(
-                  title,
-                  style:
-                      const TextStyle(color: AppColor.thumbColor, fontSize: 18),
-                ),
+                  IconConstants.icviewArrow,
+                  height: MediaQuery.of(context).size.height * 6 / 100,
+                  width: MediaQuery.of(context).size.width * 6 / 100,
+                )
               ],
             ),
->>>>>>> bb159d58d8d4b67a403a82a7315d58934ff202bc
-
-            // SizedBox(
-            //   width: MediaQuery.of(context).size.width * 46 / 100,
-            // ),
-            Image.asset(
-              IconConstants.icviewArrow,
-              height: MediaQuery.of(context).size.height * 6 / 100,
-              width: MediaQuery.of(context).size.width * 6 / 100,
-            )
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

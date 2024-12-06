@@ -1164,10 +1164,10 @@ class S {
     );
   }
 
-  /// `Edit profile`
+  /// `Edit Profile`
   String get editProfile {
     return Intl.message(
-      'Edit profile',
+      'Edit Profile',
       name: 'editProfile',
       desc: '',
       args: [],
@@ -5389,6 +5389,316 @@ class S {
     return Intl.message(
       'Your payment has been successfully done.',
       name: 'yourPaymentHasBeenSuccessfullyDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upgrade to Premium`
+  String get upgradePremium {
+    return Intl.message(
+      'Upgrade to Premium',
+      name: 'upgradePremium',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spam calls identified`
+  String get spamIdentified {
+    return Intl.message(
+      'Spam calls identified',
+      name: 'spamIdentified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time saved from spammers`
+  String get timeSpammers {
+    return Intl.message(
+      'Time saved from spammers',
+      name: 'timeSpammers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown number identified`
+  String get unknownIdentified {
+    return Intl.message(
+      'Unknown number identified',
+      name: 'unknownIdentified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Messages moved  to spam`
+  String get messagesSpam {
+    return Intl.message(
+      'Messages moved  to spam',
+      name: 'messagesSpam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit security pin`
+  String get editSecurityPin {
+    return Intl.message(
+      'Edit security pin',
+      name: 'editSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add alternative email`
+  String get addAlternativeEmail {
+    return Intl.message(
+      'Add alternative email',
+      name: 'addAlternativeEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose your plan `
+  String get chooseYourPlan {
+    return Intl.message(
+      'Choose your plan ',
+      name: 'chooseYourPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block all scam, telemarketing and fraud calls thanks to AI -blocking accuracy.`
+  String get blockAccuracy {
+    return Intl.message(
+      'Block all scam, telemarketing and fraud calls thanks to AI -blocking accuracy.',
+      name: 'blockAccuracy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spam call blocking and AI Protect scam detection`
+  String get spamScamDetection {
+    return Intl.message(
+      'Spam call blocking and AI Protect scam detection',
+      name: 'spamScamDetection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call & SMS Bundle`
+  String get callSMSBundle {
+    return Intl.message(
+      'Call & SMS Bundle',
+      name: 'callSMSBundle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spam call blocking, AI Protect scam detection and SMS protect`
+  String get spamSMSProtect {
+    return Intl.message(
+      'Spam call blocking, AI Protect scam detection and SMS protect',
+      name: 'spamSMSProtect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `$7.99/mth`
+  String get personalMth {
+    return Intl.message(
+      '\$7.99/mth',
+      name: 'personalMth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `$11.98/mth`
+  String get smsMth {
+    return Intl.message(
+      '\$11.98/mth',
+      name: 'smsMth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete Protection Bundle`
+  String get completeProtectionBundle {
+    return Intl.message(
+      'Complete Protection Bundle',
+      name: 'completeProtectionBundle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spam call blocking, AI Protect scam detection, SMS protect & Email`
+  String get spamSMSEmail {
+    return Intl.message(
+      'Spam call blocking, AI Protect scam detection, SMS protect & Email',
+      name: 'spamSMSEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `$14.99/mth`
+  String get completeMth {
+    return Intl.message(
+      '\$14.99/mth',
+      name: 'completeMth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calls`
+  String get calls {
+    return Intl.message(
+      'Calls',
+      name: 'calls',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sms`
+  String get sms {
+    return Intl.message(
+      'Sms',
+      name: 'sms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `month`
+  String get month {
+    return Intl.message(
+      'month',
+      name: 'month',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue to Purchase`
+  String get continuePurchase {
+    return Intl.message(
+      'Continue to Purchase',
+      name: 'continuePurchase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search numbers,names & more`
+  String get searchMore {
+    return Intl.message(
+      'Search numbers,names & more',
+      name: 'searchMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `from now on, you are part of us!`
+  String get fromUs {
+    return Intl.message(
+      'from now on, you are part of us!',
+      name: 'fromUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get OTP`
+  String get getOtp {
+    return Intl.message(
+      'Get OTP',
+      name: 'getOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Language`
+  String get changeLanguage {
+    return Intl.message(
+      'Change Language',
+      name: 'changeLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change a Language`
+  String get changeALanguage {
+    return Intl.message(
+      'Change a Language',
+      name: 'changeALanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancelTxt {
+    return Intl.message(
+      'Cancel',
+      name: 'cancelTxt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Family List`
+  String get familyList {
+    return Intl.message(
+      'Family List',
+      name: 'familyList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Relation`
+  String get relation {
+    return Intl.message(
+      'Relation',
+      name: 'relation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Support Pin`
+  String get supportPin {
+    return Intl.message(
+      'Support Pin',
+      name: 'supportPin',
       desc: '',
       args: [],
     );
