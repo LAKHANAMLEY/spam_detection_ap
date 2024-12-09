@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/edit_family_number_screen.dart';
 
 class FamilyMemberList extends StatefulWidget {
   const FamilyMemberList({super.key});

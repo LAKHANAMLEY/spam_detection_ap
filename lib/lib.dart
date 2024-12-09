@@ -137,7 +137,6 @@ export 'screens/edit_family_number_screen.dart';
 export 'screens/edit_profile_screen.dart';
 export 'screens/edit_security_pin.dart';
 export 'screens/edit_staff_member.dart';
-export 'screens/family_delete_member.dart';
 export 'screens/family_member_list.dart';
 export 'screens/forgot_otp_verify_screen.dart';
 export 'screens/forgot_password_screen.dart';

@@ -1,7 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/edit_family_number_screen.dart';
-import 'package:spam_delection_app/screens/edit_staff_member.dart';
-import 'package:spam_delection_app/screens/staff_member_list.dart';
 
 class AppRoutes {
   static const splash = "/splash";
