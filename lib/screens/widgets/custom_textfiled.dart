@@ -66,7 +66,7 @@ class CustomTextField extends StatelessWidget {
                   (isDarkMode
                       ? Colors.white
                       : AppColor.fillColor.withOpacity(0.2)),
-              border: Border.all(color: const Color(0xffE1E6EB), width: 1.5),
+              border: Border.all(color: AppColor.fillColor, width: 1.5),
               borderRadius: BorderRadius.circular(2)),
           // // constraints: const BoxConstraints(maxHeight: 60, minHeight: 0),
           margin: const EdgeInsets.all(5),
@@ -101,7 +101,10 @@ class CustomTextField extends StatelessWidget {
                       // alignLabelWithHint: true,
                       // floatingLabelAlignment: FloatingLabelAlignment.start,
                       floatingLabelBehavior: FloatingLabelBehavior.always,
-                      hintStyle: const TextStyle(color: Colors.grey),
+                      hintStyle: const TextStyle(
+                          color: AppColor.lightfillColor,
+                          fontFamily: AppFont.fontFamily,
+                          fontWeight: FontWeight.w600),
                       errorStyle: const TextStyle(
                         color: Colors.red,
                         height: 1,
@@ -119,6 +122,7 @@ class CustomTextField extends StatelessWidget {
                           vertical: 0, horizontal: 6),
                       // contentPadding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                       border: InputBorder.none
+
                       // border: border,
                       // focusedBorder: border,
                       // enabledBorder: border,

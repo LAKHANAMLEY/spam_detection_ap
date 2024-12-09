@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -48,6 +49,26 @@ class S {
 
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
+  }
+
+  /// `Staff List`
+  String get stafflist {
+    return Intl.message(
+      'Staff List',
+      name: 'stafflist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Family list`
+  String get familylist {
+    return Intl.message(
+      'Family list',
+      name: 'familylist',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Aadhar card`

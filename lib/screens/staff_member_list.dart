@@ -32,7 +32,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
     setState(() {
       filteredContacts = contacts
           .where((item) =>
-              item.userRole!.toLowerCase().contains(query.toLowerCase()))
+              item.firstName!.toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -53,7 +53,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
             controller: editingController,
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.search),
-              hintText: appLocalization(context).searchHere,
+              hintText: appLocalization(context).searchMore,
               border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(6)),
               ),
@@ -77,9 +77,6 @@ class _StaffMemberListState extends State<StaffMemberList> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 2 / 100,
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 2 / 100,
-        ),
         Expanded(
             child: BlocConsumer(
                 bloc: staffListBloc,
@@ -97,7 +94,6 @@ class _StaffMemberListState extends State<StaffMemberList> {
                         child: Text('No contacts'),
                       );
                     }
-
                     return ListView.builder(
                       itemCount: filteredContacts.length,
                       // shrinkWrap: true,
@@ -133,17 +129,8 @@ class _StaffMemberListState extends State<StaffMemberList> {
                                 },
                               ),
                               PopupMenuItem(
-                                child: const Text("Delete Member "),
-                                onTap: () {
-                                  /*Navigator.pushNamed(
-                                          context, AppRoutes.familyEditMember,
-                                          arguments: EditFamilyMember(
-                                              familyMember:
-                                              filteredContacts[index]));
-
-                                       */
-                                },
-                              ),
+                                  child: const Text("Delete Member"),
+                                  onTap: () {})
                             ],
                           ),
                         );

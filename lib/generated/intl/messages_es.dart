@@ -306,6 +306,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Explorar la página de inicio"),
         "failed": MessageLookupByLibrary.simpleMessage("Échoué..."),
         "familyList": MessageLookupByLibrary.simpleMessage("Lista familiar"),
+        "familylist": MessageLookupByLibrary.simpleMessage("Lista familiar"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "faster": MessageLookupByLibrary.simpleMessage("Plus rapide"),
         "feeDetails": MessageLookupByLibrary.simpleMessage("Détails des frais"),
@@ -793,6 +794,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "spamScamDetection": MessageLookupByLibrary.simpleMessage(
             "Bloqueo de llamadas spam y detección de estafas con AI Protect"),
         "staff": MessageLookupByLibrary.simpleMessage("Personal"),
+        "stafflist": MessageLookupByLibrary.simpleMessage("Lista de personal"),
         "state": MessageLookupByLibrary.simpleMessage("État"),
         "status": MessageLookupByLibrary.simpleMessage("Statut"),
         "submit": MessageLookupByLibrary.simpleMessage("Enrégistrer"),

@@ -17,7 +17,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController relationController = TextEditingController();
-  final TextEditingController familyidController = TextEditingController();
+  final TextEditingController staffidController = TextEditingController();
   final TextEditingController supportpinController = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
@@ -32,7 +32,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
       final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
       if (photo != null) {
         debugPrint("Photo taken: ${photo.path}");
-        // Handle the selected photo (e.g., upload it, save it, or display it)
       }
     } catch (e) {
       debugPrint("Error taking photo: $e");
@@ -50,7 +49,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
       } else {
         debugPrint("No image selected.");
       }
-      // Handle the selected image
     } catch (e) {
       debugPrint("Error selecting image: $e");
     }
@@ -129,14 +127,12 @@ class _EditStaffMemberState extends State<EditStaffMember> {
               bloc: staffMemberBloc,
               listener: (context, state) {
                 if (state is GetStaffMemberDetailState) {
-                  //yaha family member detail get krege
                   if (state.value.statusCode == 200) {
                     if (state.value.staffmemberdetails != null) {
                       staffMember = state.value.staffmemberdetails;
                       if (staffMember != null) {
                         updateData(staffMember!);
                       }
-                      // sharedPrefBloc.add(GetUserDataFromLocalEvent());//ye shared pref se get kia h isko v comment krege
                     }
                   } else if (state.value.statusCode ==
                       HTTPStatusCodes.sessionExpired) {
@@ -148,7 +144,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                   }
                 }
                 if (state is StaffEditMemberState) {
-                  //yha jb response milega jb aap edit family member api hit kroge
                   if (state.value.statusCode == 200) {
                     showCustomDialog(context,
                         subTitle: state.value.message,
@@ -161,7 +156,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                         subTitle: state.value.message,
                         dialogType: DialogType.failed);
                   }
-                  //yaha jese hi member edit hota h uski detail again get krege
                   staffMemberBloc.add(
                       GetStaffMemberDetailEvent(staffMember?.userId ?? ''));
                 }
@@ -309,12 +303,12 @@ class _EditStaffMemberState extends State<EditStaffMember> {
 
                               10.height(),
                               CustomTextField(
-                                controller: familyidController,
+                                controller: staffidController,
                                 hintText: 'Staff Id',
                                 //suffix: Image.asset(IconConstants.icUsername),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter family ID";
+                                    return "Please enter Staff ID";
                                   }
                                   return null;
                                 },
@@ -336,11 +330,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                     3 /
                                     100,
                               ),
-                              //ye error message yha use nhi kroge ab me batata hu kese krna h
-                              //sabhi place pr vese hi krege
-                              //phle check kr lo ye work kr rha h ya nhi
-                              //ab error message show krte h
-                              //validations ka use krege
                               if (_errorMessage != null)
                                 Text(_errorMessage!,
                                     style: const TextStyle(color: Colors.red)),
@@ -352,7 +341,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                               AppButton(
                                   text: appLocalization(context).submit,
                                   onPress: () {
-                                    //mene only first name me add kia h aap baki kr lena
                                     if (_formKey.currentState?.validate() ??
                                         false) {
                                       staffMemberBloc.add(StaffEditMemberEvent(
@@ -363,6 +351,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                         userId: staffMember?.userId ?? "",
                                         supportPin: supportpinController.text,
                                         photo: _selectedImage?.path,
+                                        //photoFile: _selectedImage,
                                       )));
                                     }
                                   }),
@@ -382,7 +371,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
 
   void updateData(StaffMember user) {
     staffMember = user;
-    // SharedPrefer.saveUserData(user);// ye shared pref me save kia h data to isko remove krege
     _selectedImage = XFile(user.photo ?? "", mimeType: "http");
     firstnameController.text = user.firstName ?? "";
     lastnameController.text = user.lastName ?? "";

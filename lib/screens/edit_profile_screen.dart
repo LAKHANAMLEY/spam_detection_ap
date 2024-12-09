@@ -8,11 +8,6 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  bool isCheckBoxValue = false;
-  bool isPasswordVisible = true;
-  bool isConfirmPasswordVisible = true;
-  bool isApiCalling = false;
-  bool agreeToTerms = false;
   String? _errorMessage;
   String? enteredPhone;
 
@@ -27,12 +22,12 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController dateOfBirthController = TextEditingController();
-  // final TextEditingController genderController = TextEditingController();
   final TextEditingController stateController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
   final TextEditingController zipController = TextEditingController();
   final TextEditingController address1Controller = TextEditingController();
   final TextEditingController address2Controller = TextEditingController();
+
   // final TextEditingController photoController = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
@@ -393,7 +388,7 @@ class _EditProfileState extends State<EditProfile> {
                             icon: Icon(Icons.calendar_today),
                             color: Colors.red,
                             onPressed: () async{
-                  
+
                               DateTime?  pickeddate=  await showDatePicker(
                                   context: context,
                                   initialDate: DateTime.now(),

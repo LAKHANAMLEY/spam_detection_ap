@@ -99,7 +99,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                             controller: passwordController,
                             hintText: 'Password',
                             obscureText: true,
-                            suffix: Image.asset(IconConstants.icUsername),
+                            //suffix: Image.asset(IconConstants.icUsername),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
                                 return "Please enter password";
@@ -123,7 +123,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           CustomTextField(
                             controller: supportPinController,
                             hintText: 'Support pin',
-                            suffix: Image.asset(IconConstants.icUsername),
+                            //suffix: Image.asset(IconConstants.icUsername),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
                                 return "Please enter support pin";
@@ -180,16 +180,6 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           AppButton(
                               text: "Add Staff Member",
                               onPress: () {
-                                /*if (emailController.text.isNotEmpty &&
-                                  passwordController.text.isNotEmpty &&
-                                  firstnameController.text.isNotEmpty &&
-                                  lastnameController.text.isNotEmpty &&
-                                  relationController.text.isNotEmpty &&
-                                  supportpinController.text.isNotEmpty){
-                                  //phoneController.text.isNotEmpty){
-                                // Dispatch the event to add a member
-
-                               */
                                 addStaffMemberBloc.add(
                                   StaffAddMemberEvent(
                                     email: emailController.text.trim(),
@@ -207,7 +197,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                 // Show error message if any field is empty
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                      content: Text('Please fill in all fields')),
+                                      content: Text('Please fill all fields')),
                                 );
                               }
                               */

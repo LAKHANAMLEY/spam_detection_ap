@@ -228,7 +228,9 @@ class GetBlockContactState extends ApiState {
 // unBlock
 class BlockUnBlockState extends ApiState {
   final Response value;
+
   BlockUnBlockState(this.value);
+
   @override
   List<Object?> get props => [value];
 }
@@ -291,6 +293,7 @@ class StaffEditMemberState extends ApiState {
   List<Object?> get props => [value];
 }
 
+// staff delete member
 class StaffDeleteMemberState extends ApiState {
   final Response value;
 

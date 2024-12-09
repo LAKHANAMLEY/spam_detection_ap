@@ -292,6 +292,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Explore Home Page"),
         "failed": MessageLookupByLibrary.simpleMessage("Failed..."),
         "familyList": MessageLookupByLibrary.simpleMessage("Family List"),
+        "familylist": MessageLookupByLibrary.simpleMessage("Family list"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "faster": MessageLookupByLibrary.simpleMessage("Faster"),
         "feeDetails": MessageLookupByLibrary.simpleMessage("Fee details"),
@@ -746,6 +747,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "spamScamDetection": MessageLookupByLibrary.simpleMessage(
             "Spam call blocking and AI Protect scam detection"),
         "staff": MessageLookupByLibrary.simpleMessage("Staff"),
+        "stafflist": MessageLookupByLibrary.simpleMessage("Staff List"),
         "state": MessageLookupByLibrary.simpleMessage("State"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
