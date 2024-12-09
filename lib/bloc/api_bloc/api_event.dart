@@ -280,15 +280,17 @@ class StaffEditMemberEvent extends ApiEvent {
   List<Object?> get props => [user];
 }
 
+// staff delete member
+
 class StaffDeleteMemberEvent extends ApiEvent {
-  final String staffId;
+  final String id;
 
   StaffDeleteMemberEvent({
-    required this.staffId,
+    required this.id,
   });
 
   @override
-  List<Object?> get props => [staffId];
+  List<Object?> get props => [id];
 }
 
 class SyncCallLogEvent extends ApiEvent {

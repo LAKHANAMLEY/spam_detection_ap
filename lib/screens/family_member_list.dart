@@ -153,13 +153,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                               ),
                               PopupMenuItem(
                                 child: const Text("Delete Member "),
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, AppRoutes.familyEditMember,
-                                      arguments: EditFamilyMember(
-                                          familyMember:
-                                              filteredContacts[index]));
-                                },
+                                onTap: () {},
                               ),
                             ],
                           ),

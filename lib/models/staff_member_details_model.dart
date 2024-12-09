@@ -23,11 +23,11 @@ class StaffMemberDetailsResponse {
 
   factory StaffMemberDetailsResponse.fromJson(Map<String, dynamic> json) =>
       StaffMemberDetailsResponse(
-        statusCode: json["status_code"],
-        staffmemberdetails: json["staffmemberdetails"] == null
-            ? null
-            : StaffMember.fromJson(json["staffmemberdetails"]),
-      );
+          statusCode: json["status_code"],
+          staffmemberdetails: json["staffmemberdetails"] == null
+              ? null
+              : StaffMember.fromJson(json["staffmemberdetails"]),
+          message: json["message"]);
 
   Map<String, dynamic> toJson() => {
         "status_code": statusCode,

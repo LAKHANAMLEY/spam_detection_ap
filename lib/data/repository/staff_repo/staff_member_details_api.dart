@@ -1,10 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/staff_member_details_model.dart';
 
-Future<StaffMemberDetailsResponse> getStaffDetail() async {
+Future<StaffMemberDetailsResponse> getStaffDetail(String id) async {
   final response = await http.get(
-    Uri.parse(ApiUrlConstants.endPointStaffMemberDetails),
+    Uri.parse(ApiUrlConstants.endPointStaffMemberDetails + id),
     headers: await ApiUrlConstants.headers(),
   );
   if (response.statusCode == 200) {

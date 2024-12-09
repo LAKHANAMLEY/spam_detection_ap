@@ -100,8 +100,7 @@ class ApiUrlConstants {
 
   //staff
   static String endPointStaffMemberList = '$baseUrl/staff/getmemberslist';
-  static String endPointStaffMemberDetails =
-      '$baseUrl/staff/getmemberdetails/49';
+  static String endPointStaffMemberDetails = '$baseUrl/staff/getmemberdetails/';
   static String endPointStaffAddMember = '$baseUrl/staff/add-member?lang=en';
   static String endPointStaffEditMember = '$baseUrl/staff/edit-member?lang=en';
   static String endPointStaffDeleteMember =
@@ -115,7 +114,7 @@ class ApiUrlConstants {
   static String endPointNotificationType =
       '$baseUrl/notifications/get-notifications-types';
 
-  // call log
+  // call
   static String endPointSyncCallLog = '$baseUrl/contacts/sync-call-log';
   static String endPointgetCallLogList = '$baseUrl/contacts/call-log-list';
   static String endPointDeleteCallLog =

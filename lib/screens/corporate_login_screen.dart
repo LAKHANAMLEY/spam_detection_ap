@@ -44,20 +44,21 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 8 / 100,
           ),
-           Center(
+          Center(
               child: Text(
-                appLocalization(context).login,
+            appLocalization(context).login,
             style: const TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
                 fontFamily: AppFont.fontFamily,
                 fontWeight: FontWeight.w600),
           )),
-           Padding(
+          Padding(
             padding: const EdgeInsets.all(20),
             child: Center(
                 child: Text(
-                    appLocalization(context).pleaseCorporateID, // this one
+              appLocalization(context).pleaseCorporateID,
+              // this one
               textAlign: TextAlign.center,
               style: const TextStyle(
                   color: AppColor.verifyColor,
@@ -74,7 +75,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
             child: TextFormField(
               controller: corpoarteidController,
               decoration: InputDecoration(
-                hintText:appLocalization(context).corporateID,
+                hintText: appLocalization(context).corporateID,
                 hintStyle: const TextStyle(
                     color: AppColor.lightfillColor,
                     fontFamily: AppFont.fontFamily,
@@ -94,7 +95,6 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset(
                     IconConstants.iccorporateSuff,
-                    // Adjust the path as necessary
                     width: MediaQuery.of(context).size.width * 2 / 100,
                     height: MediaQuery.of(context).size.height * 2 / 100,
                   ),

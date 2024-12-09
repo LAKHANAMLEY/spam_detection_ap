@@ -150,7 +150,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                   }
                 }
                 if (state is FamilyEditMemberState) {
-                  //yha jb response milega jb aap edit family member api hit kroge
                   if (state.value.statusCode == 200) {
                     showCustomDialog(context,
                         subTitle: state.value.message,
@@ -403,6 +402,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                         userId: familyMember?.userId ?? "",
                                         supportPin: supportpinController.text,
                                         photo: _selectedImage?.path,
+                                        // photoFile: _selectedImage
                                       )));
                                     }
                                   }),
@@ -422,9 +422,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
 
   void updateData(FamilyMember user) {
     familyMember = user;
-    //yaha data shared pref se get nahi hoga
-    //shared pref ko only current user k case me use kia h
-    // SharedPrefer.saveUserData(user);// ye shared pref me save kia h data to isko remove krege
     _selectedImage = XFile(user.photo ?? "", mimeType: "http");
     firstnameController.text = user.firstName ?? "";
     lastnameController.text = user.lastName ?? "";

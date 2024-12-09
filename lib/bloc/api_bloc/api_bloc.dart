@@ -224,7 +224,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     //get staff member Details
     if (event is GetStaffMemberDetailEvent) {
       emit(ApiLoadingState());
-      await getStaffDetail().then((value) {
+      await getStaffDetail(event.id).then((value) {
         emit(GetStaffMemberDetailState(value));
       });
     }
@@ -250,6 +250,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await staffEditMember(staffMember: event.user).then((value) {
         emit(StaffEditMemberState(value));
+      });
+    }
+    if (event is StaffDeleteMemberEvent) {
+      emit(ApiLoadingState());
+      await staffDeleteMember(id: event.id).then((value) {
+        emit(StaffDeleteMemberState(value));
       });
     }
 

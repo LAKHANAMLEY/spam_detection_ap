@@ -114,6 +114,7 @@ export 'models/reset_password_models.dart';
 export 'models/response.dart';
 export 'models/sign_up_model.dart';
 export 'models/spam_list_model.dart';
+export 'models/staff_member_details_model.dart';
 export 'models/staff_member_list_model.dart';
 export 'models/update_profile_model.dart';
 export 'models/user_model.dart';

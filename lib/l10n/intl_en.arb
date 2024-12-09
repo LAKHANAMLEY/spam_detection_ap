@@ -1,5 +1,7 @@
 {
   "@@locale": "en",
+  "stafflist": "Staff List",
+  "familylist": "Family list",
   "aadharCard": "Aadhar card",
   "acceptedHere": "ACCEPTED HERE",
   "account": "Account",

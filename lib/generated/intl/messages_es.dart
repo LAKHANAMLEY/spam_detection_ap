@@ -306,6 +306,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Explorar la página de inicio"),
         "failed": MessageLookupByLibrary.simpleMessage("Échoué..."),
         "familyList": MessageLookupByLibrary.simpleMessage("Lista familiar"),
+        "familylist": MessageLookupByLibrary.simpleMessage("Lista familiar"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "faster": MessageLookupByLibrary.simpleMessage("Plus rapide"),
         "feeDetails": MessageLookupByLibrary.simpleMessage("Détails des frais"),
@@ -495,7 +496,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ouvrir un compte Ecobank Xpress"),
         "openXpressAccountViewTitle": MessageLookupByLibrary.simpleMessage(
             "Ouvrez instantanément un compte Ecobank Xpress avec BCTPay"),
-        "orTxt": MessageLookupByLibrary.simpleMessage("o"),
+        "or": MessageLookupByLibrary.simpleMessage("O"),
+        "orTxt": MessageLookupByLibrary.simpleMessage("O"),
         "orangeMoney": MessageLookupByLibrary.simpleMessage("Orange Money"),
         "other": MessageLookupByLibrary.simpleMessage("Autre"),
         "otp": MessageLookupByLibrary.simpleMessage("OTP"),
@@ -791,6 +793,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bloqueo de llamadas spam, detección de estafas AI Protect y protección de SMS"),
         "spamScamDetection": MessageLookupByLibrary.simpleMessage(
             "Bloqueo de llamadas spam y detección de estafas con AI Protect"),
+        "staff": MessageLookupByLibrary.simpleMessage("Personal"),
+        "stafflist": MessageLookupByLibrary.simpleMessage("Lista de personal"),
         "state": MessageLookupByLibrary.simpleMessage("État"),
         "status": MessageLookupByLibrary.simpleMessage("Statut"),
         "submit": MessageLookupByLibrary.simpleMessage("Enrégistrer"),

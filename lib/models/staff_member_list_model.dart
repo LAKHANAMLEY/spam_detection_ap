@@ -48,6 +48,8 @@ class StaffMember {
   final String? supportPin;
   final String? countryCode;
 
+  //final XFile? photoFile;
+
   StaffMember({
     this.userId,
     this.firstName,
@@ -59,6 +61,7 @@ class StaffMember {
     this.relation,
     this.supportPin,
     this.countryCode,
+    //this.photoFile,
   });
 
   factory StaffMember.fromJson(Map<String, dynamic> json) => StaffMember(
