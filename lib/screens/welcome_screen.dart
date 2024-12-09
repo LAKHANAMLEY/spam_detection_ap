@@ -10,41 +10,20 @@ class Welcome extends StatefulWidget {
 
 class _WelcomeState extends State<Welcome> {
   LanguageData? selectedLanguage;
-  bool isLoading = false;
-  String? errorMessage;
 
   List<LanguageData> languages = [];
-  Future<void> fetchLang() async {
-    setState(() {
-      isLoading = true;
-      errorMessage = null;
-    });
-
-    try {
-      final fetchedCategories = await fetchLanguages();
-      print(fetchedCategories.toString());
-      setState(() {
-        languages = fetchedCategories.languagelist ?? [];
-        isLoading = false;
-      });
-    } catch (error) {
-      setState(() {
-        errorMessage = 'Failed to load categories: $error';
-        isLoading = false;
-      });
-    }
-  }
+  var languageListBloc = ApiBloc(ApiBlocInitialState());
 
   @override
   void initState() {
     super.initState();
-    fetchLang();
+    languageListBloc.add(GetLanguageListEvent());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        backgroundColor: const Color.fromARGB(255, 218, 199, 199),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -52,38 +31,62 @@ class _WelcomeState extends State<Welcome> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 5 / 100,
                 ),
-                Center(
-                  child: isLoading
-                      ? const CircularProgressIndicator()
-                      : errorMessage != null
-                          ? Text(errorMessage!)
-                          : languages.isEmpty
-                              ? const Text('No categories available.')
-                              : Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 16.0),
-                                  child: DropdownButton<LanguageData>(
-                                    hint: const Text('Select Language'),
-                                    value: selectedLanguage,
-                                    isExpanded: true,
-                                    items: languages.map((category) {
-                                      return DropdownMenuItem<LanguageData>(
-                                        value: category,
-                                        child: Text(category.name ?? ""),
-                                      );
-                                    }).toList(),
-                                    onChanged: (LanguageData? value) {
-                                      setState(() {
-                                        selectedLanguage = value;
-                                      });// wait sir // understand sir
+                BlocConsumer(
+                    bloc: languageListBloc,
+                    listener: (context, state) {
+                      if (state is GetLanguageListState) {
+                        if (state.value.statusCode == 200) {
+                          languages = state.value.languagelist ?? [];
+                          if (languages.isNotEmpty) {
+                            selectedLanguage = languages.first;
+                          }
+                        } else if (state.value.statusCode ==
+                            HTTPStatusCodes.sessionExpired) {
+                          sessionExpired(context, state.value.message);
+                        } else {
+                          showCustomDialog(context,
+                              dialogType: DialogType.failed,
+                              subTitle: state.value.message);
+                        }
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is GetLanguageListState) {
+                        languages = state.value.languagelist ?? [];
+                        if (languages.isEmpty) {
+                          return Center(
+                            child: Text(appLocalization(context).noData),
+                          );
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: DropdownButton<LanguageData>(
+                            hint: const Text('Select Language'),
+                            value: selectedLanguage,
+                            isExpanded: true,
+                            items: languages.map((category) {
+                              return DropdownMenuItem<LanguageData>(
+                                value: category,
+                                child: Text(category.name ?? ""),
+                              );
+                            }).toList(),
+                            onChanged: (LanguageData? value) {
+                              setState(() {
+                                selectedLanguage = value;
+                              }); // wait sir // understand sir
 
-                                      //ab language change work krega protection type check kro
-                                      print(selectedLanguage?.name ?? "");
-                                      localizationBloc.add(ChangeLocaleEvent(Locale.fromSubtags(languageCode:  selectedLanguage?.id??"")));
-},
-                                  ),
-                                ),
-                ),
+                              //ab language change work krega protection type check kro
+                              print(selectedLanguage?.name ?? "");
+                              localizationBloc.add(ChangeLocaleEvent(
+                                  Locale.fromSubtags(
+                                      languageCode:
+                                          selectedLanguage?.id ?? "")));
+                            },
+                          ),
+                        );
+                      }
+                      return const Loader();
+                    }),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 5 / 100,
                 ),
@@ -93,8 +96,8 @@ class _WelcomeState extends State<Welcome> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 5 / 100,
                 ),
-                 Text(
-                 appLocalization(context).welcome,
+                Text(
+                  appLocalization(context).welcome,
                   style: const TextStyle(
                       color: AppColor.bluelightColor,
                       fontSize: 35,
@@ -102,7 +105,7 @@ class _WelcomeState extends State<Welcome> {
                       fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
-                 Padding(
+                Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Center(
                     child: Text(
@@ -119,28 +122,13 @@ class _WelcomeState extends State<Welcome> {
                   height: MediaQuery.of(context).size.height * 8 / 100,
                 ),
                 AppButton(
-                    text:  appLocalization(context).getStarted,
+                    text: appLocalization(context).getStarted,
                     onPress: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const ProtectionType()));
-
-                      // forgotPasswordUserValidation(
-                      //    emailTextEditingController.text);
                     }),
-                /*Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(IconConstants.icGoogle,height:MediaQuery.of(context).size.height*10/100 ),
-                  SizedBox(width: MediaQuery.of(context).size.width*2/100 ),
-                  Image.asset(IconConstants.icMac,height:MediaQuery.of(context).size.height*10/100 ,),
-          
-                ],
-              ),
-          
-               */
               ],
             ),
           ),

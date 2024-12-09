@@ -468,6 +468,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Open Ecobank Xpress account"),
         "openXpressAccountViewTitle": MessageLookupByLibrary.simpleMessage(
             "Open an Ecobank Xpress account instantly with BCTPay"),
+        "or": MessageLookupByLibrary.simpleMessage("Or"),
         "orTxt": MessageLookupByLibrary.simpleMessage("Or"),
         "orangeMoney": MessageLookupByLibrary.simpleMessage("Orange Money"),
         "other": MessageLookupByLibrary.simpleMessage("Other"),

@@ -32,7 +32,7 @@ class _ContactListItemState extends State<ContactListItem> {
       },
       leading: CircleAvatar(
         backgroundImage: AssetImage(contact?.isSpam == 1
-            ? IconConstants.icspamCircle
+            ? IconConstants.icFraud
             : IconConstants.icfluentCall),
       ),
       // leading: Image.network(

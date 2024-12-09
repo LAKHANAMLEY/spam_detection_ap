@@ -8,7 +8,7 @@ class SpamListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomListTile(
       leading: const CircleAvatar(
-        backgroundImage: AssetImage(IconConstants.icspamCircle),
+        backgroundImage: AssetImage(IconConstants.icFraud),
       ),
       title: Text(
         spamContact.name ?? "",
@@ -24,7 +24,7 @@ class SpamListItem extends StatelessWidget {
             child: const Text("Remove spam"),
             onTap: () {
               markSpamBloc
-                  .add(RemoveSpamEvent(contactId: spamContact.id ?? ""));
+                  .add(RemoveSpamEvent(contactId: spamContact.spamNo ?? ""));
             },
           ),
         ],

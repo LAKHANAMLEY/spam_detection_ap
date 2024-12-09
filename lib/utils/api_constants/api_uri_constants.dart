@@ -89,6 +89,7 @@ class ApiUrlConstants {
   static String endPointDeleteContacts = '$baseUrl/contacts/delete-contacts';
   static String endPointCheckSpamContacts =
       '$baseUrl/contacts/is-phone-number-spam';
+  static String contactDetail = '$baseUrl/contacts/contact-details';
 
   //call logs
   static String syncCallLogs = "$baseUrl/contacts/sync-call-log";

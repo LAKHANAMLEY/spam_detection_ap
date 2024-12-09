@@ -350,3 +350,16 @@ class EnabledNotificationEvent extends ApiEvent {
 // notification type
 
 class NotificationTypeEvent extends ApiEvent {}
+
+class GetLanguageListEvent extends ApiEvent {}
+
+class GetContactDetailEvent extends ApiEvent {
+  final String mobileNo;
+
+  GetContactDetailEvent({
+    required this.mobileNo,
+  });
+
+  @override
+  List<Object?> get props => [mobileNo];
+}

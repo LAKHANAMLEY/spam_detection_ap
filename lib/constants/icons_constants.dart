@@ -14,7 +14,8 @@ class IconConstants {
   static const String icCarJacking = 'assets/icons/ic_car_jacking.svg';
   static const String icBeingFollowed = 'assets/icons/ic_being_followed.svg';
   static const String icCarBreakIn = 'assets/icons/ic_car_break_in.svg';
-  static const String icAttemptedBurglary = 'assets/icons/ic_attempted_burglary.svg';
+  static const String icAttemptedBurglary =
+      'assets/icons/ic_attempted_burglary.svg';
   static const String icSelected = 'assets/icons/ic_selected.svg';
   static const String icSelectedBlue = 'assets/icons/ic_selected_blue.svg';
   static const String icGun = 'assets/icons/ic_gun.svg';
@@ -55,7 +56,8 @@ class IconConstants {
   static const String securitykeyIcon = 'assets/icons/ic_securityKey.png';
   static const String solorcallIcon = 'assets/icons/ic_solar_call.png';
   static const String solarCall = 'assets/icons/ic_solarCall.png';
-  static const String covidprotectionshield = 'assets/icons/ic_covidprotectionshield.png';
+  static const String covidprotectionshield =
+      'assets/icons/ic_covidprotectionshield.png';
   static const String icCorporate = 'assets/icons/ic_corporate.png';
   static const String iccorporateSuff = 'assets/icons/ic_corpoaratesuff.png';
 
@@ -68,8 +70,6 @@ class IconConstants {
   static const String icPhone = 'assets/icons/ic_phone.png';
   static const String icPremium = 'assets/icons/ic_premium.png';
   static const String icSetting = 'assets/icons/ic_setting.png';
-
-
   static const String icOutgoing = 'assets/icons/ic_outgoing.png';
   static const String icIncoming = 'assets/icons/ic_incoming.png';
   static const String icMissedCall = 'assets/icons/ic_missedCalls.png';
@@ -84,7 +84,8 @@ class IconConstants {
   static const String icEdit = 'assets/icons/ic_edit.png';
   static const String icEditSecurity = 'assets/icons/ic_edit_security.png';
   static const String icchangePass = 'assets/icons/ic_changePass.png';
-  static const String icalternativeEmail = 'assets/icons/ic_alternative_mail.png';
+  static const String icalternativeEmail =
+      'assets/icons/ic_alternative_mail.png';
   static const String icviewArrow = 'assets/icons/ic_viewArrow.png';
   static const String icspamCheck = 'assets/icons/ic_spamCheck.png';
   static const String icClock = 'assets/icons/ic_clock.png';
@@ -103,9 +104,9 @@ class IconConstants {
   static const String icspamCircle = 'assets/icons/ic_spamCircle.png';
   static const String icfluentCall = 'assets/icons/ic_fluentCall.png';
   static const String icbluespam = 'assets/icons/ic_bluespam.png';
-  static const String icphonebold='assets/icons/ic_phone_bold.png';
-  static const String icsubsription='assets/icons/ic_subscription.png';
-  static const String icpremiumprotection='assets/icons/ic_premium_plan.png';
-  static const String iccircleAvater='assets/icons/ic_circleAvatar.png';
-  static const String icContacts='assets/icons/ic_contacts.png';
+  static const String icphonebold = 'assets/icons/ic_phone_bold.png';
+  static const String icsubsription = 'assets/icons/ic_subscription.png';
+  static const String icpremiumprotection = 'assets/icons/ic_premium_plan.png';
+  static const String iccircleAvater = 'assets/icons/ic_circleAvatar.png';
+  static const String icContacts = 'assets/icons/ic_contacts.png';
 }

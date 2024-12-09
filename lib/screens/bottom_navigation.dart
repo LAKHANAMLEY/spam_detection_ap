@@ -1,4 +1,6 @@
+import 'package:phone_state/phone_state.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:system_alert_window/system_alert_window.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -33,8 +35,25 @@ class _BottomNavigationState extends State<BottomNavigation> {
   StreamSubscription<ApiState>? streamSubs;
   StreamSubscription<ApiState>? streamSubsCallLog;
 
+  StreamSubscription<PhoneState>? phoneStateStreamSubs;
+
+  phoneStateConfig() {
+    ///listen phone states and show overlay
+    phoneStateStreamSubs = PhoneState.stream.listen((state) async {
+      switch (state.status) {
+        case PhoneStateStatus.NOTHING:
+        case PhoneStateStatus.CALL_INCOMING:
+          await SystemAlertWindow.showSystemWindow();
+        case PhoneStateStatus.CALL_STARTED:
+        case PhoneStateStatus.CALL_ENDED:
+          await SystemAlertWindow.showSystemWindow();
+      }
+    });
+  }
+
   @override
   void initState() {
+    phoneStateConfig();
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     getAndSyncContacts();
     getAndSyncCallLogs();
@@ -45,6 +64,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   void dispose() {
     streamSubs?.cancel();
     streamSubsCallLog?.cancel();
+    phoneStateStreamSubs?.cancel();
     super.dispose();
   }
 

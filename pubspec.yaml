@@ -44,6 +44,10 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
+  direct_call_plus: ^1.0.4
+  url_launcher: ^6.3.1
+  phone_state: ^2.0.1
+  system_alert_window: ^2.0.2
 
 dev_dependencies:
   flutter_test:

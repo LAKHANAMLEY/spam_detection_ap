@@ -149,7 +149,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
                           trailing: InkWell(
                               onTap: () {
                                 markSpamBloc.add(BlockUnBlockEvent(
-                                    contactId: contact.id ?? "",
+                                    contactId: contact.mobileNo ?? "",
                                     comments: "unblock"));
                               },
                               child: const Icon(Icons.delete)),

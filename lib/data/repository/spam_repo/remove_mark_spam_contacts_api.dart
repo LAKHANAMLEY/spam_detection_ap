@@ -8,7 +8,8 @@ Future<Response> removeSpam({
   required String contactId,
 }) async {
   var body = {
-    'contacts_id': contactId,
+    // 'contacts_id': contactId,
+    'mobile_no': contactId,
   };
 
   final response = await http.post(

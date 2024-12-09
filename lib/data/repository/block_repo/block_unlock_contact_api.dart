@@ -9,7 +9,8 @@ Future<Response> blockUnblockContact({
     Uri.parse(ApiUrlConstants.endPointUnblockContacts),
     headers: await ApiUrlConstants.headers(),
     body: {
-      'contacts_id': contactId,
+      // 'contacts_id': contactId,
+      'mobile_no': contactId,
       'comments': comment,
     },
   );

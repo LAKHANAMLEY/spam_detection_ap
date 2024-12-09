@@ -255,7 +255,12 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
           height: MediaQuery.of(context).size.height * 6 / 100,
           width: MediaQuery.of(context).size.width * 6 / 100,
         ),
-        onPressed: () {
+        onPressed: () async {
+          // await SystemAlertWindow.showSystemWindow();
+          // await SystemAlertWindow.checkPermissions();
+          // await SystemAlertWindow.requestPermissions();
+          // await SystemAlertWindow.sendMessageToOverlay("hello");
+          // await SystemAlertWindow.updateSystemWindow();
           Navigator.pushNamed(context, AppRoutes.contactList);
         },
       ),

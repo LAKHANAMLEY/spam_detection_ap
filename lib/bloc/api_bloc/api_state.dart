@@ -1,7 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
 
-import '../../models/staff_member_details_model.dart';
-
 abstract class ApiState extends Equatable {
   @override
   List<Object?> get props => [];
@@ -359,11 +357,28 @@ class EnabledNotificationState extends ApiState {
   List<Object?> get props => [value];
 }
 
-// notification Type
 class NotificationTypeState extends ApiState {
   final NotificationTypeResponse value;
 
   NotificationTypeState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class GetLanguageListState extends ApiState {
+  final CountryLanguageResponse value;
+
+  GetLanguageListState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class GetContactDetailState extends ApiState {
+  final ContactDetailsResponse value;
+
+  GetContactDetailState(this.value);
 
   @override
   List<Object?> get props => [value];

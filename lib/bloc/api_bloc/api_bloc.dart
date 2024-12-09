@@ -313,5 +313,20 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(NotificationTypeState(value));
       });
     }
+
+    // notification Type
+    if (event is GetLanguageListEvent) {
+      emit(ApiLoadingState());
+      await fetchLanguages().then((value) {
+        emit(GetLanguageListState(value));
+      });
+    }
+
+    if (event is GetContactDetailEvent) {
+      emit(ApiLoadingState());
+      await getContactDetail(mobileNo: event.mobileNo).then((value) {
+        emit(GetContactDetailState(value));
+      });
+    }
   }
 }

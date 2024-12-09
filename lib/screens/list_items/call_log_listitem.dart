@@ -22,13 +22,13 @@ class CallLogListItem extends StatelessWidget {
                 id: callLog.contactListId,
                 isSpam: callLog.isSpam,
                 isBlocked: callLog.isBlocked,
-                markSpamByUser: callLog.markSpamByUser,
+                markspambyuser: callLog.markSpamByUser,
               ),
             ));
       },
       leading: CircleAvatar(
         backgroundImage: AssetImage(callLog.isSpam == 1
-            ? IconConstants.icspamCircle
+            ? IconConstants.icFraud
             : IconConstants.icfluentCall),
       ),
       // leading: Icon(getCallTypeIcon(callLog.callType),
@@ -118,8 +118,7 @@ class CallLogListItem extends StatelessWidget {
               PopupMenuItem(
                   onTap: () {
                     markSpamBloc.add(BlockUnBlockEvent(
-                        contactId: callLog.contactListId ?? "",
-                        comments: "block"));
+                        contactId: callLog.mobileNo ?? "", comments: "block"));
                   },
                   child: Text(callLog.isBlocked == 1 ? "Unblock" : "Block"))
             ],

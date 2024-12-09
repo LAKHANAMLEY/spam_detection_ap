@@ -53,8 +53,13 @@ class ContactData {
   final String? email;
   final String? numberType;
   final int? isSpam;
+  final int? markspambyuser;
   final int? isBlocked;
-  final int? markSpamByUser;
+  final String? spamReport;
+  final String? callActivity;
+  final String? usuallyCalls;
+  final String? lastSeen;
+  final List<dynamic>? callHistory;
 
   ContactData({
     this.id,
@@ -64,32 +69,14 @@ class ContactData {
     this.email,
     this.numberType,
     this.isSpam,
+    this.markspambyuser,
     this.isBlocked,
-    this.markSpamByUser,
+    this.spamReport,
+    this.callActivity,
+    this.usuallyCalls,
+    this.lastSeen,
+    this.callHistory,
   });
-
-  ContactData copyWith({
-    String? id,
-    String? name,
-    String? countryCode,
-    String? mobileNo,
-    String? email,
-    String? numberType,
-    int? isSpam,
-    int? isBlocked,
-    int? markSpamByUser,
-  }) =>
-      ContactData(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        countryCode: countryCode ?? this.countryCode,
-        mobileNo: mobileNo ?? this.mobileNo,
-        email: email ?? this.email,
-        numberType: numberType ?? this.numberType,
-        isSpam: isSpam ?? this.isSpam,
-        isBlocked: isBlocked ?? this.isBlocked,
-        markSpamByUser: markSpamByUser ?? this.markSpamByUser,
-      );
 
   factory ContactData.fromJson(Map<String, dynamic> json) => ContactData(
         id: json["id"],
@@ -99,8 +86,15 @@ class ContactData {
         email: json["email"],
         numberType: json["number_type"],
         isSpam: json["is_spam"],
+        markspambyuser: json["markspambyuser"],
         isBlocked: json["is_blocked"],
-        markSpamByUser: json["markspambyuser"],
+        spamReport: json["spam_report"],
+        callActivity: json["call_activity"],
+        usuallyCalls: json["usually_calls"],
+        lastSeen: json["last_seen"],
+        callHistory: json["call_history"] == null
+            ? []
+            : List<dynamic>.from(json["call_history"]!.map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -111,7 +105,14 @@ class ContactData {
         "email": email,
         "number_type": numberType,
         "is_spam": isSpam,
+        "markspambyuser": markspambyuser,
         "is_blocked": isBlocked,
-        "markspambyuser": markSpamByUser,
+        "spam_report": spamReport,
+        "call_activity": callActivity,
+        "usually_calls": usuallyCalls,
+        "last_seen": lastSeen,
+        "call_history": callHistory == null
+            ? []
+            : List<dynamic>.from(callHistory!.map((x) => x)),
       };
 }
