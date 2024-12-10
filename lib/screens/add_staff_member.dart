@@ -25,7 +25,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
   final TextEditingController supportPinController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
 
-  var addStaffMemberBloc = ApiBloc(ApiBlocInitialState());
+  double scale = 3.5;
 
   @override
   Widget build(BuildContext context) {
@@ -34,19 +34,29 @@ class _AddStaffMemberState extends State<AddStaffMember> {
         appBar: const CustomAppBar(title: "Add Staff Member"),
         body: SafeArea(
             child: BlocConsumer(
-                bloc: addStaffMemberBloc,
+                bloc: staffBloc,
                 listener: (context, state) {
                   if (state is StaffAddMemberState) {
                     if (state.value.statusCode == 200) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const StaffMemberList()));
+                      //back screen pr pop krna h qki new screen ka stack create ho jayega
+                      Navigator.pop(context); //yes clear sir
+                      //but back screen pr list v update hona chahiye abhi nhi hogi check krte h
+                      //abhi update nhi ho rhi list
+                      //isliye common bloc use krege ya us bloc ko yha se list event hit krege
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const StaffMemberList()));
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(context, state.value.message);
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,
                           subTitle: state.value.message.toString());
                     }
+                    //yaha list again get krege
+                    staffBloc.add(GetStaffMemberListEvent());
                   }
                 },
                 builder: (context, state) {
@@ -73,7 +83,11 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           CustomTextField(
                             controller: lastnameController,
                             hintText: 'Last name',
-                            suffix: Image.asset(IconConstants.icUsername),
+                            suffix: Image.asset(
+                              IconConstants.icUsername,
+                              scale: 1.5,
+                              //2x min hona chahiye
+                            ),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
                                 return "Please enter last name";
@@ -85,7 +99,10 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           CustomTextField(
                             controller: emailController,
                             hintText: 'Email',
-                            suffix: Image.asset(IconConstants.icUsername),
+                            suffix: Image.asset(
+                              IconConstants.icfluentMail,
+                              scale: scale,
+                            ),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
                                 return "Please enter Email";
@@ -113,7 +130,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                             suffix: Image.asset(IconConstants.icUsername),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
-                                return "Please enter postion";
+                                return "Please enter position";
                               }
                               return null;
                             },
@@ -179,7 +196,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           AppButton(
                               text: "Add Staff Member",
                               onPress: () {
-                                addStaffMemberBloc.add(
+                                staffBloc.add(
                                   StaffAddMemberEvent(
                                     email: emailController.text.trim(),
                                     password: passwordController.text.trim(),
@@ -192,16 +209,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                     countrycode: phoneNumber?.countryCode ?? '',
                                   ),
                                 );
-                              } /*else {
-                                // Show error message if any field is empty
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('Please fill all fields')),
-                                );
-                              }
-                              */
-
-                              ),
+                              }),
                         ]),
                       ),
                     ),

@@ -19,6 +19,7 @@ class _LoginState extends State<Login> {
   bool agreeToTerms = false; //ab kro test // ok
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   // final TextEditingController _phoneController = TextEditingController();//itne controller ki need nahi hai
   // String? _verificationId;
 
@@ -60,251 +61,6 @@ class _LoginState extends State<Login> {
     );
   }
 
-  /*final TextEditingController phoneController = TextEditingController();
-  String initialCountry = 'FR'; // Set initial country to France (FR)
-  PhoneNumber phoneNumber = PhoneNumber(isoCode: 'FR');
-  bool isLoading = false;
-   */
-
-  /*TextEditingController emailTextEditingController = TextEditingController();
-
-  TextEditingController passwordTextEditingController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  signInUserValidation(String email, String password) async {
-    print("userName $email");
-    print("password $password");
-    if (email.isEmpty) {
-      SnackBarToastMessage.showSnackBar(
-          context, StringConstants.emailMessage);
-      return false;
-    } else if (!AppData.emailValidatorRegExp.hasMatch(email)) {
-      SnackBarToastMessage.showSnackBar(
-          context, StringConstants.emailValidMessage);
-      return false;
-    } else if (password.isEmpty) {
-      SnackBarToastMessage.showSnackBar(
-          context, StringConstants.passwordNameessage);
-      return false;
-    } else if (password.length < 6) {
-      SnackBarToastMessage.showSnackBar(
-          context, StringConstants.passwordMinMessage);
-      return false;
-    } else if (isValue == false) {
-      SnackBarToastMessage.showSnackBar(
-          context, StringConstants.checkBoxMessage);
-      return false;
-    } else {
-      signInUserApiCall(email, password);
-    }
-  }
-
-  signInUserApiCall(String username, String password) async {
-    Uri url = Uri.parse("${ApiUrlConstants.endPointEmailPassword}");
-
-    Map<String, String> headers = ({
-      'Content-Type': 'application/json',
-    });
-
-    Map<String, String> body = ({'username': username, 'password': password});
-    setState(() {
-      isApiCalling = true;
-    });
-    try {
-      final  http.Response response = await http.post(
-        url,
-
-        body: jsonEncode(body),
-      );
-      print(json.decode(response.body));
-      if (response.statusCode == 200) {
-        final res = json.decode(response.body);
-        setState(() {
-          isApiCalling = false;
-        });
-        if (res['status'] == true) {
-          dynamic userDetails = res['data'];
-          print("userDetails $userDetails");
-          final prefs = await SharedPreferences.getInstance();
-          prefs.setString("user_details", jsonEncode(userDetails));
-
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => LoginSuccessful()),
-          );
-        }
-      } else {
-        setState(() {
-          isApiCalling = false;
-        });
-        throw Exception('Album loading failed!');
-      }
-    } catch (e) {
-      setState(() {
-        isApiCalling = false;
-      });
-      print(e);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => LoginSuccessful()),
-      );
-    }
-  }
-
-  /*@override
-  Widget build(BuildContext context) {
-    return ProgressHUD(
-        inAsyncCall: isApiCalling,
-        opacity: 0.5,
-        child: _buildUIScreen(context));
-  }
-
-   */
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-   */
-
-  /*final TextEditingController  phoneController=TextEditingController();
-  final TextEditingController  countryController=TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  bool _isLoading = false;
-  String? _errorMessage;
-
-  final String loginUrl = ApiUrlConstants.endPointEmailPassword;
-
-
-  Future<void> _login() async {
-
-    setState(() {
-      _isLoading = true;
-      _errorMessage = null;
-    });
-
-    final response = await http.post(
-      Uri.parse(loginUrl),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(<String, String>{
-        'email': emailController.text,
-        'password': passwordController.text,
-        'device_token': deviceToken ?? '',
-        'device_type': deviceType,
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      if (data.containsKey('token')) {
-
-        print('Login successful! Token: ${data['token']}');
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => LoginSuccessful()));
-      } else {
-        setState(() {
-          _errorMessage = 'Login failed: No token received';
-        });
-      }
-    } else {
-      setState(() {
-        _errorMessage = 'Login failed: ${jsonDecode(response.body)['message']}';
-      });
-    }
-
-    setState(() {
-      _isLoading = false;
-    });
-  }
-
-
-   */
-
-  /*Future<void> signIn(String email, String password) async {
-    setState(() {
-      _isLoading = true;
-      _errorMessage = null;
-    });
-
-    final url = Uri.parse(
-        ApiUrlConstants.endPointEmailPassword); // API endpoint
-
-    final headers = {
-      'Content-Type': 'application/json',
-    };
-
-    final body = jsonEncode({
-      'email': email,
-      'password': password,
-    });
-
-    try {
-      final response = await http.post(url, headers: headers, body: body);
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        if (data.containsKey('token')) {
-          print('Login Success: ${data['token']}');
-          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginSuccessful())); // Navigate to HomeScreen
-        } else {
-          setState(() {
-            _errorMessage = 'Login failed: Token not received';
-          });
-        }
-      } else {
-        final errorResponse = jsonDecode(response.body);
-        setState(() {
-          _errorMessage = errorResponse['message'] ?? 'An error occurred';
-        });
-        print('Login failed: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error: $e');
-      setState(() {
-        _errorMessage = 'An error occurred. Please try again.';
-      });
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
-
-
-   */
-
-  /*Future<void>sendPostRequest()async {
-    var response = await http.post(Uri.parse(ApiUrlConstants.endPointEmailPassword),
-        body: {
-          "email": emailController.text,
-          "password": passwordController.text,
-        });
-    print('response:::::::::::::::::$response');
-    print('response:::::::::::::::::${jsonEncode({
-      "email": emailController.text,
-      "password": passwordController.text,
-    })}');
-    print('response:::::::::::::::::${response.body}');
-    print('response:::::::::::::::::${response.statusCode}');
-    if (response.statusCode == 200) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Post created successfully!"),
-      ));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Failed to create post!"),
-      ));
-    }
-  }
-   */
   final TextEditingController phoneController = TextEditingController(); //#2
   final TextEditingController countryController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -342,10 +98,10 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-               Center(
+              Center(
                   child: Text(
-                    appLocalization(context).login,
-                style:  const TextStyle(
+                appLocalization(context).login,
+                style: const TextStyle(
                     color: AppColor.bluelightColor,
                     fontSize: 35,
                     fontFamily: AppFont.fontFamily,
@@ -354,13 +110,13 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-               Padding(
-                padding:const EdgeInsets.all(20),
+              Padding(
+                padding: const EdgeInsets.all(20),
                 child: Center(
                     child: Text(
-                      appLocalization(context).pleaseVerify,//
+                  appLocalization(context).pleaseVerify, //
                   textAlign: TextAlign.center,
-                  style: const  TextStyle(
+                  style: const TextStyle(
                       color: AppColor.verifyColor,
                       fontFamily: AppFont.fontFamily,
                       fontSize: 16,
@@ -548,7 +304,7 @@ class _LoginState extends State<Login> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                     Text(
+                    Text(
                       appLocalization(context).dontHaveAnAccount,
                       style: const TextStyle(
                           fontWeight: FontWeight.w600,
@@ -566,7 +322,7 @@ class _LoginState extends State<Login> {
                                 builder: (BuildContext context) =>
                                     const Register()));
                       },
-                      child:  Text( appLocalization(context).register,
+                      child: Text(appLocalization(context).register,
                           style: const TextStyle(
                               color: AppColor.yellowlightColor,
                               fontWeight: FontWeight.bold,
@@ -650,7 +406,7 @@ class _LoginState extends State<Login> {
                */
                 SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
                 AppButton(
-                  text:appLocalization(context).getOtp,
+                  text: appLocalization(context).getOtp,
                   onPress: _verifyPhoneNumber,
                 ),
                 SizedBox(
@@ -694,7 +450,7 @@ class _LoginState extends State<Login> {
                                 builder: (BuildContext context) =>
                                     const Register()));
                       },
-                      child: Text( appLocalization(context).register,
+                      child: Text(appLocalization(context).register,
                           style: const TextStyle(
                               color: AppColor.yellowlightColor,
                               fontWeight: FontWeight.bold,

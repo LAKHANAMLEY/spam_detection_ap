@@ -8,9 +8,14 @@ class EditSecurityPin extends StatefulWidget {
 }
 
 class _EditSecurityPinState extends State<EditSecurityPin> {
-  final TextEditingController currentpinController = TextEditingController();
-  final TextEditingController newpinController = TextEditingController();
-  final TextEditingController confirmnewpinController = TextEditingController();
+  final TextEditingController currentPinController = TextEditingController();
+  final TextEditingController newPinController = TextEditingController();
+  final TextEditingController confirmnewPinController = TextEditingController();
+
+  bool _isLoading = false;
+  String? _errorMessage;
+  String? enteredPhone;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +83,7 @@ class _EditSecurityPinState extends State<EditSecurityPin> {
               SizedBox(
                 width: MediaQuery.sizeOf(context).width * 90 / 100,
                 child: TextFormField(
-                  controller: currentpinController,
+                  controller: currentPinController,
                   obscureText: true,
                   decoration: InputDecoration(
                     hintText: 'Current pin',
@@ -112,7 +117,7 @@ class _EditSecurityPinState extends State<EditSecurityPin> {
               SizedBox(
                 width: MediaQuery.sizeOf(context).width * 90 / 100,
                 child: TextFormField(
-                  controller: newpinController,
+                  controller: newPinController,
                   obscureText: true,
                   decoration: InputDecoration(
                     hintText: 'New security pin',
@@ -146,7 +151,7 @@ class _EditSecurityPinState extends State<EditSecurityPin> {
               SizedBox(
                 width: MediaQuery.sizeOf(context).width * 90 / 100,
                 child: TextFormField(
-                  controller: confirmnewpinController,
+                  controller: confirmnewPinController,
                   obscureText: true,
                   decoration: InputDecoration(
                     hintText: "Confirm security pin",
@@ -177,7 +182,51 @@ class _EditSecurityPinState extends State<EditSecurityPin> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 4 / 100,
               ),
-              AppButton(text: "Change Security Pin", onPress: () {})
+              if (_errorMessage != null)
+                Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 2 / 100,
+              ),
+              _isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : AppButton(
+                      text: appLocalization(context).changeSecurity,
+                      onPress: () {
+                        final currentPin = currentPinController.text;
+                        final newPin = newPinController.text;
+                        final confirmnewPin = confirmnewPinController.text;
+                        if (currentPin.isNotEmpty &&
+                            newPin.isNotEmpty &&
+                            confirmnewPin.isNotEmpty) {
+                          setState(() {
+                            _isLoading = true;
+                          });
+                          changeSecurityPin(
+                            currentPin: currentPin,
+                            newPin: newPin,
+                            confirmNewPin: confirmnewPin,
+                          ).then((response) {
+                            setState(() {
+                              _isLoading = false;
+                            });
+                            // class SignUpResponse
+                            //var response
+                            if (response.statusCode == 200) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const Profile()));
+                            } else {
+                              setState(() {
+                                _errorMessage = response.message.toString();
+                              });
+                            }
+                          });
+                        } else {
+                          setState(() {
+                            _errorMessage = 'Please enter the all fields.';
+                          });
+                        }
+                      },
+                    ),
             ],
           ),
         ),

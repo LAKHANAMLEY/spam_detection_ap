@@ -570,5 +570,8 @@
   "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword": "Votre nouveau mot de passe doit être différent du mot de passe précédemment utilisé.",
   "yourPasswordHasBeenChangedSuccessfully": "Votre mot de passe a été changé avec succès .",
   "yourPasswordHasBeenResetSuccessfully": "Votre mot de passe a été réinitialisé avec succès.",
-  "yourPaymentHasBeenSuccessfullyDone": "Votre paiement a été effectué avec succès."
+  "yourPaymentHasBeenSuccessfullyDone": "Votre paiement a été effectué avec succès.",
+  "secureEmail": "Ingrese un correo electrónico alternativo para proteger su cuenta.",
+  "changeSecurity": "Cambiar PIN de seguridad",
+  "notification": "Notificación"
 }

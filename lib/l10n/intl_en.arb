@@ -567,5 +567,8 @@
   "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword": "Your new password must be different from previously used password.",
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
-  "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done."
+  "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
+  "secureEmail": "Please enter an alternative email to secure your account.",
+  "changeSecurity": "Change Security Pin",
+  "notification": "Notifications"
 }

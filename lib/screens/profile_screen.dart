@@ -525,13 +525,8 @@ class _ProfileState extends State<Profile> {
                           title: appLocalization(context).addAlternativeEmail,
                           icon: IconConstants.icalternativeEmail,
                           onTap: () {
-                            /*Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                    const EditSecurityPin()));
-
-                             */
+                            Navigator.pushNamed(
+                                context, AppRoutes.alternativeEmail);
                           },
                         ),
                         SizedBox(

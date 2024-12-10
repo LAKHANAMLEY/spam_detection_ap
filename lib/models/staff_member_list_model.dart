@@ -2,7 +2,7 @@
 //
 //     final staffMemberListResponse = staffMemberListResponseFromJson(jsonString);
 
-import 'dart:convert';
+import 'package:spam_delection_app/lib.dart';
 
 StaffMemberListResponse staffMemberListResponseFromJson(String str) =>
     StaffMemberListResponse.fromJson(json.decode(str));
@@ -47,8 +47,7 @@ class StaffMember {
   final String? relation;
   final String? supportPin;
   final String? countryCode;
-
-  //final XFile? photoFile;
+  final XFile? photoFile;
 
   StaffMember({
     this.userId,
@@ -61,7 +60,7 @@ class StaffMember {
     this.relation,
     this.supportPin,
     this.countryCode,
-    //this.photoFile,
+    this.photoFile,
   });
 
   factory StaffMember.fromJson(Map<String, dynamic> json) => StaffMember(

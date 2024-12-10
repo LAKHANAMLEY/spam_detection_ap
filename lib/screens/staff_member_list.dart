@@ -1,6 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
 
-
 class StaffMemberList extends StatefulWidget {
   const StaffMemberList({super.key});
 
@@ -14,16 +13,18 @@ class _StaffMemberListState extends State<StaffMemberList> {
   late List<StaffMember> filteredContacts;
   StaffMember? selectedCategory;
 
+  final ImagePicker _picker = ImagePicker();
+  XFile? _selectedImage;
   String? numberType;
   List<StaffMemberList> categories = [];
 
-  var staffListBloc = ApiBloc(ApiBlocInitialState());
+  // var staffBloc = ApiBloc(ApiBlocInitialState());
 
   @override
   void initState() {
     super.initState();
     filteredContacts = [];
-    staffListBloc.add(GetStaffMemberListEvent());
+    staffBloc.add(GetStaffMemberListEvent());
   }
 
   void filterSearchResults(String query) {
@@ -77,62 +78,115 @@ class _StaffMemberListState extends State<StaffMemberList> {
         ),
         Expanded(
             child: BlocConsumer(
-                bloc: staffListBloc,
+                bloc: staffBloc, //ab ye common bloc use kr rhe h
                 listener: (context, state) {
                   if (state is GetStaffMemberListState) {
                     contacts = state.value.staffmemberslist ?? [];
                     filteredContacts = contacts;
                   }
+                  if (state is StaffDeleteMemberState) {
+                    if (state.value.statusCode == 200) {
+                      showCustomDialog(
+                        context,
+                        dialogType: DialogType.success,
+                        subTitle:
+                            state.value.message ?? "Deleted successfully!",
+                      );
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(
+                          context,
+                          state.value.message ??
+                              "Session expired. Please log in again.");
+                    } else {
+                      showCustomDialog(
+                        context,
+                        dialogType: DialogType.success,
+                        subTitle: state.value.message,
+                      );
+                    }
+                    staffBloc.add(GetStaffMemberListEvent());
+                  }
                 },
                 builder: (context, state) {
                   if (state is GetStaffMemberListState) {
                     contacts = state.value.staffmemberslist ?? [];
-                    if (filteredContacts.isEmpty) {
-                      return const Center(
-                        child: Text('No contacts'),
-                      );
-                    }
-                    return ListView.builder(
-                      itemCount: filteredContacts.length,
-                      // shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Image.network(
-                            filteredContacts[index].userRole!,
-                            //TODO: image path
-                            errorBuilder: (context, error, stackTrace) =>
-                                const Icon(Icons.person),
-                            width: MediaQuery.of(context).size.width * 12 / 100,
-                            height:
-                                MediaQuery.of(context).size.height * 12 / 100,
-                          ),
-                          title: Text(
-                            filteredContacts[index].firstName ?? "",
-                            style: const TextStyle(
-                                color: AppColor.primaryColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                fontFamily: AppFont.fontFamily),
-                          ),
-                          trailing: PopupMenuButton(
-                            itemBuilder: (context) => [
-                              PopupMenuItem(
-                                child: const Text("Edit Staff Member"),
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, AppRoutes.editStaffMember,
-                                      arguments: EditStaffMember(
-                                          staffMember:
-                                              filteredContacts[index]));
-                                },
-                              ),
-                              PopupMenuItem(
-                                  child: const Text("Delete Member"),
-                                  onTap: () {})
-                            ],
-                          ),
-                        );
-                      },
+
+                    return ModalProgressHUD(
+                      progressIndicator: const Loader(),
+                      inAsyncCall: state is ApiLoadingState,
+                      child: (filteredContacts.isEmpty)
+                          ? const Center(
+                              child: Text('No staff'),
+                            )
+                          : ListView.builder(
+                              itemCount: filteredContacts.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundColor:
+                                        AppColor.vanishColor.withOpacity(0.2),
+                                    radius: 43.0,
+                                    backgroundImage:
+                                        filteredContacts[index].photo != null
+                                            ? NetworkImage(
+                                                filteredContacts[index].photo!)
+                                            : AssetImage(
+                                                ImageConstants.imageProfile),
+                                    /*child: filteredContacts[index].photo != null
+                                        ? Image.network(
+                                            filteredContacts[index].photo!,
+                                            errorBuilder:
+                                                (context, error, stackTrace) =>
+                                                    const Icon(Icons.person),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.12,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.12,
+                                          )
+                                        : const Icon(Icons.person),
+
+                                     */
+                                  ),
+                                  title: Text(
+                                    filteredContacts[index].firstName ?? "",
+                                    style: const TextStyle(
+                                        color: AppColor.primaryColor,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18,
+                                        fontFamily: AppFont.fontFamily),
+                                  ),
+                                  trailing: PopupMenuButton(
+                                    itemBuilder: (context) => [
+                                      PopupMenuItem(
+                                        child: const Text("Edit Staff Member"),
+                                        onTap: () {
+                                          Navigator.pushNamed(context,
+                                              AppRoutes.editStaffMember,
+                                              arguments: EditStaffMember(
+                                                  staffMember:
+                                                      filteredContacts[index]));
+                                        },
+                                      ),
+                                      PopupMenuItem(
+                                          child: const Text("Delete Member"),
+                                          onTap: () {
+                                            staffBloc.add(
+                                                StaffDeleteMemberEvent(
+                                                    id: filteredContacts[index]
+                                                            .userId ??
+                                                        ""));
+                                            // Navigator.pop(context);
+                                          })
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
                     );
                   }
                   return const Loader();

@@ -8,6 +8,7 @@ var sharedPrefBloc = SharedPrefBloc(SharedPrefInitialState());
 var contactListBloc = ApiBloc(ApiBlocInitialState());
 var callLogsListBloc = ApiBloc(ApiBlocInitialState());
 var markSpamBloc = ApiBloc(ApiBlocInitialState());
+var staffBloc = ApiBloc(ApiBlocInitialState());
 
 var selectBottomTabBloc = SelectionBloc(SelectIntState(2));
 
@@ -15,10 +16,14 @@ final localizationBloc =
     LocalizationBloc(ChangeLocaleState(const Locale("en")));
 
 Size screenSize(BuildContext context) => MediaQuery.of(context).size;
+
 bool isDarkMode(BuildContext context) =>
     Theme.of(context).brightness == Brightness.dark;
+
 TextTheme textTheme(context) => Theme.of(context).textTheme;
+
 AppLocalizations appLocalization(context) => AppLocalizations.of(context)!;
+
 S getText(context) => S.of(context);
 
 class AppConstants {
