@@ -136,24 +136,8 @@ class _BlockedNumberState extends State<BlockedNumber> {
                       itemCount: contacts.length,
                       itemBuilder: (context, index) {
                         final contact = contacts[index];
-                        return CustomListTile(
-                          leading: const CircleAvatar(
-                            backgroundImage:
-                                AssetImage(IconConstants.icspamCircle),
-                          ),
-                          title: Text(
-                            contact.name ?? "",
-                            style: textTheme(context).titleMedium,
-                          ),
-                          subtitle: Text(contact.mobileNo ?? ""),
-                          trailing: InkWell(
-                              onTap: () {
-                                markSpamBloc.add(BlockUnBlockEvent(
-                                    contactId: contact.mobileNo ?? "",
-                                    comments: "unblock"));
-                              },
-                              child: const Icon(Icons.delete)),
-                          // subtitle: Text(contact.phone),
+                        return BlockedContactListItem(
+                          contact: contact,
                         );
                       },
                     );

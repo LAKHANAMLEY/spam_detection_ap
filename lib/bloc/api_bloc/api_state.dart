@@ -386,3 +386,12 @@ class GetContactDetailState extends ApiState {
   @override
   List<Object?> get props => [value];
 }
+
+class LoginWithEmailAndPasswordState extends ApiState {
+  final LoginResponse value;
+
+  LoginWithEmailAndPasswordState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}

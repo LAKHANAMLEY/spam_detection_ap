@@ -34,7 +34,7 @@ class _ContactDetailState extends State<ContactDetail> {
   @override
   Widget build(BuildContext context) {
     var argument = args(context) as ContactDetail;
-    const expandedHeight = 280.0;
+    const expandedHeight = 300.0;
     const collapsedHeight = 60.0;
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
@@ -95,7 +95,6 @@ class _ContactDetailState extends State<ContactDetail> {
               callLogsListBloc.add(GetCallLogsEvent());
               contactDetailBloc.add(
                   GetContactDetailEvent(mobileNo: contact?.mobileNo ?? ""));
-              // markSpamBloc.add(GetSpamEvent());
             }
           },
           builder: (context, markSpamBlocState) {
@@ -110,6 +109,7 @@ class _ContactDetailState extends State<ContactDetail> {
                       inAsyncCall: state is ApiLoadingState ||
                           markSpamBlocState is ApiLoadingState,
                       child: CustomScrollView(
+                        shrinkWrap: true,
                         slivers: [
                           SliverAppBar(
                             expandedHeight: expandedHeight,
@@ -117,6 +117,11 @@ class _ContactDetailState extends State<ContactDetail> {
                             floating: true,
                             pinned: true,
                             snap: true,
+                            leading: InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Image.asset(IconConstants.backIcon)),
                             backgroundColor: Colors.white,
                             flexibleSpace: FlexibleSpaceBar(
                               collapseMode: CollapseMode.pin,
@@ -133,10 +138,10 @@ class _ContactDetailState extends State<ContactDetail> {
                                     ),
                                   ),
                                   Positioned(
-                                    left: 9,
-                                    right: 8,
-                                    top: 80,
-                                    bottom: 3,
+                                    left: 0,
+                                    right: 0,
+                                    top: 85,
+                                    // bottom: 3,
                                     //bottom: collapsedHeight + 30,
                                     // left: MediaQuery.of(context).size.width / 2 - 50,
                                     child: Column(
@@ -241,152 +246,71 @@ class _ContactDetailState extends State<ContactDetail> {
                               ),
                             ),
                           ),
-                          SliverToBoxAdapter(
-                            child: Column(
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.all(16.0),
-                                  height: MediaQuery.of(context).size.height *
-                                      10 /
-                                      100,
-                                  width: MediaQuery.of(context).size.width *
-                                      90 /
-                                      100,
-                                  decoration: BoxDecoration(
-                                      color: AppColor.secondryColor,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      border: Border.all(
-                                          color: AppColor.fillColor)),
-                                  child: ListTile(
-                                    onTap: () async {
-                                      await DirectCallPlus.makeCall(
-                                          contact?.mobileNo ?? "");
-                                    },
-                                    leading: const Icon(Icons.phone,
-                                        color: AppColor.primaryColor),
-                                    title: Text(
-                                      contact?.mobileNo ?? "",
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    subtitle: Text(contact?.numberType ?? ""),
-                                  ),
+                          SliverList(
+                              delegate: SliverChildListDelegate([
+                            Container(
+                              margin: const EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(
+                                  color: AppColor.fillColor,
                                 ),
-                                Container(
-                                  height: MediaQuery.of(context).size.height *
-                                      20 /
-                                      100,
-                                  width: MediaQuery.of(context).size.width *
-                                      90 /
-                                      100,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: AppColor.fillColor,
-                                      )),
-                                  child: IntrinsicHeight(
-                                    child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.stretch,
-                                        children: [
-                                          Expanded(
-                                            child: Column(children: [
-                                              Container(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    10 /
-                                                    100,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    45 /
-                                                    100,
-                                                decoration: const BoxDecoration(
-                                                    border: Border(
-                                                  right: BorderSide(
-                                                    //
-                                                    color: AppColor.fillColor,
-                                                  ),
-                                                )),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    const Text(StringConstants
-                                                        .spamreportext),
-                                                    Text(
-                                                      contact!.spamReport ?? "",
-                                                      style: const TextStyle(
-                                                          color: AppColor
-                                                              .primaryColor,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontFamily: AppFont
-                                                              .fontFamily),
-                                                    ),
-                                                  ],
+                              ),
+                              child: ListTile(
+                                onTap: () async {
+                                  await DirectCallPlus.makeCall(
+                                      contact?.mobileNo ?? "");
+                                },
+                                leading: const Icon(Icons.phone,
+                                    color: AppColor.primaryColor),
+                                title: Text(
+                                  contact?.mobileNo ?? "",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: Text(contact?.numberType ?? ""),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: AppColor.fillColor,
+                                  )),
+                              child: IntrinsicHeight(
+                                child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                const Text(StringConstants
+                                                    .spamreportext),
+                                                Text(
+                                                  contact!.spamReport ?? "",
+                                                  style: const TextStyle(
+                                                      color:
+                                                          AppColor.primaryColor,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontFamily:
+                                                          AppFont.fontFamily),
                                                 ),
-                                              ),
-                                              Container(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    9 /
-                                                    100,
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    45 /
-                                                    100,
-                                                decoration: const BoxDecoration(
-                                                    border: Border(
-                                                  right: BorderSide(
-                                                    color: AppColor.fillColor,
-                                                  ),
-                                                  top: BorderSide(
-                                                    color: AppColor.fillColor,
-                                                  ),
-                                                )),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    const Text(
-                                                      StringConstants
-                                                          .usallytext,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
-                                                    Text(
-                                                      contact.usuallyCalls ??
-                                                          "",
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: const TextStyle(
-                                                          color: AppColor
-                                                              .primaryColor,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontFamily: AppFont
-                                                              .fontFamily),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ]),
-                                          ),
-                                          Expanded(
-                                            child: SizedBox(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  10 /
-                                                  100,
+                                              ],
+                                            ),
+                                            const Divider(),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
@@ -394,10 +318,13 @@ class _ContactDetailState extends State<ContactDetail> {
                                                     CrossAxisAlignment.center,
                                                 children: [
                                                   const Text(
-                                                    StringConstants
-                                                        .callactivitytext,
+                                                    StringConstants.usallytext,
                                                     textAlign: TextAlign.center,
-                                                    style: TextStyle(
+                                                  ),
+                                                  Text(
+                                                    contact.usuallyCalls ?? "",
+                                                    textAlign: TextAlign.center,
+                                                    style: const TextStyle(
                                                         color: AppColor
                                                             .primaryColor,
                                                         fontWeight:
@@ -405,44 +332,54 @@ class _ContactDetailState extends State<ContactDetail> {
                                                         fontFamily:
                                                             AppFont.fontFamily),
                                                   ),
-                                                  Text(contact.callActivity ??
-                                                      ""),
                                                 ],
                                               ),
                                             ),
-                                          ),
-                                        ]),
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.all(
-                                      16.0), // Adds margin around the container
-                                  height: MediaQuery.of(context).size.height *
-                                      10 /
-                                      100,
-                                  width: MediaQuery.of(context).size.width *
-                                      90 /
-                                      100,
-                                  decoration: BoxDecoration(
-                                      color: AppColor.secondryColor,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      border: Border.all(
-                                          color: AppColor.fillColor)),
-                                  child: const ListTile(
-                                    leading: Icon(Icons.location_on,
-                                        color: AppColor.primaryColor),
-                                    title: Text(
-                                      'More info available',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    subtitle:
-                                        Text('Upgrade to Premium to view'),
-                                  ),
-                                ),
-                              ],
+                                          ]),
+                                        ),
+                                      ),
+                                      const VerticalDivider(),
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            const Text(
+                                              StringConstants.callactivitytext,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  color: AppColor.primaryColor,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily:
+                                                      AppFont.fontFamily),
+                                            ),
+                                            Text(contact.callActivity ?? ""),
+                                          ],
+                                        ),
+                                      ),
+                                    ]),
+                              ),
                             ),
-                          ),
+                            Container(
+                              margin: const EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  border:
+                                      Border.all(color: AppColor.fillColor)),
+                              child: const ListTile(
+                                leading: Icon(Icons.location_on,
+                                    color: AppColor.primaryColor),
+                                title: Text(
+                                  'More info available',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: Text('Upgrade to Premium to view'),
+                              ),
+                            ),
+                            // 1000.height()
+                          ])),
                         ],
                       ),
                     );

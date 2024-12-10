@@ -9,6 +9,7 @@ class ContactList extends StatefulWidget {
 
 class _ContactListState extends State<ContactList> {
   final TextEditingController searchController = TextEditingController();
+  final searchBloc = SelectionBloc(SelectStringState(""));
 
   List<ContactData> contacts = [];
   List<ContactData> filteredContacts = [];
@@ -127,20 +128,24 @@ class _ContactListState extends State<ContactList> {
                           },
                           builder: (context, state) {
                             if (state is GetContactState) {
-                              if (filteredContacts.isEmpty) {
-                                return const Center(
-                                  child: Text('No contacts'),
-                                );
-                              }
-                              return ListView.builder(
-                                itemCount: filteredContacts.length,
-                                // shrinkWrap: true,
-                                itemBuilder: (context, index) {
-                                  return ContactListItem(
-                                    contact: filteredContacts[index],
-                                  );
-                                },
-                              );
+                              return BlocBuilder(
+                                  bloc: searchBloc,
+                                  builder: (context, searchState) {
+                                    if (filteredContacts.isEmpty) {
+                                      return const Center(
+                                        child: Text('No contacts'),
+                                      );
+                                    }
+                                    return ListView.builder(
+                                      itemCount: filteredContacts.length,
+                                      // shrinkWrap: true,
+                                      itemBuilder: (context, index) {
+                                        return ContactListItem(
+                                          contact: filteredContacts[index],
+                                        );
+                                      },
+                                    );
+                                  });
                             }
                             return const Loader();
                           }),

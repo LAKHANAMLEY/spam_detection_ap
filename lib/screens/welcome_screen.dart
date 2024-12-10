@@ -27,66 +27,70 @@ class _WelcomeState extends State<Welcome> {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 5 / 100,
-                ),
-                BlocConsumer(
-                    bloc: languageListBloc,
-                    listener: (context, state) {
-                      if (state is GetLanguageListState) {
-                        if (state.value.statusCode == 200) {
-                          languages = state.value.languagelist ?? [];
-                          if (languages.isNotEmpty) {
-                            selectedLanguage = languages.first;
+                10.height(),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: BlocConsumer(
+                      bloc: languageListBloc,
+                      listener: (context, state) {
+                        if (state is GetLanguageListState) {
+                          if (state.value.statusCode == 200) {
+                            languages = state.value.languagelist ?? [];
+                            if (languages.isNotEmpty) {
+                              selectedLanguage = languages.first;
+                            }
+                          } else if (state.value.statusCode ==
+                              HTTPStatusCodes.sessionExpired) {
+                            sessionExpired(context, state.value.message);
+                          } else {
+                            showCustomDialog(context,
+                                dialogType: DialogType.failed,
+                                subTitle: state.value.message);
                           }
-                        } else if (state.value.statusCode ==
-                            HTTPStatusCodes.sessionExpired) {
-                          sessionExpired(context, state.value.message);
-                        } else {
-                          showCustomDialog(context,
-                              dialogType: DialogType.failed,
-                              subTitle: state.value.message);
                         }
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is GetLanguageListState) {
-                        languages = state.value.languagelist ?? [];
-                        if (languages.isEmpty) {
-                          return Center(
-                            child: Text(appLocalization(context).noData),
+                      },
+                      builder: (context, state) {
+                        if (state is GetLanguageListState) {
+                          languages = state.value.languagelist ?? [];
+                          if (languages.isEmpty) {
+                            return Center(
+                              child: Text(appLocalization(context).noData),
+                            );
+                          }
+                          return Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 5.0),
+                            child: DropdownButton<LanguageData>(
+                              hint: const Text('Select Language'),
+                              value: selectedLanguage,
+                              alignment: Alignment.centerRight,
+                              // isExpanded: true,
+                              items: languages.map((category) {
+                                return DropdownMenuItem<LanguageData>(
+                                  value: category,
+                                  child: Text(category.name ?? ""),
+                                );
+                              }).toList(),
+                              onChanged: (LanguageData? value) {
+                                setState(() {
+                                  selectedLanguage = value;
+                                }); // wait sir // understand sir
+
+                                //ab language change work krega protection type check kro
+                                print(selectedLanguage?.name ?? "");
+                                localizationBloc.add(ChangeLocaleEvent(
+                                    Locale.fromSubtags(
+                                        languageCode:
+                                            selectedLanguage?.id ?? "")));
+                              },
+                            ),
                           );
                         }
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: DropdownButton<LanguageData>(
-                            hint: const Text('Select Language'),
-                            value: selectedLanguage,
-                            isExpanded: true,
-                            items: languages.map((category) {
-                              return DropdownMenuItem<LanguageData>(
-                                value: category,
-                                child: Text(category.name ?? ""),
-                              );
-                            }).toList(),
-                            onChanged: (LanguageData? value) {
-                              setState(() {
-                                selectedLanguage = value;
-                              }); // wait sir // understand sir
-
-                              //ab language change work krega protection type check kro
-                              print(selectedLanguage?.name ?? "");
-                              localizationBloc.add(ChangeLocaleEvent(
-                                  Locale.fromSubtags(
-                                      languageCode:
-                                          selectedLanguage?.id ?? "")));
-                            },
-                          ),
-                        );
-                      }
-                      return const Loader();
-                    }),
+                        return const Loader();
+                      }),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 5 / 100,
                 ),

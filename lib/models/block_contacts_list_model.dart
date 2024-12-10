@@ -12,7 +12,7 @@ String blockedContactListResponseToJson(BlockedContactListResponse data) =>
 
 class BlockedContactListResponse {
   final int? statusCode;
-  final List<Blockcontactslist>? blockcontactslist;
+  final List<BlockedContact>? blockcontactslist;
 
   BlockedContactListResponse({
     this.statusCode,
@@ -24,8 +24,8 @@ class BlockedContactListResponse {
         statusCode: json["status_code"],
         blockcontactslist: json["blockcontactslist"] == null
             ? []
-            : List<Blockcontactslist>.from(json["blockcontactslist"]!
-                .map((x) => Blockcontactslist.fromJson(x))),
+            : List<BlockedContact>.from(json["blockcontactslist"]!
+                .map((x) => BlockedContact.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -36,21 +36,20 @@ class BlockedContactListResponse {
       };
 }
 
-class Blockcontactslist {
+class BlockedContact {
   final String? id;
   final String? mobileNo;
   final String? comments;
   final String? name;
 
-  Blockcontactslist({
+  BlockedContact({
     this.id,
     this.mobileNo,
     this.comments,
     this.name,
   });
 
-  factory Blockcontactslist.fromJson(Map<String, dynamic> json) =>
-      Blockcontactslist(
+  factory BlockedContact.fromJson(Map<String, dynamic> json) => BlockedContact(
         id: json["id"],
         mobileNo: json["mobile_no"],
         comments: json["comments"],

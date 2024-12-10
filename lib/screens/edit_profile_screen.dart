@@ -365,6 +365,9 @@ class _EditProfileState extends State<EditProfile> {
                             child: TextFormField(
                               readOnly: true,
                               controller: dateOfBirthController,
+                              onTap: () {
+                                _pickDate(context);
+                              },
                               //ese controller every field me assign karo
                               decoration: InputDecoration(
                                   hintText: 'Date of Birth',
@@ -403,12 +406,8 @@ class _EditProfileState extends State<EditProfile> {
                             },
                           )
                           */
-                                  suffixIcon: GestureDetector(
-                                      onTap: () async {
-                                        _pickDate(context);
-                                      },
-                                      child:
-                                          Image.asset(IconConstants.icDate))),
+                                  suffixIcon:
+                                      Image.asset(IconConstants.icDate)),
                             ),
                           ),
                           SizedBox(

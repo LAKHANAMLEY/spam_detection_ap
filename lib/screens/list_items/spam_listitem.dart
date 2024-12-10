@@ -7,6 +7,17 @@ class SpamListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
+      onTap: () {
+        Navigator.of(context).pushNamed(AppRoutes.contactDetail,
+            arguments: ContactDetail(
+              contact: ContactData(
+                id: spamContact.id,
+                mobileNo: spamContact.spamNo,
+                name: spamContact.name,
+                isSpam: 1,
+              ),
+            ));
+      },
       leading: const CircleAvatar(
         backgroundImage: AssetImage(IconConstants.icFraud),
       ),

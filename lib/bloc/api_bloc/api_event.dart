@@ -365,3 +365,11 @@ class GetContactDetailEvent extends ApiEvent {
   @override
   List<Object?> get props => [mobileNo];
 }
+
+class LoginWithEmailAndPasswordEvent extends ApiEvent {
+  final String email;
+  final String password;
+  LoginWithEmailAndPasswordEvent({required this.email, required this.password});
+  @override
+  List<Object?> get props => [email, password];
+}

@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:spam_delection_app/lib.dart';
 
 int language = 0;
+var authBloc = ApiBloc(ApiBlocInitialState());
 var userBloc = ApiBloc(ApiBlocInitialState());
 var sharedPrefBloc = SharedPrefBloc(SharedPrefInitialState());
 var contactListBloc = ApiBloc(ApiBlocInitialState());

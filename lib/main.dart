@@ -7,7 +7,13 @@ import 'package:system_alert_window/system_alert_window.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await SystemAlertWindow.requestPermissions();
+  SystemAlertWindow.checkPermissions().then((isHavingPermission) async {
+    if (isHavingPermission ?? false) {
+    } else {
+      await SystemAlertWindow.requestPermissions();
+    }
+  });
+
   runApp(const MyApp());
 }
 
@@ -18,11 +24,22 @@ void overlayMain() {
       debugShowCheckedModeBanner: false,
       home: Material(
           child: Container(
-        color: AppColor.callColor,
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          // color: AppColor.callColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Column(
           children: [
-            Image.asset(IconConstants.icBroadlogo),
-            const Text("Incoming call"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(IconConstants.icBroadlogo),
+            ),
+            const Text(
+              "Incoming call",
+              // style: textTheme(context).bodyLarge,
+            ),
           ],
         ),
       ))));

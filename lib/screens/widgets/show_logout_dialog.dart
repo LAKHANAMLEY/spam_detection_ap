@@ -20,12 +20,15 @@ showLogoutDialog(context) {
       //   SharedPref.saveLoginCredentials(
       //       mobile: mobile, password: password, isRemember: isRemember);
       // } else {
-      SharedPref.clearAll();
+      signOutFromGoogle().then((isSignedOut) {
+        SharedPref.clearAll();
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            AppRoutes.protectionType, (route) => false);
+      });
+
       // }
       // SharedPref.setIsTourNavigationShowed(isTourNavigationShowed);
       // SharedPref.setIsIntroShowed(isIntroShowed);
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil(AppRoutes.protectionType, (route) => false);
     },
   );
   // var textTheme = Theme.of(context).textTheme;

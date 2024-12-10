@@ -141,6 +141,7 @@ export 'screens/family_member_list.dart';
 export 'screens/forgot_otp_verify_screen.dart';
 export 'screens/forgot_password_screen.dart';
 export 'screens/home_screen.dart';
+export 'screens/list_items/blocked_contact_listitem.dart';
 export 'screens/list_items/call_log_listitem.dart';
 export 'screens/list_items/contact_listitem.dart';
 export 'screens/list_items/spam_listitem.dart';

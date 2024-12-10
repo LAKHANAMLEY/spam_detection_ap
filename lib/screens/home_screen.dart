@@ -14,6 +14,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool isEmailProtectionEnabled = false;
 
+  var planTypeListBloc = ApiBloc(ApiBlocInitialState());
+
+  @override
+  void initState() {
+    planTypeListBloc.add(GetPlanListEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,14 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                      height: MediaQuery.of(context).size.height * 3 / 100),
+                  10.height(),
                   Image.asset(
                     IconConstants.securitykeyIcon,
                     height: MediaQuery.of(context).size.height * 15 / 100,
                   ),
-                  SizedBox(
-                      height: MediaQuery.of(context).size.height * 1 / 100),
+                  // 1.height(),
                   Text(
                     appLocalization(context).pleaseActiveYourSubscription,
                     textAlign: TextAlign.center,
@@ -58,40 +64,60 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 4 / 100,
                   ),
-                  SecurityOption(
-                    image: IconConstants.icplusCall,
-                    title: appLocalization(context).callProtection,
-                    description: appLocalization(context)
-                        .allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam,
-                    isEnabled: isCallProtectionEnabled,
-                    onToggle: (value) {
-                      setState(() {
-                        isCallProtectionEnabled = value;
-                      });
-                    },
-                  ),
-                  SecurityOption(
-                    image: IconConstants.iclockMessages,
-                    title: appLocalization(context).protectAIMessages,
-                    description: appLocalization(context).yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams,
-                    isEnabled: isMessageProtectionEnabled,
-                    onToggle: (value) {
-                      setState(() {
-                        isMessageProtectionEnabled = value;
-                      });
-                    },
-                  ),
-                  SecurityOption(
-                    image: IconConstants.iclockMail,
-                    title: appLocalization(context).protectAIEmail,
-                    description:  appLocalization(context).yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials,
-                    isEnabled: isEmailProtectionEnabled,
-                    onToggle: (value) {
-                      setState(() {
-                        isEmailProtectionEnabled = value;
-                      });
-                    },
-                  ),
+                  BlocBuilder(
+                      bloc: planTypeListBloc,
+                      builder: (context, state) {
+                        if (state is GetPlanListState) {
+                          var plans = state.value.planslist ?? [];
+                          if (plans.isEmpty) {
+                            return Center(
+                              child: Text(appLocalization(context).noData),
+                            );
+                          }
+                          return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: plans.length,
+                              itemBuilder: (context, index) {
+                                return SecurityOption(
+                                  image: IconConstants.icplusCall,
+                                  title: plans[index].plansType ?? "",
+                                  description: plans[index].description ?? "",
+                                  isEnabled: plans[index].isActive ?? false,
+                                  onToggle: (value) {
+                                    setState(() {
+                                      plans[index].isActive = value;
+                                    });
+                                  },
+                                );
+                              });
+                        }
+                        return const Loader();
+                      }),
+                  // SecurityOption(
+                  //   image: IconConstants.iclockMessages,
+                  //   title: appLocalization(context).protectAIMessages,
+                  //   description: appLocalization(context)
+                  //       .yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams,
+                  //   isEnabled: isMessageProtectionEnabled,
+                  //   onToggle: (value) {
+                  //     setState(() {
+                  //       isMessageProtectionEnabled = value;
+                  //     });
+                  //   },
+                  // ),
+                  // SecurityOption(
+                  //   image: IconConstants.iclockMail,
+                  //   title: appLocalization(context).protectAIEmail,
+                  //   description: appLocalization(context)
+                  //       .yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials,
+                  //   isEnabled: isEmailProtectionEnabled,
+                  //   onToggle: (value) {
+                  //     setState(() {
+                  //       isEmailProtectionEnabled = value;
+                  //     });
+                  //   },
+                  // ),
                 ]),
           ),
         ),
@@ -214,9 +240,9 @@ class SecurityOption extends StatelessWidget {
 
                     //inactiveThumbColor: AppColor.inactiveThumbColor,
 
-                    activeTrackColor: AppColor.secondryColor,
+                    // activeTrackColor: AppColor.secondryColor,
                     inactiveTrackColor: AppColor.secondryColor,
-                    activeColor: AppColor.toggleColor,
+                    // activeColor: AppColor.greenColor,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     //activeThumbImage:AssetImage(IconConstants.icactiveThumb),
                     // inactiveThumbImage: AssetImage(IconConstants.icinactiveThumb),

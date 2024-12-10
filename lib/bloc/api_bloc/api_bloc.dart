@@ -334,5 +334,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(GetContactDetailState(value));
       });
     }
+
+    if (event is LoginWithEmailAndPasswordEvent) {
+      emit(ApiLoadingState());
+      await login(email: event.email, password: event.password).then((value) {
+        emit(LoginWithEmailAndPasswordState(value));
+      });
+    }
   }
 }
