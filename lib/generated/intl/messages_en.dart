@@ -123,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change Language"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "changeSecurity":
+            MessageLookupByLibrary.simpleMessage("Change Security Pin"),
         "checkBalance": MessageLookupByLibrary.simpleMessage("Check balance"),
         "checkBalanceBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Check Wallet balance as well as bank account balance or you can manage your accounts like you can add, active, inactive, set primary account or you can delete account."),
@@ -451,6 +453,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notePlatformFeeWillBeImposedOnSenderForThisTransaction":
             MessageLookupByLibrary.simpleMessage(
                 "Note: Platform fee will be imposed on sender for this transaction."),
+        "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notificationsBtnDescription": MessageLookupByLibrary.simpleMessage(
             "You will go to the Notifications list by pressing Notifications button."),
@@ -690,6 +693,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchHere": MessageLookupByLibrary.simpleMessage("Search here..."),
         "searchMore":
             MessageLookupByLibrary.simpleMessage("Search numbers,names & more"),
+        "secureEmail": MessageLookupByLibrary.simpleMessage(
+            "Please enter an alternative email to secure your account."),
         "security": MessageLookupByLibrary.simpleMessage("Security"),
         "seeQueryHistory":
             MessageLookupByLibrary.simpleMessage("See query history"),

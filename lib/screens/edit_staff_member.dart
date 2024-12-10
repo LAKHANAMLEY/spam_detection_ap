@@ -11,14 +11,14 @@ class EditStaffMember extends StatefulWidget {
 
 class _EditStaffMemberState extends State<EditStaffMember> {
   String? _errorMessage;
+  File? _savedImage;
 
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController relationController = TextEditingController();
-  final TextEditingController staffidController = TextEditingController();
-  final TextEditingController supportpinController = TextEditingController();
+  final TextEditingController supportPinController = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
   XFile? _selectedImage;
@@ -27,7 +27,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
 
   StaffMember? staffMember;
 
-  Future<void> _takePhoto() async {
+  /* Future<void> _takePhoto() async {
     try {
       final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
       if (photo != null) {
@@ -35,6 +35,23 @@ class _EditStaffMemberState extends State<EditStaffMember> {
       }
     } catch (e) {
       debugPrint("Error taking photo: $e");
+    }
+  }
+
+  */
+  Future<void> _takePhoto() async {
+    try {
+      final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+      if (image != null) {
+        debugPrint("Image taken: ${image.path}");
+        setState(() {
+          _selectedImage = image;
+        });
+      } else {
+        debugPrint("No image taken.");
+      }
+    } catch (e) {
+      debugPrint("Error taking image: $e");
     }
   }
 
@@ -76,7 +93,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                 title: const Text('Take a Photo'),
                 onTap: () {
                   Navigator.pop(context);
-                  // Call your camera function here
                   _takePhoto();
                 },
               ),
@@ -158,6 +174,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                   }
                   staffMemberBloc.add(
                       GetStaffMemberDetailEvent(staffMember?.userId ?? ''));
+                  staffBloc.add(GetStaffMemberListEvent());
                 }
               },
               builder: (context, state) {
@@ -165,16 +182,13 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                   progressIndicator: const Loader(),
                   inAsyncCall: state is ApiLoadingState,
                   child: Form(
-                    key: _formKey, //isKey k through check krege
+                    key: _formKey,
                     child: SingleChildScrollView(
-                      //ye parent widget h yha padding ka use kroge to sabhi me padding aa jayegi
-
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              //or ye center all place pr q use krte ho
                               SizedBox(
                                 child: _selectedImage == null
                                     ? CircleAvatar(
@@ -300,22 +314,9 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                   return null;
                                 },
                               ),
-
                               10.height(),
                               CustomTextField(
-                                controller: staffidController,
-                                hintText: 'Staff Id',
-                                //suffix: Image.asset(IconConstants.icUsername),
-                                validator: (p0) {
-                                  if (p0?.isEmpty ?? true) {
-                                    return "Please enter Staff ID";
-                                  }
-                                  return null;
-                                },
-                              ),
-                              10.height(),
-                              CustomTextField(
-                                controller: supportpinController,
+                                controller: supportPinController,
                                 hintText: 'Support pin',
                                 // suffix: Image.asset(IconConstants.icUsername),
                                 validator: (p0) {
@@ -349,9 +350,9 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                         lastName: lastnameController.text,
                                         relation: relationController.text,
                                         userId: staffMember?.userId ?? "",
-                                        supportPin: supportpinController.text,
+                                        supportPin: supportPinController.text,
                                         photo: _selectedImage?.path,
-                                        //photoFile: _selectedImage,
+                                        photoFile: _selectedImage,
                                       )));
                                     }
                                   }),
@@ -375,6 +376,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
     firstnameController.text = user.firstName ?? "";
     lastnameController.text = user.lastName ?? "";
     relationController.text = user.relation ?? "";
-    supportpinController.text = user.supportPin ?? "";
+    supportPinController.text = user.supportPin ?? "";
   }
 }

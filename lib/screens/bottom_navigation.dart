@@ -115,9 +115,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           return const Loader();
                         }),
                     actions: [
-                      Image.asset(
-                        IconConstants.icNotification,
-                        height: MediaQuery.of(context).size.height * 3 / 100,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, AppRoutes.notificationList);
+                        },
+                        child: Image.asset(
+                          IconConstants.icNotification,
+                          height: MediaQuery.of(context).size.height * 3 / 100,
+                        ),
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 5 / 100,

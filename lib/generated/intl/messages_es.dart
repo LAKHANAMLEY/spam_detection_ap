@@ -126,6 +126,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cambiar idioma"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Cambiar la contraseña"),
+        "changeSecurity":
+            MessageLookupByLibrary.simpleMessage("Cambiar PIN de seguridad"),
         "checkBalance":
             MessageLookupByLibrary.simpleMessage("Vérifier le solde"),
         "checkBalanceBtnDescription": MessageLookupByLibrary.simpleMessage(
@@ -477,6 +479,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notePlatformFeeWillBeImposedOnSenderForThisTransaction":
             MessageLookupByLibrary.simpleMessage(
                 "Remarque: les frais de plate-forme seront imposés à l\'expéditeur pour cette transaction."),
+        "notification": MessageLookupByLibrary.simpleMessage("Notificación"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notificationsBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Vous irez dans la liste des notifications en appuyant sur le bouton Notifications."),
@@ -730,6 +733,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchHere": MessageLookupByLibrary.simpleMessage("Cherche ici..."),
         "searchMore": MessageLookupByLibrary.simpleMessage(
             "Buscar números, nombres y más"),
+        "secureEmail": MessageLookupByLibrary.simpleMessage(
+            "Ingrese un correo electrónico alternativo para proteger su cuenta."),
         "security": MessageLookupByLibrary.simpleMessage("Sécurité"),
         "seeQueryHistory": MessageLookupByLibrary.simpleMessage(
             "Voir l\'historique des requêtes"),

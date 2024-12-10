@@ -109,4 +109,5 @@ class IconConstants {
   static const String icpremiumprotection = 'assets/icons/ic_premium_plan.png';
   static const String iccircleAvater = 'assets/icons/ic_circleAvatar.png';
   static const String icContacts = 'assets/icons/ic_contacts.png';
+  static const String icfluentMail = 'assets/icons/ic_fluent_mail.png';
 }

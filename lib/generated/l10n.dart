@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -5740,6 +5739,36 @@ class S {
     return Intl.message(
       'Your payment has been successfully done.',
       name: 'yourPaymentHasBeenSuccessfullyDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter an alternative email to secure your account.`
+  String get secureEmail {
+    return Intl.message(
+      'Please enter an alternative email to secure your account.',
+      name: 'secureEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Security Pin`
+  String get changeSecurity {
+    return Intl.message(
+      'Change Security Pin',
+      name: 'changeSecurity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get notification {
+    return Intl.message(
+      'Notifications',
+      name: 'notification',
       desc: '',
       args: [],
     );
