@@ -43,10 +43,18 @@ class _BottomNavigationState extends State<BottomNavigation> {
       switch (state.status) {
         case PhoneStateStatus.NOTHING:
         case PhoneStateStatus.CALL_INCOMING:
-          await SystemAlertWindow.showSystemWindow();
+          await SystemAlertWindow.showSystemWindow(
+            notificationTitle: AppConstants.projectName,
+            notificationBody: "Incoming call ${state.number}",
+          );
+        // phoneStateBackgroundCallbackHandler(
+        //     PhoneStateBackgroundEvent.incomingstart, state.number ?? "", 0);
         case PhoneStateStatus.CALL_STARTED:
         case PhoneStateStatus.CALL_ENDED:
-          await SystemAlertWindow.showSystemWindow();
+          await SystemAlertWindow.showSystemWindow(
+            notificationTitle: AppConstants.projectName,
+            notificationBody: "Call ended ${state.number}",
+          );
       }
     });
   }

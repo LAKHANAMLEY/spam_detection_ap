@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:phone_state_background/phone_state_background.dart';
 import 'package:spam_delection_app/lib.dart';
 import 'package:system_alert_window/system_alert_window.dart';
 
@@ -13,36 +14,73 @@ void main() async {
       await SystemAlertWindow.requestPermissions();
     }
   });
-
+  await PhoneStateBackground.checkPermission().then((isHavingPermission) async {
+    if (isHavingPermission) {
+      await PhoneStateBackground.initialize(
+          phoneStateBackgroundCallbackHandler);
+    } else {
+      await PhoneStateBackground.requestPermissions();
+    }
+  });
   runApp(const MyApp());
 }
 
 // overlay entry point
 @pragma("vm:entry-point")
 void overlayMain() {
-  runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Material(
-          child: Container(
-        padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          // color: AppColor.callColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(IconConstants.icBroadlogo),
-            ),
-            const Text(
-              "Incoming call",
-              // style: textTheme(context).bodyLarge,
-            ),
-          ],
-        ),
-      ))));
+  runApp(const OutSideAppOverlay());
+}
+
+@pragma('vm:entry-point')
+Future<void> phoneStateBackgroundCallbackHandler(
+  PhoneStateBackgroundEvent event,
+  String number,
+  int duration,
+) async {
+  switch (event) {
+    case PhoneStateBackgroundEvent.incomingstart:
+      print('Incoming call start, number: $number, duration: $duration s');
+      await SystemAlertWindow.showSystemWindow(
+        notificationTitle: AppConstants.projectName,
+        notificationBody: "Incoming call $number",
+      );
+      break;
+    case PhoneStateBackgroundEvent.incomingmissed:
+      print('Incoming call missed, number: $number, duration: $duration s');
+      await SystemAlertWindow.showSystemWindow(
+        notificationTitle: AppConstants.projectName,
+        notificationBody: "Missed call $number",
+      );
+      break;
+    case PhoneStateBackgroundEvent.incomingreceived:
+      print('Incoming call received, number: $number, duration: $duration s');
+      await SystemAlertWindow.showSystemWindow(
+        notificationTitle: AppConstants.projectName,
+        notificationBody: "Incoming call $number",
+      );
+      break;
+    case PhoneStateBackgroundEvent.incomingend:
+      print('Incoming call ended, number: $number, duration $duration s');
+      await SystemAlertWindow.showSystemWindow(
+        notificationTitle: AppConstants.projectName,
+        notificationBody: "Call end $number",
+      );
+      break;
+    case PhoneStateBackgroundEvent.outgoingstart:
+      print('Ougoing call start, number: $number, duration: $duration s');
+      await SystemAlertWindow.showSystemWindow(
+        notificationTitle: AppConstants.projectName,
+        notificationBody: "Outgoing call $number",
+      );
+      break;
+    case PhoneStateBackgroundEvent.outgoingend:
+      print('Ougoing call ended, number: $number, duration: $duration s');
+      await SystemAlertWindow.showSystemWindow(
+        notificationTitle: AppConstants.projectName,
+        notificationBody: "Call end $number",
+      );
+      break;
+  }
 }
 
 class MyApp extends StatelessWidget {

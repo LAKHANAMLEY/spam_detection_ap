@@ -14,11 +14,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool isEmailProtectionEnabled = false;
 
-  var planTypeListBloc = ApiBloc(ApiBlocInitialState());
+  // var subscriptionListBloc = ApiBloc(ApiBlocInitialState());
 
   @override
   void initState() {
-    planTypeListBloc.add(GetPlanListEvent());
+    // subscriptionListBloc.add(GetPlanListEvent());
     super.initState();
   }
 
@@ -64,60 +64,72 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 4 / 100,
                   ),
-                  BlocBuilder(
-                      bloc: planTypeListBloc,
-                      builder: (context, state) {
-                        if (state is GetPlanListState) {
-                          var plans = state.value.planslist ?? [];
-                          if (plans.isEmpty) {
-                            return Center(
-                              child: Text(appLocalization(context).noData),
-                            );
-                          }
-                          return ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: plans.length,
-                              itemBuilder: (context, index) {
-                                return SecurityOption(
-                                  image: IconConstants.icplusCall,
-                                  title: plans[index].plansType ?? "",
-                                  description: plans[index].description ?? "",
-                                  isEnabled: plans[index].isActive ?? false,
-                                  onToggle: (value) {
-                                    setState(() {
-                                      plans[index].isActive = value;
-                                    });
-                                  },
-                                );
-                              });
-                        }
-                        return const Loader();
-                      }),
-                  // SecurityOption(
-                  //   image: IconConstants.iclockMessages,
-                  //   title: appLocalization(context).protectAIMessages,
-                  //   description: appLocalization(context)
-                  //       .yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams,
-                  //   isEnabled: isMessageProtectionEnabled,
-                  //   onToggle: (value) {
-                  //     setState(() {
-                  //       isMessageProtectionEnabled = value;
-                  //     });
-                  //   },
-                  // ),
-                  // SecurityOption(
-                  //   image: IconConstants.iclockMail,
-                  //   title: appLocalization(context).protectAIEmail,
-                  //   description: appLocalization(context)
-                  //       .yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials,
-                  //   isEnabled: isEmailProtectionEnabled,
-                  //   onToggle: (value) {
-                  //     setState(() {
-                  //       isEmailProtectionEnabled = value;
-                  //     });
-                  //   },
-                  // ),
+                  // BlocBuilder(
+                  //     bloc: subscriptionListBloc,
+                  //     builder: (context, state) {
+                  //       if (state is GetPlanListState) {
+                  //         var plans = state.value.planslist ?? [];
+                  //         if (plans.isEmpty) {
+                  //           return Center(
+                  //             child: Text(appLocalization(context).noData),
+                  //           );
+                  //         }
+                  //         return ListView.builder(
+                  //             physics: const NeverScrollableScrollPhysics(),
+                  //             shrinkWrap: true,
+                  //             itemCount: plans.length,
+                  //             itemBuilder: (context, index) {
+                  //               return SecurityOption(
+                  //                 image: IconConstants.icplusCall,
+                  //                 title: plans[index].plansType ?? "",
+                  //                 description: plans[index].description ?? "",
+                  //                 isEnabled: plans[index].isActive ?? false,
+                  //                 onToggle: (value) {
+                  //                   setState(() {
+                  //                     plans[index].isActive = value;
+                  //                   });
+                  //                 },
+                  //               );
+                  //             });
+                  //       }
+                  //       return const Loader();
+                  //     }),
+                  SecurityOption(
+                    image: IconConstants.icplusCall,
+                    title: appLocalization(context).callProtection,
+                    description: appLocalization(context)
+                        .youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase,
+                    isEnabled: isCallProtectionEnabled,
+                    onToggle: (value) {
+                      setState(() {
+                        isCallProtectionEnabled = true;
+                      });
+                    },
+                  ),
+                  SecurityOption(
+                    image: IconConstants.iclockMessages,
+                    title: appLocalization(context).protectAIMessages,
+                    description: appLocalization(context)
+                        .yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams,
+                    isEnabled: isMessageProtectionEnabled,
+                    onToggle: (value) {
+                      setState(() {
+                        isMessageProtectionEnabled = value;
+                      });
+                    },
+                  ),
+                  SecurityOption(
+                    image: IconConstants.iclockMail,
+                    title: appLocalization(context).protectAIEmail,
+                    description: appLocalization(context)
+                        .yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials,
+                    isEnabled: isEmailProtectionEnabled,
+                    onToggle: (value) {
+                      setState(() {
+                        isEmailProtectionEnabled = value;
+                      });
+                    },
+                  ),
                 ]),
           ),
         ),

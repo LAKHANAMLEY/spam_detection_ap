@@ -48,6 +48,7 @@ dependencies:
   url_launcher: ^6.3.1
   phone_state: ^2.0.1
   system_alert_window: ^2.0.2
+  phone_state_background: ^0.0.4
 
 dev_dependencies:
   flutter_test:
@@ -55,19 +56,33 @@ dev_dependencies:
   intl_phone_number_input: ^0.7.0+2
   country_picker: ^2.0.19
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.14.2
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/images/logo_white_1024.png"
+  image_path_android: "assets/images/logo_white_1024.png"
+  adaptive_icon_monochrome: "assets/images/logo_white_1024.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/images/logo_white_1024.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/images/logo_white_1024.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/images/logo_white_1024.png"
 
-# The following section is specific to Flutter packages.
 flutter:
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
   generate: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
     - assets/icons/

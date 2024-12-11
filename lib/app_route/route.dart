@@ -1,6 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/add_alternative_email_screen.dart';
-import 'package:spam_delection_app/screens/notification_list.dart';
 
 class AppRoutes {
   static const splash = "/splash";
@@ -26,6 +24,7 @@ class AppRoutes {
   static const editStaffMember = "/editStaffMember";
   static const alternativeEmail = "/alternativeEmail";
   static const notificationList = "/notificationList";
+  static const planDetail = "/planDetail";
 
 // static const contactDetail = "/contactDetail";
 }
@@ -54,6 +53,7 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.editStaffMember: (context) => const EditStaffMember(),
   AppRoutes.alternativeEmail: (context) => const AlternativeEmail(),
   AppRoutes.notificationList: (context) => const NotificationList(),
+  AppRoutes.planDetail: (context) => const PlanDetail(),
 
   // AppRoutes.contactDetail: (context) => const ContactDetail(),
 };
