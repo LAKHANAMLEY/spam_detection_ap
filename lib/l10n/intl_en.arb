@@ -570,5 +570,11 @@
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
   "secureEmail": "Please enter an alternative email to secure your account.",
   "changeSecurity": "Change Security Pin",
-  "notification": "Notifications"
+  "notificationList": "Notifications List",
+  "editMember": "Edit Member",
+  "addMember": "Add Member",
+  "deleteMember": "Delete Member",
+  "editStaffMember": "Edit Staff Member",
+  "addStaffMember": "Add Staff Member",
+  "deleteStaffMember": "Delete Staff Member"
 }

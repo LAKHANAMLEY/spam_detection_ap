@@ -166,7 +166,7 @@ class FamilyEditMemberState extends ApiState {
 
 // delete member
 class FamilyDeleteMemberState extends ApiState {
-  final FamilyDeleteMemberResponse value;
+  final Response value;
 
   FamilyDeleteMemberState(this.value);
 

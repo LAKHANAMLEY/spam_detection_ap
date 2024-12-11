@@ -27,7 +27,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
 
   StaffMember? staffMember;
 
-  /* Future<void> _takePhoto() async {
+  Future<void> _takePhoto() async {
     try {
       final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
       if (photo != null) {
@@ -35,23 +35,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
       }
     } catch (e) {
       debugPrint("Error taking photo: $e");
-    }
-  }
-
-  */
-  Future<void> _takePhoto() async {
-    try {
-      final XFile? image = await _picker.pickImage(source: ImageSource.camera);
-      if (image != null) {
-        debugPrint("Image taken: ${image.path}");
-        setState(() {
-          _selectedImage = image;
-        });
-      } else {
-        debugPrint("No image taken.");
-      }
-    } catch (e) {
-      debugPrint("Error taking image: $e");
     }
   }
 

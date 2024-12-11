@@ -44,6 +44,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add bank account"),
         "addBeneficiary":
             MessageLookupByLibrary.simpleMessage("Add beneficiary"),
+        "addMember": MessageLookupByLibrary.simpleMessage("Add Member"),
+        "addStaffMember":
+            MessageLookupByLibrary.simpleMessage("Add Staff Member"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "addressVerification":
             MessageLookupByLibrary.simpleMessage("Address verification"),
@@ -179,6 +182,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Debited from"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "deleteCalls": MessageLookupByLibrary.simpleMessage("Delete all Calls"),
+        "deleteMember": MessageLookupByLibrary.simpleMessage("Delete Member"),
+        "deleteStaffMember":
+            MessageLookupByLibrary.simpleMessage("Delete Staff Member"),
         "description": MessageLookupByLibrary.simpleMessage("Description: "),
         "details": MessageLookupByLibrary.simpleMessage("Details"),
         "developerModeDialogDiscription": MessageLookupByLibrary.simpleMessage(
@@ -218,9 +224,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "dueOn": MessageLookupByLibrary.simpleMessage("Due on"),
         "easiestWayToManage":
             MessageLookupByLibrary.simpleMessage("Easiest way to manage"),
+        "editMember": MessageLookupByLibrary.simpleMessage("Edit Member"),
         "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "editSecurityPin":
             MessageLookupByLibrary.simpleMessage("Edit security pin"),
+        "editStaffMember":
+            MessageLookupByLibrary.simpleMessage("Edit Staff Member"),
         "education": MessageLookupByLibrary.simpleMessage("Education"),
         "electricity": MessageLookupByLibrary.simpleMessage("Electricity"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -453,7 +462,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "notePlatformFeeWillBeImposedOnSenderForThisTransaction":
             MessageLookupByLibrary.simpleMessage(
                 "Note: Platform fee will be imposed on sender for this transaction."),
-        "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "notificationList":
+            MessageLookupByLibrary.simpleMessage("Notifications List"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notificationsBtnDescription": MessageLookupByLibrary.simpleMessage(
             "You will go to the Notifications list by pressing Notifications button."),

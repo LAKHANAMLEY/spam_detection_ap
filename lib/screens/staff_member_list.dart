@@ -78,7 +78,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
         ),
         Expanded(
             child: BlocConsumer(
-                bloc: staffBloc, //ab ye common bloc use kr rhe h
+                bloc: staffBloc,
                 listener: (context, state) {
                   if (state is GetStaffMemberListState) {
                     contacts = state.value.staffmemberslist ?? [];
@@ -133,24 +133,6 @@ class _StaffMemberListState extends State<StaffMemberList> {
                                                 filteredContacts[index].photo!)
                                             : AssetImage(
                                                 ImageConstants.imageProfile),
-                                    /*child: filteredContacts[index].photo != null
-                                        ? Image.network(
-                                            filteredContacts[index].photo!,
-                                            errorBuilder:
-                                                (context, error, stackTrace) =>
-                                                    const Icon(Icons.person),
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.12,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.12,
-                                          )
-                                        : const Icon(Icons.person),
-
-                                     */
                                   ),
                                   title: Text(
                                     filteredContacts[index].firstName ?? "",

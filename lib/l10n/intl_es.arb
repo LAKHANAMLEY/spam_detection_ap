@@ -573,5 +573,12 @@
   "yourPaymentHasBeenSuccessfullyDone": "Votre paiement a été effectué avec succès.",
   "secureEmail": "Ingrese un correo electrónico alternativo para proteger su cuenta.",
   "changeSecurity": "Cambiar PIN de seguridad",
-  "notification": "Notificación"
+  "notificationList": "Lista de notificaciones",
+  "editMember": "Editar miembro",
+  "addMember": "Agregar miembro",
+  "deleteMember": "Eliminar miembro",
+  "editStaffMember": "Editar miembro del personal",
+  "addStaffMember": "Agregar miembro del personal",
+  "deleteStaffMember": "Eliminar miembro del personal"
 }
+

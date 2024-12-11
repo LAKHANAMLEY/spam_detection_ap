@@ -5764,11 +5764,71 @@ class S {
     );
   }
 
-  /// `Notifications`
-  String get notification {
+  /// `Notifications List`
+  String get notificationList {
     return Intl.message(
-      'Notifications',
-      name: 'notification',
+      'Notifications List',
+      name: 'notificationList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Member`
+  String get editMember {
+    return Intl.message(
+      'Edit Member',
+      name: 'editMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Member`
+  String get addMember {
+    return Intl.message(
+      'Add Member',
+      name: 'addMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Member`
+  String get deleteMember {
+    return Intl.message(
+      'Delete Member',
+      name: 'deleteMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Staff Member`
+  String get editStaffMember {
+    return Intl.message(
+      'Edit Staff Member',
+      name: 'editStaffMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Staff Member`
+  String get addStaffMember {
+    return Intl.message(
+      'Add Staff Member',
+      name: 'addStaffMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Staff Member`
+  String get deleteStaffMember {
+    return Intl.message(
+      'Delete Staff Member',
+      name: 'deleteStaffMember',
       desc: '',
       args: [],
     );

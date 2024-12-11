@@ -183,14 +183,14 @@ class FamilyEditMemberEvent extends ApiEvent {
 }
 
 class FamilyDeleteMemberEvent extends ApiEvent {
-  final String familyId;
+  final String id;
 
   FamilyDeleteMemberEvent({
-    required this.familyId,
+    required this.id,
   });
 
   @override
-  List<Object?> get props => [familyId];
+  List<Object?> get props => [id];
 }
 
 class GetPlanListEvent extends ApiEvent {}
@@ -321,18 +321,8 @@ class DeleteAllCallLogEvent extends ApiEvent {}
 
 // notification
 // notification list
-/*class NotificationListEvent extends ApiEvent {
+class NotificationListEvent extends ApiEvent {}
 
-}
-    NotificationListEvent({
-  required this.notificationPush,
-});
-
-@override
-List<Object?> get props => [notificationPush];
-}
-
- */
 // notification enabled
 class EnabledNotificationEvent extends ApiEvent {
   final String notificationOne;

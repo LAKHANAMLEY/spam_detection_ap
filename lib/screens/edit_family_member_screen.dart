@@ -33,7 +33,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
       final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
       if (photo != null) {
         debugPrint("Photo taken: ${photo.path}");
-        // Handle the selected photo (e.g., upload it, save it, or display it)
       }
     } catch (e) {
       debugPrint("Error taking photo: $e");
@@ -112,7 +111,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((s) {
-      //iska use view render hone k bad ye call hota h
       var arg = args(context) as EditFamilyMember;
       familyMemberBloc
           .add(GetFamilyMemberDetailEvent(arg.familyMember?.userId ?? ""));
@@ -174,14 +172,11 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                   child: Form(
                     key: _formKey, //isKey k through check krege
                     child: SingleChildScrollView(
-                      //ye parent widget h yha padding ka use kroge to sabhi me padding aa jayegi
-
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              //or ye center all place pr q use krte ho
                               SizedBox(
                                 child: _selectedImage == null
                                     ? CircleAvatar(
@@ -344,23 +339,11 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                   return null;
                                 },
                               ),
-
-                              10.height(),
-                              CustomTextField(
-                                controller: familyidController,
-                                hintText: 'Family Id',
-                                //suffix: Image.asset(IconConstants.icUsername),
-                                validator: (p0) {
-                                  if (p0?.isEmpty ?? true) {
-                                    return "Please enter family ID";
-                                  }
-                                  return null;
-                                },
-                              ),
                               10.height(),
                               CustomTextField(
                                 controller: supportpinController,
                                 hintText: 'Support pin',
+
                                 // suffix: Image.asset(IconConstants.icUsername),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
@@ -390,20 +373,24 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                               AppButton(
                                   text: appLocalization(context).submit,
                                   onPress: () {
-                                    //mene only first name me add kia h aap baki kr lena
                                     if (_formKey.currentState?.validate() ??
                                         false) {
-                                      familyMemberBloc
-                                          .add(FamilyEditMemberEvent(
+                                      familyMemberBloc.add(
+                                          FamilyEditMemberEvent(
                                               user: FamilyMember(
-                                        firstName: firstnameController.text,
-                                        lastName: lastnameController.text,
-                                        relation: relationController.text,
-                                        userId: familyMember?.userId ?? "",
-                                        supportPin: supportpinController.text,
-                                        photo: _selectedImage?.path,
-                                        // photoFile: _selectedImage
-                                      )));
+                                                  firstName:
+                                                      firstnameController.text,
+                                                  lastName:
+                                                      lastnameController.text,
+                                                  relation:
+                                                      relationController.text,
+                                                  userId:
+                                                      familyMember?.userId ??
+                                                          "",
+                                                  supportPin:
+                                                      supportpinController.text,
+                                                  photo: _selectedImage?.path,
+                                                  photoFile: _selectedImage)));
                                     }
                                   }),
                               SizedBox(

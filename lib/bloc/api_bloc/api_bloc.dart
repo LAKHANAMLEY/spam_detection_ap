@@ -136,16 +136,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     // family edit member
     if (event is FamilyEditMemberEvent) {
       emit(ApiLoadingState());
-      await editFamilyMember(familyMember: event.user).then((value) {
+      await familyEditMember(familyMember: event.user).then((value) {
         emit(FamilyEditMemberState(value));
       });
     }
     //  delete member
     if (event is FamilyDeleteMemberEvent) {
       emit(ApiLoadingState());
-      await familyDeleteMember(
-        familyId: event.familyId,
-      ).then((value) {
+      await familyDeleteMember(id: event.id).then((value) {
         emit(FamilyDeleteMemberState(value));
       });
     }
@@ -291,15 +289,13 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 
     // notifications
     // notification list
-    /*if (event is NotificationListEvent) {
+    if (event is NotificationListEvent) {
       emit(ApiLoadingState());
-      await notificationList(
-      ).then((value) {
+      await notificationList().then((value) {
         emit(NotificationListState(value));
       });
     }
 
-     */
     //notification Enabled
     if (event is EnabledNotificationEvent) {
       emit(ApiLoadingState());
