@@ -81,7 +81,7 @@ class _NotificationListState extends State<NotificationList> {
                                             color: AppColor.callColor),
                                       ),
                                       10.width(),
-                                      Text("10 Dec 24")
+                                      const Text("10 Dec 24")
                                     ],
                                   ),
                                   subtitle:

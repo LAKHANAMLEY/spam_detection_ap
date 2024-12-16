@@ -20,6 +20,7 @@ class NotificationListResponse {
     this.statusCode,
     this.totalUnreadNotifications,
     this.notificationsList,
+    this.message,
   });
 
   factory NotificationListResponse.fromJson(Map<String, dynamic> json) =>
@@ -29,6 +30,7 @@ class NotificationListResponse {
         notificationsList: json["notifications_list"] == null
             ? []
             : List<dynamic>.from(json["notifications_list"]!.map((x) => x)),
+        message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -37,5 +39,6 @@ class NotificationListResponse {
         "notifications_list": notificationsList == null
             ? []
             : List<dynamic>.from(notificationsList!.map((x) => x)),
+        "message": message,
       };
 }

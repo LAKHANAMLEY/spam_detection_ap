@@ -131,7 +131,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
                                         filteredContacts[index].photo != null
                                             ? NetworkImage(
                                                 filteredContacts[index].photo!)
-                                            : AssetImage(
+                                            : const AssetImage(
                                                 ImageConstants.imageProfile),
                                   ),
                                   title: Text(

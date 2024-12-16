@@ -93,7 +93,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                                 ],
                               ),
                               Text(
-                                callLog?.name ?? callLog?.number ?? "",
+                                callLog.name ?? callLog.number ?? "",
                                 style: textTheme(context).titleMedium,
                               ),
                             ],
@@ -110,8 +110,8 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                           Navigator.pushNamed(context, AppRoutes.contactDetail,
                               arguments: ContactDetail(
                                 contact: ContactData(
-                                  name: callLog?.name,
-                                  mobileNo: callLog?.number ?? "",
+                                  name: callLog.name,
+                                  mobileNo: callLog.number ?? "",
                                 ),
                               ));
                         },
@@ -122,7 +122,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(callLog?.number ?? ""),
+                          Text(callLog.number ?? ""),
                           // Text(callLog.cachedNumberLabel ?? ""),
                         ],
                       ),

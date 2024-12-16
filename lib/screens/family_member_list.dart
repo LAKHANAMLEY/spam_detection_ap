@@ -38,7 +38,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: "Family List",
       ),
       body: SafeArea(
@@ -130,7 +130,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                                         filteredContacts[index].photo != null
                                             ? NetworkImage(
                                                 filteredContacts[index].photo!)
-                                            : AssetImage(
+                                            : const AssetImage(
                                                 ImageConstants.imageProfile),
                                   ),
                                   title: Text(

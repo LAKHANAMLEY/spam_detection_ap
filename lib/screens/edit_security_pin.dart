@@ -72,7 +72,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                               height:
                                   MediaQuery.of(context).size.height * 4 / 100,
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(left: 60, right: 50),
                               child: Text(
                                 StringConstants.changeSecurity,

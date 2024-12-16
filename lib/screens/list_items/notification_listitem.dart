@@ -3,7 +3,7 @@ import 'package:spam_delection_app/lib.dart';
 class NotificationListItem extends StatelessWidget {
   final List<String> entries = <String>['1', '2', '3', '4', '5', '6', '7', '8'];
 
-  final NotificationData notification;
+  final NotificationTypeData notification;
 
   NotificationListItem({
     super.key,
@@ -13,11 +13,11 @@ class NotificationListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: entries?.length ?? 0,
+        itemCount: entries.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
           CustomListTile(
             onTap: () {},
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               radius: 12,
               backgroundImage: AssetImage(IconConstants.icNotification),
             ),
@@ -37,10 +37,11 @@ class NotificationListItem extends StatelessWidget {
                 ),
               ],
             ),
-            subtitle: Text('You are in spam detection app'),
+            subtitle: const Text('You are in spam detection app'),
 
             // trailing: Text(callLog.callTime?.formatDateTime() ?? ""),
           );
+          return null;
         });
   }
 }

@@ -128,7 +128,7 @@ class _EditProfileState extends State<EditProfile> {
                 },
                 child: Text(
                   appLocalization(context).cancelText,
-                  style: TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.red),
                 ),
               ),
             ],
@@ -308,7 +308,7 @@ class _EditProfileState extends State<EditProfile> {
                                     width: 10,
                                     child: Padding(
                                       padding:
-                                          EdgeInsets.symmetric(vertical: 10),
+                                          const EdgeInsets.symmetric(vertical: 10),
                                       child: Image.asset(
                                         IconConstants.icUsername,
                                         scale: 1.5,

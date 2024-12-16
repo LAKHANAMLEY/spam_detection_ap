@@ -32,9 +32,9 @@ Future<FamilyMemberAddResponse> familyaddMember({
       "POST", Uri.parse(ApiUrlConstants.endPointFamilyAddMember));
   request.headers.addAll(await ApiUrlConstants.headers());
   request.fields.addAll(body);
-  if (photoFile != null && photoFile?.mimeType != "http") {
+  if (photoFile != null && photoFile.mimeType != "http") {
     request.files
-        .add(await http.MultipartFile.fromPath("photo", photoFile?.path ?? ""));
+        .add(await http.MultipartFile.fromPath("photo", photoFile.path ?? ""));
   }
   var streamedResponse = await request.send();
   var response = await http.Response.fromStream(streamedResponse);

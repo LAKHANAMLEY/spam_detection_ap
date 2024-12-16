@@ -51,7 +51,7 @@ class _AddContactState extends State<AddContact> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: CustomAppBar(title: 'Add Contact'),
+      appBar: const CustomAppBar(title: 'Add Contact'),
       //centerTitle: true,
       body: SafeArea(
         child: SingleChildScrollView(

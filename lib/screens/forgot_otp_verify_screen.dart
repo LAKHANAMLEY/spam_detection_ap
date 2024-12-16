@@ -321,7 +321,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                           AppColor.fillColor.withOpacity(0.2),
                                       filled: true,
                                     ),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 28,
                                         fontWeight: FontWeight.w500,
                                         color: AppColor.deepyelloeColor),

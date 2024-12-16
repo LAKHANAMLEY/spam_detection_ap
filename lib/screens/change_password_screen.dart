@@ -50,7 +50,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   if (state is ChangePasswordState) {
                     if (state.value.statusCode == 200) {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Profile()));
+                          MaterialPageRoute(builder: (context) => const Profile()));
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,
@@ -72,7 +72,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               height:
                                   MediaQuery.of(context).size.height * 4 / 100,
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(left: 60, right: 50),
                               child: Text(
                                 StringConstants.changePass,

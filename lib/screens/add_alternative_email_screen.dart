@@ -16,7 +16,7 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: 'Add Alernative Email',
       ),
       body: SafeArea(
@@ -28,8 +28,8 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 4 / 100,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 40, right: 40),
+                const Padding(
+                  padding: EdgeInsets.only(left: 40, right: 40),
                   child: Text(
                     'Alternative Email',
                     textAlign: TextAlign.center,
@@ -41,11 +41,11 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(18),
+                  padding: const EdgeInsets.all(18),
                   child: Text(
                     appLocalization(context).secureEmail,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: AppColor.verifyColor,
                         fontFamily: AppFont.fontFamily,
                         fontSize: 16,
