@@ -45,6 +45,7 @@ class IconConstants {
   static const icemailunSelect = 'assets/icons/ic_emailunSelect.png';
   static const icdrowback = 'assets/icons/ic_drowback.png';
   static const icLockadd = 'assets/icons/ic_lock_add.png';
+  static const icLockPass = 'assets/icons/ic_lock_password.png';
   static const icgoogleLogo = 'assets/icons/ic_google_logo.png';
   static const icappleLogo = 'assets/icons/ic_apple_logo.png';
   static const icsuccesfulLogo = 'assets/icons/ic_successcheck.png';
@@ -110,4 +111,8 @@ class IconConstants {
   static const String iccircleAvater = 'assets/icons/ic_circleAvatar.png';
   static const String icContacts = 'assets/icons/ic_contacts.png';
   static const String icfluentMail = 'assets/icons/ic_fluent_mail.png';
+  static const String icCorporateID = 'assets/icons/ic_corporateId.png';
+  static const String icCallTone = 'assets/icons/ic_call_tone.png';
+  static const String icCalenderData = 'assets/icons/ic_calender_data.png';
+//static const String icCallTone = '';
 }

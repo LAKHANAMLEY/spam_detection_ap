@@ -573,5 +573,22 @@
   "yourPaymentHasBeenSuccessfullyDone": "Votre paiement a été effectué avec succès.",
   "secureEmail": "Ingrese un correo electrónico alternativo para proteger su cuenta.",
   "changeSecurity": "Cambiar PIN de seguridad",
-  "notification": "Notificación"
+  "notificationList": "Lista de notificaciones",
+  "editMember": "Editar miembro",
+  "addMember": "Agregar miembro",
+  "deleteMember": "Eliminar miembro",
+  "editStaffMember": "Editar miembro del personal",
+  "addStaffMember": "Agregar miembro del personal",
+  "deleteStaffMember": "Eliminar miembro del personal",
+  "forgotPassDetails": "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 4 dígitos a tu correo electrónico.",
+  "spamCalls": "Llamadas no deseadas",
+  "chooseOption": "Elige una opción",
+  "takePhoto": "tomar una foto",
+  "chooseGallery": "Elija de la galería",
+  "cancelText": "Cancelar",
+  "zip": "Código postal",
+  "address1": "Dirección 1",
+  "address2": "Dirección 2",
+  "submitText": "Entregar"
 }
+

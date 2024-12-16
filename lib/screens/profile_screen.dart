@@ -501,7 +501,7 @@ class _ProfileState extends State<Profile> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const EditSecurityPin()));
+                                        const ChangeSecurity()));
                           },
                         ),
                         SizedBox(

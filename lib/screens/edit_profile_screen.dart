@@ -19,6 +19,8 @@ class _EditProfileState extends State<EditProfile> {
   String? _selectedGender = 'Male';
   DateTime? selectedDate;
 
+  double scale = 3.5;
+
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController dateOfBirthController = TextEditingController();
@@ -97,13 +99,13 @@ class _EditProfileState extends State<EditProfile> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Choose an option',
+                appLocalization(context).chooseOption,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 16.0),
               ListTile(
                 leading: const Icon(Icons.camera_alt, color: Colors.blue),
-                title: const Text('Take a Photo'),
+                title: Text(appLocalization(context).takePhoto),
                 onTap: () {
                   Navigator.pop(context);
                   // Call your camera function here
@@ -112,7 +114,7 @@ class _EditProfileState extends State<EditProfile> {
               ),
               ListTile(
                 leading: const Icon(Icons.photo_library, color: Colors.green),
-                title: const Text('Choose from Gallery'),
+                title: Text(appLocalization(context).chooseGallery),
                 onTap: () {
                   Navigator.pop(context);
                   // Call your gallery function here
@@ -124,8 +126,8 @@ class _EditProfileState extends State<EditProfile> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text(
-                  'Cancel',
+                child: Text(
+                  appLocalization(context).cancelText,
                   style: TextStyle(color: Colors.red),
                 ),
               ),
@@ -146,7 +148,7 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: const CustomAppBar(title: "Edit profile"),
+        appBar: CustomAppBar(title: appLocalization(context).editProfile),
         body: SafeArea(
           child: BlocConsumer(
               bloc: userBloc,
@@ -283,7 +285,7 @@ class _EditProfileState extends State<EditProfile> {
                             child: TextFormField(
                               controller: firstnameController,
                               decoration: InputDecoration(
-                                hintText: 'First name',
+                                hintText: appLocalization(context).firstName,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
@@ -305,10 +307,12 @@ class _EditProfileState extends State<EditProfile> {
                                     height: 10,
                                     width: 10,
                                     child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 10),
-                                      child:
-                                          Image.asset(IconConstants.icUsername),
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 10),
+                                      child: Image.asset(
+                                        IconConstants.icUsername,
+                                        scale: 1.5,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -324,7 +328,7 @@ class _EditProfileState extends State<EditProfile> {
                             child: TextFormField(
                               controller: lastnameController,
                               decoration: InputDecoration(
-                                hintText: 'Last name',
+                                hintText: appLocalization(context).lastName,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
@@ -348,8 +352,10 @@ class _EditProfileState extends State<EditProfile> {
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
                                           vertical: 10),
-                                      child:
-                                          Image.asset(IconConstants.icUsername),
+                                      child: Image.asset(
+                                        IconConstants.icUsername,
+                                        scale: 1.5,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -370,7 +376,8 @@ class _EditProfileState extends State<EditProfile> {
                               },
                               //ese controller every field me assign karo
                               decoration: InputDecoration(
-                                  hintText: 'Date of Birth',
+                                  hintText:
+                                      appLocalization(context).dateOfBirth,
                                   hintStyle: const TextStyle(
                                       color: AppColor.lightfillColor),
                                   enabledBorder: OutlineInputBorder(
@@ -430,7 +437,7 @@ class _EditProfileState extends State<EditProfile> {
                                 });
                               },
                               decoration: InputDecoration(
-                                hintText: 'Gender',
+                                hintText: appLocalization(context).gender,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
@@ -470,7 +477,7 @@ class _EditProfileState extends State<EditProfile> {
                                 //  labelText: StringConstants.usertext,
                                 //  labelStyle: const TextStyle(
                                 //     color: AppColor.lightfillColor, fontWeight: FontWeight.w500),
-                                hintText: 'Select State',
+                                hintText: appLocalization(context).selectState,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
@@ -498,7 +505,7 @@ class _EditProfileState extends State<EditProfile> {
                             child: TextFormField(
                               controller: cityController,
                               decoration: InputDecoration(
-                                hintText: 'Select City',
+                                hintText: appLocalization(context).city,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
@@ -538,10 +545,7 @@ class _EditProfileState extends State<EditProfile> {
                             child: TextFormField(
                               controller: zipController,
                               decoration: InputDecoration(
-                                //  labelText: StringConstants.usertext,
-                                //  labelStyle: const TextStyle(
-                                //     color: AppColor.lightfillColor, fontWeight: FontWeight.w500),
-                                hintText: 'Zip',
+                                hintText: appLocalization(context).zip,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
@@ -581,10 +585,7 @@ class _EditProfileState extends State<EditProfile> {
                             child: TextFormField(
                               controller: address1Controller,
                               decoration: InputDecoration(
-                                //  labelText: StringConstants.usertext,
-                                //  labelStyle: const TextStyle(
-                                //     color: AppColor.lightfillColor, fontWeight: FontWeight.w500),
-                                hintText: 'Address 1',
+                                hintText: appLocalization(context).address1,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
@@ -624,7 +625,7 @@ class _EditProfileState extends State<EditProfile> {
                             child: TextFormField(
                               controller: address2Controller,
                               decoration: InputDecoration(
-                                hintText: 'Address 2',
+                                hintText: appLocalization(context).address2,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
@@ -655,7 +656,7 @@ class _EditProfileState extends State<EditProfile> {
                                 MediaQuery.of(context).size.height * 2 / 100,
                           ),
                           AppButton(
-                            text: "Submit",
+                            text: appLocalization(context).submit,
                             onPress: () {
                               userBloc.add(UpdateProfileEvent(
                                   user: User(

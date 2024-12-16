@@ -8,9 +8,6 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  int SelectTab = 0;
-  int Toogletab = 0;
-  // final bool _obscureText = true;
   bool isCheckBoxValue = false;
   bool isPasswordVisible = true;
   bool isConfirmPasswordVisible = true;
@@ -20,6 +17,7 @@ class _RegisterState extends State<Register> {
   bool _isLoading = false;
   String? _errorMessage;
   String? enteredPhone;
+  double scale = 3.5;
 
   List<dynamic> countries = [];
   bool isLoading = true;
@@ -51,14 +49,15 @@ class _RegisterState extends State<Register> {
   }
 
   DateTime? selectedDate;
+
   get pickeddate => null;
 
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController phonenumberController = TextEditingController();
-  final TextEditingController dateofbirthController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController dateOfBirthController = TextEditingController();
 
   Future<void> _pickDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -70,7 +69,7 @@ class _RegisterState extends State<Register> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        dateofbirthController.text = picked.toString().split(".").first;
+        dateOfBirthController.text = picked.toString().split(".").first;
       });
     }
   }
@@ -103,9 +102,9 @@ class _RegisterState extends State<Register> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
-           Center(
+          Center(
               child: Text(
-                appLocalization(context).register,
+            appLocalization(context).register,
             style: const TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
@@ -115,11 +114,11 @@ class _RegisterState extends State<Register> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 1 / 100,
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.all(20),
             child: Center(
                 child: Text(
-                  appLocalization(context).enjoyMember,
+              appLocalization(context).enjoyMember,
               textAlign: TextAlign.center,
               style: const TextStyle(
                   color: AppColor.bluelightColor,
@@ -134,7 +133,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: firstnameController,
               decoration: InputDecoration(
-                hintText:  appLocalization(context).userName,
+                hintText: appLocalization(context).userName,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),
@@ -154,7 +153,10 @@ class _RegisterState extends State<Register> {
                     width: 10,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Image.asset(IconConstants.icUsername),
+                      child: Image.asset(
+                        IconConstants.icUsername,
+                        scale: 1.5,
+                      ),
                     ),
                   ),
                 ),
@@ -169,7 +171,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: lastnameController,
               decoration: InputDecoration(
-                hintText:  appLocalization(context).lastName,
+                hintText: appLocalization(context).lastName,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),
@@ -189,7 +191,10 @@ class _RegisterState extends State<Register> {
                     width: 10,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Image.asset(IconConstants.icUsername),
+                      child: Image.asset(
+                        IconConstants.icUsername,
+                        scale: 1.5,
+                      ),
                     ),
                   ),
                 ),
@@ -220,9 +225,8 @@ class _RegisterState extends State<Register> {
                 suffixIcon: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset(
-                    IconConstants.icEmailadd, // Adjust the path as necessary
-                    width: MediaQuery.of(context).size.width * 3 / 100,
-                    height: MediaQuery.of(context).size.height * 3 / 100,
+                    IconConstants.icEmailadd,
+                    scale: 1.5,
                   ),
                 ),
               ),
@@ -235,9 +239,9 @@ class _RegisterState extends State<Register> {
               child: Padding(
             padding: const EdgeInsets.only(left: 18, right: 18),
             child: IntlPhoneField(
-              controller: phonenumberController,
+              controller: phoneNumberController,
               decoration: InputDecoration(
-                hintText:appLocalization(context).phoneNumber,
+                hintText: appLocalization(context).phoneNumber,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 //labelText: 'Phone Number',
                 enabledBorder: OutlineInputBorder(
@@ -254,9 +258,8 @@ class _RegisterState extends State<Register> {
                 suffixIcon: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset(
-                    IconConstants.icCalladd, // Adjust the path as necessary
-                    width: MediaQuery.of(context).size.width * 3 / 100,
-                    height: MediaQuery.of(context).size.height * 3 / 100,
+                    IconConstants.icCalladd,
+                    scale: 1.5,
                   ),
                 ),
               ),
@@ -269,15 +272,12 @@ class _RegisterState extends State<Register> {
               },
             ),
           )),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 1 / 100,
-          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 1 / 100),
           SizedBox(
             width: MediaQuery.sizeOf(context).width * 90 / 100,
             child: TextFormField(
               readOnly: true,
-              controller:
-                  dateofbirthController, //ese controller every field me assign karo
+              controller: dateOfBirthController,
               decoration: InputDecoration(
                   hintText: appLocalization(context).dateOfBirth,
                   hintStyle: const TextStyle(color: AppColor.lightfillColor),
@@ -316,7 +316,10 @@ class _RegisterState extends State<Register> {
                       onTap: () async {
                         _pickDate(context);
                       },
-                      child: Image.asset(IconConstants.icDate))),
+                      child: Image.asset(
+                        IconConstants.icCalenderData,
+                        scale: 1.5,
+                      ))),
             ),
           ),
           SizedBox(
@@ -344,11 +347,7 @@ class _RegisterState extends State<Register> {
                 counterText: '',
                 suffixIcon: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    IconConstants.icLockadd, // Adjust the path as necessary
-                    width: MediaQuery.of(context).size.width * 3 / 100,
-                    height: MediaQuery.of(context).size.height * 3 / 100,
-                  ),
+                  child: Image.asset(IconConstants.icLockPass, scale: 3),
                 ),
               ),
             ),
@@ -393,7 +392,7 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 TextButton(
-                    child:  Text(
+                    child: Text(
                       appLocalization(context).resetPassword,
                       style: const TextStyle(
                           fontSize: 14,
@@ -423,10 +422,10 @@ class _RegisterState extends State<Register> {
                   onPress: () {
                     final email = emailController.text;
                     final password = passwordController.text;
-                    final phone = phonenumberController.text;
+                    final phone = phoneNumberController.text;
                     final firstname = firstnameController.text;
                     final lastname = lastnameController.text;
-                    final dob = dateofbirthController.text;
+                    final dob = dateOfBirthController.text;
 
                     if (email.isNotEmpty && password.isNotEmpty) {
                       setState(() {
@@ -458,7 +457,7 @@ class _RegisterState extends State<Register> {
                       });
                     } else {
                       setState(() {
-                        _errorMessage = 'Please enter the all fields.';
+                        _errorMessage = 'Please enter all  the fields.';
                       });
                     }
                   },
@@ -469,7 +468,7 @@ class _RegisterState extends State<Register> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Text(appLocalization(context).dontHaveAnAccount,
+              Text(appLocalization(context).dontHaveAnAccount,
                   style: const TextStyle(
                       fontFamily: AppFont.fontFamily,
                       fontSize: 15,

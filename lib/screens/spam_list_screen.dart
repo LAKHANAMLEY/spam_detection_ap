@@ -31,29 +31,8 @@ class _SpamListState extends State<SpamList> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Image.asset(
-              IconConstants.icbackCircle,
-            ),
-          ),
-        ),
-        title: const Text(
-          'Spam Calls',
-          style: TextStyle(
-              color: AppColor.callColor,
-              fontFamily: AppFont.fontFamily,
-              fontSize: 18,
-              fontWeight: FontWeight.w600),
-        ),
-
-        //centerTitle: true,
+      appBar: CustomAppBar(
+        title: appLocalization(context).spamCalls,
       ),
       body: SafeArea(
           child: Column(

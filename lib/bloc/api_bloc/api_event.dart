@@ -24,6 +24,7 @@ class SyncContactEvent extends ApiEvent {
   List<Object?> get props => [contacts];
 }
 
+// Change password
 class ChangePasswordEvent extends ApiEvent {
   final String currentPassword;
   final String newPassword;
@@ -40,6 +41,26 @@ class ChangePasswordEvent extends ApiEvent {
         currentPassword,
         newPassword,
         confirmNewPassword,
+      ];
+}
+
+// Change security
+class ChangeSecurityEvent extends ApiEvent {
+  final String currentPin;
+  final String newPin;
+  final String confirmNewPin;
+
+  ChangeSecurityEvent({
+    required this.currentPin,
+    required this.newPin,
+    required this.confirmNewPin,
+  });
+
+  @override
+  List<Object?> get props => [
+        currentPin,
+        newPin,
+        confirmNewPin,
       ];
 }
 
@@ -128,6 +149,7 @@ class FamilyAddMemberEvent extends ApiEvent {
   final String supportpin;
   final String phone;
   final String countrycode;
+  final XFile? photoFile;
 
   FamilyAddMemberEvent({
     required this.email,
@@ -138,6 +160,7 @@ class FamilyAddMemberEvent extends ApiEvent {
     required this.supportpin,
     required this.phone,
     required this.countrycode,
+    this.photoFile,
   });
 
   @override
@@ -149,7 +172,8 @@ class FamilyAddMemberEvent extends ApiEvent {
         supportpin,
         phone,
         countrycode,
-        password
+        password,
+        photoFile,
       ];
 }
 
@@ -183,14 +207,14 @@ class FamilyEditMemberEvent extends ApiEvent {
 }
 
 class FamilyDeleteMemberEvent extends ApiEvent {
-  final String familyId;
+  final String id;
 
   FamilyDeleteMemberEvent({
-    required this.familyId,
+    required this.id,
   });
 
   @override
-  List<Object?> get props => [familyId];
+  List<Object?> get props => [id];
 }
 
 class GetPlanListEvent extends ApiEvent {}
@@ -321,18 +345,8 @@ class DeleteAllCallLogEvent extends ApiEvent {}
 
 // notification
 // notification list
-/*class NotificationListEvent extends ApiEvent {
+class NotificationListEvent extends ApiEvent {}
 
-}
-    NotificationListEvent({
-  required this.notificationPush,
-});
-
-@override
-List<Object?> get props => [notificationPush];
-}
-
- */
 // notification enabled
 class EnabledNotificationEvent extends ApiEvent {
   final String notificationOne;

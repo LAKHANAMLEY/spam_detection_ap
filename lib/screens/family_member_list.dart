@@ -16,13 +16,13 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
   String? numberType;
   List<FamilyMember> categories = [];
 
-  var familyListBloc = ApiBloc(ApiBlocInitialState());
+  var familyBloc = ApiBloc(ApiBlocInitialState());
 
   @override
   void initState() {
     super.initState();
     filteredContacts = [];
-    familyListBloc.add(GetFamilyMemberListEvent());
+    familyBloc.add(GetFamilyMemberListEvent());
   }
 
   void filterSearchResults(String query) {
@@ -38,29 +38,8 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Image.asset(
-              IconConstants.icbackCircle,
-            ),
-          ),
-        ),
-        title: Text(
-          appLocalization(context).familyList,
-          style: const TextStyle(
-              color: AppColor.callColor,
-              fontFamily: AppFont.fontFamily,
-              fontSize: 18,
-              fontWeight: FontWeight.w600),
-        ),
-
-        //centerTitle: true,
+      appBar: CustomAppBar(
+        title: "Family List",
       ),
       body: SafeArea(
           child: Column(children: <Widget>[
@@ -71,7 +50,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
             controller: editingController,
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.search),
-              hintText: appLocalization(context).searchHere,
+              hintText: appLocalization(context).searchMore,
               border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(6)),
               ),
@@ -95,69 +74,100 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
         SizedBox(
           height: MediaQuery.of(context).size.height * 2 / 100,
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 2 / 100,
-        ),
         Expanded(
             child: BlocConsumer(
-                bloc: familyListBloc,
+                bloc: familyBloc,
                 listener: (context, state) {
                   if (state is GetFamilyMemberListState) {
                     contacts = state.value.familymemberslist ?? [];
                     filteredContacts = contacts;
                   }
+                  if (state is FamilyDeleteMemberState) {
+                    if (state.value.statusCode == 200) {
+                      showCustomDialog(
+                        context,
+                        dialogType: DialogType.success,
+                        subTitle:
+                            state.value.message ?? "Deleted successfully!",
+                      );
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(
+                          context,
+                          state.value.message ??
+                              "Session expired. Please log in again.");
+                    } else {
+                      showCustomDialog(
+                        context,
+                        dialogType: DialogType.success,
+                        subTitle: state.value.message,
+                      );
+                    }
+                    staffBloc.add(GetFamilyMemberListEvent());
+                  }
                 },
                 builder: (context, state) {
                   if (state is GetFamilyMemberListState) {
                     contacts = state.value.familymemberslist ?? [];
-                    if (filteredContacts.isEmpty) {
-                      return const Center(
-                        child: Text('No contacts'),
-                      );
-                    }
 
-                    return ListView.builder(
-                      itemCount: filteredContacts.length,
-                      // shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Image.network(
-                            filteredContacts[index].userRole!,
-                            //TODO: image path
-                            errorBuilder: (context, error, stackTrace) =>
-                                const Icon(Icons.person),
-                            width: MediaQuery.of(context).size.width * 12 / 100,
-                            height:
-                                MediaQuery.of(context).size.height * 12 / 100,
-                          ),
-                          title: Text(
-                            filteredContacts[index].firstName ?? "",
-                            style: const TextStyle(
-                                color: AppColor.primaryColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                fontFamily: AppFont.fontFamily),
-                          ),
-                          trailing: PopupMenuButton(
-                            itemBuilder: (context) => [
-                              PopupMenuItem(
-                                child: const Text("Edit Member"),
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, AppRoutes.familyEditMember,
-                                      arguments: EditFamilyMember(
-                                          familyMember:
-                                              filteredContacts[index]));
-                                },
-                              ),
-                              PopupMenuItem(
-                                child: const Text("Delete Member "),
-                                onTap: () {},
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+                    return ModalProgressHUD(
+                      progressIndicator: const Loader(),
+                      inAsyncCall: state is ApiLoadingState,
+                      child: (filteredContacts.isEmpty)
+                          ? const Center(
+                              child: Text('No Contacts'),
+                            )
+                          : ListView.builder(
+                              itemCount: filteredContacts.length,
+                              // shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundColor:
+                                        AppColor.vanishColor.withOpacity(0.2),
+                                    radius: 43.0,
+                                    backgroundImage:
+                                        filteredContacts[index].photo != null
+                                            ? NetworkImage(
+                                                filteredContacts[index].photo!)
+                                            : AssetImage(
+                                                ImageConstants.imageProfile),
+                                  ),
+                                  title: Text(
+                                    filteredContacts[index].firstName ?? "",
+                                    style: const TextStyle(
+                                        color: AppColor.primaryColor,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18,
+                                        fontFamily: AppFont.fontFamily),
+                                  ),
+                                  trailing: PopupMenuButton(
+                                    itemBuilder: (context) => [
+                                      PopupMenuItem(
+                                        child: const Text("Edit Member"),
+                                        onTap: () {
+                                          Navigator.pushNamed(context,
+                                              AppRoutes.familyEditMember,
+                                              arguments: EditFamilyMember(
+                                                  familyMember:
+                                                      filteredContacts[index]));
+                                        },
+                                      ),
+                                      PopupMenuItem(
+                                        child: const Text("Delete Member "),
+                                        onTap: () {
+                                          familyBloc.add(
+                                              FamilyDeleteMemberEvent(
+                                                  id: filteredContacts[index]
+                                                          .userId ??
+                                                      ""));
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
                     );
                   }
                   return const Loader();

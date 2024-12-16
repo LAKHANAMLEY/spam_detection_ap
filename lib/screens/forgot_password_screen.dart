@@ -1,4 +1,3 @@
-
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
@@ -11,6 +10,7 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   TextEditingController emailTextEditingController = TextEditingController();
+  double scale = 3.5;
 
   final _emailController = TextEditingController();
   bool _isLoading = false;
@@ -54,59 +54,6 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     });
   }
 
-  /*@override
-  void initState() {
-    super.initState();
-  }
-
-  Future<bool> forgotPasswordUserValidation(
-      BuildContext context,
-      String email,
-      ) async {
-
-    if (email.isEmpty) {
-      SnackBarToastMessage.showSnackBar(
-          context, StringConstants.emailMessage);
-      return false;
-    }
-
-
-    var emailValidatorRegExp;
-    if (!Constants.emailValidatorRegExp.hasMatch(email)) {
-      SnackBarToastMessage.showSnackBar(
-          context, StringConstants.emailvalidMessage);
-      return false;
-    }
-
-    // If all validations pass, call the API
-    await forgotPasswordUserApiCall(email);
-
-    return true; // Return true if everything is successful
-  }
-
-
-  forgotPasswordUserApiCall(
-      String email,
-      ) async {
-   // Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotOtpVerify()),
-   // );
-    //print("Call Update Api");
-  }
-
-  @override
-  // Widget build(BuildContext context) {
-  //   return ProgressHUD(
-  //       inAsyncCall: isApiCalling,
-  //       opacity: 0.5,
-  //       child: _buildUIScreen(context));
-  // }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-   */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,9 +84,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 8 / 100,
               ),
-               Center(
-                  child: Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, right: 70, left: 70),
                 child: Text(
                   appLocalization(context).forgotPassword,
                   textAlign: TextAlign.center,
@@ -149,14 +95,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600),
                 ),
-              )),
+              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-               Padding(
-                padding: const EdgeInsets.all(18),
+              Padding(
+                padding: const EdgeInsets.all(10),
                 child: Text(
-                  appLocalization(context).enterCode,
+                  appLocalization(context).forgotPassDetails,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       color: AppColor.verifyColor,
@@ -172,6 +118,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 width: MediaQuery.sizeOf(context).width * 90 / 100,
                 child: TextFormField(
                   controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: appLocalization(context).emailAddress,
                     hintStyle: const TextStyle(
@@ -193,19 +140,17 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     suffixIcon: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                        IconConstants
-                            .icEmailadd, // Adjust the path as necessary
-                        width: MediaQuery.of(context).size.width * 3 / 100,
-                        height: MediaQuery.of(context).size.height * 3 / 100,
+                        IconConstants.icfluentMail,
+                        scale: 3,
                       ),
                     ),
                   ),
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 5 / 100,
+                height: MediaQuery.of(context).size.height * 3 / 100,
               ),
-               Text(
+              Text(
                 appLocalization(context).pleaseCheckMail,
                 style: const TextStyle(
                     color: AppColor.remainColor,
@@ -213,7 +158,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     fontWeight: FontWeight.w600),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 5 / 100,
+                height: MediaQuery.of(context).size.height * 3 / 100,
               ),
               if (_errorMessage != null)
                 Text(_errorMessage!, style: const TextStyle(color: Colors.red)),

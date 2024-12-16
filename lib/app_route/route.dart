@@ -25,6 +25,8 @@ class AppRoutes {
   static const alternativeEmail = "/alternativeEmail";
   static const notificationList = "/notificationList";
   static const planDetail = "/planDetail";
+  static const profile = "/profile";
+  static const editSecurityPin = "/editSecurityPin";
 
 // static const contactDetail = "/contactDetail";
 }
@@ -54,6 +56,8 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.alternativeEmail: (context) => const AlternativeEmail(),
   AppRoutes.notificationList: (context) => const NotificationList(),
   AppRoutes.planDetail: (context) => const PlanDetail(),
+  AppRoutes.profile: (context) => const Profile(),
+  AppRoutes.editSecurityPin: (context) => const ChangeSecurity(),
 
   // AppRoutes.contactDetail: (context) => const ContactDetail(),
 };

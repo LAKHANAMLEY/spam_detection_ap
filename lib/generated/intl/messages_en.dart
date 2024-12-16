@@ -44,7 +44,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add bank account"),
         "addBeneficiary":
             MessageLookupByLibrary.simpleMessage("Add beneficiary"),
+        "addMember": MessageLookupByLibrary.simpleMessage("Add Member"),
+        "addStaffMember":
+            MessageLookupByLibrary.simpleMessage("Add Staff Member"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "address1": MessageLookupByLibrary.simpleMessage("Address 1"),
+        "address2": MessageLookupByLibrary.simpleMessage("Address 2"),
         "addressVerification":
             MessageLookupByLibrary.simpleMessage("Address verification"),
         "addressVerificationDesc": MessageLookupByLibrary.simpleMessage(
@@ -60,7 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "allTransactions":
             MessageLookupByLibrary.simpleMessage("All transactions"),
         "alreadyHaveAnAccount":
-            MessageLookupByLibrary.simpleMessage(" Already have an account"),
+            MessageLookupByLibrary.simpleMessage(" Already have an account?"),
         "alreadyPaid": MessageLookupByLibrary.simpleMessage("Already paid"),
         "amount": MessageLookupByLibrary.simpleMessage("Amount"),
         "amountRequestedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -111,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "calls": MessageLookupByLibrary.simpleMessage("Calls"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelText": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancelTxt": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cantAddMoreAccountsForThisBankYouHaveReachedTheLimit":
             MessageLookupByLibrary.simpleMessage(
@@ -128,6 +134,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "checkBalance": MessageLookupByLibrary.simpleMessage("Check balance"),
         "checkBalanceBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Check Wallet balance as well as bank account balance or you can manage your accounts like you can add, active, inactive, set primary account or you can delete account."),
+        "chooseGallery":
+            MessageLookupByLibrary.simpleMessage("Choose from Gallery"),
+        "chooseOption":
+            MessageLookupByLibrary.simpleMessage("Choose an option"),
         "chooseYourPlan":
             MessageLookupByLibrary.simpleMessage("Choose your plan "),
         "city": MessageLookupByLibrary.simpleMessage("City"),
@@ -179,6 +189,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Debited from"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "deleteCalls": MessageLookupByLibrary.simpleMessage("Delete all Calls"),
+        "deleteMember": MessageLookupByLibrary.simpleMessage("Delete Member"),
+        "deleteStaffMember":
+            MessageLookupByLibrary.simpleMessage("Delete Staff Member"),
         "description": MessageLookupByLibrary.simpleMessage("Description: "),
         "details": MessageLookupByLibrary.simpleMessage("Details"),
         "developerModeDialogDiscription": MessageLookupByLibrary.simpleMessage(
@@ -218,9 +231,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "dueOn": MessageLookupByLibrary.simpleMessage("Due on"),
         "easiestWayToManage":
             MessageLookupByLibrary.simpleMessage("Easiest way to manage"),
+        "editMember": MessageLookupByLibrary.simpleMessage("Edit Member"),
         "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "editSecurityPin":
             MessageLookupByLibrary.simpleMessage("Edit security pin"),
+        "editStaffMember":
+            MessageLookupByLibrary.simpleMessage("Edit Staff Member"),
         "education": MessageLookupByLibrary.simpleMessage("Education"),
         "electricity": MessageLookupByLibrary.simpleMessage("Electricity"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -304,6 +320,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("File downloaded"),
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
         "forYou": MessageLookupByLibrary.simpleMessage("For you"),
+        "forgotPassDetails": MessageLookupByLibrary.simpleMessage(
+            "Enter your email address for the verification process. We will send 4 digit code to your email."),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "from": MessageLookupByLibrary.simpleMessage("From"),
@@ -453,7 +471,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "notePlatformFeeWillBeImposedOnSenderForThisTransaction":
             MessageLookupByLibrary.simpleMessage(
                 "Note: Platform fee will be imposed on sender for this transaction."),
-        "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "notificationList":
+            MessageLookupByLibrary.simpleMessage("Notifications List"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notificationsBtnDescription": MessageLookupByLibrary.simpleMessage(
             "You will go to the Notifications list by pressing Notifications button."),
@@ -678,7 +697,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "resendVerificationLink":
             MessageLookupByLibrary.simpleMessage("Resend verification link"),
         "reset": MessageLookupByLibrary.simpleMessage("Reset"),
-        "resetPassword": MessageLookupByLibrary.simpleMessage("Reset password"),
+        "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "roaming": MessageLookupByLibrary.simpleMessage("Roaming"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "scan": MessageLookupByLibrary.simpleMessage("Scan"),
@@ -743,6 +762,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
         "sms": MessageLookupByLibrary.simpleMessage("Sms"),
         "smsMth": MessageLookupByLibrary.simpleMessage("\$11.98/mth"),
+        "spamCalls": MessageLookupByLibrary.simpleMessage("Spam Calls"),
         "spamIdentified":
             MessageLookupByLibrary.simpleMessage("Spam calls identified"),
         "spamSMSEmail": MessageLookupByLibrary.simpleMessage(
@@ -756,10 +776,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "state": MessageLookupByLibrary.simpleMessage("State"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "submitText": MessageLookupByLibrary.simpleMessage("Submit"),
         "success": MessageLookupByLibrary.simpleMessage("Success!"),
         "successful": MessageLookupByLibrary.simpleMessage("Successful"),
         "supportPin": MessageLookupByLibrary.simpleMessage("Support Pin"),
         "takeASelfie": MessageLookupByLibrary.simpleMessage("Take a selfie"),
+        "takePhoto": MessageLookupByLibrary.simpleMessage("Take a Photo"),
         "tax": MessageLookupByLibrary.simpleMessage("TAX"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "thisFieldShouldNotBeEmpty": MessageLookupByLibrary.simpleMessage(
@@ -890,6 +912,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Your password has been reset successfully ."),
         "yourPaymentHasBeenSuccessfullyDone":
             MessageLookupByLibrary.simpleMessage(
-                "Your payment has been successfully done.")
+                "Your payment has been successfully done."),
+        "zip": MessageLookupByLibrary.simpleMessage("Zip Code")
       };
 }

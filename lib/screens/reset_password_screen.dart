@@ -3,6 +3,7 @@ import 'package:spam_delection_app/lib.dart';
 class ResetPassword extends StatefulWidget {
   final String? email;
   final String? code;
+
   const ResetPassword(
       {super.key,
       this.email,
@@ -18,10 +19,13 @@ class _ResetPasswordState extends State<ResetPassword> {
   bool _isLoading = false;
   String? _errorMessage;
 
+  double scale = 3.5;
+
   // final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmpasswordController =
       TextEditingController();
+
   String? _validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Password is required';
@@ -72,7 +76,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               Center(
                   child: Padding(
-                padding: const EdgeInsets.only(left: 60, right: 50),
+                padding: const EdgeInsets.only(left: 70, right: 70),
                 child: Text(
                   appLocalization(context).resetPassword,
                   textAlign: TextAlign.center,
@@ -86,7 +90,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-               Padding(
+              Padding(
                 padding: const EdgeInsets.all(18),
                 child: Text(
                   appLocalization(context).pleaseSecureAccount,
@@ -107,11 +111,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    //labelText: StringConstants.phonetext,
-                    //labelStyle: const TextStyle(
-                    // color: AppColor.lightfillColor, fontWeight: FontWeight.w800),
-                    hintText:  appLocalization(context).password,
-
+                    hintText: appLocalization(context).password,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -128,9 +128,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                     suffixIcon: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                        IconConstants.icLockadd, // Adjust the path as necessary
-                        width: MediaQuery.of(context).size.width * 3 / 100,
-                        height: MediaQuery.of(context).size.height * 3 / 100,
+                        IconConstants.icLockPass,
+                        scale: 3,
                       ),
                     ),
                   ),
@@ -146,10 +145,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   controller: confirmpasswordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    //  labelText: StringConstants.phonetext,
-                    // labelStyle: const TextStyle(
-                    // color: AppColor.lightfillColor, fontWeight: FontWeight.w800),
-                    hintText:  appLocalization(context).renterPassword,
+                    hintText: appLocalization(context).renterPassword,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -161,15 +157,13 @@ class _ResetPasswordState extends State<ResetPassword> {
                           BorderSide(color: AppColor.fillColor, width: 1.0),
                       borderRadius: BorderRadius.all(Radius.circular(2)),
                     ),
-
                     filled: true,
                     fillColor: AppColor.fillColor.withOpacity(0.2),
                     suffixIcon: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                        IconConstants.icLockadd, // Adjust the path as necessary
-                        width: MediaQuery.of(context).size.width * 3 / 100,
-                        height: MediaQuery.of(context).size.height * 3 / 100,
+                        IconConstants.icLockPass,
+                        scale: 3,
                       ),
                     ),
                   ),
@@ -186,7 +180,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               _isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : AppButton(
-                      text:  appLocalization(context).resetPassword,
+                      text: appLocalization(context).resetPassword,
                       onPress: () {
                         final password = passwordController.text;
                         final confirmPassword = confirmpasswordController.text;

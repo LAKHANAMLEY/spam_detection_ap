@@ -2,6 +2,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class LoginSuccessful extends StatefulWidget {
   const LoginSuccessful({super.key, this.user});
+
   final User? user;
 
   @override
@@ -40,9 +41,9 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 10 / 100,
           ),
-           Center(
+          Center(
               child: Text(
-                appLocalization(context).successful,
+            appLocalization(context).successful,
             style: const TextStyle(
                 color: AppColor.bluelightColor,
                 fontSize: 35,
@@ -53,7 +54,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
           Text(
-            '${appLocalization(context).yey}, ${widget.user?.name ?? ''}',
+            '${appLocalization(context).yey} ${widget.user?.name ?? ''}',
             style: const TextStyle(
                 color: AppColor.yellowlightColor,
                 fontSize: 18,
@@ -62,8 +63,8 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
-           Text(
-             appLocalization(context).fromUs,
+          Text(
+            appLocalization(context).fromUs,
             style: const TextStyle(color: AppColor.gracyColor),
           ),
           SizedBox(

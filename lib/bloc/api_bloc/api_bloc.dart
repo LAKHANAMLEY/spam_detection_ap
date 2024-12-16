@@ -37,7 +37,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await getSpams().then((value) => emit(GetSpamState(value)));
     }
-
+// change Password
     if (event is ChangePasswordEvent) {
       emit(ApiLoadingState());
       await changePassword(
@@ -45,7 +45,18 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
               newPassword: event.newPassword,
               confirmNewPassword: event.confirmNewPassword)
           .then((value) {
-        emit(ChangePasswordState(value as Response));
+        emit(ChangePasswordState(value));
+      });
+    }
+// change security pin
+    if (event is ChangeSecurityEvent) {
+      emit(ApiLoadingState());
+      await changeSecurityPin(
+              currentPin: event.currentPin,
+              newPin: event.newPin,
+              confirmNewPin: event.confirmNewPin)
+          .then((value) {
+        emit(ChangeSecurityState(value));
       });
     }
 
@@ -129,6 +140,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         supportpin: event.supportpin,
         phone: event.phone,
         countrycode: event.countrycode,
+        photoFile: event.photoFile,
       ).then((value) {
         emit(FamilyAddMemberState(value));
       });
@@ -136,16 +148,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     // family edit member
     if (event is FamilyEditMemberEvent) {
       emit(ApiLoadingState());
-      await editFamilyMember(familyMember: event.user).then((value) {
+      await familyEditMember(familyMember: event.user).then((value) {
         emit(FamilyEditMemberState(value));
       });
     }
     //  delete member
     if (event is FamilyDeleteMemberEvent) {
       emit(ApiLoadingState());
-      await familyDeleteMember(
-        familyId: event.familyId,
-      ).then((value) {
+      await familyDeleteMember(id: event.id).then((value) {
         emit(FamilyDeleteMemberState(value));
       });
     }
@@ -291,15 +301,13 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 
     // notifications
     // notification list
-    /*if (event is NotificationListEvent) {
+    if (event is NotificationListEvent) {
       emit(ApiLoadingState());
-      await notificationList(
-      ).then((value) {
+      await notificationList().then((value) {
         emit(NotificationListState(value));
       });
     }
 
-     */
     //notification Enabled
     if (event is EnabledNotificationEvent) {
       emit(ApiLoadingState());

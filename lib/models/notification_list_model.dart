@@ -14,6 +14,7 @@ class NotificationListResponse {
   final int? statusCode;
   final int? totalUnreadNotifications;
   final List<dynamic>? notificationsList;
+  final String? message;
 
   NotificationListResponse({
     this.statusCode,

@@ -38,11 +38,8 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                 listener: (context, state) {
                   if (state is StaffAddMemberState) {
                     if (state.value.statusCode == 200) {
-                      //back screen pr pop krna h qki new screen ka stack create ho jayega
-                      Navigator.pop(context); //yes clear sir
-                      //but back screen pr list v update hona chahiye abhi nhi hogi check krte h
-                      //abhi update nhi ho rhi list
-                      //isliye common bloc use krege ya us bloc ko yha se list event hit krege
+                      Navigator.pop(context);
+
                       // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(
@@ -55,7 +52,6 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           dialogType: DialogType.success,
                           subTitle: state.value.message.toString());
                     }
-                    //yaha list again get krege
                     staffBloc.add(GetStaffMemberListEvent());
                   }
                 },
