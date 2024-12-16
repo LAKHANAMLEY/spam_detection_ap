@@ -269,7 +269,7 @@ class _ProfileState extends State<Profile> {
                         GestureDetector(
                           onTap: () {
                             // Navigator.pushNamed(context, AppRoutes.planType);
-                            selectBottomTabBloc.add(SelectIntEvent(3));
+                            bottomNavigationBloc.add(SelectIntEvent(3));
                           },
                           child: Container(
                             margin: const EdgeInsets.only(left: 20, right: 20),

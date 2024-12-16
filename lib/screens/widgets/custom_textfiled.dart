@@ -67,12 +67,16 @@ class CustomTextField extends StatelessWidget {
                       ? Colors.white
                       : AppColor.fillColor.withOpacity(0.2)),
               border: Border.all(color: AppColor.fillColor, width: 1.5),
-              borderRadius: BorderRadius.circular(2)),
+              borderRadius: BorderRadius.circular(5)),
           // // constraints: const BoxConstraints(maxHeight: 60, minHeight: 0),
           margin: const EdgeInsets.all(5),
           child: Row(
             children: [
-              if (prefix != null) prefix!,
+              if (prefix != null)
+                Padding(
+                  padding: const EdgeInsets.only(left: 15),
+                  child: prefix!,
+                ),
               Expanded(
                 child: TextFormField(
                   inputFormatters: inputFormatters,

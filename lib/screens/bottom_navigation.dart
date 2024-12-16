@@ -79,7 +79,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-        bloc: selectBottomTabBloc,
+        bloc: bottomNavigationBloc,
         builder: (context, state) {
           if (state is SelectIntState) {
             _page = state.value;
@@ -105,7 +105,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                             var photo = state.user.photo;
                             return GestureDetector(
                               onTap: () {
-                                selectBottomTabBloc.add(SelectIntEvent(4));
+                                bottomNavigationBloc.add(SelectIntEvent(4));
                                 // Navigator.push(
                                 //     context,
                                 //     MaterialPageRoute(
@@ -298,7 +298,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   animationCurve: Curves.easeInOut,
                   animationDuration: const Duration(milliseconds: 600),
                   onTap: (index) {
-                    selectBottomTabBloc.add(SelectIntEvent(index));
+                    bottomNavigationBloc.add(SelectIntEvent(index));
                   },
                   letIndexChange: (index) => true,
                 ));

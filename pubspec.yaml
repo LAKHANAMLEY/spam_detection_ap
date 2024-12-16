@@ -49,6 +49,10 @@ dependencies:
   phone_state: ^2.0.1
   system_alert_window: ^2.0.2
   phone_state_background: ^0.0.4
+  firebase_crashlytics: ^4.2.0
+  flutter_local_notifications: ^18.0.1
+  firebase_analytics: ^11.3.6
+  flutter_local_notifications_platform_interface: ^8.0.0
 
 dev_dependencies:
   flutter_test:

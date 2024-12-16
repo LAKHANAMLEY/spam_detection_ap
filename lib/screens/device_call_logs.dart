@@ -24,6 +24,8 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
 
   var showHideTextFieldBloc = SelectionBloc(SelectBoolState(true));
 
+  var searchBloc = SelectionBloc(SelectStringState(""));
+
   @override
   void initState() {
     super.initState();
@@ -55,7 +57,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                     .contains(argument?.filterBy.toLowerCase() ?? "") ??
                 false))
         .toList();
-    setState(() {});
+    // setState(() {});
   }
 
   @override
@@ -207,7 +209,9 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                               hintText:
                                                   "Search numbers, names & more",
                                               onChanged: (p0) {
-                                                filter();
+                                                // filter();
+                                                searchBloc
+                                                    .add(SelectStringEvent(p0));
                                               },
                                               suffix: PopupMenuButton(
                                                 itemBuilder: (context) => [
@@ -226,19 +230,30 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                   }
                                   return const Loader();
                                 }),
-                            Expanded(
-                              child: filteredCallLogs.isEmpty
-                                  ? const Center(
-                                      child: Text("No data"),
-                                    )
-                                  : ListView.builder(
-                                      controller: scrollController,
-                                      itemCount: filteredCallLogs.length,
-                                      itemBuilder: (context, index) =>
-                                          CallLogListItem(
-                                            callLog: filteredCallLogs[index],
-                                          )),
-                            ),
+                            BlocConsumer(
+                                bloc: searchBloc,
+                                listener: (context, state) {
+                                  if (state is SelectStringState) {
+                                    filter();
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return Expanded(
+                                    child: filteredCallLogs.isEmpty
+                                        ? Center(
+                                            child: Text(appLocalization(context)
+                                                .noData),
+                                          )
+                                        : ListView.builder(
+                                            controller: scrollController,
+                                            itemCount: filteredCallLogs.length,
+                                            itemBuilder: (context, index) =>
+                                                CallLogListItem(
+                                                  callLog:
+                                                      filteredCallLogs[index],
+                                                )),
+                                  );
+                                }),
                           ],
                         ),
                       ));

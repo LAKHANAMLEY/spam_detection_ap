@@ -8,7 +8,7 @@ class ContactList extends StatefulWidget {
 }
 
 class _ContactListState extends State<ContactList> {
-  final TextEditingController searchController = TextEditingController();
+  final searchController = TextEditingController();
   final searchBloc = SelectionBloc(SelectStringState(""));
 
   List<ContactData> contacts = [];
@@ -22,16 +22,12 @@ class _ContactListState extends State<ContactList> {
 
   void filterSearchResults() {
     filteredContacts = contacts
-        .where((contact) =>
-            contact.name!
-                .toLowerCase()
-                .contains(searchController.text.toLowerCase()) ||
-            contact.mobileNo!
-                .toLowerCase()
-                .contains(searchController.text.toLowerCase()))
+        .where((contact) => (contact.name!
+            .toLowerCase()
+            .contains(searchController.text.toLowerCase())))
         .toList();
 
-    setState(() {});
+    // setState(() {});
   }
 
   @override
@@ -69,8 +65,10 @@ class _ContactListState extends State<ContactList> {
                 child: Column(
                   children: <Widget>[
                     CustomTextField(
+                      fillColor: Colors.white,
                       onChanged: (value) {
-                        filterSearchResults();
+                        // filterSearchResults();
+                        searchBloc.add(SelectStringEvent(value));
                       },
                       controller: searchController,
                       prefix: const Icon(
@@ -128,23 +126,41 @@ class _ContactListState extends State<ContactList> {
                           },
                           builder: (context, state) {
                             if (state is GetContactState) {
-                              return BlocBuilder(
+                              return BlocConsumer(
                                   bloc: searchBloc,
+                                  listener: (context, state) {
+                                    if (state is SelectStringState) {
+                                      filterSearchResults();
+                                      // filteredContacts = contacts
+                                      //     .where((contact) => (contact.name!
+                                      //         .toLowerCase()
+                                      //         .contains(state.value ??
+                                      //             "".toLowerCase())))
+                                      //     .toList();
+                                      // print(filteredContacts.map((e) {
+                                      //   print(e.name);
+                                      // }));
+                                    }
+                                  },
                                   builder: (context, searchState) {
-                                    if (filteredContacts.isEmpty) {
-                                      return const Center(
-                                        child: Text('No contacts'),
+                                    if (searchState is SelectStringState) {
+                                      filterSearchResults();
+                                      if (filteredContacts.isEmpty) {
+                                        return const Center(
+                                          child: Text('No contacts'),
+                                        );
+                                      }
+                                      return ListView.builder(
+                                        itemCount: filteredContacts.length,
+                                        // shrinkWrap: true,
+                                        itemBuilder: (context, index) {
+                                          return ContactListItem(
+                                            contact: filteredContacts[index],
+                                          );
+                                        },
                                       );
                                     }
-                                    return ListView.builder(
-                                      itemCount: filteredContacts.length,
-                                      // shrinkWrap: true,
-                                      itemBuilder: (context, index) {
-                                        return ContactListItem(
-                                          contact: filteredContacts[index],
-                                        );
-                                      },
-                                    );
+                                    return const Loader();
                                   });
                             }
                             return const Loader();

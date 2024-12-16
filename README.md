@@ -60,3 +60,19 @@ A new Flutter project.
 • No issues found!
 
 '''
+
+## Errors resolution
+### 1.
+error: resource android:attr/lStar not found.
+
+### Solution
+
+'''gradle
+
+compileSdkVersion 34
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.6.0' 
+}
+
+'''

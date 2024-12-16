@@ -342,7 +342,7 @@ class DeleteAllCallLogState extends ApiState {
 //  notification
 // notification List
 class NotificationListState extends ApiState {
-  final NotificationResponse value;
+  final NotificationListResponse value;
 
   NotificationListState(this.value);
 

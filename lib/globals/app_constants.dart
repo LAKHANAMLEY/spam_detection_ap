@@ -11,7 +11,7 @@ var callLogsListBloc = ApiBloc(ApiBlocInitialState());
 var markSpamBloc = ApiBloc(ApiBlocInitialState());
 var staffBloc = ApiBloc(ApiBlocInitialState());
 
-var selectBottomTabBloc = SelectionBloc(SelectIntState(2));
+var bottomNavigationBloc = SelectionBloc(SelectIntState(2));
 
 final localizationBloc =
     LocalizationBloc(ChangeLocaleState(const Locale("en")));
