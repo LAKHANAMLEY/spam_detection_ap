@@ -64,9 +64,19 @@ class SyncContactState extends ApiState {
 }
 
 class ChangePasswordState extends ApiState {
-  final Response value;
+  final ChangePasswordResponse value;
 
   ChangePasswordState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// change  security
+class ChangeSecurityState extends ApiState {
+  final ChangeSecurityPinResponse value;
+
+  ChangeSecurityState(this.value);
 
   @override
   List<Object?> get props => [value];

@@ -64,7 +64,7 @@ class StringConstants {
   static const String resetpasstext = 'Reset Password';
   static const String resetMessage =
       'Please enter a new password to secure your account.';
-  static const String pinMessage =
+  static const String securitypinMessage =
       'Please enter a new pin to secure your account.';
 
   static const String registerGoogletext = 'Register with Google';
@@ -128,7 +128,7 @@ class StringConstants {
   static const corpotateprotectiontext = 'Corporate Protection';
   static const personalProtectiontext = 'Personal Protection';
   static const upgradetext = 'Upgrade to Premium';
-  static const spamIdentifiedtext='Spam calls identified';
+  static const spamIdentifiedtext = 'Spam calls identified';
   static const securitytext =
       'You Are Protected Against All The Dangerous Phone Numbers From Our Security Database';
   static const spamCalltext =

@@ -272,10 +272,10 @@ class S {
     );
   }
 
-  /// ` Already have an account`
+  /// ` Already have an account?`
   String get alreadyHaveAnAccount {
     return Intl.message(
-      ' Already have an account',
+      ' Already have an account?',
       name: 'alreadyHaveAnAccount',
       desc: '',
       args: [],
@@ -4346,10 +4346,10 @@ class S {
     );
   }
 
-  /// `Reset password`
+  /// `Reset Password`
   String get resetPassword {
     return Intl.message(
-      'Reset password',
+      'Reset Password',
       name: 'resetPassword',
       desc: '',
       args: [],
@@ -5829,6 +5829,106 @@ class S {
     return Intl.message(
       'Delete Staff Member',
       name: 'deleteStaffMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email address for the verification process. We will send 4 digit code to your email.`
+  String get forgotPassDetails {
+    return Intl.message(
+      'Enter your email address for the verification process. We will send 4 digit code to your email.',
+      name: 'forgotPassDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spam Calls`
+  String get spamCalls {
+    return Intl.message(
+      'Spam Calls',
+      name: 'spamCalls',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose an option`
+  String get chooseOption {
+    return Intl.message(
+      'Choose an option',
+      name: 'chooseOption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Take a Photo`
+  String get takePhoto {
+    return Intl.message(
+      'Take a Photo',
+      name: 'takePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose from Gallery`
+  String get chooseGallery {
+    return Intl.message(
+      'Choose from Gallery',
+      name: 'chooseGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancelText {
+    return Intl.message(
+      'Cancel',
+      name: 'cancelText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Zip Code`
+  String get zip {
+    return Intl.message(
+      'Zip Code',
+      name: 'zip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address 1`
+  String get address1 {
+    return Intl.message(
+      'Address 1',
+      name: 'address1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address 2`
+  String get address2 {
+    return Intl.message(
+      'Address 2',
+      name: 'address2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submitText {
+    return Intl.message(
+      'Submit',
+      name: 'submitText',
       desc: '',
       args: [],
     );

@@ -40,6 +40,7 @@ class _AddContactState extends State<AddContact> {
     "Work Fax",
     "Other"
   ];
+
   @override
   void dispose() {
     _numberController.dispose();
@@ -50,34 +51,8 @@ class _AddContactState extends State<AddContact> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 2 / 100,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(
-                IconConstants.icbackCircle,
-              ),
-            ),
-          ),
-        ),
-        // ignore: prefer_const_constructors
-        title: Text(
-          'Add Contact',
-          style: const TextStyle(
-              color: AppColor.callColor,
-              fontFamily: AppFont.fontFamily,
-              fontSize: 18,
-              fontWeight: FontWeight.w600),
-        ),
-
-        //centerTitle: true,
-      ),
+      appBar: CustomAppBar(title: 'Add Contact'),
+      //centerTitle: true,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -143,7 +118,8 @@ class _AddContactState extends State<AddContact> {
                     suffixIcon: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                        IconConstants.icCalladd, // Adjust the path as necessary
+                        IconConstants.icCalladd,
+                        // Adjust the path as necessary
                         width: MediaQuery.of(context).size.width * 3 / 100,
                         height: MediaQuery.of(context).size.height * 3 / 100,
                       ),

@@ -37,7 +37,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await getSpams().then((value) => emit(GetSpamState(value)));
     }
-
+// change Password
     if (event is ChangePasswordEvent) {
       emit(ApiLoadingState());
       await changePassword(
@@ -45,7 +45,18 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
               newPassword: event.newPassword,
               confirmNewPassword: event.confirmNewPassword)
           .then((value) {
-        emit(ChangePasswordState(value as Response));
+        emit(ChangePasswordState(value));
+      });
+    }
+// change security pin
+    if (event is ChangeSecurityEvent) {
+      emit(ApiLoadingState());
+      await changeSecurityPin(
+              currentPin: event.currentPin,
+              newPin: event.newPin,
+              confirmNewPin: event.confirmNewPin)
+          .then((value) {
+        emit(ChangeSecurityState(value));
       });
     }
 
@@ -129,6 +140,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         supportpin: event.supportpin,
         phone: event.phone,
         countrycode: event.countrycode,
+        photoFile: event.photoFile,
       ).then((value) {
         emit(FamilyAddMemberState(value));
       });

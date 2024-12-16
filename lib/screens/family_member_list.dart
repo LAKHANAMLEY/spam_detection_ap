@@ -38,29 +38,8 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Image.asset(
-              IconConstants.icbackCircle,
-            ),
-          ),
-        ),
-        title: Text(
-          appLocalization(context).familyList,
-          style: const TextStyle(
-              color: AppColor.callColor,
-              fontFamily: AppFont.fontFamily,
-              fontSize: 18,
-              fontWeight: FontWeight.w600),
-        ),
-
-        //centerTitle: true,
+      appBar: CustomAppBar(
+        title: "Family List",
       ),
       body: SafeArea(
           child: Column(children: <Widget>[
@@ -71,7 +50,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
             controller: editingController,
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.search),
-              hintText: appLocalization(context).searchHere,
+              hintText: appLocalization(context).searchMore,
               border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(6)),
               ),

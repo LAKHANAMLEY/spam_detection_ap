@@ -16,7 +16,8 @@ class _LoginState extends State<Login> {
   bool isPasswordVisible = true;
   bool isConfirmPasswordVisible = true;
   bool isApiCalling = false;
-  bool agreeToTerms = false; //ab kro test // ok
+  bool agreeToTerms = false;
+  double scale = 3.5;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -175,6 +176,7 @@ class _LoginState extends State<Login> {
                   width: MediaQuery.sizeOf(context).width * 90 / 100,
                   child: TextFormField(
                     controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: appLocalization(context).emailAddress,
                       hintStyle: const TextStyle(
@@ -196,10 +198,8 @@ class _LoginState extends State<Login> {
                       suffixIcon: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
-                          IconConstants
-                              .icEmailadd, // Adjust the path as necessary
-                          width: MediaQuery.of(context).size.width * 3 / 100,
-                          height: MediaQuery.of(context).size.height * 3 / 100,
+                          IconConstants.icfluentMail,
+                          scale: 3.5,
                         ),
                       ),
                     ),
@@ -232,7 +232,10 @@ class _LoginState extends State<Login> {
                         filled: true,
                         fillColor: AppColor.fillColor.withOpacity(0.2),
                         counterText: '',
-                        suffixIcon: Image.asset(IconConstants.icLockadd)),
+                        suffixIcon: Image.asset(
+                          IconConstants.icLockPass,
+                          scale: 3,
+                        )),
                   ),
                 ),
                 SizedBox(

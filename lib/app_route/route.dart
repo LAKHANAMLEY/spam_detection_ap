@@ -26,6 +26,8 @@ class AppRoutes {
   static const editStaffMember = "/editStaffMember";
   static const alternativeEmail = "/alternativeEmail";
   static const notificationList = "/notificationList";
+  static const profile = "/profile";
+  static const editSecurityPin = "/editSecurityPin";
 
 // static const contactDetail = "/contactDetail";
 }
@@ -54,6 +56,8 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.editStaffMember: (context) => const EditStaffMember(),
   AppRoutes.alternativeEmail: (context) => const AlternativeEmail(),
   AppRoutes.notificationList: (context) => const NotificationList(),
+  AppRoutes.profile: (context) => const Profile(),
+  AppRoutes.editSecurityPin: (context) => const ChangeSecurity(),
 
   // AppRoutes.contactDetail: (context) => const ContactDetail(),
 };
