@@ -550,7 +550,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         10.height(),
                         SubMenu(
-                          title: appLocalization(context).stafflist,
+                          title: appLocalization(context).staffList,
                           icon: IconConstants.icalternativeEmail,
                           onTap: () {
                             Navigator.pushNamed(context, AppRoutes.staffMember);
@@ -558,7 +558,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         10.height(),
                         SubMenu(
-                          title: 'Corporate Edit Profile',
+                          title: appLocalization(context).corporateEditProfile,
                           icon: IconConstants.icEdit,
                           onTap: () {
                             Navigator.pushNamed(

@@ -69,13 +69,13 @@ class _CorporateProfileState extends State<CorporateProfile> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Choose an option',
+                appLocalization(context).chooseOption,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 16.0),
               ListTile(
                 leading: const Icon(Icons.camera_alt, color: Colors.blue),
-                title: const Text('Take a Photo'),
+                title: Text(appLocalization(context).takePhoto),
                 onTap: () {
                   Navigator.pop(context);
                   _takePhoto();
@@ -83,7 +83,7 @@ class _CorporateProfileState extends State<CorporateProfile> {
               ),
               ListTile(
                 leading: const Icon(Icons.photo_library, color: Colors.green),
-                title: const Text('Choose from Gallery'),
+                title: Text(appLocalization(context).chooseGallery),
                 onTap: () {
                   Navigator.pop(context);
                   // Call your gallery function here
@@ -95,8 +95,8 @@ class _CorporateProfileState extends State<CorporateProfile> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text(
-                  'Cancel',
+                child: Text(
+                  appLocalization(context).cancelText,
                   style: TextStyle(color: Colors.red),
                 ),
               ),
@@ -117,7 +117,8 @@ class _CorporateProfileState extends State<CorporateProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: const CustomAppBar(title: "Edit Corporate Profile"),
+        appBar:
+            CustomAppBar(title: appLocalization(context).editCorporateProfile),
         body: SafeArea(
           child: BlocConsumer(
               bloc: corporateBloc,
@@ -257,14 +258,16 @@ class _CorporateProfileState extends State<CorporateProfile> {
                               10.height(),
                               CustomTextField(
                                 controller: userNameController,
-                                hintText: 'Corporate Name',
+                                hintText:
+                                    appLocalization(context).corporateName,
                                 suffix: Image.asset(
                                   IconConstants.icUsername,
                                   scale: 1.5,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter corporate name";
+                                    return appLocalization(context)
+                                        .pleaseCorporateName;
                                   }
                                   return null;
                                 },
@@ -272,14 +275,15 @@ class _CorporateProfileState extends State<CorporateProfile> {
                               10.height(),
                               CustomTextField(
                                 controller: companyNameController,
-                                hintText: 'Company name',
+                                hintText: appLocalization(context).companyName,
                                 suffix: Image.asset(
                                   IconConstants.icCorporateID,
                                   scale: 3,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter company name";
+                                    return appLocalization(context)
+                                        .pleaseCompanyName;
                                   }
                                   return null;
                                 },
@@ -287,14 +291,14 @@ class _CorporateProfileState extends State<CorporateProfile> {
                               10.height(),
                               CustomTextField(
                                 controller: crnIdController,
-                                hintText: 'Crn ID',
+                                hintText: appLocalization(context).crnId,
                                 suffix: Image.asset(
                                   IconConstants.icCorporateID,
                                   scale: 3,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter crn ID";
+                                    return appLocalization(context).pleaseCrnId;
                                   }
                                   return null;
                                 },

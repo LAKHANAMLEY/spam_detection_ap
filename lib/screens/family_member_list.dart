@@ -38,8 +38,8 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: const CustomAppBar(
-        title: "Family List",
+      appBar: CustomAppBar(
+        title: appLocalization(context).familyList,
       ),
       body: SafeArea(
           child: Column(children: <Widget>[
@@ -114,8 +114,8 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                       progressIndicator: const Loader(),
                       inAsyncCall: state is ApiLoadingState,
                       child: (filteredContacts.isEmpty)
-                          ? const Center(
-                              child: Text('No Contacts'),
+                          ? Center(
+                              child: Text(appLocalization(context).noContacts),
                             )
                           : ListView.builder(
                               itemCount: filteredContacts.length,
@@ -138,7 +138,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                                     style: const TextStyle(
                                         color: AppColor.primaryColor,
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 18,
+                                        fontSize: 12,
                                         fontFamily: AppFont.fontFamily),
                                   ),
                                   title: Text(
@@ -152,7 +152,8 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                                   trailing: PopupMenuButton(
                                     itemBuilder: (context) => [
                                       PopupMenuItem(
-                                        child: const Text("Edit Member"),
+                                        child: Text(appLocalization(context)
+                                            .editMember),
                                         onTap: () {
                                           Navigator.pushNamed(context,
                                               AppRoutes.familyEditMember,
@@ -162,7 +163,8 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                                         },
                                       ),
                                       PopupMenuItem(
-                                        child: const Text("Delete Member "),
+                                        child: Text(appLocalization(context)
+                                            .deleteMember),
                                         onTap: () {
                                           familyBloc.add(
                                               FamilyDeleteMemberEvent(

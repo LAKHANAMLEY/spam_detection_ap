@@ -1,13 +1,13 @@
 import 'package:spam_delection_app/lib.dart';
 
-class CorpoateLogin extends StatefulWidget {
-  const CorpoateLogin({super.key});
+class CorporateLogin extends StatefulWidget {
+  const CorporateLogin({super.key});
 
   @override
-  State<CorpoateLogin> createState() => _CorpoateLoginState();
+  State<CorporateLogin> createState() => _CorporateLoginState();
 }
 
-class _CorpoateLoginState extends State<CorpoateLogin> {
+class _CorporateLoginState extends State<CorporateLogin> {
   final TextEditingController corporateIdController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -99,7 +99,7 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
                 ),
                 validator: (p0) {
                   if (p0?.isEmpty ?? true) {
-                    return "Please enter email adddress";
+                    return "Please enter email address";
                   }
                   return null;
                 },
@@ -108,9 +108,12 @@ class _CorpoateLoginState extends State<CorpoateLogin> {
               CustomTextField(
                 controller: passwordController,
                 hintText: appLocalization(context).password,
-                suffix: Image.asset(
-                  IconConstants.icLockPass,
-                  scale: 3,
+                suffix: Padding(
+                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  child: Image.asset(
+                    IconConstants.icLockPass,
+                    scale: 3,
+                  ),
                 ),
                 validator: (p0) {
                   if (p0?.isEmpty ?? true) {

@@ -50,21 +50,31 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Staff List`
-  String get stafflist {
+  /// `Alternative Email`
+  String get alternativeEmail {
     return Intl.message(
-      'Staff List',
-      name: 'stafflist',
+      'Alternative Email',
+      name: 'alternativeEmail',
       desc: '',
       args: [],
     );
   }
 
-  /// `Family list`
-  String get familylist {
+  /// `Staff List`
+  String get staffList {
     return Intl.message(
-      'Family list',
-      name: 'familylist',
+      'Staff List',
+      name: 'staffList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Family List`
+  String get familyList {
+    return Intl.message(
+      'Family List',
+      name: 'familyList',
       desc: '',
       args: [],
     );
@@ -1749,16 +1759,6 @@ class S {
     return Intl.message(
       'Failed...',
       name: 'failed',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Family List`
-  String get familyList {
-    return Intl.message(
-      'Family List',
-      name: 'familyList',
       desc: '',
       args: [],
     );
@@ -5566,10 +5566,10 @@ class S {
     );
   }
 
-  /// `Welcome to BROADLINK Protect your mobile defender! Effortlessly block unwanted calls, messages and keep your device clean let's get started and take control of your communication!`
+  /// `Welcome to BROADLINK Protect Your Mobile Defender! Effortlessly block unwanted calls, messages and keep your device clean let's get started and take control of your communication!`
   String get welcomeTxt {
     return Intl.message(
-      'Welcome to BROADLINK Protect your mobile defender! Effortlessly block unwanted calls, messages and keep your device clean let\'s get started and take control of your communication!',
+      'Welcome to BROADLINK Protect Your Mobile Defender! Effortlessly block unwanted calls, messages and keep your device clean let\'s get started and take control of your communication!',
       name: 'welcomeTxt',
       desc: '',
       args: [],
@@ -5939,6 +5939,346 @@ class S {
     return Intl.message(
       'Position',
       name: 'position',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number Type`
+  String get numberType {
+    return Intl.message(
+      'Number Type',
+      name: 'numberType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have an Account`
+  String get haveAccount {
+    return Intl.message(
+      'Have an Account',
+      name: 'haveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent`
+  String get recentText {
+    return Intl.message(
+      'Recent',
+      name: 'recentText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contacts`
+  String get contactText {
+    return Intl.message(
+      'Contacts',
+      name: 'contactText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add phone number`
+  String get addPhoneNumber {
+    return Intl.message(
+      'Add phone number',
+      name: 'addPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blocked Numbers`
+  String get blockedNumber {
+    return Intl.message(
+      'Blocked Numbers',
+      name: 'blockedNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a new pin to secure your account.`
+  String get pleaseNewPinSecure {
+    return Intl.message(
+      'Please enter a new pin to secure your account.',
+      name: 'pleaseNewPinSecure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current security pin`
+  String get currentSecurityPin {
+    return Intl.message(
+      'Current security pin',
+      name: 'currentSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New security pin`
+  String get newSecurityPin {
+    return Intl.message(
+      'New security pin',
+      name: 'newSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm security pin`
+  String get confirmSecurityPin {
+    return Intl.message(
+      'Confirm security pin',
+      name: 'confirmSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter current security pin`
+  String get pleaseCurrentSecurityPin {
+    return Intl.message(
+      'Please enter current security pin',
+      name: 'pleaseCurrentSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter new security pin`
+  String get pleaseNewSecurityPin {
+    return Intl.message(
+      'Please enter new security pin',
+      name: 'pleaseNewSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter confirm security pin`
+  String get pleaseConfirmSecurityPin {
+    return Intl.message(
+      'Please enter confirm security pin',
+      name: 'pleaseConfirmSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a new password to secure your account.`
+  String get pleasNewPasswordSecure {
+    return Intl.message(
+      'Please enter a new password to secure your account.',
+      name: 'pleasNewPasswordSecure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Password`
+  String get currentPass {
+    return Intl.message(
+      'Current Password',
+      name: 'currentPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password`
+  String get newPass {
+    return Intl.message(
+      'New Password',
+      name: 'newPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm new Password`
+  String get confirmNewPass {
+    return Intl.message(
+      'Confirm new Password',
+      name: 'confirmNewPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter current password`
+  String get pleaseCurrentPass {
+    return Intl.message(
+      'Please enter current password',
+      name: 'pleaseCurrentPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter New password`
+  String get pleaseNewPass {
+    return Intl.message(
+      'Please enter New password',
+      name: 'pleaseNewPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter confirm new password`
+  String get pleaseConfirmPass {
+    return Intl.message(
+      'Please enter confirm new password',
+      name: 'pleaseConfirmPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please all alternative email`
+  String get pleaseAlternativeEmail {
+    return Intl.message(
+      'Please all alternative email',
+      name: 'pleaseAlternativeEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Family Member`
+  String get addFamilyMember {
+    return Intl.message(
+      'Add Family Member',
+      name: 'addFamilyMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter first name`
+  String get pleaseFirstName {
+    return Intl.message(
+      'Please enter first name',
+      name: 'pleaseFirstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter last name`
+  String get pleaseLastName {
+    return Intl.message(
+      'Please enter last name',
+      name: 'pleaseLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter relation`
+  String get pleaseRelation {
+    return Intl.message(
+      'Please enter relation',
+      name: 'pleaseRelation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter support pin`
+  String get pleaseSupportPin {
+    return Intl.message(
+      'Please enter support pin',
+      name: 'pleaseSupportPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Corporate Profile`
+  String get editCorporateProfile {
+    return Intl.message(
+      'Edit Corporate Profile',
+      name: 'editCorporateProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Corporate Name`
+  String get corporateName {
+    return Intl.message(
+      'Corporate Name',
+      name: 'corporateName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CompanyName`
+  String get companyName {
+    return Intl.message(
+      'CompanyName',
+      name: 'companyName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crn Id`
+  String get crnId {
+    return Intl.message(
+      'Crn Id',
+      name: 'crnId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter corporate name`
+  String get pleaseCorporateName {
+    return Intl.message(
+      'Please enter corporate name',
+      name: 'pleaseCorporateName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter company name`
+  String get pleaseCompanyName {
+    return Intl.message(
+      'Please enter company name',
+      name: 'pleaseCompanyName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Crn ID`
+  String get pleaseCrnId {
+    return Intl.message(
+      'Please enter Crn ID',
+      name: 'pleaseCrnId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Corporate Edit Profile`
+  String get corporateEditProfile {
+    return Intl.message(
+      'Corporate Edit Profile',
+      name: 'corporateEditProfile',
       desc: '',
       args: [],
     );

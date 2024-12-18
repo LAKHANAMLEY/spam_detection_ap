@@ -9,13 +9,14 @@ class AddMember extends StatefulWidget {
 
 class _AddMemberState extends State<AddMember> {
   DateTime? selectedDate;
-  get pickeddate => null;
+
+  get pickedDate => null;
 
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController phonenumberController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
   String? enteredPhone;
   PhoneNumber? phoneNumber;
 
@@ -57,7 +58,7 @@ class _AddMemberState extends State<AddMember> {
                 child: TextFormField(
                   controller: firstnameController,
                   decoration: InputDecoration(
-                    hintText: 'First name',
+                    hintText: appLocalization(context).firstName,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -93,7 +94,7 @@ class _AddMemberState extends State<AddMember> {
                 child: TextFormField(
                   controller: lastnameController,
                   decoration: InputDecoration(
-                    hintText: 'Last name',
+                    hintText: appLocalization(context).lastName,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -129,7 +130,7 @@ class _AddMemberState extends State<AddMember> {
                 child: TextFormField(
                   controller: emailController,
                   decoration: InputDecoration(
-                    hintText: 'Enter your email',
+                    hintText: appLocalization(context).emailAddress,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -164,7 +165,7 @@ class _AddMemberState extends State<AddMember> {
                   controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: 'Enter your password',
+                    hintText: appLocalization(context).password,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -198,7 +199,7 @@ class _AddMemberState extends State<AddMember> {
                 child: TextFormField(
                   controller: lastnameController,
                   decoration: InputDecoration(
-                    hintText: 'Relation',
+                    hintText: appLocalization(context).relation,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -234,7 +235,7 @@ class _AddMemberState extends State<AddMember> {
                 child: TextFormField(
                   controller: lastnameController,
                   decoration: InputDecoration(
-                    hintText: 'Support pin',
+                    hintText: appLocalization(context).supportPin,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -259,7 +260,7 @@ class _AddMemberState extends State<AddMember> {
                         ),
                       ),
                     ),
-          
+
                      */
                   ),
                 ),
@@ -270,7 +271,7 @@ class _AddMemberState extends State<AddMember> {
               Padding(
                 padding: const EdgeInsets.only(left: 18, right: 18),
                 child: IntlPhoneField(
-                  controller: phonenumberController,
+                  controller: phoneNumberController,
                   decoration: InputDecoration(
                     hintText: "Enter Phone Number",
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
@@ -305,8 +306,7 @@ class _AddMemberState extends State<AddMember> {
                   },
                 ),
               ),
-              AppButton(text: "Submit", onPress: (){}),
-
+              AppButton(text: "Submit", onPress: () {}),
             ],
           ),
         ),
@@ -314,5 +314,3 @@ class _AddMemberState extends State<AddMember> {
     );
   }
 }
-//work kr rhe h ye ki nhi?
-// wait sir check krte hai

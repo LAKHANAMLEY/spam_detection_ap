@@ -8,10 +8,10 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-  final TextEditingController currentpasswordController =
+  final TextEditingController currentPasswordController =
       TextEditingController();
-  final TextEditingController newpasswordController = TextEditingController();
-  final TextEditingController confirmnewpasswordController =
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmNewPasswordController =
       TextEditingController();
   double scale = 3.5;
   var changePasswordBloc = ApiBloc(ApiBlocInitialState());
@@ -49,8 +49,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                 listener: (context, state) {
                   if (state is ChangePasswordState) {
                     if (state.value.statusCode == 200) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const Profile()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Profile()));
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,
@@ -72,10 +74,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                               height:
                                   MediaQuery.of(context).size.height * 4 / 100,
                             ),
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.only(left: 60, right: 50),
                               child: Text(
-                                StringConstants.changePass,
+                                appLocalization(context).changePassword,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: AppColor.bluelightColor,
@@ -88,12 +90,12 @@ class _ChangePasswordState extends State<ChangePassword> {
                               height:
                                   MediaQuery.of(context).size.height * 2 / 100,
                             ),
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.all(18),
                               child: Text(
-                                StringConstants.resetMessage,
+                                appLocalization(context).pleasNewPasswordSecure,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: AppColor.verifyColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontSize: 16,
@@ -106,45 +108,48 @@ class _ChangePasswordState extends State<ChangePassword> {
                             ),
                             10.height(),
                             CustomTextField(
-                              controller: currentpasswordController,
-                              hintText: 'Current Password',
+                              controller: currentPasswordController,
+                              hintText: appLocalization(context).currentPass,
                               suffix: Image.asset(
                                 IconConstants.icLockadd,
                                 scale: 1.5,
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {
-                                  return "Please enter current password";
+                                  return appLocalization(context)
+                                      .pleaseCurrentPass;
                                 }
                                 return null;
                               },
                             ),
                             10.height(),
                             CustomTextField(
-                              controller: newpasswordController,
-                              hintText: 'New Password',
+                              controller: newPasswordController,
+                              hintText: appLocalization(context).newPassword,
                               suffix: Image.asset(
                                 IconConstants.icLockadd,
                                 scale: 1.5,
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {
-                                  return "Please enter New password";
+                                  return appLocalization(context).pleaseNewPass;
                                 }
                                 return null;
                               },
                             ),
                             10.height(),
                             CustomTextField(
-                              controller: confirmnewpasswordController,
-                              hintText: 'Confirm new Password',
+                              controller: confirmNewPasswordController,
+                              hintText:
+                                  appLocalization(context).confirmNewPassword,
                               suffix: Image.asset(
                                 IconConstants.icLockadd,
                                 scale: 1.5,
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {
-                                  return "Please enter confirm new password";
+                                  return appLocalization(context)
+                                      .confirmNewPassword;
                                 }
                                 return null;
                               },
@@ -154,19 +159,19 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   MediaQuery.of(context).size.height * 4 / 100,
                             ),
                             AppButton(
-                                text: "Change Password",
+                                text: appLocalization(context).changePassword,
                                 onPress: () {
                                   if (_formKey.currentState?.validate() ??
                                       false) {
                                     changePasswordBloc.add(
                                       ChangePasswordEvent(
                                         currentPassword:
-                                            currentpasswordController.text
+                                            currentPasswordController.text
                                                 .trim(),
                                         newPassword:
-                                            newpasswordController.text.trim(),
+                                            newPasswordController.text.trim(),
                                         confirmNewPassword:
-                                            confirmnewpasswordController.text
+                                            confirmNewPasswordController.text
                                                 .trim(),
                                       ),
                                     );

@@ -63,7 +63,7 @@ class _AddContactState extends State<AddContact> {
                 child: TextFormField(
                   controller: fullnameController,
                   decoration: InputDecoration(
-                    hintText: 'Full name',
+                    hintText: appLocalization(context).userName,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -100,7 +100,7 @@ class _AddContactState extends State<AddContact> {
                 child: IntlPhoneField(
                   controller: phonenumberController,
                   decoration: InputDecoration(
-                    hintText: "Enter Phone Number",
+                    hintText: appLocalization(context).phoneNumber,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     //labelText: 'Phone Number',
                     enabledBorder: OutlineInputBorder(
@@ -142,10 +142,7 @@ class _AddContactState extends State<AddContact> {
                 child: TextFormField(
                   controller: emailController,
                   decoration: InputDecoration(
-                    //labelText: StringConstants.emailadresstext,
-                    //labelStyle: const TextStyle(
-                    //   color: AppColor.lightfillColor, fontWeight: FontWeight.w800),
-                    hintText: 'Enter your email',
+                    hintText: appLocalization(context).emailAddress,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -162,8 +159,7 @@ class _AddContactState extends State<AddContact> {
                     suffixIcon: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                        IconConstants
-                            .icEmailadd, // Adjust the path as necessary
+                        IconConstants.icEmailadd,
                         width: MediaQuery.of(context).size.width * 3 / 100,
                         height: MediaQuery.of(context).size.height * 3 / 100,
                       ),
@@ -187,7 +183,7 @@ class _AddContactState extends State<AddContact> {
                     });
                   },
                   decoration: InputDecoration(
-                    hintText: 'Number Type',
+                    hintText: appLocalization(context).numberType,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(2),
@@ -204,9 +200,7 @@ class _AddContactState extends State<AddContact> {
                     /*suffixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(
-                      IconConstants.icEmailadd, // Adjust the path as necessary
-                      width: MediaQuery.of(context).size.width * 3 / 100,
-                      height: MediaQuery.of(context).size.height * 3 / 100,
+                      IconConstants.icEmailAdd,
                     ),
                   ),
                     */
@@ -225,19 +219,19 @@ class _AddContactState extends State<AddContact> {
                       onPress: () {
                         final email = emailController.text;
                         final phone = phonenumberController.text;
-                        final fullname = fullnameController.text;
-                        final numbertype = _numberController.text;
+                        final fullName = fullnameController.text;
+                        final numberType = _numberController.text;
 
-                        if (email.isNotEmpty && fullname.isNotEmpty) {
+                        if (email.isNotEmpty && fullName.isNotEmpty) {
                           setState(() {
                             _isLoading = true;
                           });
                           addContact(
                             email: email,
-                            fullname: fullname,
+                            fullname: fullName,
                             phonenumber: phone,
                             countrycode: phoneNumber?.countryCode,
-                            numbertype: numbertype,
+                            numbertype: numberType,
                           ).then((response) {
                             setState(() {
                               _isLoading = false;

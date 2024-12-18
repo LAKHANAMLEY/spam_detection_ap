@@ -45,7 +45,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ajouter un compte bancaire"),
         "addBeneficiary":
             MessageLookupByLibrary.simpleMessage("Ajouter un bénéficiaire"),
+        "addFamilyMember": MessageLookupByLibrary.simpleMessage(
+            "Agregar miembro de la familia"),
         "addMember": MessageLookupByLibrary.simpleMessage("Agregar miembro"),
+        "addPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Agregar número de teléfono"),
         "addStaffMember": MessageLookupByLibrary.simpleMessage(
             "Agregar miembro del personal"),
         "address": MessageLookupByLibrary.simpleMessage("Adresse"),
@@ -68,6 +72,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("¿Ya tienes una cuenta?"),
         "alreadyPaid": MessageLookupByLibrary.simpleMessage("Déjà payé"),
+        "alternativeEmail": MessageLookupByLibrary.simpleMessage(
+            "Correo electrónico alternativo"),
         "amount": MessageLookupByLibrary.simpleMessage("Montante"),
         "amountRequestedSuccessfully":
             MessageLookupByLibrary.simpleMessage("Montant demandé avec succès"),
@@ -110,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bloquea todas las llamadas fraudulentas, de telemarketing y de fraude gracias a la precisión del bloqueo de la IA."),
         "blockedCalls":
             MessageLookupByLibrary.simpleMessage("Llamadas bloqueadas"),
+        "blockedNumber":
+            MessageLookupByLibrary.simpleMessage("Números bloqueados"),
         "callLogs":
             MessageLookupByLibrary.simpleMessage("Registros de llamadas"),
         "callProtection":
@@ -151,16 +159,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "closeQuery": MessageLookupByLibrary.simpleMessage("Fermer la requête"),
         "closed": MessageLookupByLibrary.simpleMessage("Fermée"),
         "comment": MessageLookupByLibrary.simpleMessage("Commentaire"),
+        "companyName":
+            MessageLookupByLibrary.simpleMessage("nombre de empresa"),
         "completeMth": MessageLookupByLibrary.simpleMessage("\$14,99/mes"),
         "completeProtectionBundle": MessageLookupByLibrary.simpleMessage(
             "Paquete de protección completo"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirmer"),
         "confirmContactDialogDesc": MessageLookupByLibrary.simpleMessage(
             "Veuillez confirmer le numéro de contact"),
+        "confirmNewPass":
+            MessageLookupByLibrary.simpleMessage("Confirmar nueva contraseña"),
         "confirmNewPassword": MessageLookupByLibrary.simpleMessage(
             "Confirmer le nouveau mot de passe"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirmer le mot de passe"),
+        "confirmSecurityPin":
+            MessageLookupByLibrary.simpleMessage("Confirmar pin de seguridad"),
         "congratulationScreated": MessageLookupByLibrary.simpleMessage(
             "Felicitaciones, su cuenta ha sido creada exitosamente."),
         "congratulationsYourAccountHasBeenSuccessfullyCreated":
@@ -171,18 +185,28 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Félicitations, votre compte a été mis à jour avec succès."),
         "contactPermission":
             MessageLookupByLibrary.simpleMessage("Autorisation de contact"),
+        "contactText": MessageLookupByLibrary.simpleMessage("Contacto"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contactez-nous"),
         "continuePurchase":
             MessageLookupByLibrary.simpleMessage("Continuar comprando"),
         "continueTxt": MessageLookupByLibrary.simpleMessage("Continuar"),
         "copied": MessageLookupByLibrary.simpleMessage("Copied"),
+        "corporateEditProfile": MessageLookupByLibrary.simpleMessage(
+            "Perfil de edición corporativa"),
         "corporateID":
             MessageLookupByLibrary.simpleMessage("Identificación corporativa"),
+        "corporateName":
+            MessageLookupByLibrary.simpleMessage("Nombre Corporativo"),
         "corporateProtection":
             MessageLookupByLibrary.simpleMessage("Protección corporativa"),
         "country": MessageLookupByLibrary.simpleMessage("Pays"),
         "countryCode": MessageLookupByLibrary.simpleMessage("Code postal"),
         "coupons": MessageLookupByLibrary.simpleMessage("Coupons"),
+        "crnId": MessageLookupByLibrary.simpleMessage("Identificación de CRN"),
+        "currentPass":
+            MessageLookupByLibrary.simpleMessage("Contraseña actual"),
+        "currentSecurityPin":
+            MessageLookupByLibrary.simpleMessage("Pin de seguridad actual"),
         "customerId": MessageLookupByLibrary.simpleMessage("N ° de client"),
         "cylinder": MessageLookupByLibrary.simpleMessage("Cylindre"),
         "dark": MessageLookupByLibrary.simpleMessage("Sombre"),
@@ -239,6 +263,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dueOn": MessageLookupByLibrary.simpleMessage("À payer le"),
         "easiestWayToManage": MessageLookupByLibrary.simpleMessage(
             "Moyen le plus simple de gérer"),
+        "editCorporateProfile":
+            MessageLookupByLibrary.simpleMessage("Editar perfil corporativo"),
         "editMember": MessageLookupByLibrary.simpleMessage("Editar miembro"),
         "editProfile": MessageLookupByLibrary.simpleMessage("Editar perfil"),
         "editSecurityPin":
@@ -325,7 +351,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Explorar la página de inicio"),
         "failed": MessageLookupByLibrary.simpleMessage("Échoué..."),
         "familyList": MessageLookupByLibrary.simpleMessage("Lista familiar"),
-        "familylist": MessageLookupByLibrary.simpleMessage("Lista familiar"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "faster": MessageLookupByLibrary.simpleMessage("Plus rapide"),
         "feeDetails": MessageLookupByLibrary.simpleMessage("Détails des frais"),
@@ -356,6 +381,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "goBack": MessageLookupByLibrary.simpleMessage("Go back"),
         "goals": MessageLookupByLibrary.simpleMessage("Objectifs"),
         "grossTotal": MessageLookupByLibrary.simpleMessage("Total brut"),
+        "haveAccount": MessageLookupByLibrary.simpleMessage("tener una cuenta"),
         "haveAnAccount":
             MessageLookupByLibrary.simpleMessage("tener una cuenta?"),
         "helloThereSignInToContinue": MessageLookupByLibrary.simpleMessage(
@@ -457,8 +483,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mes abonnements"),
         "name": MessageLookupByLibrary.simpleMessage("Nom: "),
         "newContact": MessageLookupByLibrary.simpleMessage("Nouveau contact"),
+        "newPass": MessageLookupByLibrary.simpleMessage("Nueva contraseña"),
         "newPassword":
             MessageLookupByLibrary.simpleMessage("Nouveau mot de passe"),
+        "newSecurityPin":
+            MessageLookupByLibrary.simpleMessage("Nuevo pin de seguridad"),
         "next": MessageLookupByLibrary.simpleMessage("Suivante"),
         "no": MessageLookupByLibrary.simpleMessage("Non"),
         "noAccount": MessageLookupByLibrary.simpleMessage("Aucun compte"),
@@ -503,6 +532,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notificationsBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Vous irez dans la liste des notifications en appuyant sur le bouton Notifications."),
+        "numberType": MessageLookupByLibrary.simpleMessage("Tipo de número"),
         "ohNoTheOTPTimedOutPleaseRequestANewCodeAndTryAgain":
             MessageLookupByLibrary.simpleMessage(
                 "Oh non!Le OTP a chronométré.Veuillez demander un nouveau code et réessayer."),
@@ -561,6 +591,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNumber":
             MessageLookupByLibrary.simpleMessage("Número de teléfono"),
         "pinCode": MessageLookupByLibrary.simpleMessage("Code PIN"),
+        "pleasNewPasswordSecure": MessageLookupByLibrary.simpleMessage(
+            "Ingrese una nueva contraseña para proteger su cuenta."),
         "pleaseAcceptTermsAndConditions": MessageLookupByLibrary.simpleMessage(
             "Veuillez accepter les conditions générales"),
         "pleaseActiveYourSubscription": MessageLookupByLibrary.simpleMessage(
@@ -568,13 +600,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseAddAtleastOneactiveAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Veuillez ajouter au moins un compte actif"),
+        "pleaseAlternativeEmail": MessageLookupByLibrary.simpleMessage(
+            "Por favor todos los correos electrónicos alternativos"),
         "pleaseCheckMail":
             MessageLookupByLibrary.simpleMessage("Por favor revisa tu correo"),
         "pleaseCheckYourNetworkConnection":
             MessageLookupByLibrary.simpleMessage(
                 "Veuillez vérifier votre connexion réseau."),
+        "pleaseCompanyName": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese el nombre de la empresa"),
+        "pleaseConfirmPass": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese y confirme la nueva contraseña"),
+        "pleaseConfirmSecurityPin": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese el PIN de seguridad de confirmación"),
         "pleaseCorporateID": MessageLookupByLibrary.simpleMessage(
             "Por favor ingrese su correo electrónico válido / ID corporativo"),
+        "pleaseCorporateName": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese el nombre corporativo"),
+        "pleaseCrnId": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese su ID de Crn"),
+        "pleaseCurrentPass": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese la contraseña actual"),
+        "pleaseCurrentSecurityPin": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese el PIN de seguridad actual"),
         "pleaseEnterAccountHolderName": MessageLookupByLibrary.simpleMessage(
             "Veuillez saisir le nom du titulaire du compte"),
         "pleaseEnterAccountNumber": MessageLookupByLibrary.simpleMessage(
@@ -630,8 +678,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnterYourValidEmailAddress":
             MessageLookupByLibrary.simpleMessage(
                 "Veuillez saisir l\'adresse e-mail valide"),
+        "pleaseFirstName":
+            MessageLookupByLibrary.simpleMessage("Por favor ingrese el nombre"),
+        "pleaseLastName": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingresa el apellido"),
         "pleaseLoginToContinue": MessageLookupByLibrary.simpleMessage(
             "Veuillez vous connecter pour continuer"),
+        "pleaseNewPass": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingresa Nueva contraseña"),
+        "pleaseNewPinSecure": MessageLookupByLibrary.simpleMessage(
+            "Ingrese un nuevo PIN para proteger su cuenta."),
+        "pleaseNewSecurityPin": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese nuevo PIN de seguridad"),
+        "pleaseRelation": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese la relación"),
         "pleaseSecureAccount": MessageLookupByLibrary.simpleMessage(
             "Ingrese una nueva contraseña para proteger su cuenta."),
         "pleaseSelectAllMandatoryField": MessageLookupByLibrary.simpleMessage(
@@ -648,6 +708,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Veuillez sélectionner votre état"),
         "pleaseSignUpToContinue": MessageLookupByLibrary.simpleMessage(
             "Veuillez vous inscrire pour continuer"),
+        "pleaseSupportPin": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingresa el pin de soporte"),
         "pleaseTxt": MessageLookupByLibrary.simpleMessage(
             "Seleccione el tipo de cuenta que va a configurar hoy."),
         "pleaseVerify": MessageLookupByLibrary.simpleMessage(
@@ -689,6 +751,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "receiverDetails":
             MessageLookupByLibrary.simpleMessage("Détails du récepteur"),
         "recent": MessageLookupByLibrary.simpleMessage("Récente"),
+        "recentText": MessageLookupByLibrary.simpleMessage("Reciente"),
         "recentTransaction":
             MessageLookupByLibrary.simpleMessage("Transaction récente"),
         "recharge": MessageLookupByLibrary.simpleMessage("Recharger"),
@@ -822,7 +885,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "spamScamDetection": MessageLookupByLibrary.simpleMessage(
             "Bloqueo de llamadas spam y detección de estafas con AI Protect"),
         "staff": MessageLookupByLibrary.simpleMessage("Personal"),
-        "stafflist": MessageLookupByLibrary.simpleMessage("Lista de personal"),
+        "staffList": MessageLookupByLibrary.simpleMessage("Lista de personal"),
         "state": MessageLookupByLibrary.simpleMessage("État"),
         "status": MessageLookupByLibrary.simpleMessage("Statut"),
         "submit": MessageLookupByLibrary.simpleMessage("Enrégistrer"),

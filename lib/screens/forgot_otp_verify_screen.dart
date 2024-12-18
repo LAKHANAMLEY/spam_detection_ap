@@ -726,14 +726,17 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                       AppButton(
                           text: appLocalization(context).continueTxt,
                           onPress: () {
-                            forgotOtpUserValidation(
-                              firstInputController.text,
-                              secondInputController.text,
-                              thirdInputController.text,
-                              forthInputController.text,
-                              fifthInputController.text,
-                              sixthInputController.text,
-                            );
+                            if (_forgotOtpFormKey.currentState?.validate() ??
+                                false) {
+                              forgotOtpUserValidation(
+                                firstInputController.text,
+                                secondInputController.text,
+                                thirdInputController.text,
+                                forthInputController.text,
+                                fifthInputController.text,
+                                sixthInputController.text,
+                              );
+                            }
                           }),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 4 / 100,

@@ -206,8 +206,8 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                                 Icons.search,
                                                 color: Colors.red,
                                               ),
-                                              hintText:
-                                                  "Search numbers, names & more",
+                                              hintText: appLocalization(context)
+                                                  .searchMore,
                                               onChanged: (p0) {
                                                 // filter();
                                                 searchBloc

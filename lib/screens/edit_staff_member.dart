@@ -272,7 +272,8 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter first name";
+                                    return appLocalization(context)
+                                        .pleaseFirstName;
                                   }
                                   return null;
                                 },
@@ -287,7 +288,8 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter last name";
+                                    return appLocalization(context)
+                                        .pleaseLastName;
                                   }
                                   return null;
                                 },
@@ -302,7 +304,8 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter relation";
+                                    return appLocalization(context)
+                                        .pleaseRelation;
                                   }
                                   return null;
                                 },
@@ -314,7 +317,8 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                 // suffix: Image.asset(IconConstants.icUsername),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter support pin";
+                                    return appLocalization(context)
+                                        .pleaseSupportPin;
                                   }
                                   return null;
                                 },

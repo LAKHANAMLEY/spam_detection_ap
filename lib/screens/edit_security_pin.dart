@@ -72,10 +72,10 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                               height:
                                   MediaQuery.of(context).size.height * 4 / 100,
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 60, right: 50),
+                            Padding(
+                              padding: EdgeInsets.only(left: 80, right: 80),
                               child: Text(
-                                StringConstants.changeSecurity,
+                                appLocalization(context).changeSecurity,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: AppColor.bluelightColor,
@@ -88,12 +88,12 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                               height:
                                   MediaQuery.of(context).size.height * 2 / 100,
                             ),
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.all(18),
                               child: Text(
-                                StringConstants.securitypinMessage,
+                                appLocalization(context).pleaseNewPinSecure,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: AppColor.verifyColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontSize: 16,
@@ -107,7 +107,8 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                             10.height(),
                             CustomTextField(
                               controller: currentSecurityPinController,
-                              hintText: 'Current Security Pin',
+                              hintText:
+                                  appLocalization(context).currentSecurityPin,
                               keyboardType: TextInputType.number,
                               suffix: Image.asset(
                                 IconConstants.icLockadd,
@@ -115,7 +116,8 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {
-                                  return "Please enter current security pin";
+                                  return appLocalization(context)
+                                      .pleaseCurrentSecurityPin;
                                 }
                                 return null;
                               },
@@ -123,7 +125,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                             10.height(),
                             CustomTextField(
                               controller: newSecurityPinController,
-                              hintText: 'New security pin',
+                              hintText: appLocalization(context).newSecurityPin,
                               keyboardType: TextInputType.number,
                               suffix: Image.asset(
                                 IconConstants.icLockadd,
@@ -131,7 +133,8 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {
-                                  return "Please enter new security pin";
+                                  return appLocalization(context)
+                                      .pleaseNewSecurityPin;
                                 }
                                 return null;
                               },
@@ -139,7 +142,8 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                             10.height(),
                             CustomTextField(
                               controller: confirmSecurityPinController,
-                              hintText: 'Confirm security pin',
+                              hintText:
+                                  appLocalization(context).confirmSecurityPin,
                               keyboardType: TextInputType.number,
                               suffix: Image.asset(
                                 IconConstants.icLockadd,
@@ -147,7 +151,8 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {
-                                  return "Please enter confirm security pin";
+                                  return appLocalization(context)
+                                      .pleaseConfirmSecurityPin;
                                 }
                                 return null;
                               },
@@ -157,7 +162,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                   MediaQuery.of(context).size.height * 4 / 100,
                             ),
                             AppButton(
-                                text: "Change Security Pin",
+                                text: appLocalization(context).changeSecurity,
                                 onPress: () {
                                   if (_formKey.currentState?.validate() ??
                                       false) {

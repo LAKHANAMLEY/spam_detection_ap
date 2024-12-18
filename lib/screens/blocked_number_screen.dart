@@ -17,13 +17,13 @@ class _BlockedNumberState extends State<BlockedNumber> {
   }
 
   int selectedTab = 0;
+  double scale = 3.5;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: const CustomAppBar(
-        title: StringConstants.blockNumber,
-      ),
+      appBar: CustomAppBar(title: appLocalization(context).blockedNumber),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(children: [
@@ -33,7 +33,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
               child: TextFormField(
                 readOnly: true,
                 decoration: InputDecoration(
-                  hintText: 'Add phone number ',
+                  hintText: appLocalization(context).addPhoneNumber,
                   hintStyle: const TextStyle(color: AppColor.lightfillColor),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(2),
@@ -53,8 +53,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Image.asset(
                         IconConstants.icggadd,
-                        height: MediaQuery.of(context).size.height * 2 / 100,
-                        width: MediaQuery.of(context).size.width * 2 / 100,
+                        scale: 1.5,
                       ),
                     ),
                   ),
@@ -84,7 +83,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
                             selectedTab = 0;
                           });
                         },
-                        text: "Recents"),
+                        text: appLocalization(context).recentText),
                     CustomTab(
                         selectedTab: selectedTab,
                         index: 1,
@@ -93,7 +92,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
                             selectedTab = 1;
                           });
                         },
-                        text: "Contacts")
+                        text: appLocalization(context).contactText)
                   ],
                 ),
               ),
@@ -159,6 +158,7 @@ class CustomTab extends StatelessWidget {
   final int selectedTab;
   final void Function() onTap;
   final String text;
+
   const CustomTab(
       {super.key,
       required this.selectedTab,

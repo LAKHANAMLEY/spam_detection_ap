@@ -36,7 +36,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: const CustomAppBar(title: "Add Family Member"),
+        appBar: CustomAppBar(title: appLocalization(context).addFamilyMember),
         body: SafeArea(
             child: BlocConsumer(
                 bloc: addMemberBloc,
@@ -442,7 +442,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                         ),
                         //device connect kro
                         AppButton(
-                            text: "Add Member",
+                            text: appLocalization(context).addMember,
                             onPress: () {
                               addMemberBloc.add(
                                 FamilyAddMemberEvent(

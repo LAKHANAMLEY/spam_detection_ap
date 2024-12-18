@@ -2,6 +2,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class ProtectionType extends StatefulWidget {
   const ProtectionType({super.key});
+
   static String routeName = './ProtectionType';
 
   @override
@@ -10,6 +11,7 @@ class ProtectionType extends StatefulWidget {
 
 class _ProtectionTypeState extends State<ProtectionType> {
   int selectedTab = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,9 +45,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 8 / 100,
               ),
-              Center(
-                  child: Padding(
-                padding: const EdgeInsets.only(left: 70, right: 70),
+              Padding(
+                padding: const EdgeInsets.only(left: 80, right: 80),
                 child: Text(
                   appLocalization(context).protectionType,
                   textAlign: TextAlign.center,
@@ -55,7 +56,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600),
                 ),
-              )),
+              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
@@ -195,7 +196,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const CorpoateLogin()),
+                            builder: (context) => const CorporateLogin()),
                       );
                     }
                   }),

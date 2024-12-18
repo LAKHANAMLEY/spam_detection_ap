@@ -406,8 +406,10 @@ class _EditProfileState extends State<EditProfile> {
                             },
                           )
                           */
-                                  suffixIcon:
-                                      Image.asset(IconConstants.icDate)),
+                                  suffixIcon: Image.asset(
+                                    IconConstants.icCalenderData,
+                                    scale: 1.5,
+                                  )),
                             ),
                           ),
                           SizedBox(
@@ -467,9 +469,6 @@ class _EditProfileState extends State<EditProfile> {
                             child: TextFormField(
                               controller: stateController,
                               decoration: InputDecoration(
-                                //  labelText: StringConstants.usertext,
-                                //  labelStyle: const TextStyle(
-                                //     color: AppColor.lightfillColor, fontWeight: FontWeight.w500),
                                 hintText: appLocalization(context).selectState,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
@@ -639,7 +638,7 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                           SizedBox(
                             height:
-                                MediaQuery.of(context).size.height * 3 / 100,
+                                MediaQuery.of(context).size.height * 2 / 100,
                           ),
                           if (_errorMessage != null)
                             Text(_errorMessage!,

@@ -133,7 +133,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: firstnameController,
               decoration: InputDecoration(
-                hintText: appLocalization(context).userName,
+                hintText: appLocalization(context).firstName,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(2),
@@ -468,7 +468,7 @@ class _RegisterState extends State<Register> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(appLocalization(context).dontHaveAnAccount,
+              Text(appLocalization(context).haveAnAccount,
                   style: const TextStyle(
                       fontFamily: AppFont.fontFamily,
                       fontSize: 15,

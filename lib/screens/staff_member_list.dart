@@ -39,8 +39,8 @@ class _StaffMemberListState extends State<StaffMemberList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Staff List',
+      appBar: CustomAppBar(
+        title: appLocalization(context).staffList,
       ),
       backgroundColor: AppColor.secondryColor,
       body: SafeArea(
@@ -139,7 +139,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
                                     style: const TextStyle(
                                         color: AppColor.primaryColor,
                                         fontWeight: FontWeight.w600,
-                                        fontSize: 18,
+                                        fontSize: 12,
                                         fontFamily: AppFont.fontFamily),
                                   ),
                                   title: Text(
@@ -153,7 +153,8 @@ class _StaffMemberListState extends State<StaffMemberList> {
                                   trailing: PopupMenuButton(
                                     itemBuilder: (context) => [
                                       PopupMenuItem(
-                                        child: const Text("Edit Staff Member"),
+                                        child: Text(appLocalization(context)
+                                            .editStaffMember),
                                         onTap: () {
                                           Navigator.pushNamed(context,
                                               AppRoutes.editStaffMember,
@@ -163,7 +164,8 @@ class _StaffMemberListState extends State<StaffMemberList> {
                                         },
                                       ),
                                       PopupMenuItem(
-                                          child: const Text("Delete Member"),
+                                          child: Text(appLocalization(context)
+                                              .deleteMember),
                                           onTap: () {
                                             staffBloc.add(
                                                 StaffDeleteMemberEvent(
