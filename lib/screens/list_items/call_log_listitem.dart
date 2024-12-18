@@ -1,7 +1,7 @@
 import 'package:spam_delection_app/lib.dart';
 
 class CallLogListItem extends StatelessWidget {
-  final CallLogData callLog;
+  final callLogData callLog;
 
   const CallLogListItem({
     super.key,

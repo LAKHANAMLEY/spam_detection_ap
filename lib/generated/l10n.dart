@@ -5933,6 +5933,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Position`
+  String get position {
+    return Intl.message(
+      'Position',
+      name: 'position',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

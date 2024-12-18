@@ -12,6 +12,8 @@ class _AddStaffMemberState extends State<AddStaffMember> {
 
   PhoneNumber? phoneNumber;
 
+  double scale = 3.5;
+
   List<dynamic> countries = [];
   bool isLoading = true;
   String? selectedCountryCode;
@@ -24,8 +26,6 @@ class _AddStaffMemberState extends State<AddStaffMember> {
   final TextEditingController countryCodeController = TextEditingController();
   final TextEditingController supportPinController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
-
-  double scale = 3.5;
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +66,11 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           10.height(),
                           CustomTextField(
                             controller: firstnameController,
-                            hintText: 'first name',
-                            suffix: Image.asset(IconConstants.icUsername),
+                            hintText: appLocalization(context).firstName,
+                            suffix: Image.asset(
+                              IconConstants.icUsername,
+                              scale: 1.5,
+                            ),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
                                 return "Please enter fist name";
@@ -78,7 +81,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           10.height(),
                           CustomTextField(
                             controller: lastnameController,
-                            hintText: 'Last name',
+                            hintText: appLocalization(context).lastName,
                             suffix: Image.asset(
                               IconConstants.icUsername,
                               scale: 1.5,
@@ -94,7 +97,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           10.height(),
                           CustomTextField(
                             controller: emailController,
-                            hintText: 'Email',
+                            hintText: appLocalization(context).email,
                             suffix: Image.asset(
                               IconConstants.icfluentMail,
                               scale: scale,
@@ -109,7 +112,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           10.height(),
                           CustomTextField(
                             controller: passwordController,
-                            hintText: 'Password',
+                            hintText: appLocalization(context).password,
                             obscureText: true,
                             //suffix: Image.asset(IconConstants.icUsername),
                             validator: (p0) {
@@ -122,8 +125,11 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           10.height(),
                           CustomTextField(
                             controller: positionController,
-                            hintText: 'Position',
-                            suffix: Image.asset(IconConstants.icUsername),
+                            hintText: appLocalization(context).relation,
+                            suffix: Image.asset(
+                              IconConstants.icUsername,
+                              scale: 1.5,
+                            ),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
                                 return "Please enter position";
@@ -134,7 +140,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           10.height(),
                           CustomTextField(
                             controller: supportPinController,
-                            hintText: 'Support pin',
+                            hintText: appLocalization(context).supportPin,
                             //suffix: Image.asset(IconConstants.icUsername),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
@@ -169,13 +175,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Image.asset(
                                     IconConstants.icCalladd,
-                                    // Adjust the path as necessary
-                                    width: MediaQuery.of(context).size.width *
-                                        3 /
-                                        100,
-                                    height: MediaQuery.of(context).size.height *
-                                        3 /
-                                        100,
+                                    scale: 1.5,
                                   ),
                                 ),
                               ),

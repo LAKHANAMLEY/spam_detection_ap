@@ -45,7 +45,6 @@ class NotificationTypeData {
   final String? code;
   final int? isPushReceive;
   final int? isNotificationReceive;
-  final DateTime? callTime;
 
   NotificationTypeData({
     this.id,
@@ -53,7 +52,6 @@ class NotificationTypeData {
     this.code,
     this.isPushReceive,
     this.isNotificationReceive,
-    this.callTime,
   });
 
   factory NotificationTypeData.fromJson(Map<String, dynamic> json) =>

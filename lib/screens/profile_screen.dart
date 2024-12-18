@@ -550,10 +550,19 @@ class _ProfileState extends State<Profile> {
                         ),
                         10.height(),
                         SubMenu(
-                          title: 'Staff List',
+                          title: appLocalization(context).stafflist,
                           icon: IconConstants.icalternativeEmail,
                           onTap: () {
                             Navigator.pushNamed(context, AppRoutes.staffMember);
+                          },
+                        ),
+                        10.height(),
+                        SubMenu(
+                          title: 'Corporate Edit Profile',
+                          icon: IconConstants.icEdit,
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, AppRoutes.corporateProfile);
                           },
                         ),
                         SizedBox(

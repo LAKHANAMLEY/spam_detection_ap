@@ -1,47 +1,107 @@
 import 'package:spam_delection_app/lib.dart';
 
 class NotificationListItem extends StatelessWidget {
-  final List<String> entries = <String>['1', '2', '3', '4', '5', '6', '7', '8'];
+  final NotificationData notification;
 
-  final NotificationTypeData notification;
-
-  NotificationListItem({
+  const NotificationListItem({
     super.key,
     required this.notification,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: entries.length ?? 0,
-        itemBuilder: (BuildContext context, int index) {
-          CustomListTile(
-            onTap: () {},
-            leading: const CircleAvatar(
-              radius: 12,
-              backgroundImage: AssetImage(IconConstants.icNotification),
-            ),
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Notification ${entries[index]}',
-                ),
-                10.width(),
-                Text(
-                  notification.callTime?.formatDateTime() ?? "",
-                  style: textTheme(context)
-                      .bodySmall
-                      ?.copyWith(color: Colors.grey),
-                ),
-              ],
-            ),
-            subtitle: const Text('You are in spam detection app'),
+    return CustomListTile(
+      onTap: () {
+        /*Navigator.pushNamed(context, AppRoutes.contactDetail,
+            arguments: ContactDetail(
+              contact: ContactData(
+                countryCode: callLog.countryCode,
+                mobileNo: callLog.mobileNo,
+                name: callLog.name,
+                numberType: callLog.callType,
+                id: callLog.contactListId,
+                isSpam: callLog.isSpam,
+                isBlocked: callLog.isBlocked,
+                markspambyuser: callLog.markSpamByUser,
+              ),
+            ));
 
-            // trailing: Text(callLog.callTime?.formatDateTime() ?? ""),
-          );
-          return null;
-        });
+         */
+      },
+      leading: const CircleAvatar(
+          radius: 12,
+          backgroundImage: AssetImage(IconConstants.icNotification)),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Text(
+              notification.toString(),
+              style: const TextStyle(
+                  fontWeight: FontWeight.w600, color: AppColor.callColor),
+            ),
+          ),
+          10.width(),
+          Text(
+            notification.createdDate?.formatDateTime() ?? "",
+            style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
+          ),
+        ],
+      ),
+      subtitle: Text(notification.id.toString()),
+      /*
+      trailing: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          // Text(
+          //   callLog.callTime?.formatDateTime() ?? "",
+          //   style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
+          // ),
+          PopupMenuButton(
+            menuPadding: EdgeInsets.zero,
+            padding: EdgeInsets.zero,
+            style: const ButtonStyle(visualDensity: VisualDensity.compact),
+            // position: ,
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                  onTap: () {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: AppColor.secondryColor,
+                      context: context,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(20.0)),
+                      ),
+                      builder: (BuildContext context) {
+                        return ReportView(
+                          contact: ContactData(
+                            id: notification.contactListId,
+                            mobileNo: notification.mobileNo,
+                            name: notification.name,
+                            isSpam: notification.isSpam,
+                            countryCode: notification.countryCode,
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: const Text("Report")),
+              PopupMenuItem(
+                  onTap: () {
+                    markSpamBloc.add(BlockUnBlockEvent(
+                        contactId: notification.mobileNo ?? "",
+                        comments: "block"));
+                  },
+                  child:
+                      Text(notification.isBlocked == 1 ? "Unblock" : "Block"))
+            ],
+          ),
+        ],
+      ),
+      */
+      // trailing: Text(callLog.callTime?.formatDateTime() ?? ""),
+    );
   }
 }

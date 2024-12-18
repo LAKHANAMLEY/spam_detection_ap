@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/models/corporate_edit_profile_model.dart';
 
 abstract class ApiEvent extends Equatable {
   @override
@@ -64,9 +65,8 @@ class ChangeSecurityEvent extends ApiEvent {
       ];
 }
 
-//yha phle event create krege
+//first we create event
 
-// ye parameters pass kar diye
 class MarkSpamEvent extends ApiEvent {
   final String contactId;
   final String comment;
@@ -241,7 +241,7 @@ class BlockUnBlockEvent extends ApiEvent {
 }
 
 class CorporateEditProfileEvent extends ApiEvent {
-  final UserData? user;
+  final CorporateData? user;
 
   CorporateEditProfileEvent({required this.user});
 
@@ -383,7 +383,9 @@ class GetContactDetailEvent extends ApiEvent {
 class LoginWithEmailAndPasswordEvent extends ApiEvent {
   final String email;
   final String password;
+
   LoginWithEmailAndPasswordEvent({required this.email, required this.password});
+
   @override
   List<Object?> get props => [email, password];
 }

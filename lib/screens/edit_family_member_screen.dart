@@ -14,6 +14,8 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
   bool agreeToTerms = false;
   String? _errorMessage;
 
+  double scale = 3.5;
+
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController firstnameController = TextEditingController();
@@ -93,7 +95,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                   progressIndicator: const Loader(),
                   inAsyncCall: state is ApiLoadingState,
                   child: Form(
-                    key: _formKey, //isKey k through check krege
+                    key: _formKey,
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -215,8 +217,11 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                               10.height(),
                               CustomTextField(
                                 controller: firstnameController,
-                                hintText: 'First name',
-                                suffix: Image.asset(IconConstants.icUsername),
+                                hintText: appLocalization(context).firstName,
+                                suffix: Image.asset(
+                                  IconConstants.icUsername,
+                                  scale: 1.5,
+                                ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
                                     return "Please enter first name";
@@ -227,8 +232,11 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                               10.height(),
                               CustomTextField(
                                 controller: lastnameController,
-                                hintText: 'Last name',
-                                suffix: Image.asset(IconConstants.icUsername),
+                                hintText: appLocalization(context).lastName,
+                                suffix: Image.asset(
+                                  IconConstants.icUsername,
+                                  scale: 1.5,
+                                ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
                                     return "Please enter last name";
@@ -239,8 +247,11 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                               10.height(),
                               CustomTextField(
                                 controller: relationController,
-                                hintText: 'Relation',
-                                suffix: Image.asset(IconConstants.icUsername),
+                                hintText: appLocalization(context).relation,
+                                suffix: Image.asset(
+                                  IconConstants.icUsername,
+                                  scale: 1.5,
+                                ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
                                     return "Please enter relation";
@@ -251,7 +262,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                               10.height(),
                               CustomTextField(
                                 controller: supportpinController,
-                                hintText: 'Support pin',
+                                hintText: appLocalization(context).supportPin,
 
                                 // suffix: Image.asset(IconConstants.icUsername),
                                 validator: (p0) {
@@ -266,11 +277,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                     3 /
                                     100,
                               ),
-                              //ye error message yha use nhi kroge ab me batata hu kese krna h
-                              //sabhi place pr vese hi krege
-                              //phle check kr lo ye work kr rha h ya nhi
-                              //ab error message show krte h
-                              //validations ka use krege
+                              //Use validation for all places to show error
                               if (_errorMessage != null)
                                 Text(_errorMessage!,
                                     style: const TextStyle(color: Colors.red)),

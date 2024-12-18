@@ -4,6 +4,7 @@ class PlanListItem extends StatelessWidget {
   final Planslist plan;
   final int selectedTab;
   final void Function()? onTap;
+
   const PlanListItem(
       {super.key, required this.plan, required this.selectedTab, this.onTap});
 
@@ -31,7 +32,7 @@ class PlanListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                plan.plansType ?? "",
+                plan.title ?? "",
                 style: const TextStyle(
                     color: AppColor.callColor,
                     fontSize: 18,

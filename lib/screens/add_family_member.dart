@@ -13,6 +13,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
   SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
 
   PhoneNumber? phoneNumber;
+  double scale = 3.5;
 
   List<dynamic> countries = [];
   bool isLoading = true;
@@ -24,7 +25,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController relationController = TextEditingController();
   final TextEditingController countryCodeController = TextEditingController();
-  final TextEditingController supportpinController = TextEditingController();
+  final TextEditingController supportPinController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
   var addMemberBloc = ApiBloc(ApiBlocInitialState());
@@ -167,7 +168,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                           child: TextFormField(
                             controller: firstnameController,
                             decoration: InputDecoration(
-                              hintText: appLocalization(context).userName,
+                              hintText: appLocalization(context).firstName,
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               enabledBorder: OutlineInputBorder(
@@ -191,8 +192,10 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 10),
-                                    child:
-                                        Image.asset(IconConstants.icUsername),
+                                    child: Image.asset(
+                                      IconConstants.icUsername,
+                                      scale: 1.5,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -231,8 +234,10 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 10),
-                                    child:
-                                        Image.asset(IconConstants.icUsername),
+                                    child: Image.asset(
+                                      IconConstants.icUsername,
+                                      scale: 1.5,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -266,14 +271,8 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               suffixIcon: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Image.asset(
-                                  IconConstants.icEmailadd,
-                                  // Adjust the path as necessary
-                                  width: MediaQuery.of(context).size.width *
-                                      3 /
-                                      100,
-                                  height: MediaQuery.of(context).size.height *
-                                      3 /
-                                      100,
+                                  IconConstants.icfluentMail,
+                                  scale: 2.5,
                                 ),
                               ),
                             ),
@@ -305,8 +304,10 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 filled: true,
                                 fillColor: AppColor.fillColor.withOpacity(0.2),
                                 counterText: '',
-                                suffixIcon:
-                                    Image.asset(IconConstants.icLockadd)),
+                                suffixIcon: Image.asset(
+                                  IconConstants.icLockPass,
+                                  scale: 2.5,
+                                )),
                           ),
                         ),
                         SizedBox(
@@ -357,7 +358,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                         SizedBox(
                           width: MediaQuery.sizeOf(context).width * 90 / 100,
                           child: TextFormField(
-                            controller: supportpinController,
+                            controller: supportPinController,
                             decoration: InputDecoration(
                               hintText: appLocalization(context).supportPin,
                               hintStyle: const TextStyle(
@@ -423,13 +424,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Image.asset(
                                   IconConstants.icCalladd,
-                                  // Adjust the path as necessary
-                                  width: MediaQuery.of(context).size.width *
-                                      3 /
-                                      100,
-                                  height: MediaQuery.of(context).size.height *
-                                      3 /
-                                      100,
+                                  scale: 1.5,
                                 ),
                               ),
                             ),
@@ -443,7 +438,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                           ),
                         )),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
+                          height: MediaQuery.of(context).size.height * 1 / 100,
                         ),
                         //device connect kro
                         AppButton(
@@ -457,12 +452,15 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                     lastName: lastnameController.text.trim(),
                                     relation: relationController.text.trim(),
                                     supportpin:
-                                        supportpinController.text.trim(),
+                                        supportPinController.text.trim(),
                                     phone: phoneController.text.trim(),
                                     countrycode: phoneNumber?.countryCode ?? '',
                                     photoFile: selectedImage),
                               );
                             }),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
                       ]),
                     ),
                   );

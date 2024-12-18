@@ -217,7 +217,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 
     if (event is CorporateEditProfileEvent) {
       emit(ApiLoadingState());
-      await corpoarteEditProfile(user: event.user).then((value) {
+      await corporateEditProfile(user: event.user).then((value) {
         emit(CorporateEditProfileState(value));
       });
     }

@@ -221,7 +221,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                                 Image.asset(IconConstants.icBlockCall),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
-                                      5 /
+                                      4 /
                                       100,
                                 ),
                                 Text(appLocalization(context).blockedCalls,

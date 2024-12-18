@@ -36,7 +36,6 @@ class _LoginState extends State<Login> {
           setState(() {
             // _verificationId = verificationId;
           });
-          // Navigate to OTP Verification Screen
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => OtpVerify(
               verificationId: verificationId,
@@ -118,7 +117,7 @@ class _LoginState extends State<Login> {
                           padding: const EdgeInsets.all(20),
                           child: Center(
                               child: Text(
-                            appLocalization(context).pleaseVerify, //
+                            appLocalization(context).pleaseVerify,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 color: AppColor.verifyColor,
@@ -232,7 +231,7 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 3 / 100,
+                            height: MediaQuery.sizeOf(context).height * 2 / 100,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 20, right: 20),
@@ -275,7 +274,7 @@ class _LoginState extends State<Login> {
                           ),
                           SizedBox(
                             height:
-                                MediaQuery.of(context).size.height * 1 / 100,
+                                MediaQuery.of(context).size.height * 2 / 100,
                           ),
                           // if (_errorMessage != null)
                           //   Text(_errorMessage!,

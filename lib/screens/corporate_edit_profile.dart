@@ -1,32 +1,33 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/models/corporate_edit_profile_model.dart';
 
-class EditStaffMember extends StatefulWidget {
-  final StaffMember? staffMember;
+class CorporateProfile extends StatefulWidget {
+  final CorporateData? corporateData;
 
-  const EditStaffMember({super.key, this.staffMember});
+  const CorporateProfile({super.key, this.corporateData});
 
   @override
-  State<EditStaffMember> createState() => _EditStaffMemberState();
+  State<CorporateProfile> createState() => _CorporateProfileState();
 }
 
-class _EditStaffMemberState extends State<EditStaffMember> {
+class _CorporateProfileState extends State<CorporateProfile> {
   String? _errorMessage;
   File? _savedImage;
-  double scale = 3.5;
 
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController firstnameController = TextEditingController();
-  final TextEditingController lastnameController = TextEditingController();
-  final TextEditingController relationController = TextEditingController();
-  final TextEditingController supportPinController = TextEditingController();
+  double scale = 3.5;
+
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController companyNameController = TextEditingController();
+  final TextEditingController crnIdController = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
   XFile? _selectedImage;
 
-  var staffMemberBloc = ApiBloc(ApiBlocInitialState());
+  var corporateBloc = ApiBloc(ApiBlocInitialState());
 
-  StaffMember? staffMember;
+  CorporateData? corporateData;
 
   Future<void> _takePhoto() async {
     try {
@@ -108,12 +109,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((s) {
-      var arg = args(context) as EditStaffMember;
-      staffMemberBloc
-          .add(GetStaffMemberDetailEvent(arg.staffMember?.userId ?? ""));
-    });
-
+    corporateBloc.add(GetUserProfileEvent());
     super.initState();
   }
 
@@ -121,18 +117,16 @@ class _EditStaffMemberState extends State<EditStaffMember> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: CustomAppBar(title: appLocalization(context).editStaffMember),
+        appBar: const CustomAppBar(title: "Edit Corporate Profile"),
         body: SafeArea(
           child: BlocConsumer(
-              bloc: staffMemberBloc,
+              bloc: corporateBloc,
               listener: (context, state) {
-                if (state is GetStaffMemberDetailState) {
+                if (state is GetUserProfileState) {
                   if (state.value.statusCode == 200) {
-                    if (state.value.staffmemberdetails != null) {
-                      staffMember = state.value.staffmemberdetails;
-                      if (staffMember != null) {
-                        updateData(staffMember!);
-                      }
+                    if (state.value.data != null) {
+                      updateData(CorporateData.fromJson(state.value.data));
+                      //sharedPrefBloc.add(GetUserDataFromLocalEvent());
                     }
                   } else if (state.value.statusCode ==
                       HTTPStatusCodes.sessionExpired) {
@@ -143,7 +137,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                         dialogType: DialogType.failed);
                   }
                 }
-                if (state is StaffEditMemberState) {
+                if (state is CorporateEditProfileState) {
                   if (state.value.statusCode == 200) {
                     showCustomDialog(context,
                         subTitle: state.value.message,
@@ -156,9 +150,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                         subTitle: state.value.message,
                         dialogType: DialogType.failed);
                   }
-                  staffMemberBloc.add(
-                      GetStaffMemberDetailEvent(staffMember?.userId ?? ''));
-                  staffBloc.add(GetStaffMemberListEvent());
+                  userBloc.add(GetUserProfileEvent());
                 }
               },
               builder: (context, state) {
@@ -264,57 +256,45 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                               ),
                               10.height(),
                               CustomTextField(
-                                controller: firstnameController,
-                                hintText: appLocalization(context).firstName,
+                                controller: userNameController,
+                                hintText: 'Corporate Name',
                                 suffix: Image.asset(
                                   IconConstants.icUsername,
                                   scale: 1.5,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter first name";
+                                    return "Please enter corporate name";
                                   }
                                   return null;
                                 },
                               ),
                               10.height(),
                               CustomTextField(
-                                controller: lastnameController,
-                                hintText: appLocalization(context).lastName,
+                                controller: companyNameController,
+                                hintText: 'Company name',
                                 suffix: Image.asset(
-                                  IconConstants.icUsername,
-                                  scale: 1.5,
+                                  IconConstants.icCorporateID,
+                                  scale: 3,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter last name";
+                                    return "Please enter company name";
                                   }
                                   return null;
                                 },
                               ),
                               10.height(),
                               CustomTextField(
-                                controller: relationController,
-                                hintText: appLocalization(context).position,
+                                controller: crnIdController,
+                                hintText: 'Crn ID',
                                 suffix: Image.asset(
-                                  IconConstants.icUsername,
-                                  scale: 1.5,
+                                  IconConstants.icCorporateID,
+                                  scale: 3,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
-                                    return "Please enter relation";
-                                  }
-                                  return null;
-                                },
-                              ),
-                              10.height(),
-                              CustomTextField(
-                                controller: supportPinController,
-                                hintText: appLocalization(context).supportPin,
-                                // suffix: Image.asset(IconConstants.icUsername),
-                                validator: (p0) {
-                                  if (p0?.isEmpty ?? true) {
-                                    return "Please enter support pin";
+                                    return "Please enter crn ID";
                                   }
                                   return null;
                                 },
@@ -324,26 +304,17 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                     3 /
                                     100,
                               ),
-                              if (_errorMessage != null)
-                                Text(_errorMessage!,
-                                    style: const TextStyle(color: Colors.red)),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    2 /
-                                    100,
-                              ),
                               AppButton(
                                   text: appLocalization(context).submit,
                                   onPress: () {
                                     if (_formKey.currentState?.validate() ??
                                         false) {
-                                      staffMemberBloc.add(StaffEditMemberEvent(
-                                          user: StaffMember(
-                                        firstName: firstnameController.text,
-                                        lastName: lastnameController.text,
-                                        relation: relationController.text,
-                                        userId: staffMember?.userId ?? "",
-                                        supportPin: supportPinController.text,
+                                      corporateBloc
+                                          .add(CorporateEditProfileEvent(
+                                              user: CorporateData(
+                                        uName: userNameController.text,
+                                        company: companyNameController.text,
+                                        crn: crnIdController.text,
                                         photo: _selectedImage?.path,
                                         photoFile: _selectedImage,
                                       )));
@@ -363,12 +334,11 @@ class _EditStaffMemberState extends State<EditStaffMember> {
         ));
   }
 
-  void updateData(StaffMember user) {
-    staffMember = user;
+  void updateData(CorporateData user) {
+    corporateData = user;
     _selectedImage = XFile(user.photo ?? "", mimeType: "http");
-    firstnameController.text = user.firstName ?? "";
-    lastnameController.text = user.lastName ?? "";
-    relationController.text = user.relation ?? "";
-    supportPinController.text = user.supportPin ?? "";
+    userNameController.text = user.uName ?? "";
+    companyNameController.text = user.company ?? "";
+    crnIdController.text = user.crn ?? "";
   }
 }

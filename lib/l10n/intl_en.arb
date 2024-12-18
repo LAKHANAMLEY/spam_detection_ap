@@ -586,5 +586,6 @@
   "zip": "Zip Code",
   "address1": "Address 1",
   "address2": "Address 2",
-  "submitText": "Submit"
+  "submitText": "Submit",
+  "position": "Position"
 }

@@ -6,7 +6,7 @@ showOverlay(
     required String number,
     required int duration}) async {
   print('$callType, number: $number, duration: $duration s');
-  SystemAlertWindow.sendMessageToOverlay(CallLogData(
+  SystemAlertWindow.sendMessageToOverlay(callLogData(
     mobileNo: number,
     callDuration: duration.toString(),
   ).toJson());

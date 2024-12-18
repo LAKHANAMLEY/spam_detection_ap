@@ -194,7 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Débité de"),
         "delete": MessageLookupByLibrary.simpleMessage("Supprimer"),
         "deleteCalls":
-            MessageLookupByLibrary.simpleMessage("Eliminar todas las llamadas"),
+            MessageLookupByLibrary.simpleMessage("Eliminar llamadas"),
         "deleteMember":
             MessageLookupByLibrary.simpleMessage("Eliminar miembro"),
         "deleteStaffMember": MessageLookupByLibrary.simpleMessage(
@@ -652,6 +652,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Seleccione el tipo de cuenta que va a configurar hoy."),
         "pleaseVerify": MessageLookupByLibrary.simpleMessage(
             "Ingrese su número de teléfono válido, le enviaremos un código de 4 dígitos para verificar."),
+        "position": MessageLookupByLibrary.simpleMessage("Posición"),
         "poweredBy":
             MessageLookupByLibrary.simpleMessage("2024 @ Propulsé par BCTPay"),
         "prev": MessageLookupByLibrary.simpleMessage("Précédente"),

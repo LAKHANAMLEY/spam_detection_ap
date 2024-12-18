@@ -90,6 +90,7 @@ Future<void> phoneStateBackgroundCallbackHandler(
 
 class MyApp extends StatelessWidget {
   final bool isOverlay;
+
   const MyApp({
     super.key,
     this.isOverlay = false,

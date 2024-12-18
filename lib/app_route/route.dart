@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/corporate_edit_profile.dart';
 
 class AppRoutes {
   static const splash = "/splash";
@@ -27,6 +28,7 @@ class AppRoutes {
   static const planDetail = "/planDetail";
   static const profile = "/profile";
   static const editSecurityPin = "/editSecurityPin";
+  static const corporateProfile = "/corporateProfile";
 
 // static const contactDetail = "/contactDetail";
 }
@@ -58,6 +60,7 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.planDetail: (context) => const PlanDetail(),
   AppRoutes.profile: (context) => const Profile(),
   AppRoutes.editSecurityPin: (context) => const ChangeSecurity(),
+  AppRoutes.corporateProfile: (context) => const CorporateProfile(),
 
   // AppRoutes.contactDetail: (context) => const ContactDetail(),
 };

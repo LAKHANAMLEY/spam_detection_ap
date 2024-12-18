@@ -9,12 +9,7 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   String? _errorMessage;
-  String? enteredPhone;
 
-  List<dynamic> countries = [];
-  bool isLoading = true;
-  String? selectedCountryCode;
-  String? selectedCountryName;
   final List<String> _genders = ['Male', 'Female']; // Dropdown options
   String? _selectedGender = 'Male';
   DateTime? selectedDate;
@@ -40,7 +35,6 @@ class _EditProfileState extends State<EditProfile> {
       final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
       if (photo != null) {
         debugPrint("Photo taken: ${photo.path}");
-        // Handle the selected photo (e.g., upload it, save it, or display it)
       }
     } catch (e) {
       debugPrint("Error taking photo: $e");
@@ -58,7 +52,6 @@ class _EditProfileState extends State<EditProfile> {
       } else {
         debugPrint("No image selected.");
       }
-      // Handle the selected image
     } catch (e) {
       debugPrint("Error selecting image: $e");
     }
@@ -307,8 +300,8 @@ class _EditProfileState extends State<EditProfile> {
                                     height: 10,
                                     width: 10,
                                     child: Padding(
-                                      padding:
-                                          const EdgeInsets.symmetric(vertical: 10),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10),
                                       child: Image.asset(
                                         IconConstants.icUsername,
                                         scale: 1.5,
@@ -671,47 +664,6 @@ class _EditProfileState extends State<EditProfile> {
                                       address2: address2Controller.text,
                                       photo: _selectedImage?.path,
                                       photoFile: _selectedImage)));
-
-                              // if (firstname.isNotEmpty &&
-                              //     lastname.isNotEmpty) {
-                              //   setState(() {
-                              //     _isLoading = true;
-                              //   });
-                              //   editProfile(
-                              //           user: User(
-                              //               firstName: firstname,
-                              //               lastName: lastname,
-                              //               dob: selectedDate,
-                              //               gender: gender,
-                              //               state: state,
-                              //               city: city,
-                              //               zip: zip,
-                              //               address: addressfirst,
-                              //               address2: addressecond,
-                              //               photo: _selectedImage?.path,
-                              //               photoFile: _selectedImage))
-                              //       .then((response) {
-                              //     setState(() {
-                              //       _isLoading = false;
-                              //     });
-                              //     if (response.statusCode == 200) {
-                              //       Navigator.of(context).push(
-                              //           MaterialPageRoute(
-                              //               builder: (context) =>
-                              //                   const Profile()));
-                              //     } else {
-                              //       setState(() {
-                              //         _errorMessage =
-                              //             response.message.toString();
-                              //       });
-                              //     }
-                              //   });
-                              // } else {
-                              //   setState(() {
-                              //     _errorMessage =
-                              //         'Please enter the all fields.';
-                              //   });
-                              // }
                             },
                           ),
                           SizedBox(

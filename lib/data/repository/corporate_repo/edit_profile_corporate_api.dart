@@ -1,7 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/models/corporate_edit_profile_model.dart';
 
-Future<Response> corpoarteEditProfile({
+Future<Response> corporateEditProfile({
   // required String firstname,
   // required String lastname,
   // required String dateofbirth,
@@ -12,12 +13,12 @@ Future<Response> corpoarteEditProfile({
   // required String addressFirst,
   // required String addressSecond,
   // required XFile? photo,
-  required UserData? user,
+  required CorporateData? user,
 }) async {
   final body = {
-    'corporate_name': user?.userName ?? "",
-    'company': user?.corporateId ?? "",
-    'crn': user?.crn ?? "",
+    "UserName": user?.uName ?? "",
+    "companyName": user?.company ?? "",
+    "crnId": user?.crn ?? "",
     //'photo':user?.photo??"",
   };
 

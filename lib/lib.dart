@@ -150,6 +150,7 @@ export 'screens/home_screen.dart';
 export 'screens/list_items/blocked_contact_listitem.dart';
 export 'screens/list_items/call_log_listitem.dart';
 export 'screens/list_items/contact_listitem.dart';
+export 'screens/list_items/notification_listitem.dart';
 export 'screens/list_items/plan_listitem.dart';
 export 'screens/list_items/spam_listitem.dart';
 export 'screens/loader.dart';

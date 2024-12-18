@@ -61,7 +61,7 @@ class _WelcomeState extends State<Welcome> {
                           }
                           return Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 5.0),
+                                const EdgeInsets.symmetric(horizontal: 2.0),
                             child: DropdownButton<LanguageData>(
                               hint: const Text('Select Language'),
                               value: selectedLanguage,
@@ -76,9 +76,7 @@ class _WelcomeState extends State<Welcome> {
                               onChanged: (LanguageData? value) {
                                 setState(() {
                                   selectedLanguage = value;
-                                }); // wait sir // understand sir
-
-                                //ab language change work krega protection type check kro
+                                });
                                 print(selectedLanguage?.name ?? "");
                                 localizationBloc.add(ChangeLocaleEvent(
                                     Locale.fromSubtags(

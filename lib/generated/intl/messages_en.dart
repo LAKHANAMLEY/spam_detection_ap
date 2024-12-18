@@ -619,6 +619,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please select the type of account you will be setting up today."),
         "pleaseVerify": MessageLookupByLibrary.simpleMessage(
             "Please enter your valid phone number, We will send you a 4 digit code to verify."),
+        "position": MessageLookupByLibrary.simpleMessage("Position"),
         "poweredBy":
             MessageLookupByLibrary.simpleMessage("2024 @ Powered by BCTPay"),
         "prev": MessageLookupByLibrary.simpleMessage("Prev"),

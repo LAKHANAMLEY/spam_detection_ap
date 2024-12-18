@@ -12,14 +12,14 @@ String callLogsListResponseToJson(CallLogsListResponse data) =>
 
 class CallLogsListResponse {
   final int? statusCode;
-  final List<CallLogData>? callloglist;
+  final List<callLogData>? callloglist;
   final String? message;
 
   CallLogsListResponse({this.statusCode, this.callloglist, this.message});
 
   CallLogsListResponse copyWith({
     int? statusCode,
-    List<CallLogData>? callloglist,
+    List<callLogData>? callloglist,
     String? message,
   }) =>
       CallLogsListResponse(
@@ -32,8 +32,8 @@ class CallLogsListResponse {
         statusCode: json["status_code"],
         callloglist: json["callloglist"] == null
             ? []
-            : List<CallLogData>.from(
-                json["callloglist"]!.map((x) => CallLogData.fromJson(x))),
+            : List<callLogData>.from(
+                json["callloglist"]!.map((x) => callLogData.fromJson(x))),
         message: json["message"],
       );
 
@@ -46,7 +46,7 @@ class CallLogsListResponse {
       };
 }
 
-class CallLogData {
+class callLogData {
   final String? id;
   final String? phoneaccountid;
   final String? simdisplayname;
@@ -63,7 +63,7 @@ class CallLogData {
   final int? isBlocked;
   final int? markSpamByUser;
 
-  CallLogData({
+  callLogData({
     this.id,
     this.phoneaccountid,
     this.simdisplayname,
@@ -81,7 +81,7 @@ class CallLogData {
     this.markSpamByUser,
   });
 
-  CallLogData copyWith({
+  callLogData copyWith({
     String? id,
     String? phoneaccountid,
     String? simdisplayname,
@@ -98,7 +98,7 @@ class CallLogData {
     int? isBlocked,
     int? markSpamByUser,
   }) =>
-      CallLogData(
+      callLogData(
         id: id ?? this.id,
         phoneaccountid: phoneaccountid ?? this.phoneaccountid,
         simdisplayname: simdisplayname ?? this.simdisplayname,
@@ -116,7 +116,7 @@ class CallLogData {
         markSpamByUser: markSpamByUser ?? this.markSpamByUser,
       );
 
-  factory CallLogData.fromJson(Map<String, dynamic> json) => CallLogData(
+  factory callLogData.fromJson(Map<String, dynamic> json) => callLogData(
         id: json["id"],
         phoneaccountid: json["phoneaccountid"],
         simdisplayname: json["simdisplayname"],

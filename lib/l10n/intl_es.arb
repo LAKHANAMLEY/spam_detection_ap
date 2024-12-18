@@ -100,7 +100,7 @@
   "dateOfBirth": "Fecha de nacimiento",
   "debitedFrom": "Débité de",
   "delete": "Supprimer",
-  "deleteCalls": "Eliminar todas las llamadas",
+  "deleteCalls": "Eliminar llamadas",
   "description": "Description: ",
   "details": "Détails",
   "developerModeDialogDiscription": "Le mode développeur est activé, veuillez le désactiver pour accéder à l'application BCTPay",
@@ -589,6 +589,7 @@
   "zip": "Código postal",
   "address1": "Dirección 1",
   "address2": "Dirección 2",
-  "submitText": "Entregar"
+  "submitText": "Entregar",
+  "position": "Posición"
 }
 

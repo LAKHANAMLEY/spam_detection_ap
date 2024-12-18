@@ -26,6 +26,9 @@ class SharedPref {
   static const String _gender = "gender";
   static const String _dob = "dob";
 
+  // corparte
+  static const String _company = "company";
+
   // static Future<SharedPreferences> get pref async =>
   //     await SharedPreferences.getInstance();
 
@@ -56,9 +59,8 @@ class SharedPref {
     pref.setString(_zip, user?.zip ?? "");
     pref.setString(_gender, user?.gender ?? "");
     pref.setString(_dob, user?.dob.toString() ?? "");
-
-
-
+// corpoarte
+    pref.setString(_company, user?.companyName ?? "");
   }
 
   static Future<bool> clearAll() async {
@@ -176,8 +178,3 @@ class SharedPref {
     return pref.getString(_address2) ?? "";
   }
 }
-
-//ye family data q store kr rhe ho shared pref me
-//iski koi need nhi h hme local me save krne ki
-//shared pref me only jo user login h uski details save krna h bs
-// okay sir understand

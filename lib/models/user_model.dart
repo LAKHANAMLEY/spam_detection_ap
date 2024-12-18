@@ -72,6 +72,7 @@ class User {
   final String? country;
   final String? token;
   final XFile? photoFile;
+  final String? companyName;
 
   User(
       {this.userId,
@@ -98,34 +99,35 @@ class User {
       this.address2,
       this.country,
       this.token,
-      this.photoFile});
+      this.photoFile,
+      this.companyName});
 
-  User copyWith({
-    String? userId,
-    String? userName,
-    String? name,
-    String? firstName,
-    String? lastName,
-    String? email,
-    String? phone,
-    String? userRole,
-    dynamic countryCode,
-    String? crn,
-    String? corporateId,
-    String? isEmailVerify,
-    String? photo,
-    String? supportPin,
-    dynamic gender,
-    DateTime? dob,
-    String? countryId,
-    dynamic state,
-    dynamic city,
-    dynamic zip,
-    dynamic address,
-    dynamic address2,
-    String? country,
-    String? token,
-  }) =>
+  User copyWith(
+          {String? userId,
+          String? userName,
+          String? name,
+          String? firstName,
+          String? lastName,
+          String? email,
+          String? phone,
+          String? userRole,
+          dynamic countryCode,
+          String? crn,
+          String? corporateId,
+          String? isEmailVerify,
+          String? photo,
+          String? supportPin,
+          dynamic gender,
+          DateTime? dob,
+          String? countryId,
+          dynamic state,
+          dynamic city,
+          dynamic zip,
+          dynamic address,
+          dynamic address2,
+          String? country,
+          String? token,
+          String? companyName}) =>
       User(
         userId: userId ?? this.userId,
         userName: userName ?? this.userName,
@@ -151,6 +153,7 @@ class User {
         address2: address2 ?? this.address2,
         country: country ?? this.country,
         token: token ?? this.token,
+        companyName: companyName ?? companyName,
       );
 
   factory User.fromJson(Map<String, dynamic> json) => User(

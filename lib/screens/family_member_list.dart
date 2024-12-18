@@ -133,6 +133,14 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                                             : const AssetImage(
                                                 ImageConstants.imageProfile),
                                   ),
+                                  subtitle: Text(
+                                    filteredContacts[index].relation ?? "",
+                                    style: const TextStyle(
+                                        color: AppColor.primaryColor,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18,
+                                        fontFamily: AppFont.fontFamily),
+                                  ),
                                   title: Text(
                                     filteredContacts[index].firstName ?? "",
                                     style: const TextStyle(
