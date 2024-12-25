@@ -2,6 +2,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class PlanDetail extends StatefulWidget {
   final Planslist? plan;
+
   const PlanDetail({super.key, this.plan});
 
   @override
@@ -14,6 +15,7 @@ class _PlanDetailState extends State<PlanDetail> {
   int SelectedPlan = 0;
 
   Planslist? plan;
+
   @override
   Widget build(BuildContext context) {
     var arg = args(context) as PlanDetail;
@@ -133,7 +135,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                 value: 0,
                               ),
                               Text(
-                                appLocalization(context).calls,
+                                "Calls",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontFamily: AppFont.fontFamily,
@@ -190,8 +192,8 @@ class _PlanDetailState extends State<PlanDetail> {
                                 },
                                 value: 0,
                               ),
-                              Text(
-                                appLocalization(context).sms,
+                              const Text(
+                                "Sms",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontFamily: AppFont.fontFamily,
@@ -244,8 +246,8 @@ class _PlanDetailState extends State<PlanDetail> {
                                 },
                                 value: 0,
                               ),
-                              Text(
-                                appLocalization(context).email,
+                              const Text(
+                                "Email",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontFamily: AppFont.fontFamily,
@@ -584,6 +586,7 @@ class PlanDurationTypeCardView extends StatelessWidget {
   final String month;
   final String price;
   final void Function()? onTap;
+
   const PlanDurationTypeCardView(
       {super.key,
       required this.selectedPlanId,

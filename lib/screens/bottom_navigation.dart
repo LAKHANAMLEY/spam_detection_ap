@@ -10,6 +10,7 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
+  double scale = 3.5;
   int _page = 2;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final List<Widget> _pages = [
@@ -93,8 +94,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
                         _key.currentState!.openDrawer();
                       },
                       child: Image.asset(
-                        IconConstants.icdrawer,
-                        height: MediaQuery.of(context).size.height * 4 / 100,
+                        IconConstants.icDrawerDetails,
+                        scale: 2,
+                        // height: MediaQuery.of(context).size.height * 4 / 100,
                       ),
                     ),
                     title: "",
@@ -129,12 +131,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
                               context, AppRoutes.notificationList);
                         },
                         child: Image.asset(
-                          IconConstants.icNotification,
-                          height: MediaQuery.of(context).size.height * 3 / 100,
+                          IconConstants.icNotificationBell,
+                          scale: 3.5,
+                          //height: MediaQuery.of(context).size.height * 3 / 100,
                         ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 5 / 100,
                       ),
                       PopupMenuButton(
                         itemBuilder: (context) => [
@@ -146,7 +146,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
                             },
                             child: Row(
                               children: [
-                                Image.asset(IconConstants.icOutgoing),
+                                Image.asset(
+                                  IconConstants.icOutgoingCall,
+                                  scale: 2,
+                                ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
                                       5 /
@@ -171,7 +174,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
                             child: Row(
                               children: [
                                 Image.asset(
-                                  IconConstants.icIncoming,
+                                  IconConstants.icIncomingCall,
+                                  scale: 2,
                                 ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
@@ -194,7 +198,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
                             },
                             child: Row(
                               children: [
-                                Image.asset(IconConstants.icMissedCall),
+                                Image.asset(
+                                  IconConstants.icMissCall,
+                                  scale: 2,
+                                ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
                                       5 /
@@ -218,7 +225,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
                             },
                             child: Row(
                               children: [
-                                Image.asset(IconConstants.icBlockCall),
+                                Image.asset(
+                                  IconConstants.icBlockedCall,
+                                  scale: 2,
+                                ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
                                       4 /
@@ -238,7 +248,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
                             },
                             child: Row(
                               children: [
-                                Image.asset(IconConstants.icDelete),
+                                Image.asset(
+                                  IconConstants.icDeleteCall,
+                                  scale: 2,
+                                ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
                                       5 /
@@ -262,31 +275,31 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   height: 75,
                   items: <Widget>[
                     Image.asset(
-                      IconConstants.icHome,
+                      IconConstants.icHomeData,
                       color: getColor(0),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
                     Image.asset(
-                      IconConstants.icChat,
+                      IconConstants.icChatData,
                       color: getColor(1),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
                     Image.asset(
-                      IconConstants.icPhone,
+                      IconConstants.icCallData,
                       color: getColor(2),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
                     Image.asset(
-                      IconConstants.icPremium,
+                      IconConstants.icPremiumData,
                       color: getColor(3),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
                     Image.asset(
-                      IconConstants.icSetting,
+                      IconConstants.icSettingData,
                       color: getColor(4),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,

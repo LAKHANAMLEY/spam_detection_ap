@@ -1,3 +1,5 @@
+export 'package:flutter_face_pile/flutter_face_pile.dart';
+
 export 'app_route/route.dart';
 export 'bloc/api_bloc/api_bloc.dart';
 export 'bloc/api_bloc/api_event.dart';
@@ -128,7 +130,6 @@ export 'models/user_model.dart';
 export 'screens/add_alternative_email_screen.dart';
 export 'screens/add_contact_screen.dart';
 export 'screens/add_family_member.dart';
-export 'screens/add_member_screen.dart';
 export 'screens/add_staff_member.dart';
 export 'screens/all_messages.dart';
 export 'screens/blocked_number_screen.dart';

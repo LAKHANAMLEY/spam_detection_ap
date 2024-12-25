@@ -16,8 +16,6 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
   String? numberType;
   List<FamilyMember> categories = [];
 
-  var familyBloc = ApiBloc(ApiBlocInitialState());
-
   @override
   void initState() {
     super.initState();
@@ -28,8 +26,9 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
   void filterSearchResults(String query) {
     setState(() {
       filteredContacts = contacts
-          .where((item) =>
-              item.userRole!.toLowerCase().contains(query.toLowerCase()))
+          .where((item) => "${item.firstName} ${item.lastName}"
+              .toLowerCase()
+              .contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -87,8 +86,8 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                       showCustomDialog(
                         context,
                         dialogType: DialogType.success,
-                        subTitle:
-                            state.value.message ?? "Deleted successfully!",
+                        subTitle: state.value.message ??
+                            appLocalization(context).deletedSuccessfully,
                       );
                     } else if (state.value.statusCode ==
                         HTTPStatusCodes.sessionExpired) {
@@ -103,7 +102,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                         subTitle: state.value.message,
                       );
                     }
-                    staffBloc.add(GetFamilyMemberListEvent());
+                    familyBloc.add(GetFamilyMemberListEvent());
                   }
                 },
                 builder: (context, state) {

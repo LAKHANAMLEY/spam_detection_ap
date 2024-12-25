@@ -2,6 +2,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class BlockedContactListItem extends StatelessWidget {
   final BlockedContact contact;
+
   const BlockedContactListItem({super.key, required this.contact});
 
   @override
@@ -29,7 +30,8 @@ class BlockedContactListItem extends StatelessWidget {
       trailing: InkWell(
           onTap: () {
             markSpamBloc.add(BlockUnBlockEvent(
-                contactId: contact.mobileNo ?? "", comments: "unblock"));
+                contactId: contact.mobileNo ?? "",
+                comments: appLocalization(context).unblock));
           },
           child: const Icon(Icons.delete)),
       // subtitle: Text(contact.phone),

@@ -12,10 +12,10 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   //LanguageData? selectedLanguage;
   final List<String> imageUrl = [
-    IconConstants.icspamCheck,
-    IconConstants.icClock,
-    IconConstants.icsearchCheck,
-    IconConstants.icmessageCheck
+    IconConstants.icSecurityCall,
+    IconConstants.icTimeClock,
+    IconConstants.icEpSearch,
+    IconConstants.icMessageCancel
   ];
   final List<String> cardTexts = ['3', '68s', '25', '38'];
 
@@ -129,6 +129,13 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> _items = [
+      'Last 30 days',
+      'Last 3 months ',
+      'Last 6 months',
+      'This year',
+      'All time'
+    ];
     var argument = args(context) as Profile?;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -629,7 +636,7 @@ class SubMenu extends StatelessWidget {
                     ),
                   ),
                   Image.asset(
-                    IconConstants.icviewArrow,
+                    IconConstants.icEditDetails,
                     height: MediaQuery.of(context).size.height * 6 / 100,
                     width: MediaQuery.of(context).size.width * 6 / 100,
                   )

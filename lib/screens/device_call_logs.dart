@@ -11,6 +11,7 @@ class DeviceCallLogs extends StatefulWidget {
 }
 
 class _DeviceCallLogsState extends State<DeviceCallLogs> {
+  double scale = 3.5;
   List<callLogData> callLogs = [];
   List<callLogData> filteredCallLogs = [];
 
@@ -208,6 +209,8 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                               ),
                                               hintText: appLocalization(context)
                                                   .searchMore,
+                                              //textAlign: TextAlign.center,
+
                                               onChanged: (p0) {
                                                 // filter();
                                                 searchBloc
@@ -220,8 +223,10 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                                         callLogsListBloc.add(
                                                             GetDeviceCallLogEvent());
                                                       },
-                                                      child: const Text(
-                                                          "Sync call logs"))
+                                                      child: Text(
+                                                          appLocalization(
+                                                                  context)
+                                                              .synCallLogs))
                                                 ],
                                               ),
                                             )
@@ -265,10 +270,9 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Image.asset(
-          IconConstants.icUsername,
+          IconConstants.icUserData,
+          scale: 2,
           color: AppColor.secondryColor,
-          height: MediaQuery.of(context).size.height * 6 / 100,
-          width: MediaQuery.of(context).size.width * 6 / 100,
         ),
         onPressed: () async {
           // await SystemAlertWindow.showSystemWindow();

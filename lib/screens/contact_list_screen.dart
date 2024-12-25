@@ -34,7 +34,7 @@ class _ContactListState extends State<ContactList> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: AppColor.secondryColor,
-      appBar: const CustomAppBar(title: "Contact list"),
+      appBar: CustomAppBar(title: appLocalization(context).contactList),
       body: SafeArea(
         child: BlocConsumer(
             bloc: markSpamBloc,
@@ -75,14 +75,15 @@ class _ContactListState extends State<ContactList> {
                         Icons.search,
                         color: AppColor.redColor,
                       ),
-                      hintText: "Search numbers, names & more",
+                      hintText: appLocalization(context).searchMore,
                       suffix: PopupMenuButton(
                         itemBuilder: (context) => [
                           PopupMenuItem(
                               onTap: () {
                                 contactListBloc.add(GetDeviceContactEvent());
                               },
-                              child: const Text("Sync contacts"))
+                              child:
+                                  Text(appLocalization(context).syncContacts))
                         ],
                       ),
                     ),
@@ -146,8 +147,9 @@ class _ContactListState extends State<ContactList> {
                                     if (searchState is SelectStringState) {
                                       filterSearchResults();
                                       if (filteredContacts.isEmpty) {
-                                        return const Center(
-                                          child: Text('No contacts'),
+                                        return Center(
+                                          child: Text(appLocalization(context)
+                                              .noContacts),
                                         );
                                       }
                                       return ListView.builder(

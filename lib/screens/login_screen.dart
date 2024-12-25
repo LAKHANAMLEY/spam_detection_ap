@@ -22,9 +22,9 @@ class _LoginState extends State<Login> {
         verificationCompleted: (PhoneAuthCredential credential) async {
           await _auth.signInWithCredential(credential);
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
                 content:
-                    Text('Phone number automatically verified and signed in!')),
+                    Text(appLocalization(context).phoneAutomaticallySigned)),
           );
         },
         verificationFailed: (FirebaseAuthException e) {
@@ -49,6 +49,8 @@ class _LoginState extends State<Login> {
         },
       );
     }
+
+    // print("Phone number: ${phoneController.text}, Country code: $countryCode");
   }
 
   final TextEditingController phoneController = TextEditingController(); //#2
@@ -148,7 +150,7 @@ class _LoginState extends State<Login> {
                                           ? Image.asset(IconConstants
                                               .icphoneunSelect) // Show secondary image
                                           : Image.asset(IconConstants
-                                              .icphoneSelect), // Show primary image
+                                              .icMobileData), // Show primary image
                                     ),
                                   ),
                                   SizedBox(
@@ -187,6 +189,7 @@ class _LoginState extends State<Login> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20, right: 20),
                             child: CustomTextField(
+                              keyboardType: TextInputType.emailAddress,
                               controller: emailController,
                               hintText: appLocalization(context).emailAddress,
                               suffix: Image.asset(
@@ -195,39 +198,11 @@ class _LoginState extends State<Login> {
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? false) {
-                                  return "Please enter email address";
+                                  return appLocalization(context)
+                                      .pleaseEnterYourEmailAddress;
                                 }
                                 return null;
                               },
-
-                              // decoration: InputDecoration(
-                              //   hintText: appLocalization(context).emailAddress,
-                              //   hintStyle: const TextStyle(
-                              //       color: AppColor.lightfillColor,
-                              //       fontFamily: AppFont.fontFamily,
-                              //       fontWeight: FontWeight.w600),
-                              //   enabledBorder: OutlineInputBorder(
-                              //     borderRadius: BorderRadius.circular(2),
-                              //     borderSide: const BorderSide(
-                              //         width: 1.5, color: AppColor.fillColor),
-                              //   ),
-                              //   focusedBorder: const OutlineInputBorder(
-                              //     borderSide:
-                              //         BorderSide(color: AppColor.fillColor, width: 1.5),
-                              //     borderRadius: BorderRadius.all(Radius.circular(2)),
-                              //   ),
-                              //   filled: true,
-                              //   fillColor: AppColor.fillColor.withOpacity(0.2),
-                              //   suffixIcon: Padding(
-                              //     padding: const EdgeInsets.all(8.0),
-                              //     child: Image.asset(
-                              //       IconConstants
-                              //           .icEmailadd, // Adjust the path as necessary
-                              //       width: MediaQuery.of(context).size.width * 3 / 100,
-                              //       height: MediaQuery.of(context).size.height * 3 / 100,
-                              //     ),
-                              //   ),
-                              // ),
                             ),
                           ),
                           SizedBox(
@@ -245,43 +220,17 @@ class _LoginState extends State<Login> {
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? false) {
-                                  return "Please enter password address";
+                                  return appLocalization(context)
+                                      .pleaseEnterYourPassword;
                                 }
                                 return null;
                               },
-                              // decoration: InputDecoration(
-                              //   hintText: appLocalization(context).password,
-                              //   hintStyle: const TextStyle(
-                              //       color: AppColor.lightfillColor,
-                              //       fontWeight: FontWeight.w800,
-                              //       fontFamily: AppFont.fontFamily),
-                              //   enabledBorder: OutlineInputBorder(
-                              //     borderRadius: BorderRadius.circular(2),
-                              //     borderSide: const BorderSide(
-                              //         width: 1.5, color: AppColor.fillColor),
-                              //   ),
-                              //   focusedBorder: const OutlineInputBorder(
-                              //     borderSide:
-                              //         BorderSide(color: AppColor.fillColor, width: 1.5),
-                              //     borderRadius: BorderRadius.all(Radius.circular(2)),
-                              //   ),
-                              //   filled: true,
-                              //   fillColor: AppColor.fillColor.withOpacity(0.2),
-                              //   counterText: '',
-                              //   suffixIcon: Image.asset(IconConstants.icLockadd),
-                              // ),
                             ),
                           ),
                           SizedBox(
                             height:
                                 MediaQuery.of(context).size.height * 2 / 100,
                           ),
-                          // if (_errorMessage != null)
-                          //   Text(_errorMessage!,
-                          //       style: const TextStyle(color: Colors.red)),
-                          // SizedBox(
-                          //   height: MediaQuery.of(context).size.height * 2 / 100,
-                          // ),
                           AppButton(
                             text: appLocalization(context).login,
                             onPress: () {
@@ -358,7 +307,6 @@ class _LoginState extends State<Login> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20, right: 20),
                             child: IntlPhoneField(
-                              ///TODO:  need to implement api country picker dont use this package
                               controller: phoneController,
                               decoration: InputDecoration(
                                 hintText: appLocalization(context).phoneNumber,
@@ -366,9 +314,8 @@ class _LoginState extends State<Login> {
                                     color: AppColor.lightfillColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontWeight: FontWeight.w600),
-                                //labelText: 'Phone Number',
                                 enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(2),
+                                  borderRadius: BorderRadius.circular(5),
                                   borderSide: const BorderSide(
                                       width: 1.5, color: AppColor.fillColor),
                                 ),
@@ -376,33 +323,37 @@ class _LoginState extends State<Login> {
                                   borderSide: BorderSide(
                                       color: AppColor.fillColor, width: 1.5),
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(2)),
+                                      BorderRadius.all(Radius.circular(5)),
                                 ),
                                 filled: true,
                                 fillColor: AppColor.fillColor.withOpacity(0.2),
                               ),
                               initialCountryCode: 'IN',
-                              validator: (p0) {
-                                if (p0?.isValidNumber() ?? false) {
-                                  return "Please enter phone number";
-                                }
-                                return null;
-                              },
                               onChanged: (phone) {
                                 countryCode = phone.countryCode;
                                 // enteredPhone = phone.completeNumber;
                                 print(phone.completeNumber);
                                 print(phone.countryCode);
                               },
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return "Please enter a valid phone number"; // phone number dart me empty
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           SizedBox(
                               height:
-                                  MediaQuery.of(context).size.height * 5 / 100),
+                                  MediaQuery.of(context).size.height * 2 / 100),
                           AppButton(
-                            text: appLocalization(context).getOtp,
-                            onPress: _verifyPhoneNumber,
-                          ),
+                              text: appLocalization(context).getOtp,
+                              onPress: () {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  _verifyPhoneNumber;
+                                }
+                              }),
                           SizedBox(
                             height:
                                 MediaQuery.of(context).size.height * 2 / 100,
@@ -473,4 +424,8 @@ class _LoginState extends State<Login> {
               }),
         ));
   }
+}
+
+extension on PhoneNumber? {
+  get isEmpty => null;
 }

@@ -122,4 +122,6 @@ class ApiUrlConstants {
       '$baseUrl/contacts/delete-call-log?lang=en';
   static String endPointDeleteAllCallLog =
       '$baseUrl/contacts/delete-all-call-log?lang=en';
+  static String endPointSyncCallLogManually =
+      '$baseUrl/contacts/sync-call-log-manually';
 }

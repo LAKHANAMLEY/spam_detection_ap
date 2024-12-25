@@ -182,7 +182,8 @@ class _ContactDetailState extends State<ContactDetail> {
                                           children: [
                                             ActionButton(
                                               onTap: _launchSms,
-                                              label: 'Message',
+                                              label: appLocalization(context)
+                                                  .message,
                                               icon: Icons.message,
                                             ),
                                             contact?.isSpam == 1
@@ -194,7 +195,9 @@ class _ContactDetailState extends State<ContactDetail> {
                                                                       ?.mobileNo ??
                                                                   ""));
                                                     },
-                                                    label: 'Unmark Spam',
+                                                    label:
+                                                        appLocalization(context)
+                                                            .unmarkSpam,
                                                     icon: Icons.check_circle)
                                                 : ActionButton(
                                                     onTap: () {
@@ -222,7 +225,9 @@ class _ContactDetailState extends State<ContactDetail> {
                                                         },
                                                       );
                                                     },
-                                                    label: 'Report',
+                                                    label:
+                                                        appLocalization(context)
+                                                            .reportText,
                                                     icon: Icons.report),
                                             ActionButton(
                                                 onTap: () {
@@ -231,11 +236,16 @@ class _ContactDetailState extends State<ContactDetail> {
                                                           contactId: contact
                                                                   ?.mobileNo ??
                                                               "",
-                                                          comments: "unblock"));
+                                                          comments:
+                                                              appLocalization(
+                                                                      context)
+                                                                  .unblock));
                                                 },
                                                 label: contact?.isBlocked == 1
-                                                    ? 'Unblock'
-                                                    : 'Block',
+                                                    ? appLocalization(context)
+                                                        .unblock
+                                                    : appLocalization(context)
+                                                        .block,
                                                 icon: Icons.block)
                                           ],
                                         ),
@@ -368,14 +378,15 @@ class _ContactDetailState extends State<ContactDetail> {
                                   borderRadius: BorderRadius.circular(8.0),
                                   border:
                                       Border.all(color: AppColor.fillColor)),
-                              child: const ListTile(
+                              child: ListTile(
                                 leading: Icon(Icons.location_on,
                                     color: AppColor.primaryColor),
                                 title: Text(
-                                  'More info available',
+                                  appLocalization(context).moreAvailable,
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
-                                subtitle: Text('Upgrade to Premium to view'),
+                                subtitle: Text(appLocalization(context)
+                                    .upgradePremiumView),
                               ),
                             ),
                             // 1000.height()
@@ -403,8 +414,8 @@ class _ContactDetailState extends State<ContactDetail> {
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Some error occurred. Please try again!'),
+        SnackBar(
+          content: Text(appLocalization(context).someOccurredAgain),
         ),
       );
     }

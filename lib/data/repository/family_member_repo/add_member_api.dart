@@ -38,7 +38,6 @@ Future<FamilyMemberAddResponse> familyaddMember({
   }
   var streamedResponse = await request.send();
   var response = await http.Response.fromStream(streamedResponse);
-  //isme v photo parameter hoga na wo add kro
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
     return FamilyMemberAddResponse.fromJson(jsonData);

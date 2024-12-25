@@ -34,7 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Image.asset(
-                  IconConstants.backIcon,
+                  IconConstants.icBacKCircle,
                 ),
               ),
             ),

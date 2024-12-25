@@ -39,7 +39,7 @@ dependencies:
   cached_network_image: ^3.4.1
   call_e_log: ^0.0.4
   # flutter_localization: ^0.2.2
-
+  flutter_face_pile: ^0.0.3
   flutter_localizations:
     sdk: flutter
 
@@ -63,12 +63,14 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.2
 
 flutter_launcher_icons:
-  android: true
+  android: "launcher_icon"
   ios: true
   remove_alpha_ios: true
   image_path: "assets/images/logo_white_1024.png"
   image_path_android: "assets/images/logo_white_1024.png"
   adaptive_icon_monochrome: "assets/images/logo_white_1024.png"
+  adaptive_icon_foreground: "assets/images/logo_white_1024.png"
+  adaptive_icon_background: "#ffffff"
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true

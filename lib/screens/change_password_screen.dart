@@ -79,7 +79,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               child: Text(
                                 appLocalization(context).changePassword,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: AppColor.bluelightColor,
                                     fontSize: 35,
                                     fontFamily: AppFont.fontFamily,

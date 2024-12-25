@@ -704,10 +704,10 @@ class S {
     );
   }
 
-  /// `Choose your plan `
+  /// `Choose Your Plan `
   String get chooseYourPlan {
     return Intl.message(
-      'Choose your plan ',
+      'Choose Your Plan ',
       name: 'chooseYourPlan',
       desc: '',
       args: [],
@@ -1934,10 +1934,10 @@ class S {
     );
   }
 
-  /// `Get started`
+  /// `Get Started`
   String get getStarted {
     return Intl.message(
-      'Get started',
+      'Get Started',
       name: 'getStarted',
       desc: '',
       args: [],
@@ -3316,10 +3316,10 @@ class S {
     );
   }
 
-  /// `Personal protection`
+  /// `Personal Protection`
   String get personalProtection {
     return Intl.message(
-      'Personal protection',
+      'Personal Protection',
       name: 'personalProtection',
       desc: '',
       args: [],
@@ -3886,10 +3886,10 @@ class S {
     );
   }
 
-  /// `Protection type`
+  /// `Protection Type`
   String get protectionType {
     return Intl.message(
-      'Protection type',
+      'Protection Type',
       name: 'protectionType',
       desc: '',
       args: [],
@@ -6164,6 +6164,16 @@ class S {
     );
   }
 
+  /// `Add Member`
+  String get addMemberText {
+    return Intl.message(
+      'Add Member',
+      name: 'addMemberText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter first name`
   String get pleaseFirstName {
     return Intl.message(
@@ -6279,6 +6289,476 @@ class S {
     return Intl.message(
       'Corporate Edit Profile',
       name: 'corporateEditProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Notifications`
+  String get noNotificationsText {
+    return Intl.message(
+      'No Notifications',
+      name: 'noNotificationsText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Contact`
+  String get addContact {
+    return Intl.message(
+      'Add Contact',
+      name: 'addContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter all the fields.`
+  String get pleaseEnterFields {
+    return Intl.message(
+      'Please enter all the fields.',
+      name: 'pleaseEnterFields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact List`
+  String get contactList {
+    return Intl.message(
+      'Contact List',
+      name: 'contactList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sync contacts`
+  String get syncContacts {
+    return Intl.message(
+      'Sync contacts',
+      name: 'syncContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile`
+  String get mobile {
+    return Intl.message(
+      'Mobile',
+      name: 'mobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get homeText {
+    return Intl.message(
+      'Home',
+      name: 'homeText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `work`
+  String get work {
+    return Intl.message(
+      'work',
+      name: 'work',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home Fax`
+  String get homeFax {
+    return Intl.message(
+      'Home Fax',
+      name: 'homeFax',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Work Fax`
+  String get workFax {
+    return Intl.message(
+      'Work Fax',
+      name: 'workFax',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get otherText {
+    return Intl.message(
+      'Other',
+      name: 'otherText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sync call logs`
+  String get synCallLogs {
+    return Intl.message(
+      'Sync call logs',
+      name: 'synCallLogs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report`
+  String get reportText {
+    return Intl.message(
+      'Report',
+      name: 'reportText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block`
+  String get block {
+    return Intl.message(
+      'Block',
+      name: 'block',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unblock`
+  String get unblock {
+    return Intl.message(
+      'Unblock',
+      name: 'unblock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spam reports`
+  String get spamReports {
+    return Intl.message(
+      'Spam reports',
+      name: 'spamReports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report Number As Spam`
+  String get reportNumberSpam {
+    return Intl.message(
+      'Report Number As Spam',
+      name: 'reportNumberSpam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Was this a business or personal number?`
+  String get wasPersonalNumber {
+    return Intl.message(
+      'Was this a business or personal number?',
+      name: 'wasPersonalNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Business`
+  String get business {
+    return Intl.message(
+      'Business',
+      name: 'business',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Personal`
+  String get personal {
+    return Intl.message(
+      'Personal',
+      name: 'personal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write a comment`
+  String get writeComment {
+    return Intl.message(
+      'Write a comment',
+      name: 'writeComment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What was the call about?`
+  String get whatCallAbout {
+    return Intl.message(
+      'What was the call about?',
+      name: 'whatCallAbout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No categories available.`
+  String get noCategoriesAvailable {
+    return Intl.message(
+      'No categories available.',
+      name: 'noCategoriesAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select a category`
+  String get selectCategory {
+    return Intl.message(
+      'Select a category',
+      name: 'selectCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What type of spam was it?`
+  String get whatSpamIt {
+    return Intl.message(
+      'What type of spam was it?',
+      name: 'whatSpamIt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter position`
+  String get pleaseEnterPosition {
+    return Intl.message(
+      'Please enter position',
+      name: 'pleaseEnterPosition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Messages`
+  String get noMessages {
+    return Intl.message(
+      'No Messages',
+      name: 'noMessages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More info available`
+  String get moreAvailable {
+    return Intl.message(
+      'More info available',
+      name: 'moreAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upgrade to Premium to view`
+  String get upgradePremiumView {
+    return Intl.message(
+      'Upgrade to Premium to view',
+      name: 'upgradePremiumView',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unmark Spam`
+  String get unmarkSpam {
+    return Intl.message(
+      'Unmark Spam',
+      name: 'unmarkSpam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Some error occurred. Please try again!`
+  String get someOccurredAgain {
+    return Intl.message(
+      'Some error occurred. Please try again!',
+      name: 'someOccurredAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter corporate ID`
+  String get pleaseCorporateIDText {
+    return Intl.message(
+      'Please enter corporate ID',
+      name: 'pleaseCorporateIDText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleted successfully!`
+  String get deletedSuccessfully {
+    return Intl.message(
+      'Deleted successfully!',
+      name: 'deletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number automatically verified and signed in!`
+  String get phoneAutomaticallySigned {
+    return Intl.message(
+      'Phone number automatically verified and signed in!',
+      name: 'phoneAutomaticallySigned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid OTP or verification failed`
+  String get invalidVerificationFailed {
+    return Intl.message(
+      'Invalid OTP or verification failed',
+      name: 'invalidVerificationFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minimum 8 characters are required.`
+  String get minimumCharactersRequired {
+    return Intl.message(
+      'Minimum 8 characters are required.',
+      name: 'minimumCharactersRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must include at least one uppercase letter`
+  String get mustUppercaseLetter {
+    return Intl.message(
+      'Must include at least one uppercase letter',
+      name: 'mustUppercaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must include at least one lowercase letter.`
+  String get mustLowercaseLetter {
+    return Intl.message(
+      'Must include at least one lowercase letter.',
+      name: 'mustLowercaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must include at least one special character.`
+  String get mustSpecialCharacter {
+    return Intl.message(
+      'Must include at least one special character.',
+      name: 'mustSpecialCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is valid.`
+  String get passwordValid {
+    return Intl.message(
+      'Password is valid.',
+      name: 'passwordValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Staff`
+  String get noStaff {
+    return Intl.message(
+      'No Staff',
+      name: 'noStaff',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations, your account has been successfully created.`
+  String get congratulationsSuccessfullyCreated {
+    return Intl.message(
+      'Congratulations, your account has been successfully created.',
+      name: 'congratulationsSuccessfullyCreated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registration Successful`
+  String get registrationSuccessfulText {
+    return Intl.message(
+      'Registration Successful',
+      name: 'registrationSuccessfulText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number(optional)`
+  String get phoneNumberOps {
+    return Intl.message(
+      'Phone Number(optional)',
+      name: 'phoneNumberOps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter any comments`
+  String get pleaseEnterComments {
+    return Intl.message(
+      'Please enter any comments',
+      name: 'pleaseEnterComments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Category`
+  String get pleaseEnterCategory {
+    return Intl.message(
+      'Please enter Category',
+      name: 'pleaseEnterCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Number Type`
+  String get pleaseEnterNumberType {
+    return Intl.message(
+      'Please enter Number Type',
+      name: 'pleaseEnterNumberType',
       desc: '',
       args: [],
     );

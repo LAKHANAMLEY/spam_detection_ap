@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/models/sync_call_manually_model.dart';
 
 abstract class ApiState extends Equatable {
   @override
@@ -401,6 +402,26 @@ class LoginWithEmailAndPasswordState extends ApiState {
   final LoginResponse value;
 
   LoginWithEmailAndPasswordState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+// sync call Log manually
+
+class SyncCallManuallyState extends ApiState {
+  final SyncCallManuallyResponse value;
+
+  SyncCallManuallyState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// check spam
+class CheckSpamState extends ApiState {
+  final CheckSpamNumberResponse value;
+
+  CheckSpamState(this.value);
 
   @override
   List<Object?> get props => [value];

@@ -43,10 +43,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                 listener: (context, state) {
                   if (state is FamilyAddMemberState) {
                     if (state.value.statusCode == 200) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const FamilyMemberList()));
+                      Navigator.pop(context);
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,
@@ -172,7 +169,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(2),
+                                borderRadius: BorderRadius.circular(5),
                                 borderSide: const BorderSide(
                                     width: 1.5, color: AppColor.fillColor),
                               ),
@@ -180,7 +177,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 borderSide: BorderSide(
                                     color: AppColor.fillColor, width: 1.5),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(2)),
+                                    BorderRadius.all(Radius.circular(5)),
                               ),
                               filled: true,
                               fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -214,7 +211,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(2),
+                                borderRadius: BorderRadius.circular(5),
                                 borderSide: const BorderSide(
                                     width: 1.5, color: AppColor.fillColor),
                               ),
@@ -222,7 +219,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 borderSide: BorderSide(
                                     color: AppColor.fillColor, width: 1.5),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(2)),
+                                    BorderRadius.all(Radius.circular(5)),
                               ),
                               filled: true,
                               fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -256,7 +253,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(2),
+                                borderRadius: BorderRadius.circular(5),
                                 borderSide: const BorderSide(
                                     width: 1.5, color: AppColor.fillColor),
                               ),
@@ -264,7 +261,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 borderSide: BorderSide(
                                     color: AppColor.fillColor, width: 1.5),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(2)),
+                                    BorderRadius.all(Radius.circular(5)),
                               ),
                               filled: true,
                               fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -291,7 +288,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(2),
+                                  borderRadius: BorderRadius.circular(5),
                                   borderSide: const BorderSide(
                                       width: 1.5, color: AppColor.fillColor),
                                 ),
@@ -299,7 +296,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                   borderSide: BorderSide(
                                       color: AppColor.fillColor, width: 1.5),
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(2)),
+                                      BorderRadius.all(Radius.circular(5)),
                                 ),
                                 filled: true,
                                 fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -322,7 +319,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(2),
+                                borderRadius: BorderRadius.circular(5),
                                 borderSide: const BorderSide(
                                     width: 1.5, color: AppColor.fillColor),
                               ),
@@ -330,7 +327,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 borderSide: BorderSide(
                                     color: AppColor.fillColor, width: 1.5),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(2)),
+                                    BorderRadius.all(Radius.circular(5)),
                               ),
                               filled: true,
                               fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -364,7 +361,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(2),
+                                borderRadius: BorderRadius.circular(5),
                                 borderSide: const BorderSide(
                                     width: 1.5, color: AppColor.fillColor),
                               ),
@@ -372,7 +369,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 borderSide: BorderSide(
                                     color: AppColor.fillColor, width: 1.5),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(2)),
+                                    BorderRadius.all(Radius.circular(5)),
                               ),
                               filled: true,
                               fillColor: AppColor.fillColor.withOpacity(0.2),

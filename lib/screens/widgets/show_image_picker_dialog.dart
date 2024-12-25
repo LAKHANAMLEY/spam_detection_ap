@@ -15,13 +15,13 @@ Future<dynamic> showImagePickerDialog(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Choose an option',
+              appLocalization(context).chooseOption,
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 16.0),
             ListTile(
               leading: const Icon(Icons.camera_alt, color: Colors.blue),
-              title: const Text('Take a Photo'),
+              title: Text(appLocalization(context).takePhoto),
               onTap: () async {
                 // Call your camera function here
                 ImagePickerHelper.takePhoto().then((file) {
@@ -32,7 +32,7 @@ Future<dynamic> showImagePickerDialog(
             ),
             ListTile(
               leading: const Icon(Icons.photo_library, color: Colors.green),
-              title: const Text('Choose from Gallery'),
+              title: Text(appLocalization(context).chooseGallery),
               onTap: () async {
                 ImagePickerHelper.chooseFromGallery().then((file) {
                   selectImageBloc.add(SelectFileEvent(file));
@@ -45,8 +45,8 @@ Future<dynamic> showImagePickerDialog(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text(
-                'Cancel',
+              child: Text(
+                appLocalization(context).cancelText,
                 style: TextStyle(color: Colors.red),
               ),
             ),

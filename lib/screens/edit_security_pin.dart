@@ -23,25 +23,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: AppBar(
-          backgroundColor: AppColor.secondryColor,
-          leading: GestureDetector(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 2 / 100,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Image.asset(
-                    IconConstants.backIcon,
-                  ),
-                ),
-              )),
-          title: Image.asset(
-            IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 5 / 100,
-          ),
+        appBar: CustomAppBar(
           centerTitle: true,
         ),
         body: SafeArea(
@@ -73,11 +55,11 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                   MediaQuery.of(context).size.height * 4 / 100,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 80, right: 80),
+                              padding: EdgeInsets.only(left: 70, right: 70),
                               child: Text(
                                 appLocalization(context).changeSecurity,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: AppColor.bluelightColor,
                                     fontSize: 35,
                                     fontFamily: AppFont.fontFamily,

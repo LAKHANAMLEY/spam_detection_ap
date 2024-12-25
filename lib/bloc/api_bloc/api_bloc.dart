@@ -1,3 +1,4 @@
+import 'package:spam_delection_app/data/repository/call_log_repo/sync_call_log_manually.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
@@ -119,7 +120,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(GetFamilyMemberListState(value));
       });
     }
-// get family member details
+    // get family member details
 
     if (event is GetFamilyMemberDetailEvent) {
       emit(ApiLoadingState());
@@ -247,10 +248,11 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         lastname: event.lastName,
         email: event.email,
         password: event.password,
-        position: event.relation,
+        relation: event.relation,
         supportpin: event.supportpin,
         phone: event.phone,
         countrycode: event.countrycode,
+        photoFile: event.photoFile,
       ).then((value) {
         emit(StaffAddMemberState(value));
       });
@@ -347,6 +349,22 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await login(email: event.email, password: event.password).then((value) {
         emit(LoginWithEmailAndPasswordState(value));
+      });
+    }
+    // manually
+    if (event is SyncCallLogManuallyEvent) {
+      emit(ApiLoadingState());
+      await syncCallLogManually(
+        callLogs: event.callLogs,
+      ).then((value) {
+        emit(SyncCallManuallyState(value));
+      });
+    }
+    // check Spam
+    if (event is CheckSpamEvent) {
+      emit(ApiLoadingState());
+      await checkSpam(callLogs: event.callLogs).then((value) {
+        emit(CheckSpamState(value));
       });
     }
   }

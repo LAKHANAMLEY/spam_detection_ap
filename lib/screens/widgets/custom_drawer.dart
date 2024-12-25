@@ -57,8 +57,8 @@ class CustomDrawer extends StatelessWidget {
               // }
             },
             leading: const Icon(Icons.logout, color: Colors.white),
-            title: const Text(
-              "Logout",
+            title: Text(
+              appLocalization(context).logout,
               style: TextStyle(color: Colors.white),
             ),
           )

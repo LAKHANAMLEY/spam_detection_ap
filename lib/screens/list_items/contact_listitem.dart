@@ -33,7 +33,7 @@ class _ContactListItemState extends State<ContactListItem> {
       leading: CircleAvatar(
         backgroundImage: AssetImage(contact?.isSpam == 1
             ? IconConstants.icFraud
-            : IconConstants.icfluentCall),
+            : IconConstants.icCallRegular),
       ),
       // leading: Image.network(
       //   contact?.name ?? "", //TODO: image path
@@ -49,7 +49,7 @@ class _ContactListItemState extends State<ContactListItem> {
       trailing: PopupMenuButton(
         itemBuilder: (context) => [
           PopupMenuItem(
-            child: const Text("Report"),
+            child: Text(appLocalization(context).reportText),
             onTap: () {
               showModalBottomSheet(
                 isScrollControlled: true,

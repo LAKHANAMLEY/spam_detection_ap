@@ -8,38 +8,34 @@ class AddContact extends StatefulWidget {
 }
 
 class _AddContactState extends State<AddContact> {
-  bool isCheckBoxValue = false;
-  bool isPasswordVisible = true;
-  bool isConfirmPasswordVisible = true;
-  bool isApiCalling = false;
-  bool agreeToTerms = false;
-
   bool _isLoading = false;
   String? _errorMessage;
   String? enteredPhone;
+  double scale = 3.5;
 
   List<dynamic> countries = [];
-  bool isLoading = true;
-  String? selectedCountryCode;
-  String? selectedCountryName;
+
   final TextEditingController phoneController = TextEditingController();
 
   PhoneNumber? phoneNumber;
 
-  final TextEditingController fullnameController = TextEditingController();
+  final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController phonenumberController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController _numberController = TextEditingController();
-  String _selectedType = "Home";
 
-  final List<String> _options = [
-    "Mobile",
+  //String _selectedType = appLocalization(context).mobile;
+
+  /*final List<String> _options = [
+    appLocalization(context).contactList,
     "Home",
     "Work",
     "Home Fax",
     "Work Fax",
     "Other"
   ];
+    
+   */
 
   @override
   void dispose() {
@@ -49,9 +45,18 @@ class _AddContactState extends State<AddContact> {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> _options = [
+      appLocalization(context).mobile,
+      appLocalization(context).home,
+      appLocalization(context).work,
+      appLocalization(context).homeFax,
+      appLocalization(context).workFax,
+      appLocalization(context).other,
+    ];
+    String _selectedType = appLocalization(context).mobile;
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: const CustomAppBar(title: 'Add Contact'),
+      appBar: CustomAppBar(title: appLocalization(context).addContact),
       //centerTitle: true,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -61,19 +66,19 @@ class _AddContactState extends State<AddContact> {
               SizedBox(
                 width: MediaQuery.sizeOf(context).width * 90 / 100,
                 child: TextFormField(
-                  controller: fullnameController,
+                  controller: fullNameController,
                   decoration: InputDecoration(
                     hintText: appLocalization(context).userName,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(5),
                       borderSide: const BorderSide(
                           width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
                       borderSide:
                           BorderSide(color: AppColor.fillColor, width: 1.5),
-                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     filled: true,
                     fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -84,7 +89,10 @@ class _AddContactState extends State<AddContact> {
                         width: 10,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Image.asset(IconConstants.icUsername),
+                          child: Image.asset(
+                            IconConstants.icUsername,
+                            scale: 1.5,
+                          ),
                         ),
                       ),
                     ),
@@ -94,74 +102,31 @@ class _AddContactState extends State<AddContact> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 3 / 100,
               ),
-              Center(
-                  child: Padding(
-                padding: const EdgeInsets.only(left: 18, right: 18),
-                child: IntlPhoneField(
-                  controller: phonenumberController,
-                  decoration: InputDecoration(
-                    hintText: appLocalization(context).phoneNumber,
-                    hintStyle: const TextStyle(color: AppColor.lightfillColor),
-                    //labelText: 'Phone Number',
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(2),
-                      borderSide: const BorderSide(
-                          width: 1.5, color: AppColor.fillColor),
-                    ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: AppColor.fillColor, width: 1.5),
-                      borderRadius: BorderRadius.all(Radius.circular(2)),
-                    ),
-                    filled: true,
-                    fillColor: AppColor.fillColor.withOpacity(0.2),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        IconConstants.icCalladd,
-                        // Adjust the path as necessary
-                        width: MediaQuery.of(context).size.width * 3 / 100,
-                        height: MediaQuery.of(context).size.height * 3 / 100,
-                      ),
-                    ),
-                  ),
-                  initialCountryCode: 'IN',
-                  onChanged: (phone) {
-                    phoneNumber = phone;
-                    enteredPhone = phone.completeNumber;
-                    // print(phone.completeNumber);
-                    // print(phone.countryCode);
-                  },
-                ),
-              )),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 3 / 100,
-              ),
               SizedBox(
                 width: MediaQuery.sizeOf(context).width * 90 / 100,
                 child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
                   controller: emailController,
                   decoration: InputDecoration(
                     hintText: appLocalization(context).emailAddress,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(5),
                       borderSide: const BorderSide(
                           width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
                       borderSide:
                           BorderSide(color: AppColor.fillColor, width: 1.5),
-                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     filled: true,
                     fillColor: AppColor.fillColor.withOpacity(0.2),
                     suffixIcon: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.asset(
-                        IconConstants.icEmailadd,
-                        width: MediaQuery.of(context).size.width * 3 / 100,
-                        height: MediaQuery.of(context).size.height * 3 / 100,
+                        IconConstants.icfluentMail,
+                        scale: 3,
                       ),
                     ),
                   ),
@@ -186,14 +151,14 @@ class _AddContactState extends State<AddContact> {
                     hintText: appLocalization(context).numberType,
                     hintStyle: const TextStyle(color: AppColor.lightfillColor),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(5),
                       borderSide: const BorderSide(
                           width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
                       borderSide:
                           BorderSide(color: AppColor.fillColor, width: 1.5),
-                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     filled: true,
                     fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -207,6 +172,44 @@ class _AddContactState extends State<AddContact> {
                   ),
                 ),
               ),
+              Center(
+                  child: Padding(
+                padding: const EdgeInsets.only(left: 18, right: 18),
+                child: IntlPhoneField(
+                  controller: phoneNumberController,
+                  decoration: InputDecoration(
+                    hintText: appLocalization(context).phoneNumber,
+                    hintStyle: const TextStyle(color: AppColor.lightfillColor),
+                    //labelText: 'Phone Number',
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(
+                          width: 1.5, color: AppColor.fillColor),
+                    ),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: AppColor.fillColor, width: 1.5),
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                    ),
+                    filled: true,
+                    fillColor: AppColor.fillColor.withOpacity(0.2),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        IconConstants.icCallTone,
+                        scale: 3,
+                      ),
+                    ),
+                  ),
+                  initialCountryCode: 'IN',
+                  onChanged: (phone) {
+                    phoneNumber = phone;
+                    enteredPhone = phone.completeNumber;
+                    // print(phone.completeNumber);
+                    // print(phone.countryCode);
+                  },
+                ),
+              )),
               if (_errorMessage != null)
                 Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
               SizedBox(
@@ -215,14 +218,16 @@ class _AddContactState extends State<AddContact> {
               _isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : AppButton(
-                      text: StringConstants.addcontactext,
+                      text: appLocalization(context).addContact,
                       onPress: () {
                         final email = emailController.text;
-                        final phone = phonenumberController.text;
-                        final fullName = fullnameController.text;
+                        final phone = phoneNumberController.text;
+                        final fullName = fullNameController.text;
                         final numberType = _numberController.text;
 
-                        if (email.isNotEmpty && fullName.isNotEmpty) {
+                        if (email.isNotEmpty &&
+                            fullName.isNotEmpty &&
+                            phone.isNotEmpty) {
                           setState(() {
                             _isLoading = true;
                           });
@@ -249,7 +254,8 @@ class _AddContactState extends State<AddContact> {
                           });
                         } else {
                           setState(() {
-                            _errorMessage = 'Please enter the all fields.';
+                            _errorMessage =
+                                appLocalization(context).pleaseEnterFields;
                           });
                         }
                       },

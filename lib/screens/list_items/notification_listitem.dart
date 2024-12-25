@@ -12,6 +12,10 @@ class NotificationListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomListTile(
       onTap: () {
+        //TODO:iska detail page bana kr yha se navigate kro
+        // understand sir
+        // see sir is type ka
+        Navigator.pushNamed(context, AppRoutes.viewedProfile);
         /*Navigator.pushNamed(context, AppRoutes.contactDetail,
             arguments: ContactDetail(
               contact: ContactData(
@@ -37,7 +41,7 @@ class NotificationListItem extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              notification.toString(),
+              notification.message ?? "",
               style: const TextStyle(
                   fontWeight: FontWeight.w600, color: AppColor.callColor),
             ),

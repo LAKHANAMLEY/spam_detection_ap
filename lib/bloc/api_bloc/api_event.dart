@@ -270,6 +270,7 @@ class StaffAddMemberEvent extends ApiEvent {
   final String supportpin;
   final String phone;
   final String countrycode;
+  final XFile? photoFile;
 
   StaffAddMemberEvent({
     required this.email,
@@ -280,6 +281,7 @@ class StaffAddMemberEvent extends ApiEvent {
     required this.supportpin,
     required this.phone,
     required this.countrycode,
+    this.photoFile,
   });
 
   @override
@@ -291,7 +293,8 @@ class StaffAddMemberEvent extends ApiEvent {
         supportpin,
         phone,
         countrycode,
-        password
+        password,
+        photoFile,
       ];
 }
 
@@ -388,4 +391,27 @@ class LoginWithEmailAndPasswordEvent extends ApiEvent {
 
   @override
   List<Object?> get props => [email, password];
+}
+
+// manually
+class SyncCallLogManuallyEvent extends ApiEvent {
+  final List<CallLogEntry> callLogs;
+
+  SyncCallLogManuallyEvent({
+    required this.callLogs,
+  });
+
+  @override
+  List<Object?> get props => [callLogs];
+}
+
+class CheckSpamEvent extends ApiEvent {
+  final List<CallLogEntry> callLogs;
+
+  CheckSpamEvent({
+    required this.callLogs,
+  });
+
+  @override
+  List<Object?> get props => [callLogs];
 }

@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/widgets/show_image_picker_dialog.dart';
 
 class AddStaffMember extends StatefulWidget {
   const AddStaffMember({super.key});
@@ -9,7 +10,7 @@ class AddStaffMember extends StatefulWidget {
 
 class _AddStaffMemberState extends State<AddStaffMember> {
   String? enteredPhone;
-
+  SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
   PhoneNumber? phoneNumber;
 
   double scale = 3.5;
@@ -27,11 +28,13 @@ class _AddStaffMemberState extends State<AddStaffMember> {
   final TextEditingController supportPinController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
 
+  XFile? selectedImage;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: const CustomAppBar(title: "Add Staff Member"),
+        appBar: CustomAppBar(title: appLocalization(context).addStaffMember),
         body: SafeArea(
             child: BlocConsumer(
                 bloc: staffBloc,
@@ -39,20 +42,11 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                   if (state is StaffAddMemberState) {
                     if (state.value.statusCode == 200) {
                       Navigator.pop(context);
-
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => const StaffMemberList()));
-                    } else if (state.value.statusCode ==
-                        HTTPStatusCodes.sessionExpired) {
-                      sessionExpired(context, state.value.message);
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,
                           subTitle: state.value.message.toString());
                     }
-                    staffBloc.add(GetStaffMemberListEvent());
                   }
                 },
                 builder: (context, state) {
@@ -63,6 +57,112 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                       padding: const EdgeInsets.all(8.0),
                       child: SingleChildScrollView(
                         child: Column(children: [
+                          BlocConsumer(
+                              bloc: selectImageBloc,
+                              listener: (context, state) {
+                                if (state is SelectFileState) {
+                                  selectedImage = state.value;
+                                }
+                              },
+                              builder: (context, state) {
+                                return SizedBox(
+                                  child: selectedImage == null
+                                      ? CircleAvatar(
+                                          backgroundColor: AppColor.vanishColor
+                                              .withOpacity(0.2),
+                                          radius: 43.0,
+                                          backgroundImage: const AssetImage(
+                                              IconConstants.iccircleAvater),
+                                          child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: CircleAvatar(
+                                                backgroundColor:
+                                                    AppColor.callColor,
+                                                radius: 12.0,
+                                                child: GestureDetector(
+                                                    onTap: () {
+                                                      showImagePickerDialog(
+                                                          context,
+                                                          selectImageBloc);
+                                                    },
+                                                    child: Image.asset(
+                                                      IconConstants.icCamera,
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              2 /
+                                                              100,
+                                                    ))),
+                                          ),
+                                        )
+                                      : selectedImage?.mimeType == "http"
+                                          ? CircleAvatar(
+                                              backgroundColor: AppColor
+                                                  .vanishColor
+                                                  .withOpacity(0.2),
+                                              radius: 43.0,
+                                              backgroundImage: NetworkImage(
+                                                  selectedImage?.path ?? ""),
+                                              child: Align(
+                                                alignment:
+                                                    Alignment.bottomRight,
+                                                child: CircleAvatar(
+                                                    backgroundColor:
+                                                        AppColor.callColor,
+                                                    radius: 12.0,
+                                                    child: GestureDetector(
+                                                        onTap: () {
+                                                          showImagePickerDialog(
+                                                              context,
+                                                              selectImageBloc);
+                                                        },
+                                                        child: Image.asset(
+                                                          IconConstants
+                                                              .icCamera,
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              2 /
+                                                              100,
+                                                        ))),
+                                              ),
+                                            )
+                                          : CircleAvatar(
+                                              backgroundColor: AppColor
+                                                  .vanishColor
+                                                  .withOpacity(0.2),
+                                              radius: 43.0,
+                                              backgroundImage: FileImage(File(
+                                                  selectedImage?.path ?? "")),
+                                              child: Align(
+                                                alignment:
+                                                    Alignment.bottomRight,
+                                                child: CircleAvatar(
+                                                    backgroundColor:
+                                                        AppColor.callColor,
+                                                    radius: 12.0,
+                                                    child: GestureDetector(
+                                                        onTap: () {
+                                                          showImagePickerDialog(
+                                                              context,
+                                                              selectImageBloc);
+                                                        },
+                                                        child: Image.asset(
+                                                          IconConstants
+                                                              .icCamera,
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              2 /
+                                                              100,
+                                                        ))),
+                                              ),
+                                            ),
+                                );
+                              }),
                           10.height(),
                           CustomTextField(
                             controller: firstnameController,
@@ -73,7 +173,8 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                             ),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
-                                return "Please enter fist name";
+                                return appLocalization(context)
+                                    .pleaseEnterYourFirstName;
                               }
                               return null;
                             },
@@ -89,7 +190,8 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                             ),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
-                                return "Please enter last name";
+                                return appLocalization(context)
+                                    .pleaseEnterYourLastName;
                               }
                               return null;
                             },
@@ -104,7 +206,8 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                             ),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
-                                return "Please enter Email";
+                                return appLocalization(context)
+                                    .pleaseEnterYourEmailAddress;
                               }
                               return null;
                             },
@@ -117,7 +220,8 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                             //suffix: Image.asset(IconConstants.icUsername),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
-                                return "Please enter password";
+                                return appLocalization(context)
+                                    .pleaseEnterYourPassword;
                               }
                               return null;
                             },
@@ -132,7 +236,8 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                             ),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
-                                return "Please enter position";
+                                return appLocalization(context)
+                                    .pleaseEnterPosition;
                               }
                               return null;
                             },
@@ -144,7 +249,8 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                             //suffix: Image.asset(IconConstants.icUsername),
                             validator: (p0) {
                               if (p0?.isEmpty ?? true) {
-                                return "Please enter support pin";
+                                return appLocalization(context)
+                                    .pleaseSupportPin;
                               }
                               return null;
                             },
@@ -159,7 +265,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(2),
+                                  borderRadius: BorderRadius.circular(5),
                                   borderSide: const BorderSide(
                                       width: 1.5, color: AppColor.fillColor),
                                 ),
@@ -167,7 +273,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                   borderSide: BorderSide(
                                       color: AppColor.fillColor, width: 1.5),
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(2)),
+                                      BorderRadius.all(Radius.circular(5)),
                                 ),
                                 filled: true,
                                 fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -190,20 +296,22 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                             height: 2,
                           ),
                           AppButton(
-                              text: "Add Staff Member",
+                              text: appLocalization(context).addStaffMember,
                               onPress: () {
                                 staffBloc.add(
                                   StaffAddMemberEvent(
-                                    email: emailController.text.trim(),
-                                    password: passwordController.text.trim(),
-                                    firstName: firstnameController.text.trim(),
-                                    lastName: lastnameController.text.trim(),
-                                    relation: positionController.text.trim(),
-                                    supportpin:
-                                        supportPinController.text.trim(),
-                                    phone: phoneNumberController.text.trim(),
-                                    countrycode: phoneNumber?.countryCode ?? '',
-                                  ),
+                                      email: emailController.text.trim(),
+                                      password: passwordController.text.trim(),
+                                      firstName:
+                                          firstnameController.text.trim(),
+                                      lastName: lastnameController.text.trim(),
+                                      relation: positionController.text.trim(),
+                                      supportpin:
+                                          supportPinController.text.trim(),
+                                      phone: phoneNumberController.text.trim(),
+                                      countrycode:
+                                          phoneNumber?.countryCode ?? '',
+                                      photoFile: selectedImage),
                                 );
                               }),
                         ]),

@@ -15,15 +15,18 @@ class _NotificationListState extends State<NotificationList> {
   void initState() {
     super.initState();
     notificationListBloc.add(NotificationListEvent());
+    //yha event add kia h list get krne ka
+    //agar apko koi or state mile jese NotificationDeleteState
+    //tab uspr firse event add krna hoga NotificationListEvent
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Notifications List',
+      appBar: CustomAppBar(
+        title: appLocalization(context).notificationList,
       ),
-      backgroundColor: AppColor.secondryColor,
+      backgroundColor: AppColor.greylightColor,
       body: SafeArea(
           child: Column(children: <Widget>[
         SizedBox(
@@ -34,6 +37,7 @@ class _NotificationListState extends State<NotificationList> {
                 bloc: notificationListBloc,
                 listener: (context, state) {
                   if (state is NotificationListState) {
+                    //ye state list get hone pr hi milti h
                     if (state.value.statusCode == 200) {
                       // showCustomDialog(
                       //   context,
@@ -54,8 +58,13 @@ class _NotificationListState extends State<NotificationList> {
                         subTitle: state.value.message,
                       );
                     }
-                    notificationListBloc.add(NotificationTypeEvent());
+                    // notificationListBloc.add(NotificationListEvent());
+                    //iski wajah se load ho rha tha
+                    // okay sir but listbloc to add krna pdegana
+                    //yes wo initstate me krege yaha to already list get ho rhi h fir se get krege to always get hoti rhegi loading
+                    //understand sir
                   }
+                  //yaha pr if condition laga kr
                 },
                 builder: (context, state) {
                   if (state is NotificationListState) {
@@ -65,8 +74,9 @@ class _NotificationListState extends State<NotificationList> {
                       progressIndicator: const Loader(),
                       inAsyncCall: state is ApiLoadingState,
                       child: (notifications.isEmpty)
-                          ? const Center(
-                              child: Text('No Notifications'),
+                          ? Center(
+                              child: Text(
+                                  appLocalization(context).noNotifications),
                             )
                           : ListView.builder(
                               controller: scrollController,

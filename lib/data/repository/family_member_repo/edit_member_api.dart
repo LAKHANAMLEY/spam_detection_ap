@@ -5,9 +5,9 @@ Future<Response> familyEditMember({required FamilyMember familyMember}) async {
   var body = {
     'first_name': familyMember.firstName ?? "",
     'last_name': familyMember.lastName ?? "",
-    'position': familyMember.relation ?? "",
+    'relation': familyMember.relation ?? "",
     // 'photo': staffMember.photo,//photo ko is request me send nhi kr skte //multipart req use krna hogi
-    'staff_id': familyMember.userId ?? "",
+    'family_id': familyMember.userId ?? "",
     'support_pin': familyMember.supportPin ?? "",
   };
   final request = http.MultipartRequest(

@@ -9,13 +9,14 @@ class MessagesScreen extends StatefulWidget {
 
 class _MessagesScreenState extends State<MessagesScreen> {
   var messages = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Builder(builder: (context) {
         if (messages.isEmpty) {
-          return const Center(
-            child: Text("No messages"),
+          return Center(
+            child: Text(appLocalization(context).noMessages),
           );
         }
         return ListView.builder(

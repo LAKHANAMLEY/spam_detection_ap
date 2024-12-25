@@ -16,8 +16,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
+      appBar: CustomAppBar(
+        /*backgroundColor: AppColor.secondryColor,
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -25,7 +25,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Image.asset(
-              IconConstants.backIcon,
+              IconConstants.icBacKCircle,
               height: MediaQuery.of(context).size.height * 2 / 100,
               width: MediaQuery.of(context).size.width * 2 / 100,
             ),
@@ -36,6 +36,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
           height: MediaQuery.of(context).size.height * 38 / 100,
           width: MediaQuery.of(context).size.width * 38 / 100,
         ),
+
+         */
         centerTitle: true,
       ),
       body: SafeArea(
@@ -106,7 +108,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                     : AppColor.secondryColor,
                                 BlendMode.srcIn),
                             image: const AssetImage(
-                                IconConstants.covidprotectionshield),
+                                IconConstants.icPersonalShield),
                           ),
                         ),
                       ),
@@ -159,7 +161,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                     ? AppColor.secondryColor
                                     : AppColor.callColor,
                                 BlendMode.srcIn),
-                            image: const AssetImage(IconConstants.icCorporate),
+                            image: const AssetImage(
+                                IconConstants.icCorporateShield),
                           ),
                         ),
                       ),

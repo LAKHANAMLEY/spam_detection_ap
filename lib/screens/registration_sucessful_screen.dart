@@ -1,37 +1,20 @@
 import 'package:spam_delection_app/lib.dart';
 
-class RegistrationSucessful extends StatefulWidget {
-  const RegistrationSucessful({super.key, this.firstname});
-  final String? firstname;
+class RegistrationSuccessful extends StatefulWidget {
+  const RegistrationSuccessful({super.key, this.user});
+
+  final User? user;
 
   @override
-  State<RegistrationSucessful> createState() => _RegistrationSucessfulState();
+  State<RegistrationSuccessful> createState() => _RegistrationSuccessfulState();
 }
 
-class _RegistrationSucessfulState extends State<RegistrationSucessful> {
+class _RegistrationSuccessfulState extends State<RegistrationSuccessful> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: AppBar(
-          backgroundColor: AppColor.secondryColor,
-          leading: GestureDetector(
-            onTap: () {},
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 2 / 100,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Image.asset(
-                  IconConstants.backIcon,
-                ),
-              ),
-            ),
-          ),
-          title: Image.asset(
-            IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 38 / 100,
-            width: MediaQuery.of(context).size.width * 38 / 100,
-          ),
+        appBar: const CustomAppBar(
           centerTitle: true,
         ),
         body: SafeArea(
@@ -40,13 +23,13 @@ class _RegistrationSucessfulState extends State<RegistrationSucessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 10 / 100,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 10, right: 10),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
             child: Center(
                 child: Text(
-              StringConstants.registersuccessfultext,
+              appLocalization(context).registrationSuccessfulText,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                   color: AppColor.bluelightColor,
                   fontSize: 35,
                   fontFamily: AppFont.fontFamily,
@@ -57,7 +40,7 @@ class _RegistrationSucessfulState extends State<RegistrationSucessful> {
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
           Text(
-            'Yey! ${widget.firstname ?? 'User'}',
+            '${appLocalization(context).yey} ${widget.user?.firstName ?? ''}',
             style: const TextStyle(
                 color: AppColor.yellowlightColor,
                 fontSize: 18,
@@ -66,12 +49,12 @@ class _RegistrationSucessfulState extends State<RegistrationSucessful> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: Text(
-              StringConstants.congratsregistertext,
+              appLocalization(context).congratulationsSuccessfullyCreated,
               textAlign: TextAlign.center,
-              style: TextStyle(color: AppColor.gracyColor),
+              style: const TextStyle(color: AppColor.gracyColor),
             ),
           ),
           SizedBox(
@@ -83,7 +66,7 @@ class _RegistrationSucessfulState extends State<RegistrationSucessful> {
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),
           AppButton(
-              text: StringConstants.exploretext,
+              text: appLocalization(context).exploreHomePage,
               onPress: () {
                 Navigator.push(
                     context,

@@ -36,15 +36,15 @@ class _ResetPasswordState extends State<ResetPassword> {
     String validationMessage = '';
 
     if (password.length < 8) {
-      validationMessage = "Minimum 8 characters are required.";
+      validationMessage = appLocalization(context).minimumCharactersRequired;
     } else if (!RegExp(r'[A-Z]').hasMatch(password)) {
-      validationMessage = "Must include at least one uppercase letter.";
+      validationMessage = appLocalization(context).mustUppercaseLetter;
     } else if (!RegExp(r'[a-z]').hasMatch(password)) {
-      validationMessage = "Must include at least one lowercase letter.";
+      validationMessage = appLocalization(context).mustLowercaseLetter;
     } else if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(password)) {
-      validationMessage = "Must include at least one special character.";
+      validationMessage = appLocalization(context).mustSpecialCharacter;
     } else {
-      validationMessage = "Password is valid.";
+      validationMessage = appLocalization(context).passwordValid;
     }
 
     setState(() {
@@ -62,27 +62,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: AppBar(
-          backgroundColor: AppColor.secondryColor,
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 2 / 100,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Image.asset(
-                  IconConstants.backIcon,
-                ),
-              ),
-            ),
-          ),
-          title: Image.asset(
-            IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 35 / 100,
-            width: MediaQuery.of(context).size.width * 35 / 100,
-          ),
+        appBar: const CustomAppBar(
           centerTitle: true,
         ),
         body: SafeArea(
@@ -159,7 +139,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                 Text(
                   _validationMessage,
                   style: TextStyle(
-                    color: _validationMessage == "Password is valid."
+                    color: _validationMessage ==
+                            appLocalization(context).passwordValid
                         ? Colors.green
                         : Colors.red,
                     fontSize: 14,
@@ -260,7 +241,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                  content: Text('Please fill in all fields.')),
+                                  content: Text(appLocalization(context)
+                                      .pleaseEnterFields)),
                             );
                           }
                         },

@@ -58,24 +58,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: AppBar(
-          backgroundColor: AppColor.secondryColor,
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(
-                IconConstants.backIcon,
-              ),
-            ),
-          ),
-          title: Image.asset(
-            IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 38 / 100,
-            width: MediaQuery.of(context).size.width * 38 / 100,
-          ),
+        appBar: CustomAppBar(
           centerTitle: true,
         ),
         body: SafeArea(
@@ -126,14 +109,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         fontFamily: AppFont.fontFamily,
                         fontWeight: FontWeight.w600),
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(5),
                       borderSide: const BorderSide(
                           width: 1.5, color: AppColor.fillColor),
                     ),
                     focusedBorder: const OutlineInputBorder(
                       borderSide:
                           BorderSide(color: AppColor.fillColor, width: 1.5),
-                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     filled: true,
                     fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -197,7 +180,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           });
                         } else {
                           setState(() {
-                            _errorMessage = 'Please enter email address';
+                            _errorMessage = appLocalization(context)
+                                .pleaseEnterYourEmailAddress;
                           });
                         }
                       },

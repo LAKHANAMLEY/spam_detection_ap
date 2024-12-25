@@ -33,12 +33,11 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: widget.verificationId ?? "",
-        smsCode: _otpController
-            .text, //yes sir sabhi me controller nahi diye sorry sir// yes but sabhi ko add v krna pdega
+        smsCode: _otpController.text,
       );
       await _auth.signInWithCredential(credential);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Phone number verified and user signed in successfully!'),
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(appLocalization(context).phoneAutomaticallySigned),
       ));
 
       loginWithPhone(
@@ -61,7 +60,8 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
       });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Invalid OTP or verification failed')),
+        SnackBar(
+            content: Text(appLocalization(context).invalidVerificationFailed)),
       );
     }
   }
@@ -644,8 +644,8 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                           Text(
-                             appLocalization(context).didTxt,
+                          Text(
+                            appLocalization(context).didTxt,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: AppFont.fontFamily,
@@ -662,8 +662,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                               //    MaterialPageRoute(
                               //       builder: (BuildContext context) => RegisterScreen()));
                             },
-                            child: Text(
-                                appLocalization(context).resendOtp,
+                            child: Text(appLocalization(context).resendOtp,
                                 style: const TextStyle(
                                     color: AppColor.yellowlightColor,
                                     fontWeight: FontWeight.bold,

@@ -44,9 +44,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add bank account"),
         "addBeneficiary":
             MessageLookupByLibrary.simpleMessage("Add beneficiary"),
+        "addContact": MessageLookupByLibrary.simpleMessage("Add Contact"),
         "addFamilyMember":
             MessageLookupByLibrary.simpleMessage("Add Family Member"),
         "addMember": MessageLookupByLibrary.simpleMessage("Add Member"),
+        "addMemberText": MessageLookupByLibrary.simpleMessage("Add Member"),
         "addPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Add phone number"),
         "addStaffMember":
@@ -111,11 +113,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "billers": MessageLookupByLibrary.simpleMessage("Billers"),
         "billsNSubscriptions":
             MessageLookupByLibrary.simpleMessage("Bills & Subscriptions"),
+        "block": MessageLookupByLibrary.simpleMessage("Block"),
         "blockAccuracy": MessageLookupByLibrary.simpleMessage(
             "Block all scam, telemarketing and fraud calls thanks to AI -blocking accuracy."),
         "blockedCalls": MessageLookupByLibrary.simpleMessage("Blocked Calls"),
         "blockedNumber":
             MessageLookupByLibrary.simpleMessage("Blocked Numbers"),
+        "business": MessageLookupByLibrary.simpleMessage("Business"),
         "callLogs": MessageLookupByLibrary.simpleMessage("Call logs"),
         "callProtection":
             MessageLookupByLibrary.simpleMessage("Call protection"),
@@ -147,7 +151,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseOption":
             MessageLookupByLibrary.simpleMessage("Choose an option"),
         "chooseYourPlan":
-            MessageLookupByLibrary.simpleMessage("Choose your plan "),
+            MessageLookupByLibrary.simpleMessage("Choose Your Plan "),
         "city": MessageLookupByLibrary.simpleMessage("City"),
         "clearAllNotifications":
             MessageLookupByLibrary.simpleMessage("Clear all notifications"),
@@ -173,12 +177,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirm security pin"),
         "congratulationScreated": MessageLookupByLibrary.simpleMessage(
             "Congratulations, your account has been successfully created."),
+        "congratulationsSuccessfullyCreated":
+            MessageLookupByLibrary.simpleMessage(
+                "Congratulations, your account has been successfully created."),
         "congratulationsYourAccountHasBeenSuccessfullyCreated":
             MessageLookupByLibrary.simpleMessage(
                 "Congratulations, your account has been successfully created."),
         "congratulationsYourAccountHasBeenSuccessfullyUpdated":
             MessageLookupByLibrary.simpleMessage(
                 "Congratulations, your account has been successfully updated."),
+        "contactList": MessageLookupByLibrary.simpleMessage("Contact List"),
         "contactPermission":
             MessageLookupByLibrary.simpleMessage("Contact permission"),
         "contactText": MessageLookupByLibrary.simpleMessage("Contacts"),
@@ -213,6 +221,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteMember": MessageLookupByLibrary.simpleMessage("Delete Member"),
         "deleteStaffMember":
             MessageLookupByLibrary.simpleMessage("Delete Staff Member"),
+        "deletedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Deleted successfully!"),
         "description": MessageLookupByLibrary.simpleMessage("Description: "),
         "details": MessageLookupByLibrary.simpleMessage("Details"),
         "developerModeDialogDiscription": MessageLookupByLibrary.simpleMessage(
@@ -356,7 +366,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "getOtp": MessageLookupByLibrary.simpleMessage("Get OTP"),
-        "getStarted": MessageLookupByLibrary.simpleMessage("Get started"),
+        "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
         "giftCard": MessageLookupByLibrary.simpleMessage("Gift card"),
         "giftCardBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Choose the specific gift card brand and desired value based on your needs and preferences."),
@@ -375,6 +385,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "homeBtnDescription": MessageLookupByLibrary.simpleMessage(
             "You will go to the Dashboard by pressing Home button."),
+        "homeFax": MessageLookupByLibrary.simpleMessage("Home Fax"),
+        "homeText": MessageLookupByLibrary.simpleMessage("Home"),
         "howMuchYouWantToSend":
             MessageLookupByLibrary.simpleMessage("How much you want to send ?"),
         "idVerificationDesc": MessageLookupByLibrary.simpleMessage(
@@ -392,6 +404,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Institution code"),
         "institutionName":
             MessageLookupByLibrary.simpleMessage("Institution name"),
+        "invalidVerificationFailed": MessageLookupByLibrary.simpleMessage(
+            "Invalid OTP or verification failed"),
         "invoice": MessageLookupByLibrary.simpleMessage("Invoice"),
         "invoiceAlreadyPaid": MessageLookupByLibrary.simpleMessage(
             "Invoice already paid. View payment details"),
@@ -437,10 +451,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "message": MessageLookupByLibrary.simpleMessage("Message"),
         "messagesSpam":
             MessageLookupByLibrary.simpleMessage("Messages moved  to spam"),
+        "minimumCharactersRequired": MessageLookupByLibrary.simpleMessage(
+            "Minimum 8 characters are required."),
         "minimumOrderValueIs":
             MessageLookupByLibrary.simpleMessage("Minimum order value is"),
         "minimumTransferLimitIs": m1,
         "missedCalls": MessageLookupByLibrary.simpleMessage("Missed Calls"),
+        "mobile": MessageLookupByLibrary.simpleMessage("Mobile"),
         "mobileNo": MessageLookupByLibrary.simpleMessage("Mobile No."),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile number"),
         "mobileNumberDoesntExist": MessageLookupByLibrary.simpleMessage(
@@ -451,7 +468,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mobile recharge"),
         "momoId": MessageLookupByLibrary.simpleMessage("MOMO ID"),
         "month": MessageLookupByLibrary.simpleMessage("month"),
+        "moreAvailable":
+            MessageLookupByLibrary.simpleMessage("More info available"),
         "mtnMoMo": MessageLookupByLibrary.simpleMessage("MTN MoMo"),
+        "mustLowercaseLetter": MessageLookupByLibrary.simpleMessage(
+            "Must include at least one lowercase letter."),
+        "mustSpecialCharacter": MessageLookupByLibrary.simpleMessage(
+            "Must include at least one special character."),
+        "mustUppercaseLetter": MessageLookupByLibrary.simpleMessage(
+            "Must include at least one uppercase letter"),
         "myBills": MessageLookupByLibrary.simpleMessage("My bills"),
         "myContact": MessageLookupByLibrary.simpleMessage("My contact"),
         "mySubscriptions":
@@ -466,14 +491,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
         "noBeneficiary": MessageLookupByLibrary.simpleMessage("No beneficiary"),
+        "noCategoriesAvailable":
+            MessageLookupByLibrary.simpleMessage("No categories available."),
         "noContacts": MessageLookupByLibrary.simpleMessage("No contacts"),
         "noCountry": MessageLookupByLibrary.simpleMessage("No country"),
         "noData": MessageLookupByLibrary.simpleMessage("No data"),
         "noDocumentTypeAvailable":
             MessageLookupByLibrary.simpleMessage("No document type available"),
         "noKycHistory": MessageLookupByLibrary.simpleMessage("No KYC history"),
+        "noMessages": MessageLookupByLibrary.simpleMessage("No Messages"),
         "noNotifications":
             MessageLookupByLibrary.simpleMessage("No notifications"),
+        "noNotificationsText":
+            MessageLookupByLibrary.simpleMessage("No Notifications"),
         "noPermissionToUpdateText": MessageLookupByLibrary.simpleMessage(
             "Looking like you don\'t have permission to update or you have not added mandatory data"),
         "noPlans": MessageLookupByLibrary.simpleMessage("No plans"),
@@ -483,6 +513,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noQuery": MessageLookupByLibrary.simpleMessage("No query"),
         "noRegions": MessageLookupByLibrary.simpleMessage("No regions"),
         "noRequest": MessageLookupByLibrary.simpleMessage("No request"),
+        "noStaff": MessageLookupByLibrary.simpleMessage("No Staff"),
         "noThanks": MessageLookupByLibrary.simpleMessage("No thanks"),
         "noTransaction": MessageLookupByLibrary.simpleMessage("No transaction"),
         "noValidityFound":
@@ -522,6 +553,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "orTxt": MessageLookupByLibrary.simpleMessage("Or"),
         "orangeMoney": MessageLookupByLibrary.simpleMessage("Orange Money"),
         "other": MessageLookupByLibrary.simpleMessage("Other"),
+        "otherText": MessageLookupByLibrary.simpleMessage("Other"),
         "otp": MessageLookupByLibrary.simpleMessage("OTP"),
         "otpVerification":
             MessageLookupByLibrary.simpleMessage(" OTP Verification"),
@@ -534,6 +566,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordIsNotMatching":
             MessageLookupByLibrary.simpleMessage("Password is not matching"),
+        "passwordValid":
+            MessageLookupByLibrary.simpleMessage("Password is valid."),
         "pay": MessageLookupByLibrary.simpleMessage("Pay"),
         "payWith": MessageLookupByLibrary.simpleMessage("Pay with"),
         "payableAmount": MessageLookupByLibrary.simpleMessage("Payable amount"),
@@ -550,10 +584,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentStatus": MessageLookupByLibrary.simpleMessage("Payment status"),
         "paymentSuccess":
             MessageLookupByLibrary.simpleMessage("Payment success!"),
+        "personal": MessageLookupByLibrary.simpleMessage("Personal"),
         "personalMth": MessageLookupByLibrary.simpleMessage("\$7.99/mth"),
         "personalProtection":
-            MessageLookupByLibrary.simpleMessage("Personal protection"),
+            MessageLookupByLibrary.simpleMessage("Personal Protection"),
+        "phoneAutomaticallySigned": MessageLookupByLibrary.simpleMessage(
+            "Phone number automatically verified and signed in!"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "phoneNumberOps":
+            MessageLookupByLibrary.simpleMessage("Phone Number(optional)"),
         "pinCode": MessageLookupByLibrary.simpleMessage("Pincode"),
         "pleasNewPasswordSecure": MessageLookupByLibrary.simpleMessage(
             "Please enter a new password to secure your account."),
@@ -579,6 +618,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter confirm security pin"),
         "pleaseCorporateID": MessageLookupByLibrary.simpleMessage(
             "Please enter your valid Email / Corporate ID"),
+        "pleaseCorporateIDText":
+            MessageLookupByLibrary.simpleMessage("Please enter corporate ID"),
         "pleaseCorporateName":
             MessageLookupByLibrary.simpleMessage("Please enter corporate name"),
         "pleaseCrnId":
@@ -593,14 +634,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter account number"),
         "pleaseEnterBeneficiaryName": MessageLookupByLibrary.simpleMessage(
             "Please enter beneficiary name"),
+        "pleaseEnterCategory":
+            MessageLookupByLibrary.simpleMessage("Please enter Category"),
         "pleaseEnterClientID":
             MessageLookupByLibrary.simpleMessage("Please enter client ID"),
+        "pleaseEnterComments":
+            MessageLookupByLibrary.simpleMessage("Please enter any comments"),
+        "pleaseEnterFields": MessageLookupByLibrary.simpleMessage(
+            "Please enter all the fields."),
         "pleaseEnterInstitutionCode": MessageLookupByLibrary.simpleMessage(
             "Please enter institution code"),
         "pleaseEnterMessage":
             MessageLookupByLibrary.simpleMessage("Please enter message"),
+        "pleaseEnterNumberType":
+            MessageLookupByLibrary.simpleMessage("Please enter Number Type"),
         "pleaseEnterOTP":
             MessageLookupByLibrary.simpleMessage("Please enter OTP"),
+        "pleaseEnterPosition":
+            MessageLookupByLibrary.simpleMessage("Please enter position"),
         "pleaseEnterValidAmount":
             MessageLookupByLibrary.simpleMessage("Please enter valid amount"),
         "pleaseEnterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
@@ -694,7 +745,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "protectAIMessages":
             MessageLookupByLibrary.simpleMessage("Protect AI messages"),
         "protectionType":
-            MessageLookupByLibrary.simpleMessage("Protection type"),
+            MessageLookupByLibrary.simpleMessage("Protection Type"),
         "qrscan": MessageLookupByLibrary.simpleMessage("QR scan"),
         "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
         "queries": MessageLookupByLibrary.simpleMessage("Queries"),
@@ -731,6 +782,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Register with Google"),
         "registrationSuccessful":
             MessageLookupByLibrary.simpleMessage("Registration Successful"),
+        "registrationSuccessfulText":
+            MessageLookupByLibrary.simpleMessage("Registration Successful"),
         "reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
         "relation": MessageLookupByLibrary.simpleMessage("Relation"),
@@ -738,6 +791,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "rent": MessageLookupByLibrary.simpleMessage("Rent"),
         "renterPassword":
             MessageLookupByLibrary.simpleMessage("Re-enter Password"),
+        "reportNumberSpam":
+            MessageLookupByLibrary.simpleMessage("Report Number As Spam"),
+        "reportText": MessageLookupByLibrary.simpleMessage("Report"),
         "request": MessageLookupByLibrary.simpleMessage("Request"),
         "requestAgain": MessageLookupByLibrary.simpleMessage("Request again"),
         "requestAmount": MessageLookupByLibrary.simpleMessage("Request amount"),
@@ -785,6 +841,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select bank account to transfer from"),
         "selectBankAccountToTransferTo": MessageLookupByLibrary.simpleMessage(
             "Select bank account to transfer to"),
+        "selectCategory":
+            MessageLookupByLibrary.simpleMessage("Select a category"),
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Select language"),
         "selectState": MessageLookupByLibrary.simpleMessage("Select state"),
@@ -823,9 +881,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
         "sms": MessageLookupByLibrary.simpleMessage("Sms"),
         "smsMth": MessageLookupByLibrary.simpleMessage("\$11.98/mth"),
+        "someOccurredAgain": MessageLookupByLibrary.simpleMessage(
+            "Some error occurred. Please try again!"),
         "spamCalls": MessageLookupByLibrary.simpleMessage("Spam Calls"),
         "spamIdentified":
             MessageLookupByLibrary.simpleMessage("Spam calls identified"),
+        "spamReports": MessageLookupByLibrary.simpleMessage("Spam reports"),
         "spamSMSEmail": MessageLookupByLibrary.simpleMessage(
             "Spam call blocking, AI Protect scam detection, SMS protect & Email"),
         "spamSMSProtect": MessageLookupByLibrary.simpleMessage(
@@ -841,6 +902,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "success": MessageLookupByLibrary.simpleMessage("Success!"),
         "successful": MessageLookupByLibrary.simpleMessage("Successful"),
         "supportPin": MessageLookupByLibrary.simpleMessage("Support Pin"),
+        "synCallLogs": MessageLookupByLibrary.simpleMessage("Sync call logs"),
+        "syncContacts": MessageLookupByLibrary.simpleMessage("Sync contacts"),
         "takeASelfie": MessageLookupByLibrary.simpleMessage("Take a selfie"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take a Photo"),
         "tax": MessageLookupByLibrary.simpleMessage("TAX"),
@@ -884,11 +947,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "transferNow": MessageLookupByLibrary.simpleMessage("Transfer now"),
         "transferTo": MessageLookupByLibrary.simpleMessage("Transfer to"),
         "tryAgain": MessageLookupByLibrary.simpleMessage("Try again.."),
+        "unblock": MessageLookupByLibrary.simpleMessage("Unblock"),
         "unknown": MessageLookupByLibrary.simpleMessage("Unknown"),
         "unknownIdentified":
             MessageLookupByLibrary.simpleMessage("Unknown number identified"),
         "unlockBCTPay": MessageLookupByLibrary.simpleMessage("Unlock BCTPay"),
         "unlockNow": MessageLookupByLibrary.simpleMessage("Unlock now"),
+        "unmarkSpam": MessageLookupByLibrary.simpleMessage("Unmark Spam"),
         "unpaid": MessageLookupByLibrary.simpleMessage("Unpaid"),
         "update": MessageLookupByLibrary.simpleMessage("Update"),
         "updateBankAccount":
@@ -899,6 +964,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "updateProfile": MessageLookupByLibrary.simpleMessage("Update profile"),
         "upgradePremium":
             MessageLookupByLibrary.simpleMessage("Upgrade to Premium"),
+        "upgradePremiumView":
+            MessageLookupByLibrary.simpleMessage("Upgrade to Premium to view"),
         "uploadBackImageOfDoc": MessageLookupByLibrary.simpleMessage(
             "Upload back image of document"),
         "uploadFollowingDocuments":
@@ -927,6 +994,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "walletPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Wallet phone number"),
         "warning": MessageLookupByLibrary.simpleMessage("Warning!"),
+        "wasPersonalNumber": MessageLookupByLibrary.simpleMessage(
+            "Was this a business or personal number?"),
         "water": MessageLookupByLibrary.simpleMessage("Water"),
         "weHaveSentTheCodeVerificationToYourMobileNumber":
             MessageLookupByLibrary.simpleMessage(
@@ -935,6 +1004,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome back"),
         "welcomeTxt": MessageLookupByLibrary.simpleMessage(
             "Welcome to BROADLINK Protect Your Mobile Defender! Effortlessly block unwanted calls, messages and keep your device clean let\'s get started and take control of your communication!"),
+        "whatCallAbout":
+            MessageLookupByLibrary.simpleMessage("What was the call about?"),
+        "whatSpamIt":
+            MessageLookupByLibrary.simpleMessage("What type of spam was it?"),
+        "work": MessageLookupByLibrary.simpleMessage("work"),
+        "workFax": MessageLookupByLibrary.simpleMessage("Work Fax"),
+        "writeComment": MessageLookupByLibrary.simpleMessage("Write a comment"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "yey": MessageLookupByLibrary.simpleMessage("Yey!"),
         "yoCanUpdateYourProfileFromHere": MessageLookupByLibrary.simpleMessage(

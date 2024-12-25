@@ -21,8 +21,8 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController relationController = TextEditingController();
-  final TextEditingController familyidController = TextEditingController();
-  final TextEditingController supportpinController = TextEditingController();
+  final TextEditingController familyIdController = TextEditingController();
+  final TextEditingController supportPinController = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
   XFile? _selectedImage;
@@ -54,7 +54,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
               bloc: familyMemberBloc,
               listener: (context, state) {
                 if (state is GetFamilyMemberDetailState) {
-                  //yaha family member detail get krege
                   if (state.value.statusCode == 200) {
                     if (state.value.familymemberdetails != null) {
                       familyMember = state.value.familymemberdetails;
@@ -88,6 +87,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
 
                   familyMemberBloc.add(
                       GetFamilyMemberDetailEvent(familyMember?.userId ?? ''));
+                  familyBloc.add(GetFamilyMemberListEvent());
                 }
               },
               builder: (context, state) {
@@ -264,7 +264,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                               ),
                               10.height(),
                               CustomTextField(
-                                controller: supportpinController,
+                                controller: supportPinController,
                                 hintText: appLocalization(context).supportPin,
 
                                 // suffix: Image.asset(IconConstants.icUsername),
@@ -308,7 +308,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                                       familyMember?.userId ??
                                                           "",
                                                   supportPin:
-                                                      supportpinController.text,
+                                                      supportPinController.text,
                                                   photo: _selectedImage?.path,
                                                   photoFile: _selectedImage)));
                                     }
@@ -333,6 +333,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
     firstnameController.text = user.firstName ?? "";
     lastnameController.text = user.lastName ?? "";
     relationController.text = user.relation ?? "";
-    supportpinController.text = user.supportPin ?? "";
+    supportPinController.text = user.supportPin ?? "";
   }
 }

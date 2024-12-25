@@ -29,7 +29,7 @@ class CallLogListItem extends StatelessWidget {
       leading: CircleAvatar(
         backgroundImage: AssetImage(callLog.isSpam == 1
             ? IconConstants.icFraud
-            : IconConstants.icfluentCall),
+            : IconConstants.icCallRegular),
       ),
       // leading: Icon(getCallTypeIcon(callLog.callType),
       //     color: getCallTypeColor(callLog.callType)),
@@ -114,13 +114,16 @@ class CallLogListItem extends StatelessWidget {
                       },
                     );
                   },
-                  child: const Text("Report")),
+                  child: Text(appLocalization(context).reportText)),
               PopupMenuItem(
                   onTap: () {
                     markSpamBloc.add(BlockUnBlockEvent(
-                        contactId: callLog.mobileNo ?? "", comments: "block"));
+                        contactId: callLog.mobileNo ?? "",
+                        comments: appLocalization(context).block));
                   },
-                  child: Text(callLog.isBlocked == 1 ? "Unblock" : "Block"))
+                  child: Text(callLog.isBlocked == 1
+                      ? appLocalization(context).unblock
+                      : appLocalization(context).block))
             ],
           ),
         ],

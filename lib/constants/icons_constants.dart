@@ -114,5 +114,32 @@ class IconConstants {
   static const String icCorporateID = 'assets/icons/ic_corporateId.png';
   static const String icCallTone = 'assets/icons/ic_call_tone.png';
   static const String icCalenderData = 'assets/icons/ic_calender_data.png';
-//static const String icCallTone = '';
+  static const String icIncomingCall = 'assets/icons/ic_incoming_call.png';
+  static const String icOutgoingCall = 'assets/icons/ic_outgoing_call.png';
+  static const String icMissCall = 'assets/icons/ic_missed_call.png';
+  static const String icBlockedCall = 'assets/icons/ic_blocked_call.png';
+  static const String icDeleteCall = 'assets/icons/ic_delete_call.png';
+  static const String icEditDetails = 'assets/icons/ic_Edit_details.png';
+  static const String icDrawerDetails = 'assets/icons/ic_drawer_details.png';
+  static const String icNotificationBell =
+      'assets/icons/ic_notification_bell.png';
+  static const String icSecurityCall = 'assets/icons/ic_security_check.png';
+  static const String icTimeClock = 'assets/icons/ic_time_clock.png';
+  static const String icEpSearch = 'assets/icons/ic_ep_search.png';
+  static const String icMessageCancel = 'assets/icons/ic_message-cancel.png';
+  static const String icUserData = 'assets/icons/ic_user_data.png';
+  static const String icCallRegular = 'assets/icons/ic_fluent_call_regular.png';
+  static const String icHomeData = 'assets/icons/ic_home_data.png';
+  static const String icChatData = 'assets/icons/ic_chat_data.png';
+  static const String icCallData = 'assets/icons/ic_call_data.png';
+  static const String icPremiumData = 'assets/icons/ic_premium_data.png';
+  static const String icSettingData = 'assets/icons/ic_setting_data.png';
+  static const String icBacKCircle = 'assets/icons/ic_back_circle.png';
+  static const String icPersonalShield = 'assets/icons/ic_personal_shield.png';
+  static const String icMobileData = 'assets/icons/ic_mobile_data.png';
+  static const String icSuccessCheck = 'assets/icons/ic_sucess_check.png';
+  static const String icCorporateShield =
+      'assets/icons/ic_corporate_shield.png';
+
+  static const String icEmailSms = '';
 }

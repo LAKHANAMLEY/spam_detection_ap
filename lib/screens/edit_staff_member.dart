@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/widgets/show_image_picker_dialog.dart';
 
 class EditStaffMember extends StatefulWidget {
   final StaffMember? staffMember;
@@ -27,84 +28,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
   var staffMemberBloc = ApiBloc(ApiBlocInitialState());
 
   StaffMember? staffMember;
-
-  Future<void> _takePhoto() async {
-    try {
-      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-      if (photo != null) {
-        debugPrint("Photo taken: ${photo.path}");
-      }
-    } catch (e) {
-      debugPrint("Error taking photo: $e");
-    }
-  }
-
-  Future<void> _chooseFromGallery() async {
-    try {
-      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        debugPrint("Image selected: ${image.path}");
-        setState(() {
-          _selectedImage = image;
-        });
-      } else {
-        debugPrint("No image selected.");
-      }
-    } catch (e) {
-      debugPrint("Error selecting image: $e");
-    }
-  }
-
-  void _showEditOptions(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
-      ),
-      builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Choose an option',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(height: 16.0),
-              ListTile(
-                leading: const Icon(Icons.camera_alt, color: Colors.blue),
-                title: const Text('Take a Photo'),
-                onTap: () {
-                  Navigator.pop(context);
-                  _takePhoto();
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.photo_library, color: Colors.green),
-                title: const Text('Choose from Gallery'),
-                onTap: () {
-                  Navigator.pop(context);
-                  // Call your gallery function here
-                  _chooseFromGallery();
-                },
-              ),
-              const SizedBox(height: 8.0),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(color: Colors.red),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
+  SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
 
   @override
   void initState() {
@@ -189,7 +113,9 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                               radius: 12.0,
                                               child: GestureDetector(
                                                   onTap: () {
-                                                    _showEditOptions(context);
+                                                    showImagePickerDialog(
+                                                        context,
+                                                        selectImageBloc);
                                                   },
                                                   child: Image.asset(
                                                     IconConstants.icCamera,
@@ -218,8 +144,9 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                                   radius: 12.0,
                                                   child: GestureDetector(
                                                       onTap: () {
-                                                        _showEditOptions(
-                                                            context);
+                                                        showImagePickerDialog(
+                                                            context,
+                                                            selectImageBloc);
                                                       },
                                                       child: Image.asset(
                                                         IconConstants.icCamera,
@@ -247,8 +174,9 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                                   radius: 12.0,
                                                   child: GestureDetector(
                                                       onTap: () {
-                                                        _showEditOptions(
-                                                            context);
+                                                        showImagePickerDialog(
+                                                            context,
+                                                            selectImageBloc);
                                                       },
                                                       child: Image.asset(
                                                         IconConstants.icCamera,

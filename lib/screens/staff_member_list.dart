@@ -16,7 +16,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
   final ImagePicker _picker = ImagePicker();
   XFile? _selectedImage;
   String? numberType;
-  List<StaffMemberList> categories = [];
+  List<StaffMember> categories = [];
 
   // var staffBloc = ApiBloc(ApiBlocInitialState());
 
@@ -30,8 +30,9 @@ class _StaffMemberListState extends State<StaffMemberList> {
   void filterSearchResults(String query) {
     setState(() {
       filteredContacts = contacts
-          .where((item) =>
-              item.firstName!.toLowerCase().contains(query.toLowerCase()))
+          .where((item) => "${item.firstName} ${item.lastName}"
+              .toLowerCase()
+              .contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -89,8 +90,8 @@ class _StaffMemberListState extends State<StaffMemberList> {
                       showCustomDialog(
                         context,
                         dialogType: DialogType.success,
-                        subTitle:
-                            state.value.message ?? "Deleted successfully!",
+                        subTitle: state.value.message ??
+                            appLocalization(context).deletedSuccessfully,
                       );
                     } else if (state.value.statusCode ==
                         HTTPStatusCodes.sessionExpired) {
@@ -116,8 +117,8 @@ class _StaffMemberListState extends State<StaffMemberList> {
                       progressIndicator: const Loader(),
                       inAsyncCall: state is ApiLoadingState,
                       child: (filteredContacts.isEmpty)
-                          ? const Center(
-                              child: Text('No staff'),
+                          ? Center(
+                              child: Text(appLocalization(context).noStaff),
                             )
                           : ListView.builder(
                               itemCount: filteredContacts.length,

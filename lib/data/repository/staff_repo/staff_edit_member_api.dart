@@ -6,7 +6,6 @@ Future<Response> staffEditMember({required StaffMember staffMember}) async {
     'first_name': staffMember.firstName ?? "",
     'last_name': staffMember.lastName ?? "",
     'position': staffMember.relation ?? "",
-    // 'photo': staffMember.photo,//photo ko is request me send nhi kr skte //multipart req use krna hogi
     'staff_id': staffMember.userId ?? "",
     'support_pin': staffMember.supportPin ?? "",
   };

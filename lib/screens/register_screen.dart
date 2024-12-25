@@ -136,13 +136,13 @@ class _RegisterState extends State<Register> {
                 hintText: appLocalization(context).firstName,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(5),
                   borderSide:
                       const BorderSide(width: 1.5, color: AppColor.fillColor),
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
                 filled: true,
                 fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -174,13 +174,13 @@ class _RegisterState extends State<Register> {
                 hintText: appLocalization(context).lastName,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(5),
                   borderSide:
                       const BorderSide(width: 1.5, color: AppColor.fillColor),
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
                 filled: true,
                 fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -207,18 +207,19 @@ class _RegisterState extends State<Register> {
           SizedBox(
             width: MediaQuery.sizeOf(context).width * 90 / 100,
             child: TextFormField(
+              keyboardType: TextInputType.emailAddress,
               controller: emailController,
               decoration: InputDecoration(
                 hintText: appLocalization(context).emailAddress,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(5),
                   borderSide:
                       const BorderSide(width: 1.5, color: AppColor.fillColor),
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
                 filled: true,
                 fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -245,13 +246,13 @@ class _RegisterState extends State<Register> {
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 //labelText: 'Phone Number',
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(5),
                   borderSide:
                       const BorderSide(width: 1.5, color: AppColor.fillColor),
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: AppColor.fillColor, width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
                 filled: true,
                 fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -282,14 +283,14 @@ class _RegisterState extends State<Register> {
                   hintText: appLocalization(context).dateOfBirth,
                   hintStyle: const TextStyle(color: AppColor.lightfillColor),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(2),
+                    borderRadius: BorderRadius.circular(5),
                     borderSide:
                         const BorderSide(width: 1.5, color: AppColor.fillColor),
                   ),
                   focusedBorder: const OutlineInputBorder(
                     borderSide:
                         BorderSide(color: AppColor.fillColor, width: 1.5),
-                    borderRadius: BorderRadius.all(Radius.circular(2)),
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                   filled: true,
                   fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -334,13 +335,13 @@ class _RegisterState extends State<Register> {
                 hintText: appLocalization(context).password,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(5),
                   borderSide:
                       const BorderSide(width: 1.5, color: AppColor.fillColor),
                 ),
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Color(0xffE1E6EB), width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(2)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
                 ),
                 filled: true,
                 fillColor: AppColor.fillColor.withOpacity(0.2),
@@ -427,7 +428,12 @@ class _RegisterState extends State<Register> {
                     final lastname = lastnameController.text;
                     final dob = dateOfBirthController.text;
 
-                    if (email.isNotEmpty && password.isNotEmpty) {
+                    if (email.isNotEmpty &&
+                        password.isNotEmpty &&
+                        phone.isNotEmpty &&
+                        firstname.isNotEmpty &&
+                        lastname.isNotEmpty &&
+                        dob.isNotEmpty) {
                       setState(() {
                         _isLoading = true;
                       });
@@ -448,7 +454,7 @@ class _RegisterState extends State<Register> {
                         if (response.statusCode == 200) {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
-                                  const RegistrationSucessful()));
+                                  const RegistrationSuccessful()));
                         } else {
                           setState(() {
                             _errorMessage = response.message.toString();
@@ -457,7 +463,8 @@ class _RegisterState extends State<Register> {
                       });
                     } else {
                       setState(() {
-                        _errorMessage = 'Please enter all  the fields.';
+                        _errorMessage =
+                            appLocalization(context).pleaseEnterFields;
                       });
                     }
                   },

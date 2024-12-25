@@ -21,24 +21,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: AppBar(
-          backgroundColor: AppColor.secondryColor,
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(
-                IconConstants.backIcon,
-              ),
-            ),
-          ),
-          title: Image.asset(
-            IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 38 / 100,
-            width: MediaQuery.of(context).size.width * 38 / 100,
-          ),
+        appBar: CustomAppBar(
           centerTitle: true,
         ),
         body: SafeArea(
@@ -83,7 +66,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                 ),
                 validator: (p0) {
                   if (p0?.isEmpty ?? true) {
-                    return "Please enter corporate ID";
+                    return appLocalization(context).pleaseCorporateID;
                   }
                   return null;
                 },
@@ -99,7 +82,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                 ),
                 validator: (p0) {
                   if (p0?.isEmpty ?? true) {
-                    return "Please enter email address";
+                    return appLocalization(context).emailAddress;
                   }
                   return null;
                 },
@@ -117,7 +100,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                 ),
                 validator: (p0) {
                   if (p0?.isEmpty ?? true) {
-                    return "Please enter password";
+                    return appLocalization(context).pleaseEnterYourPassword;
                   }
                   return null;
                 },

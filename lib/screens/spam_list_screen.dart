@@ -41,7 +41,7 @@ class _SpamListState extends State<SpamList> {
             onChanged: (value) => filterSearchResults(value),
             controller: editingController,
             prefix: const Icon(Icons.search),
-            hintText: "Search number, names & more",
+            hintText: appLocalization(context).searchMore,
           ),
           Expanded(
               child: BlocConsumer(
@@ -71,8 +71,8 @@ class _SpamListState extends State<SpamList> {
                     if (state is GetSpamState) {
                       contacts = state.value.spamcontactslist ?? [];
                       if (filteredContacts.isEmpty) {
-                        return const Center(
-                          child: Text('No contacts'),
+                        return Center(
+                          child: Text(appLocalization(context).noContacts),
                         );
                       }
                       return ListView.builder(

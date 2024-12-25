@@ -10,6 +10,7 @@ var contactListBloc = ApiBloc(ApiBlocInitialState());
 var callLogsListBloc = ApiBloc(ApiBlocInitialState());
 var markSpamBloc = ApiBloc(ApiBlocInitialState());
 var staffBloc = ApiBloc(ApiBlocInitialState());
+var familyBloc = ApiBloc(ApiBlocInitialState());
 
 var bottomNavigationBloc = SelectionBloc(SelectIntState(2));
 
