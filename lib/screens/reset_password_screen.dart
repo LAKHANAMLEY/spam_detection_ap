@@ -55,6 +55,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   @override
   void dispose() {
     passwordController.dispose();
+    confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -181,7 +182,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 5 / 100,
+                  height: MediaQuery.of(context).size.height * 3 / 100,
                 ),
                 if (_errorMessage != null)
                   Text(_errorMessage!,
@@ -211,9 +212,16 @@ class _ResetPasswordState extends State<ResetPassword> {
                               });
                               return;
                             }
+                            if (password != confirmPassword) {
+                              setState(() {
+                                _errorMessage =
+                                    'New Password and Confirm Password do not match.';
+                              });
+                              return;
+                            }
 
                             setState(() {
-                              _isLoading = false;
+                              _isLoading = true;
                             });
 
                             resetPassword(

@@ -21,8 +21,9 @@ class _SpamListState extends State<SpamList> {
   void filterSearchResults(String query) {
     setState(() {
       filteredContacts = contacts
-          .where((item) =>
-              item.spamNo!.toLowerCase().contains(query.toLowerCase()))
+          .where((item) => "${item.name} ${item.spamNo}"
+              .toLowerCase()
+              .contains(query.toLowerCase()))
           .toList();
     });
   }
@@ -38,6 +39,7 @@ class _SpamListState extends State<SpamList> {
           child: Column(
         children: <Widget>[
           CustomTextField(
+            fillColor: AppColor.secondryColor,
             onChanged: (value) => filterSearchResults(value),
             controller: editingController,
             prefix: const Icon(Icons.search),

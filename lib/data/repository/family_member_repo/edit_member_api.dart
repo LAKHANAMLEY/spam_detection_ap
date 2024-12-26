@@ -6,7 +6,6 @@ Future<Response> familyEditMember({required FamilyMember familyMember}) async {
     'first_name': familyMember.firstName ?? "",
     'last_name': familyMember.lastName ?? "",
     'relation': familyMember.relation ?? "",
-    // 'photo': staffMember.photo,//photo ko is request me send nhi kr skte //multipart req use krna hogi
     'family_id': familyMember.userId ?? "",
     'support_pin': familyMember.supportPin ?? "",
   };

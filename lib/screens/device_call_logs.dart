@@ -202,10 +202,10 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                       child: !isVisible
                                           ? CustomTextField(
                                               controller: searchController,
-                                              fillColor: Colors.white,
+                                              fillColor: AppColor.secondryColor,
                                               prefix: const Icon(
                                                 Icons.search,
-                                                color: Colors.red,
+                                                color: AppColor.redColor,
                                               ),
                                               hintText: appLocalization(context)
                                                   .searchMore,
@@ -226,7 +226,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                                       child: Text(
                                                           appLocalization(
                                                                   context)
-                                                              .synCallLogs))
+                                                              .synCallLogs)),
                                                 ],
                                               ),
                                             )

@@ -311,7 +311,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterClientId":
             MessageLookupByLibrary.simpleMessage("Entrez l\'ID client"),
         "enterCode": MessageLookupByLibrary.simpleMessage(
-            "Ingresa el código de 4 dígitos que recibiste en tu correo electrónico"),
+            "Ingresa el código de 6 dígitos que recibiste en tu correo electrónico"),
         "enterConfirmNewPassword": MessageLookupByLibrary.simpleMessage(
             "Entrez confirmer le nouveau mot de passe"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -375,7 +375,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("Prénom"),
         "forYou": MessageLookupByLibrary.simpleMessage("Pour toi"),
         "forgotPassDetails": MessageLookupByLibrary.simpleMessage(
-            "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 4 dígitos a tu correo electrónico."),
+            "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 6 dígitos a tu correo electrónico."),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Has olvidado tu contraseña"),
         "from": MessageLookupByLibrary.simpleMessage("Depuis"),
@@ -513,6 +513,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Nom: "),
         "newContact": MessageLookupByLibrary.simpleMessage("Nouveau contact"),
         "newPass": MessageLookupByLibrary.simpleMessage("Nueva contraseña"),
+        "newPassConfirmPass": MessageLookupByLibrary.simpleMessage(
+            "La nueva contraseña y la confirmación de contraseña no coinciden."),
         "newPassword":
             MessageLookupByLibrary.simpleMessage("Nouveau mot de passe"),
         "newSecurityPin":
