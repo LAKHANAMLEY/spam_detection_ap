@@ -142,7 +142,7 @@
   "enterBeneficiaryName": "Enter beneficiary name",
   "enterCity": "Enter city",
   "enterClientId": "Enter client ID",
-  "enterCode": "Enter the 4 digit code that you received on your email",
+  "enterCode": "Enter the 6 digit code that you received on your email",
   "enterConfirmNewPassword": "Enter confirm new password",
   "enterConfirmPassword": "Enter confirm password",
   "enterCountry": "Enter country",
@@ -578,7 +578,7 @@
   "editStaffMember": "Edit Staff Member",
   "addStaffMember": "Add Staff Member",
   "deleteStaffMember": "Delete Staff Member",
-  "forgotPassDetails": "Enter your email address for the verification process. We will send 4 digit code to your email.",
+  "forgotPassDetails": "Enter your email address for the verification process. We will send 6 digit code to your email.",
   "spamCalls": "Spam Calls",
   "chooseOption": "Choose an option",
   "takePhoto": "Take a Photo",
@@ -670,5 +670,6 @@
   "phoneNumberOps": "Phone Number(optional)",
   "pleaseEnterComments": "Please enter any comments",
   "pleaseEnterCategory": "Please enter Category",
-  "pleaseEnterNumberType": "Please enter Number Type"
+  "pleaseEnterNumberType": "Please enter Number Type",
+  "newPassConfirmPass": "New Password and Confirm Password do not match."
 }

@@ -21,7 +21,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController relationController = TextEditingController();
-  final TextEditingController familyIdController = TextEditingController();
   final TextEditingController supportPinController = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
@@ -30,7 +29,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
   var familyMemberBloc = ApiBloc(ApiBlocInitialState());
 
   FamilyMember? familyMember;
-
   SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
 
   @override
@@ -60,7 +58,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                       if (familyMember != null) {
                         updateData(familyMember!);
                       }
-                      // sharedPrefBloc.add(GetUserDataFromLocalEvent());//ye shared pref se get kia h isko v comment krege
                     }
                   } else if (state.value.statusCode ==
                       HTTPStatusCodes.sessionExpired) {

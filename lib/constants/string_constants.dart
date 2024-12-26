@@ -58,7 +58,7 @@ class StringConstants {
       'Enter the 4 digit code that you received on your email';
   static const String emailvalidMessage = 'Please enter valid email address';
   static const String otpMessage = 'Please enter OTP';
-  static const String otpMinLenthMessage = 'OTP can not be less than 4 digit';
+  static const String otpMinLenthMessage = 'OTP can not be less than 6 digit';
   static const String didtext = 'Did\'t recieve Code?';
   static const String resendtext = 'Resend';
   static const String resetpasstext = 'Reset Password';

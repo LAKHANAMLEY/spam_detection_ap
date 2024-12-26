@@ -11,6 +11,10 @@ class ForgotOtpVerify extends StatefulWidget {
 }
 
 class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
+  final _emailController = TextEditingController();
+  bool _isLoading = false;
+  String? _errorMessage;
+
   final GlobalKey<FormState> _forgotOtpFormKey = GlobalKey<FormState>();
 
   FocusNode? pin1FocusNode;
@@ -61,7 +65,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
     if (otpInput.isEmpty) {
       SnackBarToastMessage.showSnackBar(context, StringConstants.otpMessage);
       return false;
-    } else if (otpInput.length < 4) {
+    } else if (otpInput.length < 6) {
       SnackBarToastMessage.showSnackBar(
           context, StringConstants.otpMinLenthMessage);
       return false;
@@ -116,27 +120,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 2 / 100,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(
-                IconConstants.backIcon,
-              ),
-            ),
-          ),
-        ),
-        title: Image.asset(
-          IconConstants.icBroadlogo,
-          height: MediaQuery.of(context).size.height * 38 / 100,
-          width: MediaQuery.of(context).size.width * 38 / 100,
-        ),
+      appBar: const CustomAppBar(
         centerTitle: true,
       ),
       body: SafeArea(
@@ -264,7 +248,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                   height: 60,
                                   child: TextFormField(
                                     controller: secondInputController,
-                                    cursorColor: AppColor.primaryColor,
+                                    cursorColor: AppColor.yellowlightColor,
                                     maxLength: 1,
                                     autofocus: true,
                                     readOnly: false,
@@ -332,7 +316,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                   height: 60,
                                   child: TextFormField(
                                     controller: thirdInputController,
-                                    cursorColor: AppColor.primaryColor,
+                                    cursorColor: AppColor.yellowlightColor,
                                     maxLength: 1,
                                     autofocus: true,
                                     // readOnly: true,
@@ -404,7 +388,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                   height: 60,
                                   child: TextFormField(
                                     controller: forthInputController,
-                                    cursorColor: AppColor.primaryColor,
+                                    cursorColor: AppColor.yellowlightColor,
                                     maxLength: 1,
                                     autofocus: true,
                                     readOnly: false,
@@ -471,86 +455,12 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                     },
                                   ),
                                 ),
-                                /*
-                                SizedBox(
-                                  width: 50,
-                                  height: 60,
-                                  child: TextFormField(
-                                    controller: forthInputController,
-                                    cursorColor: AppColor.yellowlightColor,
-                                    focusNode: pin4FocusNode,
-                                    autofocus: true,
-                                    readOnly: false,
-                                    maxLength: 1,
-                                    // obscureText: true,
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.allow(
-                                          RegExp(r'[0-9]')),
-                                      FilteringTextInputFormatter.digitsOnly,
-                                    ],
-                                    textAlign: TextAlign.center,
-                                    decoration: InputDecoration(
-                                      counterText: '',
-                                      border: const OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: AppColor.fillColor,
-                                            width: 1.5),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(2.0)),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: (forthInputController
-                                                    .text.isNotEmpty)
-                                                ? AppColor.deepyelloeColor
-                                                : AppColor.fillColor
-                                                    .withOpacity(0.2),
-                                            width: 1.5),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(2.0)),
-                                      ),
-                                      focusedBorder: const OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: AppColor.fillColor,
-                                            width: 1.5),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(2.0)),
-                                      ),
-                                      contentPadding:
-                                          const EdgeInsets.all((12)),
-                                      fillColor:
-                                          AppColor.fillColor.withOpacity(0.2),
-                                      filled: true,
-                                    ),
-                                    style: TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.w500,
-                                        color: (forthInputController
-                                                .text.isNotEmpty)
-                                            ? AppColor.deepyelloeColor
-                                            : AppColor.deepyelloeColor),
-                                    onTap: () {
-                                      pin4FocusNode?.requestFocus();
-                                    },
-                                    onChanged: (value) {
-                                      if (value.isEmpty) {
-                                        thirdInputController.text = '';
-                                        previousField(value, pin3FocusNode!);
-                                      } else {
-                                        nextField(value, pin5FocusNode!);
-                                        thirdInputController.text = value;
-                                      }
-                                    },
-                                  ),
-                                ),
-                                */
                                 SizedBox(
                                   width: 50,
                                   height: 60,
                                   child: TextFormField(
                                     controller: fifthInputController,
-                                    cursorColor: AppColor.primaryColor,
+                                    cursorColor: AppColor.yellowlightColor,
                                     maxLength: 1,
                                     autofocus: true,
                                     readOnly: false,
@@ -707,11 +617,102 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                               width:
                                   MediaQuery.of(context).size.width * 2 / 100),
                           InkWell(
+                            onTap: _isLoading
+                                ? null
+                                : () {
+                                    final email = _emailController.text;
+                                    forgotPassword(email: email)
+                                        .then((response) {
+                                      setState(() {
+                                        _isLoading =
+                                            false; // Hide loading state
+                                      });
+
+                                      if (response.statusCode == 200) {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ForgotOtpVerify(email: email),
+                                          ),
+                                        );
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                              content: Text(
+                                                  "OTP resent successfully!")),
+                                        );
+                                      } else {
+                                        setState(() {
+                                          _errorMessage =
+                                              response.message.toString();
+                                        });
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                              content: Text(_errorMessage ??
+                                                  "Error occurred")),
+                                        );
+                                      }
+                                    }).catchError((error) {
+                                      // Handle network or API errors
+                                      setState(() {
+                                        _isLoading =
+                                            false; // Hide loading state
+                                        _errorMessage =
+                                            "Failed to resend OTP. Please try again.";
+                                      });
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(content: Text(_errorMessage!)),
+                                      );
+                                    });
+                                  },
+                            child: _isLoading
+                                ? const Center(
+                                    child: CircularProgressIndicator(
+                                        color: AppColor.yellowlightColor),
+                                  )
+                                : Text(
+                                    appLocalization(context).resend,
+                                    style: const TextStyle(
+                                      color: AppColor.yellowlightColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                          ),
+
+                          /*
+                          InkWell(
                             onTap: () {
-                              // Navigator.push(
-                              //    context,
-                              //    MaterialPageRoute(
-                              //       builder: (BuildContext context) => RegisterScreen()));
+                              final email = _emailController.text;
+                              if (email.isNotEmpty) {
+                                setState(() {
+                                  _isLoading = true;
+                                });
+                                forgotPassword(
+                                  email: email,
+                                ).then((response) {
+                                  setState(() {
+                                    _isLoading = false;
+                                  });
+                                  // class SignUpResponse
+                                  //var response
+                                  if (response.statusCode == 200) {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) => ForgotOtpVerify(
+                                        email: email,
+                                      ),
+                                    ));
+                                  } else {
+                                    setState(() {
+                                      _errorMessage =
+                                          response.message.toString();
+                                    });
+                                  }
+                                });
+                              }
                             },
                             child: Text(appLocalization(context).resend,
                                 style: const TextStyle(
@@ -719,6 +720,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15)),
                           ),
+                          */
                         ],
                       ),
                       SizedBox(
@@ -726,17 +728,14 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                       AppButton(
                           text: appLocalization(context).continueTxt,
                           onPress: () {
-                            if (_forgotOtpFormKey.currentState?.validate() ??
-                                false) {
-                              forgotOtpUserValidation(
-                                firstInputController.text,
-                                secondInputController.text,
-                                thirdInputController.text,
-                                forthInputController.text,
-                                fifthInputController.text,
-                                sixthInputController.text,
-                              );
-                            }
+                            forgotOtpUserValidation(
+                              firstInputController.text,
+                              secondInputController.text,
+                              thirdInputController.text,
+                              forthInputController.text,
+                              fifthInputController.text,
+                              sixthInputController.text,
+                            );
                           }),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 4 / 100,

@@ -1474,10 +1474,10 @@ class S {
     );
   }
 
-  /// `Enter the 4 digit code that you received on your email`
+  /// `Enter the 6 digit code that you received on your email`
   String get enterCode {
     return Intl.message(
-      'Enter the 4 digit code that you received on your email',
+      'Enter the 6 digit code that you received on your email',
       name: 'enterCode',
       desc: '',
       args: [],
@@ -5834,10 +5834,10 @@ class S {
     );
   }
 
-  /// `Enter your email address for the verification process. We will send 4 digit code to your email.`
+  /// `Enter your email address for the verification process. We will send 6 digit code to your email.`
   String get forgotPassDetails {
     return Intl.message(
-      'Enter your email address for the verification process. We will send 4 digit code to your email.',
+      'Enter your email address for the verification process. We will send 6 digit code to your email.',
       name: 'forgotPassDetails',
       desc: '',
       args: [],
@@ -6759,6 +6759,16 @@ class S {
     return Intl.message(
       'Please enter Number Type',
       name: 'pleaseEnterNumberType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Password and Confirm Password do not match.`
+  String get newPassConfirmPass {
+    return Intl.message(
+      'New Password and Confirm Password do not match.',
+      name: 'newPassConfirmPass',
       desc: '',
       args: [],
     );

@@ -293,7 +293,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterClientId":
             MessageLookupByLibrary.simpleMessage("Enter client ID"),
         "enterCode": MessageLookupByLibrary.simpleMessage(
-            "Enter the 4 digit code that you received on your email"),
+            "Enter the 6 digit code that you received on your email"),
         "enterConfirmNewPassword":
             MessageLookupByLibrary.simpleMessage("Enter confirm new password"),
         "enterConfirmPassword":
@@ -353,7 +353,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
         "forYou": MessageLookupByLibrary.simpleMessage("For you"),
         "forgotPassDetails": MessageLookupByLibrary.simpleMessage(
-            "Enter your email address for the verification process. We will send 4 digit code to your email."),
+            "Enter your email address for the verification process. We will send 6 digit code to your email."),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "from": MessageLookupByLibrary.simpleMessage("From"),
@@ -484,6 +484,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name: "),
         "newContact": MessageLookupByLibrary.simpleMessage("New contact"),
         "newPass": MessageLookupByLibrary.simpleMessage("New Password"),
+        "newPassConfirmPass": MessageLookupByLibrary.simpleMessage(
+            "New Password and Confirm Password do not match."),
         "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
         "newSecurityPin":
             MessageLookupByLibrary.simpleMessage("New security pin"),

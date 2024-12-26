@@ -144,7 +144,7 @@
   "enterBeneficiaryName": "Entrez le nom du bénéficiaire",
   "enterCity": "Entrez la ville",
   "enterClientId": "Entrez l'ID client",
-  "enterCode": "Ingresa el código de 4 dígitos que recibiste en tu correo electrónico",
+  "enterCode": "Ingresa el código de 6 dígitos que recibiste en tu correo electrónico",
   "enterConfirmNewPassword": "Entrez confirmer le nouveau mot de passe",
   "enterConfirmPassword": "Entrez Confirmer le mot de passe",
   "enterCountry": "Entrez le pays",
@@ -581,7 +581,7 @@
   "editStaffMember": "Editar miembro del personal",
   "addStaffMember": "Agregar miembro del personal",
   "deleteStaffMember": "Eliminar miembro del personal",
-  "forgotPassDetails": "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 4 dígitos a tu correo electrónico.",
+  "forgotPassDetails": "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 6 dígitos a tu correo electrónico.",
   "spamCalls": "Llamadas no deseadas",
   "chooseOption": "Elige una opción",
   "takePhoto": "tomar una foto",
@@ -672,6 +672,7 @@
   "phoneNumberOps": "Número de teléfono (opcional)",
   "pleaseEnterComments": "Por favor ingrese cualquier comentario",
   "pleaseEnterCategory": "Por favor ingrese la categoría",
-  "pleaseEnterNumberType": "Por favor ingrese el tipo de número"
+  "pleaseEnterNumberType": "Por favor ingrese el tipo de número",
+  "newPassConfirmPass": "La nueva contraseña y la confirmación de contraseña no coinciden."
 }
 
