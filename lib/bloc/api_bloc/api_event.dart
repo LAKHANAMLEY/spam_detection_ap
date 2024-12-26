@@ -385,16 +385,16 @@ class NotificationTypeEvent extends ApiEvent {}
 
 class GetLanguageListEvent extends ApiEvent {}
 
-class GetContactDetailEvent extends ApiEvent {
-  final String mobileNo;
+// class GetContactDetailEvent extends ApiEvent {
+//   final String mobileNo;
 
-  GetContactDetailEvent({
-    required this.mobileNo,
-  });
+//   GetContactDetailEvent({
+//     required this.mobileNo,
+//   });
 
-  @override
-  List<Object?> get props => [mobileNo];
-}
+//   @override
+//   List<Object?> get props => [mobileNo];
+// }
 
 class LoginWithEmailAndPasswordEvent extends ApiEvent {
   final String email;
@@ -419,7 +419,7 @@ class SyncCallLogManuallyEvent extends ApiEvent {
 }
 
 class CheckSpamEvent extends ApiEvent {
-  final List<CallLogEntry> callLogs;
+  final CallLogData callLogs;
 
   CheckSpamEvent({
     required this.callLogs,

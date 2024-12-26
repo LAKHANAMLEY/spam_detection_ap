@@ -50,36 +50,6 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Alternative Email`
-  String get alternativeEmail {
-    return Intl.message(
-      'Alternative Email',
-      name: 'alternativeEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Staff List`
-  String get staffList {
-    return Intl.message(
-      'Staff List',
-      name: 'staffList',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Family List`
-  String get familyList {
-    return Intl.message(
-      'Family List',
-      name: 'familyList',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Aadhar card`
   String get aadharCard {
     return Intl.message(
@@ -200,11 +170,91 @@ class S {
     );
   }
 
+  /// `Add Contact`
+  String get addContact {
+    return Intl.message(
+      'Add Contact',
+      name: 'addContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Family Member`
+  String get addFamilyMember {
+    return Intl.message(
+      'Add Family Member',
+      name: 'addFamilyMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Member`
+  String get addMember {
+    return Intl.message(
+      'Add Member',
+      name: 'addMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Member`
+  String get addMemberText {
+    return Intl.message(
+      'Add Member',
+      name: 'addMemberText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add phone number`
+  String get addPhoneNumber {
+    return Intl.message(
+      'Add phone number',
+      name: 'addPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Staff Member`
+  String get addStaffMember {
+    return Intl.message(
+      'Add Staff Member',
+      name: 'addStaffMember',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Address`
   String get address {
     return Intl.message(
       'Address',
       name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address 1`
+  String get address1 {
+    return Intl.message(
+      'Address 1',
+      name: 'address1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address 2`
+  String get address2 {
+    return Intl.message(
+      'Address 2',
+      name: 'address2',
       desc: '',
       args: [],
     );
@@ -297,6 +347,16 @@ class S {
     return Intl.message(
       'Already paid',
       name: 'alreadyPaid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alternative Email`
+  String get alternativeEmail {
+    return Intl.message(
+      'Alternative Email',
+      name: 'alternativeEmail',
       desc: '',
       args: [],
     );
@@ -534,6 +594,16 @@ class S {
     );
   }
 
+  /// `Block`
+  String get block {
+    return Intl.message(
+      'Block',
+      name: 'block',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Block all scam, telemarketing and fraud calls thanks to AI -blocking accuracy.`
   String get blockAccuracy {
     return Intl.message(
@@ -549,6 +619,36 @@ class S {
     return Intl.message(
       'Blocked Calls',
       name: 'blockedCalls',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blocked Numbers`
+  String get blockedNumber {
+    return Intl.message(
+      'Blocked Numbers',
+      name: 'blockedNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Business`
+  String get business {
+    return Intl.message(
+      'Business',
+      name: 'business',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call history`
+  String get callHistory {
+    return Intl.message(
+      'Call history',
+      name: 'callHistory',
       desc: '',
       args: [],
     );
@@ -609,6 +709,16 @@ class S {
     return Intl.message(
       'Cancel',
       name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancelText {
+    return Intl.message(
+      'Cancel',
+      name: 'cancelText',
       desc: '',
       args: [],
     );
@@ -684,6 +794,16 @@ class S {
     );
   }
 
+  /// `Change Security Pin`
+  String get changeSecurity {
+    return Intl.message(
+      'Change Security Pin',
+      name: 'changeSecurity',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Check balance`
   String get checkBalance {
     return Intl.message(
@@ -699,6 +819,26 @@ class S {
     return Intl.message(
       'Check Wallet balance as well as bank account balance or you can manage your accounts like you can add, active, inactive, set primary account or you can delete account.',
       name: 'checkBalanceBtnDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose from Gallery`
+  String get chooseGallery {
+    return Intl.message(
+      'Choose from Gallery',
+      name: 'chooseGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose an option`
+  String get chooseOption {
+    return Intl.message(
+      'Choose an option',
+      name: 'chooseOption',
       desc: '',
       args: [],
     );
@@ -784,6 +924,16 @@ class S {
     );
   }
 
+  /// `CompanyName`
+  String get companyName {
+    return Intl.message(
+      'CompanyName',
+      name: 'companyName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `$14.99/mth`
   String get completeMth {
     return Intl.message(
@@ -824,6 +974,16 @@ class S {
     );
   }
 
+  /// `Confirm new Password`
+  String get confirmNewPass {
+    return Intl.message(
+      'Confirm new Password',
+      name: 'confirmNewPass',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm new password`
   String get confirmNewPassword {
     return Intl.message(
@@ -844,11 +1004,31 @@ class S {
     );
   }
 
+  /// `Confirm security pin`
+  String get confirmSecurityPin {
+    return Intl.message(
+      'Confirm security pin',
+      name: 'confirmSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Congratulations, your account has been successfully created.`
   String get congratulationScreated {
     return Intl.message(
       'Congratulations, your account has been successfully created.',
       name: 'congratulationScreated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations, your account has been successfully created.`
+  String get congratulationsSuccessfullyCreated {
+    return Intl.message(
+      'Congratulations, your account has been successfully created.',
+      name: 'congratulationsSuccessfullyCreated',
       desc: '',
       args: [],
     );
@@ -874,11 +1054,31 @@ class S {
     );
   }
 
+  /// `Contact List`
+  String get contactList {
+    return Intl.message(
+      'Contact List',
+      name: 'contactList',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Contact permission`
   String get contactPermission {
     return Intl.message(
       'Contact permission',
       name: 'contactPermission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contacts`
+  String get contactText {
+    return Intl.message(
+      'Contacts',
+      name: 'contactText',
       desc: '',
       args: [],
     );
@@ -924,11 +1124,31 @@ class S {
     );
   }
 
+  /// `Corporate Edit Profile`
+  String get corporateEditProfile {
+    return Intl.message(
+      'Corporate Edit Profile',
+      name: 'corporateEditProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Corporate ID`
   String get corporateID {
     return Intl.message(
       'Corporate ID',
       name: 'corporateID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Corporate Name`
+  String get corporateName {
+    return Intl.message(
+      'Corporate Name',
+      name: 'corporateName',
       desc: '',
       args: [],
     );
@@ -969,6 +1189,36 @@ class S {
     return Intl.message(
       'Coupons',
       name: 'coupons',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Crn Id`
+  String get crnId {
+    return Intl.message(
+      'Crn Id',
+      name: 'crnId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Password`
+  String get currentPass {
+    return Intl.message(
+      'Current Password',
+      name: 'currentPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current security pin`
+  String get currentSecurityPin {
+    return Intl.message(
+      'Current security pin',
+      name: 'currentSecurityPin',
       desc: '',
       args: [],
     );
@@ -1059,6 +1309,36 @@ class S {
     return Intl.message(
       'Delete all Calls',
       name: 'deleteCalls',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Member`
+  String get deleteMember {
+    return Intl.message(
+      'Delete Member',
+      name: 'deleteMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Staff Member`
+  String get deleteStaffMember {
+    return Intl.message(
+      'Delete Staff Member',
+      name: 'deleteStaffMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleted successfully!`
+  String get deletedSuccessfully {
+    return Intl.message(
+      'Deleted successfully!',
+      name: 'deletedSuccessfully',
       desc: '',
       args: [],
     );
@@ -1304,6 +1584,26 @@ class S {
     );
   }
 
+  /// `Edit Corporate Profile`
+  String get editCorporateProfile {
+    return Intl.message(
+      'Edit Corporate Profile',
+      name: 'editCorporateProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Member`
+  String get editMember {
+    return Intl.message(
+      'Edit Member',
+      name: 'editMember',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Edit Profile`
   String get editProfile {
     return Intl.message(
@@ -1319,6 +1619,16 @@ class S {
     return Intl.message(
       'Edit security pin',
       name: 'editSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Staff Member`
+  String get editStaffMember {
+    return Intl.message(
+      'Edit Staff Member',
+      name: 'editStaffMember',
       desc: '',
       args: [],
     );
@@ -1764,6 +2074,16 @@ class S {
     );
   }
 
+  /// `Family List`
+  String get familyList {
+    return Intl.message(
+      'Family List',
+      name: 'familyList',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `FAQ`
   String get faq {
     return Intl.message(
@@ -1839,6 +2159,16 @@ class S {
     return Intl.message(
       'For you',
       name: 'forYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email address for the verification process. We will send 4 digit code to your email.`
+  String get forgotPassDetails {
+    return Intl.message(
+      'Enter your email address for the verification process. We will send 4 digit code to your email.',
+      name: 'forgotPassDetails',
       desc: '',
       args: [],
     );
@@ -1994,6 +2324,16 @@ class S {
     );
   }
 
+  /// `Have an Account`
+  String get haveAccount {
+    return Intl.message(
+      'Have an Account',
+      name: 'haveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Have an account?`
   String get haveAnAccount {
     return Intl.message(
@@ -2059,6 +2399,26 @@ class S {
     return Intl.message(
       'You will go to the Dashboard by pressing Home button.',
       name: 'homeBtnDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home Fax`
+  String get homeFax {
+    return Intl.message(
+      'Home Fax',
+      name: 'homeFax',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get homeText {
+    return Intl.message(
+      'Home',
+      name: 'homeText',
       desc: '',
       args: [],
     );
@@ -2159,6 +2519,16 @@ class S {
     return Intl.message(
       'Institution name',
       name: 'institutionName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid OTP or verification failed`
+  String get invalidVerificationFailed {
+    return Intl.message(
+      'Invalid OTP or verification failed',
+      name: 'invalidVerificationFailed',
       desc: '',
       args: [],
     );
@@ -2496,6 +2866,16 @@ class S {
     );
   }
 
+  /// `Minimum 8 characters are required.`
+  String get minimumCharactersRequired {
+    return Intl.message(
+      'Minimum 8 characters are required.',
+      name: 'minimumCharactersRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Minimum order value is`
   String get minimumOrderValueIs {
     return Intl.message(
@@ -2521,6 +2901,16 @@ class S {
     return Intl.message(
       'Missed Calls',
       name: 'missedCalls',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile`
+  String get mobile {
+    return Intl.message(
+      'Mobile',
+      name: 'mobile',
       desc: '',
       args: [],
     );
@@ -2596,11 +2986,51 @@ class S {
     );
   }
 
+  /// `More info available`
+  String get moreAvailable {
+    return Intl.message(
+      'More info available',
+      name: 'moreAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `MTN MoMo`
   String get mtnMoMo {
     return Intl.message(
       'MTN MoMo',
       name: 'mtnMoMo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must include at least one lowercase letter.`
+  String get mustLowercaseLetter {
+    return Intl.message(
+      'Must include at least one lowercase letter.',
+      name: 'mustLowercaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must include at least one special character.`
+  String get mustSpecialCharacter {
+    return Intl.message(
+      'Must include at least one special character.',
+      name: 'mustSpecialCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Must include at least one uppercase letter`
+  String get mustUppercaseLetter {
+    return Intl.message(
+      'Must include at least one uppercase letter',
+      name: 'mustUppercaseLetter',
       desc: '',
       args: [],
     );
@@ -2656,11 +3086,31 @@ class S {
     );
   }
 
+  /// `New Password`
+  String get newPass {
+    return Intl.message(
+      'New Password',
+      name: 'newPass',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `New password`
   String get newPassword {
     return Intl.message(
       'New password',
       name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New security pin`
+  String get newSecurityPin {
+    return Intl.message(
+      'New security pin',
+      name: 'newSecurityPin',
       desc: '',
       args: [],
     );
@@ -2701,6 +3151,16 @@ class S {
     return Intl.message(
       'No beneficiary',
       name: 'noBeneficiary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No categories available.`
+  String get noCategoriesAvailable {
+    return Intl.message(
+      'No categories available.',
+      name: 'noCategoriesAvailable',
       desc: '',
       args: [],
     );
@@ -2756,11 +3216,31 @@ class S {
     );
   }
 
+  /// `No Messages`
+  String get noMessages {
+    return Intl.message(
+      'No Messages',
+      name: 'noMessages',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No notifications`
   String get noNotifications {
     return Intl.message(
       'No notifications',
       name: 'noNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Notifications`
+  String get noNotificationsText {
+    return Intl.message(
+      'No Notifications',
+      name: 'noNotificationsText',
       desc: '',
       args: [],
     );
@@ -2831,6 +3311,16 @@ class S {
     return Intl.message(
       'No request',
       name: 'noRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Staff`
+  String get noStaff {
+    return Intl.message(
+      'No Staff',
+      name: 'noStaff',
       desc: '',
       args: [],
     );
@@ -2936,6 +3426,16 @@ class S {
     );
   }
 
+  /// `Notifications List`
+  String get notificationList {
+    return Intl.message(
+      'Notifications List',
+      name: 'notificationList',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Notifications`
   String get notifications {
     return Intl.message(
@@ -2951,6 +3451,16 @@ class S {
     return Intl.message(
       'You will go to the Notifications list by pressing Notifications button.',
       name: 'notificationsBtnDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number Type`
+  String get numberType {
+    return Intl.message(
+      'Number Type',
+      name: 'numberType',
       desc: '',
       args: [],
     );
@@ -3086,6 +3596,16 @@ class S {
     );
   }
 
+  /// `Other`
+  String get otherText {
+    return Intl.message(
+      'Other',
+      name: 'otherText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `OTP`
   String get otp {
     return Intl.message(
@@ -3181,6 +3701,16 @@ class S {
     return Intl.message(
       'Password is not matching',
       name: 'passwordIsNotMatching',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is valid.`
+  String get passwordValid {
+    return Intl.message(
+      'Password is valid.',
+      name: 'passwordValid',
       desc: '',
       args: [],
     );
@@ -3306,6 +3836,16 @@ class S {
     );
   }
 
+  /// `Personal`
+  String get personal {
+    return Intl.message(
+      'Personal',
+      name: 'personal',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `$7.99/mth`
   String get personalMth {
     return Intl.message(
@@ -3326,6 +3866,16 @@ class S {
     );
   }
 
+  /// `Phone number automatically verified and signed in!`
+  String get phoneAutomaticallySigned {
+    return Intl.message(
+      'Phone number automatically verified and signed in!',
+      name: 'phoneAutomaticallySigned',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Phone Number`
   String get phoneNumber {
     return Intl.message(
@@ -3336,11 +3886,31 @@ class S {
     );
   }
 
+  /// `Phone Number(optional)`
+  String get phoneNumberOps {
+    return Intl.message(
+      'Phone Number(optional)',
+      name: 'phoneNumberOps',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Pincode`
   String get pinCode {
     return Intl.message(
       'Pincode',
       name: 'pinCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a new password to secure your account.`
+  String get pleasNewPasswordSecure {
+    return Intl.message(
+      'Please enter a new password to secure your account.',
+      name: 'pleasNewPasswordSecure',
       desc: '',
       args: [],
     );
@@ -3376,6 +3946,16 @@ class S {
     );
   }
 
+  /// `Please all alternative email`
+  String get pleaseAlternativeEmail {
+    return Intl.message(
+      'Please all alternative email',
+      name: 'pleaseAlternativeEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please check your mail`
   String get pleaseCheckMail {
     return Intl.message(
@@ -3396,11 +3976,91 @@ class S {
     );
   }
 
+  /// `Please enter company name`
+  String get pleaseCompanyName {
+    return Intl.message(
+      'Please enter company name',
+      name: 'pleaseCompanyName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter confirm new password`
+  String get pleaseConfirmPass {
+    return Intl.message(
+      'Please enter confirm new password',
+      name: 'pleaseConfirmPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter confirm security pin`
+  String get pleaseConfirmSecurityPin {
+    return Intl.message(
+      'Please enter confirm security pin',
+      name: 'pleaseConfirmSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter your valid Email / Corporate ID`
   String get pleaseCorporateID {
     return Intl.message(
       'Please enter your valid Email / Corporate ID',
       name: 'pleaseCorporateID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter corporate ID`
+  String get pleaseCorporateIDText {
+    return Intl.message(
+      'Please enter corporate ID',
+      name: 'pleaseCorporateIDText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter corporate name`
+  String get pleaseCorporateName {
+    return Intl.message(
+      'Please enter corporate name',
+      name: 'pleaseCorporateName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter Crn ID`
+  String get pleaseCrnId {
+    return Intl.message(
+      'Please enter Crn ID',
+      name: 'pleaseCrnId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter current password`
+  String get pleaseCurrentPass {
+    return Intl.message(
+      'Please enter current password',
+      name: 'pleaseCurrentPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter current security pin`
+  String get pleaseCurrentSecurityPin {
+    return Intl.message(
+      'Please enter current security pin',
+      name: 'pleaseCurrentSecurityPin',
       desc: '',
       args: [],
     );
@@ -3436,11 +4096,41 @@ class S {
     );
   }
 
+  /// `Please enter Category`
+  String get pleaseEnterCategory {
+    return Intl.message(
+      'Please enter Category',
+      name: 'pleaseEnterCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter client ID`
   String get pleaseEnterClientID {
     return Intl.message(
       'Please enter client ID',
       name: 'pleaseEnterClientID',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter any comments`
+  String get pleaseEnterComments {
+    return Intl.message(
+      'Please enter any comments',
+      name: 'pleaseEnterComments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter all the fields.`
+  String get pleaseEnterFields {
+    return Intl.message(
+      'Please enter all the fields.',
+      name: 'pleaseEnterFields',
       desc: '',
       args: [],
     );
@@ -3466,11 +4156,31 @@ class S {
     );
   }
 
+  /// `Please enter Number Type`
+  String get pleaseEnterNumberType {
+    return Intl.message(
+      'Please enter Number Type',
+      name: 'pleaseEnterNumberType',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter OTP`
   String get pleaseEnterOTP {
     return Intl.message(
       'Please enter OTP',
       name: 'pleaseEnterOTP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter position`
+  String get pleaseEnterPosition {
+    return Intl.message(
+      'Please enter position',
+      name: 'pleaseEnterPosition',
       desc: '',
       args: [],
     );
@@ -3666,11 +4376,71 @@ class S {
     );
   }
 
+  /// `Please enter first name`
+  String get pleaseFirstName {
+    return Intl.message(
+      'Please enter first name',
+      name: 'pleaseFirstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter last name`
+  String get pleaseLastName {
+    return Intl.message(
+      'Please enter last name',
+      name: 'pleaseLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please login to continue`
   String get pleaseLoginToContinue {
     return Intl.message(
       'Please login to continue',
       name: 'pleaseLoginToContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter New password`
+  String get pleaseNewPass {
+    return Intl.message(
+      'Please enter New password',
+      name: 'pleaseNewPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a new pin to secure your account.`
+  String get pleaseNewPinSecure {
+    return Intl.message(
+      'Please enter a new pin to secure your account.',
+      name: 'pleaseNewPinSecure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter new security pin`
+  String get pleaseNewSecurityPin {
+    return Intl.message(
+      'Please enter new security pin',
+      name: 'pleaseNewSecurityPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter relation`
+  String get pleaseRelation {
+    return Intl.message(
+      'Please enter relation',
+      name: 'pleaseRelation',
       desc: '',
       args: [],
     );
@@ -3756,6 +4526,16 @@ class S {
     );
   }
 
+  /// `Please enter support pin`
+  String get pleaseSupportPin {
+    return Intl.message(
+      'Please enter support pin',
+      name: 'pleaseSupportPin',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please select the type of account you will be setting up today.`
   String get pleaseTxt {
     return Intl.message(
@@ -3771,6 +4551,16 @@ class S {
     return Intl.message(
       'Please enter your valid phone number, We will send you a 4 digit code to verify.',
       name: 'pleaseVerify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Position`
+  String get position {
+    return Intl.message(
+      'Position',
+      name: 'position',
       desc: '',
       args: [],
     );
@@ -4026,6 +4816,16 @@ class S {
     );
   }
 
+  /// `Recent`
+  String get recentText {
+    return Intl.message(
+      'Recent',
+      name: 'recentText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Recent Transaction`
   String get recentTransaction {
     return Intl.message(
@@ -4136,6 +4936,16 @@ class S {
     );
   }
 
+  /// `Registration Successful`
+  String get registrationSuccessfulText {
+    return Intl.message(
+      'Registration Successful',
+      name: 'registrationSuccessfulText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Reject`
   String get reject {
     return Intl.message(
@@ -4191,6 +5001,26 @@ class S {
     return Intl.message(
       'Re-enter Password',
       name: 'renterPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report Number As Spam`
+  String get reportNumberSpam {
+    return Intl.message(
+      'Report Number As Spam',
+      name: 'reportNumberSpam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report`
+  String get reportText {
+    return Intl.message(
+      'Report',
+      name: 'reportText',
       desc: '',
       args: [],
     );
@@ -4466,6 +5296,16 @@ class S {
     );
   }
 
+  /// `Please enter an alternative email to secure your account.`
+  String get secureEmail {
+    return Intl.message(
+      'Please enter an alternative email to secure your account.',
+      name: 'secureEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Security`
   String get security {
     return Intl.message(
@@ -4521,6 +5361,16 @@ class S {
     return Intl.message(
       'Select bank account to transfer to',
       name: 'selectBankAccountToTransferTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select a category`
+  String get selectCategory {
+    return Intl.message(
+      'Select a category',
+      name: 'selectCategory',
       desc: '',
       args: [],
     );
@@ -4816,11 +5666,41 @@ class S {
     );
   }
 
+  /// `Some error occurred. Please try again!`
+  String get someOccurredAgain {
+    return Intl.message(
+      'Some error occurred. Please try again!',
+      name: 'someOccurredAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spam Calls`
+  String get spamCalls {
+    return Intl.message(
+      'Spam Calls',
+      name: 'spamCalls',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Spam calls identified`
   String get spamIdentified {
     return Intl.message(
       'Spam calls identified',
       name: 'spamIdentified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spam reports`
+  String get spamReports {
+    return Intl.message(
+      'Spam reports',
+      name: 'spamReports',
       desc: '',
       args: [],
     );
@@ -4866,6 +5746,16 @@ class S {
     );
   }
 
+  /// `Staff List`
+  String get staffList {
+    return Intl.message(
+      'Staff List',
+      name: 'staffList',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `State`
   String get state {
     return Intl.message(
@@ -4891,6 +5781,16 @@ class S {
     return Intl.message(
       'Submit',
       name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submitText {
+    return Intl.message(
+      'Submit',
+      name: 'submitText',
       desc: '',
       args: [],
     );
@@ -4926,11 +5826,41 @@ class S {
     );
   }
 
+  /// `Sync call logs`
+  String get synCallLogs {
+    return Intl.message(
+      'Sync call logs',
+      name: 'synCallLogs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sync contacts`
+  String get syncContacts {
+    return Intl.message(
+      'Sync contacts',
+      name: 'syncContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Take a selfie`
   String get takeASelfie {
     return Intl.message(
       'Take a selfie',
       name: 'takeASelfie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Take a Photo`
+  String get takePhoto {
+    return Intl.message(
+      'Take a Photo',
+      name: 'takePhoto',
       desc: '',
       args: [],
     );
@@ -5206,6 +6136,16 @@ class S {
     );
   }
 
+  /// `Unblock`
+  String get unblock {
+    return Intl.message(
+      'Unblock',
+      name: 'unblock',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Unknown`
   String get unknown {
     return Intl.message(
@@ -5241,6 +6181,16 @@ class S {
     return Intl.message(
       'Unlock now',
       name: 'unlockNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unmark Spam`
+  String get unmarkSpam {
+    return Intl.message(
+      'Unmark Spam',
+      name: 'unmarkSpam',
       desc: '',
       args: [],
     );
@@ -5311,6 +6261,16 @@ class S {
     return Intl.message(
       'Upgrade to Premium',
       name: 'upgradePremium',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upgrade to Premium to view`
+  String get upgradePremiumView {
+    return Intl.message(
+      'Upgrade to Premium to view',
+      name: 'upgradePremiumView',
       desc: '',
       args: [],
     );
@@ -5526,6 +6486,16 @@ class S {
     );
   }
 
+  /// `Was this a business or personal number?`
+  String get wasPersonalNumber {
+    return Intl.message(
+      'Was this a business or personal number?',
+      name: 'wasPersonalNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Water`
   String get water {
     return Intl.message(
@@ -5571,6 +6541,56 @@ class S {
     return Intl.message(
       'Welcome to BROADLINK Protect Your Mobile Defender! Effortlessly block unwanted calls, messages and keep your device clean let\'s get started and take control of your communication!',
       name: 'welcomeTxt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What was the call about?`
+  String get whatCallAbout {
+    return Intl.message(
+      'What was the call about?',
+      name: 'whatCallAbout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What type of spam was it?`
+  String get whatSpamIt {
+    return Intl.message(
+      'What type of spam was it?',
+      name: 'whatSpamIt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `work`
+  String get work {
+    return Intl.message(
+      'work',
+      name: 'work',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Work Fax`
+  String get workFax {
+    return Intl.message(
+      'Work Fax',
+      name: 'workFax',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write a comment`
+  String get writeComment {
+    return Intl.message(
+      'Write a comment',
+      name: 'writeComment',
       desc: '',
       args: [],
     );
@@ -5744,1021 +6764,11 @@ class S {
     );
   }
 
-  /// `Please enter an alternative email to secure your account.`
-  String get secureEmail {
-    return Intl.message(
-      'Please enter an alternative email to secure your account.',
-      name: 'secureEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Change Security Pin`
-  String get changeSecurity {
-    return Intl.message(
-      'Change Security Pin',
-      name: 'changeSecurity',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Notifications List`
-  String get notificationList {
-    return Intl.message(
-      'Notifications List',
-      name: 'notificationList',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Edit Member`
-  String get editMember {
-    return Intl.message(
-      'Edit Member',
-      name: 'editMember',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add Member`
-  String get addMember {
-    return Intl.message(
-      'Add Member',
-      name: 'addMember',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Delete Member`
-  String get deleteMember {
-    return Intl.message(
-      'Delete Member',
-      name: 'deleteMember',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Edit Staff Member`
-  String get editStaffMember {
-    return Intl.message(
-      'Edit Staff Member',
-      name: 'editStaffMember',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add Staff Member`
-  String get addStaffMember {
-    return Intl.message(
-      'Add Staff Member',
-      name: 'addStaffMember',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Delete Staff Member`
-  String get deleteStaffMember {
-    return Intl.message(
-      'Delete Staff Member',
-      name: 'deleteStaffMember',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter your email address for the verification process. We will send 4 digit code to your email.`
-  String get forgotPassDetails {
-    return Intl.message(
-      'Enter your email address for the verification process. We will send 4 digit code to your email.',
-      name: 'forgotPassDetails',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Spam Calls`
-  String get spamCalls {
-    return Intl.message(
-      'Spam Calls',
-      name: 'spamCalls',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Choose an option`
-  String get chooseOption {
-    return Intl.message(
-      'Choose an option',
-      name: 'chooseOption',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Take a Photo`
-  String get takePhoto {
-    return Intl.message(
-      'Take a Photo',
-      name: 'takePhoto',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Choose from Gallery`
-  String get chooseGallery {
-    return Intl.message(
-      'Choose from Gallery',
-      name: 'chooseGallery',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Cancel`
-  String get cancelText {
-    return Intl.message(
-      'Cancel',
-      name: 'cancelText',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Zip Code`
   String get zip {
     return Intl.message(
       'Zip Code',
       name: 'zip',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Address 1`
-  String get address1 {
-    return Intl.message(
-      'Address 1',
-      name: 'address1',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Address 2`
-  String get address2 {
-    return Intl.message(
-      'Address 2',
-      name: 'address2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Submit`
-  String get submitText {
-    return Intl.message(
-      'Submit',
-      name: 'submitText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Position`
-  String get position {
-    return Intl.message(
-      'Position',
-      name: 'position',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Number Type`
-  String get numberType {
-    return Intl.message(
-      'Number Type',
-      name: 'numberType',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Have an Account`
-  String get haveAccount {
-    return Intl.message(
-      'Have an Account',
-      name: 'haveAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Recent`
-  String get recentText {
-    return Intl.message(
-      'Recent',
-      name: 'recentText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Contacts`
-  String get contactText {
-    return Intl.message(
-      'Contacts',
-      name: 'contactText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add phone number`
-  String get addPhoneNumber {
-    return Intl.message(
-      'Add phone number',
-      name: 'addPhoneNumber',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Blocked Numbers`
-  String get blockedNumber {
-    return Intl.message(
-      'Blocked Numbers',
-      name: 'blockedNumber',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter a new pin to secure your account.`
-  String get pleaseNewPinSecure {
-    return Intl.message(
-      'Please enter a new pin to secure your account.',
-      name: 'pleaseNewPinSecure',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Current security pin`
-  String get currentSecurityPin {
-    return Intl.message(
-      'Current security pin',
-      name: 'currentSecurityPin',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `New security pin`
-  String get newSecurityPin {
-    return Intl.message(
-      'New security pin',
-      name: 'newSecurityPin',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Confirm security pin`
-  String get confirmSecurityPin {
-    return Intl.message(
-      'Confirm security pin',
-      name: 'confirmSecurityPin',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter current security pin`
-  String get pleaseCurrentSecurityPin {
-    return Intl.message(
-      'Please enter current security pin',
-      name: 'pleaseCurrentSecurityPin',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter new security pin`
-  String get pleaseNewSecurityPin {
-    return Intl.message(
-      'Please enter new security pin',
-      name: 'pleaseNewSecurityPin',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter confirm security pin`
-  String get pleaseConfirmSecurityPin {
-    return Intl.message(
-      'Please enter confirm security pin',
-      name: 'pleaseConfirmSecurityPin',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter a new password to secure your account.`
-  String get pleasNewPasswordSecure {
-    return Intl.message(
-      'Please enter a new password to secure your account.',
-      name: 'pleasNewPasswordSecure',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Current Password`
-  String get currentPass {
-    return Intl.message(
-      'Current Password',
-      name: 'currentPass',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `New Password`
-  String get newPass {
-    return Intl.message(
-      'New Password',
-      name: 'newPass',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Confirm new Password`
-  String get confirmNewPass {
-    return Intl.message(
-      'Confirm new Password',
-      name: 'confirmNewPass',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter current password`
-  String get pleaseCurrentPass {
-    return Intl.message(
-      'Please enter current password',
-      name: 'pleaseCurrentPass',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter New password`
-  String get pleaseNewPass {
-    return Intl.message(
-      'Please enter New password',
-      name: 'pleaseNewPass',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter confirm new password`
-  String get pleaseConfirmPass {
-    return Intl.message(
-      'Please enter confirm new password',
-      name: 'pleaseConfirmPass',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please all alternative email`
-  String get pleaseAlternativeEmail {
-    return Intl.message(
-      'Please all alternative email',
-      name: 'pleaseAlternativeEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add Family Member`
-  String get addFamilyMember {
-    return Intl.message(
-      'Add Family Member',
-      name: 'addFamilyMember',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add Member`
-  String get addMemberText {
-    return Intl.message(
-      'Add Member',
-      name: 'addMemberText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter first name`
-  String get pleaseFirstName {
-    return Intl.message(
-      'Please enter first name',
-      name: 'pleaseFirstName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter last name`
-  String get pleaseLastName {
-    return Intl.message(
-      'Please enter last name',
-      name: 'pleaseLastName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter relation`
-  String get pleaseRelation {
-    return Intl.message(
-      'Please enter relation',
-      name: 'pleaseRelation',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter support pin`
-  String get pleaseSupportPin {
-    return Intl.message(
-      'Please enter support pin',
-      name: 'pleaseSupportPin',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Edit Corporate Profile`
-  String get editCorporateProfile {
-    return Intl.message(
-      'Edit Corporate Profile',
-      name: 'editCorporateProfile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Corporate Name`
-  String get corporateName {
-    return Intl.message(
-      'Corporate Name',
-      name: 'corporateName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `CompanyName`
-  String get companyName {
-    return Intl.message(
-      'CompanyName',
-      name: 'companyName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Crn Id`
-  String get crnId {
-    return Intl.message(
-      'Crn Id',
-      name: 'crnId',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter corporate name`
-  String get pleaseCorporateName {
-    return Intl.message(
-      'Please enter corporate name',
-      name: 'pleaseCorporateName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter company name`
-  String get pleaseCompanyName {
-    return Intl.message(
-      'Please enter company name',
-      name: 'pleaseCompanyName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter Crn ID`
-  String get pleaseCrnId {
-    return Intl.message(
-      'Please enter Crn ID',
-      name: 'pleaseCrnId',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Corporate Edit Profile`
-  String get corporateEditProfile {
-    return Intl.message(
-      'Corporate Edit Profile',
-      name: 'corporateEditProfile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No Notifications`
-  String get noNotificationsText {
-    return Intl.message(
-      'No Notifications',
-      name: 'noNotificationsText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add Contact`
-  String get addContact {
-    return Intl.message(
-      'Add Contact',
-      name: 'addContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter all the fields.`
-  String get pleaseEnterFields {
-    return Intl.message(
-      'Please enter all the fields.',
-      name: 'pleaseEnterFields',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Contact List`
-  String get contactList {
-    return Intl.message(
-      'Contact List',
-      name: 'contactList',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sync contacts`
-  String get syncContacts {
-    return Intl.message(
-      'Sync contacts',
-      name: 'syncContacts',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Mobile`
-  String get mobile {
-    return Intl.message(
-      'Mobile',
-      name: 'mobile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Home`
-  String get homeText {
-    return Intl.message(
-      'Home',
-      name: 'homeText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `work`
-  String get work {
-    return Intl.message(
-      'work',
-      name: 'work',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Home Fax`
-  String get homeFax {
-    return Intl.message(
-      'Home Fax',
-      name: 'homeFax',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Work Fax`
-  String get workFax {
-    return Intl.message(
-      'Work Fax',
-      name: 'workFax',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Other`
-  String get otherText {
-    return Intl.message(
-      'Other',
-      name: 'otherText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sync call logs`
-  String get synCallLogs {
-    return Intl.message(
-      'Sync call logs',
-      name: 'synCallLogs',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Report`
-  String get reportText {
-    return Intl.message(
-      'Report',
-      name: 'reportText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Block`
-  String get block {
-    return Intl.message(
-      'Block',
-      name: 'block',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Unblock`
-  String get unblock {
-    return Intl.message(
-      'Unblock',
-      name: 'unblock',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Spam reports`
-  String get spamReports {
-    return Intl.message(
-      'Spam reports',
-      name: 'spamReports',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Report Number As Spam`
-  String get reportNumberSpam {
-    return Intl.message(
-      'Report Number As Spam',
-      name: 'reportNumberSpam',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Was this a business or personal number?`
-  String get wasPersonalNumber {
-    return Intl.message(
-      'Was this a business or personal number?',
-      name: 'wasPersonalNumber',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Business`
-  String get business {
-    return Intl.message(
-      'Business',
-      name: 'business',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Personal`
-  String get personal {
-    return Intl.message(
-      'Personal',
-      name: 'personal',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Write a comment`
-  String get writeComment {
-    return Intl.message(
-      'Write a comment',
-      name: 'writeComment',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `What was the call about?`
-  String get whatCallAbout {
-    return Intl.message(
-      'What was the call about?',
-      name: 'whatCallAbout',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No categories available.`
-  String get noCategoriesAvailable {
-    return Intl.message(
-      'No categories available.',
-      name: 'noCategoriesAvailable',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Select a category`
-  String get selectCategory {
-    return Intl.message(
-      'Select a category',
-      name: 'selectCategory',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `What type of spam was it?`
-  String get whatSpamIt {
-    return Intl.message(
-      'What type of spam was it?',
-      name: 'whatSpamIt',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter position`
-  String get pleaseEnterPosition {
-    return Intl.message(
-      'Please enter position',
-      name: 'pleaseEnterPosition',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No Messages`
-  String get noMessages {
-    return Intl.message(
-      'No Messages',
-      name: 'noMessages',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `More info available`
-  String get moreAvailable {
-    return Intl.message(
-      'More info available',
-      name: 'moreAvailable',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Upgrade to Premium to view`
-  String get upgradePremiumView {
-    return Intl.message(
-      'Upgrade to Premium to view',
-      name: 'upgradePremiumView',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Unmark Spam`
-  String get unmarkSpam {
-    return Intl.message(
-      'Unmark Spam',
-      name: 'unmarkSpam',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Some error occurred. Please try again!`
-  String get someOccurredAgain {
-    return Intl.message(
-      'Some error occurred. Please try again!',
-      name: 'someOccurredAgain',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter corporate ID`
-  String get pleaseCorporateIDText {
-    return Intl.message(
-      'Please enter corporate ID',
-      name: 'pleaseCorporateIDText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Deleted successfully!`
-  String get deletedSuccessfully {
-    return Intl.message(
-      'Deleted successfully!',
-      name: 'deletedSuccessfully',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Phone number automatically verified and signed in!`
-  String get phoneAutomaticallySigned {
-    return Intl.message(
-      'Phone number automatically verified and signed in!',
-      name: 'phoneAutomaticallySigned',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Invalid OTP or verification failed`
-  String get invalidVerificationFailed {
-    return Intl.message(
-      'Invalid OTP or verification failed',
-      name: 'invalidVerificationFailed',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Minimum 8 characters are required.`
-  String get minimumCharactersRequired {
-    return Intl.message(
-      'Minimum 8 characters are required.',
-      name: 'minimumCharactersRequired',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Must include at least one uppercase letter`
-  String get mustUppercaseLetter {
-    return Intl.message(
-      'Must include at least one uppercase letter',
-      name: 'mustUppercaseLetter',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Must include at least one lowercase letter.`
-  String get mustLowercaseLetter {
-    return Intl.message(
-      'Must include at least one lowercase letter.',
-      name: 'mustLowercaseLetter',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Must include at least one special character.`
-  String get mustSpecialCharacter {
-    return Intl.message(
-      'Must include at least one special character.',
-      name: 'mustSpecialCharacter',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password is valid.`
-  String get passwordValid {
-    return Intl.message(
-      'Password is valid.',
-      name: 'passwordValid',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No Staff`
-  String get noStaff {
-    return Intl.message(
-      'No Staff',
-      name: 'noStaff',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Congratulations, your account has been successfully created.`
-  String get congratulationsSuccessfullyCreated {
-    return Intl.message(
-      'Congratulations, your account has been successfully created.',
-      name: 'congratulationsSuccessfullyCreated',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Registration Successful`
-  String get registrationSuccessfulText {
-    return Intl.message(
-      'Registration Successful',
-      name: 'registrationSuccessfulText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Phone Number(optional)`
-  String get phoneNumberOps {
-    return Intl.message(
-      'Phone Number(optional)',
-      name: 'phoneNumberOps',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter any comments`
-  String get pleaseEnterComments {
-    return Intl.message(
-      'Please enter any comments',
-      name: 'pleaseEnterComments',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter Category`
-  String get pleaseEnterCategory {
-    return Intl.message(
-      'Please enter Category',
-      name: 'pleaseEnterCategory',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter Number Type`
-  String get pleaseEnterNumberType {
-    return Intl.message(
-      'Please enter Number Type',
-      name: 'pleaseEnterNumberType',
       desc: '',
       args: [],
     );

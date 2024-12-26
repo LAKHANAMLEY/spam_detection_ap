@@ -27,13 +27,6 @@ class _ProfileState extends State<Profile> {
   ];
 
   String? _selectedItem;
-  final List<String> _items = [
-    'Last 30 days',
-    'Last 3 months ',
-    'Last 6 months',
-    'This year',
-    'All time'
-  ];
 
   void _showEditOptions(BuildContext context) {
     showModalBottomSheet(
@@ -129,7 +122,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> _items = [
+    final List<String> items = [
       'Last 30 days',
       'Last 3 months ',
       'Last 6 months',
@@ -381,7 +374,7 @@ class _ProfileState extends State<Profile> {
                                               fontFamily: AppFont.fontFamily,
                                               fontWeight: FontWeight.w600),
                                         ),
-                                        items: _items.map((String value) {
+                                        items: items.map((String value) {
                                           return DropdownMenuItem<String>(
                                             value: value,
                                             child: Text(value),

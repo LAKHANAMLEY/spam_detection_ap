@@ -342,12 +342,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       });
     }
 
-    if (event is GetContactDetailEvent) {
-      emit(ApiLoadingState());
-      await getContactDetail(mobileNo: event.mobileNo).then((value) {
-        emit(GetContactDetailState(value));
-      });
-    }
+    // if (event is GetContactDetailEvent) {
+    //   emit(ApiLoadingState());
+    //   await getContactDetail(mobileNo: event.mobileNo).then((value) {
+    //     emit(GetContactDetailState(value));
+    //   });
+    // }
 
     if (event is LoginWithEmailAndPasswordEvent) {
       emit(ApiLoadingState());
@@ -367,7 +367,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     // check Spam
     if (event is CheckSpamEvent) {
       emit(ApiLoadingState());
-      await checkSpam(callLogs: event.callLogs).then((value) {
+      await checkSpam(log: event.callLogs).then((value) {
         emit(CheckSpamState(value));
       });
     }

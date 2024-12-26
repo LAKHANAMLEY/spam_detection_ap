@@ -23,6 +23,7 @@ Future<SyncCallManuallyResponse> syncCallLogManually(
     'call_duration_unit': '1' //1 sec 2 min 3 horus
     // });
   };
+  print(body);
 
   var request = http.MultipartRequest(
       'POST',

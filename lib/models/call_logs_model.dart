@@ -62,24 +62,25 @@ class CallLogData {
   final int? isSpam;
   final int? isBlocked;
   final int? markSpamByUser;
+  final String isManually;
 
-  CallLogData({
-    this.id,
-    this.phoneaccountid,
-    this.simdisplayname,
-    this.name,
-    this.callType,
-    this.countryCode,
-    this.mobileNo,
-    this.callTime,
-    this.callDuration,
-    this.callDurationUnit,
-    this.contactListId,
-    this.callDurations,
-    this.isSpam,
-    this.isBlocked,
-    this.markSpamByUser,
-  });
+  CallLogData(
+      {this.id,
+      this.phoneaccountid,
+      this.simdisplayname,
+      this.name,
+      this.callType,
+      this.countryCode,
+      this.mobileNo,
+      this.callTime,
+      this.callDuration,
+      this.callDurationUnit,
+      this.contactListId,
+      this.callDurations,
+      this.isSpam,
+      this.isBlocked,
+      this.markSpamByUser,
+      this.isManually = "0"});
 
   factory CallLogData.fromJson(Map<String, dynamic> json) => CallLogData(
         id: json["id"],

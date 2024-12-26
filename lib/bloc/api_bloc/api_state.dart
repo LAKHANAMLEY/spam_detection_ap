@@ -389,14 +389,14 @@ class GetLanguageListState extends ApiState {
   List<Object?> get props => [value];
 }
 
-class GetContactDetailState extends ApiState {
-  final ContactDetailsResponse value;
+// class GetContactDetailState extends ApiState {
+//   final ContactDetailsResponse value;
 
-  GetContactDetailState(this.value);
+//   GetContactDetailState(this.value);
 
-  @override
-  List<Object?> get props => [value];
-}
+//   @override
+//   List<Object?> get props => [value];
+// }
 
 class LoginWithEmailAndPasswordState extends ApiState {
   final LoginResponse value;

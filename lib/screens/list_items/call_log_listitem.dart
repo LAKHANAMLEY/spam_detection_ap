@@ -4,30 +4,35 @@ import 'package:spam_delection_app/lib.dart';
 
 class CallLogListItem extends StatelessWidget {
   final CallLogData callLog;
+  final bool showPopupMenuBtn;
+  final void Function()? onTap;
 
   const CallLogListItem({
     super.key,
     required this.callLog,
+    this.showPopupMenuBtn = true,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
-      onTap: () {
-        Navigator.pushNamed(context, AppRoutes.contactDetail,
-            arguments: ContactDetail(
-              contact: ContactData(
-                countryCode: callLog.countryCode,
-                mobileNo: callLog.mobileNo,
-                name: callLog.name,
-                numberType: callLog.callType,
-                id: callLog.contactListId,
-                isSpam: callLog.isSpam,
-                isBlocked: callLog.isBlocked,
-                markspambyuser: callLog.markSpamByUser,
-              ),
-            ));
-      },
+      onTap: onTap ??
+          () {
+            Navigator.pushNamed(context, AppRoutes.contactDetail,
+                arguments: ContactDetail(
+                  contact: ContactData(
+                    countryCode: callLog.countryCode,
+                    mobileNo: callLog.mobileNo,
+                    name: callLog.name,
+                    numberType: callLog.callType,
+                    id: callLog.contactListId,
+                    isSpam: callLog.isSpam,
+                    isBlocked: callLog.isBlocked,
+                    markspambyuser: callLog.markSpamByUser,
+                  ),
+                ));
+          },
       leading: CircleAvatar(
         backgroundImage: AssetImage(callLog.isSpam == 1
             ? IconConstants.icFraud
@@ -62,7 +67,7 @@ class CallLogListItem extends StatelessWidget {
         children: [
           if (callLog.markSpamByUser != 0)
             Text(
-              "${callLog.markSpamByUser} Spam reports",
+              "${callLog.markSpamByUser ?? 0} Spam reports",
               style: textTheme(context).bodyMedium?.copyWith(color: Colors.red),
             )
           else ...[
@@ -87,47 +92,48 @@ class CallLogListItem extends StatelessWidget {
           //   callLog.callTime?.formatDateTime() ?? "",
           //   style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
           // ),
-          PopupMenuButton(
-            menuPadding: EdgeInsets.zero,
-            padding: EdgeInsets.zero,
-            style: const ButtonStyle(visualDensity: VisualDensity.compact),
-            // position: ,
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                  onTap: () {
-                    showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: AppColor.secondryColor,
-                      context: context,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(20.0)),
-                      ),
-                      builder: (BuildContext context) {
-                        return ReportView(
-                          contact: ContactData(
-                            id: callLog.contactListId,
-                            mobileNo: callLog.mobileNo,
-                            name: callLog.name,
-                            isSpam: callLog.isSpam,
-                            countryCode: callLog.countryCode,
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Text(appLocalization(context).reportText)),
-              PopupMenuItem(
-                  onTap: () {
-                    markSpamBloc.add(BlockUnBlockEvent(
-                        contactId: callLog.mobileNo ?? "",
-                        comments: appLocalization(context).block));
-                  },
-                  child: Text(callLog.isBlocked == 1
-                      ? appLocalization(context).unblock
-                      : appLocalization(context).block))
-            ],
-          ),
+          if (showPopupMenuBtn)
+            PopupMenuButton(
+              menuPadding: EdgeInsets.zero,
+              padding: EdgeInsets.zero,
+              style: const ButtonStyle(visualDensity: VisualDensity.compact),
+              // position: ,
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                    onTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: AppColor.secondryColor,
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(20.0)),
+                        ),
+                        builder: (BuildContext context) {
+                          return ReportView(
+                            contact: ContactData(
+                              id: callLog.contactListId,
+                              mobileNo: callLog.mobileNo,
+                              name: callLog.name,
+                              isSpam: callLog.isSpam,
+                              countryCode: callLog.countryCode,
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Text(appLocalization(context).reportText)),
+                PopupMenuItem(
+                    onTap: () {
+                      markSpamBloc.add(BlockUnBlockEvent(
+                          contactId: callLog.mobileNo ?? "",
+                          comments: appLocalization(context).block));
+                    },
+                    child: Text(callLog.isBlocked == 1
+                        ? appLocalization(context).unblock
+                        : appLocalization(context).block))
+              ],
+            ),
         ],
       ),
       // trailing: Text(callLog.callTime?.formatDateTime() ?? ""),

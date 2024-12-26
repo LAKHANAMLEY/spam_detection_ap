@@ -232,7 +232,7 @@ class _ReportViewState extends State<ReportView> {
                             return;
                           }
                           markSpamBloc.add(MarkSpamEvent(
-                              contactId: contact?.id ?? "",
+                              contactId: contact?.id ?? "0",
                               comment: commentController.text,
                               numberType: numberType ?? "",
                               categoryId: selectedCategory?.cateId ?? "",

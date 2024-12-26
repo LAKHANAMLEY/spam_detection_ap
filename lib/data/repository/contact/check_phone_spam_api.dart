@@ -1,26 +1,23 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<CheckSpamNumberResponse> checkSpam(
-    {required List<CallLogEntry> callLogs}) async {
-  var body = [];
-  for (int i = 0; i < callLogs.length; i++) {
-    var log = callLogs[i];
-    body.add(<String, String>{
-      //'is_manually': log.isManually ?? "",
-      'country_code': log.number?.separeatePhoneAndPhoneCode().phoneCode ?? "",
-      'mobile_no': log.number
-              ?.separeatePhoneAndPhoneCode()
-              .phone
-              .replaceAll(AppConstants.specialCharAndSpaceRegex, "") ??
-          "",
-      'call_type': log.callType?.name ?? "",
-      'call_time':
-          log.timestamp?.toDateTime().toString().splitFirstBy(".") ?? "",
-      'call_duration': log.duration.toString(),
-      'call_duration_unit': '1' //1 sec 2 min 3 horus
-    });
-  }
+Future<CheckSpamNumberResponse> checkSpam({required CallLogData log}) async {
+  // var log = callLogs;
+  var body = {
+    'is_manually': log.isManually, //0 for detail or 1 for broadcast
+    'country_code': log.countryCode ?? "",
+    'phone': log.mobileNo
+            ?.separeatePhoneAndPhoneCode()
+            .phone
+            .replaceAll(AppConstants.specialCharAndSpaceRegex, "") ??
+        "",
+    'call_type': log.callType ?? "",
+    'call_time': log.callTime?.toString().splitFirstBy(".") ?? "",
+    'call_duration': log.callDuration ?? "",
+    'call_duration_unit': '1' //1 sec 2 min 3 horus
+  };
+
+  print(jsonEncode(body));
 
   var request = http.MultipartRequest(
       'POST',
@@ -29,9 +26,7 @@ Future<CheckSpamNumberResponse> checkSpam(
       ));
 
   request.headers.addAll(await ApiUrlConstants.headers());
-  for (var field in body) {
-    request.fields.addAll(field);
-  }
+  request.fields.addAll(body);
 
   var streamedResponse = await request.send();
   var response = await http.Response.fromStream(streamedResponse);

@@ -17,8 +17,8 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
     var callLog = CallLogData.fromJson(data);
     callLogDetailBloc.add(GetDeviceCallLogEvent(
       number: callLog.mobileNo,
-      dateTimeFrom: DateTime.now().subtract(const Duration(days: 1)),
-      dateTimeTo: DateTime.now(),
+      // dateTimeFrom: DateTime.now().subtract(const Duration(days: 1)),
+      // dateTimeTo: DateTime.now(),
     ));
     // callLogDetailBloc.add(SyncCallLogManuallyEvent(
     //     callLogs: CallLogEntry(
@@ -54,11 +54,28 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
               if (state is GetDeviceCallLogState) {
                 if (state.value.isNotEmpty) {
                   var deviceCallLogs = state.value.first;
-                  callLogDetailBloc
-                      .add(SyncCallLogManuallyEvent(callLogs: deviceCallLogs));
+                  callLogDetailBloc.add(CheckSpamEvent(
+                      callLogs: CallLogData(
+                    isManually: "1",
+                    mobileNo: deviceCallLogs.number
+                        ?.separeatePhoneAndPhoneCode()
+                        .phone,
+                    countryCode: deviceCallLogs.number
+                        ?.separeatePhoneAndPhoneCode()
+                        .phoneCode,
+                    name: deviceCallLogs.name,
+                    callDuration: deviceCallLogs.duration.toString(),
+                    callDurations: deviceCallLogs.duration.toString(),
+                    callDurationUnit: "1",
+                    callTime: deviceCallLogs.timestamp?.toDateTime(),
+                    callType: deviceCallLogs.callType?.name,
+                    simdisplayname: deviceCallLogs.simDisplayName,
+                    phoneaccountid: deviceCallLogs.phoneAccountId,
+                    contactListId: "0",
+                  )));
                 }
               }
-              if (state is SyncCallManuallyState) {
+              if (state is CheckSpamState) {
                 if (state.value.statusCode == 200) {
                   // var deviceCallLogs = state.value;
                 } else if (state.value.statusCode ==
@@ -70,13 +87,15 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
               }
             },
             builder: (context, state) {
-              if (state is SyncCallManuallyState) {
-                var callLog = state.value.callLog;
+              if (state is CheckSpamState) {
+                var callLog = state.value.phonespamdetails;
                 return Container(
                   padding: const EdgeInsets.all(15),
                   margin: const EdgeInsets.all(0),
                   decoration: BoxDecoration(
-                    // color: AppColor.callColor,
+                    color: callLog?.isSpam == 1
+                        ? AppColor.redColor
+                        : AppColor.callColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
@@ -98,23 +117,27 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                               Row(
                                 children: [
                                   Text(
-                                    "${callLog?.callType ?? ""} call",
+                                    "${callLog?.callHistory?.first.callType ?? ""} call",
                                     style: textTheme(context)
                                         .bodySmall
                                         ?.copyWith(
-                                            color: getCallTypeColor(
-                                                callLog?.callType)),
+                                            color: getCallTypeColor(callLog
+                                                ?.callHistory?.first.callType)),
                                   ),
                                   5.width(),
                                   Text(
-                                    callLog?.simdisplayname ?? "",
+                                    callLog?.callHistory?.first
+                                            .simdisplayname ??
+                                        "",
                                     style: textTheme(context)
                                         .bodySmall
                                         ?.copyWith(color: Colors.grey),
                                   ),
                                   5.width(),
                                   Text(
-                                    callLog?.callTime?.formatDateTime() ?? "",
+                                    callLog?.callHistory?.first.callTime
+                                            ?.formatDateTime() ??
+                                        "",
                                     style: textTheme(context)
                                         .bodySmall
                                         ?.copyWith(color: Colors.grey),

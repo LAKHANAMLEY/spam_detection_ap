@@ -243,21 +243,28 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                   }
                                 },
                                 builder: (context, state) {
-                                  return Expanded(
-                                    child: filteredCallLogs.isEmpty
-                                        ? Center(
-                                            child: Text(appLocalization(context)
-                                                .noData),
-                                          )
-                                        : ListView.builder(
-                                            controller: scrollController,
-                                            itemCount: filteredCallLogs.length,
-                                            itemBuilder: (context, index) =>
-                                                CallLogListItem(
-                                                  callLog:
-                                                      filteredCallLogs[index],
-                                                )),
-                                  );
+                                  return filteredCallLogs.isEmpty
+                                      ? CallLogListItem(
+                                          // showPopupMenuBtn: false,
+                                          callLog: CallLogData(
+                                          mobileNo: searchController.text,
+                                        ))
+                                      // Center(
+                                      //     child: Text(appLocalization(context)
+                                      //         .noData),
+                                      //   )
+                                      : Expanded(
+                                          child: ListView.builder(
+                                              shrinkWrap: true,
+                                              controller: scrollController,
+                                              itemCount:
+                                                  filteredCallLogs.length,
+                                              itemBuilder: (context, index) =>
+                                                  CallLogListItem(
+                                                    callLog:
+                                                        filteredCallLogs[index],
+                                                  )),
+                                        );
                                 }),
                           ],
                         ),

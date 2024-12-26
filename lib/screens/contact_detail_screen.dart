@@ -26,8 +26,8 @@ class _ContactDetailState extends State<ContactDetail> {
     WidgetsBinding.instance.addPostFrameCallback((duration) {
       var argument = args(context) as ContactDetail;
       contact = argument.contact;
-      contactDetailBloc
-          .add(GetContactDetailEvent(mobileNo: contact?.mobileNo ?? ""));
+      contactDetailBloc.add(CheckSpamEvent(
+          callLogs: CallLogData.fromJson(contact?.toJson() ?? {})));
     });
   }
 
@@ -59,8 +59,8 @@ class _ContactDetailState extends State<ContactDetail> {
                 );
               }
               callLogsListBloc.add(GetCallLogsEvent());
-              contactDetailBloc.add(
-                  GetContactDetailEvent(mobileNo: contact?.mobileNo ?? ""));
+              contactDetailBloc.add(CheckSpamEvent(
+                  callLogs: CallLogData.fromJson(contact?.toJson() ?? {})));
             }
             if (state is RemoveSpamState) {
               if (state.value.statusCode == 200) {
@@ -76,8 +76,8 @@ class _ContactDetailState extends State<ContactDetail> {
                     subTitle: state.value.message);
               }
               callLogsListBloc.add(GetCallLogsEvent());
-              contactDetailBloc.add(
-                  GetContactDetailEvent(mobileNo: contact?.mobileNo ?? ""));
+              contactDetailBloc.add(CheckSpamEvent(
+                  callLogs: CallLogData.fromJson(contact?.toJson() ?? {})));
             }
             if (state is BlockUnBlockState) {
               if (state.value.statusCode == 200) {
@@ -93,17 +93,33 @@ class _ContactDetailState extends State<ContactDetail> {
                     subTitle: state.value.message.toString());
               }
               callLogsListBloc.add(GetCallLogsEvent());
-              contactDetailBloc.add(
-                  GetContactDetailEvent(mobileNo: contact?.mobileNo ?? ""));
+              contactDetailBloc.add(CheckSpamEvent(
+                  callLogs: CallLogData.fromJson(contact?.toJson() ?? {})));
             }
           },
           builder: (context, markSpamBlocState) {
-            return BlocBuilder(
+            return BlocConsumer(
                 bloc: contactDetailBloc,
+                listener: (context, state) {
+                  if (state is CheckSpamState) {
+                    if (state.value.statusCode == 200) {
+                      // showCustomDialog(context,
+                      //     dialogType: DialogType.success,
+                      //     subTitle: state.value.message);
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(context, state.value.message);
+                    } else {
+                      showCustomDialog(context,
+                          dialogType: DialogType.failed,
+                          subTitle: state.value.message.toString());
+                    }
+                  }
+                },
                 builder: (context, state) {
-                  if (state is GetContactDetailState) {
+                  if (state is CheckSpamState) {
                     var contact =
-                        state.value.contactdetails ?? argument.contact;
+                        state.value.phonespamdetails ?? argument.contact;
                     return ModalProgressHUD(
                       progressIndicator: const Loader(),
                       inAsyncCall: state is ApiLoadingState ||
@@ -121,7 +137,10 @@ class _ContactDetailState extends State<ContactDetail> {
                                 onTap: () {
                                   Navigator.pop(context);
                                 },
-                                child: Image.asset(IconConstants.backIcon)),
+                                child: Image.asset(
+                                  IconConstants.backIcon,
+                                  color: Colors.white,
+                                )),
                             backgroundColor: Colors.white,
                             flexibleSpace: FlexibleSpaceBar(
                               collapseMode: CollapseMode.pin,
@@ -379,16 +398,34 @@ class _ContactDetailState extends State<ContactDetail> {
                                   border:
                                       Border.all(color: AppColor.fillColor)),
                               child: ListTile(
-                                leading: Icon(Icons.location_on,
+                                leading: const Icon(Icons.location_on,
                                     color: AppColor.primaryColor),
                                 title: Text(
                                   appLocalization(context).moreAvailable,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 subtitle: Text(appLocalization(context)
                                     .upgradePremiumView),
                               ),
                             ),
+                            10.height(),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                appLocalization(context).callHistory,
+                                style: textTheme(context).titleMedium,
+                              ),
+                            ),
+                            ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: contact.callHistory?.length,
+                              itemBuilder: (context, index) => CallLogListItem(
+                                  callLog: contact.callHistory![index],
+                                  showPopupMenuBtn: false,
+                                  onTap: () {}),
+                            )
                             // 1000.height()
                           ])),
                         ],
