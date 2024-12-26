@@ -2,6 +2,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class SpamListItem extends StatelessWidget {
   final SpamData spamContact;
+
   const SpamListItem({super.key, required this.spamContact});
 
   @override
@@ -32,7 +33,7 @@ class SpamListItem extends StatelessWidget {
       trailing: PopupMenuButton(
         itemBuilder: (context) => [
           PopupMenuItem(
-            child: const Text("Remove spam"),
+            child: Text(appLocalization(context).removeSpam),
             onTap: () {
               markSpamBloc
                   .add(RemoveSpamEvent(contactId: spamContact.spamNo ?? ""));

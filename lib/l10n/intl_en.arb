@@ -772,5 +772,6 @@
   "pleaseEnterComments": "Please enter any comments",
   "pleaseEnterCategory": "Please enter Category",
   "pleaseEnterNumberType": "Please enter Number Type",
-  "newPassConfirmPass": "New Password and Confirm Password do not match."
+  "newPassConfirmPass": "New Password and Confirm Password do not match.",
+  "removeSpam": "Remove Spam"
 }

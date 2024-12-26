@@ -12,25 +12,7 @@ class NotificationListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomListTile(
       onTap: () {
-        //TODO:iska detail page bana kr yha se navigate kro
-        // understand sir
-        // see sir is type ka
         Navigator.pushNamed(context, AppRoutes.viewedProfile);
-        /*Navigator.pushNamed(context, AppRoutes.contactDetail,
-            arguments: ContactDetail(
-              contact: ContactData(
-                countryCode: callLog.countryCode,
-                mobileNo: callLog.mobileNo,
-                name: callLog.name,
-                numberType: callLog.callType,
-                id: callLog.contactListId,
-                isSpam: callLog.isSpam,
-                isBlocked: callLog.isBlocked,
-                markspambyuser: callLog.markSpamByUser,
-              ),
-            ));
-
-         */
       },
       leading: const CircleAvatar(
           radius: 12,

@@ -23,7 +23,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: CustomAppBar(
+        appBar: const CustomAppBar(
           centerTitle: true,
         ),
         body: SafeArea(

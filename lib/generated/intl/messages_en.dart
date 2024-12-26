@@ -791,6 +791,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
         "relation": MessageLookupByLibrary.simpleMessage("Relation"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+        "removeSpam": MessageLookupByLibrary.simpleMessage("Remove Spam"),
         "rent": MessageLookupByLibrary.simpleMessage("Rent"),
         "renterPassword":
             MessageLookupByLibrary.simpleMessage("Re-enter Password"),

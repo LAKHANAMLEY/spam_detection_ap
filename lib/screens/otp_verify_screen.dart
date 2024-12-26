@@ -155,25 +155,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.secondryColor,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 2 / 100,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Image.asset(
-                IconConstants.backIcon,
-              ),
-            ),
-          ),
-        ),
-        title: Image.asset(IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 35 / 100,
-            width: MediaQuery.of(context).size.width * 35 / 100),
+      appBar: const CustomAppBar(
         centerTitle: true,
       ),
       body: SafeArea(

@@ -20,28 +20,6 @@ class _LoginGoogleState extends State<LoginGoogle> {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
         appBar: CustomAppBar(
-          /*backgroundColor: AppColor.secondryColor,
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 2 / 100,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Image.asset(
-                  IconConstants.icBacKCircle,
-                ),
-              ),
-            ),
-          ),
-          title: Image.asset(
-            IconConstants.icBroadlogo,
-            height: MediaQuery.of(context).size.height * 38 / 100,
-            width: MediaQuery.of(context).size.width * 38 / 100,
-          ),
-          
-           */
           centerTitle: true,
         ),
         body: SafeArea(
