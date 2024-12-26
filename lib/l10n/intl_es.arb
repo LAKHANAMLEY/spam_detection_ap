@@ -673,6 +673,7 @@
   "pleaseEnterComments": "Por favor ingrese cualquier comentario",
   "pleaseEnterCategory": "Por favor ingrese la categoría",
   "pleaseEnterNumberType": "Por favor ingrese el tipo de número",
-  "newPassConfirmPass": "La nueva contraseña y la confirmación de contraseña no coinciden."
+  "newPassConfirmPass": "La nueva contraseña y la confirmación de contraseña no coinciden.",
+  "removeSpam": "Eliminar spam"
 }
 

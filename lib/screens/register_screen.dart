@@ -79,21 +79,6 @@ class _RegisterState extends State<Register> {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
         appBar: const CustomAppBar(
-          // backgroundColor: AppColor.secondryColor,
-          // leading: GestureDetector(
-          //   onTap: () {},
-          //   child: Padding(
-          //     padding: const EdgeInsets.symmetric(vertical: 10),
-          //     child: Image.asset(
-          //       IconConstants.backIcon,
-          //     ),
-          //   ),
-          // ),
-          // title: Image.asset(
-          //   IconConstants.icBroadlogo,
-          //   height: MediaQuery.of(context).size.height * 38 / 100,
-          //   width: MediaQuery.of(context).size.width * 38 / 100,
-          // ),
           centerTitle: true,
         ),
         body: SafeArea(

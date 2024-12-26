@@ -6773,6 +6773,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Remove Spam`
+  String get removeSpam {
+    return Intl.message(
+      'Remove Spam',
+      name: 'removeSpam',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

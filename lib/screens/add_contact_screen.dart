@@ -24,19 +24,6 @@ class _AddContactState extends State<AddContact> {
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController _numberController = TextEditingController();
 
-  //String _selectedType = appLocalization(context).mobile;
-
-  /*final List<String> _options = [
-    appLocalization(context).contactList,
-    "Home",
-    "Work",
-    "Home Fax",
-    "Work Fax",
-    "Other"
-  ];
-    
-   */
-
   @override
   void dispose() {
     _numberController.dispose();
