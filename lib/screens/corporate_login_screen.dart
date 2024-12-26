@@ -21,7 +21,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: CustomAppBar(
+        appBar: const CustomAppBar(
           centerTitle: true,
         ),
         body: SafeArea(
@@ -90,6 +90,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
               10.height(),
               CustomTextField(
                 controller: passwordController,
+                obscureText: true,
                 hintText: appLocalization(context).password,
                 suffix: Padding(
                   padding: const EdgeInsets.only(left: 8, right: 8),

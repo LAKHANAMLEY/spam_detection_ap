@@ -425,6 +425,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 ),
                               ),
                             ),
+                            keyboardType: TextInputType.number,
                             initialCountryCode: 'IN',
                             onChanged: (phone) {
                               phoneNumber = phone;
