@@ -43,6 +43,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     phoneStateStreamSubs = PhoneState.stream.listen((state) async {
       if (state.status != PhoneStateStatus.NOTHING &&
           (state.number?.isNotEmpty ?? false)) {
+        callLogsListBloc.add(GetCallLogsEvent());
         showOverlay(
             callType: getCallTypeByPhoneState(state),
             number: state.number ?? "",

@@ -47,6 +47,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
 
   @override
   Widget build(BuildContext context) {
+    Color textColor = Colors.white;
     return Material(
         child: BlocConsumer(
             bloc: callLogDetailBloc,
@@ -103,8 +104,10 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                     children: [
                       Row(
                         children: [
-                          const CircleAvatar(
-                            backgroundImage: AssetImage(IconConstants.icCaller),
+                          CircleAvatar(
+                            backgroundImage: AssetImage(callLog?.isSpam == 1
+                                ? IconConstants.icspamCircle
+                                : IconConstants.icCaller),
                           ),
                           // Padding(
                           //   padding: const EdgeInsets.all(8.0),
@@ -146,7 +149,9 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                               ),
                               Text(
                                 callLog?.name ?? callLog?.mobileNo ?? "",
-                                style: textTheme(context).titleMedium,
+                                style: textTheme(context)
+                                    .titleMedium
+                                    ?.copyWith(color: textColor),
                               ),
                             ],
                           ),
@@ -174,25 +179,74 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(callLog?.mobileNo ?? ""),
+                          Text(
+                            callLog?.mobileNo ?? "",
+                            style: textTheme(context)
+                                .bodyMedium
+                                ?.copyWith(color: textColor),
+                          ),
                           // Text(callLog.cachedNumberLabel ?? ""),
                         ],
                       ),
                       10.height(),
-                      const Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
-                            children: [Icon(Icons.phone), Text("CALL")],
+                            children: [
+                              Icon(
+                                Icons.phone,
+                                color: textColor,
+                              ),
+                              Text(
+                                "CALL",
+                                style: textTheme(context)
+                                    .bodyMedium
+                                    ?.copyWith(color: textColor),
+                              )
+                            ],
                           ),
                           Column(
-                            children: [Icon(Icons.message), Text("MESSAGE")],
+                            children: [
+                              Icon(
+                                Icons.message,
+                                color: textColor,
+                              ),
+                              Text(
+                                "MESSAGE",
+                                style: textTheme(context)
+                                    .bodyMedium
+                                    ?.copyWith(color: textColor),
+                              )
+                            ],
                           ),
                           Column(
-                            children: [Icon(Icons.voice_chat), Text("VOICE")],
+                            children: [
+                              Icon(
+                                Icons.voice_chat,
+                                color: textColor,
+                              ),
+                              Text(
+                                "VOICE",
+                                style: textTheme(context)
+                                    .bodyMedium
+                                    ?.copyWith(color: textColor),
+                              )
+                            ],
                           ),
                           Column(
-                            children: [Icon(Icons.edit), Text("EDIT")],
+                            children: [
+                              Icon(
+                                Icons.edit,
+                                color: textColor,
+                              ),
+                              Text(
+                                "EDIT",
+                                style: textTheme(context)
+                                    .bodyMedium
+                                    ?.copyWith(color: textColor),
+                              )
+                            ],
                           ),
                         ],
                       )
