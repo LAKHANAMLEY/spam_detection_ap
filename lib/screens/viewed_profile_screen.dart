@@ -24,17 +24,17 @@ class _ViewedProfileState extends State<ViewedProfile> {
                   FaceHolder(
                     id: '1',
                     name: 'user 1',
-                    avatar: NetworkImage('https://i.pravatar.cc/300?img=1'),
+                    avatar: const NetworkImage('https://i.pravatar.cc/300?img=1'),
                   ),
                   FaceHolder(
                     id: '2',
                     name: 'user 2',
-                    avatar: NetworkImage('https://i.pravatar.cc/300?img=2'),
+                    avatar: const NetworkImage('https://i.pravatar.cc/300?img=2'),
                   ),
                   FaceHolder(
                     id: '3',
                     name: 'user 3',
-                    avatar: NetworkImage('https://i.pravatar.cc/300?img=3'),
+                    avatar: const NetworkImage('https://i.pravatar.cc/300?img=3'),
                   ),
                 ],
                 faceSize: 80,
@@ -43,7 +43,7 @@ class _ViewedProfileState extends State<ViewedProfile> {
               ),
               10.height(),
               const Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   "127 people(127 in india) viewed your profile recently",
                   textAlign: TextAlign.center,

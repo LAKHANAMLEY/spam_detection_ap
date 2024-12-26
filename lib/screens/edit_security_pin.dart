@@ -55,7 +55,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                   MediaQuery.of(context).size.height * 4 / 100,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 70, right: 70),
+                              padding: const EdgeInsets.only(left: 70, right: 70),
                               child: Text(
                                 appLocalization(context).changeSecurity,
                                 textAlign: TextAlign.center,
@@ -71,7 +71,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                   MediaQuery.of(context).size.height * 2 / 100,
                             ),
                             Padding(
-                              padding: EdgeInsets.all(18),
+                              padding: const EdgeInsets.all(18),
                               child: Text(
                                 appLocalization(context).pleaseNewPinSecure,
                                 textAlign: TextAlign.center,

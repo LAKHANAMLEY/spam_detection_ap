@@ -32,7 +32,7 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                     height: MediaQuery.of(context).size.height * 4 / 100,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 60, right: 60),
+                    padding: const EdgeInsets.only(left: 60, right: 60),
                     child: Text(
                       appLocalization(context).alternativeEmail,
                       textAlign: TextAlign.center,
@@ -77,7 +77,6 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                       text: appLocalization(context).submit,
                       onPress: () {
                         if (_formKey.currentState?.validate() ?? false) {}
-                        ;
                       })
                 ],
               ),

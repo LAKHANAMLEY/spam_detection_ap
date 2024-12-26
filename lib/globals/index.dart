@@ -9,6 +9,7 @@ export 'package:equatable/equatable.dart';
 export 'package:fast_contacts/fast_contacts.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
+export 'package:flutter_face_pile/flutter_face_pile.dart';
 export 'package:google_sign_in/google_sign_in.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:intl_phone_field/intl_phone_field.dart';

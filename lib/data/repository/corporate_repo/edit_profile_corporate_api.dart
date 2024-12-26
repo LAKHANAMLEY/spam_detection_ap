@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/corporate_edit_profile_model.dart';
 
 Future<Response> corporateEditProfile({
   // required String firstname,

@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/corporate_edit_profile_model.dart';
 
 class CorporateProfile extends StatefulWidget {
   final CorporateData? corporateData;
@@ -97,7 +96,7 @@ class _CorporateProfileState extends State<CorporateProfile> {
                 },
                 child: Text(
                   appLocalization(context).cancelText,
-                  style: TextStyle(color: Colors.red),
+                  style: const TextStyle(color: Colors.red),
                 ),
               ),
             ],

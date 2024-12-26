@@ -204,7 +204,7 @@ class _PlanDetailState extends State<PlanDetail> {
                               ),
                               const Text(
                                 "Sms",
-                                style: const TextStyle(
+                                style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontFamily: AppFont.fontFamily,
                                     color: AppColor.callColor,
@@ -270,7 +270,7 @@ class _PlanDetailState extends State<PlanDetail> {
                               ),
                               const Text(
                                 "Email",
-                                style: const TextStyle(
+                                style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontFamily: AppFont.fontFamily,
                                     color: AppColor.callColor,

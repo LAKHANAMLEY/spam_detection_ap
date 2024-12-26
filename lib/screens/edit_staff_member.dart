@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/widgets/show_image_picker_dialog.dart';
 
 class EditStaffMember extends StatefulWidget {
   final StaffMember? staffMember;

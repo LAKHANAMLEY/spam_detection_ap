@@ -22,7 +22,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
-        appBar: CustomAppBar(
+        appBar: const CustomAppBar(
           centerTitle: true,
         ),
         body: SafeArea(
@@ -57,7 +57,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   MediaQuery.of(context).size.height * 4 / 100,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 60, right: 50),
+                              padding: const EdgeInsets.only(left: 60, right: 50),
                               child: Text(
                                 appLocalization(context).changePassword,
                                 textAlign: TextAlign.center,
@@ -73,7 +73,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   MediaQuery.of(context).size.height * 2 / 100,
                             ),
                             Padding(
-                              padding: EdgeInsets.all(18),
+                              padding: const EdgeInsets.all(18),
                               child: Text(
                                 appLocalization(context).pleasNewPasswordSecure,
                                 textAlign: TextAlign.center,

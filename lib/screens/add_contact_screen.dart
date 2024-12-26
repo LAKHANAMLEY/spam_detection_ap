@@ -32,7 +32,7 @@ class _AddContactState extends State<AddContact> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> _options = [
+    final List<String> options = [
       appLocalization(context).mobile,
       appLocalization(context).home,
       appLocalization(context).work,
@@ -40,7 +40,7 @@ class _AddContactState extends State<AddContact> {
       appLocalization(context).workFax,
       appLocalization(context).other,
     ];
-    String _selectedType = appLocalization(context).mobile;
+    String selectedType = appLocalization(context).mobile;
     return Scaffold(
       backgroundColor: AppColor.secondryColor,
       appBar: CustomAppBar(title: appLocalization(context).addContact),
@@ -122,8 +122,8 @@ class _AddContactState extends State<AddContact> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: DropdownButtonFormField<String>(
-                  value: _selectedType,
-                  items: _options.map((String option) {
+                  value: selectedType,
+                  items: options.map((String option) {
                     return DropdownMenuItem<String>(
                       value: option,
                       child: Text(option),
@@ -131,7 +131,7 @@ class _AddContactState extends State<AddContact> {
                   }).toList(),
                   onChanged: (String? newValue) {
                     setState(() {
-                      _selectedType = newValue!;
+                      selectedType = newValue!;
                     });
                   },
                   decoration: InputDecoration(

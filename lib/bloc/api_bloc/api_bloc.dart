@@ -1,4 +1,3 @@
-import 'package:spam_delection_app/data/repository/call_log_repo/sync_call_log_manually.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {

@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:phone_state_background/phone_state_background.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/utils/show_overlay.dart';
 import 'package:system_alert_window/system_alert_window.dart';
 
 void main() async {

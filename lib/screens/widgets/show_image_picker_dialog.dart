@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/utils/image_picker_helper.dart';
 
 Future<dynamic> showImagePickerDialog(
     BuildContext context, SelectionBloc selectImageBloc) {
@@ -47,7 +46,7 @@ Future<dynamic> showImagePickerDialog(
               },
               child: Text(
                 appLocalization(context).cancelText,
-                style: TextStyle(color: Colors.red),
+                style: const TextStyle(color: Colors.red),
               ),
             ),
           ],
