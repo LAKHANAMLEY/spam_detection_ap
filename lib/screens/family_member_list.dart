@@ -121,17 +121,21 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                               // shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 return ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundColor:
-                                        AppColor.vanishColor.withOpacity(0.2),
-                                    radius: 43.0,
-                                    backgroundImage:
-                                        filteredContacts[index].photo != null
-                                            ? NetworkImage(
-                                                filteredContacts[index].photo!)
-                                            : const AssetImage(
-                                                ImageConstants.imageProfile),
-                                  ),
+                                  leading: filteredContacts[index].photo != null
+                                      ? CircleAvatar(
+                                          backgroundColor: AppColor.vanishColor
+                                              .withOpacity(0.2),
+                                          radius: 43.0,
+                                          backgroundImage: NetworkImage(
+                                              filteredContacts[index].photo!),
+                                        )
+                                      : CircleAvatar(
+                                          backgroundColor: AppColor.vanishColor
+                                              .withOpacity(0.2),
+                                          radius: 43.0,
+                                          backgroundImage: const AssetImage(
+                                              ImageConstants.imageProfile),
+                                        ),
                                   subtitle: Text(
                                     filteredContacts[index].relation ?? "",
                                     style: const TextStyle(

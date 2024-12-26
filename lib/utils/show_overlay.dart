@@ -5,13 +5,13 @@ showOverlay(
     {required String callType,
     required String number,
     required int duration}) async {
-  print('$callType, number: $number, duration: $duration s');
-  SystemAlertWindow.sendMessageToOverlay(callLogData(
-    mobileNo: number,
-    callDuration: duration.toString(),
-  ).toJson());
+  SystemAlertWindow.sendMessageToOverlay({
+    "call_type": callType,
+    "mobile_no": number,
+    "call_duration": duration.toString(),
+  });
   await SystemAlertWindow.showSystemWindow(
-    notificationTitle: AppConstants.projectName,
-    notificationBody: "Incoming call $number",
-  );
+      notificationTitle: AppConstants.projectName,
+      notificationBody: "$callType $number",
+      prefMode: SystemWindowPrefMode.BUBBLE);
 }

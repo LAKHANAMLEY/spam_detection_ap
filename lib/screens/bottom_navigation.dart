@@ -1,6 +1,6 @@
 import 'package:phone_state/phone_state.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:system_alert_window/system_alert_window.dart';
+import 'package:spam_delection_app/utils/show_overlay.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -41,22 +41,29 @@ class _BottomNavigationState extends State<BottomNavigation> {
   phoneStateConfig() {
     ///listen phone states and show overlay
     phoneStateStreamSubs = PhoneState.stream.listen((state) async {
-      switch (state.status) {
-        case PhoneStateStatus.NOTHING:
-        case PhoneStateStatus.CALL_INCOMING:
-          await SystemAlertWindow.showSystemWindow(
-            notificationTitle: AppConstants.projectName,
-            notificationBody: "Incoming call ${state.number}",
-          );
-        // phoneStateBackgroundCallbackHandler(
-        //     PhoneStateBackgroundEvent.incomingstart, state.number ?? "", 0);
-        case PhoneStateStatus.CALL_STARTED:
-        case PhoneStateStatus.CALL_ENDED:
-          await SystemAlertWindow.showSystemWindow(
-            notificationTitle: AppConstants.projectName,
-            notificationBody: "Call ended ${state.number}",
-          );
+      if (state.status != PhoneStateStatus.NOTHING &&
+          (state.number?.isNotEmpty ?? false)) {
+        showOverlay(
+            callType: getCallTypeByPhoneState(state),
+            number: state.number ?? "",
+            duration: 0);
       }
+      // switch (state.status) {
+      //   case PhoneStateStatus.NOTHING:
+      //   case PhoneStateStatus.CALL_INCOMING:
+      //     await SystemAlertWindow.showSystemWindow(
+      //       notificationTitle: AppConstants.projectName,
+      //       notificationBody: "Incoming call ${state.number}",
+      //     );
+      //   // phoneStateBackgroundCallbackHandler(
+      //   //     PhoneStateBackgroundEvent.incomingstart, state.number ?? "", 0);
+      //   case PhoneStateStatus.CALL_STARTED:
+      //   case PhoneStateStatus.CALL_ENDED:
+      //     await SystemAlertWindow.showSystemWindow(
+      //       notificationTitle: AppConstants.projectName,
+      //       notificationBody: "Call ended ${state.number}",
+      //     );
+      // }
     });
   }
 

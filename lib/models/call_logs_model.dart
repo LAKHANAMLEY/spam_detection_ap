@@ -12,14 +12,14 @@ String callLogsListResponseToJson(CallLogsListResponse data) =>
 
 class CallLogsListResponse {
   final int? statusCode;
-  final List<callLogData>? callloglist;
+  final List<CallLogData>? callloglist;
   final String? message;
 
   CallLogsListResponse({this.statusCode, this.callloglist, this.message});
 
   CallLogsListResponse copyWith({
     int? statusCode,
-    List<callLogData>? callloglist,
+    List<CallLogData>? callloglist,
     String? message,
   }) =>
       CallLogsListResponse(
@@ -32,8 +32,8 @@ class CallLogsListResponse {
         statusCode: json["status_code"],
         callloglist: json["callloglist"] == null
             ? []
-            : List<callLogData>.from(
-                json["callloglist"]!.map((x) => callLogData.fromJson(x))),
+            : List<CallLogData>.from(
+                json["callloglist"]!.map((x) => CallLogData.fromJson(x))),
         message: json["message"],
       );
 
@@ -46,7 +46,7 @@ class CallLogsListResponse {
       };
 }
 
-class callLogData {
+class CallLogData {
   final String? id;
   final String? phoneaccountid;
   final String? simdisplayname;
@@ -63,7 +63,7 @@ class callLogData {
   final int? isBlocked;
   final int? markSpamByUser;
 
-  callLogData({
+  CallLogData({
     this.id,
     this.phoneaccountid,
     this.simdisplayname,
@@ -81,52 +81,19 @@ class callLogData {
     this.markSpamByUser,
   });
 
-  callLogData copyWith({
-    String? id,
-    String? phoneaccountid,
-    String? simdisplayname,
-    String? name,
-    String? callType,
-    String? countryCode,
-    String? mobileNo,
-    DateTime? callTime,
-    String? callDuration,
-    String? callDurationUnit,
-    String? contactListId,
-    String? callDurations,
-    int? isSpam,
-    int? isBlocked,
-    int? markSpamByUser,
-  }) =>
-      callLogData(
-        id: id ?? this.id,
-        phoneaccountid: phoneaccountid ?? this.phoneaccountid,
-        simdisplayname: simdisplayname ?? this.simdisplayname,
-        name: name ?? this.name,
-        callType: callType ?? this.callType,
-        countryCode: countryCode ?? this.countryCode,
-        mobileNo: mobileNo ?? this.mobileNo,
-        callTime: callTime ?? this.callTime,
-        callDuration: callDuration ?? this.callDuration,
-        callDurationUnit: callDurationUnit ?? this.callDurationUnit,
-        contactListId: contactListId ?? this.contactListId,
-        callDurations: callDurations ?? this.callDurations,
-        isSpam: isSpam ?? this.isSpam,
-        isBlocked: isBlocked ?? this.isBlocked,
-        markSpamByUser: markSpamByUser ?? this.markSpamByUser,
-      );
-
-  factory callLogData.fromJson(Map<String, dynamic> json) => callLogData(
+  factory CallLogData.fromJson(Map<String, dynamic> json) => CallLogData(
         id: json["id"],
-        phoneaccountid: json["phoneaccountid"],
+        phoneaccountid: json["phoneaccountid"].runtimeType == int
+            ? json["phoneaccountid"].toString()
+            : json["phoneaccountid"],
         simdisplayname: json["simdisplayname"],
         name: json["name"],
         callType: json["call_type"],
         countryCode: json["country_code"],
         mobileNo: json["mobile_no"],
-        callTime: json["call_time"] == null
+        callTime: (json["call_time"]?.toString().isEmpty ?? true)
             ? null
-            : DateTime.parse(json["call_time"]),
+            : DateTime.tryParse(json["call_time"]),
         callDuration: json["call_duration"],
         callDurationUnit: json["call_duration_unit"],
         contactListId: json["contact_list_id"],

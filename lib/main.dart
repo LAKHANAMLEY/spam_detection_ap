@@ -45,47 +45,11 @@ Future<void> phoneStateBackgroundCallbackHandler(
   String number,
   int duration,
 ) async {
-  showOverlay(callType: event.name, number: number, duration: duration);
-  // switch (event) {
-  //   case PhoneStateBackgroundEvent.incomingstart:
-  //     showOverlay(callType: event.name, number: number, duration: duration);
-  //     break;
-  //   case PhoneStateBackgroundEvent.incomingmissed:
-  //     print('Incoming call missed, number: $number, duration: $duration s');
-  //     await SystemAlertWindow.showSystemWindow(
-  //       notificationTitle: AppConstants.projectName,
-  //       notificationBody: "Missed call $number",
-  //     );
-  //     break;
-  //   case PhoneStateBackgroundEvent.incomingreceived:
-  //     print('Incoming call received, number: $number, duration: $duration s');
-  //     await SystemAlertWindow.showSystemWindow(
-  //       notificationTitle: AppConstants.projectName,
-  //       notificationBody: "Incoming call $number",
-  //     );
-  //     break;
-  //   case PhoneStateBackgroundEvent.incomingend:
-  //     print('Incoming call ended, number: $number, duration $duration s');
-  //     await SystemAlertWindow.showSystemWindow(
-  //       notificationTitle: AppConstants.projectName,
-  //       notificationBody: "Call end $number",
-  //     );
-  //     break;
-  //   case PhoneStateBackgroundEvent.outgoingstart:
-  //     print('Ougoing call start, number: $number, duration: $duration s');
-  //     await SystemAlertWindow.showSystemWindow(
-  //       notificationTitle: AppConstants.projectName,
-  //       notificationBody: "Outgoing call $number",
-  //     );
-  //     break;
-  //   case PhoneStateBackgroundEvent.outgoingend:
-  //     print('Ougoing call ended, number: $number, duration: $duration s');
-  //     await SystemAlertWindow.showSystemWindow(
-  //       notificationTitle: AppConstants.projectName,
-  //       notificationBody: "Call end $number",
-  //     );
-  //     break;
-  // }
+  // if (event != null)
+  showOverlay(
+      callType: getCallTypeStringFromBGPhoneState(event),
+      number: number,
+      duration: duration);
 }
 
 class MyApp extends StatelessWidget {

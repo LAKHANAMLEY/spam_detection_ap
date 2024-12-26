@@ -1,8 +1,17 @@
 import 'package:call_e_log/call_log.dart';
 
-Future<List<CallLogEntry>> getDeviceCallLogs() async {
+Future<List<CallLogEntry>> getDeviceCallLogs({
+  String? number,
+  DateTime? dateTimeFrom,
+  DateTime? dateTimeTo,
+}) async {
 // GET WHOLE CALL LOG
-  Iterable<CallLogEntry> entries = await CallLog.get();
+  // Iterable<CallLogEntry> entries = await CallLog.get();
+  Iterable<CallLogEntry> entries = await CallLog.query(
+    number: number,
+    dateTimeFrom: dateTimeFrom,
+    dateTimeTo: dateTimeFrom,
+  );
   return entries.toList();
 
 // QUERY CALL LOG (ALL PARAMS ARE OPTIONAL)

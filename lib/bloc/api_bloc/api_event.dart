@@ -100,7 +100,20 @@ class RemoveSpamEvent extends ApiEvent {
       ];
 }
 
-class GetDeviceCallLogEvent extends ApiEvent {}
+class GetDeviceCallLogEvent extends ApiEvent {
+  final String? number;
+  final DateTime? dateTimeFrom;
+  final DateTime? dateTimeTo;
+
+  GetDeviceCallLogEvent({
+    this.number,
+    this.dateTimeFrom,
+    this.dateTimeTo,
+  });
+
+  @override
+  List<Object?> get props => [number, dateTimeFrom, dateTimeTo];
+}
 
 class SocialSignupEvent extends ApiEvent {
   final String email;
@@ -395,7 +408,7 @@ class LoginWithEmailAndPasswordEvent extends ApiEvent {
 
 // manually
 class SyncCallLogManuallyEvent extends ApiEvent {
-  final List<CallLogEntry> callLogs;
+  final CallLogEntry callLogs;
 
   SyncCallLogManuallyEvent({
     required this.callLogs,

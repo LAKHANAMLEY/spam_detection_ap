@@ -81,7 +81,11 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 
     if (event is GetDeviceCallLogEvent) {
       emit(ApiLoadingState());
-      await getDeviceCallLogs().then((value) {
+      await getDeviceCallLogs(
+        number: event.number,
+        dateTimeFrom: event.dateTimeFrom,
+        dateTimeTo: event.dateTimeTo,
+      ).then((value) {
         emit(GetDeviceCallLogState(value));
       });
     }

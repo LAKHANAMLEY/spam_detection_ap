@@ -12,8 +12,8 @@ class DeviceCallLogs extends StatefulWidget {
 
 class _DeviceCallLogsState extends State<DeviceCallLogs> {
   double scale = 3.5;
-  List<callLogData> callLogs = [];
-  List<callLogData> filteredCallLogs = [];
+  List<CallLogData> callLogs = [];
+  List<CallLogData> filteredCallLogs = [];
 
   var searchController = TextEditingController();
 

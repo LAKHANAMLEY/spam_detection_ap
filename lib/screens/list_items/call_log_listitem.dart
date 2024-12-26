@@ -1,7 +1,9 @@
+import 'package:phone_state/phone_state.dart';
+import 'package:phone_state_background/phone_state_background.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class CallLogListItem extends StatelessWidget {
-  final callLogData callLog;
+  final CallLogData callLog;
 
   const CallLogListItem({
     super.key,
@@ -193,7 +195,7 @@ IconData getCallTypeIcon(String? callLogType) {
   }
 }
 
-getCallLogType(String? callLogType) {
+CallType? getCallLogType(String? callLogType) {
   switch (callLogType) {
     case null:
       return null;
@@ -217,5 +219,63 @@ getCallLogType(String? callLogType) {
       return CallType.wifiIncoming;
     case "wifiOutgoing":
       return CallType.wifiOutgoing;
+//Phone state background cases
+    case "incomingstart":
+      return CallType.incoming;
+    case "incomingmissed":
+      return CallType.missed;
+    case "incomingreceived":
+      return CallType.incoming;
+    case "incomingend":
+      return CallType.incoming;
+    case "outgoingend":
+      return CallType.outgoing;
+    case "outgoingstart":
+      return CallType.outgoing;
+
+    case "NOTHING":
+      return CallType.unknown;
+    case "CALL_INCOMING":
+      return CallType.incoming;
+    case "CALL_STARTED":
+      return CallType.incoming;
+    case "CALL_ENDED":
+      return CallType.rejected;
+    default:
+      return null;
+  }
+}
+
+String getCallTypeStringFromBGPhoneState(PhoneStateBackgroundEvent phoneState) {
+  switch (phoneState) {
+    case PhoneStateBackgroundEvent.incomingstart:
+      return "Incoming call";
+    case PhoneStateBackgroundEvent.incomingmissed:
+      return "Missed call";
+    case PhoneStateBackgroundEvent.incomingreceived:
+      return "Ongoing call";
+    case PhoneStateBackgroundEvent.incomingend:
+      return "Call end";
+    case PhoneStateBackgroundEvent.outgoingend:
+      return "Call end";
+    case PhoneStateBackgroundEvent.outgoingstart:
+      return "Ongoing call";
+    default:
+      return "Unknown";
+  }
+}
+
+String getCallTypeByPhoneState(PhoneState phoneState) {
+  switch (phoneState.status) {
+    case PhoneStateStatus.NOTHING:
+      return "Unknown";
+    case PhoneStateStatus.CALL_INCOMING:
+      return "Incoming call";
+    case PhoneStateStatus.CALL_STARTED:
+      return "Ongoing call";
+    case PhoneStateStatus.CALL_ENDED:
+      return "Call end";
+    default:
+      return "Unknown";
   }
 }

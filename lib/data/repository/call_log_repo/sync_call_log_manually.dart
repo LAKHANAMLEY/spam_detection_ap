@@ -3,27 +3,26 @@ import 'package:spam_delection_app/lib.dart';
 import 'package:spam_delection_app/models/sync_call_manually_model.dart';
 
 Future<SyncCallManuallyResponse> syncCallLogManually(
-    {required List<CallLogEntry> callLogs}) async {
-  var body = [];
-  for (int i = 0; i < callLogs.length; i++) {
-    var log = callLogs[i];
-    body.add(<String, String>{
-      'simdisplayname': log.simDisplayName ?? "",
-      'phoneaccountid': log.phoneAccountId ?? "",
-      'name': log.name ?? "",
-      'country_code': log.number?.separeatePhoneAndPhoneCode().phoneCode ?? "",
-      'mobile_no': log.number
-              ?.separeatePhoneAndPhoneCode()
-              .phone
-              .replaceAll(AppConstants.specialCharAndSpaceRegex, "") ??
-          "",
-      'call_type': log.callType?.name ?? "",
-      'call_time':
-          log.timestamp?.toDateTime().toString().splitFirstBy(".") ?? "",
-      'call_duration': log.duration.toString(),
-      'call_duration_unit': '1' //1 sec 2 min 3 horus
-    });
-  }
+    {required CallLogEntry callLogs}) async {
+  // var body = [];
+  // for (int i = 0; i < callLogs.length; i++) {
+  var log = callLogs;
+  var body = {
+    'simdisplayname': log.simDisplayName ?? "",
+    'phoneaccountid': log.phoneAccountId ?? "",
+    'name': log.name ?? "",
+    'country_code': log.number?.separeatePhoneAndPhoneCode().phoneCode ?? "",
+    'mobile_no': log.number
+            ?.separeatePhoneAndPhoneCode()
+            .phone
+            .replaceAll(AppConstants.specialCharAndSpaceRegex, "") ??
+        "",
+    'call_type': log.callType?.name ?? "",
+    'call_time': log.timestamp?.toDateTime().toString().splitFirstBy(".") ?? "",
+    'call_duration': log.duration.toString(),
+    'call_duration_unit': '1' //1 sec 2 min 3 horus
+    // });
+  };
 
   var request = http.MultipartRequest(
       'POST',
@@ -32,9 +31,9 @@ Future<SyncCallManuallyResponse> syncCallLogManually(
       ));
 
   request.headers.addAll(await ApiUrlConstants.headers());
-  for (var field in body) {
-    request.fields.addAll(field);
-  }
+  // for (var field in body) {
+  request.fields.addAll(body);
+  // }
 
   var streamedResponse = await request.send();
   var response = await http.Response.fromStream(streamedResponse);

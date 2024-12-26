@@ -14,10 +14,23 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
   StreamSubscription? streamSubs;
 
   void onData(data) {
-    callLogDetailBloc.add(GetDeviceCallLogEvent());
+    var callLog = CallLogData.fromJson(data);
+    callLogDetailBloc.add(GetDeviceCallLogEvent(
+      number: callLog.mobileNo,
+      dateTimeFrom: DateTime.now().subtract(const Duration(days: 1)),
+      dateTimeTo: DateTime.now(),
+    ));
+    // callLogDetailBloc.add(SyncCallLogManuallyEvent(
+    //     callLogs: CallLogEntry(
+    //   number: callLog.mobileNo,
+    //   callType: getCallLogType(callLog.callType),
+    //   duration: int.parse(callLog.callDuration ?? "0"),
+    // )));
   }
 
-  void onError(error) {}
+  void onError(error) {
+    showToast(error);
+  }
 
   @override
   void initState() {
@@ -35,11 +48,30 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: BlocBuilder(
+        child: BlocConsumer(
             bloc: callLogDetailBloc,
-            builder: (context, state) {
+            listener: (context, state) {
               if (state is GetDeviceCallLogState) {
-                var callLog = state.value.first;
+                if (state.value.isNotEmpty) {
+                  var deviceCallLogs = state.value.first;
+                  callLogDetailBloc
+                      .add(SyncCallLogManuallyEvent(callLogs: deviceCallLogs));
+                }
+              }
+              if (state is SyncCallManuallyState) {
+                if (state.value.statusCode == 200) {
+                  // var deviceCallLogs = state.value;
+                } else if (state.value.statusCode ==
+                    HTTPStatusCodes.sessionExpired) {
+                  sessionExpired(context, state.value.message);
+                } else {
+                  showToast(state.value.message);
+                }
+              }
+            },
+            builder: (context, state) {
+              if (state is SyncCallManuallyState) {
+                var callLog = state.value.callLog;
                 return Container(
                   padding: const EdgeInsets.all(15),
                   margin: const EdgeInsets.all(0),
@@ -66,26 +98,23 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                               Row(
                                 children: [
                                   Text(
-                                    "${callLog.callType?.name ?? ""} call",
+                                    "${callLog?.callType ?? ""} call",
                                     style: textTheme(context)
                                         .bodySmall
                                         ?.copyWith(
                                             color: getCallTypeColor(
-                                                callLog.callType?.name)),
+                                                callLog?.callType)),
                                   ),
                                   5.width(),
                                   Text(
-                                    callLog.simDisplayName ?? "",
+                                    callLog?.simdisplayname ?? "",
                                     style: textTheme(context)
                                         .bodySmall
                                         ?.copyWith(color: Colors.grey),
                                   ),
                                   5.width(),
                                   Text(
-                                    callLog.timestamp
-                                            ?.toDateTime()
-                                            .formatDateTime() ??
-                                        "",
+                                    callLog?.callTime?.formatDateTime() ?? "",
                                     style: textTheme(context)
                                         .bodySmall
                                         ?.copyWith(color: Colors.grey),
@@ -93,7 +122,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                                 ],
                               ),
                               Text(
-                                callLog.name ?? callLog.number ?? "",
+                                callLog?.name ?? callLog?.mobileNo ?? "",
                                 style: textTheme(context).titleMedium,
                               ),
                             ],
@@ -110,8 +139,8 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                           Navigator.pushNamed(context, AppRoutes.contactDetail,
                               arguments: ContactDetail(
                                 contact: ContactData(
-                                  name: callLog.name,
-                                  mobileNo: callLog.number ?? "",
+                                  name: callLog?.name,
+                                  mobileNo: callLog?.mobileNo ?? "",
                                 ),
                               ));
                         },
@@ -122,7 +151,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(callLog.number ?? ""),
+                          Text(callLog?.mobileNo ?? ""),
                           // Text(callLog.cachedNumberLabel ?? ""),
                         ],
                       ),
