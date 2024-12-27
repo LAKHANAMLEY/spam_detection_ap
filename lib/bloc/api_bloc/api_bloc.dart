@@ -348,6 +348,13 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     //   });
     // }
 
+    if (event is ForgetPasswordEvent) {
+      emit(ApiLoadingState());
+      await forgotPassword(email: event.email).then((value) {
+        emit(ForgetPasswordState(value));
+      });
+    }
+
     if (event is LoginWithEmailAndPasswordEvent) {
       emit(ApiLoadingState());
       await login(email: event.email, password: event.password).then((value) {
@@ -368,6 +375,17 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await checkSpam(log: event.callLogs).then((value) {
         emit(CheckSpamState(value));
+      });
+    }
+    // corporate login
+    if (event is CorporateLoginEvent) {
+      emit(ApiLoadingState());
+      await corporateLogin(
+              email: event.email,
+              password: event.password,
+              corporateid: event.corporateid)
+          .then((value) {
+        emit(CorporateLoginState(value));
       });
     }
   }

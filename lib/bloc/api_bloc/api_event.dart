@@ -395,6 +395,17 @@ class GetLanguageListEvent extends ApiEvent {}
 //   List<Object?> get props => [mobileNo];
 // }
 
+//sare api bloc me add krne hoge
+
+class ForgetPasswordEvent extends ApiEvent {
+  final String email;
+
+  ForgetPasswordEvent({required this.email});
+
+  @override
+  List<Object?> get props => [email];
+}
+
 class LoginWithEmailAndPasswordEvent extends ApiEvent {
   final String email;
   final String password;
@@ -426,4 +437,17 @@ class CheckSpamEvent extends ApiEvent {
 
   @override
   List<Object?> get props => [callLogs];
+}
+
+// corporate login
+class CorporateLoginEvent extends ApiEvent {
+  final String email;
+  final String password;
+  final String corporateid;
+
+  CorporateLoginEvent(
+      {required this.email, required this.password, required this.corporateid});
+
+  @override
+  List<Object?> get props => [email, password, corporateid];
 }

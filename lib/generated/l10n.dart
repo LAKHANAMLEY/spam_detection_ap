@@ -3096,6 +3096,16 @@ class S {
     );
   }
 
+  /// `New Password and Confirm Password do not match.`
+  String get newPassConfirmPass {
+    return Intl.message(
+      'New Password and Confirm Password do not match.',
+      name: 'newPassConfirmPass',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `New password`
   String get newPassword {
     return Intl.message(
@@ -4986,6 +4996,16 @@ class S {
     );
   }
 
+  /// `Remove Spam`
+  String get removeSpam {
+    return Intl.message(
+      'Remove Spam',
+      name: 'removeSpam',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Rent`
   String get rent {
     return Intl.message(
@@ -6774,21 +6794,11 @@ class S {
     );
   }
 
-  /// `New Password and Confirm Password do not match.`
-  String get newPassConfirmPass {
+  /// `Call History`
+  String get callHistoryText {
     return Intl.message(
-      'New Password and Confirm Password do not match.',
-      name: 'newPassConfirmPass',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Remove Spam`
-  String get removeSpam {
-    return Intl.message(
-      'Remove Spam',
-      name: 'removeSpam',
+      'Call History',
+      name: 'callHistoryText',
       desc: '',
       args: [],
     );

@@ -125,6 +125,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "business": MessageLookupByLibrary.simpleMessage("Negocio"),
         "callHistory":
             MessageLookupByLibrary.simpleMessage("Historial de llamadas"),
+        "callHistoryText":
+            MessageLookupByLibrary.simpleMessage("Historial de llamadas"),
         "callLogs":
             MessageLookupByLibrary.simpleMessage("Registros de llamadas"),
         "callProtection":
@@ -660,6 +662,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor ingrese el PIN de seguridad de confirmación"),
         "pleaseCorporateID": MessageLookupByLibrary.simpleMessage(
             "Por favor ingrese su correo electrónico válido / ID corporativo"),
+        "pleaseCorporateIDText": MessageLookupByLibrary.simpleMessage(
+            "Por favor, introduzca el ID corporativo"),
         "pleaseCorporateName": MessageLookupByLibrary.simpleMessage(
             "Por favor ingrese el nombre corporativo"),
         "pleaseCrnId": MessageLookupByLibrary.simpleMessage(

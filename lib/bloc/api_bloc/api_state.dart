@@ -397,6 +397,15 @@ class GetLanguageListState extends ApiState {
 //   List<Object?> get props => [value];
 // }
 
+class ForgetPasswordState extends ApiState {
+  final ForgotResponse value;
+
+  ForgetPasswordState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
 class LoginWithEmailAndPasswordState extends ApiState {
   final LoginResponse value;
 
@@ -421,6 +430,16 @@ class CheckSpamState extends ApiState {
   final CheckSpamNumberResponse value;
 
   CheckSpamState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// corporate login
+class CorporateLoginState extends ApiState {
+  final CorporateResponse value;
+
+  CorporateLoginState(this.value);
 
   @override
   List<Object?> get props => [value];

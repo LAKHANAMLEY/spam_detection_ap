@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:phone_state_background/phone_state_background.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:system_alert_window/system_alert_window.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +12,7 @@ void main() async {
   // Bloc.observer = AppBlocObserver();
   firebaseAnalyticsConfig();
   firebaseCrashlyticsConfig();
-  SystemAlertWindow.checkPermissions().then((isHavingPermission) async {
+  /*SystemAlertWindow.checkPermissions().then((isHavingPermission) async {
     if (isHavingPermission ?? false) {
     } else {
       await SystemAlertWindow.requestPermissions();
@@ -27,6 +26,7 @@ void main() async {
       await PhoneStateBackground.requestPermissions();
     }
   });
+  */
   runApp(const MyApp());
 }
 

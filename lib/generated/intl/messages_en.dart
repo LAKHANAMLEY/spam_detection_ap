@@ -121,6 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Blocked Numbers"),
         "business": MessageLookupByLibrary.simpleMessage("Business"),
         "callHistory": MessageLookupByLibrary.simpleMessage("Call history"),
+        "callHistoryText": MessageLookupByLibrary.simpleMessage("Call History"),
         "callLogs": MessageLookupByLibrary.simpleMessage("Call logs"),
         "callProtection":
             MessageLookupByLibrary.simpleMessage("Call protection"),
