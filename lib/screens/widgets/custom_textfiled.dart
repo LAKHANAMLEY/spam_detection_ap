@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class CustomTextField extends StatelessWidget {
+  ///Controls the text being edited.
   final TextEditingController? controller;
 
   final String? labelText;

@@ -15,3 +15,4 @@ export 'package:image_picker/image_picker.dart';
 export 'package:intl_phone_field/intl_phone_field.dart';
 export 'package:intl_phone_field/phone_number.dart';
 export 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+export 'package:spam_delection_app/data/repository/contact/add_device_contact.dart';

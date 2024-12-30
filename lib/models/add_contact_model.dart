@@ -12,7 +12,7 @@ String addContactResponseToJson(AddContactResponse data) =>
 
 class AddContactResponse {
   final int? statusCode;
-  final String? message;
+  final dynamic message;
 
   AddContactResponse({
     this.statusCode,

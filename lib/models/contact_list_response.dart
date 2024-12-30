@@ -134,6 +134,7 @@ class ContactData {
   final String? lastSeen;
   final int? isOnline;
   final List<CallLogData>? callHistory;
+  final String? email;
 
   ContactData({
     this.id,
@@ -152,6 +153,7 @@ class ContactData {
     this.lastSeen,
     this.isOnline,
     this.callHistory,
+    this.email,
   });
 
   factory ContactData.fromJson(Map<String, dynamic> json) => ContactData(
@@ -173,7 +175,9 @@ class ContactData {
         callHistory: json["call_history"] == null
             ? []
             : List<CallLogData>.from(
-                json["call_history"]!.map((x) => CallLogData.fromJson(x))),
+                json["call_history"]!.map((x) => CallLogData.fromJson(x)),
+              ),
+        email: json["email"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -195,6 +199,7 @@ class ContactData {
         "call_history": callHistory == null
             ? []
             : List<dynamic>.from(callHistory!.map((x) => x.toJson())),
+        "email": email,
       };
 }
 

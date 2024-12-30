@@ -427,3 +427,11 @@ class CheckSpamEvent extends ApiEvent {
   @override
   List<Object?> get props => [callLogs];
 }
+
+class AddContactEvent extends ApiEvent {
+  final ContactData contact;
+
+  AddContactEvent({required this.contact});
+  @override
+  List<Object?> get props => [contact];
+}

@@ -425,3 +425,12 @@ class CheckSpamState extends ApiState {
   @override
   List<Object?> get props => [value];
 }
+
+class AddContactState extends ApiState {
+  final AddContactResponse value;
+
+  AddContactState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}

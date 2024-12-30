@@ -22,12 +22,13 @@ class _ContactListState extends State<ContactList> {
 
   void filterSearchResults() {
     filteredContacts = contacts
-        .where((contact) => (contact.name!
-            .toLowerCase()
-            .contains(searchController.text.toLowerCase())))
+        .where((e) => (e.name!
+                .toLowerCase()
+                .contains(searchController.text.toLowerCase()) ||
+            e.mobileNo!
+                .toLowerCase()
+                .contains(searchController.text.toLowerCase())))
         .toList();
-
-    // setState(() {});
   }
 
   @override
@@ -131,7 +132,7 @@ class _ContactListState extends State<ContactList> {
                                   bloc: searchBloc,
                                   listener: (context, state) {
                                     if (state is SelectStringState) {
-                                      filterSearchResults();
+                                      // filterSearchResults();
                                       // filteredContacts = contacts
                                       //     .where((contact) => (contact.name!
                                       //         .toLowerCase()

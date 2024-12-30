@@ -243,7 +243,8 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                   }
                                 },
                                 builder: (context, state) {
-                                  return filteredCallLogs.isEmpty
+                                  return (filteredCallLogs.isEmpty &&
+                                          searchController.text.isNotEmpty)
                                       ? CallLogListItem(
                                           // showPopupMenuBtn: false,
                                           callLog: CallLogData(

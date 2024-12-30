@@ -370,5 +370,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(CheckSpamState(value));
       });
     }
+
+    if (event is AddContactEvent) {
+      emit(ApiLoadingState());
+      await addContact(contact: event.contact).then((value) {
+        emit(AddContactState(value));
+      });
+    }
   }
 }
