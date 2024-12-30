@@ -15,8 +15,6 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
 
   var forgotPassBloc = ApiBloc(ApiBlocInitialState());
 
-  //bloc ka bata chuka hu vese hi kr lo isme v
-
   FocusNode? pin1FocusNode;
   FocusNode? pin2FocusNode;
   FocusNode? pin3FocusNode;
@@ -78,12 +76,12 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
   forgotOtpUserApiCall(String firstInput, String secondInput, String thirdInput,
       String fourthInput, String fifthInput, String sixthInput) async {
     // Navigator.pushNamed(context, AppRoutes.splash);
-
+    var argument = args(context) as ForgotOtpVerify;
     Navigator.push(
       context,
       MaterialPageRoute(
           builder: (context) => ResetPassword(
-                email: widget.email,
+                email: argument.email,
                 code: firstInput +
                     secondInput +
                     thirdInput +
@@ -118,6 +116,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
 
   @override
   Widget build(BuildContext context) {
+    var argument = args(context) as ForgotOtpVerify;
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
         appBar: const CustomAppBar(
@@ -129,8 +128,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                 listener: (context, state) {
                   if (state is ForgetPasswordState) {
                     if (state.value.statusCode == 200) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ForgotOtpVerify()));
+                      showToast(state.value.message);
                     } else if (state.value.statusCode ==
                         HTTPStatusCodes.sessionExpired) {
                       sessionExpired(context, state.value.message);
@@ -806,13 +804,9 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                               100),
                                       InkWell(
                                         onTap: () {
-                                          if (_forgotOtpFormKey.currentState
-                                                  ?.validate() ??
-                                              false) {
-                                            forgotPassBloc.add(
-                                                ForgetPasswordEvent(
-                                                    email: widget.email ?? ""));
-                                          }
+                                          forgotPassBloc.add(
+                                              ForgetPasswordEvent(
+                                                  email: argument.email ?? ""));
                                         },
                                         child: Text(
                                           appLocalization(context).resend,

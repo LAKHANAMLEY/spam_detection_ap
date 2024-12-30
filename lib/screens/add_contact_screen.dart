@@ -220,10 +220,10 @@ class _AddContactState extends State<AddContact> {
                           });
                           addContact(
                             email: email,
-                            fullname: fullName,
-                            phonenumber: phone,
-                            countrycode: phoneNumber?.countryCode,
-                            numbertype: numberType,
+                            fullName: fullName,
+                            phoneNumber: phone,
+                            countryCode: phoneNumber?.countryCode,
+                            numberType: numberType,
                           ).then((response) {
                             setState(() {
                               _isLoading = false;

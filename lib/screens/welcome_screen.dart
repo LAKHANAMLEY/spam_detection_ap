@@ -23,7 +23,7 @@ class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.secondryColor,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -92,7 +92,7 @@ class _WelcomeState extends State<Welcome> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 5 / 100,
                 ),
-                Image.asset(IconConstants.icBroadlogo,
+                Image.asset(IconConstants.icBroadLinkLogo,
                     height: MediaQuery.of(context).size.height * 8 / 100,
                     width: MediaQuery.of(context).size.width * 50 / 100),
                 SizedBox(

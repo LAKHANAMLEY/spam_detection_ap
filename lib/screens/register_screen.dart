@@ -408,9 +408,9 @@ class _RegisterState extends State<Register> {
                         password: password,
                         firstname: firstname,
                         lastname: lastname,
-                        phonenumber: phone,
-                        dateofbirth: dob,
-                        countrycode: phoneNumber?.countryCode,
+                        phoneNumber: phone,
+                        dateOfBirth: dob,
+                        countryCode: phoneNumber?.countryCode,
                       ).then((response) {
                         setState(() {
                           _isLoading = false;

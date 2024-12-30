@@ -396,11 +396,21 @@ class GetLanguageListState extends ApiState {
 //   @override
 //   List<Object?> get props => [value];
 // }
-
+// forgot password
 class ForgetPasswordState extends ApiState {
   final ForgotResponse value;
 
   ForgetPasswordState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// reset password
+class ResetPasswordState extends ApiState {
+  final ResetResponse value;
+
+  ResetPasswordState(this.value);
 
   @override
   List<Object?> get props => [value];
@@ -440,6 +450,26 @@ class CorporateLoginState extends ApiState {
   final CorporateResponse value;
 
   CorporateLoginState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// add contact
+class AddContactState extends ApiState {
+  final AddContactResponse value;
+
+  AddContactState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+//
+class RegisterState extends ApiState {
+  final SignUpResponse value;
+
+  RegisterState(this.value);
 
   @override
   List<Object?> get props => [value];

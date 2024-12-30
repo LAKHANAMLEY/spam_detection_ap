@@ -65,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "adminFee": MessageLookupByLibrary.simpleMessage("Admin fee"),
         "alignQRCodeWithinFrameToScan": MessageLookupByLibrary.simpleMessage(
             "Align QR code within frame to scan"),
+        "allSpamCalls": MessageLookupByLibrary.simpleMessage(
+            "All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam."),
         "allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam":
             MessageLookupByLibrary.simpleMessage(
                 "All spam calls are currently being blocked from calling your telephone number you may miss important call if the caller number is flagged by the network as spam."),
@@ -429,7 +431,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "kycStatus": MessageLookupByLibrary.simpleMessage("KYC status"),
         "kycType": MessageLookupByLibrary.simpleMessage("KYC type"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "lastAllTime": MessageLookupByLibrary.simpleMessage("All time"),
+        "lastDays": MessageLookupByLibrary.simpleMessage("Last 30 days"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
+        "lastSixMonths": MessageLookupByLibrary.simpleMessage("Last 6 months"),
+        "lastThirtyDays": MessageLookupByLibrary.simpleMessage("Last 30 days"),
+        "lastThisYear": MessageLookupByLibrary.simpleMessage("This year"),
+        "lastThreeMonths":
+            MessageLookupByLibrary.simpleMessage("Last 3 months"),
         "leaveUsAMessageAboutYourQuestionsOrInquiriesAndSomeoneFromOurTeamWillBeInTouchSoon":
             MessageLookupByLibrary.simpleMessage(
                 "Leave us a message about your questions or inquiries and someone from our team will be in touch soon."),
@@ -1020,9 +1029,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yey": MessageLookupByLibrary.simpleMessage("Yey!"),
         "yoCanUpdateYourProfileFromHere": MessageLookupByLibrary.simpleMessage(
             "You can update your profile from here"),
-        "youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase":
-            MessageLookupByLibrary.simpleMessage(
-                "You are protected against all the dangerous phone numbers from our security database"),
+        "youAreProtected": MessageLookupByLibrary.simpleMessage(
+            "You are protected against all the dangerous phone numbers from our security database"),
         "youCanDoAnyOnlinePaymentFromAnyCardOrAccountJustScanTheQRCodeNEnjoy":
             MessageLookupByLibrary.simpleMessage(
                 "You can do any online payment from any card or account. Just scan the QR code & enjoy."),
@@ -1034,15 +1042,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCantRetryYet":
             MessageLookupByLibrary.simpleMessage("You can\'t retry yet!"),
         "your": MessageLookupByLibrary.simpleMessage("Your"),
-        "yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials":
-            MessageLookupByLibrary.simpleMessage(
-                "Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials"),
+        "yourEmailsAreCurrently": MessageLookupByLibrary.simpleMessage(
+            "Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials"),
         "yourGoalsWillHelpUsToFormulateTheRightRecommendationsForSuccess":
             MessageLookupByLibrary.simpleMessage(
                 "Your goals will help us to formulate the right recommendations for success."),
-        "yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams":
-            MessageLookupByLibrary.simpleMessage(
-                "Your messages are currently being screened by Detect AI to identity potential scams."),
+        "yourMessagesAreCurrently": MessageLookupByLibrary.simpleMessage(
+            "Your messages are currently being screened by Detect AI to identity potential scams."),
         "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword":
             MessageLookupByLibrary.simpleMessage(
                 "Your new password must be different from previously used password."),

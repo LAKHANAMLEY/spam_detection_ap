@@ -75,13 +75,6 @@ class _LoginState extends State<Login> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
                             LoginSuccessful(user: state.value.data)));
-                    // showCustomDialog(context,
-                    //     dialogType: DialogType.success,
-                    //     subTitle: state.value.message, onOkPressed: () {
-                    //   Navigator.of(context).push(MaterialPageRoute(
-                    //       builder: (context) =>
-                    //           LoginSuccessful(user: state.value.data)));
-                    // });
                   } else if (state.value.statusCode ==
                       HTTPStatusCodes.sessionExpired) {
                     sessionExpired(context, state.value.message);
@@ -150,7 +143,7 @@ class _LoginState extends State<Login> {
                                           ? Image.asset(IconConstants
                                               .icphoneunSelect) // Show secondary image
                                           : Image.asset(IconConstants
-                                              .icMobileData), // Show primary image
+                                              .icSMSSelected), // Show primary image
                                     ),
                                   ),
                                   SizedBox(
@@ -176,9 +169,9 @@ class _LoginState extends State<Login> {
                                         child: Center(
                                           child: tabIndex == 1
                                               ? Image.asset(IconConstants
-                                                  .icemailSelect) // Show secondary image
+                                                  .icEmailSelected) // Show secondary image
                                               : Image.asset(IconConstants
-                                                  .icemailunSelect), // Show primary image
+                                                  .icEmailUnselected), // Show primary image
                                         ),
                                       )),
                                 ])),
@@ -187,7 +180,7 @@ class _LoginState extends State<Login> {
                         ),
                         if (tabIndex == 1) ...[
                           Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            padding: const EdgeInsets.only(left: 18, right: 18),
                             child: CustomTextField(
                               keyboardType: TextInputType.emailAddress,
                               controller: emailController,
@@ -209,7 +202,7 @@ class _LoginState extends State<Login> {
                             height: MediaQuery.sizeOf(context).height * 2 / 100,
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
+                            padding: const EdgeInsets.only(left: 18, right: 18),
                             child: CustomTextField(
                               obscureText: true,
                               controller: passwordController,
@@ -229,7 +222,7 @@ class _LoginState extends State<Login> {
                           ),
                           SizedBox(
                             height:
-                                MediaQuery.of(context).size.height * 2 / 100,
+                                MediaQuery.of(context).size.height * 3 / 100,
                           ),
                           AppButton(
                             text: appLocalization(context).login,

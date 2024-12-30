@@ -61,7 +61,7 @@ class _RegistrationSuccessfulState extends State<RegistrationSuccessful> {
             height: MediaQuery.of(context).size.height * 5 / 100,
           ),
           Image.asset(
-            IconConstants.icsuccesfulLogo,
+            IconConstants.icSuccessCheck,
             height: MediaQuery.of(context).size.height * 20 / 100,
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),

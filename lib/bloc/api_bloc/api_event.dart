@@ -189,26 +189,6 @@ class FamilyAddMemberEvent extends ApiEvent {
       ];
 }
 
-/*class FamilyEditMemberEvent extends ApiEvent {
-  final String firstName;
-  final String lastName;
-  final String relation;
-  final String familyId;
-  final String supportpin;
-  FamilyEditMemberEvent({
-    required this.firstName,
-    required this.lastName,
-    required this.relation,
-    required this.supportpin,
-    required this.familyId,
-  });
-  @override
-  List<Object?> get props =>
-      [firstName, lastName, relation, supportpin, familyId];
-}
-
- */
-
 class FamilyEditMemberEvent extends ApiEvent {
   final FamilyMember user;
 
@@ -394,9 +374,7 @@ class GetLanguageListEvent extends ApiEvent {}
 //   @override
 //   List<Object?> get props => [mobileNo];
 // }
-
-//sare api bloc me add krne hoge
-
+// forgot password
 class ForgetPasswordEvent extends ApiEvent {
   final String email;
 
@@ -404,6 +382,23 @@ class ForgetPasswordEvent extends ApiEvent {
 
   @override
   List<Object?> get props => [email];
+}
+
+// reset password
+class ResetPasswordEvent extends ApiEvent {
+  final String email;
+  final String code;
+  final String password;
+  final String confirmPassword;
+
+  ResetPasswordEvent(
+      {required this.email,
+      required this.password,
+      required this.code,
+      required this.confirmPassword});
+
+  @override
+  List<Object?> get props => [email, password, code, confirmPassword];
 }
 
 class LoginWithEmailAndPasswordEvent extends ApiEvent {
@@ -450,4 +445,47 @@ class CorporateLoginEvent extends ApiEvent {
 
   @override
   List<Object?> get props => [email, password, corporateid];
+}
+
+// add contact
+class AddContactEvent extends ApiEvent {
+  final String email;
+  final String phone;
+  final String numberType;
+  final String countryCode;
+  final String name;
+
+  AddContactEvent(
+      {required this.email,
+      required this.phone,
+      required this.countryCode,
+      required this.name,
+      required this.numberType});
+
+  @override
+  List<Object?> get props => [email, phone, countryCode, name, numberType];
+}
+
+// Register
+class RegisterEvent extends ApiEvent {
+  final String email;
+  final String phone;
+  final String password;
+  final String countryCode;
+  final String firstName;
+  final String lastName;
+  final String dateOfBirth;
+
+  RegisterEvent(
+      {required this.email,
+      required this.phone,
+      required this.countryCode,
+      required this.firstName,
+      required this.lastName,
+      required this.password,
+      required this.dateOfBirth});
+
+  @override
+  List<Object?> get props =>
+      [email, password, phone, countryCode, firstName, lastName, dateOfBirth];
 }

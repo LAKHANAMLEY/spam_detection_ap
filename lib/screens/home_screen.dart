@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   10.height(),
                   Image.asset(
-                    IconConstants.securitykeyIcon,
+                    IconConstants.icHomeSecurity,
                     height: MediaQuery.of(context).size.height * 15 / 100,
                   ),
                   // 1.height(),
@@ -52,8 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: MediaQuery.of(context).size.height * 1 / 100,
                   ),
                   Text(
-                    appLocalization(context)
-                        .youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase,
+                    appLocalization(context).youAreProtected,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: AppColor.verifyColor,
@@ -95,10 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   //       return const Loader();
                   //     }),
                   SecurityOption(
-                    image: IconConstants.icplusCall,
+                    image: IconConstants.icCallSolar,
                     title: appLocalization(context).callProtection,
-                    description: appLocalization(context)
-                        .youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase,
+                    description: appLocalization(context).allSpamCalls,
                     isEnabled: isCallProtectionEnabled,
                     onToggle: (value) {
                       setState(() {
@@ -107,10 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                   SecurityOption(
-                    image: IconConstants.iclockMessages,
+                    image: IconConstants.icMessageLock,
                     title: appLocalization(context).protectAIMessages,
-                    description: appLocalization(context)
-                        .yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams,
+                    description:
+                        appLocalization(context).yourMessagesAreCurrently,
                     isEnabled: isMessageProtectionEnabled,
                     onToggle: (value) {
                       setState(() {
@@ -119,10 +117,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                   SecurityOption(
-                    image: IconConstants.iclockMail,
+                    image: IconConstants.icEmailLock,
                     title: appLocalization(context).protectAIEmail,
-                    description: appLocalization(context)
-                        .yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials,
+                    description:
+                        appLocalization(context).yourEmailsAreCurrently,
                     isEnabled: isEmailProtectionEnabled,
                     onToggle: (value) {
                       setState(() {

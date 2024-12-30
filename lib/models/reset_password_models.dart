@@ -1,5 +1,6 @@
 /// To parse this JSON data, do
 library;
+
 //
 //     final resetResponse = resetResponseFromJson(jsonString);
 
@@ -12,7 +13,7 @@ String resetResponseToJson(ResetResponse data) => json.encode(data.toJson());
 
 class ResetResponse {
   final int? statusCode;
-  final String? message;
+  final dynamic message;
 
   ResetResponse({
     this.statusCode,

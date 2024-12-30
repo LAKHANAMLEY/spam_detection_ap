@@ -61,7 +61,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       fontWeight: FontWeight.w600),
                 )
               : Image.asset(
-                  IconConstants.icBroadlogo,
+                  IconConstants.icBroadLinkLogo,
                   height: MediaQuery.of(context).size.height * 38 / 100,
                   width: MediaQuery.of(context).size.width * 38 / 100,
                 )),

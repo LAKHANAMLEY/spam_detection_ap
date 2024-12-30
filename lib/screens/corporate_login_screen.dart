@@ -33,13 +33,6 @@ class _CorporateLoginState extends State<CorporateLogin> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
                             LoginSuccessful(user: state.value.data)));
-                    // showCustomDialog(context,
-                    //     dialogType: DialogType.success,
-                    //     subTitle: state.value.message, onOkPressed: () {
-                    //   Navigator.of(context).push(MaterialPageRoute(
-                    //       builder: (context) =>
-                    //           LoginSuccessful(user: state.value.data)));
-                    // });
                   } else if (state.value.statusCode ==
                       HTTPStatusCodes.sessionExpired) {
                     sessionExpired(context, state.value.message);
@@ -121,12 +114,9 @@ class _CorporateLoginState extends State<CorporateLogin> {
                           controller: passwordController,
                           obscureText: true,
                           hintText: appLocalization(context).password,
-                          suffix: Padding(
-                            padding: const EdgeInsets.only(left: 8, right: 8),
-                            child: Image.asset(
-                              IconConstants.icLockPass,
-                              scale: 3,
-                            ),
+                          suffix: Image.asset(
+                            IconConstants.icLockPass,
+                            scale: 3,
                           ),
                           validator: (p0) {
                             if (p0?.isEmpty ?? true) {

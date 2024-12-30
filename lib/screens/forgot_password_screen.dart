@@ -27,15 +27,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 listener: (context, state) {
                   if (state is ForgetPasswordState) {
                     if (state.value.statusCode == 200) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ForgotOtpVerify()));
-                      // showCustomDialog(context,
-                      //     dialogType: DialogType.success,
-                      //     subTitle: state.value.message, onOkPressed: () {
-                      //   Navigator.of(context).push(MaterialPageRoute(
-                      //       builder: (context) =>
-                      //           LoginSuccessful(user: state.value.data)));
-                      // });
+                      Navigator.pushNamed(
+                          context, AppRoutes.forgotOTPVerification,
+                          arguments: ForgotOtpVerify(
+                            email: emailController.text,
+                          ));
                     } else if (state.value.statusCode ==
                         HTTPStatusCodes.sessionExpired) {
                       sessionExpired(context, state.value.message);
@@ -103,7 +99,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context).emailAddress;
+                                  return appLocalization(context)
+                                      .pleaseEnterYourEmailAddress;
                                 }
                                 return null;
                               },
@@ -124,7 +121,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                   MediaQuery.of(context).size.height * 3 / 100,
                             ),
                             AppButton(
-                              text: appLocalization(context).login,
+                              text: appLocalization(context).continueTxt,
                               onPress: () {
                                 if (_formKey.currentState?.validate() ??
                                     false) {

@@ -6,20 +6,20 @@ Future<SignUpResponse> signup(
     required String password,
     required String firstname,
     required String lastname,
-    required String dateofbirth,
-    required phonenumber,
-    required countrycode}) async {
+    required String dateOfBirth,
+    required phoneNumber,
+    required countryCode}) async {
   String? deviceToken = await getDeviceToken();
   String deviceType = getDeviceType();
 
   var body = {
     'email': email,
     'password': password,
-    'phone': phonenumber,
+    'phone': phoneNumber,
     'first_name': firstname,
     'last_name': lastname,
-    'dob': dateofbirth,
-    'country_code': countrycode,
+    'dob': dateOfBirth,
+    'country_code': countryCode,
     'device_token': deviceToken ?? '',
     'device_type': deviceType,
     'user_role': "user"

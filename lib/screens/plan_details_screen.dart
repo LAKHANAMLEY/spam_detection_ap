@@ -29,36 +29,27 @@ class _PlanDetailState extends State<PlanDetail> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(10),
           child:
-          Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            SizedBox(height: MediaQuery
-                .of(context)
-                .size
-                .height * 3 / 100),
+              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 3 / 100),
             Image.asset(
-              IconConstants.icpremiumprotection,
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 15 / 100,
+              IconConstants.icPremiumPurchase,
+              height: MediaQuery.of(context).size.height * 15 / 100,
             ),
             Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 50, right: 50),
-                  child: Text(
-                    appLocalization(context).personalProtection,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: AppColor.callColor,
-                        fontSize: 25,
-                        fontFamily: AppFont.fontFamily,
-                        fontWeight: FontWeight.w600),
-                  ),
-                )),
+              padding: const EdgeInsets.only(left: 50, right: 50),
+              child: Text(
+                appLocalization(context).personalProtection,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    color: AppColor.callColor,
+                    fontSize: 25,
+                    fontFamily: AppFont.fontFamily,
+                    fontWeight: FontWeight.w600),
+              ),
+            )),
             SizedBox(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 1 / 100,
+              height: MediaQuery.of(context).size.height * 1 / 100,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 50, right: 50),
@@ -73,10 +64,7 @@ class _PlanDetailState extends State<PlanDetail> {
               ),
             ),
             SizedBox(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 2 / 100,
+              height: MediaQuery.of(context).size.height * 2 / 100,
             ),
             Column(
               children: <Widget>[
@@ -93,14 +81,8 @@ class _PlanDetailState extends State<PlanDetail> {
                         children: <Widget>[
                           Container(
                             height:
-                            MediaQuery
-                                .of(context)
-                                .size
-                                .height * 6 / 100,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 28 / 100,
+                                MediaQuery.of(context).size.height * 6 / 100,
+                            width: MediaQuery.of(context).size.width * 28 / 100,
                             decoration: BoxDecoration(
                               border: Border.all(
                                   color: _selection == 1
@@ -111,7 +93,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                   ? AppColor.callColor
                                   : AppColor.callColor,
                               borderRadius:
-                              const BorderRadius.all(Radius.circular(4)),
+                                  const BorderRadius.all(Radius.circular(4)),
                             ),
                           ),
                           Row(
@@ -156,21 +138,12 @@ class _PlanDetailState extends State<PlanDetail> {
                       child: Stack(
                         children: <Widget>[
                           SizedBox(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 5 / 100,
+                            width: MediaQuery.of(context).size.width * 5 / 100,
                           ),
                           Container(
                             height:
-                            MediaQuery
-                                .of(context)
-                                .size
-                                .height * 6 / 100,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 28 / 100,
+                                MediaQuery.of(context).size.height * 6 / 100,
+                            width: MediaQuery.of(context).size.width * 28 / 100,
                             decoration: BoxDecoration(
                               border: Border.all(
                                   color: AppColor.borderstekColor, width: 1),
@@ -178,14 +151,11 @@ class _PlanDetailState extends State<PlanDetail> {
                                   ? AppColor.callColor
                                   : AppColor.secondryColor,
                               borderRadius:
-                              const BorderRadius.all(Radius.circular(4)),
+                                  const BorderRadius.all(Radius.circular(4)),
                             ),
                           ),
                           SizedBox(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 2 / 100,
+                            width: MediaQuery.of(context).size.width * 2 / 100,
                           ),
                           Row(
                             children: <Widget>[
@@ -224,34 +194,22 @@ class _PlanDetailState extends State<PlanDetail> {
                       child: Stack(
                         children: <Widget>[
                           SizedBox(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 5 / 100,
+                            width: MediaQuery.of(context).size.width * 5 / 100,
                           ),
                           Container(
                             height:
-                            MediaQuery
-                                .of(context)
-                                .size
-                                .height * 6 / 100,
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 28 / 100,
+                                MediaQuery.of(context).size.height * 6 / 100,
+                            width: MediaQuery.of(context).size.width * 28 / 100,
                             decoration: BoxDecoration(
                               border: Border.all(
                                   color: AppColor.borderstekColor, width: 1),
                               color: AppColor.secondryColor,
                               borderRadius:
-                              const BorderRadius.all(Radius.circular(4)),
+                                  const BorderRadius.all(Radius.circular(4)),
                             ),
                           ),
                           SizedBox(
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 2 / 100,
+                            width: MediaQuery.of(context).size.width * 2 / 100,
                           ),
                           Row(
                             children: <Widget>[
@@ -589,10 +547,7 @@ class _PlanDetailState extends State<PlanDetail> {
             //   ),
             // ),
             SizedBox(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 5 / 100,
+              height: MediaQuery.of(context).size.height * 5 / 100,
             ),
             AppButton(
               text: appLocalization(context).continuePurchase,
@@ -612,12 +567,13 @@ class PlanDurationTypeCardView extends StatelessWidget {
   final String price;
   final void Function()? onTap;
 
-  const PlanDurationTypeCardView({super.key,
-    required this.selectedPlanId,
-    required this.planId,
-    required this.month,
-    required this.price,
-    this.onTap});
+  const PlanDurationTypeCardView(
+      {super.key,
+      required this.selectedPlanId,
+      required this.planId,
+      required this.month,
+      required this.price,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -643,10 +599,7 @@ class PlanDurationTypeCardView extends StatelessWidget {
             Container(
               // height:
               //     MediaQuery.of(context).size.height * 10 / 100,
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width * 40 / 100,
+              width: MediaQuery.of(context).size.width * 40 / 100,
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: selectedPlanId == planId
