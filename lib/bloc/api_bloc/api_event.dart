@@ -455,25 +455,6 @@ class CorporateLoginEvent extends ApiEvent {
   List<Object?> get props => [email, password, corporateid];
 }
 
-// add contact
-class AddContactEvent extends ApiEvent {
-  final String email;
-  final String phone;
-  final String numberType;
-  final String countryCode;
-  final String name;
-
-  AddContactEvent(
-      {required this.email,
-      required this.phone,
-      required this.countryCode,
-      required this.name,
-      required this.numberType});
-
-  @override
-  List<Object?> get props => [email, phone, countryCode, name, numberType];
-}
-
 // Register
 class RegisterEvent extends ApiEvent {
   final String email;

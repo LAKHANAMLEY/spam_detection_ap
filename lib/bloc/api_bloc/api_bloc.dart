@@ -407,19 +407,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(CorporateLoginState(value));
       });
     }
-    // add contact
-    if (event is AddContactEvent) {
-      emit(ApiLoadingState());
-      await addContact(
-        email: event.email,
-        countryCode: event.countryCode,
-        numberType: event.numberType,
-        fullName: event.name,
-        phoneNumber: event.phone,
-      ).then((value) {
-        emit(AddContactState(value));
-      });
-    }
+
     // register
     if (event is RegisterEvent) {
       emit(ApiLoadingState());
