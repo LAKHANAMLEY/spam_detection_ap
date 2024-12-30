@@ -6,6 +6,7 @@ Future<ResetResponse> resetPassword(
     required String code,
     required String password,
     required String confirmpassword}) async {
+  print(email);
   var body = {
     'email': email,
     'code': code,

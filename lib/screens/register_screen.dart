@@ -50,7 +50,7 @@ class _RegisterState extends State<Register> {
 
   DateTime? selectedDate;
 
-  get pickeddate => null;
+  //get pickeddate => null;
 
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
@@ -279,25 +279,6 @@ class _RegisterState extends State<Register> {
                   ),
                   filled: true,
                   fillColor: AppColor.fillColor.withOpacity(0.2),
-                  /* IconButton(
-                      icon: Icon(Icons.calendar_today),
-                      color: Colors.red,
-                      onPressed: () async{
-
-                        DateTime?  pickeddate=  await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1990),
-                            lastDate: DateTime(2024));
-                        if(pickeddate!=null){
-                          print('Date selected:${pickeddate.day}-${pickeddate.month}-${pickeddate.year}');
-                          setState(() {
-                            _date.text = DateFormat('yyyy-MM-dd').format(pickeddate);
-                          });
-                        }
-                      },
-                    )
-                    */
                   suffixIcon: GestureDetector(
                       onTap: () async {
                         _pickDate(context);
@@ -427,9 +408,9 @@ class _RegisterState extends State<Register> {
                         password: password,
                         firstname: firstname,
                         lastname: lastname,
-                        phonenumber: phone,
-                        dateofbirth: dob,
-                        countrycode: phoneNumber?.countryCode,
+                        phoneNumber: phone,
+                        dateOfBirth: dob,
+                        countryCode: phoneNumber?.countryCode,
                       ).then((response) {
                         setState(() {
                           _isLoading = false;
@@ -439,7 +420,7 @@ class _RegisterState extends State<Register> {
                         if (response.statusCode == 200) {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
-                                  const RegistrationSuccessful()));
+                                  RegistrationSuccessful(user: response.data)));
                         } else {
                           setState(() {
                             _errorMessage = response.message.toString();

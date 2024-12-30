@@ -68,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Frais d\'administration"),
         "alignQRCodeWithinFrameToScan": MessageLookupByLibrary.simpleMessage(
             "Placez le QR code dans le cadre"),
+        "allSpamCalls": MessageLookupByLibrary.simpleMessage(
+            "Actualmente se están bloqueando todas las llamadas spam a su número de teléfono. Puede perder una llamada importante si la red marca el número de la persona que llama como spam."),
         "allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam":
             MessageLookupByLibrary.simpleMessage(
                 "Actualmente se han bloqueado todas las llamadas de spam a su número de teléfono Puede perder una llamada importante si número de la persona que llama está marcado por la red como spam."),
@@ -124,6 +126,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Números bloqueados"),
         "business": MessageLookupByLibrary.simpleMessage("Negocio"),
         "callHistory":
+            MessageLookupByLibrary.simpleMessage("Historial de llamadas"),
+        "callHistoryText":
             MessageLookupByLibrary.simpleMessage("Historial de llamadas"),
         "callLogs":
             MessageLookupByLibrary.simpleMessage("Registros de llamadas"),
@@ -454,7 +458,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "kycStatus": MessageLookupByLibrary.simpleMessage("Statut KYC"),
         "kycType": MessageLookupByLibrary.simpleMessage("Type de KYC"),
         "language": MessageLookupByLibrary.simpleMessage("Langue"),
+        "lastAllTime": MessageLookupByLibrary.simpleMessage("Todo el tiempo"),
         "lastName": MessageLookupByLibrary.simpleMessage("Nom de famille"),
+        "lastSixMonths":
+            MessageLookupByLibrary.simpleMessage("últimos 6 meses"),
+        "lastThirtyDays":
+            MessageLookupByLibrary.simpleMessage("Últimos 30 días"),
+        "lastThisYear": MessageLookupByLibrary.simpleMessage("este año"),
+        "lastThreeMonths":
+            MessageLookupByLibrary.simpleMessage("últimos 3 meses"),
         "leaveUsAMessageAboutYourQuestionsOrInquiriesAndSomeoneFromOurTeamWillBeInTouchSoon":
             MessageLookupByLibrary.simpleMessage(
                 "Laissez-nous un message sur vos questions ou vos demandes et quelqu\'un de notre équipe sera bientôt en contact."),
@@ -1088,9 +1100,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yey": MessageLookupByLibrary.simpleMessage("¡Sí!"),
         "yoCanUpdateYourProfileFromHere": MessageLookupByLibrary.simpleMessage(
             "Vous pouvez mettre à jour votre profil à partir d\'ici"),
-        "youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase":
-            MessageLookupByLibrary.simpleMessage(
-                "Estás protegido contra todos los números de teléfono peligrosos de nuestra base de datos de seguridad"),
+        "youAreProtected": MessageLookupByLibrary.simpleMessage(
+            "Estás protegido contra todos los números de teléfono peligrosos de nuestra base de datos de seguridad"),
         "youCanDoAnyOnlinePaymentFromAnyCardOrAccountJustScanTheQRCodeNEnjoy":
             MessageLookupByLibrary.simpleMessage(
                 "Vous pouvez effectuer n\'importe quel paiement en ligne à partir de n\'importe quelle carte ou compte.Il suffit de scanner le QR code et de profiter."),
@@ -1102,15 +1113,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCantRetryYet": MessageLookupByLibrary.simpleMessage(
             "Vous ne pouvez pas encore réessayer!"),
         "your": MessageLookupByLibrary.simpleMessage("Ton"),
-        "yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials":
-            MessageLookupByLibrary.simpleMessage(
-                "Protect AI está analizando actualmente sus correos electrónicos para detectar posibles estafas y proteger sus datos y finanzas."),
+        "yourEmailsAreCurrently": MessageLookupByLibrary.simpleMessage(
+            "Protect AI está analizando actualmente sus correos electrónicos para detectar posibles estafas y proteger sus datos y finanzas."),
         "yourGoalsWillHelpUsToFormulateTheRightRecommendationsForSuccess":
             MessageLookupByLibrary.simpleMessage(
                 "Vos objectifs nous aideront à formuler les bonnes recommandations de réussite."),
-        "yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams":
-            MessageLookupByLibrary.simpleMessage(
-                "Detect AI está analizando actualmente tus mensajes para identificar posibles estafas."),
+        "yourMessagesAreCurrently": MessageLookupByLibrary.simpleMessage(
+            "Detect AI está analizando actualmente tus mensajes para identificar posibles estafas."),
         "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword":
             MessageLookupByLibrary.simpleMessage(
                 "Votre nouveau mot de passe doit être différent du mot de passe précédemment utilisé."),

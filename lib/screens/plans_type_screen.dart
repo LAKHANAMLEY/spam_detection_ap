@@ -2,6 +2,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class PlanType extends StatefulWidget {
   final bool? showAppBar;
+
   const PlanType({super.key, this.showAppBar = true});
 
   @override
@@ -36,12 +37,12 @@ class _PlanTypeState extends State<PlanType> {
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 3 / 100),
               Image.asset(
-                IconConstants.icsubsription,
+                IconConstants.icPlanDetails,
                 height: MediaQuery.of(context).size.height * 18 / 100,
               ),
               Center(
                   child: Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50),
+                padding: const EdgeInsets.only(left: 60, right: 60),
                 child: Text(
                   appLocalization(context).chooseYourPlan,
                   textAlign: TextAlign.center,

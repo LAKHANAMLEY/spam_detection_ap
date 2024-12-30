@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6647,12 +6648,10 @@ class S {
   }
 
   /// `You are protected against all the dangerous phone numbers from our security database`
-  String
-      get youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase {
+  String get youAreProtected {
     return Intl.message(
       'You are protected against all the dangerous phone numbers from our security database',
-      name:
-          'youAreProtectedAgainstAllTheDangerousPhoneNumbersFromOurSecurityDatabase',
+      name: 'youAreProtected',
       desc: '',
       args: [],
     );
@@ -6711,12 +6710,10 @@ class S {
   }
 
   /// `Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials`
-  String
-      get yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials {
+  String get yourEmailsAreCurrently {
     return Intl.message(
       'Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials',
-      name:
-          'yourEmailsAreCurrentlyBeingScreenedByProtectAIToDetectPotentialScamAndSafeGuardYourDataAndFinancials',
+      name: 'yourEmailsAreCurrently',
       desc: '',
       args: [],
     );
@@ -6733,12 +6730,10 @@ class S {
   }
 
   /// `Your messages are currently being screened by Detect AI to identity potential scams.`
-  String
-      get yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams {
+  String get yourMessagesAreCurrently {
     return Intl.message(
       'Your messages are currently being screened by Detect AI to identity potential scams.',
-      name:
-          'yourMessagesAreCurrentlyBeingScreenedByDetectAIToIdentityPotentialScams',
+      name: 'yourMessagesAreCurrently',
       desc: '',
       args: [],
     );
@@ -6789,6 +6784,86 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call History`
+  String get callHistoryText {
+    return Intl.message(
+      'Call History',
+      name: 'callHistoryText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam.`
+  String get allSpamCalls {
+    return Intl.message(
+      'All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam.',
+      name: 'allSpamCalls',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 30 days`
+  String get lastThirtyDays {
+    return Intl.message(
+      'Last 30 days',
+      name: 'lastThirtyDays',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 30 days`
+  String get lastDays {
+    return Intl.message(
+      'Last 30 days',
+      name: 'lastDays',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 3 months`
+  String get lastThreeMonths {
+    return Intl.message(
+      'Last 3 months',
+      name: 'lastThreeMonths',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 6 months`
+  String get lastSixMonths {
+    return Intl.message(
+      'Last 6 months',
+      name: 'lastSixMonths',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This year`
+  String get lastThisYear {
+    return Intl.message(
+      'This year',
+      name: 'lastThisYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All time`
+  String get lastAllTime {
+    return Intl.message(
+      'All time',
+      name: 'lastAllTime',
       desc: '',
       args: [],
     );

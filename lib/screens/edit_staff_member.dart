@@ -271,7 +271,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                               ),
                               SizedBox(
                                 height: MediaQuery.of(context).size.height *
-                                    3 /
+                                    2 /
                                     100,
                               ),
                               if (_errorMessage != null)

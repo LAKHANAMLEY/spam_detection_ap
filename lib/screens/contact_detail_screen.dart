@@ -413,7 +413,7 @@ class _ContactDetailState extends State<ContactDetail> {
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Text(
-                                appLocalization(context).callHistory,
+                                appLocalization(context).callHistoryText,
                                 style: textTheme(context).titleMedium,
                               ),
                             ),

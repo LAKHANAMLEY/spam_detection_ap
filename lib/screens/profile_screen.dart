@@ -19,13 +19,6 @@ class _ProfileState extends State<Profile> {
   ];
   final List<String> cardTexts = ['3', '68s', '25', '38'];
 
-  final List<String> spamTexts = [
-    StringConstants.spamIdentifiedtext,
-    StringConstants.timesavestext,
-    StringConstants.unknowntext,
-    StringConstants.messagestext,
-  ];
-
   String? _selectedItem;
 
   void _showEditOptions(BuildContext context) {
@@ -45,16 +38,6 @@ class _ProfileState extends State<Profile> {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: 16.0),
-              // ListTile(
-              //   leading: const Icon(Icons.language, color: Colors.blue),
-              //   title: const Text('English'),
-              //   onTap: () {
-              //     //Navigator.pop(context);
-              //     // Call your camera function here
-              //    // _takePhoto();
-              //   },
-              // ),
-              //yaha pr api se fetch krke list show krni thi
               FutureBuilder(
                 future: fetchLanguages(),
                 builder:
@@ -85,16 +68,6 @@ class _ProfileState extends State<Profile> {
                   return const Loader();
                 },
               ),
-              // ListTile(
-              //   leading: const Icon(Icons.language, color: Colors.green),
-              //   title: const Text('Spanish'),
-              //   onTap: () {
-              //     //localizationBloc.add(ChangeLocaleEvent(Locale.fromSubtags(languageCode:  selectedLanguage?.id??"")));
-              //    // Navigator.pop(context);
-              //     // Call your gallery function here
-              //     //_chooseFromGallery();
-              //   },
-              // ),
               const SizedBox(height: 8.0),
               TextButton(
                 onPressed: () {
@@ -123,11 +96,17 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     final List<String> items = [
-      'Last 30 days',
-      'Last 3 months ',
-      'Last 6 months',
-      'This year',
-      'All time'
+      appLocalization(context).lastThirtyDays,
+      appLocalization(context).lastThreeMonths,
+      appLocalization(context).lastSixMonths,
+      appLocalization(context).lastThisYear,
+      appLocalization(context).lastAllTime,
+    ];
+    final List<String> spamTexts = [
+      appLocalization(context).spamCalls,
+      appLocalization(context).timeSpammers,
+      appLocalization(context).unknownIdentified,
+      appLocalization(context).messagesSpam,
     ];
     var argument = args(context) as Profile?;
     return Scaffold(
@@ -366,9 +345,10 @@ class _ProfileState extends State<Profile> {
                                               100,
                                           color: AppColor.callColor,
                                         ),
-                                        hint: const Text(
-                                          "Last  30 days",
-                                          style: TextStyle(
+                                        hint: Text(
+                                          appLocalization(context)
+                                              .lastThirtyDays,
+                                          style: const TextStyle(
                                               color: AppColor.callColor,
                                               fontSize: 14,
                                               fontFamily: AppFont.fontFamily,

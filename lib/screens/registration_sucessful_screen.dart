@@ -40,7 +40,7 @@ class _RegistrationSuccessfulState extends State<RegistrationSuccessful> {
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
           Text(
-            '${appLocalization(context).yey} ${widget.user?.firstName ?? ''}',
+            '${appLocalization(context).yey} ${widget.user?.name}',
             style: const TextStyle(
                 color: AppColor.yellowlightColor,
                 fontSize: 18,
@@ -61,7 +61,7 @@ class _RegistrationSuccessfulState extends State<RegistrationSuccessful> {
             height: MediaQuery.of(context).size.height * 5 / 100,
           ),
           Image.asset(
-            IconConstants.icsuccesfulLogo,
+            IconConstants.icSuccessCheck,
             height: MediaQuery.of(context).size.height * 20 / 100,
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 5 / 100),

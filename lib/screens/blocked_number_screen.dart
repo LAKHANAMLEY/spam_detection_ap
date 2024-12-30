@@ -27,7 +27,18 @@ class _BlockedNumberState extends State<BlockedNumber> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(children: [
-            Container(
+            Padding(
+              padding: const EdgeInsets.only(left: 18, right: 18),
+              child: CustomTextField(
+                readOnly: true,
+                hintText: appLocalization(context).addPhoneNumber,
+                suffix: Image.asset(
+                  IconConstants.icAddPhone,
+                  scale: 3,
+                ),
+              ),
+            ),
+            /*Container(
               margin: const EdgeInsets.all(20),
               width: MediaQuery.of(context).size.width * 90 / 100,
               child: TextFormField(
@@ -60,6 +71,10 @@ class _BlockedNumberState extends State<BlockedNumber> {
                 ),
               ),
             ),
+            */
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 2 / 100,
+            ),
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -67,7 +82,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
                 });
               },
               child: Container(
-                height: MediaQuery.of(context).size.height * 8 / 100,
+                height: MediaQuery.of(context).size.height * 7 / 100,
                 width: MediaQuery.of(context).size.width * 90 / 100,
                 decoration: const BoxDecoration(
                   color: AppColor.secondryColor,

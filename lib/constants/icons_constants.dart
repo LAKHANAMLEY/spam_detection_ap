@@ -137,9 +137,22 @@ class IconConstants {
   static const String icBacKCircle = 'assets/icons/ic_back_circle.png';
   static const String icPersonalShield = 'assets/icons/ic_personal_shield.png';
   static const String icMobileData = 'assets/icons/ic_mobile_data.png';
-  static const String icSuccessCheck = 'assets/icons/ic_sucess_check.png';
+  static const String icSuccessCheck = 'assets/icons/ic_success_check.png';
   static const String icCorporateShield =
       'assets/icons/ic_corporate_shield.png';
 
-  static const String icEmailSms = '';
+  static const String icSMSSelected = 'assets/icons/ic_sms_selected.png';
+  static const String icSmsUnselected = '';
+  static const String icEmailUnselected =
+      'assets/icons/ic_email_unselected.png';
+  static const String icEmailSelected = 'assets/icons/ic_email_selected.png';
+  static const String icCallSolar = 'assets/icons/ic_solar_call_add.png';
+  static const String icMessageLock = 'assets/icons/ic_message_lock.png';
+  static const String icEmailLock = 'assets/icons/ic_email_lock.png';
+  static const String icHomeSecurity = 'assets/icons/ic_home_security.png';
+  static const String icBroadLinkLogo = 'assets/icons/ic_broadLink_logo.png';
+  static const String icAddPhone = 'assets/icons/ic_addPhoneNumber.png';
+  static const String icPlanDetails = 'assets/icons/ic_plan_details.png';
+  static const String icPremiumPurchase =
+      'assets/icons/ic_premium_purchase.png';
 }

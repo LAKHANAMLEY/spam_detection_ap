@@ -347,7 +347,26 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     //     emit(GetContactDetailState(value));
     //   });
     // }
-
+// forgot password
+    if (event is ForgetPasswordEvent) {
+      emit(ApiLoadingState());
+      await forgotPassword(email: event.email).then((value) {
+        emit(ForgetPasswordState(value));
+      });
+    }
+// reset password
+    if (event is ResetPasswordEvent) {
+      emit(ApiLoadingState());
+      await resetPassword(
+              email: event.email,
+              code: event.code,
+              password: event.password,
+              confirmpassword: event.confirmPassword)
+          .then((value) {
+        emit(ResetPasswordState(value));
+      });
+    }
+    // login using email and password
     if (event is LoginWithEmailAndPasswordEvent) {
       emit(ApiLoadingState());
       await login(email: event.email, password: event.password).then((value) {
@@ -377,5 +396,45 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(AddContactState(value));
       });
     }
+    // corporate login
+    if (event is CorporateLoginEvent) {
+      emit(ApiLoadingState());
+      await corporateLogin(
+              email: event.email,
+              password: event.password,
+              corporateid: event.corporateid)
+          .then((value) {
+        emit(CorporateLoginState(value));
+      });
+    }
+    // add contact
+    if (event is AddContactEvent) {
+      emit(ApiLoadingState());
+      await addContact(
+        email: event.email,
+        countryCode: event.countryCode,
+        numberType: event.numberType,
+        fullName: event.name,
+        phoneNumber: event.phone,
+      ).then((value) {
+        emit(AddContactState(value));
+      });
+    }
+    // register
+    if (event is RegisterEvent) {
+      emit(ApiLoadingState());
+      await signup(
+              email: event.email,
+              countryCode: event.countryCode,
+              password: event.password,
+              firstname: event.firstName,
+              lastname: event.lastName,
+              phoneNumber: event.phone,
+              dateOfBirth: event.dateOfBirth)
+          .then((value) {
+        emit(RegisterState(value));
+      });
+    }
+    //
   }
 }

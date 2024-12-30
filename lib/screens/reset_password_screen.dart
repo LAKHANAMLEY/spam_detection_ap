@@ -13,10 +13,13 @@ class ResetPassword extends StatefulWidget {
 class _ResetPasswordState extends State<ResetPassword> {
   late String password;
   late String confirmPassword;
-  bool _isLoading = false;
-  String? _errorMessage;
+
+  //bool _isLoading = false;
+  //String? _errorMessage;
 
   double scale = 3.5;
+  var resetPassBloc = ApiBloc(ApiBlocInitialState());
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
@@ -61,203 +64,140 @@ class _ResetPasswordState extends State<ResetPassword> {
 
   @override
   Widget build(BuildContext context) {
+    //var argument = args(context) as ResetPassword;
     return Scaffold(
         backgroundColor: AppColor.secondryColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
         body: SafeArea(
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 4 / 100,
-                ),
-                Center(
-                    child: Padding(
-                  padding: const EdgeInsets.only(left: 70, right: 70),
-                  child: Text(
-                    appLocalization(context).resetPassword,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: AppColor.bluelightColor,
-                        fontSize: 35,
-                        fontFamily: AppFont.fontFamily,
-                        fontWeight: FontWeight.w600),
-                  ),
-                )),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 2 / 100,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(18),
-                  child: Text(
-                    appLocalization(context).pleaseSecureAccount,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: AppColor.verifyColor,
-                        fontFamily: AppFont.fontFamily,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 4 / 100,
-                ),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width * 90 / 100,
-                  child: TextFormField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: appLocalization(context).password,
-                      hintStyle:
-                          const TextStyle(color: AppColor.lightfillColor),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(2),
-                        borderSide: const BorderSide(
-                            width: 0.5, color: AppColor.fillColor),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: AppColor.fillColor, width: 1.0),
-                        borderRadius: BorderRadius.all(Radius.circular(2)),
-                      ),
-                      filled: true,
-                      fillColor: AppColor.fillColor.withOpacity(0.2),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          IconConstants.icLockPass,
-                          scale: 3,
+            child: BlocConsumer(
+                bloc: resetPassBloc,
+                listener: (context, state) {
+                  if (state is ResetPasswordState) {
+                    if (state.value.statusCode == 200) {
+                      Navigator.pushNamed(context, AppRoutes.register);
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(context, state.value.message);
+                    } else {
+                      showCustomDialog(context,
+                          dialogType: DialogType.failed,
+                          subTitle: state.value.message);
+                    }
+                  }
+                },
+                builder: (context, state) {
+                  return ModalProgressHUD(
+                    progressIndicator: const Loader(),
+                    inAsyncCall: state is ApiLoadingState,
+                    child: Form(
+                      key: _formKey,
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(children: [
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 4 / 100,
+                            ),
+                            Center(
+                                child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 70, right: 70),
+                              child: Text(
+                                appLocalization(context).resetPassword,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    color: AppColor.bluelightColor,
+                                    fontSize: 35,
+                                    fontFamily: AppFont.fontFamily,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            )),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 2 / 100,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(18),
+                              child: Text(
+                                appLocalization(context).pleaseSecureAccount,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    color: AppColor.verifyColor,
+                                    fontFamily: AppFont.fontFamily,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            10.height(),
+                            CustomTextField(
+                              controller: passwordController,
+                              hintText: appLocalization(context).password,
+                              obscureText: true,
+                              suffix: Image.asset(
+                                IconConstants.icLockadd,
+                                scale: 1.5,
+                              ),
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseCurrentPass;
+                                }
+                                return null;
+                              },
+                            ),
+                            Text(
+                              _validationMessage,
+                              style: TextStyle(
+                                color: _validationMessage ==
+                                        appLocalization(context).passwordValid
+                                    ? Colors.green
+                                    : Colors.red,
+                                fontSize: 14,
+                              ),
+                            ),
+                            10.height(),
+                            CustomTextField(
+                              controller: confirmPasswordController,
+                              hintText: appLocalization(context).renterPassword,
+                              obscureText: true,
+                              suffix: Image.asset(
+                                IconConstants.icLockadd,
+                                scale: 1.5,
+                              ),
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseCurrentPass;
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 3 / 100,
+                            ),
+                            AppButton(
+                              text: appLocalization(context).resetPassword,
+                              onPress: () {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  resetPassBloc.add(ResetPasswordEvent(
+                                      email: widget.email ?? "",
+                                      code: widget.code ?? "",
+                                      password: passwordController.text,
+                                      confirmPassword:
+                                          confirmPasswordController.text));
+                                }
+                              },
+                            ),
+                          ]),
                         ),
                       ),
                     ),
-                  ),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 2 / 100),
-                Text(
-                  _validationMessage,
-                  style: TextStyle(
-                    color: _validationMessage ==
-                            appLocalization(context).passwordValid
-                        ? Colors.green
-                        : Colors.red,
-                    fontSize: 14,
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 2 / 100,
-                ),
-                SizedBox(
-                  width: MediaQuery.sizeOf(context).width * 90 / 100,
-                  child: TextFormField(
-                    controller: confirmPasswordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: appLocalization(context).renterPassword,
-                      hintStyle:
-                          const TextStyle(color: AppColor.lightfillColor),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(2),
-                        borderSide: const BorderSide(
-                            width: 0.5, color: AppColor.fillColor),
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: AppColor.fillColor, width: 1.0),
-                        borderRadius: BorderRadius.all(Radius.circular(2)),
-                      ),
-                      filled: true,
-                      fillColor: AppColor.fillColor.withOpacity(0.2),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          IconConstants.icLockPass,
-                          scale: 3,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 3 / 100,
-                ),
-                if (_errorMessage != null)
-                  Text(_errorMessage!,
-                      style: const TextStyle(color: Colors.red)),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 2 / 100,
-                ),
-                _isLoading
-                    ? const Center(child: CircularProgressIndicator())
-                    : AppButton(
-                        text: appLocalization(context).resetPassword,
-                        onPress: () {
-                          final password = passwordController.text;
-                          final confirmPassword =
-                              confirmPasswordController.text;
-
-                          setState(() {
-                            _errorMessage = null; // Clear previous errors
-                          });
-
-                          if (password.isNotEmpty &&
-                              confirmPassword.isNotEmpty) {
-                            if (_validationMessage != "Password is valid.") {
-                              setState(() {
-                                _errorMessage =
-                                    'Please fix the validation errors.';
-                              });
-                              return;
-                            }
-                            if (password != confirmPassword) {
-                              setState(() {
-                                _errorMessage =
-                                    'New Password and Confirm Password do not match.';
-                              });
-                              return;
-                            }
-
-                            setState(() {
-                              _isLoading = true;
-                            });
-
-                            resetPassword(
-                              email: widget.email ?? "",
-                              password: password,
-                              code: widget.code ?? "",
-                              confirmpassword: confirmPassword,
-                            ).then((response) {
-                              setState(() {
-                                _isLoading = false;
-                              });
-
-                              if (response.statusCode == 200) {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const Register(),
-                                ));
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content:
-                                          Text(response.message.toString())),
-                                );
-                              }
-                            });
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content: Text(appLocalization(context)
-                                      .pleaseEnterFields)),
-                            );
-                          }
-                        },
-                      )
-              ]),
-            ),
-          ),
-        ));
+                  );
+                })));
   }
 }

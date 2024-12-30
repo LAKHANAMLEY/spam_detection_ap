@@ -277,7 +277,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                     3 /
                                     100,
                               ),
-                              //Use validation for all places to show error
                               if (_errorMessage != null)
                                 Text(_errorMessage!,
                                     style: const TextStyle(color: Colors.red)),
