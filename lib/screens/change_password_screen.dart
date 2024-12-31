@@ -98,22 +98,24 @@ class _ChangePasswordState extends State<ChangePassword> {
                                     return CustomTextField(
                                       controller: newPasswordController,
                                       obscureText: state.value,
-                                      labelText: appLocalization(context).password,
-                                      hintText: appLocalization(context).password,
+                                      labelText:
+                                          appLocalization(context).password,
+                                      hintText:
+                                          appLocalization(context).password,
                                       suffix: InkWell(
                                           onTap: () {
-                                            passwordVisibilityBloc
-                                                .add(SelectBoolEvent(!state.value));
+                                            passwordVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
                                           },
                                           child: state.value
                                               ? Image.asset(
-                                            IconConstants.icPassLock,
-                                            scale: 3,
-                                          )
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )
                                               : Image.asset(
-                                            IconConstants.icPassAdd,
-                                            scale: 3,
-                                          )),
+                                                  IconConstants.icPassAdd,
+                                                  scale: 3,
+                                                )),
                                       validator: (p0) {
                                         if (p0?.isEmpty ?? true) {
                                           return appLocalization(context)
@@ -125,78 +127,80 @@ class _ChangePasswordState extends State<ChangePassword> {
                                   }
                                   return const Loader();
                                 }),
-
-                          10.height(),
-                        BlocBuilder(
-                            bloc: passwordVisibilityBloc,
-                            builder: (context, state) {
-                              if (state is SelectBoolState) {
-                                return CustomTextField(
-                                  controller: newPasswordController,
-                                  obscureText: state.value,
-                                  labelText: appLocalization(context).password,
-                                  hintText: appLocalization(context).password,
-                                  suffix: InkWell(
-                                      onTap: () {
-                                        passwordVisibilityBloc
-                                            .add(SelectBoolEvent(!state.value));
+                            10.height(),
+                            BlocBuilder(
+                                bloc: passwordVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      controller: newPasswordController,
+                                      obscureText: state.value,
+                                      labelText:
+                                          appLocalization(context).password,
+                                      hintText:
+                                          appLocalization(context).password,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            passwordVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassAdd,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseEnterYourPassword;
+                                        }
+                                        return null;
                                       },
-                                      child: state.value
-                                          ? Image.asset(
-                                        IconConstants.icPassLock,
-                                        scale: 3,
-                                      )
-                                          : Image.asset(
-                                        IconConstants.icPassAdd,
-                                        scale: 3,
-                                      )),
-                                  validator: (p0) {
-                                    if (p0?.isEmpty ?? true) {
-                                      return appLocalization(context)
-                                          .pleaseEnterYourPassword;
-                                    }
-                                    return null;
-                                  },
-                                );
-                              }
-                              return conshet Loader();
-                            }),
-                        10.height();
-                        10.height(),
-                      BlocBuilder(
-                          bloc: passwordVisibilityBloc,
-                          builder: (context, state) {
-                            if (state is SelectBoolState) {
-                              return CustomTextField(
-                                controller: newPasswordController,
-                                obscureText: state.value,
-                                labelText: appLocalization(context).password,
-                                hintText: appLocalization(context).password,
-                                suffix: InkWell(
-                                    onTap: () {
-                                      passwordVisibilityBloc
-                                          .add(SelectBoolEvent(!state.value));
-                                    },
-                                    child: state.value
-                                        ? Image.asset(
-                                      IconConstants.icPassLock,
-                                      scale: 3,
-                                    )
-                                        : Image.asset(
-                                      IconConstants.icPassAdd,
-                                      scale: 3,
-                                    )),
-                                validator: (p0) {
-                                  if (p0?.isEmpty ?? true) {
-                                    return appLocalization(context)
-                                        .pleaseEnterYourPassword;
+                                    );
                                   }
-                                  return null;
-                                },
-                              );
-                            }
-                            return const Loader();
-                          }),
+                                  return const Loader();
+                                }),
+                            10.height(),
+                            BlocBuilder(
+                                bloc: passwordVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      controller: newPasswordController,
+                                      obscureText: state.value,
+                                      labelText:
+                                          appLocalization(context).password,
+                                      hintText:
+                                          appLocalization(context).password,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            passwordVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassAdd,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseEnterYourPassword;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
                             /*CustomTextField(
                               controller: currentPasswordController,
                               labelText: appLocalization(context).currentPass,

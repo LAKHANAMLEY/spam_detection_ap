@@ -1,6 +1,5 @@
 import 'package:phone_state/phone_state.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/utils/app_lifecycle.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
