@@ -1,5 +1,3 @@
-import 'package:spam_delection_app/data/repository/auth_repo/logout_api.dart';
-import 'package:spam_delection_app/data/repository/auth_repo/set_user_online_or_offline_api.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
@@ -391,7 +389,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(CheckSpamState(value));
       });
     }
-
+// add Contact
     if (event is AddContactEvent) {
       emit(ApiLoadingState());
       await addContact(contact: event.contact).then((value) {
@@ -425,7 +423,13 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(RegisterState(value));
       });
     }
-    //
+    //Delete Contact
+    if (event is DeleteContactEvent) {
+      emit(ApiLoadingState());
+      await deleteContact(contact: event.contact).then((value) {
+        emit(DeleteContactState(value));
+      });
+    }
 
     if (event is SetUserOnlineOfflineEvent) {
       emit(ApiLoadingState());

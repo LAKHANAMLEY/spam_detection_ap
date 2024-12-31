@@ -80,6 +80,7 @@ class _AddContactState extends State<AddContact> {
                         10.height(),
                         CustomTextField(
                           controller: fullNameController,
+                          labelText: appLocalization(context).userName,
                           hintText: appLocalization(context).userName,
                           suffix: Image.asset(
                             IconConstants.icUsername,
@@ -92,43 +93,11 @@ class _AddContactState extends State<AddContact> {
                             }
                             return null;
                           },
-                          // decoration: InputDecoration(
-                          //   hintText: appLocalization(context).userName,
-                          //   hintStyle: const TextStyle(
-                          //       color: AppColor.lightfillColor),
-                          //   enabledBorder: OutlineInputBorder(
-                          //     borderRadius: BorderRadius.circular(5),
-                          //     borderSide: const BorderSide(
-                          //         width: 1.5, color: AppColor.fillColor),
-                          //   ),
-                          //   focusedBorder: const OutlineInputBorder(
-                          //     borderSide: BorderSide(
-                          //         color: AppColor.fillColor, width: 1.5),
-                          //     borderRadius:
-                          //         BorderRadius.all(Radius.circular(5)),
-                          //   ),
-                          //   filled: true,
-                          //   fillColor: AppColor.fillColor.withOpacity(0.2),
-                          //   suffixIcon: GestureDetector(
-                          //     onTap: () {},
-                          //     child: SizedBox(
-                          //       height: 10,
-                          //       width: 10,
-                          //       child: Padding(
-                          //         padding: const EdgeInsets.symmetric(
-                          //             vertical: 10),
-                          //         child: Image.asset(
-                          //           IconConstants.icUsername,
-                          //           scale: 1.5,
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                         ),
                         10.height(),
                         CustomTextField(
                           keyboardType: TextInputType.emailAddress,
+                          labelText: appLocalization(context).emailAddress,
                           hintText: appLocalization(context).emailAddress,
                           controller: emailController,
                           suffix: Image.asset(
@@ -142,108 +111,96 @@ class _AddContactState extends State<AddContact> {
                             }
                             return null;
                           },
-                          // decoration: InputDecoration(
-                          //   hintText: appLocalization(context).emailAddress,
-                          //   hintStyle: const TextStyle(
-                          //       color: AppColor.lightfillColor),
-                          //   enabledBorder: OutlineInputBorder(
-                          //     borderRadius: BorderRadius.circular(5),
-                          //     borderSide: const BorderSide(
-                          //         width: 1.5, color: AppColor.fillColor),
-                          //   ),
-                          //   focusedBorder: const OutlineInputBorder(
-                          //     borderSide: BorderSide(
-                          //         color: AppColor.fillColor, width: 1.5),
-                          //     borderRadius:
-                          //         BorderRadius.all(Radius.circular(5)),
-                          //   ),
-                          //   filled: true,
-                          //   fillColor: AppColor.fillColor.withOpacity(0.2),
-                          //   suffixIcon: Padding(
-                          //     padding: const EdgeInsets.all(8.0),
-                          //     child: Image.asset(
-                          //       IconConstants.icfluentMail,
-                          //       scale: 3,
-                          //     ),
-                          //   ),
-                          // ),
                         ),
                         10.height(),
-                        DropdownButtonFormField<String>(
-                          value: selectedType,
-                          items: options.map((String option) {
-                            return DropdownMenuItem<String>(
-                              value: option,
-                              child: Text(option),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedType = newValue!;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            hintText: appLocalization(context).numberType,
-                            hintStyle:
-                                const TextStyle(color: AppColor.lightfillColor),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: const BorderSide(
-                                  width: 1.5, color: AppColor.fillColor),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: AppColor.fillColor, width: 1.5),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
-                            ),
-                            filled: true,
-                            fillColor: AppColor.fillColor.withOpacity(0.2),
-                            /*suffixIcon: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            IconConstants.icEmailAdd,
-                          ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 1 / 100,
                         ),
-                          */
+                        Padding(
+                          padding: const EdgeInsets.only(left: 6, right: 6),
+                          child: DropdownButtonFormField<String>(
+                            value: selectedType,
+                            items: options.map((String option) {
+                              return DropdownMenuItem<String>(
+                                value: option,
+                                child: Text(option),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedType = newValue!;
+                              });
+                            },
+                            decoration: InputDecoration(
+                              hintText: appLocalization(context).numberType,
+                              hintStyle: const TextStyle(
+                                  color: AppColor.lightfillColor),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: const BorderSide(
+                                    width: 1.5, color: AppColor.fillColor),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: AppColor.fillColor, width: 1.5),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                              ),
+                              filled: true,
+                              fillColor: AppColor.fillColor.withOpacity(0.2),
+                              /*suffixIcon: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset(
+                              IconConstants.icEmailAdd,
+                            ),
+                          ),
+                            */
+                            ),
                           ),
                         ),
                         10.height(),
-                        IntlPhoneField(
-                          controller: phoneNumberController,
-                          decoration: InputDecoration(
-                            hintText: appLocalization(context).phoneNumber,
-                            hintStyle:
-                                const TextStyle(color: AppColor.lightfillColor),
-                            //labelText: 'Phone Number',
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: const BorderSide(
-                                  width: 1.5, color: AppColor.fillColor),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: AppColor.fillColor, width: 1.5),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5)),
-                            ),
-                            filled: true,
-                            fillColor: AppColor.fillColor.withOpacity(0.2),
-                            suffixIcon: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
-                                IconConstants.icCallTone,
-                                scale: 3,
+                        SizedBox(
+                          height:
+                              MediaQuery.of(context).size.height * 1.5 / 100,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 6, right: 6),
+                          child: IntlPhoneField(
+                            controller: phoneNumberController,
+                            decoration: InputDecoration(
+                              hintText: appLocalization(context).phoneNumber,
+                              hintStyle: const TextStyle(
+                                  color: AppColor.lightfillColor),
+                              //labelText: 'Phone Number',
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: const BorderSide(
+                                    width: 1.5, color: AppColor.fillColor),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: AppColor.fillColor, width: 1.5),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                              ),
+                              filled: true,
+                              fillColor: AppColor.fillColor.withOpacity(0.2),
+                              suffixIcon: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset(
+                                  IconConstants.icCallTone,
+                                  scale: 3,
+                                ),
                               ),
                             ),
+                            initialCountryCode: 'IN',
+                            onChanged: (phone) {
+                              phoneNumber = phone;
+                              enteredPhone = phone.completeNumber;
+                              // print(phone.completeNumber);
+                              // print(phone.countryCode);
+                            },
                           ),
-                          initialCountryCode: 'IN',
-                          onChanged: (phone) {
-                            phoneNumber = phone;
-                            enteredPhone = phone.completeNumber;
-                            // print(phone.completeNumber);
-                            // print(phone.countryCode);
-                          },
                         ),
                         10.height(),
                         AppButton(
@@ -269,43 +226,6 @@ class _AddContactState extends State<AddContact> {
                                       numberType: numberType,
                                       email: email)));
                             }
-
-                            // if (email.isNotEmpty &&
-                            //     fullName.isNotEmpty &&
-                            //     phone.isNotEmpty) {
-                            //   setState(() {
-                            //     _isLoading = true;
-                            //   });
-                            //   addContact(
-                            //     email: email,
-                            //     fullname: fullName,
-                            //     phonenumber: phone,
-                            //     countrycode: phoneNumber?.countryCode,
-                            //     numbertype: numberType,
-                            //   ).then((response) {
-                            //     setState(() {
-                            //       _isLoading = false;
-                            //     });
-                            //     // class SignUpResponse
-                            //     //var response
-                            //     if (response.statusCode == 200) {
-                            //       Navigator.of(context).push(
-                            //           MaterialPageRoute(
-                            //               builder: (context) =>
-                            //                   const ContactList()));
-                            //     } else {
-                            //       setState(() {
-                            //         _errorMessage =
-                            //             response.message.toString();
-                            //       });
-                            //     }
-                            //   });
-                            // } else {
-                            //   setState(() {
-                            //     _errorMessage = appLocalization(context)
-                            //         .pleaseEnterFields;
-                            //   });
-                            // }
                           },
                         ),
                       ],

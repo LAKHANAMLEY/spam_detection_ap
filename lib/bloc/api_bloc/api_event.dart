@@ -434,10 +434,12 @@ class CheckSpamEvent extends ApiEvent {
   List<Object?> get props => [callLogs];
 }
 
+// add Contact
 class AddContactEvent extends ApiEvent {
   final ContactData contact;
 
   AddContactEvent({required this.contact});
+
   @override
   List<Object?> get props => [contact];
 }
@@ -489,3 +491,13 @@ class SetUserOnlineOfflineEvent extends ApiEvent {
 }
 
 class LogoutEvent extends ApiEvent {}
+
+// delete contact
+class DeleteContactEvent extends ApiEvent {
+  final ContactData contact;
+
+  DeleteContactEvent({required this.contact});
+
+  @override
+  List<Object?> get props => [contact];
+}

@@ -24,6 +24,7 @@ class _RegisterState extends State<Register> {
   String? selectedCountryCode;
   String? selectedCountryName;
   final TextEditingController phoneController = TextEditingController();
+  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(false));
 
   PhoneNumber? phoneNumber;
 
@@ -118,6 +119,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: firstnameController,
               decoration: InputDecoration(
+                labelText: appLocalization(context).firstName,
                 hintText: appLocalization(context).firstName,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
@@ -156,6 +158,7 @@ class _RegisterState extends State<Register> {
             child: TextFormField(
               controller: lastnameController,
               decoration: InputDecoration(
+                labelText: appLocalization(context).lastName,
                 hintText: appLocalization(context).lastName,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
@@ -195,6 +198,7 @@ class _RegisterState extends State<Register> {
               keyboardType: TextInputType.emailAddress,
               controller: emailController,
               decoration: InputDecoration(
+                labelText: appLocalization(context).emailAddress,
                 hintText: appLocalization(context).emailAddress,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 enabledBorder: OutlineInputBorder(
@@ -228,6 +232,7 @@ class _RegisterState extends State<Register> {
               controller: phoneNumberController,
               decoration: InputDecoration(
                 hintText: appLocalization(context).phoneNumber,
+                labelText: appLocalization(context).phoneNumber,
                 hintStyle: const TextStyle(color: AppColor.lightfillColor),
                 //labelText: 'Phone Number',
                 enabledBorder: OutlineInputBorder(
@@ -265,6 +270,7 @@ class _RegisterState extends State<Register> {
               readOnly: true,
               controller: dateOfBirthController,
               decoration: InputDecoration(
+                  labelText: appLocalization(context).dateOfBirth,
                   hintText: appLocalization(context).dateOfBirth,
                   hintStyle: const TextStyle(color: AppColor.lightfillColor),
                   enabledBorder: OutlineInputBorder(
@@ -294,30 +300,49 @@ class _RegisterState extends State<Register> {
           ),
           SizedBox(
             width: MediaQuery.sizeOf(context).width * 90 / 100,
-            child: TextFormField(
-              controller: passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: appLocalization(context).password,
-                hintStyle: const TextStyle(color: AppColor.lightfillColor),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
-                  borderSide:
-                      const BorderSide(width: 1.5, color: AppColor.fillColor),
-                ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xffE1E6EB), width: 1.5),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                ),
-                filled: true,
-                fillColor: AppColor.fillColor.withOpacity(0.2),
-                counterText: '',
-                suffixIcon: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(IconConstants.icLockPass, scale: 3),
-                ),
-              ),
-            ),
+            child: BlocBuilder(
+                bloc: passwordVisibilityBloc,
+                builder: (context, state) {
+                  if (state is SelectBoolState) {
+                    return TextFormField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: appLocalization(context).password,
+                        hintStyle:
+                            const TextStyle(color: AppColor.lightfillColor),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide: const BorderSide(
+                              width: 1.5, color: AppColor.fillColor),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Color(0xffE1E6EB), width: 1.5),
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                        ),
+                        filled: true,
+                        fillColor: AppColor.fillColor.withOpacity(0.2),
+                        counterText: '',
+                        suffix: InkWell(
+                            onTap: () {
+                              passwordVisibilityBloc
+                                  .add(SelectBoolEvent(!state.value));
+                            },
+                            child: state.value
+                                ? Image.asset(
+                                    IconConstants.icPassAdd,
+                                    scale: 1.5,
+                                  )
+                                : Image.asset(
+                                    IconConstants.icPassLock,
+                                    scale: 1.5,
+                                  )),
+                      ),
+                    );
+                  }
+                  return const Loader();
+                }),
           ),
           Padding(
             padding: const EdgeInsets.all(15),

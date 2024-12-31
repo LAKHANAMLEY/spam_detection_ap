@@ -60,6 +60,7 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                     keyboardType: TextInputType.emailAddress,
                     controller: emailController,
                     hintText: appLocalization(context).emailAddress,
+                    labelText: appLocalization(context).emailAddress,
                     suffix: Image.asset(IconConstants.icfluentMail, scale: scale
                         //2x min hona chahiye
                         ),

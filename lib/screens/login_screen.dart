@@ -60,6 +60,9 @@ class _LoginState extends State<Login> {
 
   final _formKey = GlobalKey<FormState>();
 
+  var passwordVisibilityBloc =
+      SelectionBloc(SelectBoolState(false)); //initially visibility false
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -203,22 +206,39 @@ class _LoginState extends State<Login> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 18, right: 18),
-                            child: CustomTextField(
-                              obscureText: true,
-                              controller: passwordController,
-                              hintText: appLocalization(context).password,
-                              suffix: Image.asset(
-                                IconConstants.icLockadd,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? false) {
-                                  return appLocalization(context)
-                                      .pleaseEnterYourPassword;
-                                }
-                                return null;
-                              },
-                            ),
+                            child: BlocBuilder(
+                                bloc: passwordVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      obscureText: state.value,
+                                      //true or false visibility
+                                      controller: passwordController,
+                                      hintText:
+                                          appLocalization(context).password,
+                                      suffix: InkWell(
+                                        onTap: () {
+                                          //add event on icon tap
+                                          passwordVisibilityBloc.add(
+                                              SelectBoolEvent(!state.value));
+                                        },
+                                        child: Icon(
+                                            state.value
+                                                ? Icons.remove_red_eye
+                                                : Icons.remove_red_eye_outlined,
+                                            color: AppColor.greyIconColor),
+                                      ),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? false) {
+                                          return appLocalization(context)
+                                              .pleaseEnterYourPassword;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
                           ),
                           SizedBox(
                             height:

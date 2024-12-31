@@ -78,6 +78,7 @@ export 'data/repository/user_repo/change_security_pin_api.dart';
 export 'data/repository/user_repo/edit_profile_api.dart';
 export 'data/repository/user_repo/get_user_profile_api.dart';
 export 'data/repository/user_repo/update_profile_api.dart';
+//export 'data/repository/contact/delete_device_contact.dart';
 export 'data/shared_pref/shared_pref.dart';
 export 'extensions/date_time_ext.dart';
 export 'extensions/int_ext.dart';

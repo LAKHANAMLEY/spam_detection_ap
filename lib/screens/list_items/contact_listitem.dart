@@ -15,60 +15,66 @@ class ContactListItem extends StatefulWidget {
 class _ContactListItemState extends State<ContactListItem> {
   ContactData? contact;
 
+  late List<ContactData> filteredContacts;
+
   @override
   void initState() {
     contact = widget.contact;
     super.initState();
   }
 
+// sir ek baar check kr lo ye device wala
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
-      onTap: () {
-        Navigator.pushNamed(context, AppRoutes.contactDetail,
-            arguments: ContactDetail(
-              contact: contact,
-            ));
-      },
-      leading: CircleAvatar(
-        backgroundImage: AssetImage(contact?.isSpam == 1
-            ? IconConstants.icFraud
-            : IconConstants.icCallRegular),
-      ),
-      // leading: Image.network(
-      //   contact?.name ?? "", //TODO: image path
-      //   errorBuilder: (context, error, stackTrace) => const Icon(Icons.person),
-      //   width: 50,
-      //   height: 50,
-      // ),
-      title: Text(
-        contact?.name ?? "",
-        style: textTheme(context).titleMedium,
-      ),
-      subtitle: Text(contact?.mobileNo ?? ""),
-      trailing: PopupMenuButton(
-        itemBuilder: (context) => [
-          PopupMenuItem(
-            child: Text(appLocalization(context).reportText),
-            onTap: () {
-              showModalBottomSheet(
-                isScrollControlled: true,
-                backgroundColor: AppColor.secondryColor,
-                context: context,
-                shape: const RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(20.0)),
-                ),
-                builder: (BuildContext context) {
-                  return ReportView(
-                    contact: contact!,
-                  );
-                },
-              );
-            },
-          ),
-        ],
-      ),
-    );
+        onTap: () {
+          Navigator.pushNamed(context, AppRoutes.contactDetail,
+              arguments: ContactDetail(
+                contact: contact,
+              ));
+        },
+        leading: CircleAvatar(
+          backgroundImage: AssetImage(contact?.isSpam == 1
+              ? IconConstants.icFraud
+              : IconConstants.icCallRegular),
+        ),
+        title: Text(
+          contact?.name ?? "",
+          style: textTheme(context).titleMedium,
+        ),
+        subtitle: Text(contact?.mobileNo ?? ""),
+        trailing: PopupMenuButton(
+            itemBuilder: (context) => [
+                  PopupMenuItem(
+                    child: Text(appLocalization(context).reportText),
+                    onTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: AppColor.secondryColor,
+                        context: context,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(20.0)),
+                        ),
+                        builder: (BuildContext context) {
+                          return ReportView(
+                            contact: contact!,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  PopupMenuItem(
+                      child: Text(appLocalization(context).delete),
+                      onTap: () {
+                        //deleteDeviceContact(
+                        // id:contact?.id
+                        // );
+                        contactListBloc.add(DeleteContactEvent(
+                            contact: ContactData(id: contact?.id)));
+                      }
+                      //contactListBloc
+                      )
+                ]));
   }
 }

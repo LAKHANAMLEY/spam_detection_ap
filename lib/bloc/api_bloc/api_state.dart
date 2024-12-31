@@ -445,6 +445,7 @@ class CheckSpamState extends ApiState {
   List<Object?> get props => [value];
 }
 
+// add contact
 class AddContactState extends ApiState {
   final AddContactResponse value;
 
@@ -487,6 +488,16 @@ class LogoutState extends ApiState {
   final Response value;
 
   LogoutState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// delete contact
+class DeleteContactState extends ApiState {
+  final Response value;
+
+  DeleteContactState(this.value);
 
   @override
   List<Object?> get props => [value];

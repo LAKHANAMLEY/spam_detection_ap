@@ -207,6 +207,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                             controller: lastnameController,
                             decoration: InputDecoration(
                               hintText: appLocalization(context).lastName,
+                              labelText: appLocalization(context).lastName,
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               enabledBorder: OutlineInputBorder(
@@ -249,6 +250,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                             controller: emailController,
                             decoration: InputDecoration(
                               hintText: appLocalization(context).emailAddress,
+                              labelText: appLocalization(context).emailAddress,
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               enabledBorder: OutlineInputBorder(
@@ -284,6 +286,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                             controller: passwordController,
                             decoration: InputDecoration(
                                 hintText: appLocalization(context).password,
+                                labelText: appLocalization(context).password,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(
@@ -315,6 +318,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                             controller: relationController,
                             decoration: InputDecoration(
                               hintText: appLocalization(context).relation,
+                              labelText: appLocalization(context).relation,
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               enabledBorder: OutlineInputBorder(
@@ -357,6 +361,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                             controller: supportPinController,
                             decoration: InputDecoration(
                               hintText: appLocalization(context).supportPin,
+                              labelText: appLocalization(context).supportPin,
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               enabledBorder: OutlineInputBorder(
@@ -400,6 +405,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                             controller: phoneController,
                             decoration: InputDecoration(
                               hintText: appLocalization(context).phoneNumber,
+                              labelText: appLocalization(context).phoneNumber,
                               hintStyle: const TextStyle(
                                   color: AppColor.lightfillColor),
                               //labelText: 'Phone Number',

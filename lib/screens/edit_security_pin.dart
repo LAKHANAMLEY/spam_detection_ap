@@ -55,7 +55,8 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                   MediaQuery.of(context).size.height * 4 / 100,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 70, right: 70),
+                              padding:
+                                  const EdgeInsets.only(left: 70, right: 70),
                               child: Text(
                                 appLocalization(context).changeSecurity,
                                 textAlign: TextAlign.center,
@@ -89,6 +90,8 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                             10.height(),
                             CustomTextField(
                               controller: currentSecurityPinController,
+                              labelText:
+                                  appLocalization(context).currentSecurityPin,
                               hintText:
                                   appLocalization(context).currentSecurityPin,
                               keyboardType: TextInputType.number,
@@ -107,6 +110,8 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                             10.height(),
                             CustomTextField(
                               controller: newSecurityPinController,
+                              labelText:
+                                  appLocalization(context).newSecurityPin,
                               hintText: appLocalization(context).newSecurityPin,
                               keyboardType: TextInputType.number,
                               suffix: Image.asset(
@@ -124,6 +129,8 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                             10.height(),
                             CustomTextField(
                               controller: confirmSecurityPinController,
+                              labelText:
+                                  appLocalization(context).confirmSecurityPin,
                               hintText:
                                   appLocalization(context).confirmSecurityPin,
                               keyboardType: TextInputType.number,
