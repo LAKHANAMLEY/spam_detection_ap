@@ -29,7 +29,7 @@ Future<EditProfileResponse> editProfile({
 
   var request = http.MultipartRequest(
     "POST",
-    Uri.parse(ApiUrlConstants.endPointEditProfile),
+    Uri.parse(ApiUrlConstants.editProfile),
   );
 
   request.headers.addAll(await ApiUrlConstants.headers());

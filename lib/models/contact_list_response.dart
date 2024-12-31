@@ -132,7 +132,7 @@ class ContactData {
   final String? callActivity;
   final String? usuallyCalls;
   final String? lastSeen;
-  final int? isOnline;
+  final String? isOnline;
   final List<CallLogData>? callHistory;
   final String? email;
 
@@ -171,7 +171,7 @@ class ContactData {
         callActivity: json["call_activity"],
         usuallyCalls: json["usually_calls"],
         lastSeen: json["last_seen"],
-        isOnline: json["is_online"],
+        isOnline: json["is_online"].toString(),
         callHistory: json["call_history"] == null
             ? []
             : List<CallLogData>.from(

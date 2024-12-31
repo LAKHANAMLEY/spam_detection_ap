@@ -8,7 +8,7 @@ Future<Response> editContact(
     required contactid,
     required countrycode}) async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointEditContacts),
+    Uri.parse(ApiUrlConstants.editContacts),
     headers: await ApiUrlConstants.headers(),
     body: {
       'name': fullname,

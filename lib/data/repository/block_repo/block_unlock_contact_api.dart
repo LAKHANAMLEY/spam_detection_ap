@@ -6,7 +6,7 @@ Future<Response> blockUnblockContact({
   required String comment,
 }) async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointUnblockContacts),
+    Uri.parse(ApiUrlConstants.unblockContacts),
     headers: await ApiUrlConstants.headers(),
     body: {
       // 'contacts_id': contactId,

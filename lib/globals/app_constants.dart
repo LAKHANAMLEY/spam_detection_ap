@@ -62,4 +62,6 @@ class AppConstants {
   );
 
   static CountryData? selectedCountry;
+
+  static String? selectedLanguage = 'en';
 }

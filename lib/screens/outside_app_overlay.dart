@@ -1,3 +1,4 @@
+import 'package:direct_call_plus/direct_call_plus.dart';
 import 'package:spam_delection_app/lib.dart';
 import 'package:system_alert_window/system_alert_window.dart';
 
@@ -192,62 +193,23 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            children: [
-                              Icon(
-                                Icons.phone,
-                                color: textColor,
-                              ),
-                              Text(
-                                "CALL",
-                                style: textTheme(context)
-                                    .bodyMedium
-                                    ?.copyWith(color: textColor),
-                              )
-                            ],
+                          Btn(
+                            icon: Icons.phone,
+                            text: "CALL",
+                            onTap: () async {
+                              await DirectCallPlus.makeCall(
+                                  callLog?.mobileNo ?? "");
+                            },
                           ),
-                          Column(
-                            children: [
-                              Icon(
-                                Icons.message,
-                                color: textColor,
-                              ),
-                              Text(
-                                "MESSAGE",
-                                style: textTheme(context)
-                                    .bodyMedium
-                                    ?.copyWith(color: textColor),
-                              )
-                            ],
+                          Btn(
+                            icon: Icons.message,
+                            text: "MESSAGE",
+                            onTap: () {
+                              launchSms(context, callLog?.mobileNo ?? "");
+                            },
                           ),
-                          Column(
-                            children: [
-                              Icon(
-                                Icons.voice_chat,
-                                color: textColor,
-                              ),
-                              Text(
-                                "VOICE",
-                                style: textTheme(context)
-                                    .bodyMedium
-                                    ?.copyWith(color: textColor),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Icon(
-                                Icons.edit,
-                                color: textColor,
-                              ),
-                              Text(
-                                "EDIT",
-                                style: textTheme(context)
-                                    .bodyMedium
-                                    ?.copyWith(color: textColor),
-                              )
-                            ],
-                          ),
+                          const Btn(icon: Icons.voice_chat, text: "VOICE"),
+                          const Btn(icon: Icons.edit, text: "EDIT"),
                         ],
                       )
                     ],
@@ -256,5 +218,37 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
               }
               return const Loader();
             }));
+  }
+}
+
+class Btn extends StatelessWidget {
+  final IconData icon;
+  final String text;
+  final void Function()? onTap;
+  const Btn({
+    super.key,
+    required this.icon,
+    required this.text,
+    this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Color textColor = Colors.white;
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Icon(
+            icon,
+            color: textColor,
+          ),
+          Text(
+            text,
+            style: textTheme(context).bodyMedium?.copyWith(color: textColor),
+          )
+        ],
+      ),
+    );
   }
 }

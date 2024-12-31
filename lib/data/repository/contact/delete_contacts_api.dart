@@ -5,7 +5,7 @@ Future<Response> deleteContact({
   required String contactid,
 }) async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointDeleteContacts),
+    Uri.parse(ApiUrlConstants.deleteContacts),
     headers: await ApiUrlConstants.headers(),
     body: {
       'contacts_id': contactid,

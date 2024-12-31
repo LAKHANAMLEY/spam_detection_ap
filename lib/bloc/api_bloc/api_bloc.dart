@@ -1,3 +1,5 @@
+import 'package:spam_delection_app/data/repository/auth_repo/logout_api.dart';
+import 'package:spam_delection_app/data/repository/auth_repo/set_user_online_or_offline_api.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
@@ -424,5 +426,21 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       });
     }
     //
+
+    if (event is SetUserOnlineOfflineEvent) {
+      emit(ApiLoadingState());
+      await setUserOnlineOrOffline(
+        isOnline: event.isOnline,
+      ).then((value) {
+        emit(SetUserOnlineOrOfflineState(value));
+      });
+    }
+
+    if (event is LogoutEvent) {
+      emit(ApiLoadingState());
+      await logout().then((value) {
+        emit(LogoutState(value));
+      });
+    }
   }
 }

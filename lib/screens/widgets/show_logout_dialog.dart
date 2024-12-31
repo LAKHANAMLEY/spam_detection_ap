@@ -20,6 +20,7 @@ showLogoutDialog(context) {
       //   SharedPref.saveLoginCredentials(
       //       mobile: mobile, password: password, isRemember: isRemember);
       // } else {
+      authBloc.add(LogoutEvent());
       signOutFromGoogle().then((isSignedOut) {
         SharedPref.clearAll();
         Navigator.of(context).pushNamedAndRemoveUntil(

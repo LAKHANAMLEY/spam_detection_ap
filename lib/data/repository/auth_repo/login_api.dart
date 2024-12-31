@@ -15,7 +15,7 @@ Future<LoginResponse> login(
   };
 
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointEmailPassword),
+    Uri.parse(ApiUrlConstants.loginWithEmailPassword),
     headers: await ApiUrlConstants.headers(),
     body: body,
   );

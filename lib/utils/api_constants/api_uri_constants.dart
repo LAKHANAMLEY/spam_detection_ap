@@ -7,88 +7,96 @@ class ApiUrlConstants {
       };
   static String baseUrl = 'https://portal.broadlinkprotect.com/api/v1';
 
-  static String endPointEmailPassword =
-      '$baseUrl/auth/login-with-email?lang=en';
+  static String loginWithEmailPassword =
+      '$baseUrl/auth/login-with-email?lang=${AppConstants.selectedLanguage}';
 
-  static String endPointMobile = '$baseUrl/auth/login?lang=en';
-  static String endPointUsername = '$baseUrl/auth/login-with-username?lang=en';
+  static String loinWithMobile =
+      '$baseUrl/auth/login?lang=${AppConstants.selectedLanguage}';
+  static String loginWithUserNameAndPassword =
+      '$baseUrl/auth/login-with-username?lang=${AppConstants.selectedLanguage}';
 
-  static String endPointSignup = '$baseUrl/auth/signup?lang=en';
+  static String signUp =
+      '$baseUrl/auth/signup?lang=${AppConstants.selectedLanguage}';
 
-  static String endPointSocialSignup = '$baseUrl/auth/social-signup?lang=en';
+  static String socialSignup =
+      '$baseUrl/auth/social-signup?lang=${AppConstants.selectedLanguage}';
 
-  static String endPointCompleteSignup = '${baseUrl}uth/completesignup?lang=en';
+  static String completeSignup =
+      '$baseUrl/auth/completesignup?lang=${AppConstants.selectedLanguage}';
 
-  static String endPointLogout = '${{baseUrl}}/auth/logout?lang=en';
+  static String logout =
+      '$baseUrl/auth/logout?lang=${AppConstants.selectedLanguage}';
 
-  static String endPointForgotPassword = '$baseUrl/auth/forgetpassword?lang=en';
+  static String forgotPassword =
+      '$baseUrl/auth/forgetpassword?lang=${AppConstants.selectedLanguage}';
 
-  static String endPointForgotPasswordOTP =
-      '$baseUrl/auth/forgetpassword-by-otp?lang=en';
+  static String forgotPasswordByOTP =
+      '$baseUrl/auth/forgetpassword-by-otp?lang=${AppConstants.selectedLanguage}';
 
-  static String endPointResetPassword = '$baseUrl/auth/resetpassword?lang=en';
+  static String resetPassword =
+      '$baseUrl/auth/resetpassword?lang=${AppConstants.selectedLanguage}';
 
-  static String endPointResetPasswordOTP =
-      '$baseUrl/auth/resetpassword-by-otp?lang=en';
+  static String resetPasswordByOTP =
+      '$baseUrl/auth/resetpassword-by-otp?lang=${AppConstants.selectedLanguage}';
   static String endPointCountriesList = '$baseUrl/settings/get-country-list';
 
-  static String endPointLanguageList = '$baseUrl/settings/get-language-list';
+  static String languageList = '$baseUrl/settings/get-language-list';
 
-  static String endPointCorporateLogin =
-      '$baseUrl/auth/corporate-login?lang=en';
+  static String corporateLogin =
+      '$baseUrl/auth/corporate-login?lang=${AppConstants.selectedLanguage}';
+
+  static String setUserOnlineOffline =
+      "$baseUrl/auth/set-user-online-or-offline";
 
   static String contactList = '$baseUrl/contacts/contacts-list';
 
   static String syncContacts = '$baseUrl/contacts/sync-contact';
 
-  //static String changePassword = '$baseUrl/user/changepassword?lang=en';
+  //static String changePassword = '$baseUrl/user/changepassword?lang=${AppConstants.selectedLanguage}';
   //basic
-  static String endPointEditProfile = '$baseUrl/user/editprofile?lang=en';
-  static String endPointUpdateProfile = '$baseUrl/user/updateprofile?lang=en';
-  static String endPointChangeSecurityPin =
-      '$baseUrl/user/changesecuritypin?lang=en';
-  static String changePassword = '$baseUrl/user/changepassword?lang=en';
+  static String editProfile =
+      '$baseUrl/user/editprofile?lang=${AppConstants.selectedLanguage}';
+  static String updateProfile =
+      '$baseUrl/user/updateprofile?lang=${AppConstants.selectedLanguage}';
+  static String changeSecurityPin =
+      '$baseUrl/user/changesecuritypin?lang=${AppConstants.selectedLanguage}';
+  static String changePassword =
+      '$baseUrl/user/changepassword?lang=${AppConstants.selectedLanguage}';
   static String getUserDetails = '$baseUrl/user/getdetails/';
 
   //family_member
-  static String endPointFamilyMembersList = '$baseUrl/family/getmemberslist';
-  static String endPointFamilyMemberDetails =
-      '$baseUrl/family/getmemberdetails/';
-  static String endPointFamilyAddMember = '$baseUrl/family/add-member?lang=en';
-  static String endPointFamilyEditMember =
-      '$baseUrl/family/edit-member?lang=en';
-  static String endPointFamilyDeleteMember =
-      '$baseUrl/family/delete-member?lang=en';
+  static String familyMembersList = '$baseUrl/family/getmemberslist';
+  static String familyMemberDetails = '$baseUrl/family/getmemberdetails/';
+  static String addFamilyMember =
+      '$baseUrl/family/add-member?lang=${AppConstants.selectedLanguage}';
+  static String editFamilyMember =
+      '$baseUrl/family/edit-member?lang=${AppConstants.selectedLanguage}';
+  static String deleteFamilyMember =
+      '$baseUrl/family/delete-member?lang=${AppConstants.selectedLanguage}';
 
   //plans
-  static String endPointPlansList = '$baseUrl/plans/getlist';
+  static String plansList = '$baseUrl/plans/getlist';
 
   //setting
-  static String endPointCategoryList = '$baseUrl/settings/get-category-list';
-  static String endPointNumberType = '$baseUrl/settings/get-number-type';
-  static String endPointCallDurationUnit =
-      '$baseUrl/settings/get-call-duration-unit';
-  static String endPointCallType = '$baseUrl/settings/get-call-type';
+  static String categoryList = '$baseUrl/settings/get-category-list';
+  static String numberType = '$baseUrl/settings/get-number-type';
+  static String callDurationUnit = '$baseUrl/settings/get-call-duration-unit';
+  static String callType = '$baseUrl/settings/get-call-type';
 
   //block
-  static String endPointBlockContactsList =
-      '$baseUrl/contacts/block-contacts-list';
-  static String endPointUnblockContacts =
-      '$baseUrl/contacts/block-unblock-contacts';
+  static String blockContactsList = '$baseUrl/contacts/block-contacts-list';
+  static String unblockContacts = '$baseUrl/contacts/block-unblock-contacts';
 
   // spam
-  static String endPointSpamList = '$baseUrl/contacts/spam-contacts-list';
-  static String endPointMarkSpamContacts =
-      '$baseUrl/contacts/mark-spam-contacts';
-  static String endPointRemoveMarkSpam =
-      '$baseUrl/contacts/remove-spam-contacts';
+  static String spamList = '$baseUrl/contacts/spam-contacts-list';
+  static String markSpamContacts = '$baseUrl/contacts/mark-spam-contacts';
+  static String removeSpam = '$baseUrl/contacts/remove-spam-contacts';
 
   //contact
   static String addContact = '$baseUrl/contacts/add-contacts';
-  static String endPointEditContacts = '$baseUrl/contacts/edit-contacts';
-  static String endPointDeleteContacts = '$baseUrl/contacts/delete-contacts';
-  static String endPointCheckSpamContacts =
-      '$baseUrl/contacts/is-phone-number-spam';
+  static String editContacts = '$baseUrl/contacts/edit-contacts';
+  static String deleteContacts = '$baseUrl/contacts/delete-contacts';
+  static String checkSpamContacts = '$baseUrl/contacts/is-phone-number-spam';
   static String contactDetail = '$baseUrl/contacts/contact-details';
 
   //call logs
@@ -96,32 +104,34 @@ class ApiUrlConstants {
   static String getCallLogs = "$baseUrl/contacts/call-log-list";
 
   // corporate
-  static String endPointCorporateEditProfile =
-      '$baseUrl/corporate/editprofile?lang=en';
+  static String editCorporateProfile =
+      '$baseUrl/corporate/editprofile?lang=${AppConstants.selectedLanguage}';
 
   //staff
-  static String endPointStaffMemberList = '$baseUrl/staff/getmemberslist';
-  static String endPointStaffMemberDetails = '$baseUrl/staff/getmemberdetails/';
-  static String endPointStaffAddMember = '$baseUrl/staff/add-member?lang=en';
-  static String endPointStaffEditMember = '$baseUrl/staff/edit-member?lang=en';
-  static String endPointStaffDeleteMember =
-      '$baseUrl/staff/delete-member?lang=en';
+  static String staffMemberList = '$baseUrl/staff/getmemberslist';
+  static String staffMemberDetails = '$baseUrl/staff/getmemberdetails/';
+  static String addStaffMember =
+      '$baseUrl/staff/add-member?lang=${AppConstants.selectedLanguage}';
+  static String editStaffMember =
+      '$baseUrl/staff/edit-member?lang=${AppConstants.selectedLanguage}';
+  static String deleteStaffMember =
+      '$baseUrl/staff/delete-member?lang=${AppConstants.selectedLanguage}';
 
   //notification
-  static String endPointNotificationList =
+  static String notificationList =
       '$baseUrl/notifications/get-notifications-list';
-  static String endPointEnabledDisabaled =
+  static String enableDisableNotification =
       '$baseUrl/notifications/enable-disable-notifications';
-  static String endPointNotificationType =
+  static String notificationType =
       '$baseUrl/notifications/get-notifications-types';
 
   // call
-  static String endPointSyncCallLog = '$baseUrl/contacts/sync-call-log';
-  static String endPointgetCallLogList = '$baseUrl/contacts/call-log-list';
-  static String endPointDeleteCallLog =
-      '$baseUrl/contacts/delete-call-log?lang=en';
-  static String endPointDeleteAllCallLog =
-      '$baseUrl/contacts/delete-all-call-log?lang=en';
-  static String endPointSyncCallLogManually =
+  static String syncCallLog = '$baseUrl/contacts/sync-call-log';
+  static String getCallLogList = '$baseUrl/contacts/call-log-list';
+  static String deleteCallLog =
+      '$baseUrl/contacts/delete-call-log?lang=${AppConstants.selectedLanguage}';
+  static String deleteAllCallLog =
+      '$baseUrl/contacts/delete-all-call-log?lang=${AppConstants.selectedLanguage}';
+  static String syncCallLogManually =
       '$baseUrl/contacts/sync-call-log-manually';
 }

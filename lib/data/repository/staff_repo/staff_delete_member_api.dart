@@ -5,7 +5,7 @@ Future<Response> staffDeleteMember({
   required id,
 }) async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointStaffDeleteMember + id),
+    Uri.parse(ApiUrlConstants.deleteStaffMember + id),
     headers: await ApiUrlConstants.headers(),
     body: {'staff_id': id},
   );

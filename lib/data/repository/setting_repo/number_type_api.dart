@@ -3,7 +3,7 @@ import 'package:spam_delection_app/lib.dart';
 
 Future<NumberTypeResponse> getNumberType() async {
   final response = await http.get(
-    Uri.parse(ApiUrlConstants.endPointNumberType),
+    Uri.parse(ApiUrlConstants.numberType),
     headers: await ApiUrlConstants.headers(),
   );
   if (response.statusCode == 200) {

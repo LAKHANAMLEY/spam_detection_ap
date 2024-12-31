@@ -35,29 +35,30 @@ class SharedPrefBloc extends Bloc<SharedPrefEvent, SharedPrefState> {
       final zip = await SharedPref.getZip();
       final address = await SharedPref.getAddress();
       final address2 = await SharedPref.getAddress2();
+      final userRole = await SharedPref.getUserRole();
       var user = User(
-        userId: userId,
-        corporateId: corporateId,
-        crn: crn,
-        name: name,
-        firstName: firstName,
-        lastName: lastname,
-        userName: userName,
-        email: email,
-        phone: phone,
-        photo: photo,
-        gender: gender,
-        dob: DateTime.tryParse(dob),
-        country: country,
-        state: state,
-        city: city,
-        zip: zip,
-        address: address,
-        address2: address2,
-        countryCode: countryCode,
-        countryId: countryId,
-        token: token,
-      );
+          userId: userId,
+          corporateId: corporateId,
+          crn: crn,
+          name: name,
+          firstName: firstName,
+          lastName: lastname,
+          userName: userName,
+          email: email,
+          phone: phone,
+          photo: photo,
+          gender: gender,
+          dob: DateTime.tryParse(dob),
+          country: country,
+          state: state,
+          city: city,
+          zip: zip,
+          address: address,
+          address2: address2,
+          countryCode: countryCode,
+          countryId: countryId,
+          token: token,
+          userRole: userRole);
       emit(GetUserDataFromLocalState(user));
     }
   }

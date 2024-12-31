@@ -7,7 +7,7 @@ Future<EnabledNotificationResponse> enableNotification({
   required String notificationPush,
 }) async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointEnabledDisabaled),
+    Uri.parse(ApiUrlConstants.enableDisableNotification),
     headers: await ApiUrlConstants.headers(),
     body: {
       'notifications_list[0][notification_type_id]': notificationOne,

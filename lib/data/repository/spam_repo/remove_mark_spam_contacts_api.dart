@@ -13,7 +13,7 @@ Future<Response> removeSpam({
   };
 
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointRemoveMarkSpam),
+    Uri.parse(ApiUrlConstants.removeSpam),
     headers: await ApiUrlConstants.headers(),
     body: body,
   );

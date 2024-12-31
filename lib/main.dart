@@ -61,8 +61,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
+    return BlocConsumer(
         bloc: localizationBloc,
+        listener: (context, state) {
+          if (state is ChangeLocaleState) {
+            AppConstants.selectedLanguage = state.locale.languageCode;
+          }
+        },
         builder: (context, state) {
           if (state is ChangeLocaleState) {
             return MaterialApp(

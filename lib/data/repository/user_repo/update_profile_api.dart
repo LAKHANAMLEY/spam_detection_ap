@@ -21,7 +21,7 @@ Future<UpdateProfileResponse> updateProfile({
   required String phoneNumber,
 }) async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointUpdateProfile),
+    Uri.parse(ApiUrlConstants.updateProfile),
     headers: await ApiUrlConstants.headers(),
     body: {
       "first_name": firstname,

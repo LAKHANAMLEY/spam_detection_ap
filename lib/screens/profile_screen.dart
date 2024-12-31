@@ -457,19 +457,35 @@ class _ProfileState extends State<Profile> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 5 / 100,
-                        ),
-                        SubMenu(
-                          title: appLocalization(context).editProfile,
-                          icon: IconConstants.icEdit,
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const EditProfile()));
-                          },
-                        ),
+                        if (user.userRole?.toLowerCase() == "user") ...[
+                          SizedBox(
+                            height:
+                                MediaQuery.of(context).size.height * 5 / 100,
+                          ),
+                          SubMenu(
+                            title: appLocalization(context).editProfile,
+                            icon: IconConstants.icEdit,
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const EditProfile()));
+                            },
+                          ),
+                        ],
+                        if (user.userRole?.toLowerCase() == "corporate") ...[
+                          10.height(),
+                          SubMenu(
+                            title:
+                                appLocalization(context).corporateEditProfile,
+                            icon: IconConstants.icEdit,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, AppRoutes.corporateProfile);
+                            },
+                          )
+                        ],
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 2 / 100,
                         ),
@@ -519,32 +535,28 @@ class _ProfileState extends State<Profile> {
                             _showEditOptions(context);
                           },
                         ),
-                        10.height(),
-                        SubMenu(
-                          title: appLocalization(context).familyList,
-                          icon: IconConstants.icalternativeEmail,
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, AppRoutes.familyMemberList);
-                          },
-                        ),
-                        10.height(),
-                        SubMenu(
-                          title: appLocalization(context).staffList,
-                          icon: IconConstants.icalternativeEmail,
-                          onTap: () {
-                            Navigator.pushNamed(context, AppRoutes.staffMember);
-                          },
-                        ),
-                        10.height(),
-                        SubMenu(
-                          title: appLocalization(context).corporateEditProfile,
-                          icon: IconConstants.icEdit,
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, AppRoutes.corporateProfile);
-                          },
-                        ),
+                        if (user.userRole?.toLowerCase() == "user") ...[
+                          10.height(),
+                          SubMenu(
+                            title: appLocalization(context).familyList,
+                            icon: IconConstants.icalternativeEmail,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, AppRoutes.familyMemberList);
+                            },
+                          ),
+                        ],
+                        if (user.userRole?.toLowerCase() == "corporate") ...[
+                          10.height(),
+                          SubMenu(
+                            title: appLocalization(context).staffList,
+                            icon: IconConstants.icalternativeEmail,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, AppRoutes.staffMember);
+                            },
+                          ),
+                        ],
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 2 / 100,
                         ),

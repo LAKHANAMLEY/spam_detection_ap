@@ -15,7 +15,7 @@ Future<ResetResponse> resetPassword(
   };
 
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointResetPassword),
+    Uri.parse(ApiUrlConstants.resetPassword),
     headers: await ApiUrlConstants.headers(),
     body: body,
   );

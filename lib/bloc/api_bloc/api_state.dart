@@ -473,3 +473,21 @@ class RegisterState extends ApiState {
   @override
   List<Object?> get props => [value];
 }
+
+class SetUserOnlineOrOfflineState extends ApiState {
+  final Response value;
+
+  SetUserOnlineOrOfflineState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class LogoutState extends ApiState {
+  final Response value;
+
+  LogoutState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}

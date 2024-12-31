@@ -5,7 +5,7 @@ Future<Response> deleteCallLog({
   required id,
 }) async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointDeleteCallLog),
+    Uri.parse(ApiUrlConstants.deleteCallLog),
     headers: await ApiUrlConstants.headers(),
     body: {'call_log_id': id},
   );

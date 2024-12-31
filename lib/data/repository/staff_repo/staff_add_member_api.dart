@@ -28,8 +28,8 @@ Future<Response> staffAddMember({
   //   body: body,
   // );
 
-  final request = http.MultipartRequest(
-      "POST", Uri.parse(ApiUrlConstants.endPointStaffAddMember));
+  final request =
+      http.MultipartRequest("POST", Uri.parse(ApiUrlConstants.addStaffMember));
   request.headers.addAll(await ApiUrlConstants.headers());
   request.fields.addAll(body);
   if (photoFile != null && photoFile.mimeType != "http") {

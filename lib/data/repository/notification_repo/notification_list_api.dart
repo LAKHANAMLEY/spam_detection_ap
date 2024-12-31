@@ -3,7 +3,7 @@ import 'package:spam_delection_app/lib.dart';
 
 Future<NotificationListResponse> notificationList() async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointNotificationList),
+    Uri.parse(ApiUrlConstants.notificationList),
     headers: await ApiUrlConstants.headers(),
   );
   if (response.statusCode == 200) {

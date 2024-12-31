@@ -459,6 +459,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "kycType": MessageLookupByLibrary.simpleMessage("Type de KYC"),
         "language": MessageLookupByLibrary.simpleMessage("Langue"),
         "lastAllTime": MessageLookupByLibrary.simpleMessage("Todo el tiempo"),
+        "lastDays":
+            MessageLookupByLibrary.simpleMessage("Les 30 derniers jours"),
         "lastName": MessageLookupByLibrary.simpleMessage("Nom de famille"),
         "lastSixMonths":
             MessageLookupByLibrary.simpleMessage("últimos 6 meses"),

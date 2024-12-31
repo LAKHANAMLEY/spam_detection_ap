@@ -28,8 +28,8 @@ Future<FamilyMemberAddResponse> familyaddMember({
   //   body: body,
   // );
 
-  final request = http.MultipartRequest(
-      "POST", Uri.parse(ApiUrlConstants.endPointFamilyAddMember));
+  final request =
+      http.MultipartRequest("POST", Uri.parse(ApiUrlConstants.addFamilyMember));
   request.headers.addAll(await ApiUrlConstants.headers());
   request.fields.addAll(body);
   if (photoFile != null && photoFile.mimeType != "http") {

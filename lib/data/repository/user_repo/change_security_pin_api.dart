@@ -7,7 +7,7 @@ Future<ChangeSecurityPinResponse> changeSecurityPin({
   required String confirmNewPin,
 }) async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointChangeSecurityPin),
+    Uri.parse(ApiUrlConstants.changeSecurityPin),
     headers: await ApiUrlConstants.headers(),
     body: {
       "current_pin": currentPin,

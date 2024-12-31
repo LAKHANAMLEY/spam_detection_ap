@@ -96,20 +96,21 @@ class CustomTextField extends StatelessWidget {
                   decoration: InputDecoration(
                       fillColor: AppColor.whiteLight.withOpacity(0.2),
                       labelText: labelText,
-                      floatingLabelStyle: const TextStyle(
-                        color: AppColor.appbgColor,
-                        height: 1,
-                      ),
+                      // floatingLabelStyle: const TextStyle(
+                      //   color: AppColor.appbgColor,
+                      //   height: 1,
+                      // ),
                       // floatingLabelBehavior: FloatingLabelBehavior.never,
                       hintText: hintText,
-                      labelStyle: const TextStyle(color: Colors.black),
+                      labelStyle: const TextStyle(color: AppColor.oragneColor),
                       // alignLabelWithHint: true,
                       // floatingLabelAlignment: FloatingLabelAlignment.start,
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       hintStyle: const TextStyle(
-                          color: AppColor.lightfillColor,
-                          fontFamily: AppFont.fontFamily,
-                          fontWeight: FontWeight.w600),
+                        color: AppColor.lightfillColor,
+                        fontFamily: AppFont.fontFamily,
+                        fontWeight: FontWeight.normal,
+                      ),
                       errorStyle: const TextStyle(
                         color: Colors.red,
                         height: 1,

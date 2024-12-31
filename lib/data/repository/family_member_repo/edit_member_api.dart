@@ -10,7 +10,7 @@ Future<Response> familyEditMember({required FamilyMember familyMember}) async {
     'support_pin': familyMember.supportPin ?? "",
   };
   final request = http.MultipartRequest(
-      "POST", Uri.parse(ApiUrlConstants.endPointFamilyEditMember));
+      "POST", Uri.parse(ApiUrlConstants.editFamilyMember));
   request.headers.addAll(await ApiUrlConstants.headers());
   request.fields.addAll(body);
   if (familyMember.photoFile != null &&

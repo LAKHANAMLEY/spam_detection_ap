@@ -3,7 +3,7 @@ import 'package:spam_delection_app/lib.dart';
 
 Future<BlockedContactListResponse> blockContact() async {
   final response = await http.get(
-    Uri.parse(ApiUrlConstants.endPointBlockContactsList),
+    Uri.parse(ApiUrlConstants.blockContactsList),
     headers: await ApiUrlConstants.headers(),
   );
   if (response.statusCode == 200) {

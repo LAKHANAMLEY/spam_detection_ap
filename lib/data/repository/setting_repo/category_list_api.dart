@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
 Future<CategoryListResponse> getCategories() async {
-  final url = Uri.parse(ApiUrlConstants.endPointCategoryList);
+  final url = Uri.parse(ApiUrlConstants.categoryList);
   try {
     final response =
         await http.get(url, headers: await ApiUrlConstants.headers());

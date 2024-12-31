@@ -22,7 +22,7 @@ Future<CheckSpamNumberResponse> checkSpam({required CallLogData log}) async {
   var request = http.MultipartRequest(
       'POST',
       Uri.parse(
-        ApiUrlConstants.endPointCheckSpamContacts,
+        ApiUrlConstants.checkSpamContacts,
       ));
 
   request.headers.addAll(await ApiUrlConstants.headers());

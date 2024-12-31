@@ -19,7 +19,7 @@ Future<SignUpResponse> socialSignUp({
   };
 
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointSocialSignup),
+    Uri.parse(ApiUrlConstants.socialSignup),
     headers: await ApiUrlConstants.headers(),
     body: body,
   );

@@ -5,7 +5,7 @@ Future<Response> familyDeleteMember({
   required id,
 }) async {
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointFamilyDeleteMember),
+    Uri.parse(ApiUrlConstants.deleteFamilyMember),
     headers: await ApiUrlConstants.headers(),
     body: {
       'family_id': id,

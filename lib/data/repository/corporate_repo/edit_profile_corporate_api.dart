@@ -2,33 +2,24 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
 Future<Response> corporateEditProfile({
-  // required String firstname,
-  // required String lastname,
-  // required String dateofbirth,
-  // required String gender,
-  // required String state,
-  // required String city,
-  // required String zip,
-  // required String addressFirst,
-  // required String addressSecond,
-  // required XFile? photo,
   required CorporateData? user,
 }) async {
   final body = {
-    "UserName": user?.uName ?? "",
-    "companyName": user?.company ?? "",
-    "crnId": user?.crn ?? "",
+    "corporate_name": user?.uName ?? "",
+    "company": user?.company ?? "",
+    "crn": user?.crn ?? "",
     //'photo':user?.photo??"",
   };
 
   var request = http.MultipartRequest(
     "POST",
-    Uri.parse(ApiUrlConstants.endPointCorporateEditProfile),
+    Uri.parse(ApiUrlConstants.editCorporateProfile),
   );
 
   request.headers.addAll(await ApiUrlConstants.headers());
+  request.fields.addAll(body);
   //request.fields.addAll(body);
-  var photo = user?.photo;
+  var photo = user?.photoFile;
   if (photo != null && photo.path.isNotEmpty) {
     if (photo.mimeType == "http") {
       request.fields["photo"] = photo.path;
@@ -37,12 +28,6 @@ Future<Response> corporateEditProfile({
     }
   }
 
-  print(body);
-  // final response = await http.post(
-  //   Uri.parse(ApiUrlConstants.endPointEditProfile),
-  //   headers: await ApiUrlConstants.headers(),
-  //   body: body,
-  // );
   var streamedResponse = await request.send();
   var response = await http.Response.fromStream(streamedResponse);
   if (response.statusCode == 200) {

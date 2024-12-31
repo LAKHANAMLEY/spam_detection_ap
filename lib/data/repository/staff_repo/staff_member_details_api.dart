@@ -3,7 +3,7 @@ import 'package:spam_delection_app/lib.dart';
 
 Future<StaffMemberDetailsResponse> getStaffDetail(String id) async {
   final response = await http.get(
-    Uri.parse(ApiUrlConstants.endPointStaffMemberDetails + id),
+    Uri.parse(ApiUrlConstants.staffMemberDetails + id),
     headers: await ApiUrlConstants.headers(),
   );
   if (response.statusCode == 200) {

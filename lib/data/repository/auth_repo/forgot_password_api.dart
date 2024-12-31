@@ -11,7 +11,7 @@ Future<ForgotResponse> forgotPassword({required String email}) async {
   };
 //karo login
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointForgotPassword),
+    Uri.parse(ApiUrlConstants.forgotPassword),
     headers: <String, String>{
       // 'Content-Type': 'application/json',
       "X-API-KEY": ApiKeyConstants.apiKey,

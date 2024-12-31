@@ -1,6 +1,5 @@
 import 'package:direct_call_plus/direct_call_plus.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ContactDetail extends StatefulWidget {
   final ContactData? contact;
@@ -192,6 +191,29 @@ class _ContactDetailState extends State<ContactDetail> {
                                               fontSize: 18,
                                               fontWeight: FontWeight.w400),
                                         ),
+                                        if ((contact?.lastSeen?.isNotEmpty ??
+                                                false) ||
+                                            contact?.isOnline == "1")
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Circle(
+                                                color: contact?.isOnline == "1"
+                                                    ? Colors.green
+                                                    : Colors.grey,
+                                              ),
+                                              Text(
+                                                contact?.isOnline == "1"
+                                                    ? "Online"
+                                                    : "Last seen ${contact?.lastSeen}",
+                                                style: textTheme(context)
+                                                    .bodySmall
+                                                    ?.copyWith(
+                                                        color: Colors.grey),
+                                              ),
+                                            ],
+                                          ),
                                         const SizedBox(
                                           height: 10,
                                         ),
@@ -200,7 +222,10 @@ class _ContactDetailState extends State<ContactDetail> {
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
                                             ActionButton(
-                                              onTap: _launchSms,
+                                              onTap: () {
+                                                launchSms(context,
+                                                    contact?.mobileNo ?? "");
+                                              },
                                               label: appLocalization(context)
                                                   .message,
                                               icon: Icons.message,
@@ -297,7 +322,12 @@ class _ContactDetailState extends State<ContactDetail> {
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),
-                                subtitle: Text(contact?.numberType ?? ""),
+                                subtitle: Text(
+                                  contact?.numberType ?? "",
+                                  style: textTheme(context)
+                                      .bodySmall
+                                      ?.copyWith(color: Colors.grey),
+                                ),
                               ),
                             ),
                             Container(
@@ -436,26 +466,6 @@ class _ContactDetailState extends State<ContactDetail> {
                 });
           }),
     );
-  }
-
-  _launchSms() async {
-    try {
-      if (Platform.isAndroid) {
-        String uri =
-            'sms:${contact?.mobileNo ?? ""}?body=${Uri.encodeComponent("Hello there")}';
-        await launchUrl(Uri.parse(uri));
-      } else if (Platform.isIOS) {
-        String uri =
-            'sms:${contact?.mobileNo ?? ""}&body=${Uri.encodeComponent("Hello there")}';
-        await launchUrl(Uri.parse(uri));
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(appLocalization(context).someOccurredAgain),
-        ),
-      );
-    }
   }
 }
 

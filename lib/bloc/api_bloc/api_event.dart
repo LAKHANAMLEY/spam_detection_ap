@@ -478,3 +478,14 @@ class RegisterEvent extends ApiEvent {
   List<Object?> get props =>
       [email, password, phone, countryCode, firstName, lastName, dateOfBirth];
 }
+
+class SetUserOnlineOfflineEvent extends ApiEvent {
+  ///pass 1 for online 0 for offline
+  final String isOnline;
+
+  SetUserOnlineOfflineEvent({required this.isOnline});
+  @override
+  List<Object?> get props => [isOnline];
+}
+
+class LogoutEvent extends ApiEvent {}

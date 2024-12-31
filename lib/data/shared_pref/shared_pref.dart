@@ -88,6 +88,11 @@ class SharedPref {
     return pref.getString(_crn) ?? "";
   }
 
+  static Future<String> getUserRole() async {
+    var pref = await SharedPreferences.getInstance();
+    return pref.getString(_userRole) ?? "";
+  }
+
   static Future<String> getToken() async {
     var pref = await SharedPreferences.getInstance();
     return pref.getString(_token) ?? "";

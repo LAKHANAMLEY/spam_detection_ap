@@ -1,5 +1,6 @@
 import 'package:phone_state/phone_state.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/utils/app_lifecycle.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -71,6 +72,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   void initState() {
     phoneStateConfig();
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
+    handleAppLifeCycle();
     getAndSyncContacts();
     getAndSyncCallLogs();
     super.initState();

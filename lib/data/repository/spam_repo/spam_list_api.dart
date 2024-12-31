@@ -4,7 +4,7 @@ import 'package:spam_delection_app/lib.dart';
 Future<SpamListResponse> getSpams() async {
   print(await ApiUrlConstants.headers());
   final response = await http.get(
-    Uri.parse(ApiUrlConstants.endPointSpamList),
+    Uri.parse(ApiUrlConstants.spamList),
     headers: await ApiUrlConstants.headers(),
   );
   if (response.statusCode == 200) {

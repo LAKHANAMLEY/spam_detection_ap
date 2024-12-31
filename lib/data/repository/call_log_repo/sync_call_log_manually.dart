@@ -27,7 +27,7 @@ Future<SyncCallManuallyResponse> syncCallLogManually(
   var request = http.MultipartRequest(
       'POST',
       Uri.parse(
-        ApiUrlConstants.endPointSyncCallLogManually,
+        ApiUrlConstants.syncCallLogManually,
       ));
 
   request.headers.addAll(await ApiUrlConstants.headers());

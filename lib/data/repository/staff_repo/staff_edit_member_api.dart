@@ -9,8 +9,8 @@ Future<Response> staffEditMember({required StaffMember staffMember}) async {
     'staff_id': staffMember.userId ?? "",
     'support_pin': staffMember.supportPin ?? "",
   };
-  final request = http.MultipartRequest(
-      "POST", Uri.parse(ApiUrlConstants.endPointStaffEditMember));
+  final request =
+      http.MultipartRequest("POST", Uri.parse(ApiUrlConstants.editStaffMember));
   request.headers.addAll(await ApiUrlConstants.headers());
   request.fields.addAll(body);
   if (staffMember.photoFile != null &&

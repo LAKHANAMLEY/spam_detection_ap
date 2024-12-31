@@ -26,7 +26,7 @@ Future<SignUpResponse> signup(
   };
 
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointSignup),
+    Uri.parse(ApiUrlConstants.signUp),
     headers: <String, String>{
       // 'Content-Type': 'application/json',
       "X-API-KEY": ApiKeyConstants.apiKey,

@@ -15,9 +15,8 @@ Future<CorporateResponse> corporateLogin(
     'device_token': deviceToken ?? '',
     'device_type': deviceType,
   };
-//karo login
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.endPointCorporateLogin),
+    Uri.parse(ApiUrlConstants.corporateLogin),
     headers: await ApiUrlConstants.headers(),
     body: body,
   );
