@@ -92,6 +92,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             CustomTextField(
                               keyboardType: TextInputType.emailAddress,
                               controller: emailController,
+                              labelText: appLocalization(context).emailAddress,
                               hintText: appLocalization(context).emailAddress,
                               suffix: Image.asset(
                                 IconConstants.icfluentMail,

@@ -155,4 +155,6 @@ class IconConstants {
   static const String icPlanDetails = 'assets/icons/ic_plan_details.png';
   static const String icPremiumPurchase =
       'assets/icons/ic_premium_purchase.png';
+  static const String icPassLock = 'assets/icons/ic_passLock.png';
+  static const String icPassAdd = 'assets/icons/ic_pass_add.png';
 }

@@ -15,6 +15,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
 
   final _formKey = GlobalKey<FormState>();
   var corporateBloc = ApiBloc(ApiBlocInitialState());
+  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(false));
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +82,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                         10.height(),
                         CustomTextField(
                           controller: corporateIdController,
+                          labelText: appLocalization(context).corporateID,
                           hintText: appLocalization(context).corporateID,
                           suffix: Image.asset(
                             IconConstants.icCorporateID,
@@ -98,6 +100,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                           keyboardType: TextInputType.emailAddress,
                           controller: emailController,
                           hintText: appLocalization(context).emailAddress,
+                          labelText: appLocalization(context).emailAddress,
                           suffix: Image.asset(
                             IconConstants.icfluentMail,
                             scale: 3,
@@ -110,22 +113,40 @@ class _CorporateLoginState extends State<CorporateLogin> {
                           },
                         ),
                         10.height(),
-                        CustomTextField(
-                          controller: passwordController,
-                          obscureText: true,
-                          hintText: appLocalization(context).password,
-                          suffix: Image.asset(
-                            IconConstants.icLockPass,
-                            scale: 3,
-                          ),
-                          validator: (p0) {
-                            if (p0?.isEmpty ?? true) {
-                              return appLocalization(context)
-                                  .pleaseEnterYourPassword;
-                            }
-                            return null;
-                          },
-                        ),
+                        BlocBuilder(
+                            bloc: passwordVisibilityBloc,
+                            builder: (context, state) {
+                              if (state is SelectBoolState) {
+                                return CustomTextField(
+                                  controller: passwordController,
+                                  obscureText: state.value,
+                                  labelText: appLocalization(context).password,
+                                  hintText: appLocalization(context).password,
+                                  suffix: InkWell(
+                                      onTap: () {
+                                        passwordVisibilityBloc
+                                            .add(SelectBoolEvent(!state.value));
+                                      },
+                                      child: state.value
+                                          ? Image.asset(
+                                              IconConstants.icPassLock,
+                                              scale: 3,
+                                            )
+                                          : Image.asset(
+                                              IconConstants.icPassAdd,
+                                              scale: 3,
+                                            )),
+                                  validator: (p0) {
+                                    if (p0?.isEmpty ?? true) {
+                                      return appLocalization(context)
+                                          .pleaseEnterYourPassword;
+                                    }
+                                    return null;
+                                  },
+                                );
+                              }
+                              return const Loader();
+                            }),
                         SizedBox(
                             height:
                                 MediaQuery.of(context).size.height * 3 / 100),

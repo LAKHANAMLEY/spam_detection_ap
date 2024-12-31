@@ -130,6 +130,7 @@ class _ReportViewState extends State<ReportView> {
                     readOnly: false,
                     controller: commentController,
                     hintText: appLocalization(context).whatCallAbout,
+                    labelText: appLocalization(context).whatCallAbout,
                     validator: (p0) {
                       if (p0?.isEmpty ?? true) {
                         return appLocalization(context).pleaseEnterComments;
@@ -137,25 +138,6 @@ class _ReportViewState extends State<ReportView> {
                       return null;
                     },
                   ),
-
-                  // decoration: InputDecoration(
-                  //   hintText: 'What was the call about ?',
-                  //   hintStyle:
-                  //       const TextStyle(color: AppColor.lightfillColor),
-                  //   enabledBorder: OutlineInputBorder(
-                  //     borderRadius: BorderRadius.circular(2),
-                  //     borderSide: const BorderSide(
-                  //         width: 1.5, color: AppColor.fillColor),
-                  //   ),
-                  //   focusedBorder: const OutlineInputBorder(
-                  //     borderSide:
-                  //         BorderSide(color: Color(0xffE1E6EB), width: 1.5),
-                  //     borderRadius: BorderRadius.all(Radius.circular(2)),
-                  //   ),
-                  //   filled: true,
-                  //   fillColor: AppColor.fillColor.withOpacity(0.2),
-                  //   counterText: '',
-                  // ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 2 / 100,
                   ),

@@ -389,7 +389,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(CheckSpamState(value));
       });
     }
-
+// add Contact
     if (event is AddContactEvent) {
       emit(ApiLoadingState());
       await addContact(contact: event.contact).then((value) {
@@ -423,6 +423,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(RegisterState(value));
       });
     }
-    //
+    //Delete Contact
+    if (event is DeleteContactEvent) {
+      emit(ApiLoadingState());
+      await deleteContact(contact: event.contact).then((value) {
+        emit(DeleteContactState(value));
+      });
+    }
   }
 }

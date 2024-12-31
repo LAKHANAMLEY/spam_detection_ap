@@ -2,13 +2,14 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
 Future<Response> deleteContact({
-  required String contactid,
+  required ContactData contact,
+  // required id,
 }) async {
   final response = await http.post(
     Uri.parse(ApiUrlConstants.endPointDeleteContacts),
     headers: await ApiUrlConstants.headers(),
     body: {
-      'contacts_id': contactid,
+      'contacts_id': contact.id,
     },
   );
   if (response.statusCode == 200) {

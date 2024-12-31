@@ -2,20 +2,20 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
 Future<Response> editContact(
-    {required String fullname,
+    {required String fullName,
     required String email,
-    required String numbertype,
-    required contactid,
-    required countrycode}) async {
+    required String numberType,
+    required contactId,
+    required countryCode}) async {
   final response = await http.post(
     Uri.parse(ApiUrlConstants.endPointEditContacts),
     headers: await ApiUrlConstants.headers(),
     body: {
-      'name': fullname,
-      'country_code': countrycode,
-      'contacts_id': contactid,
+      'name': fullName,
+      'country_code': countryCode,
+      'contacts_id': contactId,
       'email': email,
-      'number_type': numbertype,
+      'number_type': numberType,
     },
   );
   if (response.statusCode == 200) {

@@ -198,6 +198,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           10.height(),
                           CustomTextField(
                             controller: emailController,
+                            labelText: appLocalization(context).email,
                             hintText: appLocalization(context).email,
                             suffix: Image.asset(
                               IconConstants.icfluentMail,
@@ -214,6 +215,8 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           10.height(),
                           CustomTextField(
                             controller: passwordController,
+                            labelText: appLocalization(context).password,
+
                             hintText: appLocalization(context).password,
                             obscureText: true,
                             //suffix: Image.asset(IconConstants.icUsername),
@@ -229,6 +232,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                           CustomTextField(
                             controller: positionController,
                             hintText: appLocalization(context).relation,
+                            labelText: appLocalization(context).relation,
                             suffix: Image.asset(
                               IconConstants.icUsername,
                               scale: 1.5,
@@ -261,6 +265,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               controller: phoneNumberController,
                               decoration: InputDecoration(
                                 hintText: appLocalization(context).phoneNumber,
+                                labelText: appLocalization(context).phoneNumber,
                                 hintStyle: const TextStyle(
                                     color: AppColor.lightfillColor),
                                 enabledBorder: OutlineInputBorder(

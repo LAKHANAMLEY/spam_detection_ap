@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -306,6 +305,16 @@ class S {
     return Intl.message(
       'Align QR code within frame to scan',
       name: 'alignQRCodeWithinFrameToScan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam.`
+  String get allSpamCalls {
+    return Intl.message(
+      'All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam.',
+      name: 'allSpamCalls',
       desc: '',
       args: [],
     );
@@ -650,6 +659,16 @@ class S {
     return Intl.message(
       'Call history',
       name: 'callHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call History`
+  String get callHistoryText {
+    return Intl.message(
+      'Call History',
+      name: 'callHistoryText',
       desc: '',
       args: [],
     );
@@ -2705,11 +2724,71 @@ class S {
     );
   }
 
+  /// `All time`
+  String get lastAllTime {
+    return Intl.message(
+      'All time',
+      name: 'lastAllTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 30 days`
+  String get lastDays {
+    return Intl.message(
+      'Last 30 days',
+      name: 'lastDays',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Last name`
   String get lastName {
     return Intl.message(
       'Last name',
       name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 6 months`
+  String get lastSixMonths {
+    return Intl.message(
+      'Last 6 months',
+      name: 'lastSixMonths',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 30 days`
+  String get lastThirtyDays {
+    return Intl.message(
+      'Last 30 days',
+      name: 'lastThirtyDays',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This year`
+  String get lastThisYear {
+    return Intl.message(
+      'This year',
+      name: 'lastThisYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 3 months`
+  String get lastThreeMonths {
+    return Intl.message(
+      'Last 3 months',
+      name: 'lastThreeMonths',
       desc: '',
       args: [],
     );
@@ -6784,86 +6863,6 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Call History`
-  String get callHistoryText {
-    return Intl.message(
-      'Call History',
-      name: 'callHistoryText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam.`
-  String get allSpamCalls {
-    return Intl.message(
-      'All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam.',
-      name: 'allSpamCalls',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Last 30 days`
-  String get lastThirtyDays {
-    return Intl.message(
-      'Last 30 days',
-      name: 'lastThirtyDays',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Last 30 days`
-  String get lastDays {
-    return Intl.message(
-      'Last 30 days',
-      name: 'lastDays',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Last 3 months`
-  String get lastThreeMonths {
-    return Intl.message(
-      'Last 3 months',
-      name: 'lastThreeMonths',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Last 6 months`
-  String get lastSixMonths {
-    return Intl.message(
-      'Last 6 months',
-      name: 'lastSixMonths',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `This year`
-  String get lastThisYear {
-    return Intl.message(
-      'This year',
-      name: 'lastThisYear',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `All time`
-  String get lastAllTime {
-    return Intl.message(
-      'All time',
-      name: 'lastAllTime',
       desc: '',
       args: [],
     );

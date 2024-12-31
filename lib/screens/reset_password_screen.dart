@@ -133,6 +133,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                             ),
                             10.height(),
                             CustomTextField(
+                              labelText: appLocalization(context).password,
                               controller: passwordController,
                               hintText: appLocalization(context).password,
                               obscureText: true,
@@ -160,6 +161,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                             ),
                             10.height(),
                             CustomTextField(
+                              labelText:
+                                  appLocalization(context).renterPassword,
                               controller: confirmPasswordController,
                               hintText: appLocalization(context).renterPassword,
                               obscureText: true,

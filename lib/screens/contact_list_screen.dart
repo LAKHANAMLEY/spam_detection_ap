@@ -22,12 +22,13 @@ class _ContactListState extends State<ContactList> {
 
   void filterSearchResults() {
     filteredContacts = contacts
-        .where((e) => (e.name!
-                .toLowerCase()
-                .contains(searchController.text.toLowerCase()) ||
-            e.mobileNo!
-                .toLowerCase()
-                .contains(searchController.text.toLowerCase())))
+        .where((e) =>
+    (e.name!
+        .toLowerCase()
+        .contains(searchController.text.toLowerCase()) ||
+        e.mobileNo!
+            .toLowerCase()
+            .contains(searchController.text.toLowerCase())))
         .toList();
   }
 
@@ -78,13 +79,14 @@ class _ContactListState extends State<ContactList> {
                       ),
                       hintText: appLocalization(context).searchMore,
                       suffix: PopupMenuButton(
-                        itemBuilder: (context) => [
+                        itemBuilder: (context) =>
+                        [
                           PopupMenuItem(
                               onTap: () {
                                 contactListBloc.add(GetDeviceContactEvent());
                               },
                               child:
-                                  Text(appLocalization(context).syncContacts))
+                              Text(appLocalization(context).syncContacts))
                         ],
                       ),
                     ),
@@ -124,6 +126,23 @@ class _ContactListState extends State<ContactList> {
                                 showToast(state.value.message);
                               }
                               contactListBloc.add(GetContactEvent());
+                            }
+                            if (state is DeleteContactState) {
+                              if (state.value.statusCode == 200) {
+                                showCustomDialog(
+                                  context,
+                                  dialogType: DialogType.success,
+                                  subTitle: state.value.message ??
+                                      appLocalization(context)
+                                          .deletedSuccessfully,
+                                );
+                              } else if (state.value.statusCode ==
+                                  HTTPStatusCodes.sessionExpired) {
+                                sessionExpired(
+                                    context, state.value.message ?? "");
+                              } else {
+                                showToast(state.value.message);
+                              }
                             }
                           },
                           builder: (context, state) {
@@ -181,8 +200,14 @@ class _ContactListState extends State<ContactList> {
         ),
         child: Image.asset(
           IconConstants.icaddCall,
-          height: MediaQuery.of(context).size.height * 6 / 100,
-          width: MediaQuery.of(context).size.width * 6 / 100,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height * 6 / 100,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width * 6 / 100,
         ),
         onPressed: () {
           Navigator.push(context,

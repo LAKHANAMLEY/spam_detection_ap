@@ -209,6 +209,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                   }),
                               10.height(),
                               CustomTextField(
+                                labelText: appLocalization(context).firstName,
                                 controller: firstnameController,
                                 hintText: appLocalization(context).firstName,
                                 suffix: Image.asset(
@@ -225,6 +226,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                               ),
                               10.height(),
                               CustomTextField(
+                                labelText: appLocalization(context).lastName,
                                 controller: lastnameController,
                                 hintText: appLocalization(context).lastName,
                                 suffix: Image.asset(
@@ -242,6 +244,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                               10.height(),
                               CustomTextField(
                                 controller: positionController,
+                                labelText: appLocalization(context).position,
                                 hintText: appLocalization(context).position,
                                 suffix: Image.asset(
                                   IconConstants.icUsername,
@@ -259,6 +262,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                               CustomTextField(
                                 keyboardType: TextInputType.number,
                                 controller: supportPinController,
+                                labelText: appLocalization(context).supportPin,
                                 hintText: appLocalization(context).supportPin,
                                 // suffix: Image.asset(IconConstants.icUsername),
                                 validator: (p0) {
