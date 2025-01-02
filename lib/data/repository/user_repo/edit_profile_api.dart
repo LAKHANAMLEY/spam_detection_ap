@@ -2,16 +2,6 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
 Future<EditProfileResponse> editProfile({
-  // required String firstname,
-  // required String lastname,
-  // required String dateofbirth,
-  // required String gender,
-  // required String state,
-  // required String city,
-  // required String zip,
-  // required String addressFirst,
-  // required String addressSecond,
-  // required XFile? photo,
   required User? user,
 }) async {
   final body = {
@@ -24,6 +14,10 @@ Future<EditProfileResponse> editProfile({
     'zip': user?.zip ?? "",
     'address': user?.address ?? "",
     'address2': user?.address2 ?? "",
+    'phone': user?.phone ?? "",
+    'email': user?.email ?? "",
+    'country_id': user?.countryId ?? "",
+    // 'country_code': user?.countryCode ?? "",
     // 'photo': photo,
   };
 

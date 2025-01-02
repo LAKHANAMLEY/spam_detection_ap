@@ -313,12 +313,12 @@ class _ContactDetailState extends State<ContactDetail> {
                               child: ListTile(
                                 onTap: () async {
                                   await DirectCallPlus.makeCall(
-                                      contact?.mobileNo ?? "");
+                                      "${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}");
                                 },
                                 leading: const Icon(Icons.phone,
                                     color: AppColor.primaryColor),
                                 title: Text(
-                                  contact?.mobileNo ?? "",
+                                  "${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}",
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),

@@ -2,9 +2,8 @@
 //
 //     final loginResponse = loginResponseFromJson(jsonString);
 
-import 'dart:convert';
-
-import 'package:image_picker/image_picker.dart';
+import 'package:spam_delection_app/extensions/country_ext.dart';
+import 'package:spam_delection_app/lib.dart';
 
 LoginResponse loginResponseFromJson(String str) =>
     LoginResponse.fromJson(json.decode(str));
@@ -73,34 +72,37 @@ class User {
   final String? token;
   final XFile? photoFile;
   final String? companyName;
+  final CountryData? countryData;
 
-  User(
-      {this.userId,
-      this.userName,
-      this.name,
-      this.firstName,
-      this.lastName,
-      this.email,
-      this.phone,
-      this.userRole,
-      this.countryCode,
-      this.crn,
-      this.corporateId,
-      this.isEmailVerify,
-      this.photo,
-      this.supportPin,
-      this.gender,
-      this.dob,
-      this.countryId,
-      this.state,
-      this.city,
-      this.zip,
-      this.address,
-      this.address2,
-      this.country,
-      this.token,
-      this.photoFile,
-      this.companyName});
+  User({
+    this.userId,
+    this.userName,
+    this.name,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.phone,
+    this.userRole,
+    this.countryCode,
+    this.crn,
+    this.corporateId,
+    this.isEmailVerify,
+    this.photo,
+    this.supportPin,
+    this.gender,
+    this.dob,
+    this.countryId,
+    this.state,
+    this.city,
+    this.zip,
+    this.address,
+    this.address2,
+    this.country,
+    this.token,
+    this.photoFile,
+    this.companyName,
+    this.countryData,
+  });
 
   User copyWith(
           {String? userId,
@@ -181,6 +183,7 @@ class User {
         address2: json["address2"],
         country: json["country"],
         token: json["token"],
+        countryData: getCountryByNameOrDialCode(countryName: json["country"]),
       );
 
   Map<String, dynamic> toJson() => {

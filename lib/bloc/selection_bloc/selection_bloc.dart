@@ -35,5 +35,9 @@ class SelectionBloc extends Bloc<SelectionBlocEvent, SelectionBlocState> {
     if (event is SelectFileEvent) {
       emit(SelectFileState(event.value));
     }
+
+    if (event is SelectCountryEvent) {
+      emit(SelectCountryState(event.value));
+    }
   }
 }

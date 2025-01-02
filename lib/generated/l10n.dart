@@ -944,10 +944,10 @@ class S {
     );
   }
 
-  /// `CompanyName`
+  /// `Company name`
   String get companyName {
     return Intl.message(
-      'CompanyName',
+      'Company name',
       name: 'companyName',
       desc: '',
       args: [],

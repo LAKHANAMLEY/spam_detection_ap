@@ -501,3 +501,5 @@ class DeleteContactEvent extends ApiEvent {
   @override
   List<Object?> get props => [contact];
 }
+
+class CountryListEvent extends ApiEvent {}

@@ -23,10 +23,13 @@ class BlockedContactListItem extends StatelessWidget {
         backgroundImage: AssetImage(IconConstants.icspamCircle),
       ),
       title: Text(
-        contact.name ?? "",
+        (contact.name?.isNotEmpty ?? false)
+            ? (contact.name ?? "")
+            : (contact.mobileNo ?? ""),
         style: textTheme(context).titleMedium,
       ),
-      subtitle: Text(contact.mobileNo ?? ""),
+      subtitle:
+          (contact.name?.isEmpty ?? true) ? null : Text(contact.mobileNo ?? ""),
       trailing: InkWell(
           onTap: () {
             markSpamBloc.add(BlockUnBlockEvent(

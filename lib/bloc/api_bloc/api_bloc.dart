@@ -446,5 +446,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(LogoutState(value));
       });
     }
+
+    if (event is CountryListEvent) {
+      emit(ApiLoadingState());
+      await getCountries().then((value) {
+        emit(CountryListState(value));
+      });
+    }
   }
 }

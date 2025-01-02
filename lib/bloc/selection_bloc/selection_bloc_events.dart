@@ -58,3 +58,12 @@ class SelectFileEvent extends SelectionBlocEvent {
   @override
   List<Object?> get props => [value];
 }
+
+class SelectCountryEvent extends SelectionBlocEvent {
+  final CountryData? value;
+
+  SelectCountryEvent(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}

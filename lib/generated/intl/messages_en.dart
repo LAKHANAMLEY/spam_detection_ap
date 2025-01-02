@@ -164,7 +164,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "closeQuery": MessageLookupByLibrary.simpleMessage("Close query"),
         "closed": MessageLookupByLibrary.simpleMessage("Closed"),
         "comment": MessageLookupByLibrary.simpleMessage("Comment"),
-        "companyName": MessageLookupByLibrary.simpleMessage("CompanyName"),
+        "companyName": MessageLookupByLibrary.simpleMessage("Company name"),
         "completeMth": MessageLookupByLibrary.simpleMessage("\$14.99/mth"),
         "completeProtectionBundle":
             MessageLookupByLibrary.simpleMessage("Complete Protection Bundle"),

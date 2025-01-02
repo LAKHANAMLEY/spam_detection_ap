@@ -542,6 +542,7 @@
   "selectBankAccountToTransferFrom": "Select bank account to transfer from",
   "selectBankAccountToTransferTo": "Select bank account to transfer to",
   "selectCategory": "Select a category",
+  "selectCountry": "Select country",
   "selectLanguage": "Select language",
   "selectState": "Select state",
   "selectValidity": "Select validity",

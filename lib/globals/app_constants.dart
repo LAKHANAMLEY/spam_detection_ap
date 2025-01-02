@@ -11,6 +11,7 @@ var callLogsListBloc = ApiBloc(ApiBlocInitialState());
 var markSpamBloc = ApiBloc(ApiBlocInitialState());
 var staffBloc = ApiBloc(ApiBlocInitialState());
 var familyBloc = ApiBloc(ApiBlocInitialState());
+var selectCountryBloc = SelectionBloc(SelectionBlocInitialState());
 
 var bottomNavigationBloc = SelectionBloc(SelectIntState(2));
 
@@ -64,4 +65,5 @@ class AppConstants {
   static CountryData? selectedCountry;
 
   static String? selectedLanguage = 'en';
+  static List<CountryData> countryList = [];
 }

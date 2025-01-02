@@ -22,14 +22,36 @@ class SpamListItem extends StatelessWidget {
       leading: const CircleAvatar(
         backgroundImage: AssetImage(IconConstants.icFraud),
       ),
-      title: Text(
-        spamContact.name ?? "",
-        style: textTheme(context).titleMedium,
+      title: Row(
+        children: [
+          Expanded(
+            child: Text(
+              (spamContact.name?.isNotEmpty ?? false)
+                  ? (spamContact.name ?? "")
+                  : (spamContact.spamNo ?? ""),
+              style: textTheme(context).titleMedium,
+            ),
+          ),
+          10.width(),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            decoration: const BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            child: Text(
+              spamContact.categoryName ?? "",
+              style:
+                  textTheme(context).bodySmall?.copyWith(color: Colors.white),
+            ),
+          ),
+        ],
       ),
-      subtitle: Text(
-        spamContact.categoryName ?? "",
-        style: textTheme(context).bodySmall,
-      ),
+      subtitle: (spamContact.name?.isEmpty ?? true)
+          ? null
+          : Text(
+              spamContact.spamNo ?? "",
+              style: textTheme(context).bodySmall,
+            ),
       trailing: PopupMenuButton(
         itemBuilder: (context) => [
           PopupMenuItem(

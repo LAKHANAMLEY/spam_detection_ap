@@ -37,14 +37,14 @@ class CustomListTile extends StatelessWidget {
                       children: [
                         (subtitle != null) ? subtitle! : const Spacer(),
                         // 5.width(),
-                        if (trailing != null) trailing!
+                        // if (trailing != null) trailing!
                       ],
                     ),
                   ],
                 ),
               ),
-              // 5.width(),
-              // if (trailing != null) trailing!
+              5.width(),
+              if (trailing != null) trailing!
             ],
           )),
     );

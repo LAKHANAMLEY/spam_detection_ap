@@ -19,6 +19,7 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController dateOfBirthController = TextEditingController();
+  final TextEditingController countryController = TextEditingController();
   final TextEditingController stateController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
   final TextEditingController zipController = TextEditingController();
@@ -33,6 +34,10 @@ class _EditProfileState extends State<EditProfile> {
   XFile? _selectedImage;
 
   final _formKey = GlobalKey<FormState>();
+
+  var selectPhoneCodeBloc = SelectionBloc(SelectionBlocInitialState());
+
+  CountryData? selectedPhoneCodeCountry;
 
   Future<void> _takePhoto() async {
     try {
@@ -397,7 +402,7 @@ class _EditProfileState extends State<EditProfile> {
                               hintText: appLocalization(context).email,
                               labelText: appLocalization(context).email,
                               suffix: Image.asset(
-                                IconConstants.icEmail,
+                                IconConstants.icalternativeEmail,
                                 scale: 1.5,
                               ),
                               validator: (p0) {
@@ -408,25 +413,38 @@ class _EditProfileState extends State<EditProfile> {
                                 return null;
                               },
                             ),
-
-                            CustomTextField(
-                              keyboardType: TextInputType.phone,
-                              readOnly: true,
-                              controller: phoneController,
-                              hintText: appLocalization(context).phoneNumber,
-                              labelText: appLocalization(context).phoneNumber,
-                              suffix: Image.asset(
-                                IconConstants.icEmail,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .pleaseEnterYourMobileNumber;
-                                }
-                                return null;
-                              },
-                            ),
+                            BlocConsumer(
+                                bloc: selectPhoneCodeBloc,
+                                listener: (context, state) {
+                                  if (state is SelectCountryState) {
+                                    selectedPhoneCodeCountry = state.value;
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return CustomTextField(
+                                    keyboardType: TextInputType.phone,
+                                    readOnly: true,
+                                    controller: phoneController,
+                                    hintText:
+                                        appLocalization(context).phoneNumber,
+                                    labelText:
+                                        appLocalization(context).phoneNumber,
+                                    suffix: Image.asset(
+                                      IconConstants.icPhone,
+                                      scale: 1.5,
+                                    ),
+                                    prefix: CountryPhoneCodePrefix(
+                                      bloc: selectPhoneCodeBloc,
+                                    ),
+                                    // validator: (p0) {
+                                    //   if (p0?.isEmpty ?? true) {
+                                    //     return appLocalization(context)
+                                    //         .pleaseEnterYourMobileNumber;
+                                    //   }
+                                    //   return null;
+                                    // },
+                                  );
+                                }),
                             // SizedBox(
                             //   height:
                             //       MediaQuery.of(context).size.height * 3 / 100,
@@ -507,7 +525,10 @@ class _EditProfileState extends State<EditProfile> {
                                 items: _genders.map((String option) {
                                   return DropdownMenuItem<String>(
                                     value: option,
-                                    child: Text(option),
+                                    child: Text(
+                                      option,
+                                      style: textTheme(context).bodyMedium,
+                                    ),
                                   );
                                 }).toList(),
                                 onChanged: (String? newValue) {
@@ -549,6 +570,32 @@ class _EditProfileState extends State<EditProfile> {
                             //   height:
                             //       MediaQuery.of(context).size.height * 3 / 100,
                             // ),
+                            BlocConsumer(
+                                bloc: selectCountryBloc,
+                                listener: (context, state) {
+                                  if (state is SelectCountryState) {
+                                    countryController.text =
+                                        state.value?.name ?? "";
+                                    AppConstants.selectedCountry = state.value;
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return CustomTextField(
+                                    readOnly: true,
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                          context: context,
+                                          isScrollControlled: true,
+                                          useSafeArea: true,
+                                          builder: (context) =>
+                                              const CountryPickerScreen());
+                                    },
+                                    controller: countryController,
+                                    hintText:
+                                        appLocalization(context).enterCountry,
+                                    labelText: appLocalization(context).country,
+                                  );
+                                }),
                             CustomTextField(
                               controller: stateController,
                               hintText: appLocalization(context).selectState,
@@ -785,7 +832,14 @@ class _EditProfileState extends State<EditProfile> {
                                           address: address1Controller.text,
                                           address2: address2Controller.text,
                                           photo: _selectedImage?.path,
-                                          photoFile: _selectedImage)));
+                                          photoFile: _selectedImage,
+                                          phone: phoneController.text,
+                                          email: emailController.text,
+                                          countryId:
+                                              AppConstants.selectedCountry?.id,
+                                          country: countryController.text,
+                                          countryCode: selectedPhoneCodeCountry
+                                              ?.phonecode)));
                                 }
                               },
                             ),
@@ -808,6 +862,11 @@ class _EditProfileState extends State<EditProfile> {
     lastnameController.text = user.lastName ?? "";
     emailController.text = user.email ?? "";
     phoneController.text = user.phone ?? "";
+    countryController.text = user.country ?? "";
+    AppConstants.selectedCountry = user.countryData;
+    selectedPhoneCodeCountry =
+        getCountryByNameOrDialCode(dialCode: user.countryCode);
+    selectPhoneCodeBloc.add(SelectCountryEvent(selectedPhoneCodeCountry));
     dateOfBirthController.text = user.dob?.formatDate() ?? "";
     stateController.text = user.state ?? "";
     cityController.text = user.city ?? "";

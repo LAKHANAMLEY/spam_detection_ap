@@ -58,7 +58,7 @@ class CallLogListItem extends StatelessWidget {
           ),
           10.width(),
           Text(
-            callLog.callTime?.formatDateTime() ?? "",
+            callLog.callTime?.formatRelativeDateTime() ?? "",
             style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
           ),
         ],
@@ -71,8 +71,12 @@ class CallLogListItem extends StatelessWidget {
               style: textTheme(context).bodyMedium?.copyWith(color: Colors.red),
             )
           else ...[
-            Icon(getCallTypeIcon(callLog.callType),
-                color: getCallTypeColor(callLog.callType)),
+            Icon(
+              getCallTypeIcon(callLog.callType),
+              color: getCallTypeColor(callLog.callType),
+              size: 15,
+            ),
+            5.width(),
             Text(
               callLog.callType ?? "",
               style: textTheme(context)

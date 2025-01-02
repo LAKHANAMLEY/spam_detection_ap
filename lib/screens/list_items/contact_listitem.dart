@@ -42,7 +42,9 @@ class _ContactListItemState extends State<ContactListItem> {
           contact?.name ?? "",
           style: textTheme(context).titleMedium,
         ),
-        subtitle: Text(contact?.mobileNo ?? ""),
+        subtitle: Text(contact?.countryCode?.isNotEmpty ?? false
+            ? "+${contact?.countryCode} ${contact?.mobileNo ?? ""}"
+            : contact?.mobileNo ?? ""),
         trailing: PopupMenuButton(
             itemBuilder: (context) => [
                   PopupMenuItem(

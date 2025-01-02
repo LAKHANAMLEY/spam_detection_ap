@@ -65,3 +65,12 @@ class SelectFileState extends SelectionBlocState {
   @override
   List<Object?> get props => [value];
 }
+
+class SelectCountryState extends SelectionBlocState {
+  final CountryData? value;
+
+  SelectCountryState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}

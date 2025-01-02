@@ -502,3 +502,12 @@ class DeleteContactState extends ApiState {
   @override
   List<Object?> get props => [value];
 }
+
+class CountryListState extends ApiState {
+  final CountriesResponse value;
+
+  CountryListState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
