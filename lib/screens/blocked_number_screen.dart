@@ -74,7 +74,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
                       ),
                     );
                   }
-                  return Loader();
+                  return const Loader();
                 }),
             if (selectedTab == 0) ...[
               10.height(),

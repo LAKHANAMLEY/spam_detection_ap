@@ -441,6 +441,7 @@
   "pleaseEnterYourOldPassword": "Please enter your old password",
   "pleaseEnterYourPassword": "Please enter your password",
   "pleaseEnterYourValidEmailAddress": "Please enter valid email address",
+  "pleaseEnterZipCode": "please Enter Zip Code",
   "pleaseFirstName": "Please enter first name",
   "pleaseLastName": "Please enter last name",
   "pleaseLoginToContinue": "Please login to continue",
@@ -562,6 +563,7 @@
   "sentFrom": "Sent from",
   "serverError": "Server error",
   "services": "Services",
+  "sessionPleaseLogInAgain": "Session expired. Please log in again",
   "setActive": "Set active",
   "setAsPrimaryAccount": "Set as primary account",
   "setInActive": "Set inactive",
@@ -681,7 +683,5 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code",
-  "pleaseEnterZipCode": "please Enter Zip Code",
-  "sessionPleaseLogInAgain": "Session expired. Please log in again"
+  "zip": "Zip Code"
 }

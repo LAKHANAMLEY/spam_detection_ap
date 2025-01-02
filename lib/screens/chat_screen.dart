@@ -9,7 +9,7 @@ class ChatScreen extends StatefulWidget {
   bool isMessageRead;
 
   ChatScreen(
-      {required this.name,
+      {super.key, required this.name,
       required this.messageText,
       required this.imageUrl,
       required this.time,
@@ -25,7 +25,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
         child: Row(
           children: <Widget>[
             Expanded(
@@ -35,7 +35,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     backgroundImage: NetworkImage(widget.imageUrl),
                     maxRadius: 30,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   Expanded(
@@ -46,9 +46,9 @@ class _ChatScreenState extends State<ChatScreen> {
                         children: <Widget>[
                           Text(
                             widget.name,
-                            style: TextStyle(fontSize: 16),
+                            style: const TextStyle(fontSize: 16),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 6,
                           ),
                           Text(

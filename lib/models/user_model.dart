@@ -2,7 +2,6 @@
 //
 //     final loginResponse = loginResponseFromJson(jsonString);
 
-import 'package:spam_delection_app/extensions/country_ext.dart';
 import 'package:spam_delection_app/lib.dart';
 
 LoginResponse loginResponseFromJson(String str) =>
