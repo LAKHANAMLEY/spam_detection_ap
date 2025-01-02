@@ -9,6 +9,7 @@ class BlockedNumber extends StatefulWidget {
 
 class _BlockedNumberState extends State<BlockedNumber> {
   // var blockContactsBloc = ApiBloc(ApiBlocInitialState());
+  var selectTabBloc = SelectionBloc(SelectIntState(0));
 
   @override
   void initState() {
@@ -38,80 +39,43 @@ class _BlockedNumberState extends State<BlockedNumber> {
                 ),
               ),
             ),
-            /*Container(
-              margin: const EdgeInsets.all(20),
-              width: MediaQuery.of(context).size.width * 90 / 100,
-              child: TextFormField(
-                readOnly: true,
-                decoration: InputDecoration(
-                  hintText: appLocalization(context).addPhoneNumber,
-                  hintStyle: const TextStyle(color: AppColor.lightfillColor),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(2),
-                    borderSide:
-                        const BorderSide(width: 1.5, color: AppColor.fillColor),
-                  ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: AppColor.fillColor, width: 1.5),
-                    borderRadius: BorderRadius.all(Radius.circular(2)),
-                  ),
-                  filled: true,
-                  fillColor: AppColor.fillColor.withOpacity(0.2),
-                  suffixIcon: GestureDetector(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Image.asset(
-                        IconConstants.icggadd,
-                        scale: 1.5,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            */
             SizedBox(
               height: MediaQuery.of(context).size.height * 2 / 100,
             ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedTab = 0;
-                });
-              },
-              child: Container(
-                height: MediaQuery.of(context).size.height * 7 / 100,
-                width: MediaQuery.of(context).size.width * 90 / 100,
-                decoration: const BoxDecoration(
-                  color: AppColor.secondryColor,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomTab(
-                        selectedTab: selectedTab,
-                        index: 0,
-                        onTap: () {
-                          setState(() {
-                            selectedTab = 0;
-                          });
-                        },
-                        text: appLocalization(context).recentText),
-                    CustomTab(
-                        selectedTab: selectedTab,
-                        index: 1,
-                        onTap: () {
-                          setState(() {
-                            selectedTab = 1;
-                          });
-                        },
-                        text: appLocalization(context).contactText)
-                  ],
-                ),
-              ),
-            ),
+            BlocBuilder(
+                bloc: selectTabBloc,
+                builder: (context, selectTabState) {
+                  if (selectTabState is SelectIntState) {
+                    int tabIndex = selectTabState.value;
+                    return Container(
+                      height: MediaQuery.of(context).size.height * 7 / 100,
+                      width: MediaQuery.of(context).size.width * 90 / 100,
+                      decoration: const BoxDecoration(
+                        color: AppColor.secondryColor,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomTab(
+                              selectedTab: selectedTab,
+                              tabIndex: 0,
+                              onTap: () {
+                                selectTabBloc.add(SelectIntEvent(0));
+                              },
+                              text: appLocalization(context).recentText),
+                          CustomTab(
+                              selectedTab: selectedTab,
+                              tabIndex: 1,
+                              onTap: () {
+                                selectTabBloc.add(SelectIntEvent(1));
+                              },
+                              text: appLocalization(context).contactText)
+                        ],
+                      ),
+                    );
+                  }
+                  return Loader();
+                }),
             if (selectedTab == 0) ...[
               10.height(),
               BlocConsumer(
@@ -169,7 +133,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
 }
 
 class CustomTab extends StatelessWidget {
-  final int index;
+  final int tabIndex;
   final int selectedTab;
   final void Function() onTap;
   final String text;
@@ -179,7 +143,7 @@ class CustomTab extends StatelessWidget {
       required this.selectedTab,
       required this.onTap,
       required this.text,
-      required this.index});
+      required this.tabIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -189,12 +153,12 @@ class CustomTab extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 6 / 100,
           width: MediaQuery.of(context).size.width * 40 / 100,
           decoration: BoxDecoration(
-              color: selectedTab == index
+              color: selectedTab == tabIndex
                   ? AppColor.callColor
                   : AppColor.secondryColor,
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
-                color: selectedTab == index
+                color: selectedTab == tabIndex
                     ? AppColor.callColor
                     : AppColor.borderstekColor,
               )),
@@ -202,7 +166,7 @@ class CustomTab extends StatelessWidget {
               child: Text(
             text,
             style: TextStyle(
-                color: selectedTab == index
+                color: selectedTab == tabIndex
                     ? AppColor.secondryColor
                     : AppColor.callColor,
                 fontSize: 18,

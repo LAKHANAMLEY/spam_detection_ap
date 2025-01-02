@@ -61,9 +61,8 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                     controller: emailController,
                     hintText: appLocalization(context).emailAddress,
                     labelText: appLocalization(context).emailAddress,
-                    suffix: Image.asset(IconConstants.icfluentMail, scale: scale
-                        //2x min hona chahiye
-                        ),
+                    suffix:
+                        Image.asset(IconConstants.icfluentMail, scale: scale),
                     validator: (p0) {
                       if (p0?.isEmpty ?? true) {
                         return appLocalization(context).pleaseAlternativeEmail;

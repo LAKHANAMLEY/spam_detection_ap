@@ -221,33 +221,9 @@ class _LoginGoogleState extends State<LoginGoogle> {
                                 MaterialPageRoute(
                                     builder: (context) => const Login()));
                           }),
-
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 8 / 100,
                       ),
-                      // TextButton(
-                      //   child: const Text(
-                      //     'Logout',
-                      //     style: TextStyle(fontSize: 18,color:AppColor.yellowlightColor),
-                      //   ),
-                      //   onPressed: () async {
-                      //     bool signOutSuccess = await signOutFromGoogle();
-                      //     if (signOutSuccess) {
-                      //       ScaffoldMessenger.of(context).showSnackBar(
-                      //         const SnackBar(content: Text(
-                      //             'Successfully signed out from Google.')),
-                      //       );
-                      //       // Navigate to login or home screen after sign out
-                      //       Navigator.pushReplacement(context,
-                      //           MaterialPageRoute(builder: (context) => const Welcome()));
-                      //     } else {
-                      //       ScaffoldMessenger.of(context).showSnackBar(
-                      //         const SnackBar(content: Text(
-                      //             'Failed to sign out. Please try again.')),
-                      //       );
-                      //     }
-                      //   },
-                      // ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 2 / 100,
                       ),

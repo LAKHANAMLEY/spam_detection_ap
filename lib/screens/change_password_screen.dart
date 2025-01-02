@@ -15,9 +15,10 @@ class _ChangePasswordState extends State<ChangePassword> {
       TextEditingController();
   double scale = 3.5;
   var changePasswordBloc = ApiBloc(ApiBlocInitialState());
-  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(false));
+  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
+  var newPasswordVisibilityBloc = SelectionBloc(SelectBoolState(true));
+  var confirmPasswordVisibilityBloc = SelectionBloc(SelectBoolState(true));
   final _formKey = GlobalKey<FormState>();
-  String? _errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +33,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                 listener: (context, state) {
                   if (state is ChangePasswordState) {
                     if (state.value.statusCode == 200) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Profile()));
+                      Navigator.pushNamed(context, AppRoutes.profile);
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,
@@ -86,176 +84,120 @@ class _ChangePasswordState extends State<ChangePassword> {
                                     fontWeight: FontWeight.w500),
                               ),
                             ),
+                            10.height(),
+                            BlocBuilder(
+                                bloc: passwordVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      controller: currentPasswordController,
+                                      obscureText: state.value,
+                                      labelText:
+                                          appLocalization(context).currentPass,
+                                      hintText:
+                                          appLocalization(context).currentPass,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            passwordVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassRemove,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseCurrentPass;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
+                            10.height(),
+                            BlocBuilder(
+                                bloc: newPasswordVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      controller: newPasswordController,
+                                      obscureText: state.value,
+                                      labelText:
+                                          appLocalization(context).newPassword,
+                                      hintText:
+                                          appLocalization(context).newPassword,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            newPasswordVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassRemove,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseNewPass;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
+                            10.height(),
+                            BlocBuilder(
+                                bloc: confirmPasswordVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      controller: confirmNewPasswordController,
+                                      obscureText: state.value,
+                                      labelText: appLocalization(context)
+                                          .confirmNewPassword,
+                                      hintText: appLocalization(context)
+                                          .confirmNewPassword,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            confirmPasswordVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassRemove,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseConfirmPass;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
                             SizedBox(
                               height:
-                                  MediaQuery.of(context).size.height * 2 / 100,
-                            ),
-                            10.height(),
-                            BlocBuilder(
-                                bloc: passwordVisibilityBloc,
-                                builder: (context, state) {
-                                  if (state is SelectBoolState) {
-                                    return CustomTextField(
-                                      controller: newPasswordController,
-                                      obscureText: state.value,
-                                      labelText:
-                                          appLocalization(context).password,
-                                      hintText:
-                                          appLocalization(context).password,
-                                      suffix: InkWell(
-                                          onTap: () {
-                                            passwordVisibilityBloc.add(
-                                                SelectBoolEvent(!state.value));
-                                          },
-                                          child: state.value
-                                              ? Image.asset(
-                                                  IconConstants.icPassLock,
-                                                  scale: 3,
-                                                )
-                                              : Image.asset(
-                                                  IconConstants.icPassAdd,
-                                                  scale: 3,
-                                                )),
-                                      validator: (p0) {
-                                        if (p0?.isEmpty ?? true) {
-                                          return appLocalization(context)
-                                              .pleaseEnterYourPassword;
-                                        }
-                                        return null;
-                                      },
-                                    );
-                                  }
-                                  return const Loader();
-                                }),
-                            10.height(),
-                            BlocBuilder(
-                                bloc: passwordVisibilityBloc,
-                                builder: (context, state) {
-                                  if (state is SelectBoolState) {
-                                    return CustomTextField(
-                                      controller: newPasswordController,
-                                      obscureText: state.value,
-                                      labelText:
-                                          appLocalization(context).password,
-                                      hintText:
-                                          appLocalization(context).password,
-                                      suffix: InkWell(
-                                          onTap: () {
-                                            passwordVisibilityBloc.add(
-                                                SelectBoolEvent(!state.value));
-                                          },
-                                          child: state.value
-                                              ? Image.asset(
-                                                  IconConstants.icPassLock,
-                                                  scale: 3,
-                                                )
-                                              : Image.asset(
-                                                  IconConstants.icPassAdd,
-                                                  scale: 3,
-                                                )),
-                                      validator: (p0) {
-                                        if (p0?.isEmpty ?? true) {
-                                          return appLocalization(context)
-                                              .pleaseEnterYourPassword;
-                                        }
-                                        return null;
-                                      },
-                                    );
-                                  }
-                                  return const Loader();
-                                }),
-                            10.height(),
-                            BlocBuilder(
-                                bloc: passwordVisibilityBloc,
-                                builder: (context, state) {
-                                  if (state is SelectBoolState) {
-                                    return CustomTextField(
-                                      controller: newPasswordController,
-                                      obscureText: state.value,
-                                      labelText:
-                                          appLocalization(context).password,
-                                      hintText:
-                                          appLocalization(context).password,
-                                      suffix: InkWell(
-                                          onTap: () {
-                                            passwordVisibilityBloc.add(
-                                                SelectBoolEvent(!state.value));
-                                          },
-                                          child: state.value
-                                              ? Image.asset(
-                                                  IconConstants.icPassLock,
-                                                  scale: 3,
-                                                )
-                                              : Image.asset(
-                                                  IconConstants.icPassAdd,
-                                                  scale: 3,
-                                                )),
-                                      validator: (p0) {
-                                        if (p0?.isEmpty ?? true) {
-                                          return appLocalization(context)
-                                              .pleaseEnterYourPassword;
-                                        }
-                                        return null;
-                                      },
-                                    );
-                                  }
-                                  return const Loader();
-                                }),
-                            /*CustomTextField(
-                              controller: currentPasswordController,
-                              labelText: appLocalization(context).currentPass,
-                              hintText: appLocalization(context).currentPass,
-                              suffix: Image.asset(
-                                IconConstants.icLockadd,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .pleaseCurrentPass;
-                                }
-                                return null;
-                              },
-                            ),
-                            */
-                            10.height(),
-                            CustomTextField(
-                              controller: newPasswordController,
-                              labelText: appLocalization(context).newPassword,
-                              hintText: appLocalization(context).newPassword,
-                              suffix: Image.asset(
-                                IconConstants.icLockadd,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context).pleaseNewPass;
-                                }
-                                return null;
-                              },
-                            ),
-                            10.height(),
-                            CustomTextField(
-                              controller: confirmNewPasswordController,
-                              labelText:
-                                  appLocalization(context).confirmNewPassword,
-                              hintText:
-                                  appLocalization(context).confirmNewPassword,
-                              suffix: Image.asset(
-                                IconConstants.icLockadd,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .confirmNewPassword;
-                                }
-                                return null;
-                              },
-                            ),
-                            SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 4 / 100,
+                                  MediaQuery.of(context).size.height * 3 / 100,
                             ),
                             AppButton(
                                 text: appLocalization(context).changePassword,

@@ -137,7 +137,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                   Navigator.pop(context);
                                 },
                                 child: Image.asset(
-                                  IconConstants.backIcon,
+                                  IconConstants.icBacKCircle,
                                   color: Colors.white,
                                 )),
                             backgroundColor: Colors.white,

@@ -186,8 +186,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirmer le mot de passe"),
         "confirmSecurityPin":
             MessageLookupByLibrary.simpleMessage("Confirmar pin de seguridad"),
-        "congratulationScreated": MessageLookupByLibrary.simpleMessage(
-            "Felicitaciones, su cuenta ha sido creada exitosamente."),
         "congratulationsSuccessfullyCreated":
             MessageLookupByLibrary.simpleMessage(
                 "Felicitaciones, su cuenta ha sido creada exitosamente."),
@@ -749,6 +747,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnterYourValidEmailAddress":
             MessageLookupByLibrary.simpleMessage(
                 "Veuillez saisir l\'adresse e-mail valide"),
+        "pleaseEnterZipCode": MessageLookupByLibrary.simpleMessage(
+            "por favor ingrese el código postal"),
         "pleaseFirstName":
             MessageLookupByLibrary.simpleMessage("Por favor ingrese el nombre"),
         "pleaseLastName": MessageLookupByLibrary.simpleMessage(
@@ -828,8 +828,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "recharge": MessageLookupByLibrary.simpleMessage("Recharger"),
         "rechargeBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Rechargez tout mobile en entrant le numéro de mobile ou en choisissant des contacts dans votre liste de contacts."),
-        "rechargehasBeenSuccessfullyDone": MessageLookupByLibrary.simpleMessage(
-            "La recharge a été réalisée avec succès"),
         "recoverPassword":
             MessageLookupByLibrary.simpleMessage("Récupérer le mot de passe"),
         "register": MessageLookupByLibrary.simpleMessage("Registro"),
@@ -941,6 +939,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "serverError":
             MessageLookupByLibrary.simpleMessage("Erreur du serveur"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
+        "sessionPleaseLogInAgain": MessageLookupByLibrary.simpleMessage(
+            "La sesión ha expirado. Por favor, vuelva a iniciar sesión."),
         "setActive": MessageLookupByLibrary.simpleMessage("Activer"),
         "setAsPrimaryAccount":
             MessageLookupByLibrary.simpleMessage("Définir le compte principal"),

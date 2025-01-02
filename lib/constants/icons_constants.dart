@@ -157,4 +157,5 @@ class IconConstants {
       'assets/icons/ic_premium_purchase.png';
   static const String icPassLock = 'assets/icons/ic_passLock.png';
   static const String icPassAdd = 'assets/icons/ic_pass_add.png';
+  static const String icPassRemove = 'assets/icons/ic_pass_remove.png';
 }

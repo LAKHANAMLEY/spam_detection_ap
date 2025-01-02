@@ -264,7 +264,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                 controller: supportPinController,
                                 labelText: appLocalization(context).supportPin,
                                 hintText: appLocalization(context).supportPin,
-                                // suffix: Image.asset(IconConstants.icUsername),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
                                     return appLocalization(context)

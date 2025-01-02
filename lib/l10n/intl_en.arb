@@ -63,7 +63,7 @@
   "callHistory": "Call history",
   "callHistoryText": "Call History",
   "callLogs": "Call logs",
-  "callProtection": "Call protection",
+  "callProtection": "Call Protection",
   "callSMSBundle": "Call & SMS Bundle",
   "calls": "Calls",
   "camera": "Camera",
@@ -98,7 +98,7 @@
   "confirmNewPassword": "Confirm new password",
   "confirmPassword": "Confirm password",
   "confirmSecurityPin": "Confirm security pin",
-  "congratulationScreated": "Congratulations, your account has been successfully created.",
+  "congratulationsCreated": "Congratulations, your account has been successfully created.",
   "congratulationsSuccessfullyCreated": "Congratulations, your account has been successfully created.",
   "congratulationsYourAccountHasBeenSuccessfullyCreated": "Congratulations, your account has been successfully created.",
   "congratulationsYourAccountHasBeenSuccessfullyUpdated": "Congratulations, your account has been successfully updated.",
@@ -489,7 +489,7 @@
   "recentTransaction": "Recent Transaction",
   "recharge": "Recharge",
   "rechargeBtnDescription": "Recharge any mobile by entering mobile number or by choosing contact from your contact list.",
-  "rechargehasBeenSuccessfullyDone": "Recharge has been successfully done",
+  "rechargeHasBeenSuccessfullyDone": "Recharge has been successfully done",
   "recoverPassword": "Recover password",
   "register": "Register",
   "registerNow": "Register now",
@@ -681,5 +681,7 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code"
+  "zip": "Zip Code",
+  "pleaseEnterZipCode": "please Enter Zip Code",
+  "sessionPleaseLogInAgain": "Session expired. Please log in again"
 }

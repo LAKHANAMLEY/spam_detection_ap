@@ -10,6 +10,7 @@ class AddFamilyMember extends StatefulWidget {
 class _AddFamilyMemberState extends State<AddFamilyMember> {
   String? enteredPhone;
   SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
+  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
 
   PhoneNumber? phoneNumber;
   double scale = 3.5;
@@ -18,8 +19,8 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
   bool isLoading = true;
   String? selectedCountryCode;
   String? selectedCountryName;
-  final TextEditingController firstnameController = TextEditingController();
-  final TextEditingController lastnameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController relationController = TextEditingController();
@@ -28,6 +29,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
   final TextEditingController phoneController = TextEditingController();
 
   var addMemberBloc = ApiBloc(ApiBlocInitialState());
+  final _formKey = GlobalKey<FormState>();
 
   XFile? selectedImage;
 
@@ -54,55 +56,29 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                   return ModalProgressHUD(
                     progressIndicator: const Loader(),
                     inAsyncCall: state is ApiLoadingState,
-                    child: SingleChildScrollView(
-                      child: Column(children: [
-                        BlocConsumer(
-                            bloc: selectImageBloc,
-                            listener: (context, state) {
-                              if (state is SelectFileState) {
-                                selectedImage = state.value;
-                              }
-                            },
-                            builder: (context, state) {
-                              return SizedBox(
-                                child: selectedImage == null
-                                    ? CircleAvatar(
-                                        backgroundColor: AppColor.vanishColor
-                                            .withOpacity(0.2),
-                                        radius: 43.0,
-                                        backgroundImage: const AssetImage(
-                                            IconConstants.iccircleAvater),
-                                        child: Align(
-                                          alignment: Alignment.bottomRight,
-                                          child: CircleAvatar(
-                                              backgroundColor:
-                                                  AppColor.callColor,
-                                              radius: 12.0,
-                                              child: GestureDetector(
-                                                  onTap: () {
-                                                    showImagePickerDialog(
-                                                        context,
-                                                        selectImageBloc);
-                                                  },
-                                                  child: Image.asset(
-                                                    IconConstants.icCamera,
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            2 /
-                                                            100,
-                                                  ))),
-                                        ),
-                                      )
-                                    : selectedImage?.mimeType == "http"
+                    child: Form(
+                      key: _formKey,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SingleChildScrollView(
+                          child: Column(children: [
+                            BlocConsumer(
+                                bloc: selectImageBloc,
+                                listener: (context, state) {
+                                  if (state is SelectFileState) {
+                                    selectedImage = state.value;
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return SizedBox(
+                                    child: selectedImage == null
                                         ? CircleAvatar(
                                             backgroundColor: AppColor
                                                 .vanishColor
                                                 .withOpacity(0.2),
                                             radius: 43.0,
-                                            backgroundImage: NetworkImage(
-                                                selectedImage?.path ?? ""),
+                                            backgroundImage: const AssetImage(
+                                                IconConstants.iccircleAvater),
                                             child: Align(
                                               alignment: Alignment.bottomRight,
                                               child: CircleAvatar(
@@ -126,345 +102,274 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                                       ))),
                                             ),
                                           )
-                                        : CircleAvatar(
-                                            backgroundColor: AppColor
-                                                .vanishColor
-                                                .withOpacity(0.2),
-                                            radius: 43.0,
-                                            backgroundImage: FileImage(File(
-                                                selectedImage?.path ?? "")),
-                                            child: Align(
-                                              alignment: Alignment.bottomRight,
-                                              child: CircleAvatar(
-                                                  backgroundColor:
-                                                      AppColor.callColor,
-                                                  radius: 12.0,
-                                                  child: GestureDetector(
-                                                      onTap: () {
-                                                        showImagePickerDialog(
-                                                            context,
-                                                            selectImageBloc);
-                                                      },
-                                                      child: Image.asset(
-                                                        IconConstants.icCamera,
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            2 /
-                                                            100,
-                                                      ))),
-                                            ),
-                                          ),
-                              );
-                            }),
-                        10.height(),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 90 / 100,
-                          child: TextFormField(
-                            controller: firstnameController,
-                            decoration: InputDecoration(
+                                        : selectedImage?.mimeType == "http"
+                                            ? CircleAvatar(
+                                                backgroundColor: AppColor
+                                                    .vanishColor
+                                                    .withOpacity(0.2),
+                                                radius: 43.0,
+                                                backgroundImage: NetworkImage(
+                                                    selectedImage?.path ?? ""),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.bottomRight,
+                                                  child: CircleAvatar(
+                                                      backgroundColor:
+                                                          AppColor.callColor,
+                                                      radius: 12.0,
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            showImagePickerDialog(
+                                                                context,
+                                                                selectImageBloc);
+                                                          },
+                                                          child: Image.asset(
+                                                            IconConstants
+                                                                .icCamera,
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                2 /
+                                                                100,
+                                                          ))),
+                                                ),
+                                              )
+                                            : CircleAvatar(
+                                                backgroundColor: AppColor
+                                                    .vanishColor
+                                                    .withOpacity(0.2),
+                                                radius: 43.0,
+                                                backgroundImage: FileImage(File(
+                                                    selectedImage?.path ?? "")),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.bottomRight,
+                                                  child: CircleAvatar(
+                                                      backgroundColor:
+                                                          AppColor.callColor,
+                                                      radius: 12.0,
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            showImagePickerDialog(
+                                                                context,
+                                                                selectImageBloc);
+                                                          },
+                                                          child: Image.asset(
+                                                            IconConstants
+                                                                .icCamera,
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                2 /
+                                                                100,
+                                                          ))),
+                                                ),
+                                              ),
+                                  );
+                                }),
+                            10.height(),
+                            CustomTextField(
+                              controller: firstNameController,
+                              labelText: appLocalization(context).firstName,
                               hintText: appLocalization(context).firstName,
-                              hintStyle: const TextStyle(
-                                  color: AppColor.lightfillColor),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: const BorderSide(
-                                    width: 1.5, color: AppColor.fillColor),
+                              suffix: Image.asset(
+                                IconConstants.icUsername,
+                                scale: 1.5,
                               ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: AppColor.fillColor, width: 1.5),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                              ),
-                              filled: true,
-                              fillColor: AppColor.fillColor.withOpacity(0.2),
-                              suffixIcon: GestureDetector(
-                                onTap: () {},
-                                child: SizedBox(
-                                  height: 10,
-                                  width: 10,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10),
-                                    child: Image.asset(
-                                      IconConstants.icUsername,
-                                      scale: 1.5,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseEnterYourFirstName;
+                                }
+                                return null;
+                              },
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 3 / 100,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 90 / 100,
-                          child: TextFormField(
-                            controller: lastnameController,
-                            decoration: InputDecoration(
-                              hintText: appLocalization(context).lastName,
+                            10.height(),
+                            CustomTextField(
+                              controller: lastNameController,
                               labelText: appLocalization(context).lastName,
-                              hintStyle: const TextStyle(
-                                  color: AppColor.lightfillColor),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: const BorderSide(
-                                    width: 1.5, color: AppColor.fillColor),
+                              hintText: appLocalization(context).lastName,
+                              suffix: Image.asset(
+                                IconConstants.icUsername,
+                                scale: 1.5,
                               ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: AppColor.fillColor, width: 1.5),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                              ),
-                              filled: true,
-                              fillColor: AppColor.fillColor.withOpacity(0.2),
-                              suffixIcon: GestureDetector(
-                                onTap: () {},
-                                child: SizedBox(
-                                  height: 10,
-                                  width: 10,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10),
-                                    child: Image.asset(
-                                      IconConstants.icUsername,
-                                      scale: 1.5,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseEnterYourLastName;
+                                }
+                                return null;
+                              },
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 3 / 100,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 90 / 100,
-                          child: TextFormField(
-                            controller: emailController,
-                            decoration: InputDecoration(
-                              hintText: appLocalization(context).emailAddress,
+                            10.height(),
+                            CustomTextField(
+                              controller: emailController,
                               labelText: appLocalization(context).emailAddress,
-                              hintStyle: const TextStyle(
-                                  color: AppColor.lightfillColor),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: const BorderSide(
-                                    width: 1.5, color: AppColor.fillColor),
+                              hintText: appLocalization(context).emailAddress,
+                              suffix: Image.asset(
+                                IconConstants.icfluentMail,
+                                scale: scale,
                               ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: AppColor.fillColor, width: 1.5),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                              ),
-                              filled: true,
-                              fillColor: AppColor.fillColor.withOpacity(0.2),
-                              suffixIcon: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.asset(
-                                  IconConstants.icfluentMail,
-                                  scale: 2.5,
-                                ),
-                              ),
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseEnterYourEmailAddress;
+                                }
+                                return null;
+                              },
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 3 / 100,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 90 / 100,
-                          child: TextFormField(
-                            obscureText: true,
-                            controller: passwordController,
-                            decoration: InputDecoration(
-                                hintText: appLocalization(context).password,
-                                labelText: appLocalization(context).password,
-                                hintStyle: const TextStyle(
-                                    color: AppColor.lightfillColor),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: const BorderSide(
-                                      width: 1.5, color: AppColor.fillColor),
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColor.fillColor, width: 1.5),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
-                                ),
-                                filled: true,
-                                fillColor: AppColor.fillColor.withOpacity(0.2),
-                                counterText: '',
-                                suffixIcon: Image.asset(
-                                  IconConstants.icLockPass,
-                                  scale: 2.5,
-                                )),
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 3 / 100,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 90 / 100,
-                          child: TextFormField(
-                            controller: relationController,
-                            decoration: InputDecoration(
+                            10.height(),
+                            BlocBuilder(
+                                bloc: passwordVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      controller: passwordController,
+                                      obscureText: state.value,
+                                      labelText:
+                                          appLocalization(context).password,
+                                      hintText:
+                                          appLocalization(context).password,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            passwordVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassRemove,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseEnterYourPassword;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
+                            10.height(),
+                            CustomTextField(
+                              controller: relationController,
                               hintText: appLocalization(context).relation,
                               labelText: appLocalization(context).relation,
-                              hintStyle: const TextStyle(
-                                  color: AppColor.lightfillColor),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: const BorderSide(
-                                    width: 1.5, color: AppColor.fillColor),
+                              suffix: Image.asset(
+                                IconConstants.icUsername,
+                                scale: 1.5,
                               ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: AppColor.fillColor, width: 1.5),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                              ),
-                              filled: true,
-                              fillColor: AppColor.fillColor.withOpacity(0.2),
-                              /*suffixIcon: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.asset(
-                                  IconConstants
-                                      .icEmailadd, // Adjust the path as necessary
-                                  width: MediaQuery.of(context).size.width *
-                                      3 /
-                                      100,
-                                  height: MediaQuery.of(context).size.height *
-                                      3 /
-                                      100,
-                                ),
-                              ),
-
-                               */
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseEnterPosition;
+                                }
+                                return null;
+                              },
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 3 / 100,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 90 / 100,
-                          child: TextFormField(
-                            controller: supportPinController,
-                            decoration: InputDecoration(
-                              hintText: appLocalization(context).supportPin,
+                            10.height(),
+                            CustomTextField(
+                              controller: supportPinController,
                               labelText: appLocalization(context).supportPin,
-                              hintStyle: const TextStyle(
-                                  color: AppColor.lightfillColor),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: const BorderSide(
-                                    width: 1.5, color: AppColor.fillColor),
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: AppColor.fillColor, width: 1.5),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                              ),
-                              filled: true,
-                              fillColor: AppColor.fillColor.withOpacity(0.2),
-                              /*suffixIcon: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.asset(
-                                  IconConstants
-                                      .icEmailadd, // Adjust the path as necessary
-                                  width: MediaQuery.of(context).size.width *
-                                      3 /
-                                      100,
-                                  height: MediaQuery.of(context).size.height *
-                                      3 /
-                                      100,
-                                ),
-                              ),
-
-                               */
+                              hintText: appLocalization(context).supportPin,
+                              //suffix: Image.asset(IconConstants.icUsername),
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseSupportPin;
+                                }
+                                return null;
+                              },
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 3 / 100,
-                        ),
-                        Center(
-                            child: Padding(
-                          padding: const EdgeInsets.only(left: 18, right: 18),
-                          child: IntlPhoneField(
-                            controller: phoneController,
-                            decoration: InputDecoration(
-                              hintText: appLocalization(context).phoneNumber,
-                              labelText: appLocalization(context).phoneNumber,
-                              hintStyle: const TextStyle(
-                                  color: AppColor.lightfillColor),
-                              //labelText: 'Phone Number',
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(2),
-                                borderSide: const BorderSide(
-                                    width: 1.5, color: AppColor.fillColor),
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: AppColor.fillColor, width: 1.5),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(2)),
-                              ),
-                              filled: true,
-                              fillColor: AppColor.fillColor.withOpacity(0.2),
-                              suffixIcon: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.asset(
-                                  IconConstants.icCalladd,
-                                  scale: 1.5,
+                            10.height(),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 6, right: 6),
+                              child: IntlPhoneField(
+                                controller: phoneController,
+                                decoration: InputDecoration(
+                                  hintText:
+                                      appLocalization(context).phoneNumber,
+                                  labelText:
+                                      appLocalization(context).phoneNumber,
+                                  hintStyle: const TextStyle(
+                                      color: AppColor.lightfillColor),
+                                  //labelText: 'Phone Number',
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(2),
+                                    borderSide: const BorderSide(
+                                        width: 1.5, color: AppColor.fillColor),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColor.fillColor, width: 1.5),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5)),
+                                  ),
+                                  filled: true,
+                                  fillColor:
+                                      AppColor.fillColor.withOpacity(0.2),
+                                  suffixIcon: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Image.asset(
+                                      IconConstants.icCalladd,
+                                      scale: 1.5,
+                                    ),
+                                  ),
                                 ),
+                                keyboardType: TextInputType.number,
+                                initialCountryCode: 'IN',
+                                onChanged: (phone) {
+                                  phoneNumber = phone;
+                                  enteredPhone = phone.completeNumber;
+                                  // print(phone.completeNumber);
+                                  // print(phone.countryCode);
+                                },
                               ),
                             ),
-                            keyboardType: TextInputType.number,
-                            initialCountryCode: 'IN',
-                            onChanged: (phone) {
-                              phoneNumber = phone;
-                              enteredPhone = phone.completeNumber;
-                              // print(phone.completeNumber);
-                              // print(phone.countryCode);
-                            },
-                          ),
-                        )),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 1 / 100,
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 1 / 100,
+                            ),
+                            //device connect kro
+                            AppButton(
+                                text: appLocalization(context).addMember,
+                                onPress: () {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    addMemberBloc.add(
+                                      FamilyAddMemberEvent(
+                                          email: emailController.text.trim(),
+                                          password:
+                                              passwordController.text.trim(),
+                                          firstName:
+                                              firstNameController.text.trim(),
+                                          lastName:
+                                              lastNameController.text.trim(),
+                                          relation:
+                                              relationController.text.trim(),
+                                          supportpin:
+                                              supportPinController.text.trim(),
+                                          phone: phoneController.text.trim(),
+                                          countrycode:
+                                              phoneNumber?.countryCode ?? '',
+                                          photoFile: selectedImage),
+                                    );
+                                  }
+                                }),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 2 / 100,
+                            ),
+                          ]),
                         ),
-                        //device connect kro
-                        AppButton(
-                            text: appLocalization(context).addMember,
-                            onPress: () {
-                              addMemberBloc.add(
-                                FamilyAddMemberEvent(
-                                    email: emailController.text.trim(),
-                                    password: passwordController.text.trim(),
-                                    firstName: firstnameController.text.trim(),
-                                    lastName: lastnameController.text.trim(),
-                                    relation: relationController.text.trim(),
-                                    supportpin:
-                                        supportPinController.text.trim(),
-                                    phone: phoneController.text.trim(),
-                                    countrycode: phoneNumber?.countryCode ?? '',
-                                    photoFile: selectedImage),
-                              );
-                            }),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
-                      ]),
+                      ),
                     ),
                   );
                 })));

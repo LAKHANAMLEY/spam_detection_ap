@@ -684,10 +684,10 @@ class S {
     );
   }
 
-  /// `Call protection`
+  /// `Call Protection`
   String get callProtection {
     return Intl.message(
-      'Call protection',
+      'Call Protection',
       name: 'callProtection',
       desc: '',
       args: [],
@@ -1035,10 +1035,10 @@ class S {
   }
 
   /// `Congratulations, your account has been successfully created.`
-  String get congratulationScreated {
+  String get congratulationsCreated {
     return Intl.message(
       'Congratulations, your account has been successfully created.',
-      name: 'congratulationScreated',
+      name: 'congratulationsCreated',
       desc: '',
       args: [],
     );
@@ -4947,10 +4947,10 @@ class S {
   }
 
   /// `Recharge has been successfully done`
-  String get rechargehasBeenSuccessfullyDone {
+  String get rechargeHasBeenSuccessfullyDone {
     return Intl.message(
       'Recharge has been successfully done',
-      name: 'rechargehasBeenSuccessfullyDone',
+      name: 'rechargeHasBeenSuccessfullyDone',
       desc: '',
       args: [],
     );
@@ -6863,6 +6863,26 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please Enter Zip Code`
+  String get pleaseEnterZipCode {
+    return Intl.message(
+      'please Enter Zip Code',
+      name: 'pleaseEnterZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Session expired. Please log in again`
+  String get sessionPleaseLogInAgain {
+    return Intl.message(
+      'Session expired. Please log in again',
+      name: 'sessionPleaseLogInAgain',
       desc: '',
       args: [],
     );

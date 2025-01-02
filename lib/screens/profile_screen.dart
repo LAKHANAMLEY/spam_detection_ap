@@ -103,7 +103,7 @@ class _ProfileState extends State<Profile> {
       appLocalization(context).lastAllTime,
     ];
     final List<String> spamTexts = [
-      appLocalization(context).spamCalls,
+      appLocalization(context).spamIdentified,
       appLocalization(context).timeSpammers,
       appLocalization(context).unknownIdentified,
       appLocalization(context).messagesSpam,
