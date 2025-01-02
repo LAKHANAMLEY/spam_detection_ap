@@ -132,51 +132,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      // bottomNavigationBar: CurvedNavigationBar(
-      //   key: _bottomNavigationKey,
-      //   index: _page,
-      //   height: 75,
-      //   items: <Widget>[
-      //     Image.asset(
-      //       IconConstants.icHome,
-      //       height: MediaQuery.of(context).size.height * 6 / 100,
-      //       width: MediaQuery.of(context).size.width * 6 / 100,
-      //     ),
-      //     Image.asset(
-      //       IconConstants.icChat,
-      //       height: MediaQuery.of(context).size.height * 6 / 100,
-      //       width: MediaQuery.of(context).size.width * 6 / 100,
-      //     ),
-      //     Image.asset(
-      //       IconConstants.icPhone,
-      //       height: MediaQuery.of(context).size.height * 6 / 100,
-      //       width: MediaQuery.of(context).size.width * 6 / 100,
-      //     ),
-      //     Image.asset(
-      //       IconConstants.icPremium,
-      //       height: MediaQuery.of(context).size.height * 6 / 100,
-      //       width: MediaQuery.of(context).size.width * 6 / 100,
-      //     ),
-      //     Image.asset(
-      //       IconConstants.icSetting,
-      //       height: MediaQuery.of(context).size.height * 6 / 100,
-      //       width: MediaQuery.of(context).size.width * 6 / 100,
-      //     ),
-      //   ],
-      //   color: AppColor.callColor,
-      //   buttonBackgroundColor: AppColor.yellowdeep,
-      //   backgroundColor: AppColor.secondryColor,
-      //   animationCurve: Curves.easeInOut,
-      //   animationDuration: const Duration(milliseconds: 600),
-      //   onTap: (index) {
-      //     setState(() {
-      //       _page = index;
-      //       // _pages = _page;
-      //       //_pages[_page];
-      //     });
-      //   },
-      //   letIndexChange: (index) => true,
-      // )
     );
   }
 }

@@ -126,7 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "callHistoryText": MessageLookupByLibrary.simpleMessage("Call History"),
         "callLogs": MessageLookupByLibrary.simpleMessage("Call logs"),
         "callProtection":
-            MessageLookupByLibrary.simpleMessage("Call protection"),
+            MessageLookupByLibrary.simpleMessage("Call Protection"),
         "callSMSBundle":
             MessageLookupByLibrary.simpleMessage("Call & SMS Bundle"),
         "calls": MessageLookupByLibrary.simpleMessage("Calls"),
@@ -164,7 +164,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "closeQuery": MessageLookupByLibrary.simpleMessage("Close query"),
         "closed": MessageLookupByLibrary.simpleMessage("Closed"),
         "comment": MessageLookupByLibrary.simpleMessage("Comment"),
-        "companyName": MessageLookupByLibrary.simpleMessage("CompanyName"),
+        "companyName": MessageLookupByLibrary.simpleMessage("Company name"),
         "completeMth": MessageLookupByLibrary.simpleMessage("\$14.99/mth"),
         "completeProtectionBundle":
             MessageLookupByLibrary.simpleMessage("Complete Protection Bundle"),
@@ -179,7 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "confirmSecurityPin":
             MessageLookupByLibrary.simpleMessage("Confirm security pin"),
-        "congratulationScreated": MessageLookupByLibrary.simpleMessage(
+        "congratulationsCreated": MessageLookupByLibrary.simpleMessage(
             "Congratulations, your account has been successfully created."),
         "congratulationsSuccessfullyCreated":
             MessageLookupByLibrary.simpleMessage(
@@ -706,6 +706,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnterYourValidEmailAddress":
             MessageLookupByLibrary.simpleMessage(
                 "Please enter valid email address"),
+        "pleaseEnterZipCode":
+            MessageLookupByLibrary.simpleMessage("please Enter Zip Code"),
         "pleaseFirstName":
             MessageLookupByLibrary.simpleMessage("Please enter first name"),
         "pleaseLastName":
@@ -781,7 +783,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "recharge": MessageLookupByLibrary.simpleMessage("Recharge"),
         "rechargeBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Recharge any mobile by entering mobile number or by choosing contact from your contact list."),
-        "rechargehasBeenSuccessfullyDone": MessageLookupByLibrary.simpleMessage(
+        "rechargeHasBeenSuccessfullyDone": MessageLookupByLibrary.simpleMessage(
             "Recharge has been successfully done"),
         "recoverPassword":
             MessageLookupByLibrary.simpleMessage("Recover password"),
@@ -884,6 +886,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sentFrom": MessageLookupByLibrary.simpleMessage("Sent from"),
         "serverError": MessageLookupByLibrary.simpleMessage("Server error"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
+        "sessionPleaseLogInAgain": MessageLookupByLibrary.simpleMessage(
+            "Session expired. Please log in again"),
         "setActive": MessageLookupByLibrary.simpleMessage("Set active"),
         "setAsPrimaryAccount":
             MessageLookupByLibrary.simpleMessage("Set as primary account"),

@@ -24,7 +24,7 @@ class _RegisterState extends State<Register> {
   String? selectedCountryCode;
   String? selectedCountryName;
   final TextEditingController phoneController = TextEditingController();
-  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(false));
+  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
 
   PhoneNumber? phoneNumber;
 
@@ -332,11 +332,11 @@ class _RegisterState extends State<Register> {
                             child: state.value
                                 ? Image.asset(
                                     IconConstants.icPassAdd,
-                                    scale: 1.5,
+                                    scale: 3.5,
                                   )
                                 : Image.asset(
                                     IconConstants.icPassLock,
-                                    scale: 1.5,
+                                    scale: 3.5,
                                   )),
                       ),
                     );

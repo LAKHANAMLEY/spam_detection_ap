@@ -15,7 +15,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
 
   final _formKey = GlobalKey<FormState>();
   var corporateBloc = ApiBloc(ApiBlocInitialState());
-  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(false));
+  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,11 @@ class _CorporateLoginState extends State<CorporateLogin> {
                 if (state is CorporateLoginState) {
                   if (state.value.statusCode == 200) {
                     SharedPref.saveUserData(state.value.data);
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            LoginSuccessful(user: state.value.data)));
+                    Navigator.pushNamed(
+                      context,
+                      AppRoutes.loginSuccess,
+                      arguments: state.value.data,
+                    );
                   } else if (state.value.statusCode ==
                       HTTPStatusCodes.sessionExpired) {
                     sessionExpired(context, state.value.message);
@@ -90,7 +92,8 @@ class _CorporateLoginState extends State<CorporateLogin> {
                           ),
                           validator: (p0) {
                             if (p0?.isEmpty ?? true) {
-                              return appLocalization(context).pleaseCorporateID;
+                              return appLocalization(context)
+                                  .pleaseCorporateIDText;
                             }
                             return null;
                           },
@@ -107,7 +110,8 @@ class _CorporateLoginState extends State<CorporateLogin> {
                           ),
                           validator: (p0) {
                             if (p0?.isEmpty ?? true) {
-                              return appLocalization(context).emailAddress;
+                              return appLocalization(context)
+                                  .pleaseEnterYourEmailAddress;
                             }
                             return null;
                           },

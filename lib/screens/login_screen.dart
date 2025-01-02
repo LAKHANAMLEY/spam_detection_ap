@@ -9,7 +9,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  int tabIndex = 0;
+  // int tabIndex = 0;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -60,8 +60,9 @@ class _LoginState extends State<Login> {
 
   final _formKey = GlobalKey<FormState>();
 
-  var passwordVisibilityBloc =
-      SelectionBloc(SelectBoolState(false)); //initially visibility false
+  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
+
+  var selectTabBloc = SelectionBloc(SelectIntState(0));
 
   @override
   Widget build(BuildContext context) {
@@ -124,312 +125,418 @@ class _LoginState extends State<Login> {
                                 fontWeight: FontWeight.w500),
                           )),
                         ),
-                        GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                tabIndex = 0;
-                              });
-                            },
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        12 /
-                                        100,
-                                    width: MediaQuery.of(context).size.width *
-                                        18 /
-                                        100,
-                                    child: Center(
-                                      child: tabIndex == 1
-                                          ? Image.asset(IconConstants
-                                              .icphoneunSelect) // Show secondary image
-                                          : Image.asset(IconConstants
-                                              .icSMSSelected), // Show primary image
+                        BlocBuilder(
+                            bloc: selectTabBloc,
+                            builder: (context, selectTabState) {
+                              if (selectTabState is SelectIntState) {
+                                int tabIndex = selectTabState.value;
+                                return Column(
+                                  children: [
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              selectTabBloc
+                                                  .add(SelectIntEvent(0));
+                                            },
+                                            child: SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  12 /
+                                                  100,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  18 /
+                                                  100,
+                                              child: Center(
+                                                child: tabIndex == 1
+                                                    ? Image.asset(IconConstants
+                                                        .icphoneunSelect) // Show secondary image
+                                                    : Image.asset(IconConstants
+                                                        .icSMSSelected), // Show primary image
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                5 /
+                                                100,
+                                          ),
+                                          GestureDetector(
+                                              onTap: () {
+                                                selectTabBloc
+                                                    .add(SelectIntEvent(1));
+                                              },
+                                              child: SizedBox(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    12 /
+                                                    100,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    18 /
+                                                    100,
+                                                child: Center(
+                                                  child: tabIndex == 1
+                                                      ? Image.asset(IconConstants
+                                                          .icEmailSelected) // Show secondary image
+                                                      : Image.asset(IconConstants
+                                                          .icEmailUnselected), // Show primary image
+                                                ),
+                                              )),
+                                        ]),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              5 /
+                                              100,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        5 /
-                                        100,
-                                  ),
-                                  GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          tabIndex = 1;
-                                        });
-                                      },
-                                      child: SizedBox(
+                                    if (tabIndex == 1) ...[
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 18, right: 18),
+                                        child: CustomTextField(
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          labelText: appLocalization(context)
+                                              .emailAddress,
+                                          controller: emailController,
+                                          hintText: appLocalization(context)
+                                              .emailAddress,
+                                          suffix: Image.asset(
+                                            IconConstants.icEmailadd,
+                                            scale: 1.5,
+                                          ),
+                                          validator: (p0) {
+                                            if (p0?.isEmpty ?? false) {
+                                              return appLocalization(context)
+                                                  .pleaseEnterYourEmailAddress;
+                                            }
+                                            return null;
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.sizeOf(context).height *
+                                                2 /
+                                                100,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 18, right: 18),
+                                        child: BlocBuilder(
+                                            bloc: passwordVisibilityBloc,
+                                            builder: (context, state) {
+                                              if (state is SelectBoolState) {
+                                                return CustomTextField(
+                                                  controller:
+                                                      passwordController,
+                                                  obscureText: state.value,
+                                                  labelText:
+                                                      appLocalization(context)
+                                                          .password,
+                                                  hintText:
+                                                      appLocalization(context)
+                                                          .password,
+                                                  suffix: InkWell(
+                                                      onTap: () {
+                                                        passwordVisibilityBloc
+                                                            .add(SelectBoolEvent(
+                                                                !state.value));
+                                                      },
+                                                      child: state.value
+                                                          ? Image.asset(
+                                                              IconConstants
+                                                                  .icPassAdd,
+                                                              scale: 3,
+                                                            )
+                                                          : Image.asset(
+                                                              IconConstants
+                                                                  .icPassLock,
+                                                              scale: 3,
+                                                            )),
+                                                  validator: (p0) {
+                                                    if (p0?.isEmpty ?? true) {
+                                                      return appLocalization(
+                                                              context)
+                                                          .pleaseEnterYourPassword;
+                                                    }
+                                                    return null;
+                                                  },
+                                                );
+                                              }
+                                              return const Loader();
+                                            }),
+                                      ),
+                                      SizedBox(
                                         height:
                                             MediaQuery.of(context).size.height *
-                                                12 /
+                                                3 /
                                                 100,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                18 /
-                                                100,
-                                        child: Center(
-                                          child: tabIndex == 1
-                                              ? Image.asset(IconConstants
-                                                  .icEmailSelected) // Show secondary image
-                                              : Image.asset(IconConstants
-                                                  .icEmailUnselected), // Show primary image
-                                        ),
-                                      )),
-                                ])),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 5 / 100,
-                        ),
-                        if (tabIndex == 1) ...[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 18, right: 18),
-                            child: CustomTextField(
-                              keyboardType: TextInputType.emailAddress,
-                              controller: emailController,
-                              hintText: appLocalization(context).emailAddress,
-                              suffix: Image.asset(
-                                IconConstants.icEmailadd,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? false) {
-                                  return appLocalization(context)
-                                      .pleaseEnterYourEmailAddress;
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 2 / 100,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 18, right: 18),
-                            child: BlocBuilder(
-                                bloc: passwordVisibilityBloc,
-                                builder: (context, state) {
-                                  if (state is SelectBoolState) {
-                                    return CustomTextField(
-                                      obscureText: state.value,
-                                      //true or false visibility
-                                      controller: passwordController,
-                                      hintText:
-                                          appLocalization(context).password,
-                                      suffix: InkWell(
-                                        onTap: () {
-                                          //add event on icon tap
-                                          passwordVisibilityBloc.add(
-                                              SelectBoolEvent(!state.value));
-                                        },
-                                        child: Icon(
-                                            state.value
-                                                ? Icons.remove_red_eye
-                                                : Icons.remove_red_eye_outlined,
-                                            color: AppColor.greyIconColor),
                                       ),
-                                      validator: (p0) {
-                                        if (p0?.isEmpty ?? false) {
-                                          return appLocalization(context)
-                                              .pleaseEnterYourPassword;
-                                        }
-                                        return null;
-                                      },
-                                    );
-                                  }
-                                  return const Loader();
-                                }),
-                          ),
-                          SizedBox(
-                            height:
-                                MediaQuery.of(context).size.height * 3 / 100,
-                          ),
-                          AppButton(
-                            text: appLocalization(context).login,
-                            onPress: () {
-                              if (_formKey.currentState?.validate() ?? false) {
-                                authBloc.add(LoginWithEmailAndPasswordEvent(
-                                    email: emailController.text,
-                                    password: passwordController.text));
+                                      AppButton(
+                                        text: appLocalization(context).login,
+                                        onPress: () {
+                                          if (_formKey.currentState
+                                                  ?.validate() ??
+                                              false) {
+                                            authBloc.add(
+                                                LoginWithEmailAndPasswordEvent(
+                                                    email: emailController.text,
+                                                    password: passwordController
+                                                        .text));
+                                          }
+                                        },
+                                      ),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                2 /
+                                                100,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(IconConstants.icGoogle,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  10 /
+                                                  100),
+                                          SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  2 /
+                                                  100),
+                                          Image.asset(
+                                            IconConstants.icMac,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                10 /
+                                                100,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                1 /
+                                                100,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            appLocalization(context)
+                                                .dontHaveAnAccount,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: AppFont.fontFamily,
+                                                color: AppColor.greylightColor,
+                                                fontSize: 15),
+                                          ),
+                                          SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  2 /
+                                                  100),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          const Register()));
+                                            },
+                                            child: Text(
+                                                appLocalization(context)
+                                                    .register,
+                                                style: const TextStyle(
+                                                    color: AppColor
+                                                        .yellowlightColor,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15)),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              5 /
+                                              100),
+                                    ] else ...[
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 20, right: 20),
+                                        child: IntlPhoneField(
+                                          controller: phoneController,
+                                          decoration: InputDecoration(
+                                            hintText: appLocalization(context)
+                                                .phoneNumber,
+                                            hintStyle: const TextStyle(
+                                                color: AppColor.lightfillColor,
+                                                fontFamily: AppFont.fontFamily,
+                                                fontWeight: FontWeight.w600),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: const BorderSide(
+                                                  width: 1.5,
+                                                  color: AppColor.fillColor),
+                                            ),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: AppColor.fillColor,
+                                                  width: 1.5),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5)),
+                                            ),
+                                            filled: true,
+                                            fillColor: AppColor.fillColor
+                                                .withOpacity(0.2),
+                                          ),
+                                          initialCountryCode: 'IN',
+                                          onChanged: (phone) {
+                                            countryCode = phone.countryCode;
+                                            // enteredPhone = phone.completeNumber;
+                                            print(phone.completeNumber);
+                                            print(phone.countryCode);
+                                          },
+                                          validator: (p0) {
+                                            if (p0?.isEmpty ?? true) {
+                                              return "Please enter a valid phone number"; // phone number dart me empty
+                                            }
+                                            return null;
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              2 /
+                                              100),
+                                      AppButton(
+                                          text: appLocalization(context).getOtp,
+                                          onPress: () {
+                                            if (_formKey.currentState
+                                                    ?.validate() ??
+                                                false) {
+                                              _verifyPhoneNumber;
+                                            }
+                                          }),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                2 /
+                                                100,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(IconConstants.icGoogle,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  10 /
+                                                  100),
+                                          SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  2 /
+                                                  100),
+                                          Image.asset(
+                                            IconConstants.icMac,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                10 /
+                                                100,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                1 /
+                                                100,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            appLocalization(context)
+                                                .dontHaveAnAccount,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontFamily: AppFont.fontFamily,
+                                                color: AppColor.greylightColor,
+                                                fontSize: 15),
+                                          ),
+                                          SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  2 /
+                                                  100),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          const Register()));
+                                            },
+                                            child: Text(
+                                                appLocalization(context)
+                                                    .register,
+                                                style: const TextStyle(
+                                                    color: AppColor
+                                                        .yellowlightColor,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15)),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              5 /
+                                              100),
+                                    ],
+                                  ],
+                                );
                               }
-                            },
-                          ),
-                          SizedBox(
-                            height:
-                                MediaQuery.of(context).size.height * 2 / 100,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(IconConstants.icGoogle,
-                                  height: MediaQuery.of(context).size.height *
-                                      10 /
-                                      100),
-                              SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      2 /
-                                      100),
-                              Image.asset(
-                                IconConstants.icMac,
-                                height: MediaQuery.of(context).size.height *
-                                    10 /
-                                    100,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height:
-                                MediaQuery.of(context).size.height * 1 / 100,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                appLocalization(context).dontHaveAnAccount,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: AppFont.fontFamily,
-                                    color: AppColor.greylightColor,
-                                    fontSize: 15),
-                              ),
-                              SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      2 /
-                                      100),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              const Register()));
-                                },
-                                child: Text(appLocalization(context).register,
-                                    style: const TextStyle(
-                                        color: AppColor.yellowlightColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15)),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 5 / 100),
-                        ] else ...[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20, right: 20),
-                            child: IntlPhoneField(
-                              controller: phoneController,
-                              decoration: InputDecoration(
-                                hintText: appLocalization(context).phoneNumber,
-                                hintStyle: const TextStyle(
-                                    color: AppColor.lightfillColor,
-                                    fontFamily: AppFont.fontFamily,
-                                    fontWeight: FontWeight.w600),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  borderSide: const BorderSide(
-                                      width: 1.5, color: AppColor.fillColor),
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: AppColor.fillColor, width: 1.5),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
-                                ),
-                                filled: true,
-                                fillColor: AppColor.fillColor.withOpacity(0.2),
-                              ),
-                              initialCountryCode: 'IN',
-                              onChanged: (phone) {
-                                countryCode = phone.countryCode;
-                                // enteredPhone = phone.completeNumber;
-                                print(phone.completeNumber);
-                                print(phone.countryCode);
-                              },
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return "Please enter a valid phone number"; // phone number dart me empty
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 2 / 100),
-                          AppButton(
-                              text: appLocalization(context).getOtp,
-                              onPress: () {
-                                if (_formKey.currentState?.validate() ??
-                                    false) {
-                                  _verifyPhoneNumber;
-                                }
-                              }),
-                          SizedBox(
-                            height:
-                                MediaQuery.of(context).size.height * 2 / 100,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(IconConstants.icGoogle,
-                                  height: MediaQuery.of(context).size.height *
-                                      10 /
-                                      100),
-                              SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      2 /
-                                      100),
-                              Image.asset(
-                                IconConstants.icMac,
-                                height: MediaQuery.of(context).size.height *
-                                    10 /
-                                    100,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height:
-                                MediaQuery.of(context).size.height * 1 / 100,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                appLocalization(context).dontHaveAnAccount,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: AppFont.fontFamily,
-                                    color: AppColor.greylightColor,
-                                    fontSize: 15),
-                              ),
-                              SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      2 /
-                                      100),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              const Register()));
-                                },
-                                child: Text(appLocalization(context).register,
-                                    style: const TextStyle(
-                                        color: AppColor.yellowlightColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15)),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 5 / 100),
-                        ],
+                              return const Loader();
+                            })
                       ]),
                     ),
                   ),

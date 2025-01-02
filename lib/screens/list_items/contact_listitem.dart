@@ -23,7 +23,6 @@ class _ContactListItemState extends State<ContactListItem> {
     super.initState();
   }
 
-// sir ek baar check kr lo ye device wala
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
@@ -67,9 +66,9 @@ class _ContactListItemState extends State<ContactListItem> {
                   PopupMenuItem(
                       child: Text(appLocalization(context).delete),
                       onTap: () {
-                        //deleteDeviceContact(
-                        // id:contact?.id
-                        // );
+                        deleteDeviceContact(
+                            id: contact?.id ?? "",
+                            number: contact?.mobileNo ?? "");
                         contactListBloc.add(DeleteContactEvent(
                             contact: ContactData(id: contact?.id)));
                       }

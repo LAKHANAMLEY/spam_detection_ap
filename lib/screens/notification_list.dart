@@ -15,9 +15,6 @@ class _NotificationListState extends State<NotificationList> {
   void initState() {
     super.initState();
     notificationListBloc.add(NotificationListEvent());
-    //yha event add kia h list get krne ka
-    //agar apko koi or state mile jese NotificationDeleteState
-    //tab uspr firse event add krna hoga NotificationListEvent
   }
 
   @override
@@ -59,12 +56,7 @@ class _NotificationListState extends State<NotificationList> {
                       );
                     }
                     // notificationListBloc.add(NotificationListEvent());
-                    //iski wajah se load ho rha tha
-                    // okay sir but listbloc to add krna pdegana
-                    //yes wo initstate me krege yaha to already list get ho rhi h fir se get krege to always get hoti rhegi loading
-                    //understand sir
                   }
-                  //yaha pr if condition laga kr
                 },
                 builder: (context, state) {
                   if (state is NotificationListState) {
