@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/image_view.dart';
 
 class Profile extends StatelessWidget {
   final bool? showAppBar;

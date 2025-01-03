@@ -43,7 +43,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
           ),
         ),
       ),
-      ListTile(
+      const ListTile(
         leading: CircleAvatar(
           backgroundImage: AssetImage(ImageConstants.imageRobert),
         ),
@@ -65,7 +65,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
           Icons.arrow_forward_ios,
         ),
       ),
-      ListTile(
+      const ListTile(
         leading: CircleAvatar(
           backgroundImage: AssetImage(ImageConstants.imageJames),
         ),
@@ -87,7 +87,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
           Icons.arrow_forward_ios,
         ),
       ),
-      ListTile(
+      const ListTile(
         leading: CircleAvatar(
           backgroundImage: AssetImage(ImageConstants.imageKelvin),
         ),
@@ -109,7 +109,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
           Icons.arrow_forward_ios,
         ),
       ),
-      ListTile(
+      const ListTile(
         leading: CircleAvatar(
           backgroundImage: AssetImage(ImageConstants.imageSame),
         ),
@@ -131,7 +131,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
           Icons.arrow_forward_ios,
         ),
       ),
-      ListTile(
+      const ListTile(
         leading: CircleAvatar(
           backgroundImage: AssetImage(ImageConstants.imageLasey),
         ),

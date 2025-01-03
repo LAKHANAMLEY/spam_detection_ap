@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/dashboard_statistics_model.dart';
 
 Future<DashboardStatisticsResponse> getDashboardStatistics(
     {required String days}) async {
