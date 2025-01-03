@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/models/dashboard_statistics_model.dart';
 
 abstract class ApiState extends Equatable {
   @override
@@ -507,6 +508,15 @@ class CountryListState extends ApiState {
   final CountriesResponse value;
 
   CountryListState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class DashboardStatisticsState extends ApiState {
+  final DashboardStatisticsResponse value;
+
+  DashboardStatisticsState(this.value);
 
   @override
   List<Object?> get props => [value];

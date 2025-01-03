@@ -34,9 +34,13 @@ class CallLogListItem extends StatelessWidget {
                 ));
           },
       leading: CircleAvatar(
-        backgroundImage: AssetImage(callLog.isSpam == 1
-            ? IconConstants.icFraud
-            : IconConstants.icCallRegular),
+        // backgroundImage: AssetImage(
+        //   getIcon(callLog),
+        // ),
+        child: Image.asset(
+          getCallTypeImage(callLog),
+          // fit: BoxFit.scaleDown,
+        ),
       ),
       // leading: Icon(getCallTypeIcon(callLog.callType),
       //     color: getCallTypeColor(callLog.callType)),
@@ -65,7 +69,7 @@ class CallLogListItem extends StatelessWidget {
       ),
       subtitle: Row(
         children: [
-          if (callLog.markSpamByUser != 0)
+          if (callLog.markSpamByUser != null && callLog.markSpamByUser != 0)
             Text(
               "${callLog.markSpamByUser ?? 0} Spam reports",
               style: textTheme(context).bodyMedium?.copyWith(color: Colors.red),
@@ -142,6 +146,38 @@ class CallLogListItem extends StatelessWidget {
       ),
       // trailing: Text(callLog.callTime?.formatDateTime() ?? ""),
     );
+  }
+}
+
+String getCallTypeImage(CallLogData callLog) {
+  var callType = getCallLogType(callLog.callType);
+  if (callLog.isSpam == 1) {
+    return IconConstants.icFraud;
+  } else {
+    switch (callType) {
+      case null:
+        return IconConstants.icCallRegular;
+      case CallType.incoming:
+        return IconConstants.icIncoming;
+      case CallType.outgoing:
+        return IconConstants.icOutgoing;
+      case CallType.missed:
+        return IconConstants.icMissCall;
+      case CallType.voiceMail:
+        return IconConstants.icfluentMail;
+      case CallType.rejected:
+        return IconConstants.icMissCall;
+      case CallType.blocked:
+        return IconConstants.icBlockCall;
+      case CallType.answeredExternally:
+        return IconConstants.icCallRegular;
+      case CallType.unknown:
+        return IconConstants.icCallRegular;
+      case CallType.wifiIncoming:
+        return IconConstants.icIncoming;
+      case CallType.wifiOutgoing:
+        return IconConstants.icOutgoing;
+    }
   }
 }
 

@@ -106,9 +106,11 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                       Row(
                         children: [
                           CircleAvatar(
-                            backgroundImage: AssetImage(callLog?.isSpam == 1
-                                ? IconConstants.icspamCircle
-                                : IconConstants.icCaller),
+                            child: Image.asset(
+                                getCallTypeImage(callLog!.callHistory!.first)),
+                            // backgroundImage: AssetImage(callLog?.isSpam == 1
+                            //     ? IconConstants.icspamCircle
+                            //     : IconConstants.icCaller),
                           ),
                           // Padding(
                           //   padding: const EdgeInsets.all(8.0),
@@ -121,35 +123,40 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                               Row(
                                 children: [
                                   Text(
-                                    "${callLog?.callHistory?.first.callType ?? ""} call",
-                                    style: textTheme(context)
-                                        .bodySmall
-                                        ?.copyWith(
-                                            color: getCallTypeColor(callLog
-                                                ?.callHistory?.first.callType)),
+                                    "${callLog.callHistory?.first.callType ?? ""} call",
+                                    style:
+                                        textTheme(context).bodySmall?.copyWith(
+                                              color: Colors.white,
+                                              // color: getCallTypeColor(callLog
+                                              //     ?.callHistory
+                                              //     ?.first
+                                              //     .callType),
+                                            ),
                                   ),
                                   5.width(),
                                   Text(
-                                    callLog?.callHistory?.first
-                                            .simdisplayname ??
+                                    callLog.callHistory?.first.simdisplayname ??
                                         "",
                                     style: textTheme(context)
                                         .bodySmall
-                                        ?.copyWith(color: Colors.grey),
+                                        ?.copyWith(color: Colors.white),
                                   ),
                                   5.width(),
                                   Text(
-                                    callLog?.callHistory?.first.callTime
-                                            ?.formatDateTime() ??
+                                    callLog.callHistory?.first.callTime
+                                            ?.formatRelativeDateTime() ??
                                         "",
                                     style: textTheme(context)
                                         .bodySmall
-                                        ?.copyWith(color: Colors.grey),
+                                        ?.copyWith(color: Colors.white),
                                   ),
                                 ],
                               ),
                               Text(
-                                callLog?.name ?? callLog?.mobileNo ?? "",
+                                callLog.name ??
+                                    ((callLog.countryCode?.isNotEmpty ?? false)
+                                        ? ("+${callLog.countryCode ?? ""} ${callLog.mobileNo ?? ""}")
+                                        : callLog.mobileNo ?? ""),
                                 style: textTheme(context)
                                     .titleMedium
                                     ?.copyWith(color: textColor),
@@ -168,8 +175,8 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                           Navigator.pushNamed(context, AppRoutes.contactDetail,
                               arguments: ContactDetail(
                                 contact: ContactData(
-                                  name: callLog?.name,
-                                  mobileNo: callLog?.mobileNo ?? "",
+                                  name: callLog.name,
+                                  mobileNo: callLog.mobileNo ?? "",
                                 ),
                               ));
                         },
@@ -181,7 +188,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            callLog?.mobileNo ?? "",
+                            "+${callLog.countryCode ?? ""} ${callLog.mobileNo ?? ""}",
                             style: textTheme(context)
                                 .bodyMedium
                                 ?.copyWith(color: textColor),
@@ -198,14 +205,14 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                             text: "CALL",
                             onTap: () async {
                               await DirectCallPlus.makeCall(
-                                  callLog?.mobileNo ?? "");
+                                  callLog.mobileNo ?? "");
                             },
                           ),
                           Btn(
                             icon: Icons.message,
                             text: "MESSAGE",
                             onTap: () {
-                              launchSms(context, callLog?.mobileNo ?? "");
+                              launchSms(context, callLog.mobileNo ?? "");
                             },
                           ),
                           const Btn(icon: Icons.voice_chat, text: "VOICE"),

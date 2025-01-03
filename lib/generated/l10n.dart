@@ -4466,6 +4466,16 @@ class S {
     );
   }
 
+  /// `please Enter Zip Code`
+  String get pleaseEnterZipCode {
+    return Intl.message(
+      'please Enter Zip Code',
+      name: 'pleaseEnterZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter first name`
   String get pleaseFirstName {
     return Intl.message(
@@ -5476,6 +5486,16 @@ class S {
     );
   }
 
+  /// `Select country`
+  String get selectCountry {
+    return Intl.message(
+      'Select country',
+      name: 'selectCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select language`
   String get selectLanguage {
     return Intl.message(
@@ -5661,6 +5681,16 @@ class S {
     return Intl.message(
       'Services',
       name: 'services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Session expired. Please log in again`
+  String get sessionPleaseLogInAgain {
+    return Intl.message(
+      'Session expired. Please log in again',
+      name: 'sessionPleaseLogInAgain',
       desc: '',
       args: [],
     );
@@ -6863,26 +6893,6 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `please Enter Zip Code`
-  String get pleaseEnterZipCode {
-    return Intl.message(
-      'please Enter Zip Code',
-      name: 'pleaseEnterZipCode',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Session expired. Please log in again`
-  String get sessionPleaseLogInAgain {
-    return Intl.message(
-      'Session expired. Please log in again',
-      name: 'sessionPleaseLogInAgain',
       desc: '',
       args: [],
     );

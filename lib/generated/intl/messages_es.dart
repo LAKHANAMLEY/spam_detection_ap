@@ -186,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirmer le mot de passe"),
         "confirmSecurityPin":
             MessageLookupByLibrary.simpleMessage("Confirmar pin de seguridad"),
+        "congratulationsCreated": MessageLookupByLibrary.simpleMessage(
+            "Felicitaciones, su cuenta ha sido creada exitosamente."),
         "congratulationsSuccessfullyCreated":
             MessageLookupByLibrary.simpleMessage(
                 "Felicitaciones, su cuenta ha sido creada exitosamente."),
@@ -828,6 +830,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "recharge": MessageLookupByLibrary.simpleMessage("Recharger"),
         "rechargeBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Rechargez tout mobile en entrant le numéro de mobile ou en choisissant des contacts dans votre liste de contacts."),
+        "rechargeHasBeenSuccessfullyDone": MessageLookupByLibrary.simpleMessage(
+            "La recharge a été réalisée avec succès"),
         "recoverPassword":
             MessageLookupByLibrary.simpleMessage("Récupérer le mot de passe"),
         "register": MessageLookupByLibrary.simpleMessage("Registro"),
@@ -907,6 +911,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sélectionnez le compte bancaire pour transférer vers"),
         "selectCategory":
             MessageLookupByLibrary.simpleMessage("Selecciona una categoría"),
+        "selectCountry":
+            MessageLookupByLibrary.simpleMessage("Seleccione país"),
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Choisir la langue"),
         "selectState":

@@ -134,4 +134,5 @@ class ApiUrlConstants {
       '$baseUrl/contacts/delete-all-call-log?lang=${AppConstants.selectedLanguage}';
   static String syncCallLogManually =
       '$baseUrl/contacts/sync-call-log-manually';
+  static String dashboardStatistics = '$baseUrl/user/dashboard-statistics-data';
 }

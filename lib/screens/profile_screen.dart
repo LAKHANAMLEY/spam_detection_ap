@@ -1,106 +1,41 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/image_view.dart';
 
-class Profile extends StatefulWidget {
+class Profile extends StatelessWidget {
   final bool? showAppBar;
 
   const Profile({super.key, this.showAppBar = true});
 
   @override
-  State<Profile> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  //LanguageData? selectedLanguage;
-  final List<String> imageUrl = [
-    IconConstants.icSecurityCall,
-    IconConstants.icTimeClock,
-    IconConstants.icEpSearch,
-    IconConstants.icMessageCancel
-  ];
-  final List<String> cardTexts = ['3', '68s', '25', '38'];
-
-  String? _selectedItem;
-
-  void _showEditOptions(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
-      ),
-      builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                appLocalization(context).changeALanguage,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(height: 16.0),
-              FutureBuilder(
-                future: fetchLanguages(),
-                builder:
-                    (context, AsyncSnapshot<CountryLanguageResponse> snapshot) {
-                  if (snapshot.hasData) {
-                    var languages = snapshot.data?.languagelist ?? [];
-
-                    return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: languages.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            leading:
-                                const Icon(Icons.language, color: Colors.green),
-                            title: Text(languages[index].name ?? ""),
-                            onTap: () {
-                              localizationBloc.add(ChangeLocaleEvent(
-                                  Locale.fromSubtags(
-                                      languageCode:
-                                          languages[index].id ?? "")));
-                              // Navigator.pop(context);
-                              // Call your gallery function here
-                              //_chooseFromGallery();
-                            },
-                          );
-                        });
-                  }
-                  return const Loader();
-                },
-              ),
-              const SizedBox(height: 8.0),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  appLocalization(context).cancelTxt,
-                  style: const TextStyle(color: Colors.red),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  @override
-  void initState() {
-    // userBloc.add(GetUserProfileEvent());
-    sharedPrefBloc.add(GetUserDataFromLocalEvent());
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final List<String> items = [
-      appLocalization(context).lastThirtyDays,
-      appLocalization(context).lastThreeMonths,
-      appLocalization(context).lastSixMonths,
-      appLocalization(context).lastThisYear,
-      appLocalization(context).lastAllTime,
+    final List<String> imageUrl = [
+      IconConstants.icSecurityCall,
+      IconConstants.icTimeClock,
+      IconConstants.icEpSearch,
+      IconConstants.icMessageCancel
+    ];
+
+    final List<Map> items = [
+      {
+        "key": appLocalization(context).lastThirtyDays,
+        "value": "30",
+      },
+      {
+        "key": appLocalization(context).lastThreeMonths,
+        "value": "90",
+      },
+      {
+        "key": appLocalization(context).lastSixMonths,
+        "value": "180",
+      },
+      {
+        "key": appLocalization(context).lastThisYear,
+        "value": "365",
+      },
+      {
+        "key": appLocalization(context).lastAllTime,
+        "value": "0",
+      },
     ];
     final List<String> spamTexts = [
       appLocalization(context).spamIdentified,
@@ -108,10 +43,14 @@ class _ProfileState extends State<Profile> {
       appLocalization(context).unknownIdentified,
       appLocalization(context).messagesSpam,
     ];
-    var argument = args(context) as Profile?;
+    // var argument = args(context) as Profile?;
+    sharedPrefBloc.add(GetUserDataFromLocalEvent());
+    var dashboardStatisticsBloc = ApiBloc(ApiBlocInitialState());
+    var selectStatisticsDaysBloc = SelectionBloc(SelectStringState("30"));
+    selectStatisticsDaysBloc.add(SelectStringEvent("30"));
     return Scaffold(
       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-      appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
+      appBar: (showAppBar ?? showAppBar ?? false)
           ? CustomAppBar(
               actions: [
                 Padding(
@@ -172,26 +111,35 @@ class _ProfileState extends State<Profile> {
                         Center(
                           child: SizedBox(
                             child: (user.photo?.isNotEmpty ?? false)
-                                ? CircleAvatar(
-                                    backgroundColor:
-                                        AppColor.vanishColor.withOpacity(0.2),
-                                    radius: 43.0,
-                                    backgroundImage: NetworkImage(
-                                      user.photo ?? "",
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: CircleAvatar(
-                                          backgroundColor: AppColor.callColor,
-                                          radius: 12.0,
-                                          child: Image.asset(
-                                            IconConstants.icCamera,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                2 /
-                                                100,
-                                          )),
+                                ? InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, AppRoutes.imageView,
+                                          arguments: ImageView(
+                                            imageUrl: user.photo,
+                                          ));
+                                    },
+                                    child: CircleAvatar(
+                                      backgroundColor:
+                                          AppColor.vanishColor.withOpacity(0.2),
+                                      radius: 43.0,
+                                      backgroundImage: NetworkImage(
+                                        user.photo ?? "",
+                                      ),
+                                      // child: Align(
+                                      //   alignment: Alignment.bottomRight,
+                                      //   child: CircleAvatar(
+                                      //       backgroundColor: AppColor.callColor,
+                                      //       radius: 12.0,
+                                      //       child: Image.asset(
+                                      //         IconConstants.icCamera,
+                                      //         height: MediaQuery.of(context)
+                                      //                 .size
+                                      //                 .height *
+                                      //             2 /
+                                      //             100,
+                                      //       )),
+                                      // ),
                                     ),
                                   )
                                 : CircleAvatar(
@@ -201,20 +149,20 @@ class _ProfileState extends State<Profile> {
                                     backgroundImage: const AssetImage(
                                       IconConstants.iccircleAvater,
                                     ),
-                                    child: Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: CircleAvatar(
-                                          backgroundColor: AppColor.callColor,
-                                          radius: 12.0,
-                                          child: Image.asset(
-                                            IconConstants.icCamera,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                2 /
-                                                100,
-                                          )),
-                                    ),
+                                    // child: Align(
+                                    //   alignment: Alignment.bottomRight,
+                                    //   child: CircleAvatar(
+                                    //       backgroundColor: AppColor.callColor,
+                                    //       radius: 12.0,
+                                    //       child: Image.asset(
+                                    //         IconConstants.icCamera,
+                                    //         height: MediaQuery.of(context)
+                                    //                 .size
+                                    //                 .height *
+                                    //             2 /
+                                    //             100,
+                                    //       )),
+                                    // ),
                                   ),
                           ),
                         ),
@@ -295,8 +243,8 @@ class _ProfileState extends State<Profile> {
                           height: MediaQuery.of(context).size.height * 5 / 100,
                         ),
                         Container(
-                          height: MediaQuery.of(context).size.height * 56 / 100,
-                          width: MediaQuery.of(context).size.width * 90 / 100,
+                          // height: MediaQuery.of(context).size.height * 56 / 100,
+                          // width: MediaQuery.of(context).size.width * 90 / 100,
                           decoration: BoxDecoration(
                             color: AppColor.whitedeep,
                             borderRadius:
@@ -307,152 +255,171 @@ class _ProfileState extends State<Profile> {
                             padding: const EdgeInsets.all(10),
                             child: Column(
                               children: [
-                                SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      2 /
-                                      100,
-                                ),
                                 Align(
                                   alignment: Alignment.centerLeft,
-                                  child: SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        40 /
-                                        100,
-                                    height: MediaQuery.of(context).size.height *
-                                        6 /
-                                        100,
-                                    /*decoration: BoxDecoration(
-                                      border: Border.all(color: AppColor.themeColor),
-                                      borderRadius: BorderRadius.circular(3),
-                                      color: AppColor.secondryColor.withOpacity(0.7),
-                                    ),
-                                     */
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: DropdownButton<String>(
-                                        value: _selectedItem,
-                                        icon: Image.asset(
-                                          IconConstants.icDrop,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              3 /
-                                              100,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              3 /
-                                              100,
-                                          color: AppColor.callColor,
-                                        ),
-                                        hint: Text(
-                                          appLocalization(context)
-                                              .lastThirtyDays,
-                                          style: const TextStyle(
-                                              color: AppColor.callColor,
-                                              fontSize: 14,
-                                              fontFamily: AppFont.fontFamily,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        items: items.map((String value) {
-                                          return DropdownMenuItem<String>(
-                                            value: value,
-                                            child: Text(value),
-                                          );
-                                        }).toList(),
-                                        onChanged: (String? newValue) {
-                                          setState(() {
-                                            _selectedItem = newValue;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                GridView.builder(
-                                  gridDelegate:
-                                      const SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          childAspectRatio: 1.2 / 1.2),
-                                  itemCount: 4,
-                                  primary: false,
-                                  shrinkWrap: true,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return InkWell(
-                                      onTap: () {
-                                        if (index == 0) {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const SpamList()));
+                                  child: BlocConsumer(
+                                      bloc: selectStatisticsDaysBloc,
+                                      listener: (context, state) {
+                                        if (state is SelectStringState) {
+                                          dashboardStatisticsBloc.add(
+                                              DashboardStatisticsEvent(
+                                                  days: state.value ?? "0"));
                                         }
                                       },
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8),
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(4)),
-                                              color: AppColor.secondryColor),
-                                          child: Container(
-                                            margin: const EdgeInsets.all(8),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Row(children: [
-                                                  Image.asset(
-                                                    imageUrl[index],
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            5 /
-                                                            100,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            5 /
-                                                            100,
-                                                  ),
-                                                  SizedBox(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            2 /
-                                                            100,
-                                                  ),
-                                                  Text(
-                                                    cardTexts[index],
-                                                    style: const TextStyle(
-                                                        color: AppColor
-                                                            .borderstekColor,
-                                                        fontSize: 20,
-                                                        fontFamily:
-                                                            AppFont.fontFamily),
-                                                  )
-                                                ]),
-                                                Text(spamTexts[index],
-                                                    style: const TextStyle(
-                                                        color: AppColor
-                                                            .spelledColor,
-                                                        fontFamily:
-                                                            AppFont.fontFamily,
-                                                        fontSize: 16)),
-                                              ],
+                                      builder: (context, state) {
+                                        if (state is SelectStringState) {
+                                          return DropdownButton(
+                                            value: state.value,
+                                            // underline: const SizedBox.shrink(),
+                                            // icon: Image.asset(
+                                            //   IconConstants.icDrop,
+                                            //   // width: MediaQuery.of(context).size.width *
+                                            //   //     3 /
+                                            //   //     100,
+                                            //   // height:
+                                            //   //     MediaQuery.of(context).size.height *
+                                            //   //         3 /
+                                            //   //         100,
+                                            //   color: AppColor.callColor,
+                                            // ),
+                                            hint: Text(
+                                              appLocalization(context)
+                                                  .lastThirtyDays,
+                                              style: const TextStyle(
+                                                  color: AppColor.callColor,
+                                                  fontSize: 14,
+                                                  fontFamily:
+                                                      AppFont.fontFamily,
+                                                  fontWeight: FontWeight.w600),
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
+                                            items: items.map((value) {
+                                              return DropdownMenuItem<String>(
+                                                value: value['value'],
+                                                child: Text(value['key']),
+                                              );
+                                            }).toList(),
+                                            onChanged: (String? newValue) {
+                                              selectStatisticsDaysBloc.add(
+                                                  SelectStringEvent(newValue));
+                                            },
+                                          );
+                                        }
+                                        return const Loader();
+                                      }),
                                 ),
+                                BlocBuilder(
+                                    bloc: dashboardStatisticsBloc,
+                                    builder: (context, state) {
+                                      if (state is DashboardStatisticsState) {
+                                        var data =
+                                            state.value.statisticsDashboardData;
+                                        List<String> cardTexts = [
+                                          data?.totalSpamCalls.toString() ??
+                                              "0",
+                                          data?.timeSavedFromSpammers
+                                                  .toString() ??
+                                              "0",
+                                          data?.unknownNumber.toString() ?? "0",
+                                          data?.messageMovedToSpam.toString() ??
+                                              "0"
+                                        ];
+                                        return GridView.builder(
+                                          gridDelegate:
+                                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            childAspectRatio: 1.2 / 1.2,
+                                          ),
+                                          itemCount: 4,
+                                          primary: false,
+                                          shrinkWrap: true,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return InkWell(
+                                              onTap: () {
+                                                if (index == 0) {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              const SpamList()));
+                                                }
+                                              },
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8),
+                                                child: Container(
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          4)),
+                                                          color: AppColor
+                                                              .secondryColor),
+                                                  child: Container(
+                                                    margin:
+                                                        const EdgeInsets.all(8),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Row(children: [
+                                                          Image.asset(
+                                                            imageUrl[index],
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                5 /
+                                                                100,
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                5 /
+                                                                100,
+                                                          ),
+                                                          SizedBox(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                2 /
+                                                                100,
+                                                          ),
+                                                          Text(
+                                                            cardTexts[index],
+                                                            style: const TextStyle(
+                                                                color: AppColor
+                                                                    .borderstekColor,
+                                                                fontSize: 20,
+                                                                fontFamily: AppFont
+                                                                    .fontFamily),
+                                                          )
+                                                        ]),
+                                                        Text(spamTexts[index],
+                                                            style: const TextStyle(
+                                                                color: AppColor
+                                                                    .spelledColor,
+                                                                fontFamily: AppFont
+                                                                    .fontFamily,
+                                                                fontSize: 16)),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }
+                                      return const Loader();
+                                    }),
                               ],
                             ),
                           ),
@@ -568,6 +535,72 @@ class _ProfileState extends State<Profile> {
             }
             return const Loader();
           }),
+    );
+  }
+
+  void _showEditOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+      ),
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                appLocalization(context).changeALanguage,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 16.0),
+              FutureBuilder(
+                future: fetchLanguages(),
+                builder:
+                    (context, AsyncSnapshot<CountryLanguageResponse> snapshot) {
+                  if (snapshot.hasData) {
+                    var languages = snapshot.data?.languagelist ?? [];
+
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: languages.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading:
+                                const Icon(Icons.language, color: Colors.green),
+                            title: Text(languages[index].name ?? ""),
+                            onTap: () {
+                              localizationBloc.add(ChangeLocaleEvent(
+                                  Locale.fromSubtags(
+                                      languageCode:
+                                          languages[index].id ?? "")));
+                              Navigator.pop(context);
+
+                              // Navigator.pop(context);
+                              // Call your gallery function here
+                              //_chooseFromGallery();
+                            },
+                          );
+                        });
+                  }
+                  return const Loader();
+                },
+              ),
+              const SizedBox(height: 8.0),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  appLocalization(context).cancelTxt,
+                  style: const TextStyle(color: Colors.red),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

@@ -312,22 +312,30 @@ class _ContactDetailState extends State<ContactDetail> {
                               ),
                               child: ListTile(
                                 onTap: () async {
-                                  await DirectCallPlus.makeCall(
-                                      "${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}");
+                                  await DirectCallPlus.makeCall((contact
+                                              ?.countryCode?.isNotEmpty ??
+                                          false)
+                                      ? "+${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}"
+                                      : contact?.mobileNo ?? "");
                                 },
                                 leading: const Icon(Icons.phone,
                                     color: AppColor.primaryColor),
                                 title: Text(
-                                  "${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}",
+                                  (contact?.countryCode?.isNotEmpty ?? false)
+                                      ? "+${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}"
+                                      : contact?.mobileNo ?? "",
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),
-                                subtitle: Text(
-                                  contact?.numberType ?? "",
-                                  style: textTheme(context)
-                                      .bodySmall
-                                      ?.copyWith(color: Colors.grey),
-                                ),
+                                subtitle:
+                                    (contact?.numberType?.isNotEmpty ?? false)
+                                        ? Text(
+                                            contact?.numberType ?? "",
+                                            style: textTheme(context)
+                                                .bodySmall
+                                                ?.copyWith(color: Colors.grey),
+                                          )
+                                        : null,
                               ),
                             ),
                             Container(

@@ -859,6 +859,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select bank account to transfer to"),
         "selectCategory":
             MessageLookupByLibrary.simpleMessage("Select a category"),
+        "selectCountry": MessageLookupByLibrary.simpleMessage("Select country"),
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Select language"),
         "selectState": MessageLookupByLibrary.simpleMessage("Select state"),

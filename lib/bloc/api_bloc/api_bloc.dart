@@ -1,3 +1,4 @@
+import 'package:spam_delection_app/data/repository/user_repo/dashboard_statistics_api.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
@@ -451,6 +452,13 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await getCountries().then((value) {
         emit(CountryListState(value));
+      });
+    }
+
+    if (event is DashboardStatisticsEvent) {
+      emit(ApiLoadingState());
+      await getDashboardStatistics(days: event.days).then((value) {
+        emit(DashboardStatisticsState(value));
       });
     }
   }

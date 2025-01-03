@@ -503,3 +503,12 @@ class DeleteContactEvent extends ApiEvent {
 }
 
 class CountryListEvent extends ApiEvent {}
+
+class DashboardStatisticsEvent extends ApiEvent {
+  final String days;
+
+  DashboardStatisticsEvent({required this.days});
+
+  @override
+  List<Object?> get props => [days];
+}
