@@ -1,6 +1,6 @@
 import 'package:flutter_contacts/flutter_contacts.dart';
 
-Future<void> deleteDeviceContact({
+Future<void> deleteDeviceCallLog({
   required String id,
   required String number,
 }) async {

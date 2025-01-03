@@ -14,8 +14,8 @@ class _ResetPasswordState extends State<ResetPassword> {
   late String password;
   late String confirmPassword;
 
-  //bool _isLoading = false;
-  //String? _errorMessage;
+  var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
+  var renterPasswordVisibilityBloc = SelectionBloc(SelectBoolState(true));
 
   double scale = 3.5;
   var resetPassBloc = ApiBloc(ApiBlocInitialState());
@@ -132,23 +132,42 @@ class _ResetPasswordState extends State<ResetPassword> {
                               ),
                             ),
                             10.height(),
-                            CustomTextField(
-                              labelText: appLocalization(context).password,
-                              controller: passwordController,
-                              hintText: appLocalization(context).password,
-                              obscureText: true,
-                              suffix: Image.asset(
-                                IconConstants.icLockadd,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .pleaseCurrentPass;
-                                }
-                                return null;
-                              },
-                            ),
+                            BlocBuilder(
+                                bloc: passwordVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      controller: passwordController,
+                                      obscureText: state.value,
+                                      labelText:
+                                          appLocalization(context).password,
+                                      hintText:
+                                          appLocalization(context).password,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            passwordVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassRemove,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseEnterYourPassword;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
                             Text(
                               _validationMessage,
                               style: TextStyle(
@@ -160,24 +179,42 @@ class _ResetPasswordState extends State<ResetPassword> {
                               ),
                             ),
                             10.height(),
-                            CustomTextField(
-                              labelText:
-                                  appLocalization(context).renterPassword,
-                              controller: confirmPasswordController,
-                              hintText: appLocalization(context).renterPassword,
-                              obscureText: true,
-                              suffix: Image.asset(
-                                IconConstants.icLockadd,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .pleaseCurrentPass;
-                                }
-                                return null;
-                              },
-                            ),
+                            BlocBuilder(
+                                bloc: renterPasswordVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      controller: confirmPasswordController,
+                                      obscureText: state.value,
+                                      labelText: appLocalization(context)
+                                          .renterPassword,
+                                      hintText: appLocalization(context)
+                                          .renterPassword,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            renterPasswordVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassRemove,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseConfirmPass;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
                             SizedBox(
                               height:
                                   MediaQuery.of(context).size.height * 3 / 100,

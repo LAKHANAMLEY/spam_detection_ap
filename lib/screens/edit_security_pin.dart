@@ -14,6 +14,11 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
       TextEditingController();
   final TextEditingController confirmSecurityPinController =
       TextEditingController();
+
+  var currentPinVisibilityBloc = SelectionBloc(SelectBoolState(true));
+  var newPinVisibilityBloc = SelectionBloc(SelectBoolState(true));
+  var confirmPinVisibilityBloc = SelectionBloc(SelectBoolState(true));
+
   double scale = 3.5;
   var changeSecurityBloc = ApiBloc(ApiBlocInitialState());
   final _formKey = GlobalKey<FormState>();
@@ -88,64 +93,119 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                   MediaQuery.of(context).size.height * 2 / 100,
                             ),
                             10.height(),
-                            CustomTextField(
-                              controller: currentSecurityPinController,
-                              labelText:
-                                  appLocalization(context).currentSecurityPin,
-                              hintText:
-                                  appLocalization(context).currentSecurityPin,
-                              keyboardType: TextInputType.number,
-                              suffix: Image.asset(
-                                IconConstants.icLockadd,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .pleaseCurrentSecurityPin;
-                                }
-                                return null;
-                              },
-                            ),
+                            BlocBuilder(
+                                bloc: currentPinVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      keyboardType: TextInputType.number,
+                                      controller: currentSecurityPinController,
+                                      obscureText: state.value,
+                                      labelText: appLocalization(context)
+                                          .currentSecurityPin,
+                                      hintText: appLocalization(context)
+                                          .currentSecurityPin,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            currentPinVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassRemove,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseCurrentSecurityPin;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
                             10.height(),
-                            CustomTextField(
-                              controller: newSecurityPinController,
-                              labelText:
-                                  appLocalization(context).newSecurityPin,
-                              hintText: appLocalization(context).newSecurityPin,
-                              keyboardType: TextInputType.number,
-                              suffix: Image.asset(
-                                IconConstants.icLockadd,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .pleaseNewSecurityPin;
-                                }
-                                return null;
-                              },
-                            ),
+                            BlocBuilder(
+                                bloc: newPinVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      keyboardType: TextInputType.number,
+                                      controller: newSecurityPinController,
+                                      obscureText: state.value,
+                                      labelText: appLocalization(context)
+                                          .newSecurityPin,
+                                      hintText: appLocalization(context)
+                                          .newSecurityPin,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            newPinVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassRemove,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseNewSecurityPin;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
                             10.height(),
-                            CustomTextField(
-                              controller: confirmSecurityPinController,
-                              labelText:
-                                  appLocalization(context).confirmSecurityPin,
-                              hintText:
-                                  appLocalization(context).confirmSecurityPin,
-                              keyboardType: TextInputType.number,
-                              suffix: Image.asset(
-                                IconConstants.icLockadd,
-                                scale: 1.5,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .pleaseConfirmSecurityPin;
-                                }
-                                return null;
-                              },
-                            ),
+                            BlocBuilder(
+                                bloc: confirmPinVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      keyboardType: TextInputType.number,
+                                      controller: confirmSecurityPinController,
+                                      obscureText: state.value,
+                                      labelText: appLocalization(context)
+                                          .confirmSecurityPin,
+                                      hintText: appLocalization(context)
+                                          .confirmSecurityPin,
+                                      suffix: InkWell(
+                                          onTap: () {
+                                            confirmPinVisibilityBloc.add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                                  IconConstants.icPassRemove,
+                                                  scale: 3,
+                                                )
+                                              : Image.asset(
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseConfirmSecurityPin;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
                             SizedBox(
                               height:
                                   MediaQuery.of(context).size.height * 4 / 100,

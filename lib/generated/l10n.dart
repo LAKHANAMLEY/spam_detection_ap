@@ -4466,6 +4466,16 @@ class S {
     );
   }
 
+  /// `please Enter Zip Code`
+  String get pleaseEnterZipCode {
+    return Intl.message(
+      'please Enter Zip Code',
+      name: 'pleaseEnterZipCode',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter first name`
   String get pleaseFirstName {
     return Intl.message(
@@ -5476,6 +5486,16 @@ class S {
     );
   }
 
+  /// `Select country`
+  String get selectCountry {
+    return Intl.message(
+      'Select country',
+      name: 'selectCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select language`
   String get selectLanguage {
     return Intl.message(
@@ -5661,6 +5681,16 @@ class S {
     return Intl.message(
       'Services',
       name: 'services',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Session expired. Please log in again`
+  String get sessionPleaseLogInAgain {
+    return Intl.message(
+      'Session expired. Please log in again',
+      name: 'sessionPleaseLogInAgain',
       desc: '',
       args: [],
     );
@@ -6868,21 +6898,51 @@ class S {
     );
   }
 
-  /// `please Enter Zip Code`
-  String get pleaseEnterZipCode {
+  /// `Select Country`
+  String get selectCountryText {
     return Intl.message(
-      'please Enter Zip Code',
-      name: 'pleaseEnterZipCode',
+      'Select Country',
+      name: 'selectCountryText',
       desc: '',
       args: [],
     );
   }
 
-  /// `Session expired. Please log in again`
-  String get sessionPleaseLogInAgain {
+  /// `Delete call logs`
+  String get deleteCallLogs {
     return Intl.message(
-      'Session expired. Please log in again',
-      name: 'sessionPleaseLogInAgain',
+      'Delete call logs',
+      name: 'deleteCallLogs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete All Call Logs`
+  String get deleteAllCallLogs {
+    return Intl.message(
+      'Delete All Call Logs',
+      name: 'deleteAllCallLogs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google Sign-In failed. Please try again.`
+  String get googleSignFailedPleaseAgain {
+    return Intl.message(
+      'Google Sign-In failed. Please try again.',
+      name: 'googleSignFailedPleaseAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred during Google Sign-In.`
+  String get anErrorOccurredDuringGoogleSignIn {
+    return Intl.message(
+      'An error occurred during Google Sign-In.',
+      name: 'anErrorOccurredDuringGoogleSignIn',
       desc: '',
       args: [],
     );

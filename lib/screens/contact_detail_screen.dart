@@ -456,7 +456,6 @@ class _ContactDetailState extends State<ContactDetail> {
                                   showPopupMenuBtn: false,
                                   onTap: () {}),
                             )
-                            // 1000.height()
                           ])),
                         ],
                       ),

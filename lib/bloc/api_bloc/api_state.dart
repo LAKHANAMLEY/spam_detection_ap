@@ -331,6 +331,7 @@ class GetCallLogsState extends ApiState {
   List<Object?> get props => [value];
 }
 
+// delete  call logs
 class DeleteCallLogState extends ApiState {
   final Response value;
 
@@ -340,6 +341,7 @@ class DeleteCallLogState extends ApiState {
   List<Object?> get props => [value];
 }
 
+// delete all call logs
 class DeleteAllCallLogState extends ApiState {
   final Response value;
 

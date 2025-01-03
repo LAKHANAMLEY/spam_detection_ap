@@ -25,6 +25,7 @@ class _CorporateProfileState extends State<CorporateProfile> {
   XFile? _selectedImage;
 
   var corporateBloc = ApiBloc(ApiBlocInitialState());
+  SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
 
   CorporateData? corporateData;
 
@@ -53,57 +54,6 @@ class _CorporateProfileState extends State<CorporateProfile> {
     } catch (e) {
       debugPrint("Error selecting image: $e");
     }
-  }
-
-  void _showEditOptions(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
-      ),
-      builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                appLocalization(context).chooseOption,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(height: 16.0),
-              ListTile(
-                leading: const Icon(Icons.camera_alt, color: Colors.blue),
-                title: Text(appLocalization(context).takePhoto),
-                onTap: () {
-                  Navigator.pop(context);
-                  _takePhoto();
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.photo_library, color: Colors.green),
-                title: Text(appLocalization(context).chooseGallery),
-                onTap: () {
-                  Navigator.pop(context);
-                  // Call your gallery function here
-                  _chooseFromGallery();
-                },
-              ),
-              const SizedBox(height: 8.0),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  appLocalization(context).cancelText,
-                  style: const TextStyle(color: Colors.red),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
   }
 
   @override
@@ -159,49 +109,28 @@ class _CorporateProfileState extends State<CorporateProfile> {
                   inAsyncCall: state is ApiLoadingState,
                   child: Form(
                     key: _formKey,
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                child: _selectedImage == null
-                                    ? CircleAvatar(
-                                        backgroundColor: AppColor.vanishColor
-                                            .withOpacity(0.2),
-                                        radius: 43.0,
-                                        backgroundImage: const AssetImage(
-                                            IconConstants.iccircleAvater),
-                                        child: Align(
-                                          alignment: Alignment.bottomRight,
-                                          child: CircleAvatar(
-                                              backgroundColor:
-                                                  AppColor.callColor,
-                                              radius: 12.0,
-                                              child: GestureDetector(
-                                                  onTap: () {
-                                                    _showEditOptions(context);
-                                                  },
-                                                  child: Image.asset(
-                                                    IconConstants.icCamera,
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            2 /
-                                                            100,
-                                                  ))),
-                                        ),
-                                      )
-                                    : _selectedImage?.mimeType == "http"
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            BlocConsumer(
+                                bloc: selectImageBloc,
+                                listener: (context, state) {
+                                  if (state is SelectFileState) {
+                                    _selectedImage = state.value;
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return SizedBox(
+                                    child: _selectedImage == null
                                         ? CircleAvatar(
                                             backgroundColor: AppColor
                                                 .vanishColor
                                                 .withOpacity(0.2),
                                             radius: 43.0,
-                                            backgroundImage: NetworkImage(
-                                                _selectedImage?.path ?? ""),
+                                            backgroundImage: const AssetImage(
+                                                IconConstants.iccircleAvater),
                                             child: Align(
                                               alignment: Alignment.bottomRight,
                                               child: CircleAvatar(
@@ -210,8 +139,9 @@ class _CorporateProfileState extends State<CorporateProfile> {
                                                   radius: 12.0,
                                                   child: GestureDetector(
                                                       onTap: () {
-                                                        _showEditOptions(
-                                                            context);
+                                                        showImagePickerDialog(
+                                                            context,
+                                                            selectImageBloc);
                                                       },
                                                       child: Image.asset(
                                                         IconConstants.icCamera,
@@ -224,112 +154,148 @@ class _CorporateProfileState extends State<CorporateProfile> {
                                                       ))),
                                             ),
                                           )
-                                        : CircleAvatar(
-                                            backgroundColor: AppColor
-                                                .vanishColor
-                                                .withOpacity(0.2),
-                                            radius: 43.0,
-                                            backgroundImage: FileImage(File(
-                                                _selectedImage?.path ?? "")),
-                                            child: Align(
-                                              alignment: Alignment.bottomRight,
-                                              child: CircleAvatar(
-                                                  backgroundColor:
-                                                      AppColor.callColor,
-                                                  radius: 12.0,
-                                                  child: GestureDetector(
-                                                      onTap: () {
-                                                        _showEditOptions(
-                                                            context);
-                                                      },
-                                                      child: Image.asset(
-                                                        IconConstants.icCamera,
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            2 /
-                                                            100,
-                                                      ))),
-                                            ),
-                                          ),
+                                        : _selectedImage?.mimeType == "http"
+                                            ? CircleAvatar(
+                                                backgroundColor: AppColor
+                                                    .vanishColor
+                                                    .withOpacity(0.2),
+                                                radius: 43.0,
+                                                backgroundImage: NetworkImage(
+                                                    _selectedImage?.path ?? ""),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.bottomRight,
+                                                  child: CircleAvatar(
+                                                      backgroundColor:
+                                                          AppColor.callColor,
+                                                      radius: 12.0,
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            showImagePickerDialog(
+                                                                context,
+                                                                selectImageBloc);
+                                                          },
+                                                          child: Image.asset(
+                                                            IconConstants
+                                                                .icCamera,
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                2 /
+                                                                100,
+                                                          ))),
+                                                ),
+                                              )
+                                            : CircleAvatar(
+                                                backgroundColor: AppColor
+                                                    .vanishColor
+                                                    .withOpacity(0.2),
+                                                radius: 43.0,
+                                                backgroundImage: FileImage(File(
+                                                    _selectedImage?.path ??
+                                                        "")),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.bottomRight,
+                                                  child: CircleAvatar(
+                                                      backgroundColor:
+                                                          AppColor.callColor,
+                                                      radius: 12.0,
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            showImagePickerDialog(
+                                                                context,
+                                                                selectImageBloc);
+                                                          },
+                                                          child: Image.asset(
+                                                            IconConstants
+                                                                .icCamera,
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                2 /
+                                                                100,
+                                                          ))),
+                                                ),
+                                              ),
+                                  );
+                                }),
+                            10.height(),
+                            CustomTextField(
+                              controller: userNameController,
+                              hintText: appLocalization(context).corporateName,
+                              labelText: appLocalization(context).corporateName,
+                              suffix: Image.asset(
+                                IconConstants.icUsername,
+                                scale: 1.5,
                               ),
-                              10.height(),
-                              CustomTextField(
-                                controller: userNameController,
-                                hintText:
-                                    appLocalization(context).corporateName,
-                                suffix: Image.asset(
-                                  IconConstants.icUsername,
-                                  scale: 1.5,
-                                ),
-                                validator: (p0) {
-                                  if (p0?.isEmpty ?? true) {
-                                    return appLocalization(context)
-                                        .pleaseCorporateName;
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseCorporateName;
+                                }
+                                return null;
+                              },
+                            ),
+                            10.height(),
+                            CustomTextField(
+                              controller: companyNameController,
+                              hintText: appLocalization(context).companyName,
+                              labelText: appLocalization(context).companyName,
+                              suffix: Image.asset(
+                                IconConstants.icCorporateID,
+                                scale: 3,
+                              ),
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseCompanyName;
+                                }
+                                return null;
+                              },
+                            ),
+                            10.height(),
+                            CustomTextField(
+                              controller: crnIdController,
+                              hintText: appLocalization(context).crnId,
+                              labelText: appLocalization(context).crnId,
+                              suffix: Image.asset(
+                                IconConstants.icCorporateID,
+                                scale: 3,
+                              ),
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context).pleaseCrnId;
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 3 / 100,
+                            ),
+                            AppButton(
+                                text: appLocalization(context).submit,
+                                onPress: () {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    corporateBloc.add(CorporateEditProfileEvent(
+                                        user: CorporateData(
+                                      uName: userNameController.text,
+                                      company: companyNameController.text,
+                                      crn: crnIdController.text,
+                                      photo: _selectedImage?.path,
+                                      photoFile: _selectedImage,
+                                    )));
                                   }
-                                  return null;
-                                },
-                              ),
-                              10.height(),
-                              CustomTextField(
-                                controller: companyNameController,
-                                hintText: appLocalization(context).companyName,
-                                suffix: Image.asset(
-                                  IconConstants.icCorporateID,
-                                  scale: 3,
-                                ),
-                                validator: (p0) {
-                                  if (p0?.isEmpty ?? true) {
-                                    return appLocalization(context)
-                                        .pleaseCompanyName;
-                                  }
-                                  return null;
-                                },
-                              ),
-                              10.height(),
-                              CustomTextField(
-                                controller: crnIdController,
-                                hintText: appLocalization(context).crnId,
-                                suffix: Image.asset(
-                                  IconConstants.icCorporateID,
-                                  scale: 3,
-                                ),
-                                validator: (p0) {
-                                  if (p0?.isEmpty ?? true) {
-                                    return appLocalization(context).pleaseCrnId;
-                                  }
-                                  return null;
-                                },
-                              ),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    3 /
-                                    100,
-                              ),
-                              AppButton(
-                                  text: appLocalization(context).submit,
-                                  onPress: () {
-                                    if (_formKey.currentState?.validate() ??
-                                        false) {
-                                      corporateBloc
-                                          .add(CorporateEditProfileEvent(
-                                              user: CorporateData(
-                                        uName: userNameController.text,
-                                        company: companyNameController.text,
-                                        crn: crnIdController.text,
-                                        photo: _selectedImage?.path,
-                                        photoFile: _selectedImage,
-                                      )));
-                                    }
-                                  }),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    2 /
-                                    100,
-                              ),
-                            ]),
-                      ),
+                                }),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 2 / 100,
+                            ),
+                          ]),
                     ),
                   ),
                 );

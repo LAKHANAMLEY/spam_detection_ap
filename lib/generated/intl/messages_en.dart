@@ -82,6 +82,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Amount requested successfully"),
         "amountShouldBeGreaterThanZero": MessageLookupByLibrary.simpleMessage(
             "Amount should be greater than 0"),
+        "anErrorOccurredDuringGoogleSignIn":
+            MessageLookupByLibrary.simpleMessage(
+                "An error occurred during Google Sign-In."),
         "asPerDocument":
             MessageLookupByLibrary.simpleMessage("As per document"),
         "authenticationIsRequiredToAccessTheBCTPayApp":
@@ -221,6 +224,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("Date of Birth"),
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Debited from"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteAllCallLogs":
+            MessageLookupByLibrary.simpleMessage("Delete All Call Logs"),
+        "deleteCallLogs":
+            MessageLookupByLibrary.simpleMessage("Delete call logs"),
         "deleteCalls": MessageLookupByLibrary.simpleMessage("Delete all Calls"),
         "deleteMember": MessageLookupByLibrary.simpleMessage("Delete Member"),
         "deleteStaffMember":
@@ -376,6 +383,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Choose the specific gift card brand and desired value based on your needs and preferences."),
         "goBack": MessageLookupByLibrary.simpleMessage("Go back"),
         "goals": MessageLookupByLibrary.simpleMessage("Goals"),
+        "googleSignFailedPleaseAgain": MessageLookupByLibrary.simpleMessage(
+            "Google Sign-In failed. Please try again."),
         "grossTotal": MessageLookupByLibrary.simpleMessage("Gross total"),
         "haveAccount": MessageLookupByLibrary.simpleMessage("Have an Account"),
         "haveAnAccount":
@@ -859,6 +868,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select bank account to transfer to"),
         "selectCategory":
             MessageLookupByLibrary.simpleMessage("Select a category"),
+        "selectCountry": MessageLookupByLibrary.simpleMessage("Select country"),
+        "selectCountryText":
+            MessageLookupByLibrary.simpleMessage("Select Country"),
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Select language"),
         "selectState": MessageLookupByLibrary.simpleMessage("Select state"),

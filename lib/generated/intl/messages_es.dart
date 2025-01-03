@@ -84,6 +84,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Montant demandé avec succès"),
         "amountShouldBeGreaterThanZero": MessageLookupByLibrary.simpleMessage(
             "Le montant doit être supérieur à 0"),
+        "anErrorOccurredDuringGoogleSignIn":
+            MessageLookupByLibrary.simpleMessage(
+                "Se produjo un error durante el inicio de sesión en Google."),
         "asPerDocument":
             MessageLookupByLibrary.simpleMessage("Selon le document"),
         "authenticationIsRequiredToAccessTheBCTPayApp":
@@ -186,6 +189,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirmer le mot de passe"),
         "confirmSecurityPin":
             MessageLookupByLibrary.simpleMessage("Confirmar pin de seguridad"),
+        "congratulationsCreated": MessageLookupByLibrary.simpleMessage(
+            "Felicitaciones, su cuenta ha sido creada exitosamente."),
         "congratulationsSuccessfullyCreated":
             MessageLookupByLibrary.simpleMessage(
                 "Felicitaciones, su cuenta ha sido creada exitosamente."),
@@ -231,6 +236,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Fecha de nacimiento"),
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Débité de"),
         "delete": MessageLookupByLibrary.simpleMessage("Supprimer"),
+        "deleteAllCallLogs": MessageLookupByLibrary.simpleMessage(
+            "Eliminar todos los registros de llamadas"),
+        "deleteCallLogs": MessageLookupByLibrary.simpleMessage(
+            "Eliminar registros de llamadas"),
         "deleteCalls":
             MessageLookupByLibrary.simpleMessage("Eliminar llamadas"),
         "deleteMember":
@@ -396,6 +405,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Choisissez la marque de carte-cadeau spécifique et la valeur souhaitée en fonction de vos besoins et préférences."),
         "goBack": MessageLookupByLibrary.simpleMessage("Go back"),
         "goals": MessageLookupByLibrary.simpleMessage("Objectifs"),
+        "googleSignFailedPleaseAgain": MessageLookupByLibrary.simpleMessage(
+            "Error al iniciar sesión en Google. Inténtalo de nuevo."),
         "grossTotal": MessageLookupByLibrary.simpleMessage("Total brut"),
         "haveAccount": MessageLookupByLibrary.simpleMessage("tener una cuenta"),
         "haveAnAccount":
@@ -828,6 +839,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "recharge": MessageLookupByLibrary.simpleMessage("Recharger"),
         "rechargeBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Rechargez tout mobile en entrant le numéro de mobile ou en choisissant des contacts dans votre liste de contacts."),
+        "rechargeHasBeenSuccessfullyDone": MessageLookupByLibrary.simpleMessage(
+            "La recharge a été réalisée avec succès"),
         "recoverPassword":
             MessageLookupByLibrary.simpleMessage("Récupérer le mot de passe"),
         "register": MessageLookupByLibrary.simpleMessage("Registro"),
@@ -907,6 +920,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sélectionnez le compte bancaire pour transférer vers"),
         "selectCategory":
             MessageLookupByLibrary.simpleMessage("Selecciona una categoría"),
+        "selectCountry":
+            MessageLookupByLibrary.simpleMessage("Seleccione país"),
+        "selectCountryText":
+            MessageLookupByLibrary.simpleMessage("Seleccionar país"),
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Choisir la langue"),
         "selectState":

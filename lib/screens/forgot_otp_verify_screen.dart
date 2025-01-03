@@ -75,7 +75,6 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
 
   forgotOtpUserApiCall(String firstInput, String secondInput, String thirdInput,
       String fourthInput, String fifthInput, String sixthInput) async {
-    // Navigator.pushNamed(context, AppRoutes.splash);
     var argument = args(context) as ForgotOtpVerify;
     Navigator.push(
       context,

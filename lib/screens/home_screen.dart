@@ -202,12 +202,7 @@ class SecurityOption extends StatelessWidget {
                     //splashRadius: 10,
                     value: isEnabled,
                     onChanged: onToggle,
-
-                    //inactiveThumbColor: AppColor.inactiveThumbColor,
-
-                    // activeTrackColor: AppColor.secondryColor,
                     inactiveTrackColor: AppColor.secondryColor,
-                    // activeColor: AppColor.greenColor,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     //activeThumbImage:AssetImage(IconConstants.icactiveThumb),
                     // inactiveThumbImage: AssetImage(IconConstants.icinactiveThumb),

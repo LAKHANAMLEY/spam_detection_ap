@@ -135,7 +135,16 @@ class CallLogListItem extends StatelessWidget {
                     },
                     child: Text(callLog.isBlocked == 1
                         ? appLocalization(context).unblock
-                        : appLocalization(context).block))
+                        : appLocalization(context).block)),
+                PopupMenuItem(
+                    onTap: () {
+                      // deleteDeviceCallLog(
+                      //    id: contact?.id ?? "",
+                      //   number: contact?.mobileNo ?? "");
+                      callLogsListBloc.add(DeleteCallLogEvent(
+                          callLog: CallLogData(id: callLog.id)));
+                    },
+                    child: Text(appLocalization(context).deleteCallLogs))
               ],
             ),
         ],

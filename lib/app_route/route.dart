@@ -29,6 +29,11 @@ class AppRoutes {
   static const editSecurityPin = "/editSecurityPin";
   static const corporateProfile = "/corporateProfile";
   static const viewedProfile = "/viewedProfile";
+  static const changePassword = "/changePassword";
+  static const editProfile = "/editProfile";
+  static const changeSecurity = "/changeSecurity";
+  static const addStaffMember = "/addStaffMember";
+  static const login = "/login";
 
 // static const contactDetail = "/contactDetail";
 }
@@ -62,6 +67,12 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.editSecurityPin: (context) => const ChangeSecurity(),
   AppRoutes.corporateProfile: (context) => const CorporateProfile(),
   AppRoutes.viewedProfile: (context) => const ViewedProfile(),
+  AppRoutes.changePassword: (context) => const ChangePassword(),
+  AppRoutes.editProfile: (context) => const EditProfile(),
+  AppRoutes.changeSecurity: (context) => const ChangeSecurity(),
+  AppRoutes.addStaffMember: (context) => const AddStaffMember(),
+  AppRoutes.login: (context) => const Login(),
+
 
   // AppRoutes.contactDetail: (context) => const ContactDetail(),
 };
