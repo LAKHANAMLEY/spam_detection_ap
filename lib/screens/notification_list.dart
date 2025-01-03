@@ -47,7 +47,7 @@ class _NotificationListState extends State<NotificationList> {
                       sessionExpired(
                           context,
                           state.value.message ??
-                              "Session expired. Please log in again.");
+                              appLocalization(context).sessionPleaseLogInAgain);
                     } else {
                       showCustomDialog(
                         context,

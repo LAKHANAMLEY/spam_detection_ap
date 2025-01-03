@@ -290,14 +290,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(GetCallLogsState(value));
       });
     }
-
+// delete call logs
     if (event is DeleteCallLogEvent) {
       emit(ApiLoadingState());
-      await deleteCallLog(id: event.id).then((value) {
+      await deleteCallLog(callLog: event.callLog).then((value) {
         emit(DeleteCallLogState(value));
       });
     }
-
+// delete all  call logs
     if (event is DeleteAllCallLogEvent) {
       emit(ApiLoadingState());
       await deleteAllCallLogs().then((value) {

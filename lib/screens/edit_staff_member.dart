@@ -244,6 +244,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                               10.height(),
                               CustomTextField(
                                 controller: positionController,
+                                keyboardType: TextInputType.text,
                                 labelText: appLocalization(context).position,
                                 hintText: appLocalization(context).position,
                                 suffix: Image.asset(
@@ -272,14 +273,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                   return null;
                                 },
                               ),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    2 /
-                                    100,
-                              ),
-                              if (_errorMessage != null)
-                                Text(_errorMessage!,
-                                    style: const TextStyle(color: Colors.red)),
                               SizedBox(
                                 height: MediaQuery.of(context).size.height *
                                     2 /

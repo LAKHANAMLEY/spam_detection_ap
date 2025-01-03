@@ -2,6 +2,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class CountryPickerScreen extends StatefulWidget {
   final SelectionBloc? bloc;
+
   const CountryPickerScreen({super.key, this.bloc});
 
   @override
@@ -25,7 +26,7 @@ class _CountryPickerScreenState extends State<CountryPickerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: appLocalization(context).selectCountry,
+        title: appLocalization(context).selectCountryText,
       ),
       body: BlocBuilder(
           bloc: countryListBloc,
@@ -35,7 +36,7 @@ class _CountryPickerScreenState extends State<CountryPickerScreen> {
               return Column(
                 children: [
                   CustomTextField(
-                    fillColor: Colors.white,
+                    fillColor: AppColor.secondryColor,
                     controller: searchController,
                     hintText: appLocalization(context).searchHere,
                     onChanged: (value) {

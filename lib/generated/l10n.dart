@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6893,6 +6894,56 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Country`
+  String get selectCountryText {
+    return Intl.message(
+      'Select Country',
+      name: 'selectCountryText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete call logs`
+  String get deleteCallLogs {
+    return Intl.message(
+      'Delete call logs',
+      name: 'deleteCallLogs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete All Call Logs`
+  String get deleteAllCallLogs {
+    return Intl.message(
+      'Delete All Call Logs',
+      name: 'deleteAllCallLogs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google Sign-In failed. Please try again.`
+  String get googleSignFailedPleaseAgain {
+    return Intl.message(
+      'Google Sign-In failed. Please try again.',
+      name: 'googleSignFailedPleaseAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred during Google Sign-In.`
+  String get anErrorOccurredDuringGoogleSignIn {
+    return Intl.message(
+      'An error occurred during Google Sign-In.',
+      name: 'anErrorOccurredDuringGoogleSignIn',
       desc: '',
       args: [],
     );

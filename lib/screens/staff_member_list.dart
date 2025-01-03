@@ -98,7 +98,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
                       sessionExpired(
                           context,
                           state.value.message ??
-                              "Session expired. Please log in again.");
+                              appLocalization(context).sessionPleaseLogInAgain);
                     } else {
                       showCustomDialog(
                         context,

@@ -133,11 +133,11 @@ class _CorporateLoginState extends State<CorporateLogin> {
                                       },
                                       child: state.value
                                           ? Image.asset(
-                                              IconConstants.icPassLock,
+                                              IconConstants.icPassRemove,
                                               scale: 3,
                                             )
                                           : Image.asset(
-                                              IconConstants.icPassAdd,
+                                              IconConstants.icPassLock,
                                               scale: 3,
                                             )),
                                   validator: (p0) {

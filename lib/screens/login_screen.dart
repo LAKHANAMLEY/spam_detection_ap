@@ -258,7 +258,7 @@ class _LoginState extends State<Login> {
                                                       child: state.value
                                                           ? Image.asset(
                                                               IconConstants
-                                                                  .icPassAdd,
+                                                                  .icPassRemove,
                                                               scale: 3,
                                                             )
                                                           : Image.asset(

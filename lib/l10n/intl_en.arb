@@ -683,5 +683,10 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code"
+  "zip": "Zip Code",
+  "selectCountryText": "Select Country",
+  "deleteCallLogs": "Delete call logs",
+  "deleteAllCallLogs": "Delete All Call Logs",
+  "googleSignFailedPleaseAgain": "Google Sign-In failed. Please try again.",
+  "anErrorOccurredDuringGoogleSignIn": "An error occurred during Google Sign-In."
 }

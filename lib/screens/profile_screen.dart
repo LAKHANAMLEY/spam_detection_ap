@@ -433,11 +433,8 @@ class Profile extends StatelessWidget {
                             title: appLocalization(context).editProfile,
                             icon: IconConstants.icEdit,
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const EditProfile()));
+                              Navigator.pushNamed(
+                                  context, AppRoutes.editProfile);
                             },
                           ),
                         ],
@@ -474,11 +471,8 @@ class Profile extends StatelessWidget {
                           title: appLocalization(context).changePassword,
                           icon: IconConstants.icchangePass,
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ChangePassword()));
+                            Navigator.pushNamed(
+                                context, AppRoutes.changePassword);
                           },
                         ),
                         SizedBox(

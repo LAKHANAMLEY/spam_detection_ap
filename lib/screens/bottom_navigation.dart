@@ -116,10 +116,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
                             return GestureDetector(
                               onTap: () {
                                 bottomNavigationBloc.add(SelectIntEvent(4));
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => const Profile()));
                               },
                               child: (photo?.isNotEmpty ?? false)
                                   ? CircleAvatar(

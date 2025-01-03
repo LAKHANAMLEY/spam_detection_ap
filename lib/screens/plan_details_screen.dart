@@ -100,7 +100,6 @@ class _PlanDetailState extends State<PlanDetail> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
                               Radio(
-                                //focusColor: AppColor.decentgreyColor,
                                 activeColor: _selection == 1
                                     ? AppColor.borderstekColor
                                     : AppColor.secondryColor,
@@ -160,7 +159,6 @@ class _PlanDetailState extends State<PlanDetail> {
                           Row(
                             children: <Widget>[
                               Radio(
-                                // focusColor: AppColor.decentgreyColor,
                                 activeColor: AppColor.decentgreyColor,
                                 groupValue: _selection,
                                 onChanged: (selectTime) {

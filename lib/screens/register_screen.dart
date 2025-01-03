@@ -475,10 +475,7 @@ class _RegisterState extends State<Register> {
               SizedBox(width: MediaQuery.of(context).size.width * 1 / 100),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => const Login()));
+                 Navigator.pushNamed(context, AppRoutes.login);
                 },
                 child: Text(appLocalization(context).login,
                     style: const TextStyle(

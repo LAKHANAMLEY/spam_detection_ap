@@ -125,6 +125,22 @@ class DeviceCallLogs extends StatelessWidget {
                     }
                     callLogsListBloc.add(GetCallLogsEvent());
                   }
+                  if (state is DeleteCallLogState) {
+                    if (state.value.statusCode == 200) {
+                      showCustomDialog(context,
+                          dialogType: DialogType.success,
+                          subTitle: state.value.message);
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(context, state.value.message);
+                    } else {
+                      showCustomDialog(context,
+                          dialogType: DialogType.failed,
+                          subTitle: state.value.message.toString());
+                    }
+                    callLogsListBloc.add(GetCallLogsEvent());
+                    // markSpamBloc.add(GetSpamEvent());
+                  }
                 },
                 builder: (context, state) {
                   if (state is GetCallLogsState) {
@@ -178,6 +194,14 @@ class DeviceCallLogs extends StatelessWidget {
                                                             appLocalization(
                                                                     context)
                                                                 .synCallLogs)),
+                                                    PopupMenuItem(
+                                                        onTap: () {
+                                                          callLogsListBloc.add(
+                                                              DeleteAllCallLogEvent());
+                                                        },
+                                                        child: Text(appLocalization(
+                                                                context)
+                                                            .deleteAllCallLogs)),
                                                   ],
                                                 ),
                                               )

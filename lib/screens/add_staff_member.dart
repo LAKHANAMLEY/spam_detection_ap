@@ -15,6 +15,8 @@ class _AddStaffMemberState extends State<AddStaffMember> {
   double scale = 3.5;
   final _formKey = GlobalKey<FormState>();
 
+  var addStaffBloc = ApiBloc(ApiBlocInitialState());
+
   List<dynamic> countries = [];
   bool isLoading = true;
   String? selectedCountryCode;
@@ -37,7 +39,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
         appBar: CustomAppBar(title: appLocalization(context).addStaffMember),
         body: SafeArea(
             child: BlocConsumer(
-                bloc: staffBloc,
+                bloc: addStaffBloc,
                 listener: (context, state) {
                   if (state is StaffAddMemberState) {
                     if (state.value.statusCode == 200) {
@@ -333,7 +335,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                 onPress: () {
                                   if (_formKey.currentState?.validate() ??
                                       false) {
-                                    staffBloc.add(
+                                    addStaffBloc.add(
                                       StaffAddMemberEvent(
                                           email: emailController.text.trim(),
                                           password:

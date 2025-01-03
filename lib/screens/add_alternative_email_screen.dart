@@ -71,7 +71,7 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                     },
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 8 / 100,
+                    height: MediaQuery.of(context).size.height * 4 / 100,
                   ),
                   AppButton(
                       text: appLocalization(context).submit,

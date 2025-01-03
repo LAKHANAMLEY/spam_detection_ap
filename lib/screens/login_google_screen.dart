@@ -77,17 +77,17 @@ class _LoginGoogleState extends State<LoginGoogle> {
                                   lastName: ""));
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text(
-                                        'Google Sign-In failed. Please try again.')),
+                                SnackBar(
+                                    content: Text(appLocalization(context)
+                                        .googleSignFailedPleaseAgain)),
                               );
                             }
                           } catch (e) {
                             print('Error during Google Sign-In: $e');
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text(
-                                      'An error occurred during Google Sign-In.')),
+                              SnackBar(
+                                  content: Text(appLocalization(context)
+                                      .anErrorOccurredDuringGoogleSignIn)),
                             );
                           }
                         },

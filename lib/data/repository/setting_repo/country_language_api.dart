@@ -1,7 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-//isko v bloc event add kr dena
 Future<CountryLanguageResponse> fetchLanguages() async {
   final url = Uri.parse(ApiUrlConstants.languageList);
   try {

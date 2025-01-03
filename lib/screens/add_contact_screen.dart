@@ -148,13 +148,6 @@ class _AddContactState extends State<AddContact> {
                               ),
                               filled: true,
                               fillColor: AppColor.fillColor.withOpacity(0.2),
-                              /*suffixIcon: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Image.asset(
-                              IconConstants.icEmailAdd,
-                            ),
-                          ),
-                            */
                             ),
                           ),
                         ),

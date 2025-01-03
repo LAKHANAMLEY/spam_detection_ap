@@ -302,7 +302,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                       color: AppColor.lightfillColor),
                                   //labelText: 'Phone Number',
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(2),
+                                    borderRadius: BorderRadius.circular(5),
                                     borderSide: const BorderSide(
                                         width: 1.5, color: AppColor.fillColor),
                                   ),

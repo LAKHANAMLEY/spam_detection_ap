@@ -326,14 +326,14 @@ class SyncCallLogEvent extends ApiEvent {
 class GetCallLogsEvent extends ApiEvent {}
 
 class DeleteCallLogEvent extends ApiEvent {
-  final String id;
+  final CallLogData callLog;
 
   DeleteCallLogEvent({
-    required this.id,
+    required this.callLog,
   });
 
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [callLog];
 }
 
 class DeleteAllCallLogEvent extends ApiEvent {}
@@ -486,6 +486,7 @@ class SetUserOnlineOfflineEvent extends ApiEvent {
   final String isOnline;
 
   SetUserOnlineOfflineEvent({required this.isOnline});
+
   @override
   List<Object?> get props => [isOnline];
 }
