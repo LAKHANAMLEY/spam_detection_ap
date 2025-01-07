@@ -10,9 +10,6 @@ class CorporateProfile extends StatefulWidget {
 }
 
 class _CorporateProfileState extends State<CorporateProfile> {
-  String? _errorMessage;
-  File? _savedImage;
-
   final _formKey = GlobalKey<FormState>();
 
   double scale = 3.5;

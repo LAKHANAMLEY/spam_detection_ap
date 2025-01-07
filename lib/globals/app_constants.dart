@@ -18,7 +18,7 @@ var bottomNavigationBloc = SelectionBloc(SelectIntState(2));
 final localizationBloc =
     LocalizationBloc(ChangeLocaleState(const Locale("en")));
 
-Size screenSize(BuildContext context) => MediaQuery.of(context).size;
+Size mq(BuildContext context) => MediaQuery.of(context).size;
 
 bool isDarkMode(BuildContext context) =>
     Theme.of(context).brightness == Brightness.dark;

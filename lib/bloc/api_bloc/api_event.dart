@@ -513,3 +513,5 @@ class DashboardStatisticsEvent extends ApiEvent {
   @override
   List<Object?> get props => [days];
 }
+
+class GetDeviceMessagesEvent extends ApiEvent {}

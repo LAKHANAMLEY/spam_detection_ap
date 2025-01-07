@@ -460,5 +460,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(DashboardStatisticsState(value));
       });
     }
+
+    if (event is GetDeviceMessagesEvent) {
+      emit(ApiLoadingState());
+      await getSms().then((value) {
+        emit(GetDeviceMessagesState(value));
+      });
+    }
   }
 }

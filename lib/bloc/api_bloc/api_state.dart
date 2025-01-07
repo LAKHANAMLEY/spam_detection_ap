@@ -522,3 +522,12 @@ class DashboardStatisticsState extends ApiState {
   @override
   List<Object?> get props => [value];
 }
+
+class GetDeviceMessagesState extends ApiState {
+  final List<SmsMessage> value;
+
+  GetDeviceMessagesState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}

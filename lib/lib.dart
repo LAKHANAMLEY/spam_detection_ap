@@ -141,7 +141,7 @@ export 'screens/add_alternative_email_screen.dart';
 export 'screens/add_contact_screen.dart';
 export 'screens/add_family_member.dart';
 export 'screens/add_staff_member.dart';
-export 'screens/all_messages.dart';
+export 'screens/messages.dart';
 export 'screens/blocked_number_screen.dart';
 export 'screens/bottom_navigation.dart';
 export 'screens/change_password_screen.dart';
