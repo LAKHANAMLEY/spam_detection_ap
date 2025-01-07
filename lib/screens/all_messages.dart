@@ -14,6 +14,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        //backgroundColor: AppColor.whiteLightColor,
         body: Column(children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
@@ -24,30 +25,30 @@ class _MessagesScreenState extends State<MessagesScreen> {
             prefixIcon: const Icon(Icons.search),
             hintText: appLocalization(context).searchMore,
             border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(6)),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
             hintStyle: const TextStyle(
               color: Color(0xffB2B8BD),
             ),
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Color(0xffE1E6EB), width: 1.0),
-              borderRadius: BorderRadius.all(Radius.circular(12)),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide:
                   const BorderSide(width: 0.5, color: Color(0xffE1E6EB)),
             ),
-            fillColor: AppColor.whiteLight.withOpacity(0.2),
+            fillColor: AppColor.secondryColor,
             filled: true,
           ),
         ),
       ),
-      const ListTile(
-        leading: CircleAvatar(
+      ListTile(
+        leading: const CircleAvatar(
           backgroundImage: AssetImage(ImageConstants.imageRobert),
         ),
-        title: Row(
+        title: const Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -60,16 +61,18 @@ class _MessagesScreenState extends State<MessagesScreen> {
             ),
           ],
         ),
-        subtitle: Text("Dear Customer, You have one missed call."),
+        subtitle: Text(
+          appLocalization(context).dearCustomerMissedCall,
+        ),
         trailing: Icon(
           Icons.arrow_forward_ios,
         ),
       ),
-      const ListTile(
-        leading: CircleAvatar(
+      ListTile(
+        leading: const CircleAvatar(
           backgroundImage: AssetImage(ImageConstants.imageJames),
         ),
-        title: Row(
+        title: const Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -82,12 +85,14 @@ class _MessagesScreenState extends State<MessagesScreen> {
             ),
           ],
         ),
-        subtitle: Text("Dear Customer, You have one missed call."),
+        subtitle: Text(
+          appLocalization(context).dearCustomerMissedCall,
+        ),
         trailing: Icon(
           Icons.arrow_forward_ios,
         ),
       ),
-      const ListTile(
+      ListTile(
         leading: CircleAvatar(
           backgroundImage: AssetImage(ImageConstants.imageKelvin),
         ),
@@ -104,12 +109,12 @@ class _MessagesScreenState extends State<MessagesScreen> {
             ),
           ],
         ),
-        subtitle: Text("Dear Applicant,the last date to apply today."),
+        subtitle: Text(appLocalization(context).dearApplicantToday),
         trailing: Icon(
           Icons.arrow_forward_ios,
         ),
       ),
-      const ListTile(
+      ListTile(
         leading: CircleAvatar(
           backgroundImage: AssetImage(ImageConstants.imageSame),
         ),
@@ -126,13 +131,13 @@ class _MessagesScreenState extends State<MessagesScreen> {
             ),
           ],
         ),
-        subtitle: Text("Biggest scholarship test for Gate candidates."),
+        subtitle: Text(appLocalization(context).biggestScholarshipCandidates),
         trailing: Icon(
           Icons.arrow_forward_ios,
         ),
       ),
-      const ListTile(
-        leading: CircleAvatar(
+      ListTile(
+        leading: const CircleAvatar(
           backgroundImage: AssetImage(ImageConstants.imageLasey),
         ),
         title: Row(
@@ -148,7 +153,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
             ),
           ],
         ),
-        subtitle: Text("Dear User your profile is shortlisted."),
+        subtitle: Text(appLocalization(context).dearUseShortlisted),
         trailing: Icon(
           Icons.arrow_forward_ios,
         ),

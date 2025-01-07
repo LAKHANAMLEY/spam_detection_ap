@@ -63,7 +63,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                             child: Text(
                           appLocalization(context).login,
                           style: const TextStyle(
-                              color: AppColor.bluelightColor,
+                              color: AppColor.blueLightColor,
                               fontSize: 35,
                               fontFamily: AppFont.fontFamily,
                               fontWeight: FontWeight.w600),
@@ -105,7 +105,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                           hintText: appLocalization(context).emailAddress,
                           labelText: appLocalization(context).emailAddress,
                           suffix: Image.asset(
-                            IconConstants.icfluentMail,
+                            IconConstants.icFluentMail,
                             scale: 3,
                           ),
                           validator: (p0) {

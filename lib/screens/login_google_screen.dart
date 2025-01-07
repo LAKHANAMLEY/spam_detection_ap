@@ -55,7 +55,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                           child: Text(
                         appLocalization(context).login,
                         style: const TextStyle(
-                            color: AppColor.bluelightColor,
+                            color: AppColor.blueLightColor,
                             fontSize: 35,
                             fontFamily: AppFont.fontFamily,
                             fontWeight: FontWeight.w600),
@@ -110,7 +110,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                                 decoration: const BoxDecoration(
                                   image: DecorationImage(
                                       image: AssetImage(
-                                        IconConstants.icgoogleLogo,
+                                        IconConstants.icGoogleLogo,
                                       ),
                                       fit: BoxFit.cover),
                                   shape: BoxShape.circle,
@@ -156,7 +156,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                                 decoration: const BoxDecoration(
                                   image: DecorationImage(
                                       image:
-                                          AssetImage(IconConstants.icappleLogo),
+                                          AssetImage(IconConstants.icAppleLogo),
                                       fit: BoxFit.cover),
                                   shape: BoxShape.circle,
                                 ),
@@ -251,7 +251,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                             },
                             child: Text(appLocalization(context).register,
                                 style: const TextStyle(
-                                    color: AppColor.yellowlightColor,
+                                    color: AppColor.yellowLightColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15)),
                           ),

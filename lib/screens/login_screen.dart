@@ -10,6 +10,9 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   // int tabIndex = 0;
+  var selectPhoneBloc =
+      SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
+  CountryData? selectedPhoneCodeCountry;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -104,7 +107,7 @@ class _LoginState extends State<Login> {
                             child: Text(
                           appLocalization(context).login,
                           style: const TextStyle(
-                              color: AppColor.bluelightColor,
+                              color: AppColor.blueLightColor,
                               fontSize: 35,
                               fontFamily: AppFont.fontFamily,
                               fontWeight: FontWeight.w600),
@@ -157,7 +160,7 @@ class _LoginState extends State<Login> {
                                               child: Center(
                                                 child: tabIndex == 1
                                                     ? Image.asset(IconConstants
-                                                        .icphoneunSelect) // Show secondary image
+                                                        .icPhoneUnSelect) // Show secondary image
                                                     : Image.asset(IconConstants
                                                         .icSMSSelected), // Show primary image
                                               ),
@@ -214,7 +217,7 @@ class _LoginState extends State<Login> {
                                           hintText: appLocalization(context)
                                               .emailAddress,
                                           suffix: Image.asset(
-                                            IconConstants.icEmailadd,
+                                            IconConstants.icEmailAdd,
                                             scale: 1.5,
                                           ),
                                           validator: (p0) {
@@ -372,7 +375,7 @@ class _LoginState extends State<Login> {
                                                     .register,
                                                 style: const TextStyle(
                                                     color: AppColor
-                                                        .yellowlightColor,
+                                                        .yellowLightColor,
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 15)),
                                           ),
@@ -385,58 +388,55 @@ class _LoginState extends State<Login> {
                                               5 /
                                               100),
                                     ] else ...[
+                                      10.height(),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 20, right: 20),
-                                        child: IntlPhoneField(
-                                          controller: phoneController,
-                                          decoration: InputDecoration(
-                                            hintText: appLocalization(context)
-                                                .phoneNumber,
-                                            hintStyle: const TextStyle(
-                                                color: AppColor.lightfillColor,
-                                                fontFamily: AppFont.fontFamily,
-                                                fontWeight: FontWeight.w600),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              borderSide: const BorderSide(
-                                                  width: 1.5,
-                                                  color: AppColor.fillColor),
-                                            ),
-                                            focusedBorder:
-                                                const OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: AppColor.fillColor,
-                                                  width: 1.5),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(5)),
-                                            ),
-                                            filled: true,
-                                            fillColor: AppColor.fillColor
-                                                .withOpacity(0.2),
-                                          ),
-                                          initialCountryCode: 'IN',
-                                          onChanged: (phone) {
-                                            countryCode = phone.countryCode;
-                                            // enteredPhone = phone.completeNumber;
-                                            print(phone.completeNumber);
-                                            print(phone.countryCode);
-                                          },
-                                          validator: (p0) {
-                                            if (p0?.isEmpty ?? true) {
-                                              return "Please enter a valid phone number"; // phone number dart me empty
-                                            }
-                                            return null;
-                                          },
-                                        ),
+                                            left: 18, right: 18),
+                                        child: BlocConsumer(
+                                            bloc: selectPhoneBloc,
+                                            listener: (context, state) {
+                                              if (state is SelectCountryState) {
+                                                selectedPhoneCodeCountry =
+                                                    state.value;
+                                              }
+                                            },
+                                            builder: (context, state) {
+                                              return CustomTextField(
+                                                keyboardType:
+                                                    TextInputType.phone,
+                                                //readOnly: true,
+                                                controller: phoneController,
+                                                hintText:
+                                                    appLocalization(context)
+                                                        .phoneNumber,
+                                                labelText:
+                                                    appLocalization(context)
+                                                        .phoneNumber,
+                                                suffix: Image.asset(
+                                                  IconConstants.icCallAdd,
+                                                  scale: 1.5,
+                                                ),
+                                                prefix: CountryPhoneCodePrefix(
+                                                  bloc: selectPhoneBloc,
+                                                ),
+                                                validator: (p0) {
+                                                  if (p0?.isEmpty ?? true) {
+                                                    return appLocalization(
+                                                            context)
+                                                        .pleaseEnterPhone;
+                                                  }
+                                                  return null;
+                                                },
+                                              );
+                                            }),
                                       ),
                                       SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              2 /
-                                              100),
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                2 /
+                                                100,
+                                      ),
+                                      10.height(),
                                       AppButton(
                                           text: appLocalization(context).getOtp,
                                           onPress: () {
@@ -519,7 +519,7 @@ class _LoginState extends State<Login> {
                                                     .register,
                                                 style: const TextStyle(
                                                     color: AppColor
-                                                        .yellowlightColor,
+                                                        .yellowLightColor,
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 15)),
                                           ),

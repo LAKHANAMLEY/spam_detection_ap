@@ -688,5 +688,22 @@
   "deleteCallLogs": "Delete call logs",
   "deleteAllCallLogs": "Delete All Call Logs",
   "googleSignFailedPleaseAgain": "Google Sign-In failed. Please try again.",
-  "anErrorOccurredDuringGoogleSignIn": "An error occurred during Google Sign-In."
+  "anErrorOccurredDuringGoogleSignIn": "An error occurred during Google Sign-In.",
+  "dearCustomerMissedCall": "Dear Customer, You have one missed call.",
+  "dearApplicantToday": "Dear Applicant,the last date to apply today.",
+  "biggestScholarshipCandidates": "Biggest scholarship test for Gate candidates.",
+  "dearUseShortlisted": "Dear User your profile is shortlisted.",
+  "pleaseEnterPhone": "Please Enter Phone Number",
+  "whoViewedMyProfile": "Who viewed my profile",
+  "inIndiaViewedYourProfileRecently": "127 people(127 in india) viewed your profile recently",
+  "upgradeToPremiumOutWho": "Upgrade to Premium to find out who",
+  "upgradeUsersSpamDetectionPremium": "Upgrade to join + 1 million users on spam detection premium",
+  "freeTrialForNewSubscribers": "3 days free trial for new subscribers only",
+  "youCanManageYourSubscription": "You can manage your subscription or cancel anytime in your Google account settings.Specific Terms apply.",
+  "learnMore": "Learn More",
+  "yearlyPlan": "YEARLY PLAN",
+  "quarterlyPlan": "QUARTERLY PLAN",
+  "monthlyPlan": "MONTHLY PLAN",
+  "editContact": "Edit Contact",
+  "viewProfile": "View profile"
 }

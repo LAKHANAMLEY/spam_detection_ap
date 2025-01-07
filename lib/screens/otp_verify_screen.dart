@@ -172,7 +172,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                   appLocalization(context).otpVerification,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      color: AppColor.bluelightColor,
+                      color: AppColor.blueLightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600),
@@ -216,7 +216,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                               height: 55,
                               child: Center(
                                 child: TextFormField(
-                                  cursorColor: AppColor.yellowlightColor,
+                                  cursorColor: AppColor.yellowLightColor,
                                   autofocus: true,
                                   readOnly: false,
                                   focusNode: pin1FocusNode,
@@ -233,7 +233,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                       borderSide: BorderSide(
                                           color: firstInputController
                                                   .text.isNotEmpty
-                                              ? AppColor.deepyelloeColor
+                                              ? AppColor.deepYellowColor
                                               : AppColor.fillColor
                                                   .withOpacity(0.2),
                                           width: 1.5),
@@ -255,7 +255,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                   style: const TextStyle(
                                       fontSize: 28,
                                       fontWeight: FontWeight.w500,
-                                      color: AppColor.deepyelloeColor),
+                                      color: AppColor.deepYellowColor),
                                   keyboardType: TextInputType.number,
                                   inputFormatters: <TextInputFormatter>[
                                     FilteringTextInputFormatter.allow(
@@ -318,7 +318,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     borderSide: BorderSide(
                                         color: secondInputController
                                                 .text.isNotEmpty
-                                            ? AppColor.deepyelloeColor
+                                            ? AppColor.deepYellowColor
                                             : AppColor.fillColor
                                                 .withOpacity(0.2),
                                         width: 1.5),
@@ -341,8 +341,8 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     fontWeight: FontWeight.w500,
                                     color:
                                         (secondInputController.text.isNotEmpty)
-                                            ? AppColor.deepyelloeColor
-                                            : AppColor.deepyelloeColor),
+                                            ? AppColor.deepYellowColor
+                                            : AppColor.deepYellowColor),
                               ),
                             ),
                             SizedBox(
@@ -372,7 +372,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     borderSide: BorderSide(
                                         color: (thirdInputController
                                                 .text.isNotEmpty)
-                                            ? AppColor.deepyelloeColor
+                                            ? AppColor.deepYellowColor
                                             : AppColor.fillColor
                                                 .withOpacity(0.2),
                                         width: 1.5),
@@ -395,8 +395,8 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     fontWeight: FontWeight.w700,
                                     color:
                                         (thirdInputController.text.isNotEmpty)
-                                            ? AppColor.deepyelloeColor
-                                            : AppColor.deepyelloeColor),
+                                            ? AppColor.deepYellowColor
+                                            : AppColor.deepYellowColor),
                                 focusNode: pin3FocusNode,
                                 onTap: () {
                                   pin3FocusNode!.requestFocus();
@@ -417,7 +417,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                               width: 50,
                               height: 55,
                               child: TextFormField(
-                                cursorColor: AppColor.yellowlightColor,
+                                cursorColor: AppColor.yellowLightColor,
 
                                 autofocus: true,
                                 readOnly: false,
@@ -442,7 +442,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     borderSide: BorderSide(
                                         color: (forthInputController
                                                 .text.isNotEmpty)
-                                            ? AppColor.deepyelloeColor
+                                            ? AppColor.deepYellowColor
                                             : AppColor.fillColor
                                                 .withOpacity(0.2),
                                         width: 1.5),
@@ -465,8 +465,8 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     fontWeight: FontWeight.w500,
                                     color:
                                         (forthInputController.text.isNotEmpty)
-                                            ? AppColor.deepyelloeColor
-                                            : AppColor.deepyelloeColor),
+                                            ? AppColor.deepYellowColor
+                                            : AppColor.deepYellowColor),
                                 focusNode: pin4FocusNode,
                                 onTap: () {
                                   pin4FocusNode!.requestFocus();
@@ -509,7 +509,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     borderSide: BorderSide(
                                         color: (thirdInputController
                                                 .text.isNotEmpty)
-                                            ? AppColor.deepyelloeColor
+                                            ? AppColor.deepYellowColor
                                             : AppColor.fillColor
                                                 .withOpacity(0.2),
                                         width: 1.5),
@@ -532,8 +532,8 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     fontWeight: FontWeight.w700,
                                     color:
                                         (thirdInputController.text.isNotEmpty)
-                                            ? AppColor.deepyelloeColor
-                                            : AppColor.deepyelloeColor),
+                                            ? AppColor.deepYellowColor
+                                            : AppColor.deepYellowColor),
                                 focusNode: pin5FocusNode,
                                 onTap: () {
                                   pin5FocusNode!.requestFocus();
@@ -554,7 +554,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                               width: 50,
                               height: 55,
                               child: TextFormField(
-                                cursorColor: AppColor.yellowlightColor,
+                                cursorColor: AppColor.yellowLightColor,
                                 focusNode: pin6FocusNode,
                                 autofocus: true,
                                 readOnly: false,
@@ -579,7 +579,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     borderSide: BorderSide(
                                         color: (forthInputController
                                                 .text.isNotEmpty)
-                                            ? AppColor.deepyelloeColor
+                                            ? AppColor.deepYellowColor
                                             : AppColor.fillColor
                                                 .withOpacity(0.2),
                                         width: 1.5),
@@ -602,8 +602,8 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                     fontWeight: FontWeight.w500,
                                     color:
                                         (forthInputController.text.isNotEmpty)
-                                            ? AppColor.deepyelloeColor
-                                            : AppColor.deepyelloeColor),
+                                            ? AppColor.deepYellowColor
+                                            : AppColor.deepYellowColor),
                                 onTap: () {
                                   pin6FocusNode?.requestFocus();
                                 },
@@ -646,7 +646,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                             },
                             child: Text(appLocalization(context).resendOtp,
                                 style: const TextStyle(
-                                    color: AppColor.yellowlightColor,
+                                    color: AppColor.yellowLightColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15)),
                           ),

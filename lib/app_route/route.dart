@@ -35,6 +35,10 @@ class AppRoutes {
   static const changeSecurity = "/changeSecurity";
   static const addStaffMember = "/addStaffMember";
   static const login = "/login";
+  static const registerSuccess = "/registerSuccess";
+  static const forgotPassword = "/forgotPassword";
+  static const registerGoogle = "/registerGoogle";
+  static const addContact = "/addContact";
 
 // static const contactDetail = "/contactDetail";
 }
@@ -74,6 +78,10 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.changeSecurity: (context) => const ChangeSecurity(),
   AppRoutes.addStaffMember: (context) => const AddStaffMember(),
   AppRoutes.login: (context) => const Login(),
+  AppRoutes.registerSuccess: (context) => const RegistrationSuccessful(),
+  AppRoutes.forgotPassword: (context) => const ForgotPassword(),
+  AppRoutes.registerGoogle: (context) => const RegisterGoogle(),
+  AppRoutes.addContact: (context) => const AddContact(),
 
   // AppRoutes.contactDetail: (context) => const ContactDetail(),
 };

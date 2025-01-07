@@ -11,7 +11,7 @@ class ContactList extends StatelessWidget {
     // List<ContactData> filteredContacts = [];
     // contactListBloc.add(GetContactEvent());
     return Scaffold(
-      // backgroundColor: AppColor.secondryColor,
+      //backgroundColor: AppColor.whiteLightColor,
       appBar: CustomAppBar(title: appLocalization(context).contactList),
       body: SafeArea(
         child: BlocConsumer(
@@ -46,7 +46,6 @@ class ContactList extends StatelessWidget {
                       onTap: null,
                       fillColor: Colors.white,
                       onChanged: (value) {
-                        // filterSearchResults();
                         searchBloc.add(SelectStringEvent(value));
                       },
                       // controller: searchController,
@@ -174,13 +173,12 @@ class ContactList extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Image.asset(
-          IconConstants.icaddCall,
+          IconConstants.icAddCall,
           height: MediaQuery.of(context).size.height * 6 / 100,
           width: MediaQuery.of(context).size.width * 6 / 100,
         ),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AddContact()));
+          Navigator.pushNamed(context, AppRoutes.addContact);
         },
       ),
     );

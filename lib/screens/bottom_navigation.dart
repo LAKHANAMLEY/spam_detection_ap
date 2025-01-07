@@ -104,7 +104,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
                       child: Image.asset(
                         IconConstants.icDrawerDetails,
                         scale: 2,
-                        // height: MediaQuery.of(context).size.height * 4 / 100,
                       ),
                     ),
                     title: "",
@@ -310,8 +309,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     ),
                   ],
                   color: AppColor.callColor,
-                  buttonBackgroundColor: AppColor.yellowdeep,
-                  backgroundColor: AppColor.whiteLight,
+                  buttonBackgroundColor: AppColor.yellowDeep,
+                  backgroundColor: AppColor.whiteLightColor,
                   animationCurve: Curves.easeInOut,
                   animationDuration: const Duration(milliseconds: 600),
                   onTap: (index) {

@@ -48,16 +48,16 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
             onChanged: (value) => filterSearchResults(value),
             controller: editingController,
             decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.search),
+              prefixIcon: const Icon(Icons.search, color: Colors.redAccent),
               hintText: appLocalization(context).searchMore,
               border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(6)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               hintStyle: const TextStyle(
                 color: Color(0xffB2B8BD),
               ),
               focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xffE1E6EB), width: 1.0),
+                borderSide: BorderSide(color: Color(0xffE1E6EB), width: 1.5),
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
               enabledBorder: OutlineInputBorder(
@@ -65,7 +65,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                 borderSide:
                     const BorderSide(width: 0.5, color: Color(0xffE1E6EB)),
               ),
-              fillColor: AppColor.whiteLight.withOpacity(0.2),
+              fillColor: AppColor.secondryColor,
               filled: true,
             ),
           ),
@@ -192,12 +192,12 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Image.asset(
-          IconConstants.icaddCall,
+          IconConstants.icAddCall,
           height: MediaQuery.of(context).size.height * 6 / 100,
           width: MediaQuery.of(context).size.width * 6 / 100,
         ),
         onPressed: () {
-          Navigator.pushNamed(context, AppRoutes.addStaffMember);
+          Navigator.pushNamed(context, AppRoutes.familyAddMember);
         },
       ),
     );

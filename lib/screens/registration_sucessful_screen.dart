@@ -30,7 +30,7 @@ class _RegistrationSuccessfulState extends State<RegistrationSuccessful> {
               appLocalization(context).registrationSuccessfulText,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                  color: AppColor.bluelightColor,
+                  color: AppColor.blueLightColor,
                   fontSize: 35,
                   fontFamily: AppFont.fontFamily,
                   fontWeight: FontWeight.w600),
@@ -42,7 +42,7 @@ class _RegistrationSuccessfulState extends State<RegistrationSuccessful> {
           Text(
             '${appLocalization(context).yey} ${widget.user?.name}',
             style: const TextStyle(
-                color: AppColor.yellowlightColor,
+                color: AppColor.yellowLightColor,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -68,10 +68,7 @@ class _RegistrationSuccessfulState extends State<RegistrationSuccessful> {
           AppButton(
               text: appLocalization(context).exploreHomePage,
               onPress: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const BottomNavigation()));
+                Navigator.pushNamed(context, AppRoutes.bottomNavigation);
               })
         ]))));
   }

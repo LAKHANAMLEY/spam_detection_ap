@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6944,6 +6943,176 @@ class S {
     return Intl.message(
       'An error occurred during Google Sign-In.',
       name: 'anErrorOccurredDuringGoogleSignIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dear Customer, You have one missed call.`
+  String get dearCustomerMissedCall {
+    return Intl.message(
+      'Dear Customer, You have one missed call.',
+      name: 'dearCustomerMissedCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dear Applicant,the last date to apply today.`
+  String get dearApplicantToday {
+    return Intl.message(
+      'Dear Applicant,the last date to apply today.',
+      name: 'dearApplicantToday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biggest scholarship test for Gate candidates.`
+  String get biggestScholarshipCandidates {
+    return Intl.message(
+      'Biggest scholarship test for Gate candidates.',
+      name: 'biggestScholarshipCandidates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dear User your profile is shortlisted.`
+  String get dearUseShortlisted {
+    return Intl.message(
+      'Dear User your profile is shortlisted.',
+      name: 'dearUseShortlisted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Phone Number`
+  String get pleaseEnterPhone {
+    return Intl.message(
+      'Please Enter Phone Number',
+      name: 'pleaseEnterPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Who viewed my profile`
+  String get whoViewedMyProfile {
+    return Intl.message(
+      'Who viewed my profile',
+      name: 'whoViewedMyProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `127 people(127 in india) viewed your profile recently`
+  String get inIndiaViewedYourProfileRecently {
+    return Intl.message(
+      '127 people(127 in india) viewed your profile recently',
+      name: 'inIndiaViewedYourProfileRecently',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upgrade to Premium to find out who`
+  String get upgradeToPremiumOutWho {
+    return Intl.message(
+      'Upgrade to Premium to find out who',
+      name: 'upgradeToPremiumOutWho',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upgrade to join + 1 million users on spam detection premium`
+  String get upgradeUsersSpamDetectionPremium {
+    return Intl.message(
+      'Upgrade to join + 1 million users on spam detection premium',
+      name: 'upgradeUsersSpamDetectionPremium',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `3 days free trial for new subscribers only`
+  String get freeTrialForNewSubscribers {
+    return Intl.message(
+      '3 days free trial for new subscribers only',
+      name: 'freeTrialForNewSubscribers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can manage your subscription or cancel anytime in your Google account settings.Specific Terms apply.`
+  String get youCanManageYourSubscription {
+    return Intl.message(
+      'You can manage your subscription or cancel anytime in your Google account settings.Specific Terms apply.',
+      name: 'youCanManageYourSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learn More`
+  String get learnMore {
+    return Intl.message(
+      'Learn More',
+      name: 'learnMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YEARLY PLAN`
+  String get yearlyPlan {
+    return Intl.message(
+      'YEARLY PLAN',
+      name: 'yearlyPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QUARTERLY PLAN`
+  String get quarterlyPlan {
+    return Intl.message(
+      'QUARTERLY PLAN',
+      name: 'quarterlyPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MONTHLY PLAN`
+  String get monthlyPlan {
+    return Intl.message(
+      'MONTHLY PLAN',
+      name: 'monthlyPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Contact`
+  String get editContact {
+    return Intl.message(
+      'Edit Contact',
+      name: 'editContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View profile`
+  String get viewProfile {
+    return Intl.message(
+      'View profile',
+      name: 'viewProfile',
       desc: '',
       args: [],
     );

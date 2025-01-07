@@ -10,7 +10,6 @@ class EditStaffMember extends StatefulWidget {
 }
 
 class _EditStaffMemberState extends State<EditStaffMember> {
-  String? _errorMessage;
   double scale = 3.5;
 
   final _formKey = GlobalKey<FormState>();
@@ -111,7 +110,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                                   .withOpacity(0.2),
                                               radius: 43.0,
                                               backgroundImage: const AssetImage(
-                                                  IconConstants.iccircleAvater),
+                                                  IconConstants.icCircleAvatar),
                                               child: Align(
                                                 alignment:
                                                     Alignment.bottomRight,

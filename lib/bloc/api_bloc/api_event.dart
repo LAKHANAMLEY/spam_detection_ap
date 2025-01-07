@@ -13,6 +13,7 @@ class GetCategoryListEvent extends ApiEvent {}
 
 class GetSpamEvent extends ApiEvent {}
 
+// sync contact
 class SyncContactEvent extends ApiEvent {
   final List<Contact> contacts;
 
@@ -64,7 +65,7 @@ class ChangeSecurityEvent extends ApiEvent {
       ];
 }
 
-//first we create event
+//Mark Spam
 
 class MarkSpamEvent extends ApiEvent {
   final String contactId;
@@ -86,6 +87,7 @@ class MarkSpamEvent extends ApiEvent {
       [contactId, comment, numberType, categoryId, phone];
 }
 
+// remove spam
 class RemoveSpamEvent extends ApiEvent {
   final String contactId;
 
@@ -99,6 +101,7 @@ class RemoveSpamEvent extends ApiEvent {
       ];
 }
 
+// Device callLog
 class GetDeviceCallLogEvent extends ApiEvent {
   final String? number;
   final DateTime? dateTimeFrom;
@@ -114,6 +117,7 @@ class GetDeviceCallLogEvent extends ApiEvent {
   List<Object?> get props => [number, dateTimeFrom, dateTimeTo];
 }
 
+// Social SignUp
 class SocialSignupEvent extends ApiEvent {
   final String email;
   final String signupMethod;
@@ -130,6 +134,7 @@ class SocialSignupEvent extends ApiEvent {
   List<Object?> get props => [email, signupMethod, firstName, lastName];
 }
 
+//Update Profile
 class UpdateProfileEvent extends ApiEvent {
   final User? user;
 
@@ -139,10 +144,13 @@ class UpdateProfileEvent extends ApiEvent {
   List<Object?> get props => [user];
 }
 
+// user profile
 class GetUserProfileEvent extends ApiEvent {}
 
+// family member list
 class GetFamilyMemberListEvent extends ApiEvent {}
 
+// family member deatils
 class GetFamilyMemberDetailEvent extends ApiEvent {
   final String id;
 
@@ -152,6 +160,7 @@ class GetFamilyMemberDetailEvent extends ApiEvent {
   List<Object?> get props => [id];
 }
 
+// add family member
 class FamilyAddMemberEvent extends ApiEvent {
   final String email;
   final String password;
@@ -189,6 +198,7 @@ class FamilyAddMemberEvent extends ApiEvent {
       ];
 }
 
+// edit family member
 class FamilyEditMemberEvent extends ApiEvent {
   final FamilyMember user;
 
@@ -198,6 +208,7 @@ class FamilyEditMemberEvent extends ApiEvent {
   List<Object?> get props => [user];
 }
 
+// family delete member
 class FamilyDeleteMemberEvent extends ApiEvent {
   final String id;
 
@@ -209,6 +220,7 @@ class FamilyDeleteMemberEvent extends ApiEvent {
   List<Object?> get props => [id];
 }
 
+// plan list
 class GetPlanListEvent extends ApiEvent {}
 
 class GetCallDurationEvent extends ApiEvent {}
@@ -232,6 +244,7 @@ class BlockUnBlockEvent extends ApiEvent {
   List<Object?> get props => [contactId, comments];
 }
 
+// corporate Edit
 class CorporateEditProfileEvent extends ApiEvent {
   final CorporateData? user;
 
@@ -253,15 +266,16 @@ class GetStaffMemberDetailEvent extends ApiEvent {
   List<Object?> get props => [id];
 }
 
+// staff Add member
 class StaffAddMemberEvent extends ApiEvent {
   final String email;
   final String password;
   final String firstName;
   final String lastName;
   final String relation;
-  final String supportpin;
+  final String supportPin;
   final String phone;
-  final String countrycode;
+  final String countryCode;
   final XFile? photoFile;
 
   StaffAddMemberEvent({
@@ -270,9 +284,9 @@ class StaffAddMemberEvent extends ApiEvent {
     required this.firstName,
     required this.lastName,
     required this.relation,
-    required this.supportpin,
+    required this.supportPin,
     required this.phone,
-    required this.countrycode,
+    required this.countryCode,
     this.photoFile,
   });
 
@@ -282,9 +296,9 @@ class StaffAddMemberEvent extends ApiEvent {
         firstName,
         lastName,
         relation,
-        supportpin,
+        supportPin,
         phone,
-        countrycode,
+        countryCode,
         password,
         photoFile,
       ];
@@ -512,4 +526,25 @@ class DashboardStatisticsEvent extends ApiEvent {
 
   @override
   List<Object?> get props => [days];
+}
+
+//edit contact
+class EditContactEvent extends ApiEvent {
+  final String contactId;
+  final String name;
+  final String numberType;
+  final String countryCode;
+
+  // final String phone;
+
+  EditContactEvent({
+    required this.contactId,
+    required this.name,
+    required this.numberType,
+    required this.countryCode,
+    //required this.phone,
+  });
+
+  @override
+  List<Object?> get props => [contactId, name, numberType, countryCode];
 }

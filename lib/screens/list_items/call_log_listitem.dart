@@ -173,7 +173,7 @@ String getCallTypeImage(CallLogData callLog) {
       case CallType.missed:
         return IconConstants.icMissCall;
       case CallType.voiceMail:
-        return IconConstants.icfluentMail;
+        return IconConstants.icFluentMail;
       case CallType.rejected:
         return IconConstants.icMissCall;
       case CallType.blocked:

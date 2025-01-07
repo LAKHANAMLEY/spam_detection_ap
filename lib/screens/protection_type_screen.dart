@@ -32,7 +32,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                   appLocalization(context).protectionType,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      color: AppColor.bluelightColor,
+                      color: AppColor.blueLightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600),

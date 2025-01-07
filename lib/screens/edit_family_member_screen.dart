@@ -80,7 +80,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                         subTitle: state.value.message,
                         dialogType: DialogType.failed);
                   }
-
                   familyMemberBloc.add(
                       GetFamilyMemberDetailEvent(familyMember?.userId ?? ''));
                   familyBloc.add(GetFamilyMemberListEvent());
@@ -114,7 +113,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                                   .withOpacity(0.2),
                                               radius: 43.0,
                                               backgroundImage: const AssetImage(
-                                                  IconConstants.iccircleAvater),
+                                                  IconConstants.icCircleAvatar),
                                               child: Align(
                                                 alignment:
                                                     Alignment.bottomRight,

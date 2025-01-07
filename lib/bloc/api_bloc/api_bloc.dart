@@ -12,13 +12,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(GetDeviceContactState(value));
       });
     }
+    // get contact
     if (event is GetContactEvent) {
       emit(ApiLoadingState());
       await getContacts().then((value) {
         emit(GetContactState(value));
       });
     }
-
+// get category list
     if (event is GetCategoryListEvent) {
       emit(ApiLoadingState());
       await getCategories().then((value) {
@@ -32,7 +33,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(SyncContactState(value));
       });
     }
-
+// Spam call
     if (event is GetSpamEvent) {
       emit(ApiLoadingState());
       await getSpams().then((value) => emit(GetSpamState(value)));
@@ -59,7 +60,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(ChangeSecurityState(value));
       });
     }
-
+// marl number as a spam
     if (event is MarkSpamEvent) {
       emit(ApiLoadingState());
       await markSpam(
@@ -70,14 +71,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
               phone: event.phone)
           .then((value) => emit(MarkSpamState(value)));
     }
-
+// remove number as a spam
     if (event is RemoveSpamEvent) {
       emit(ApiLoadingState());
       await removeSpam(contactId: event.contactId).then((value) {
         emit(RemoveSpamState(value));
       });
     }
-
+// Call Log
     if (event is GetDeviceCallLogEvent) {
       emit(ApiLoadingState());
       await getDeviceCallLogs(
@@ -88,7 +89,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(GetDeviceCallLogState(value));
       });
     }
-
+// Social signup
     if (event is SocialSignupEvent) {
       emit(ApiLoadingState());
       await socialSignUp(
@@ -100,14 +101,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(SocialSignUpState(value));
       });
     }
-
+// User profile
     if (event is GetUserProfileEvent) {
       emit(ApiLoadingState());
       await getUserProfile().then((value) {
         emit(GetUserProfileState(value));
       });
     }
-
+// update user profile
     if (event is UpdateProfileEvent) {
       emit(ApiLoadingState());
       await editProfile(user: event.user).then((value) {
@@ -252,9 +253,9 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         email: event.email,
         password: event.password,
         relation: event.relation,
-        supportpin: event.supportpin,
+        supportpin: event.supportPin,
         phone: event.phone,
-        countrycode: event.countrycode,
+        countrycode: event.countryCode,
         photoFile: event.photoFile,
       ).then((value) {
         emit(StaffAddMemberState(value));
@@ -423,14 +424,24 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(RegisterState(value));
       });
     }
-    //Delete Contact
+    //Edit Contact
+    /*
+    if (event is EditContactEvent) {
+      emit(ApiLoadingState());
+      await EditContact(contact: event.contact).then((value) {
+        emit(EditContactState(value));
+      });
+    }
+
+     */
+// edit contact list
     if (event is DeleteContactEvent) {
       emit(ApiLoadingState());
       await deleteContact(contact: event.contact).then((value) {
         emit(DeleteContactState(value));
       });
     }
-
+    // user online
     if (event is SetUserOnlineOfflineEvent) {
       emit(ApiLoadingState());
       await setUserOnlineOrOffline(
@@ -439,26 +450,27 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(SetUserOnlineOrOfflineState(value));
       });
     }
-
+// logout
     if (event is LogoutEvent) {
       emit(ApiLoadingState());
       await logout().then((value) {
         emit(LogoutState(value));
       });
     }
-
+// country list
     if (event is CountryListEvent) {
       emit(ApiLoadingState());
       await getCountries().then((value) {
         emit(CountryListState(value));
       });
     }
-
+// dashboard Statistics
     if (event is DashboardStatisticsEvent) {
       emit(ApiLoadingState());
       await getDashboardStatistics(days: event.days).then((value) {
         emit(DashboardStatisticsState(value));
       });
     }
+    // edit contact details
   }
 }

@@ -8,8 +8,6 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  // String? _errorMessage;
-
   final List<String> _genders = ['Male', 'Female']; // Dropdown options
   String? _selectedGender = 'Male';
   DateTime? selectedDate;
@@ -28,8 +26,6 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
-  // final TextEditingController photoController = TextEditingController();
-
   final ImagePicker _picker = ImagePicker();
   XFile? _selectedImage;
 
@@ -38,17 +34,6 @@ class _EditProfileState extends State<EditProfile> {
   var selectPhoneCodeBloc = SelectionBloc(SelectionBlocInitialState());
 
   CountryData? selectedPhoneCodeCountry;
-
-  Future<void> _takePhoto() async {
-    try {
-      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-      if (photo != null) {
-        debugPrint("Photo taken: ${photo.path}");
-      }
-    } catch (e) {
-      debugPrint("Error taking photo: $e");
-    }
-  }
 
   Future<void> _pickDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -139,7 +124,7 @@ class _EditProfileState extends State<EditProfile> {
                                                   .withOpacity(0.2),
                                               radius: 43.0,
                                               backgroundImage: const AssetImage(
-                                                  IconConstants.iccircleAvater),
+                                                  IconConstants.icCircleAvatar),
                                               child: Align(
                                                 alignment:
                                                     Alignment.bottomRight,
@@ -277,7 +262,7 @@ class _EditProfileState extends State<EditProfile> {
                                 hintText: appLocalization(context).email,
                                 labelText: appLocalization(context).email,
                                 suffix: Image.asset(
-                                  IconConstants.icalternativeEmail,
+                                  IconConstants.icAlternativeEmail,
                                   scale: 1.5,
                                 ),
                                 validator: (p0) {
@@ -306,7 +291,7 @@ class _EditProfileState extends State<EditProfile> {
                                       labelText:
                                           appLocalization(context).phoneNumber,
                                       suffix: Image.asset(
-                                        IconConstants.icCalladd,
+                                        IconConstants.icCallAdd,
                                         scale: 1.5,
                                       ),
                                       prefix: CountryPhoneCodePrefix(
@@ -351,7 +336,7 @@ class _EditProfileState extends State<EditProfile> {
                                   decoration: InputDecoration(
                                     hintText: appLocalization(context).gender,
                                     hintStyle: const TextStyle(
-                                        color: AppColor.lightfillColor),
+                                        color: AppColor.lightFillColor),
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(2),
                                       borderSide: const BorderSide(
@@ -394,8 +379,8 @@ class _EditProfileState extends State<EditProfile> {
                                                 const CountryPickerScreen());
                                       },
                                       controller: countryController,
-                                      hintText:
-                                          appLocalization(context).enterCountry,
+                                      hintText: appLocalization(context)
+                                          .selectCountry,
                                       labelText:
                                           appLocalization(context).country,
                                     );

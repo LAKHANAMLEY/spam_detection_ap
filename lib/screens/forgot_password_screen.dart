@@ -63,7 +63,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 appLocalization(context).forgotPassword,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    color: AppColor.bluelightColor,
+                                    color: AppColor.blueLightColor,
                                     fontSize: 35,
                                     fontFamily: AppFont.fontFamily,
                                     fontWeight: FontWeight.w600),
@@ -95,7 +95,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               labelText: appLocalization(context).emailAddress,
                               hintText: appLocalization(context).emailAddress,
                               suffix: Image.asset(
-                                IconConstants.icfluentMail,
+                                IconConstants.icFluentMail,
                                 scale: 3,
                               ),
                               validator: (p0) {

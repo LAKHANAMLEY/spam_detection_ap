@@ -160,7 +160,7 @@ class CustomTab extends StatelessWidget {
               border: Border.all(
                 color: selectedTab == tabIndex
                     ? AppColor.callColor
-                    : AppColor.borderstekColor,
+                    : AppColor.borderStackColor,
               )),
           child: Center(
               child: Text(

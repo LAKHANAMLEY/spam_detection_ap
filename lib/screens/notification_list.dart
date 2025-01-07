@@ -23,7 +23,7 @@ class _NotificationListState extends State<NotificationList> {
       appBar: CustomAppBar(
         title: appLocalization(context).notificationList,
       ),
-      // backgroundColor: AppColor.greylightColor,
+      backgroundColor: AppColor.whiteLightColor,
       body: SafeArea(
           child: Column(children: <Widget>[
         SizedBox(
