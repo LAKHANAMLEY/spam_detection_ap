@@ -27,7 +27,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
               child: Text(
             appLocalization(context).successful,
             style: const TextStyle(
-                color: AppColor.bluelightColor,
+                color: AppColor.blueLightColor,
                 fontSize: 35,
                 fontFamily: AppFont.fontFamily,
                 fontWeight: FontWeight.w600),
@@ -38,7 +38,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           Text(
             '${appLocalization(context).yey} ${widget.user?.name ?? ''}',
             style: const TextStyle(
-                color: AppColor.yellowlightColor,
+                color: AppColor.yellowLightColor,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),

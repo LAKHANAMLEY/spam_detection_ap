@@ -11,6 +11,9 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
   String? enteredPhone;
   SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
   var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
+  var selectPhoneCodeBloc =
+      SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
+  CountryData? selectedPhoneCodeCountry;
 
   PhoneNumber? phoneNumber;
   double scale = 3.5;
@@ -78,7 +81,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                                 .withOpacity(0.2),
                                             radius: 43.0,
                                             backgroundImage: const AssetImage(
-                                                IconConstants.iccircleAvater),
+                                                IconConstants.icCircleAvatar),
                                             child: Align(
                                               alignment: Alignment.bottomRight,
                                               child: CircleAvatar(
@@ -209,7 +212,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               labelText: appLocalization(context).emailAddress,
                               hintText: appLocalization(context).emailAddress,
                               suffix: Image.asset(
-                                IconConstants.icfluentMail,
+                                IconConstants.icFluentMail,
                                 scale: scale,
                               ),
                               validator: (p0) {
@@ -279,7 +282,6 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               controller: supportPinController,
                               labelText: appLocalization(context).supportPin,
                               hintText: appLocalization(context).supportPin,
-                              //suffix: Image.asset(IconConstants.icUsername),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {
                                   return appLocalization(context)
@@ -289,55 +291,39 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               },
                             ),
                             10.height(),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 6, right: 6),
-                              child: IntlPhoneField(
-                                controller: phoneController,
-                                decoration: InputDecoration(
-                                  hintText:
-                                      appLocalization(context).phoneNumber,
-                                  labelText:
-                                      appLocalization(context).phoneNumber,
-                                  hintStyle: const TextStyle(
-                                      color: AppColor.lightfillColor),
-                                  //labelText: 'Phone Number',
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: const BorderSide(
-                                        width: 1.5, color: AppColor.fillColor),
-                                  ),
-                                  focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColor.fillColor, width: 1.5),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
-                                  ),
-                                  filled: true,
-                                  fillColor:
-                                      AppColor.fillColor.withOpacity(0.2),
-                                  suffixIcon: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      IconConstants.icCalladd,
+                            BlocConsumer(
+                                bloc: selectPhoneCodeBloc,
+                                listener: (context, state) {
+                                  if (state is SelectCountryState) {
+                                    selectedPhoneCodeCountry = state.value;
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return CustomTextField(
+                                    keyboardType: TextInputType.phone,
+                                    // readOnly: true,
+                                    controller: phoneController,
+                                    hintText:
+                                        appLocalization(context).phoneNumber,
+                                    labelText:
+                                        appLocalization(context).phoneNumber,
+                                    suffix: Image.asset(
+                                      IconConstants.icCallAdd,
                                       scale: 1.5,
                                     ),
-                                  ),
-                                ),
-                                keyboardType: TextInputType.number,
-                                initialCountryCode: 'IN',
-                                onChanged: (phone) {
-                                  phoneNumber = phone;
-                                  enteredPhone = phone.completeNumber;
-                                  // print(phone.completeNumber);
-                                  // print(phone.countryCode);
-                                },
-                              ),
-                            ),
-                            SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 1 / 100,
-                            ),
-                            //device connect kro
+                                    prefix: CountryPhoneCodePrefix(
+                                      bloc: selectPhoneCodeBloc,
+                                    ),
+                                    validator: (p0) {
+                                      if (p0?.isEmpty ?? true) {
+                                        return appLocalization(context)
+                                            .pleaseEnterPhone;
+                                      }
+                                      return null;
+                                    },
+                                  );
+                                }),
+                            10.height(),
                             AppButton(
                                 text: appLocalization(context).addMember,
                                 onPress: () {

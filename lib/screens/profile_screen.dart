@@ -55,7 +55,7 @@ class Profile extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: Image.asset(
-                    IconConstants.icsettingPro,
+                    IconConstants.icSettingPro,
                     height: MediaQuery.of(context).size.height * 3 / 100,
                   ),
                 )
@@ -146,7 +146,7 @@ class Profile extends StatelessWidget {
                                         AppColor.vanishColor.withOpacity(0.2),
                                     radius: 43.0,
                                     backgroundImage: const AssetImage(
-                                      IconConstants.iccircleAvater,
+                                      IconConstants.icCircleAvatar,
                                     ),
                                     // child: Align(
                                     //   alignment: Alignment.bottomRight,
@@ -183,7 +183,7 @@ class Profile extends StatelessWidget {
                           child: Text(
                             '${user.email}',
                             style: const TextStyle(
-                              color: AppColor.borderstekColor,
+                              color: AppColor.borderStackColor,
                               fontFamily: AppFont.fontFamily,
                               fontSize: 16.0,
                             ),
@@ -194,7 +194,6 @@ class Profile extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            // Navigator.pushNamed(context, AppRoutes.planType);
                             bottomNavigationBloc.add(SelectIntEvent(3));
                           },
                           child: Container(
@@ -213,7 +212,7 @@ class Profile extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset(
-                                  IconConstants.icpremiumStar,
+                                  IconConstants.icPremiumStar,
                                   height: MediaQuery.of(context).size.height *
                                       10 /
                                       100,
@@ -245,7 +244,7 @@ class Profile extends StatelessWidget {
                           // height: MediaQuery.of(context).size.height * 56 / 100,
                           // width: MediaQuery.of(context).size.width * 90 / 100,
                           decoration: BoxDecoration(
-                            color: AppColor.whitedeep,
+                            color: AppColor.whiteDeep,
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(6.0)),
                             border: Border.all(color: AppColor.vanishColor),
@@ -395,7 +394,7 @@ class Profile extends StatelessWidget {
                                                             cardTexts[index],
                                                             style: const TextStyle(
                                                                 color: AppColor
-                                                                    .borderstekColor,
+                                                                    .borderStackColor,
                                                                 fontSize: 20,
                                                                 fontFamily: AppFont
                                                                     .fontFamily),
@@ -454,13 +453,10 @@ class Profile extends StatelessWidget {
                         ),
                         SubMenu(
                           title: appLocalization(context).editSecurityPin,
-                          icon: IconConstants.icEdit,
+                          icon: IconConstants.icEditPin,
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ChangeSecurity()));
+                            Navigator.pushNamed(
+                                context, AppRoutes.changeSecurity);
                           },
                         ),
                         SizedBox(
@@ -468,7 +464,7 @@ class Profile extends StatelessWidget {
                         ),
                         SubMenu(
                           title: appLocalization(context).changePassword,
-                          icon: IconConstants.icchangePass,
+                          icon: IconConstants.icChangePass,
                           onTap: () {
                             Navigator.pushNamed(
                                 context, AppRoutes.changePassword);
@@ -479,7 +475,7 @@ class Profile extends StatelessWidget {
                         ),
                         SubMenu(
                           title: appLocalization(context).addAlternativeEmail,
-                          icon: IconConstants.icalternativeEmail,
+                          icon: IconConstants.icAlternativeEmail,
                           onTap: () {
                             Navigator.pushNamed(
                                 context, AppRoutes.alternativeEmail);
@@ -490,7 +486,7 @@ class Profile extends StatelessWidget {
                         ),
                         SubMenu(
                           title: appLocalization(context).changeLanguage,
-                          icon: IconConstants.icalternativeEmail,
+                          icon: IconConstants.icAlternativeEmail,
                           onTap: () {
                             _showEditOptions(context);
                           },
@@ -499,7 +495,7 @@ class Profile extends StatelessWidget {
                           10.height(),
                           SubMenu(
                             title: appLocalization(context).familyList,
-                            icon: IconConstants.icalternativeEmail,
+                            icon: IconConstants.icAlternativeEmail,
                             onTap: () {
                               Navigator.pushNamed(
                                   context, AppRoutes.familyMemberList);
@@ -510,7 +506,7 @@ class Profile extends StatelessWidget {
                           10.height(),
                           SubMenu(
                             title: appLocalization(context).staffList,
-                            icon: IconConstants.icalternativeEmail,
+                            icon: IconConstants.icAlternativeEmail,
                             onTap: () {
                               Navigator.pushNamed(
                                   context, AppRoutes.staffMember);
@@ -617,7 +613,7 @@ class SubMenu extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(2.0)),
                 border: Border.all(
-                  color: AppColor.greyarrowColor,
+                  color: AppColor.greyArrowColor,
                 ),
                 color: AppColor.secondryColor),
             child: Padding(

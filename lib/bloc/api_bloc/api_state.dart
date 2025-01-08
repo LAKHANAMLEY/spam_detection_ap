@@ -505,6 +505,16 @@ class DeleteContactState extends ApiState {
   List<Object?> get props => [value];
 }
 
+// edit contacts
+class EditContactState extends ApiState {
+  final Response value;
+
+  EditContactState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
 class CountryListState extends ApiState {
   final CountriesResponse value;
 

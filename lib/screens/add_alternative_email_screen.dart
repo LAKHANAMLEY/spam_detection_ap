@@ -37,7 +37,7 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                       appLocalization(context).alternativeEmail,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          color: AppColor.bluelightColor,
+                          color: AppColor.blueLightColor,
                           fontSize: 35,
                           fontFamily: AppFont.fontFamily,
                           fontWeight: FontWeight.w600),
@@ -62,7 +62,7 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                     hintText: appLocalization(context).emailAddress,
                     labelText: appLocalization(context).emailAddress,
                     suffix:
-                        Image.asset(IconConstants.icfluentMail, scale: scale),
+                        Image.asset(IconConstants.icFluentMail, scale: scale),
                     validator: (p0) {
                       if (p0?.isEmpty ?? true) {
                         return appLocalization(context).pleaseAlternativeEmail;

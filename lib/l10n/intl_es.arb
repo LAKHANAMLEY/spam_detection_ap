@@ -690,5 +690,22 @@
   "deleteCallLogs": "Eliminar registros de llamadas",
   "deleteAllCallLogs": "Eliminar todos los registros de llamadas",
   "googleSignFailedPleaseAgain": "Error al iniciar sesión en Google. Inténtalo de nuevo.",
-  "anErrorOccurredDuringGoogleSignIn": "Se produjo un error durante el inicio de sesión en Google."
+  "anErrorOccurredDuringGoogleSignIn": "Se produjo un error durante el inicio de sesión en Google.",
+  "dearCustomerMissedCall": "Estimado cliente, Tiene una llamada perdida.",
+  "dearApplicantToday": "Estimado solicitante, el último día para postularse es hoy.",
+  "biggestScholarshipCandidates": "Prueba de becas más grande para los candidatos Gate.",
+  "dearUserShortlisted": "Estimado usuario, tu perfil está preseleccionado.",
+  "pleaseEnterPhone": "Por favor ingrese el número de teléfono",
+  "whoViewedMyProfile": "¿Quién vio mi perfil?",
+  "inIndiaViewedYourProfileRecently": "127 personas (127 en India) vieron tu perfil recientemente",
+  "upgradeToPremiumOutWho": "Actualice a Premium para descubrir quién",
+  "upgradeUsersSpamDetectionPremium": "Actualice para unirse a más de 1 millón de usuarios en detección de spam premium",
+  "freeTrialForNewSubscribers": "Prueba gratuita de 3 días solo para nuevos suscriptores",
+  "youCanManageYourSubscription": "Puede administrar su suscripción o cancelarla en cualquier momento en la configuración de su cuenta de Google. Se aplican términos específicos.",
+  "learnMore": "Más información",
+  "yearlyPlan": "PLAN ANUAL",
+  "quarterlyPlan": "PLAN TRIMESTRAL",
+  "monthlyPlan": "PLAN MENSUAL",
+  "editContact": "Editar contacto",
+  "viewProfile": "Ver perfil"
 }

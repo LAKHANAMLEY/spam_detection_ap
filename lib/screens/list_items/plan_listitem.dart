@@ -18,7 +18,7 @@ class PlanListItem extends StatelessWidget {
         // width: MediaQuery.of(context).size.width * 90 / 100,
         decoration: BoxDecoration(
             color: plan.isActive ?? false
-                ? AppColor.yellowdecentColor
+                ? AppColor.yellowDecentColor
                 : AppColor.secondryColor,
             border: Border.all(
               color: plan.isActive ?? false
@@ -45,7 +45,7 @@ class PlanListItem extends StatelessWidget {
               Text(
                 plan.description ?? "",
                 style: const TextStyle(
-                    color: AppColor.borderstekColor,
+                    color: AppColor.borderStackColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     fontFamily: AppFont.fontFamily),

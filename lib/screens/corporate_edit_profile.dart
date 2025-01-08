@@ -26,33 +26,6 @@ class _CorporateProfileState extends State<CorporateProfile> {
 
   CorporateData? corporateData;
 
-  Future<void> _takePhoto() async {
-    try {
-      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-      if (photo != null) {
-        debugPrint("Photo taken: ${photo.path}");
-      }
-    } catch (e) {
-      debugPrint("Error taking photo: $e");
-    }
-  }
-
-  Future<void> _chooseFromGallery() async {
-    try {
-      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        debugPrint("Image selected: ${image.path}");
-        setState(() {
-          _selectedImage = image;
-        });
-      } else {
-        debugPrint("No image selected.");
-      }
-    } catch (e) {
-      debugPrint("Error selecting image: $e");
-    }
-  }
-
   @override
   void initState() {
     corporateBloc.add(GetUserProfileEvent());
@@ -127,7 +100,7 @@ class _CorporateProfileState extends State<CorporateProfile> {
                                                 .withOpacity(0.2),
                                             radius: 43.0,
                                             backgroundImage: const AssetImage(
-                                                IconConstants.iccircleAvater),
+                                                IconConstants.icCircleAvatar),
                                             child: Align(
                                               alignment: Alignment.bottomRight,
                                               child: CircleAvatar(

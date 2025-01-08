@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-//import 'add_member_screen.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -101,7 +100,7 @@ class _WelcomeState extends State<Welcome> {
                 Text(
                   appLocalization(context).welcome,
                   style: const TextStyle(
-                      color: AppColor.bluelightColor,
+                      color: AppColor.blueLightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600),
@@ -114,7 +113,7 @@ class _WelcomeState extends State<Welcome> {
                       appLocalization(context).welcomeTxt,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          color: AppColor.lightblurColor,
+                          color: AppColor.lightBlurColor,
                           fontSize: 15,
                           fontFamily: AppFont.fontFamily),
                     ),

@@ -117,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Liste des bénéficiaires"),
         "beneficiaryName":
             MessageLookupByLibrary.simpleMessage("Nom du bénéficiaire"),
+        "biggestScholarshipCandidates": MessageLookupByLibrary.simpleMessage(
+            "Prueba de becas más grande para los candidatos Gate."),
         "billers": MessageLookupByLibrary.simpleMessage("Fournisseurs"),
         "billsNSubscriptions":
             MessageLookupByLibrary.simpleMessage("Factures et abonnements"),
@@ -234,6 +236,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Explorez l\'achat de forfaits de données avant votre visite pour bénéficier potentiellement de tarifs réduits."),
         "dateOfBirth":
             MessageLookupByLibrary.simpleMessage("Fecha de nacimiento"),
+        "dearApplicantToday": MessageLookupByLibrary.simpleMessage(
+            "Estimado solicitante, el último día para postularse es hoy."),
+        "dearCustomerMissedCall": MessageLookupByLibrary.simpleMessage(
+            "Estimado cliente, Tiene una llamada perdida."),
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Débité de"),
         "delete": MessageLookupByLibrary.simpleMessage("Supprimer"),
         "deleteAllCallLogs": MessageLookupByLibrary.simpleMessage(
@@ -288,6 +294,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dueOn": MessageLookupByLibrary.simpleMessage("À payer le"),
         "easiestWayToManage": MessageLookupByLibrary.simpleMessage(
             "Moyen le plus simple de gérer"),
+        "editContact": MessageLookupByLibrary.simpleMessage("Editar contacto"),
         "editCorporateProfile":
             MessageLookupByLibrary.simpleMessage("Editar perfil corporativo"),
         "editMember": MessageLookupByLibrary.simpleMessage("Editar miembro"),
@@ -389,6 +396,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 6 dígitos a tu correo electrónico."),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Has olvidado tu contraseña"),
+        "freeTrialForNewSubscribers": MessageLookupByLibrary.simpleMessage(
+            "Prueba gratuita de 3 días solo para nuevos suscriptores"),
         "from": MessageLookupByLibrary.simpleMessage("Depuis"),
         "fromNowOnYouArePartOfUs": MessageLookupByLibrary.simpleMessage(
             "A partir de ahora, eres parte de nosotros!"),
@@ -431,6 +440,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "importQRCode":
             MessageLookupByLibrary.simpleMessage("Importer un code QR"),
         "inActive": MessageLookupByLibrary.simpleMessage("Inactif"),
+        "inIndiaViewedYourProfileRecently":
+            MessageLookupByLibrary.simpleMessage(
+                "127 personas (127 en India) vieron tu perfil recientemente"),
         "includesALetterDigitAndSpecialCharacter":
             MessageLookupByLibrary.simpleMessage(
                 "Comprend une lettre, un chiffre et un caractère spécial"),
@@ -478,6 +490,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastThisYear": MessageLookupByLibrary.simpleMessage("este año"),
         "lastThreeMonths":
             MessageLookupByLibrary.simpleMessage("últimos 3 meses"),
+        "learnMore": MessageLookupByLibrary.simpleMessage("Más información"),
         "leaveUsAMessageAboutYourQuestionsOrInquiriesAndSomeoneFromOurTeamWillBeInTouchSoon":
             MessageLookupByLibrary.simpleMessage(
                 "Laissez-nous un message sur vos questions ou vos demandes et quelqu\'un de notre équipe sera bientôt en contact."),
@@ -520,6 +533,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Recharge mobile"),
         "momoId": MessageLookupByLibrary.simpleMessage("ID MOMO"),
         "month": MessageLookupByLibrary.simpleMessage("Mes"),
+        "monthlyPlan": MessageLookupByLibrary.simpleMessage("PLAN MENSUAL"),
         "moreAvailable":
             MessageLookupByLibrary.simpleMessage("Más información disponible"),
         "mtnMoMo": MessageLookupByLibrary.simpleMessage("MTN MoMo"),
@@ -715,6 +729,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor ingrese el tipo de número"),
         "pleaseEnterOTP":
             MessageLookupByLibrary.simpleMessage("Veuillez saisir OTP"),
+        "pleaseEnterPhone": MessageLookupByLibrary.simpleMessage(
+            "Por favor ingrese el número de teléfono"),
         "pleaseEnterPosition": MessageLookupByLibrary.simpleMessage(
             "Por favor ingrese la posición"),
         "pleaseEnterValidAmount": MessageLookupByLibrary.simpleMessage(
@@ -818,6 +834,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Protección Tipo"),
         "qrscan": MessageLookupByLibrary.simpleMessage("Numérisation QR"),
         "quantity": MessageLookupByLibrary.simpleMessage("Quantité"),
+        "quarterlyPlan":
+            MessageLookupByLibrary.simpleMessage("PLAN TRIMESTRAL"),
         "queries": MessageLookupByLibrary.simpleMessage("Requêtes"),
         "queryHistory":
             MessageLookupByLibrary.simpleMessage("Historique des requêtes"),
@@ -1065,6 +1083,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Actualizar a Premium"),
         "upgradePremiumView": MessageLookupByLibrary.simpleMessage(
             "Actualice a Premium para ver"),
+        "upgradeToPremiumOutWho": MessageLookupByLibrary.simpleMessage(
+            "Actualice a Premium para descubrir quién"),
+        "upgradeUsersSpamDetectionPremium": MessageLookupByLibrary.simpleMessage(
+            "Actualice para unirse a más de 1 millón de usuarios en detección de spam premium"),
         "uploadBackImageOfDoc": MessageLookupByLibrary.simpleMessage(
             "Image de téléchargement du document"),
         "uploadFollowingDocuments": MessageLookupByLibrary.simpleMessage(
@@ -1089,6 +1111,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Verificar y continuar"),
         "viewAccount": MessageLookupByLibrary.simpleMessage("Voir le compte"),
         "viewPlan": MessageLookupByLibrary.simpleMessage("Voir le plan"),
+        "viewProfile": MessageLookupByLibrary.simpleMessage("Ver perfil"),
         "voterIdCard": MessageLookupByLibrary.simpleMessage(
             "Carte d\'identité électorale"),
         "wallet": MessageLookupByLibrary.simpleMessage("Portefeuille"),
@@ -1111,10 +1134,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "¿De qué se trataba la llamada?"),
         "whatSpamIt":
             MessageLookupByLibrary.simpleMessage("¿Qué tipo de spam era?"),
+        "whoViewedMyProfile":
+            MessageLookupByLibrary.simpleMessage("¿Quién vio mi perfil?"),
         "work": MessageLookupByLibrary.simpleMessage("Trabajar"),
         "workFax": MessageLookupByLibrary.simpleMessage("Fax de trabajo"),
         "writeComment":
             MessageLookupByLibrary.simpleMessage("Escribe un comentario"),
+        "yearlyPlan": MessageLookupByLibrary.simpleMessage("PLAN ANUAL"),
         "yes": MessageLookupByLibrary.simpleMessage("Oui"),
         "yey": MessageLookupByLibrary.simpleMessage("¡Sí!"),
         "yoCanUpdateYourProfileFromHere": MessageLookupByLibrary.simpleMessage(
@@ -1126,6 +1152,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Vous pouvez effectuer n\'importe quel paiement en ligne à partir de n\'importe quelle carte ou compte.Il suffit de scanner le QR code et de profiter."),
         "youCanGetUpto": MessageLookupByLibrary.simpleMessage(
             "Vous pouvez obtenir jusqu\'à"),
+        "youCanManageYourSubscription": MessageLookupByLibrary.simpleMessage(
+            "Puede administrar su suscripción o cancelarla en cualquier momento en la configuración de su cuenta de Google. Se aplican términos específicos."),
         "youCanNotTransferAmountToYourselfSelectOtherAccountToProceed":
             MessageLookupByLibrary.simpleMessage(
                 "Vous ne pouvez pas transférer de montant à vous-même. Sélectionnez un autre compte pour continuer."),

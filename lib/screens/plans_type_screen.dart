@@ -47,7 +47,7 @@ class _PlanTypeState extends State<PlanType> {
                   appLocalization(context).chooseYourPlan,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      color: AppColor.bluelightColor,
+                      color: AppColor.blueLightColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600),

@@ -62,7 +62,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                 appLocalization(context).changePassword,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    color: AppColor.bluelightColor,
+                                    color: AppColor.blueLightColor,
                                     fontSize: 35,
                                     fontFamily: AppFont.fontFamily,
                                     fontWeight: FontWeight.w600),

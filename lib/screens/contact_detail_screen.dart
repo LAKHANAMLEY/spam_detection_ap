@@ -174,7 +174,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                             backgroundImage: AssetImage(
                                                 contact?.isSpam == 1
                                                     ? IconConstants.icFraud
-                                                    : IconConstants.icAvater),
+                                                    : IconConstants.icAvatar),
                                             radius: 45,
                                           ),
                                         ),

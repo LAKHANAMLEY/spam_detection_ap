@@ -75,7 +75,7 @@ class _ReportViewState extends State<ReportView> {
                         child: Row(
                           children: [
                             Radio(
-                              focusColor: AppColor.yellowdeep,
+                              focusColor: AppColor.yellowDeep,
                               groupValue: numberType,
                               onChanged: (value) {
                                 setState(() {
@@ -97,7 +97,7 @@ class _ReportViewState extends State<ReportView> {
                         child: Row(
                           children: [
                             Radio(
-                              focusColor: AppColor.yellowdeep,
+                              focusColor: AppColor.yellowDeep,
                               groupValue: numberType,
                               onChanged: (value) {
                                 setState(() {

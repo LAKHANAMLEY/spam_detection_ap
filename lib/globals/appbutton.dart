@@ -22,7 +22,7 @@ class AppButton extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 90 / 100,
           height: MediaQuery.of(context).size.height * 7 / 100,
           decoration: const BoxDecoration(
-            color: AppColor.yellowlightColor,
+            color: AppColor.yellowLightColor,
             borderRadius: BorderRadius.all(Radius.circular(6)),
           ),
           alignment: Alignment.center,

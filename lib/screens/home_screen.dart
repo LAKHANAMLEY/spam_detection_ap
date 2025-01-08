@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     appLocalization(context).pleaseActiveYourSubscription,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                        color: AppColor.yellowdeep,
+                        color: AppColor.yellowDeep,
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         fontFamily: AppFont.fontFamily),

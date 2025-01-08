@@ -75,7 +75,12 @@ class _ContactListItemState extends State<ContactListItem> {
                             contact: ContactData(id: contact?.id)));
                       }
                       //contactListBloc
-                      )
+                      ),
+                  PopupMenuItem(
+                      child: Text(appLocalization(context).editContact),
+                      onTap: () {}
+                      //contactListBloc
+                      ),
                 ]));
   }
 }

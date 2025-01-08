@@ -20,7 +20,7 @@ class BlockedContactListItem extends StatelessWidget {
             ));
       },
       leading: const CircleAvatar(
-        backgroundImage: AssetImage(IconConstants.icspamCircle),
+        backgroundImage: AssetImage(IconConstants.icSpamCircle),
       ),
       title: Text(
         (contact.name?.isNotEmpty ?? false)

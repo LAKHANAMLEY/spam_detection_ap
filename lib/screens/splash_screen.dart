@@ -34,7 +34,7 @@ class SplashState extends State<Splash> {
             ),
             Center(
               child: Image.asset(
-                IconConstants.icBroadlogo,
+                IconConstants.icBroadLogo,
                 height: MediaQuery.of(context).size.height * 20 / 100,
                 width: MediaQuery.of(context).size.width * 50 / 100,
               ),
@@ -47,7 +47,7 @@ class SplashState extends State<Splash> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(IconConstants.iccopyRight,
+                  Image.asset(IconConstants.icCopyRight,
                       height: MediaQuery.of(context).size.height * 4 / 100,
                       width: MediaQuery.of(context).size.width * 4 / 100),
                   SizedBox(

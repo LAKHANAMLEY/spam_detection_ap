@@ -25,7 +25,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
               child: Text(
             appLocalization(context).register,
             style: const TextStyle(
-                color: AppColor.bluelightColor,
+                color: AppColor.blueLightColor,
                 fontSize: 35,
                 fontFamily: AppFont.fontFamily,
                 fontWeight: FontWeight.w600),
@@ -51,7 +51,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                     height: MediaQuery.sizeOf(context).height * 4 / 100,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage(IconConstants.icgoogleLogo),
+                          image: AssetImage(IconConstants.icGoogleLogo),
                           fit: BoxFit.cover),
                       shape: BoxShape.circle,
                     ),
@@ -92,7 +92,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                     height: MediaQuery.sizeOf(context).height * 4 / 100,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage(IconConstants.icappleLogo),
+                          image: AssetImage(IconConstants.icAppleLogo),
                           fit: BoxFit.cover),
                       shape: BoxShape.circle,
                     ),
@@ -167,15 +167,11 @@ class _RegisterFirstState extends State<RegisterGoogle> {
               SizedBox(width: MediaQuery.of(context).size.width * 1 / 100),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              const LoginGoogle()));
+                  Navigator.pushNamed(context, AppRoutes.registerGoogle);
                 },
                 child: Text(appLocalization(context).login,
                     style: const TextStyle(
-                        color: AppColor.yellowlightColor,
+                        color: AppColor.yellowLightColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 15)),
               ),

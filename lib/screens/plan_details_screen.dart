@@ -101,7 +101,7 @@ class _PlanDetailState extends State<PlanDetail> {
                             children: <Widget>[
                               Radio(
                                 activeColor: _selection == 1
-                                    ? AppColor.borderstekColor
+                                    ? AppColor.borderStackColor
                                     : AppColor.secondryColor,
                                 groupValue: _selection,
                                 onChanged: (selectTime) {
@@ -145,7 +145,7 @@ class _PlanDetailState extends State<PlanDetail> {
                             width: MediaQuery.of(context).size.width * 28 / 100,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: AppColor.borderstekColor, width: 1),
+                                  color: AppColor.borderStackColor, width: 1),
                               color: _selection == 1
                                   ? AppColor.callColor
                                   : AppColor.secondryColor,
@@ -159,7 +159,7 @@ class _PlanDetailState extends State<PlanDetail> {
                           Row(
                             children: <Widget>[
                               Radio(
-                                activeColor: AppColor.decentgreyColor,
+                                activeColor: AppColor.decentGreyColor,
                                 groupValue: _selection,
                                 onChanged: (selectTime) {
                                   selectTime(int timeSelected) {
@@ -200,7 +200,7 @@ class _PlanDetailState extends State<PlanDetail> {
                             width: MediaQuery.of(context).size.width * 28 / 100,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: AppColor.borderstekColor, width: 1),
+                                  color: AppColor.borderStackColor, width: 1),
                               color: AppColor.secondryColor,
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(4)),
@@ -213,7 +213,7 @@ class _PlanDetailState extends State<PlanDetail> {
                             children: <Widget>[
                               Radio(
                                 // focusColor: AppColor.decentgreyColor,
-                                activeColor: AppColor.decentgreyColor,
+                                activeColor: AppColor.decentGreyColor,
                                 groupValue: _selection,
                                 onChanged: (selectTime) {
                                   selectTime(int timeSelected) {
@@ -601,14 +601,14 @@ class PlanDurationTypeCardView extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: selectedPlanId == planId
-                    ? AppColor.yellowdeep
-                    : AppColor.decentgreyColor,
+                    ? AppColor.yellowDeep
+                    : AppColor.decentGreyColor,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(8),
                   topRight: Radius.circular(8),
                 ),
                 border: Border.all(
-                  color: AppColor.whitedecentColor,
+                  color: AppColor.whiteDecentColor,
                   width: 0.5,
                 ),
               ),

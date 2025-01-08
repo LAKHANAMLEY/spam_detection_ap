@@ -29,6 +29,9 @@ class _AddStaffMemberState extends State<AddStaffMember> {
   final TextEditingController countryCodeController = TextEditingController();
   final TextEditingController supportPinController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
+  var selectPhoneCodeBloc =
+      SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
+  CountryData? selectedPhoneCodeCountry;
 
   XFile? selectedImage;
 
@@ -77,7 +80,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                                 .withOpacity(0.2),
                                             radius: 43.0,
                                             backgroundImage: const AssetImage(
-                                                IconConstants.iccircleAvater),
+                                                IconConstants.icCircleAvatar),
                                             child: Align(
                                               alignment: Alignment.bottomRight,
                                               child: CircleAvatar(
@@ -208,7 +211,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               labelText: appLocalization(context).emailAddress,
                               hintText: appLocalization(context).emailAddress,
                               suffix: Image.asset(
-                                IconConstants.icfluentMail,
+                                IconConstants.icFluentMail,
                                 scale: scale,
                               ),
                               validator: (p0) {
@@ -288,48 +291,39 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               },
                             ),
                             10.height(),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 6, right: 6),
-                              child: IntlPhoneField(
-                                controller: phoneNumberController,
-                                decoration: InputDecoration(
-                                  hintText:
-                                      appLocalization(context).phoneNumber,
-                                  //labelText: appLocalization(context).phoneNumber,
-                                  hintStyle: const TextStyle(
-                                      color: AppColor.lightfillColor),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: const BorderSide(
-                                        width: 1.5, color: AppColor.fillColor),
-                                  ),
-                                  focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColor.fillColor, width: 1.5),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(5)),
-                                  ),
-                                  filled: true,
-                                  fillColor:
-                                      AppColor.fillColor.withOpacity(0.2),
-                                  suffixIcon: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      IconConstants.icCalladd,
+                            BlocConsumer(
+                                bloc: selectPhoneCodeBloc,
+                                listener: (context, state) {
+                                  if (state is SelectCountryState) {
+                                    selectedPhoneCodeCountry = state.value;
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return CustomTextField(
+                                    keyboardType: TextInputType.phone,
+                                    //readOnly: true,
+                                    controller: phoneNumberController,
+                                    hintText:
+                                        appLocalization(context).phoneNumber,
+                                    labelText:
+                                        appLocalization(context).phoneNumber,
+                                    suffix: Image.asset(
+                                      IconConstants.icCallAdd,
                                       scale: 1.5,
                                     ),
-                                  ),
-                                ),
-                                initialCountryCode: 'IN',
-                                onChanged: (phone) {
-                                  phoneNumber = phone;
-                                  enteredPhone = phone.completeNumber;
-                                },
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
+                                    prefix: CountryPhoneCodePrefix(
+                                      bloc: selectPhoneCodeBloc,
+                                    ),
+                                    validator: (p0) {
+                                      if (p0?.isEmpty ?? true) {
+                                        return appLocalization(context)
+                                            .pleaseEnterPhone;
+                                      }
+                                      return null;
+                                    },
+                                  );
+                                }),
+                            10.height(),
                             AppButton(
                                 text: appLocalization(context).addStaffMember,
                                 onPress: () {
@@ -346,12 +340,12 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                               lastnameController.text.trim(),
                                           relation:
                                               positionController.text.trim(),
-                                          supportpin:
+                                          supportPin:
                                               supportPinController.text.trim(),
-                                          phone:
-                                              phoneNumberController.text.trim(),
-                                          countrycode:
-                                              phoneNumber?.countryCode ?? '',
+                                          phone: phoneNumberController.text,
+                                          countryCode: selectedPhoneCodeCountry
+                                                  ?.phonecode ??
+                                              "",
                                           photoFile: selectedImage),
                                     );
                                   }

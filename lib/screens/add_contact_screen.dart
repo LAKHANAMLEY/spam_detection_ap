@@ -21,6 +21,9 @@ class _AddContactState extends State<AddContact> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController _numberController = TextEditingController();
+  var selectPhoneCodeBloc =
+      SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
+  CountryData? selectedPhoneCodeCountry;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -101,7 +104,7 @@ class _AddContactState extends State<AddContact> {
                           hintText: appLocalization(context).emailAddress,
                           controller: emailController,
                           suffix: Image.asset(
-                            IconConstants.icfluentMail,
+                            IconConstants.icFluentMail,
                             scale: 3,
                           ),
                           validator: (p0) {
@@ -134,7 +137,7 @@ class _AddContactState extends State<AddContact> {
                             decoration: InputDecoration(
                               hintText: appLocalization(context).numberType,
                               hintStyle: const TextStyle(
-                                  color: AppColor.lightfillColor),
+                                  color: AppColor.lightFillColor),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
                                 borderSide: const BorderSide(
@@ -152,49 +155,36 @@ class _AddContactState extends State<AddContact> {
                           ),
                         ),
                         10.height(),
-                        SizedBox(
-                          height:
-                              MediaQuery.of(context).size.height * 1.5 / 100,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 6, right: 6),
-                          child: IntlPhoneField(
-                            controller: phoneNumberController,
-                            decoration: InputDecoration(
-                              hintText: appLocalization(context).phoneNumber,
-                              hintStyle: const TextStyle(
-                                  color: AppColor.lightfillColor),
-                              //labelText: 'Phone Number',
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: const BorderSide(
-                                    width: 1.5, color: AppColor.fillColor),
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: AppColor.fillColor, width: 1.5),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                              ),
-                              filled: true,
-                              fillColor: AppColor.fillColor.withOpacity(0.2),
-                              suffixIcon: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.asset(
-                                  IconConstants.icCallTone,
-                                  scale: 3,
-                                ),
-                              ),
-                            ),
-                            initialCountryCode: 'IN',
-                            onChanged: (phone) {
-                              phoneNumber = phone;
-                              enteredPhone = phone.completeNumber;
-                              // print(phone.completeNumber);
-                              // print(phone.countryCode);
+                        BlocConsumer(
+                            bloc: selectPhoneCodeBloc,
+                            listener: (context, state) {
+                              if (state is SelectCountryState) {
+                                selectedPhoneCodeCountry = state.value;
+                              }
                             },
-                          ),
-                        ),
+                            builder: (context, state) {
+                              return CustomTextField(
+                                keyboardType: TextInputType.phone,
+                                //readOnly: true,
+                                controller: phoneNumberController,
+                                hintText: appLocalization(context).phoneNumber,
+                                labelText: appLocalization(context).phoneNumber,
+                                suffix: Image.asset(
+                                  IconConstants.icCallAdd,
+                                  scale: 1.5,
+                                ),
+                                prefix: CountryPhoneCodePrefix(
+                                  bloc: selectPhoneCodeBloc,
+                                ),
+                                validator: (p0) {
+                                  if (p0?.isEmpty ?? true) {
+                                    return appLocalization(context)
+                                        .pleaseEnterPhone;
+                                  }
+                                  return null;
+                                },
+                              );
+                            }),
                         10.height(),
                         AppButton(
                           text: appLocalization(context).addContact,

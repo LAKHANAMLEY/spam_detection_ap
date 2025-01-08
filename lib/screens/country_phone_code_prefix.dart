@@ -2,6 +2,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class CountryPhoneCodePrefix extends StatelessWidget {
   final SelectionBloc? bloc;
+
   const CountryPhoneCodePrefix({super.key, this.bloc});
 
   @override
@@ -30,7 +31,7 @@ class CountryPhoneCodePrefix extends StatelessWidget {
                         appLocalization(context).countryCode,
                         style: textTheme(context)
                             .bodySmall
-                            ?.copyWith(color: AppColor.oragneColor),
+                            ?.copyWith(color: AppColor.orangeColor),
                       ),
                       Text("(${state.value?.code}) +${state.value?.phonecode}"),
                       10.height(),

@@ -6,13 +6,13 @@ class ThemeConstants {
 
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: AppColor.whiteLight,
+    scaffoldBackgroundColor: AppColor.whiteLightColor,
     // color: Colors.white,
   );
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: AppColor.whiteLight,
+    scaffoldBackgroundColor: AppColor.whiteLightColor,
     // color: Colors.white,
   );
 }
