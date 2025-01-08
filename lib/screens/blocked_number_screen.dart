@@ -17,7 +17,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
     super.initState();
   }
 
-  int selectedTab = 0;
+  //int selectedTab = 0;
   double scale = 3.5;
 
   @override
@@ -46,85 +46,90 @@ class _BlockedNumberState extends State<BlockedNumber> {
                 bloc: selectTabBloc,
                 builder: (context, selectTabState) {
                   if (selectTabState is SelectIntState) {
-                    int tabIndex = selectTabState.value;
-                    return Container(
-                      height: MediaQuery.of(context).size.height * 7 / 100,
-                      width: MediaQuery.of(context).size.width * 90 / 100,
-                      decoration: const BoxDecoration(
-                        color: AppColor.secondryColor,
+                    int selectedTab = selectTabState.value;
+                    return Column(children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height * 7 / 100,
+                        width: MediaQuery.of(context).size.width * 90 / 100,
+                        decoration: const BoxDecoration(
+                          color: AppColor.secondryColor,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomTab(
+                                selectedTab: selectedTab,
+                                tabIndex: 0,
+                                onTap: () {
+                                  selectTabBloc.add(SelectIntEvent(0));
+                                },
+                                text: appLocalization(context).recentText),
+                            CustomTab(
+                                selectedTab: selectedTab,
+                                tabIndex: 1,
+                                onTap: () {
+                                  selectTabBloc.add(SelectIntEvent(1));
+                                },
+                                text: appLocalization(context).contactText)
+                          ],
+                        ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomTab(
-                              selectedTab: selectedTab,
-                              tabIndex: 0,
-                              onTap: () {
-                                selectTabBloc.add(SelectIntEvent(0));
-                              },
-                              text: appLocalization(context).recentText),
-                          CustomTab(
-                              selectedTab: selectedTab,
-                              tabIndex: 1,
-                              onTap: () {
-                                selectTabBloc.add(SelectIntEvent(1));
-                              },
-                              text: appLocalization(context).contactText)
-                        ],
-                      ),
-                    );
+                      if (selectedTab == 0) ...[
+                        10.height(),
+                        BlocConsumer(
+                          bloc: markSpamBloc,
+                          listener: (context, state) {
+                            if (state is BlockUnBlockState) {
+                              if (state.value.statusCode == 200) {
+                                showCustomDialog(context,
+                                    dialogType: DialogType.success,
+                                    subTitle: state.value.message);
+                              } else if (state.value.statusCode ==
+                                  HTTPStatusCodes.sessionExpired) {
+                                sessionExpired(context, state.value.message);
+                              } else {
+                                showCustomDialog(context,
+                                    dialogType: DialogType.failed,
+                                    subTitle: state.value.message.toString());
+                              }
+                              markSpamBloc.add(GetBlockContactEvent());
+                              // markSpamBloc.add(GetSpamEvent());
+                            }
+                          },
+                          builder: (context, state) {
+                            if (state is ApiErrorState) {
+                              return Center(
+                                  child: Text('Error: ${state.value}'));
+                            }
+                            if (state is GetBlockContactState) {
+                              final contacts =
+                                  state.value.blockcontactslist ?? [];
+                              if (contacts.isEmpty) {
+                                return Center(
+                                  child:
+                                      Text(appLocalization(context).noContacts),
+                                );
+                              }
+                              return ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: contacts.length,
+                                itemBuilder: (context, index) {
+                                  final contact = contacts[index];
+                                  return BlockedContactListItem(
+                                    contact: contact,
+                                  );
+                                },
+                              );
+                            }
+                            return const Loader();
+                          },
+                        ),
+                      ] else
+                        ...[]
+                    ]);
                   }
                   return const Loader();
-                }),
-            if (selectedTab == 0) ...[
-              10.height(),
-              BlocConsumer(
-                bloc: markSpamBloc,
-                listener: (context, state) {
-                  if (state is BlockUnBlockState) {
-                    if (state.value.statusCode == 200) {
-                      showCustomDialog(context,
-                          dialogType: DialogType.success,
-                          subTitle: state.value.message);
-                    } else if (state.value.statusCode ==
-                        HTTPStatusCodes.sessionExpired) {
-                      sessionExpired(context, state.value.message);
-                    } else {
-                      showCustomDialog(context,
-                          dialogType: DialogType.failed,
-                          subTitle: state.value.message.toString());
-                    }
-                    markSpamBloc.add(GetBlockContactEvent());
-                    // markSpamBloc.add(GetSpamEvent());
-                  }
-                },
-                builder: (context, state) {
-                  if (state is ApiErrorState) {
-                    return Center(child: Text('Error: ${state.value}'));
-                  }
-                  if (state is GetBlockContactState) {
-                    final contacts = state.value.blockcontactslist ?? [];
-                    if (contacts.isEmpty) {
-                      return Center(
-                        child: Text(appLocalization(context).noContacts),
-                      );
-                    }
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: contacts.length,
-                      itemBuilder: (context, index) {
-                        final contact = contacts[index];
-                        return BlockedContactListItem(
-                          contact: contact,
-                        );
-                      },
-                    );
-                  }
-                  return const Loader();
-                },
-              ),
-            ] else
-              ...[]
+                })
           ]),
         ),
       ),
