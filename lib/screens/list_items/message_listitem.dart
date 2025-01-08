@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/messages_detail.dart';
 
 class MessageListItem extends StatelessWidget {
   final SmsMessage sms;

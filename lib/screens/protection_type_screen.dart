@@ -193,7 +193,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                       ],
                     );
                   }
-                  return Loader();
+                  return const Loader();
                 }),
           ]),
         )));

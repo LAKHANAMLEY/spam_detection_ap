@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/list_items/message_listitem.dart';
 
 class MessagesScreen extends StatelessWidget {
   const MessagesScreen({super.key});

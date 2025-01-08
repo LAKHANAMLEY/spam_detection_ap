@@ -43,7 +43,7 @@ class MessageView extends StatelessWidget {
               // width: mq(context).width * .8,
               decoration: BoxDecoration(
                 color: sms?.kind == SmsMessageKind.sent
-                    ? AppColor.oragneColor
+                    ? AppColor.orangeColor
                     : Colors.white,
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(radius),
