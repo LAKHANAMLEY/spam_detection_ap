@@ -1,7 +1,8 @@
 import 'package:spam_delection_app/lib.dart';
 
 class MessageListItem extends StatelessWidget {
-  final SmsMessage sms;
+  final SmsLog sms;
+
   const MessageListItem({super.key, required this.sms});
 
   @override
@@ -20,19 +21,19 @@ class MessageListItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            sms.sender ?? "",
+            sms.name ?? "",
             style: textTheme(context).titleMedium,
           ),
           10.width(),
           Text(
-            sms.date?.formatRelativeDateTime() ?? "",
+            sms.smsDetails?.first.date ?? "",
             style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
           ),
         ],
       ),
       subtitle: Expanded(
           child: Text(
-        sms.body ?? "",
+        sms.smsDetails?.first.body ?? "",
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
       )),

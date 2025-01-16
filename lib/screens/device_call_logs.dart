@@ -17,7 +17,6 @@ class DeviceCallLogs extends StatelessWidget {
     final searchBloc = SelectionBloc(SelectStringState(""));
     // callLogsListBloc.add(GetCallLogsEvent());
     return Scaffold(
-      //backgroundColor: AppColor.whiteLightColor,
       appBar: (showAppBar ?? showAppBar ?? false)
           ? CustomAppBar(
               title: appLocalization(context).callLogs,

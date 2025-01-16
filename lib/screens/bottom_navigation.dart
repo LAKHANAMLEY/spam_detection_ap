@@ -14,9 +14,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final List<Widget> _pages = [
     const HomeScreen(),
-    // const ChatScreen(),
     const MessagesScreen(),
-    // const ContactList(),
     const DeviceCallLogs(
       showAppBar: false,
     ),
@@ -220,11 +218,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           ),
                           PopupMenuItem(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BlockedNumber()));
+                              Navigator.pushNamed(
+                                  context, AppRoutes.blockedCalls);
                             },
                             child: Row(
                               children: [
@@ -261,6 +256,29 @@ class _BottomNavigationState extends State<BottomNavigation> {
                                       100,
                                 ),
                                 Text(appLocalization(context).deleteCalls,
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600))
+                              ],
+                            ),
+                          ),
+                          PopupMenuItem(
+                            onTap: () {
+                              Navigator.pushNamed(context, AppRoutes.blockList);
+                            },
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  IconConstants.icBlockedCall,
+                                  scale: 2,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                Text(appLocalization(context).myBlockList,
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,
@@ -338,9 +356,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   Color? getColor(int i) {
     if (_page == i) {
-      return Colors.white;
+      return AppColor.secondryColor;
     }
-    return Colors.white;
+    return AppColor.secondryColor;
   }
 
   void getAndSyncContacts() {

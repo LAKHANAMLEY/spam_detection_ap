@@ -21,7 +21,6 @@ Future<MarkSpamResponse> markSpam({
     headers: await ApiUrlConstants.headers(),
     body: body,
   );
-  //api work nahi kr rhi qki endpoint wrong h
   print(body);
   // print('response.body ${response.body}');
   if (response.statusCode == 200) {

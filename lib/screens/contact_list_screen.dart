@@ -5,7 +5,6 @@ class ContactList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final searchController = TextEditingController();
     final searchBloc = SelectionBloc(SelectStringState(""));
     // List<ContactData> contacts = [];
     // List<ContactData> filteredContacts = [];
@@ -44,11 +43,10 @@ class ContactList extends StatelessWidget {
                   children: <Widget>[
                     CustomTextField(
                       onTap: null,
-                      fillColor: Colors.white,
+                      fillColor: AppColor.secondryColor,
                       onChanged: (value) {
                         searchBloc.add(SelectStringEvent(value));
                       },
-                      // controller: searchController,
                       prefix: const Icon(
                         Icons.search,
                         color: AppColor.redColor,

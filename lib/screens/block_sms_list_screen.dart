@@ -1,27 +1,30 @@
 import 'package:spam_delection_app/lib.dart';
 
-class SpamList extends StatefulWidget {
-  const SpamList({super.key});
+import 'list_items/sms_list_items.dart';
+
+class BlockList extends StatefulWidget {
+  const BlockList({super.key});
 
   @override
-  State<SpamList> createState() => _SpamListState();
+  State<BlockList> createState() => _BlockListState();
 }
 
-class _SpamListState extends State<SpamList> {
+class _BlockListState extends State<BlockList> {
+  var markSmsSpamBloc = ApiBloc(ApiBlocInitialState());
   final TextEditingController editingController = TextEditingController();
-  List<SpamData> contacts = [];
-  List<SpamData> filteredContacts = [];
+  List<SmsDetail> sms = [];
+  List<SmsDetail> filteredContacts = [];
 
   @override
   void initState() {
     super.initState();
-    markSpamBloc.add(GetSpamEvent());
+    markSmsSpamBloc.add(GetSpamEvent());
   }
 
   void filterSearchResults(String query) {
     setState(() {
-      filteredContacts = contacts
-          .where((item) => "${item.name} ${item.spamNo}"
+      filteredContacts = sms
+          .where((item) => "${item.address} ${item.spamMessage}"
               .toLowerCase()
               .contains(query.toLowerCase()))
           .toList();
@@ -32,7 +35,7 @@ class _SpamListState extends State<SpamList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: appLocalization(context).spamCalls,
+        title: appLocalization(context).myBlockList,
       ),
       body: SafeArea(
           child: Column(
@@ -46,13 +49,13 @@ class _SpamListState extends State<SpamList> {
           ),
           Expanded(
               child: BlocConsumer(
-                  bloc: markSpamBloc,
+                  bloc: markSmsSpamBloc,
                   listener: (context, state) {
-                    if (state is GetSpamState) {
-                      contacts = state.value.spamcontactslist ?? [];
-                      filteredContacts = contacts;
+                    if (state is SmsSpamState) {
+                      //spamSm = state.value.smsLog ?? [];
+                      filteredContacts = sms;
                     }
-                    if (state is RemoveSpamState) {
+                    if (state is RemoveSmsSpamState) {
                       if (state.value.statusCode == 200) {
                         showCustomDialog(context,
                             dialogType: DialogType.success,
@@ -65,12 +68,12 @@ class _SpamListState extends State<SpamList> {
                             dialogType: DialogType.failed,
                             subTitle: state.value.message);
                       }
-                      markSpamBloc.add(GetSpamEvent());
+                      markSmsSpamBloc.add(SmsSpamListEvent());
                     }
                   },
                   builder: (context, state) {
-                    if (state is GetSpamState) {
-                      contacts = state.value.spamcontactslist ?? [];
+                    if (state is SmsSpamState) {
+                      // SmsDetail = state.value.smsLog ?? [];
                       if (filteredContacts.isEmpty) {
                         return Center(
                           child: Text(appLocalization(context).noContacts),
@@ -79,8 +82,8 @@ class _SpamListState extends State<SpamList> {
                       return ListView.builder(
                         itemCount: filteredContacts.length,
                         itemBuilder: (context, index) {
-                          return SpamListItem(
-                              spamContact: filteredContacts[index]);
+                          return SmsSpamListItem(
+                              spamSms: filteredContacts[index]);
                         },
                       );
                     }

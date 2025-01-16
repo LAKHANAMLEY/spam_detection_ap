@@ -12,6 +12,7 @@ var markSpamBloc = ApiBloc(ApiBlocInitialState());
 var staffBloc = ApiBloc(ApiBlocInitialState());
 var familyBloc = ApiBloc(ApiBlocInitialState());
 var selectCountryBloc = SelectionBloc(SelectionBlocInitialState());
+var markSpamSmsBloc = ApiBloc(ApiBlocInitialState());
 
 var bottomNavigationBloc = SelectionBloc(SelectIntState(2));
 

@@ -10,9 +10,9 @@ Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
       'call_log[$i][phoneaccountid]': log.phoneAccountId ?? "",
       'call_log[$i][name]': log.name ?? "",
       'call_log[$i][country_code]':
-          log.number?.separeatePhoneAndPhoneCode().phoneCode ?? "",
+          log.number?.separatePhoneAndPhoneCode().phoneCode ?? "",
       'call_log[$i][mobile_no]': log.number
-              ?.separeatePhoneAndPhoneCode()
+              ?.separatePhoneAndPhoneCode()
               .phone
               .replaceAll(AppConstants.specialCharAndSpaceRegex, "") ??
           "",

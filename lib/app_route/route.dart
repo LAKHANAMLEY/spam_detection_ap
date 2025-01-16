@@ -42,8 +42,9 @@ class AppRoutes {
   static const corporateLogin = "/corporateLogin";
   static const loginGoogle = "/LoginGoogle";
   static const messagesDetail = "/messagesDetail";
-
-// static const contactDetail = "/contactDetail";
+  static const blockList = "/blockList";
+  static const spamList = "/spamList";
+  static const blockedCalls = "/blockCalls";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -88,6 +89,7 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.corporateLogin: (context) => const CorporateLogin(),
   AppRoutes.loginGoogle: (context) => const LoginGoogle(),
   AppRoutes.messagesDetail: (context) => const MessagesDetail(),
-
-  // AppRoutes.contactDetail: (context) => const ContactDetail(),
+  AppRoutes.blockList: (context) => const BlockList(),
+  AppRoutes.spamList: (context) => const SpamList(),
+  AppRoutes.blockedCalls: (context) => const BlockedCalls(),
 };

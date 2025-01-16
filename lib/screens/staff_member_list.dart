@@ -13,8 +13,6 @@ class _StaffMemberListState extends State<StaffMemberList> {
   late List<StaffMember> filteredContacts;
   StaffMember? selectedCategory;
 
-  final ImagePicker _picker = ImagePicker();
-  XFile? _selectedImage;
   String? numberType;
   List<StaffMember> categories = [];
 

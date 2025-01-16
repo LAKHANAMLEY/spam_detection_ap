@@ -340,10 +340,10 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                               lastNameController.text.trim(),
                                           relation:
                                               relationController.text.trim(),
-                                          supportpin:
+                                          supportPin:
                                               supportPinController.text.trim(),
                                           phone: phoneController.text.trim(),
-                                          countrycode:
+                                          countryCode:
                                               phoneNumber?.countryCode ?? '',
                                           photoFile: selectedImage),
                                     );

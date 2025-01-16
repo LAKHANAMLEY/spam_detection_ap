@@ -10,70 +10,105 @@ class MessagesScreen extends StatelessWidget {
     final searchBloc = SelectionBloc(SelectStringState(""));
     final messagesBloc = ApiBloc(ApiBlocInitialState());
     messagesBloc.add(GetDeviceMessagesEvent());
+    getDeviceToken();
     return Scaffold(
-      body: Column(
-        children: [
-          CustomTextField(
-            onChanged: (value) {
-              searchBloc.add(SelectStringEvent(value));
-            },
-            controller: searchController,
-            hintText: appLocalization(context).searchMore,
-            fillColor: Colors.white,
+      body: Column(children: [
+        CustomTextField(
+          onChanged: (value) {
+            searchBloc.add(SelectStringEvent(value));
+          },
+          prefix: const Icon(
+            Icons.search,
+            color: AppColor.redColor,
           ),
-          Expanded(
-            child: BlocConsumer(
-              bloc: messagesBloc,
-              listener: (context, state) {
-                if (state is ApiBlocInitialState) {
+          suffix: PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: const Text("Sync"),
+                onTap: () {
                   messagesBloc.add(GetDeviceMessagesEvent());
+                },
+              )
+            ],
+          ),
+          controller: searchController,
+          hintText: appLocalization(context).searchMore,
+          fillColor: Colors.white,
+        ),
+        Expanded(
+          child: BlocConsumer(
+            bloc: messagesBloc,
+            listener: (context, state) {
+              if (state is ApiBlocInitialState) {
+                messagesBloc.add(GetDeviceMessagesEvent());
+              }
+              if (state is GetDeviceMessagesState) {
+                // messages = state.value;
+                messagesBloc.add(SyncSmsEvent(smsLogs: state.value));
+              }
+              if (state is SyncSmsState) {
+                if (state.value.statusCode == 200) {
+                  showToast(state.value.message);
+                } else if (state.value.statusCode ==
+                    HTTPStatusCodes.sessionExpired) {
+                  sessionExpired(context, state.value.message);
+                } else {
+                  showToast(state.value.message);
                 }
-                if (state is GetDeviceMessagesState) {
-                  // messages = state.value;
-                  // messagesBloc.add(GetDeviceMessagesEvent());
+                messagesBloc.add(SmsListEvent());
+              }
+              if (state is SmsListState) {
+                if (state.value.statusCode == 200) {
+                } else if (state.value.statusCode ==
+                    HTTPStatusCodes.sessionExpired) {
+                  sessionExpired(context, state.value.message);
+                } else {
+                  showToast(state.value.message);
                 }
-              },
-              builder: (context, state) {
-                if (state is GetDeviceMessagesState) {
-                  var messages = state.value;
-                  return BlocBuilder(
-                    bloc: searchBloc,
-                    builder: (context, state) {
-                      if (state is SelectStringState) {
-                        var filteredMessages =
-                            filterSearchResults(state.value ?? "", messages);
-                        if (filteredMessages.isEmpty) {
-                          return Center(
-                            child: Text(appLocalization(context).noMessages),
-                          );
-                        }
-                        return ListView.builder(
-                          itemCount: filteredMessages.length,
-                          itemBuilder: (context, index) =>
-                              MessageListItem(sms: filteredMessages[index]),
+              }
+              //if (state is smsDelete) {}
+            },
+            builder: (context, state) {
+              if (state is SmsListState) {
+                var messages = state.value.smsLog ?? [];
+                return BlocBuilder(
+                  bloc: searchBloc,
+                  builder: (context, state) {
+                    if (state is SelectStringState) {
+                      var filteredMessages =
+                          filterSearchResults(state.value ?? "", messages);
+                      if (filteredMessages.isEmpty) {
+                        return Center(
+                          child: Text(appLocalization(context).noMessages),
                         );
                       }
-                      return const Loader();
-                    },
-                  );
-                }
-                return const Loader();
-              },
-            ),
-          )
-        ],
-      ),
+                      return ListView.builder(
+                        itemCount: filteredMessages.length,
+                        itemBuilder: (context, index) =>
+                            MessageListItem(sms: filteredMessages[index]),
+                      );
+                    }
+                    return const Loader();
+                  },
+                );
+              }
+              return const Loader();
+            },
+          ),
+        ),
+      ]),
     );
   }
 
-  List<SmsMessage> filterSearchResults(
-      String searchString, List<SmsMessage> messages) {
+  List<SmsLog> filterSearchResults(String searchString, List<SmsLog> messages) {
     return messages
-        .where((e) =>
-            (e.sender?.toLowerCase().contains(searchString.toLowerCase()) ??
-                false) ||
-            (e.body?.toLowerCase().contains(searchString.toLowerCase()) ??
-                false))
+        .where((e) => (e.address
+                    ?.toLowerCase()
+                    .contains(searchString.toLowerCase()) ??
+                false)
+            // || (e.body?.toLowerCase().contains(searchString.toLowerCase()) ??
+            // false)
+            )
         .toList();
   }
 }

@@ -15,7 +15,7 @@ Future<ContactListResponse> syncContacts(List<Contact> contacts) async {
             .phones
             .first
             .number
-            .separeatePhoneAndPhoneCode()
+            .separatePhoneAndPhoneCode()
             .phone
             .replaceAll(AppConstants.specialCharAndSpaceRegex, "")
         : "";
@@ -28,7 +28,7 @@ Future<ContactListResponse> syncContacts(List<Contact> contacts) async {
                     .phones
                     .first
                     .number
-                    .separeatePhoneAndPhoneCode()
+                    .separatePhoneAndPhoneCode()
                     .phoneCode ??
                 ""
             : "";

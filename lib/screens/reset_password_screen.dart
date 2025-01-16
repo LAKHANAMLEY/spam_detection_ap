@@ -66,7 +66,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     //var argument = args(context) as ResetPassword;
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        // backgroundColor: AppColor.secondryColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),

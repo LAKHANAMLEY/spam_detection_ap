@@ -1,21 +1,21 @@
 import 'package:spam_delection_app/lib.dart';
 
-class ReportView extends StatefulWidget {
-  final ContactData contact;
+class BlockSmsView extends StatefulWidget {
+  final SmsDetail sms;
 
-  const ReportView({super.key, required this.contact});
+  const BlockSmsView({super.key, required this.sms});
 
   @override
-  State<ReportView> createState() => _ReportViewState();
+  State<BlockSmsView> createState() => _BlockSmsViewState();
 }
 
-class _ReportViewState extends State<ReportView> {
-  ContactData? contact;
+class _BlockSmsViewState extends State<BlockSmsView> {
+  SmsDetail? sms;
 
   String? numberType;
 
   var commentController = TextEditingController();
-  var phoneController = TextEditingController();
+  var selectedTabBloc = SelectionBloc(SelectIntState(0));
 
   var categoryListBloc = ApiBloc(ApiBlocInitialState());
 
@@ -24,7 +24,7 @@ class _ReportViewState extends State<ReportView> {
 
   @override
   void initState() {
-    contact = widget.contact;
+    sms = widget.sms;
     categoryListBloc.add(GetCategoryListEvent());
     super.initState();
   }
@@ -43,7 +43,7 @@ class _ReportViewState extends State<ReportView> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    appLocalization(context).reportNumberSpam,
+                    appLocalization(context).blockSmsSpam,
                     style: const TextStyle(
                         color: AppColor.primaryColor,
                         fontSize: 18,
@@ -53,7 +53,7 @@ class _ReportViewState extends State<ReportView> {
                   SizedBox(
                       height: MediaQuery.of(context).size.height * 2 / 100),
                   Text(
-                    appLocalization(context).wasPersonalNumber,
+                    appLocalization(context).wasThisBusinessMessage,
                     style: const TextStyle(
                         color: AppColor.primaryColor,
                         fontSize: 14,
@@ -68,6 +68,8 @@ class _ReportViewState extends State<ReportView> {
                     children: [
                       GestureDetector(
                         onTap: () {
+                          //selectedTabBloc.add(SelectIntEvent(0));
+                          //numberType = appLocalization(context).business;
                           setState(() {
                             numberType = appLocalization(context).business;
                           });
@@ -78,6 +80,8 @@ class _ReportViewState extends State<ReportView> {
                               focusColor: AppColor.yellowDeep,
                               groupValue: numberType,
                               onChanged: (value) {
+                                //selectedTabBloc.add(SelectIntEvent(1));
+                                numberType = value;
                                 setState(() {
                                   numberType = value;
                                 });
@@ -90,6 +94,7 @@ class _ReportViewState extends State<ReportView> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          //selectedTabBloc.add(SelectIntEvent(1));
                           setState(() {
                             numberType = appLocalization(context).personal;
                           });
@@ -100,9 +105,8 @@ class _ReportViewState extends State<ReportView> {
                               focusColor: AppColor.yellowDeep,
                               groupValue: numberType,
                               onChanged: (value) {
-                                setState(() {
-                                  numberType = value;
-                                });
+                                selectedTabBloc.add(SelectIntEvent(1));
+                                numberType = value;
                               },
                               value: appLocalization(context).personal,
                             ),
@@ -181,15 +185,8 @@ class _ReportViewState extends State<ReportView> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 2 / 100,
                   ),
-                  CustomTextField(
-                    controller: phoneController,
-                    hintText: appLocalization(context).phoneNumberOps,
-                    keyboardType: TextInputType.phone,
-                  ),
-                  SizedBox(
-                      height: MediaQuery.of(context).size.height * 4 / 100),
                   AppButton(
-                      text: appLocalization(context).reportText,
+                      text: appLocalization(context).block,
                       onPress: () {
                         if (_formKey.currentState?.validate() ?? false) {
                           if (selectedCategory == null) {
@@ -197,27 +194,29 @@ class _ReportViewState extends State<ReportView> {
                               SnackBar(
                                 content: Text(appLocalization(context)
                                     .pleaseEnterCategory),
-                                backgroundColor: Colors.black,
-                              ),
-                            );
-                            return;
-                          }
-                          if (numberType == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(appLocalization(context)
-                                    .pleaseEnterNumberType),
                                 backgroundColor: AppColor.primaryColor,
                               ),
                             );
                             return;
                           }
-                          markSpamBloc.add(MarkSpamEvent(
-                              contactId: contact?.id ?? "0",
-                              comment: commentController.text,
-                              numberType: numberType ?? "",
-                              categoryId: selectedCategory?.cateId ?? "",
-                              phone: contact?.mobileNo ?? ""));
+
+                          if (numberType == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(appLocalization(context)
+                                    .pleaseEnterNumberType),
+                                backgroundColor: Colors.black,
+                              ),
+                            );
+                            return;
+                          }
+                          //print(getSms());
+                          markSpamSmsBloc.add(MarkSpamSmsEvent(
+                            address: sms?.address ?? "",
+                            comment: commentController.text,
+                            numberType: numberType ?? "",
+                            category: selectedCategory?.cateId ?? "",
+                          ));
                           Navigator.pop(context);
                         }
                       }),

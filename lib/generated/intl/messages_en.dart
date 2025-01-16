@@ -123,6 +123,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "block": MessageLookupByLibrary.simpleMessage("Block"),
         "blockAccuracy": MessageLookupByLibrary.simpleMessage(
             "Block all scam, telemarketing and fraud calls thanks to AI -blocking accuracy."),
+        "blockSms": MessageLookupByLibrary.simpleMessage("Block Sms"),
+        "blockSmsSpam":
+            MessageLookupByLibrary.simpleMessage("Block Sms As Spam"),
         "blockedCalls": MessageLookupByLibrary.simpleMessage("Blocked Calls"),
         "blockedNumber":
             MessageLookupByLibrary.simpleMessage("Blocked Numbers"),
@@ -228,7 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Dear Applicant,the last date to apply today."),
         "dearCustomerMissedCall": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, You have one missed call."),
-        "dearUseShortlisted": MessageLookupByLibrary.simpleMessage(
+        "dearUserShortlisted": MessageLookupByLibrary.simpleMessage(
             "Dear User your profile is shortlisted."),
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Debited from"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -237,6 +240,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteCallLogs":
             MessageLookupByLibrary.simpleMessage("Delete call logs"),
         "deleteCalls": MessageLookupByLibrary.simpleMessage("Delete all Calls"),
+        "deleteConversation":
+            MessageLookupByLibrary.simpleMessage("Delete Conversation"),
         "deleteMember": MessageLookupByLibrary.simpleMessage("Delete Member"),
         "deleteStaffMember":
             MessageLookupByLibrary.simpleMessage("Delete Staff Member"),
@@ -376,6 +381,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your email address for the verification process. We will send 6 digit code to your email."),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
+        "forgotPasswordText":
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "freeTrialForNewSubscribers": MessageLookupByLibrary.simpleMessage(
             "3 days free trial for new subscribers only"),
         "from": MessageLookupByLibrary.simpleMessage("From"),
@@ -514,6 +521,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mustUppercaseLetter": MessageLookupByLibrary.simpleMessage(
             "Must include at least one uppercase letter"),
         "myBills": MessageLookupByLibrary.simpleMessage("My bills"),
+        "myBlockList": MessageLookupByLibrary.simpleMessage("My Block List"),
         "myContact": MessageLookupByLibrary.simpleMessage("My contact"),
         "mySubscriptions":
             MessageLookupByLibrary.simpleMessage("My subscriptions"),
@@ -871,6 +879,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchCountry": MessageLookupByLibrary.simpleMessage("Search country"),
         "searchHere": MessageLookupByLibrary.simpleMessage("Search here..."),
+        "searchInConversation":
+            MessageLookupByLibrary.simpleMessage("Search in conversation"),
         "searchMore":
             MessageLookupByLibrary.simpleMessage("Search numbers,names & more"),
         "secureEmail": MessageLookupByLibrary.simpleMessage(
@@ -1051,6 +1061,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "warning": MessageLookupByLibrary.simpleMessage("Warning!"),
         "wasPersonalNumber": MessageLookupByLibrary.simpleMessage(
             "Was this a business or personal number?"),
+        "wasThisBusinessMessage": MessageLookupByLibrary.simpleMessage(
+            "Was this a bussiness or personal message?"),
         "water": MessageLookupByLibrary.simpleMessage("Water"),
         "weHaveSentTheCodeVerificationToYourMobileNumber":
             MessageLookupByLibrary.simpleMessage(

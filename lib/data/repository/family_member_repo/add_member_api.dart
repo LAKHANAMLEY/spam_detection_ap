@@ -7,9 +7,9 @@ Future<FamilyMemberAddResponse> familyaddMember({
   required String email,
   required String password,
   required String relation,
-  required String supportpin,
+  required String supportPin,
   required String phone,
-  required String countrycode,
+  required String countryCode,
   XFile? photoFile,
 }) async {
   var body = {
@@ -18,9 +18,9 @@ Future<FamilyMemberAddResponse> familyaddMember({
     'email': email ?? "",
     'password': password ?? "",
     'relation': relation ?? "",
-    'support_pin': supportpin ?? "",
+    'support_pin': supportPin ?? "",
     'phone': phone ?? "",
-    'country_code': countrycode ?? ""
+    'country_code': countryCode ?? ""
   };
   // final response = await http.post(
   //   Uri.parse(ApiUrlConstants.endPointFamilyAddMember),

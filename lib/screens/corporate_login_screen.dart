@@ -161,7 +161,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                               corporateBloc.add(CorporateLoginEvent(
                                   email: emailController.text,
                                   password: passwordController.text,
-                                  corporateid: corporateIdController.text));
+                                  corporateId: corporateIdController.text));
                             }
                           },
                         ),

@@ -7,7 +7,7 @@ Future<CheckSpamNumberResponse> checkSpam({required CallLogData log}) async {
     'is_manually': log.isManually, //0 for detail or 1 for broadcast
     'country_code': log.countryCode ?? "",
     'phone': log.mobileNo
-            ?.separeatePhoneAndPhoneCode()
+            ?.separatePhoneAndPhoneCode()
             .phone
             .replaceAll(AppConstants.specialCharAndSpaceRegex, "") ??
         "",

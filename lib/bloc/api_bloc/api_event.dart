@@ -150,7 +150,7 @@ class GetUserProfileEvent extends ApiEvent {}
 // family member list
 class GetFamilyMemberListEvent extends ApiEvent {}
 
-// family member deatils
+// family member details
 class GetFamilyMemberDetailEvent extends ApiEvent {
   final String id;
 
@@ -167,9 +167,9 @@ class FamilyAddMemberEvent extends ApiEvent {
   final String firstName;
   final String lastName;
   final String relation;
-  final String supportpin;
+  final String supportPin;
   final String phone;
-  final String countrycode;
+  final String countryCode;
   final XFile? photoFile;
 
   FamilyAddMemberEvent({
@@ -178,9 +178,9 @@ class FamilyAddMemberEvent extends ApiEvent {
     required this.firstName,
     required this.lastName,
     required this.relation,
-    required this.supportpin,
+    required this.supportPin,
     required this.phone,
-    required this.countrycode,
+    required this.countryCode,
     this.photoFile,
   });
 
@@ -190,9 +190,9 @@ class FamilyAddMemberEvent extends ApiEvent {
         firstName,
         lastName,
         relation,
-        supportpin,
+        supportPin,
         phone,
-        countrycode,
+        countryCode,
         password,
         photoFile,
       ];
@@ -326,6 +326,7 @@ class StaffDeleteMemberEvent extends ApiEvent {
   List<Object?> get props => [id];
 }
 
+// sync call log
 class SyncCallLogEvent extends ApiEvent {
   final List<CallLogEntry> callLogs;
 
@@ -462,13 +463,13 @@ class AddContactEvent extends ApiEvent {
 class CorporateLoginEvent extends ApiEvent {
   final String email;
   final String password;
-  final String corporateid;
+  final String corporateId;
 
   CorporateLoginEvent(
-      {required this.email, required this.password, required this.corporateid});
+      {required this.email, required this.password, required this.corporateId});
 
   @override
-  List<Object?> get props => [email, password, corporateid];
+  List<Object?> get props => [email, password, corporateId];
 }
 
 // Register
@@ -549,4 +550,86 @@ class EditContactEvent extends ApiEvent {
 
   @override
   List<Object?> get props => [contactId, name, numberType, countryCode];
+}
+
+// sync sms
+class SyncSmsEvent extends ApiEvent {
+  final List<SmsMessage> smsLogs;
+
+  SyncSmsEvent({
+    required this.smsLogs,
+  });
+
+  @override
+  List<Object?> get props => [smsLogs];
+}
+
+// sms list
+class SmsListEvent extends ApiEvent {}
+
+//
+class SmsSeenEvent extends ApiEvent {
+  ///pass 1 for online 0 for offline
+  final String id;
+
+  SmsSeenEvent({required this.id});
+
+  @override
+  List<Object?> get props => [id];
+}
+
+class SmsDeleteConversationEvent extends ApiEvent {
+  final SmsDetail sms;
+
+  SmsDeleteConversationEvent({required this.sms});
+
+  @override
+  List<Object?> get props => [sms];
+}
+
+class SmsSpamListEvent extends ApiEvent {}
+
+class MarkSpamSmsEvent extends ApiEvent {
+  final String address;
+  final String comment;
+  final String numberType;
+  final String category;
+
+  MarkSpamSmsEvent({
+    required this.address,
+    required this.comment,
+    required this.numberType,
+    required this.category,
+  });
+
+  @override
+  List<Object?> get props => [address, comment, numberType, category];
+}
+
+class RemoveSpamSmsEvent extends ApiEvent {
+  final String address;
+
+  RemoveSpamSmsEvent({
+    required this.address,
+  });
+
+  @override
+  List<Object?> get props => [
+        address,
+      ];
+}
+
+class SmsSpamEvent extends ApiEvent {}
+
+class DeleteConversationEvent extends ApiEvent {
+  final String address;
+
+  DeleteConversationEvent({
+    required this.address,
+  });
+
+  @override
+  List<Object?> get props => [
+        address,
+      ];
 }

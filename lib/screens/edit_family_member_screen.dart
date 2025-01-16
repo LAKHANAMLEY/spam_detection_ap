@@ -11,7 +11,6 @@ class EditFamilyMember extends StatefulWidget {
 
 class _EditFamilyMemberState extends State<EditFamilyMember> {
   bool agreeToTerms = false;
-  String? _errorMessage;
 
   double scale = 3.5;
 

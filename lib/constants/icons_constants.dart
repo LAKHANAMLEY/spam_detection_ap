@@ -1,7 +1,7 @@
 class IconConstants {
   static const String icBack = 'assets/icons/ic_back.png';
 
-  static const String icActiveCheck = 'assets/icons/ic_activecheck.png';
+  static const String icActiveCheck = 'assets/icons/ic_activeCheck.png';
   static const String icEnableCheck = 'assets/icons/ic_checkbox.png';
   static const String icCalender = 'assets/icons/ic_calender.png';
   static const String icCall = 'assets/icons/ic_call.png';
@@ -37,27 +37,25 @@ class IconConstants {
   static const icCallAdd = 'assets/icons/ic_call_add.png';
   static const icDate = 'assets/icons/ic_date.png';
   static const icLock = 'assets/icons/ic_lock_add.png';
-  static const icActiveFill = 'assets/icons/ic_activefilled.png';
 
-  static const icPhoneSelect = 'assets/icons/ic_phoneSelct.png';
-  static const icPhoneUnSelect = 'assets/icons/ic_phoneunSelect.png';
+  static const icPhoneSelect = 'assets/icons/ic_phoneSelect.png';
+  static const icPhoneUnSelect = 'assets/icons/ic_phoneUnSelect.png';
   static const icEmailSelect = 'assets/icons/ic_emailSelect.png';
-  static const icEmailUnSelect = 'assets/icons/ic_emailunSelect.png';
+  static const icEmailUnSelect = 'assets/icons/ic_emailUnSelect.png';
   static const icLockAdd = 'assets/icons/ic_lock_add.png';
   static const icLockPass = 'assets/icons/ic_lock_password.png';
   static const icGoogleLogo = 'assets/icons/ic_google_logo.png';
   static const icAppleLogo = 'assets/icons/ic_apple_logo.png';
-  static const icSuccessfulLogo = 'assets/icons/ic_successcheck.png';
+  static const icSuccessfulLogo = 'assets/icons/ic_successCheck.png';
 
   static const String backIcon = 'assets/icons/ic_backIcon.png';
   static const String phoneShield = 'assets/icons/ic_phone_shield.png';
   static const String corporateIcon = 'assets/icons/ic_corporate.png';
-  static const String checkboxIcon = 'assets/icons/ic_checkboxe.png';
   static const String securityKeyIcon = 'assets/icons/ic_securityKey.png';
   static const String solarCallIcon = 'assets/icons/ic_solar_call.png';
   static const String solarCall = 'assets/icons/ic_solarCall.png';
   static const String covidProtectionShield =
-      'assets/icons/ic_covidprotectionshield.png';
+      'assets/icons/ic_covidProtectionShield.png';
   static const String icCorporate = 'assets/icons/ic_corporate.png';
 
   static const String icPlusCall = 'assets/icons/ic_plus_call.png';
@@ -74,8 +72,6 @@ class IconConstants {
   static const String icMissedCall = 'assets/icons/ic_missedCalls.png';
   static const String icBlockCall = 'assets/icons/ic_blockCalls.png';
   static const String icDelete = 'assets/icons/ic_delete.png';
-  static const String icActiveThumb = 'assets/icons/ic_activethumb.png';
-  static const String icInactiveThumb = 'assets/icons/ic_inactivethumb.png';
   static const String icSettingPro = 'assets/icons/ic_setting_profile.png';
   static const String icCamera = 'assets/icons/ic_camera.png';
   static const String icAvatar = 'assets/icons/ic_avater.png';
@@ -92,8 +88,6 @@ class IconConstants {
   static const String icMessageCheck = 'assets/icons/ic_messageCheck.png';
   static const String icCallAvatar = 'assets/icons/ic_callAvtar.png';
   static const String icAddCall = 'assets/icons/ic_addCall.png';
-  static const String icPreviousBack = 'assets/icons/ic_previoudback.png';
-  static const String icBackCircle = 'assets/icons/ic_balckCircle.png';
   static const String icGgAdd = 'assets/icons/ic_gg_add.png';
   static const String icSpamTriangle = 'assets/icons/ic_triangle.png';
   static const String icSpamBlocked = 'assets/icons/ic_blocked.png';
@@ -102,7 +96,6 @@ class IconConstants {
   static const String icCopyRight = 'assets/icons/ic_copyRight.png';
   static const String icSpamCircle = 'assets/icons/ic_spamCircle.png';
   static const String icFluentCall = 'assets/icons/ic_fluentCall.png';
-  static const String icBlueSpam = 'assets/icons/ic_bluespam.png';
   static const String icPhoneBold = 'assets/icons/ic_phone_bold.png';
   static const String icSubscription = 'assets/icons/ic_subscription.png';
   static const String icPremiumProtection = 'assets/icons/ic_premium_plan.png';

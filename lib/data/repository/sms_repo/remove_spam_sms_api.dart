@@ -1,16 +1,16 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<Response> removeSpam({
-  required String contactId,
+Future<Response> removeSpamSms({
+  required String address,
 }) async {
   var body = {
     // 'contacts_id': contactId,
-    'mobile_no': contactId,
+    "address": address,
   };
 
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.removeSpam),
+    Uri.parse(ApiUrlConstants.removeSpamSms),
     headers: await ApiUrlConstants.headers(),
     body: body,
   );

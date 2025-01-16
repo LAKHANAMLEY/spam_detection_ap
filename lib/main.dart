@@ -92,4 +92,3 @@ class MyApp extends StatelessWidget {
         });
   }
 }
-// can we try it on mobile phone yes//wait sir

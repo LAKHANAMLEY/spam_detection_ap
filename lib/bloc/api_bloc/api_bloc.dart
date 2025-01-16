@@ -1,5 +1,12 @@
 import 'package:spam_delection_app/lib.dart';
 
+import '../../data/repository/sms_repo/mark_spam_sms_api.dart';
+import '../../data/repository/sms_repo/remove_spam_sms_api.dart';
+import '../../data/repository/sms_repo/sms_delete_conversation_api.dart';
+import '../../data/repository/sms_repo/sms_list_api.dart';
+import '../../data/repository/sms_repo/sms_seen_api.dart';
+import '../../data/repository/sms_repo/sms_spam_list_api.dart';
+
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
   ApiBloc(super.initialState) {
     on(eventHandler);
@@ -26,7 +33,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(GetCategoryListState(value));
       });
     }
-
+// sync Contact
     if (event is SyncContactEvent) {
       emit(ApiLoadingState());
       await syncContacts(event.contacts).then((value) {
@@ -60,7 +67,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(ChangeSecurityState(value));
       });
     }
-// marl number as a spam
+// mark number as a spam
     if (event is MarkSpamEvent) {
       emit(ApiLoadingState());
       await markSpam(
@@ -142,9 +149,9 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         lastname: event.lastName,
         password: event.password,
         relation: event.relation,
-        supportpin: event.supportpin,
+        supportPin: event.supportPin,
         phone: event.phone,
-        countrycode: event.countrycode,
+        countryCode: event.countryCode,
         photoFile: event.photoFile,
       ).then((value) {
         emit(FamilyAddMemberState(value));
@@ -253,9 +260,9 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         email: event.email,
         password: event.password,
         relation: event.relation,
-        supportpin: event.supportPin,
+        supportPin: event.supportPin,
         phone: event.phone,
-        countrycode: event.countryCode,
+        countryCode: event.countryCode,
         photoFile: event.photoFile,
       ).then((value) {
         emit(StaffAddMemberState(value));
@@ -274,7 +281,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(StaffDeleteMemberState(value));
       });
     }
-
+// sync call log
     if (event is SyncCallLogEvent) {
       emit(ApiLoadingState());
       await syncCallLog(
@@ -362,7 +369,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
               email: event.email,
               code: event.code,
               password: event.password,
-              confirmpassword: event.confirmPassword)
+              confirmPassword: event.confirmPassword)
           .then((value) {
         emit(ResetPasswordState(value));
       });
@@ -403,7 +410,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       await corporateLogin(
               email: event.email,
               password: event.password,
-              corporateid: event.corporateid)
+              corporateId: event.corporateId)
           .then((value) {
         emit(CorporateLoginState(value));
       });
@@ -464,7 +471,6 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(CountryListState(value));
       });
     }
-// dashboard Statistics
     if (event is DashboardStatisticsEvent) {
       emit(ApiLoadingState());
       await getDashboardStatistics(days: event.days).then((value) {
@@ -476,6 +482,57 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await getSms().then((value) {
         emit(GetDeviceMessagesState(value));
+      });
+    }
+
+    if (event is SmsListEvent) {
+      emit(ApiLoadingState());
+      await smsList().then((value) {
+        emit(SmsListState(value));
+      });
+    }
+
+    if (event is SyncSmsEvent) {
+      emit(ApiLoadingState());
+      await syncSms(
+        smsLogs: event.smsLogs,
+      ).then((value) {
+        emit(SyncSmsState(value));
+      });
+    }
+    if (event is SmsSeenEvent) {
+      emit(ApiLoadingState());
+      await smsSeen(
+        id: event.id,
+      ).then((value) {
+        emit(SmsSeenState(value));
+      });
+    }
+    if (event is MarkSpamSmsEvent) {
+      emit(ApiLoadingState());
+      await markSpamSms(
+        address: event.address,
+        comment: event.comment,
+        numberType: event.numberType,
+        category: event.category,
+      ).then((value) => emit(MarkSpamSmsState(value)));
+    }
+    if (event is RemoveSpamSmsEvent) {
+      emit(ApiLoadingState());
+      await removeSpamSms(address: event.address).then((value) {
+        emit(RemoveSmsSpamState(value));
+      });
+    }
+    if (event is SmsSpamListEvent) {
+      emit(ApiLoadingState());
+      await smsSpamList().then((value) {
+        emit(SmsSpamListState(value));
+      });
+    }
+    if (event is DeleteConversationEvent) {
+      emit(ApiLoadingState());
+      await deleteConversation(address: event.address).then((value) {
+        emit(DeleteConversationState(value));
       });
     }
   }

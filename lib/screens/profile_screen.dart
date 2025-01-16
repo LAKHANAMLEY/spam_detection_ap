@@ -335,11 +335,8 @@ class Profile extends StatelessWidget {
                                             return InkWell(
                                               onTap: () {
                                                 if (index == 0) {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              const SpamList()));
+                                                  Navigator.pushNamed(context,
+                                                      AppRoutes.spamList);
                                                 }
                                               },
                                               child: Padding(

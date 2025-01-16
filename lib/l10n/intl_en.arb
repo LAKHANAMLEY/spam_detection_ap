@@ -705,5 +705,12 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code"
+  "zip": "Zip Code",
+  "forgotPasswordText": "Forgot Password?",
+  "searchInConversation": "Search in conversation",
+  "deleteConversation": "Delete Conversation",
+  "blockSms": "Block Sms",
+  "wasThisBusinessMessage": "Was this a bussiness or personal message?",
+  "blockSmsSpam": "Block Sms As Spam",
+  "myBlockList": "My Block List"
 }
