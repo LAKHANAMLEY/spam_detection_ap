@@ -75,10 +75,28 @@ class SelectCountryState extends SelectionBlocState {
   List<Object?> get props => [value];
 }
 
-class SelectStState extends SelectionBlocState {
-  final SelectStState? value;
+// class SelectStState extends SelectionBlocState {
+//   final SelectState? value;
+//
+//   SelectStState(this.value);
+//
+//   @override
+//   List<Object?> get props => [value];
+// }
+// class SelectBirthEvent extends SelectionBlocState {
+//   final DateTime? value;
+//
+//   SelectBirthState(this.value);
+//
+//   @override
+//   List<Object?> get props => [value];
+//
+// }
 
-  SelectStState(this.value);
+class DatePickerLoaded extends SelectionBlocState {
+  final DateTime value;
+
+  DatePickerLoaded(this.value);
 
   @override
   List<Object?> get props => [value];

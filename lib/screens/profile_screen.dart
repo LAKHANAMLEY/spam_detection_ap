@@ -513,6 +513,28 @@ class Profile extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 2 / 100,
                         ),
+                        // SubMenu(
+                        //   title: appLocalization(context).logout,
+                        //   icon: Icons.logout,
+                        //   onTap: () {
+                        //     Navigator.pushNamed(context, AppRoutes.staffMember);
+                        //   },
+                        // ),
+                        // SizedBox(
+                        //   height: MediaQuery.of(context).size.height * 2 / 100,
+                        // ),
+                        SubMenu(
+                          title: appLocalization(context).logout,
+                          icon: IconConstants.icLogout,
+                          onTap: () async {
+                            showLogoutDialog(context);
+                            //  Navigator.pushNamed(
+                            //    context, AppRoutes.);
+                          },
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 2 / 100,
+                        ),
                       ],
                     ),
                   ),
@@ -625,6 +647,7 @@ class SubMenu extends StatelessWidget {
                           icon,
                           height: MediaQuery.of(context).size.height * 5 / 100,
                           width: MediaQuery.of(context).size.width * 5 / 100,
+                          // color: AppColor.thumbColor
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 2 / 100,

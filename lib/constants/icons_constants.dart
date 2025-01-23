@@ -150,5 +150,5 @@ class IconConstants {
   static const String icPassAdd = 'assets/icons/ic_pass_add.png';
   static const String icPassRemove = 'assets/icons/ic_pass_remove.png';
   static const String icEditPin = 'assets/icons/ic_edit_pin.png';
-//static const String icBlock='assets/icons/ic_block_icon.png'
+  static const String icLogout = 'assets/icons/ic_logout.png';
 }

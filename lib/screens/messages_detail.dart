@@ -1,6 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
 
-
 final TextEditingController messageController = TextEditingController();
 
 class MessagesDetail extends StatelessWidget {

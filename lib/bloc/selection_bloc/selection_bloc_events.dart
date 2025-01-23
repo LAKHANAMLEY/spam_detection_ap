@@ -76,3 +76,13 @@ class SelectCountryEvent extends SelectionBlocEvent {
 //   @override
 //   List<Object?> get props => [value];
 // }
+//
+
+class DatePicked extends SelectionBlocEvent {
+  final DateTime selectedDate;
+
+  DatePicked(this.selectedDate);
+
+  @override
+  List<Object?> get props => [selectedDate];
+}
