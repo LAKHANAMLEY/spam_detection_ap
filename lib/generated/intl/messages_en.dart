@@ -228,7 +228,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Dear Applicant,the last date to apply today."),
         "dearCustomerMissedCall": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, You have one missed call."),
-        "dearUseShortlisted": MessageLookupByLibrary.simpleMessage(
+        "dearUserShortlisted": MessageLookupByLibrary.simpleMessage(
             "Dear User your profile is shortlisted."),
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Debited from"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),

@@ -240,6 +240,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Estimado solicitante, el último día para postularse es hoy."),
         "dearCustomerMissedCall": MessageLookupByLibrary.simpleMessage(
             "Estimado cliente, Tiene una llamada perdida."),
+        "dearUserShortlisted": MessageLookupByLibrary.simpleMessage(
+            "Estimado usuario, tu perfil está preseleccionado."),
         "debitedFrom": MessageLookupByLibrary.simpleMessage("Débité de"),
         "delete": MessageLookupByLibrary.simpleMessage("Supprimer"),
         "deleteAllCallLogs": MessageLookupByLibrary.simpleMessage(

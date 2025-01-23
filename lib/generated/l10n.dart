@@ -402,6 +402,16 @@ class S {
     );
   }
 
+  /// `An error occurred during Google Sign-In.`
+  String get anErrorOccurredDuringGoogleSignIn {
+    return Intl.message(
+      'An error occurred during Google Sign-In.',
+      name: 'anErrorOccurredDuringGoogleSignIn',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `As per document`
   String get asPerDocument {
     return Intl.message(
@@ -579,6 +589,16 @@ class S {
     return Intl.message(
       'Beneficiary name',
       name: 'beneficiaryName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biggest scholarship test for Gate candidates.`
+  String get biggestScholarshipCandidates {
+    return Intl.message(
+      'Biggest scholarship test for Gate candidates.',
+      name: 'biggestScholarshipCandidates',
       desc: '',
       args: [],
     );
@@ -1304,6 +1324,36 @@ class S {
     );
   }
 
+  /// `Dear Applicant,the last date to apply today.`
+  String get dearApplicantToday {
+    return Intl.message(
+      'Dear Applicant,the last date to apply today.',
+      name: 'dearApplicantToday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dear Customer, You have one missed call.`
+  String get dearCustomerMissedCall {
+    return Intl.message(
+      'Dear Customer, You have one missed call.',
+      name: 'dearCustomerMissedCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dear User your profile is shortlisted.`
+  String get dearUserShortlisted {
+    return Intl.message(
+      'Dear User your profile is shortlisted.',
+      name: 'dearUserShortlisted',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Debited from`
   String get debitedFrom {
     return Intl.message(
@@ -1319,6 +1369,26 @@ class S {
     return Intl.message(
       'Delete',
       name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete All Call Logs`
+  String get deleteAllCallLogs {
+    return Intl.message(
+      'Delete All Call Logs',
+      name: 'deleteAllCallLogs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete call logs`
+  String get deleteCallLogs {
+    return Intl.message(
+      'Delete call logs',
+      name: 'deleteCallLogs',
       desc: '',
       args: [],
     );
@@ -1599,6 +1669,16 @@ class S {
     return Intl.message(
       'Easiest way to manage',
       name: 'easiestWayToManage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Contact`
+  String get editContact {
+    return Intl.message(
+      'Edit Contact',
+      name: 'editContact',
       desc: '',
       args: [],
     );
@@ -2204,6 +2284,16 @@ class S {
     );
   }
 
+  /// `3 days free trial for new subscribers only`
+  String get freeTrialForNewSubscribers {
+    return Intl.message(
+      '3 days free trial for new subscribers only',
+      name: 'freeTrialForNewSubscribers',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `From`
   String get from {
     return Intl.message(
@@ -2329,6 +2419,16 @@ class S {
     return Intl.message(
       'Goals',
       name: 'goals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Google Sign-In failed. Please try again.`
+  String get googleSignFailedPleaseAgain {
+    return Intl.message(
+      'Google Sign-In failed. Please try again.',
+      name: 'googleSignFailedPleaseAgain',
       desc: '',
       args: [],
     );
@@ -2489,6 +2589,16 @@ class S {
     return Intl.message(
       'Inactive',
       name: 'inActive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `127 people(127 in india) viewed your profile recently`
+  String get inIndiaViewedYourProfileRecently {
+    return Intl.message(
+      '127 people(127 in india) viewed your profile recently',
+      name: 'inIndiaViewedYourProfileRecently',
       desc: '',
       args: [],
     );
@@ -2794,6 +2904,16 @@ class S {
     );
   }
 
+  /// `Learn More`
+  String get learnMore {
+    return Intl.message(
+      'Learn More',
+      name: 'learnMore',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Leave us a message about your questions or inquiries and someone from our team will be in touch soon.`
   String
       get leaveUsAMessageAboutYourQuestionsOrInquiriesAndSomeoneFromOurTeamWillBeInTouchSoon {
@@ -3061,6 +3181,16 @@ class S {
     return Intl.message(
       'month',
       name: 'month',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MONTHLY PLAN`
+  String get monthlyPlan {
+    return Intl.message(
+      'MONTHLY PLAN',
+      name: 'monthlyPlan',
       desc: '',
       args: [],
     );
@@ -4266,6 +4396,16 @@ class S {
     );
   }
 
+  /// `Please Enter Phone Number`
+  String get pleaseEnterPhone {
+    return Intl.message(
+      'Please Enter Phone Number',
+      name: 'pleaseEnterPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter position`
   String get pleaseEnterPosition {
     return Intl.message(
@@ -4801,6 +4941,16 @@ class S {
     return Intl.message(
       'Quantity',
       name: 'quantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QUARTERLY PLAN`
+  String get quarterlyPlan {
+    return Intl.message(
+      'QUARTERLY PLAN',
+      name: 'quarterlyPlan',
       desc: '',
       args: [],
     );
@@ -5491,6 +5641,16 @@ class S {
     return Intl.message(
       'Select country',
       name: 'selectCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Country`
+  String get selectCountryText {
+    return Intl.message(
+      'Select Country',
+      name: 'selectCountryText',
       desc: '',
       args: [],
     );
@@ -6406,6 +6566,26 @@ class S {
     );
   }
 
+  /// `Upgrade to Premium to find out who`
+  String get upgradeToPremiumOutWho {
+    return Intl.message(
+      'Upgrade to Premium to find out who',
+      name: 'upgradeToPremiumOutWho',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upgrade to join + 1 million users on spam detection premium`
+  String get upgradeUsersSpamDetectionPremium {
+    return Intl.message(
+      'Upgrade to join + 1 million users on spam detection premium',
+      name: 'upgradeUsersSpamDetectionPremium',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Upload back image of document`
   String get uploadBackImageOfDoc {
     return Intl.message(
@@ -6566,6 +6746,16 @@ class S {
     );
   }
 
+  /// `View profile`
+  String get viewProfile {
+    return Intl.message(
+      'View profile',
+      name: 'viewProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Voter ID card`
   String get voterIdCard {
     return Intl.message(
@@ -6696,6 +6886,16 @@ class S {
     );
   }
 
+  /// `Who viewed my profile`
+  String get whoViewedMyProfile {
+    return Intl.message(
+      'Who viewed my profile',
+      name: 'whoViewedMyProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `work`
   String get work {
     return Intl.message(
@@ -6721,6 +6921,16 @@ class S {
     return Intl.message(
       'Write a comment',
       name: 'writeComment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YEARLY PLAN`
+  String get yearlyPlan {
+    return Intl.message(
+      'YEARLY PLAN',
+      name: 'yearlyPlan',
       desc: '',
       args: [],
     );
@@ -6783,6 +6993,16 @@ class S {
     return Intl.message(
       'You can get upto',
       name: 'youCanGetUpto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can manage your subscription or cancel anytime in your Google account settings.Specific Terms apply.`
+  String get youCanManageYourSubscription {
+    return Intl.message(
+      'You can manage your subscription or cancel anytime in your Google account settings.Specific Terms apply.',
+      name: 'youCanManageYourSubscription',
       desc: '',
       args: [],
     );
@@ -6893,226 +7113,6 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Select Country`
-  String get selectCountryText {
-    return Intl.message(
-      'Select Country',
-      name: 'selectCountryText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Delete call logs`
-  String get deleteCallLogs {
-    return Intl.message(
-      'Delete call logs',
-      name: 'deleteCallLogs',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Delete All Call Logs`
-  String get deleteAllCallLogs {
-    return Intl.message(
-      'Delete All Call Logs',
-      name: 'deleteAllCallLogs',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Google Sign-In failed. Please try again.`
-  String get googleSignFailedPleaseAgain {
-    return Intl.message(
-      'Google Sign-In failed. Please try again.',
-      name: 'googleSignFailedPleaseAgain',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `An error occurred during Google Sign-In.`
-  String get anErrorOccurredDuringGoogleSignIn {
-    return Intl.message(
-      'An error occurred during Google Sign-In.',
-      name: 'anErrorOccurredDuringGoogleSignIn',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Dear Customer, You have one missed call.`
-  String get dearCustomerMissedCall {
-    return Intl.message(
-      'Dear Customer, You have one missed call.',
-      name: 'dearCustomerMissedCall',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Dear Applicant,the last date to apply today.`
-  String get dearApplicantToday {
-    return Intl.message(
-      'Dear Applicant,the last date to apply today.',
-      name: 'dearApplicantToday',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Biggest scholarship test for Gate candidates.`
-  String get biggestScholarshipCandidates {
-    return Intl.message(
-      'Biggest scholarship test for Gate candidates.',
-      name: 'biggestScholarshipCandidates',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Dear User your profile is shortlisted.`
-  String get dearUseShortlisted {
-    return Intl.message(
-      'Dear User your profile is shortlisted.',
-      name: 'dearUseShortlisted',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please Enter Phone Number`
-  String get pleaseEnterPhone {
-    return Intl.message(
-      'Please Enter Phone Number',
-      name: 'pleaseEnterPhone',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Who viewed my profile`
-  String get whoViewedMyProfile {
-    return Intl.message(
-      'Who viewed my profile',
-      name: 'whoViewedMyProfile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `127 people(127 in india) viewed your profile recently`
-  String get inIndiaViewedYourProfileRecently {
-    return Intl.message(
-      '127 people(127 in india) viewed your profile recently',
-      name: 'inIndiaViewedYourProfileRecently',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Upgrade to Premium to find out who`
-  String get upgradeToPremiumOutWho {
-    return Intl.message(
-      'Upgrade to Premium to find out who',
-      name: 'upgradeToPremiumOutWho',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Upgrade to join + 1 million users on spam detection premium`
-  String get upgradeUsersSpamDetectionPremium {
-    return Intl.message(
-      'Upgrade to join + 1 million users on spam detection premium',
-      name: 'upgradeUsersSpamDetectionPremium',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `3 days free trial for new subscribers only`
-  String get freeTrialForNewSubscribers {
-    return Intl.message(
-      '3 days free trial for new subscribers only',
-      name: 'freeTrialForNewSubscribers',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `You can manage your subscription or cancel anytime in your Google account settings.Specific Terms apply.`
-  String get youCanManageYourSubscription {
-    return Intl.message(
-      'You can manage your subscription or cancel anytime in your Google account settings.Specific Terms apply.',
-      name: 'youCanManageYourSubscription',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Learn More`
-  String get learnMore {
-    return Intl.message(
-      'Learn More',
-      name: 'learnMore',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `YEARLY PLAN`
-  String get yearlyPlan {
-    return Intl.message(
-      'YEARLY PLAN',
-      name: 'yearlyPlan',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `QUARTERLY PLAN`
-  String get quarterlyPlan {
-    return Intl.message(
-      'QUARTERLY PLAN',
-      name: 'quarterlyPlan',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `MONTHLY PLAN`
-  String get monthlyPlan {
-    return Intl.message(
-      'MONTHLY PLAN',
-      name: 'monthlyPlan',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Edit Contact`
-  String get editContact {
-    return Intl.message(
-      'Edit Contact',
-      name: 'editContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `View profile`
-  String get viewProfile {
-    return Intl.message(
-      'View profile',
-      name: 'viewProfile',
       desc: '',
       args: [],
     );
