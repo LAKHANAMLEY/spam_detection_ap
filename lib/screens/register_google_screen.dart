@@ -167,7 +167,7 @@ class _RegisterFirstState extends State<RegisterGoogle> {
               SizedBox(width: MediaQuery.of(context).size.width * 1 / 100),
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.registerGoogle);
+                  Navigator.pushNamed(context, AppRoutes.loginGoogle);
                 },
                 child: Text(appLocalization(context).login,
                     style: const TextStyle(

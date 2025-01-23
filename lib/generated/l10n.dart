@@ -4146,10 +4146,10 @@ class S {
     );
   }
 
-  /// `Please active your subscription`
+  /// `Please Active Your Subscription`
   String get pleaseActiveYourSubscription {
     return Intl.message(
-      'Please active your subscription',
+      'Please Active Your Subscription',
       name: 'pleaseActiveYourSubscription',
       desc: '',
       args: [],
@@ -6966,10 +6966,10 @@ class S {
     );
   }
 
-  /// `You are protected against all the dangerous phone numbers from our security database`
+  /// `You Are Protected Against All The Dangerous Phone Numbers From Our Security Database`
   String get youAreProtected {
     return Intl.message(
-      'You are protected against all the dangerous phone numbers from our security database',
+      'You Are Protected Against All The Dangerous Phone Numbers From Our Security Database',
       name: 'youAreProtected',
       desc: '',
       args: [],
@@ -7038,10 +7038,10 @@ class S {
     );
   }
 
-  /// `Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials`
+  /// `Your Emails Are Currently Being Screened By Protect AI To Detect Potential Scam And Safe Guard Your Data And Financials.`
   String get yourEmailsAreCurrently {
     return Intl.message(
-      'Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials',
+      'Your Emails Are Currently Being Screened By Protect AI To Detect Potential Scam And Safe Guard Your Data And Financials.',
       name: 'yourEmailsAreCurrently',
       desc: '',
       args: [],
@@ -7058,10 +7058,10 @@ class S {
     );
   }
 
-  /// `Your messages are currently being screened by Detect AI to identity potential scams.`
+  /// `Your Messages Are Currently Being Screened By Detect AI To Identity Potential Scams.`
   String get yourMessagesAreCurrently {
     return Intl.message(
-      'Your messages are currently being screened by Detect AI to identity potential scams.',
+      'Your Messages Are Currently Being Screened By Detect AI To Identity Potential Scams.',
       name: 'yourMessagesAreCurrently',
       desc: '',
       args: [],

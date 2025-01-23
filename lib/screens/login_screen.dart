@@ -339,23 +339,31 @@ class _LoginState extends State<Login> {
                                                 ),
                                               ],
                                             ),
-                                            TextButton(
-                                                child: Text(
-                                                  appLocalization(context)
-                                                      .forgotPasswordText,
-                                                  style: const TextStyle(
-                                                      fontSize: 14,
-                                                      color: AppColor
-                                                          .yellowLightColor,
-                                                      fontFamily:
-                                                          AppFont.fontFamily,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                onPressed: () {
-                                                  Navigator.pushNamed(context,
-                                                      AppRoutes.forgotPassword);
-                                                }),
+                                            Expanded(
+                                              child: TextButton(
+                                                  child: Text(
+                                                    appLocalization(context)
+                                                        .forgotPasswordText,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    softWrap: true,
+                                                    style: const TextStyle(
+                                                        fontSize: 14,
+                                                        color: AppColor
+                                                            .yellowLightColor,
+                                                        fontFamily:
+                                                            AppFont.fontFamily,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.pushNamed(
+                                                        context,
+                                                        AppRoutes
+                                                            .forgotPassword);
+                                                  }),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -382,43 +390,43 @@ class _LoginState extends State<Login> {
                                       SizedBox(
                                         height:
                                             MediaQuery.of(context).size.height *
-                                                2 /
+                                                5 /
                                                 100,
                                       ),
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Image.asset(IconConstants.icGoogle,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  10 /
-                                                  100),
-                                          SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  2 /
-                                                  100),
-                                          Image.asset(
-                                            IconConstants.icMac,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                10 /
-                                                100,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                1 /
-                                                100,
-                                      ),
+                                      // Row(
+                                      //   crossAxisAlignment:
+                                      //       CrossAxisAlignment.center,
+                                      //   mainAxisAlignment:
+                                      //       MainAxisAlignment.center,
+                                      //   children: [
+                                      //     Image.asset(IconConstants.icGoogle,
+                                      //         height: MediaQuery.of(context)
+                                      //                 .size
+                                      //                 .height *
+                                      //             10 /
+                                      //             100),
+                                      //     SizedBox(
+                                      //         width: MediaQuery.of(context)
+                                      //                 .size
+                                      //                 .width *
+                                      //             2 /
+                                      //             100),
+                                      //     Image.asset(
+                                      //       IconConstants.icMac,
+                                      //       height: MediaQuery.of(context)
+                                      //               .size
+                                      //               .height *
+                                      //           10 /
+                                      //           100,
+                                      //     ),
+                                      //   ],
+                                      // ),
+                                      // SizedBox(
+                                      //   height:
+                                      //       MediaQuery.of(context).size.height *
+                                      //           1 /
+                                      //           100,
+                                      // ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -516,43 +524,43 @@ class _LoginState extends State<Login> {
                                       SizedBox(
                                         height:
                                             MediaQuery.of(context).size.height *
-                                                2 /
+                                                8 /
                                                 100,
                                       ),
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Image.asset(IconConstants.icGoogle,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                  10 /
-                                                  100),
-                                          SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  2 /
-                                                  100),
-                                          Image.asset(
-                                            IconConstants.icMac,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                10 /
-                                                100,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                1 /
-                                                100,
-                                      ),
+                                      // Row(
+                                      //   crossAxisAlignment:
+                                      //       CrossAxisAlignment.center,
+                                      //   mainAxisAlignment:
+                                      //       MainAxisAlignment.center,
+                                      //   children: [
+                                      //     Image.asset(IconConstants.icGoogle,
+                                      //         height: MediaQuery.of(context)
+                                      //                 .size
+                                      //                 .height *
+                                      //             10 /
+                                      //             100),
+                                      //     SizedBox(
+                                      //         width: MediaQuery.of(context)
+                                      //                 .size
+                                      //                 .width *
+                                      //             2 /
+                                      //             100),
+                                      //     Image.asset(
+                                      //       IconConstants.icMac,
+                                      //       height: MediaQuery.of(context)
+                                      //               .size
+                                      //               .height *
+                                      //           10 /
+                                      //           100,
+                                      //     ),
+                                      //   ],
+                                      // ),
+                                      // SizedBox(
+                                      //   height:
+                                      //       MediaQuery.of(context).size.height *
+                                      //           1 /
+                                      //           100,
+                                      // ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,

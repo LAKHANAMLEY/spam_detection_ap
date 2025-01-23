@@ -154,7 +154,7 @@ class _AddContactState extends State<AddContact> {
                             ),
                           ),
                         ),
-                        10.height(),
+                        18.height(),
                         BlocConsumer(
                             bloc: selectPhoneCodeBloc,
                             listener: (context, state) {
@@ -185,7 +185,7 @@ class _AddContactState extends State<AddContact> {
                                 },
                               );
                             }),
-                        10.height(),
+                        20.height(),
                         AppButton(
                           text: appLocalization(context).addContact,
                           onPress: () {

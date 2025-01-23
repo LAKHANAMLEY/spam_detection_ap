@@ -25,11 +25,13 @@ class _RegisterState extends State<Register> {
   var selectPhoneNumberBloc =
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
 
+  var datePickerBloc = SelectionBloc(DatePickerLoaded(DateTime.now()));
+
   CountryData? selectedPhoneCodeCountry;
 
   //selectPhoneCodeBloc.add(SelectCountryEvent(selectedPhoneCodeCountry));
 
-  //DateTime? selectedDate;
+  DateTime? selectedDate;
 
   PhoneNumber? phoneNumber;
 
@@ -54,7 +56,7 @@ class _RegisterState extends State<Register> {
     }
   }
 
-  DateTime? selectedDate;
+  //DateTime? selectedDate;
 
   final _formKey = GlobalKey<FormState>();
   var registerBloc = ApiBloc(ApiBlocInitialState());
@@ -66,18 +68,16 @@ class _RegisterState extends State<Register> {
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController dateOfBirthController = TextEditingController();
 
-  Future<void> _pickDate(BuildContext context) async {
+  Future<void> _pickDate(BuildContext context, datePickerBloc) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime(2000),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-        dateOfBirthController.text = picked.toString().split(".").first;
-      });
+
+    if (picked != null) {
+      datePickerBloc.add(DatePicked(picked));
     }
   }
 
@@ -152,10 +152,10 @@ class _RegisterState extends State<Register> {
                                       fontWeight: FontWeight.w500),
                                 )),
                               ),
-                              SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      2 /
-                                      100),
+                              // SizedBox(
+                              //     height: MediaQuery.of(context).size.height *
+                              //         2 /
+                              //         100),
                               10.height(),
                               CustomTextField(
                                 controller: firstnameController,
@@ -242,26 +242,42 @@ class _RegisterState extends State<Register> {
                                     );
                                   }),
                               10.height(),
-                              CustomTextField(
-                                readOnly: true,
-                                controller: dateOfBirthController,
-                                onTap: () {
-                                  _pickDate(context);
-                                },
-                                hintText: appLocalization(context).dateOfBirth,
-                                labelText: appLocalization(context).dateOfBirth,
-                                suffix: Image.asset(
-                                  IconConstants.icCalenderData,
-                                  scale: 1.5,
-                                ),
-                                validator: (p0) {
-                                  if (p0?.isEmpty ?? true) {
-                                    return appLocalization(context)
-                                        .pleaseSelectDOB;
-                                  }
-                                  return null;
-                                },
-                              ),
+                              BlocConsumer(
+                                  bloc: datePickerBloc,
+                                  listener: (context, state) {
+                                    String dateText = 'Select a date';
+                                    if (state is DatePickerLoaded) {
+                                      dateText = state.value
+                                          .toString()
+                                          .split(".")
+                                          .first;
+                                    }
+                                  },
+                                  builder: (context, state) {
+                                    return CustomTextField(
+                                      readOnly: true,
+                                      controller: dateOfBirthController,
+                                      onTap: () {
+                                        _pickDate(context, datePickerBloc);
+                                      },
+                                      hintText:
+                                          appLocalization(context).dateOfBirth,
+                                      labelText:
+                                          appLocalization(context).dateOfBirth,
+                                      suffix: Image.asset(
+                                        IconConstants.icCalenderData,
+                                        scale: 1.5,
+                                      ),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseSelectDOB;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }),
+
                               10.height(),
                               BlocBuilder(
                                   bloc: passwordVisibilityBloc,

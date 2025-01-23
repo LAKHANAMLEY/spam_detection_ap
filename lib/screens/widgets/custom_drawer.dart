@@ -10,16 +10,16 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(child: Image.asset(IconConstants.icBroadLogo)),
-          ListTile(
-            onTap: () {
-              Navigator.pushNamed(context, AppRoutes.contactList);
-            },
-            leading: const Icon(Icons.person, color: Colors.white),
-            title: const Text(
-              "Contact list",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
+          // ListTile(
+          //   onTap: () {
+          //     Navigator.pushNamed(context, AppRoutes.contactList);
+          //   },
+          //   leading: const Icon(Icons.person, color: Colors.white),
+          //   title: Text(
+          //     appLocalization(context).contactList,
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          // ),
           ListTile(
             onTap: () async {
               showLogoutDialog(context);

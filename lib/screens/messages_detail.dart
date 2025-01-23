@@ -216,8 +216,7 @@ class MessageView extends StatelessWidget {
             // sms?.date?.formatRelativeDateTime() ?? "",
             // style: textTheme(context).bodySmall?.copyWith(color: AppColor.primaryColor),
             // ),
-
-            sms?.sendreceiveDatetime?.formatRelativeDateDay() ?? "",
+            sms?.date ?? "",
             style: textTheme(context)
                 .bodySmall
                 ?.copyWith(color: AppColor.primaryColor),

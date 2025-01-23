@@ -645,7 +645,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseAcceptTermsAndConditions": MessageLookupByLibrary.simpleMessage(
             "Please accept Terms & Conditions"),
         "pleaseActiveYourSubscription": MessageLookupByLibrary.simpleMessage(
-            "Please active your subscription"),
+            "Please Active Your Subscription"),
         "pleaseAddAtleastOneactiveAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Please add atleast one active account"),
@@ -1092,7 +1092,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "yoCanUpdateYourProfileFromHere": MessageLookupByLibrary.simpleMessage(
             "You can update your profile from here"),
         "youAreProtected": MessageLookupByLibrary.simpleMessage(
-            "You are protected against all the dangerous phone numbers from our security database"),
+            "You Are Protected Against All The Dangerous Phone Numbers From Our Security Database"),
         "youCanDoAnyOnlinePaymentFromAnyCardOrAccountJustScanTheQRCodeNEnjoy":
             MessageLookupByLibrary.simpleMessage(
                 "You can do any online payment from any card or account. Just scan the QR code & enjoy."),
@@ -1107,12 +1107,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You can\'t retry yet!"),
         "your": MessageLookupByLibrary.simpleMessage("Your"),
         "yourEmailsAreCurrently": MessageLookupByLibrary.simpleMessage(
-            "Your emails are currently being screened by protect AI to detect potential scam and safe guard your data and financials"),
+            "Your Emails Are Currently Being Screened By Protect AI To Detect Potential Scam And Safe Guard Your Data And Financials."),
         "yourGoalsWillHelpUsToFormulateTheRightRecommendationsForSuccess":
             MessageLookupByLibrary.simpleMessage(
                 "Your goals will help us to formulate the right recommendations for success."),
         "yourMessagesAreCurrently": MessageLookupByLibrary.simpleMessage(
-            "Your messages are currently being screened by Detect AI to identity potential scams."),
+            "Your Messages Are Currently Being Screened By Detect AI To Identity Potential Scams."),
         "yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword":
             MessageLookupByLibrary.simpleMessage(
                 "Your new password must be different from previously used password."),
