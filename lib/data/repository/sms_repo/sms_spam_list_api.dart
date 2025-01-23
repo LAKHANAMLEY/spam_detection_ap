@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/sms_spam_list_model.dart';
 
 Future<SmsSpamListResponse> smsSpamList() async {
   print(await ApiUrlConstants.headers());

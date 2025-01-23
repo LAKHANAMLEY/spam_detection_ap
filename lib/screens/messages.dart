@@ -10,7 +10,7 @@ class MessagesScreen extends StatelessWidget {
     final searchBloc = SelectionBloc(SelectStringState(""));
     final messagesBloc = ApiBloc(ApiBlocInitialState());
     messagesBloc.add(GetDeviceMessagesEvent());
-    getDeviceToken();
+    // getDeviceToken();
     return Scaffold(
       body: Column(children: [
         CustomTextField(

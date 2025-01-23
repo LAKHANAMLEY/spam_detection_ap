@@ -1,24 +1,9 @@
-import 'package:spam_delection_app/extensions/date_time_day_ext.dart';
 import 'package:spam_delection_app/lib.dart';
 
-import 'blocked_sms_screen.dart';
 
 final TextEditingController messageController = TextEditingController();
 
 class MessagesDetail extends StatelessWidget {
-  // Future<void> sendSMS(String phoneNumber, String message) async {
-  //   final Uri smsUri = Uri(
-  //     scheme: 'sms',
-  //     path: phoneNumber,
-  //     queryParameters: {'body': message}, // Message content
-  //   );
-  //
-  //   if (await canLaunchUrl(smsUri)) {
-  //     await launchUrl(smsUri);
-  //   } else {
-  //     throw 'Could not launch SMS';
-  //   }
-  // }
   final SmsLog? sms;
 
   const MessagesDetail({super.key, this.sms});
@@ -142,28 +127,36 @@ class MessagesDetail extends StatelessWidget {
                 ],
               ),
             ]),
-        body: Column(children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: sms?.smsDetails?.length,
-              itemBuilder: (context, index) => MessageView(
-                sms: sms?.smsDetails?[index],
-              ),
-            ),
+        bottomNavigationBar: messageField(context),
+        body: ListView.builder(
+          itemCount: sms?.smsDetails?.length,
+          itemBuilder: (context, index) => MessageView(
+            sms: sms?.smsDetails?[index],
           ),
-          CustomTextField(
-              hintText: appLocalization(context).sendSms,
-              controller: messageController,
-              style: const TextStyle(color: AppColor.primaryColor),
-              suffix: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.send,
-                  color: Colors.blueAccent,
-                ),
-              )),
-        ]));
+        ));
   }
+
+  send() {
+    sendSms(sms?.address ?? "", messageController.text);
+    messageController.clear();
+  }
+
+  messageField(context) => Container(
+        height: 80,
+        margin:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: CustomTextField(
+            hintText: appLocalization(context).sendSms,
+            controller: messageController,
+            style: const TextStyle(color: AppColor.primaryColor),
+            suffix: IconButton(
+              onPressed: send,
+              icon: const Icon(
+                Icons.send,
+                color: Colors.blueAccent,
+              ),
+            )),
+      );
 }
 
 class MessageView extends StatelessWidget {
@@ -184,15 +177,14 @@ class MessageView extends StatelessWidget {
           Center(
             child: Container(
                 margin: const EdgeInsets.all(2),
-                // padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 constraints: BoxConstraints(maxWidth: mq(context).width * .8),
                 // width: mq(context).width * .8,
                 decoration: const BoxDecoration(
                   color: AppColor.greyColor,
-                  borderRadius: const BorderRadius.all(Radius.circular(6)),
+                  borderRadius: BorderRadius.all(Radius.circular(6)),
                 ),
-                child: Text(
-                    sms?.sendreceiveDatetime?.formatRelativeDateDay() ?? "")),
+                child: Text(sms?.date?.formatRelativeDay() ?? "")),
           ),
 
           Container(
@@ -217,7 +209,7 @@ class MessageView extends StatelessWidget {
             // style: textTheme(context).bodySmall?.copyWith(color: AppColor.primaryColor),
             // ),
 
-            sms?.sendreceiveDatetime?.formatRelativeDateDay() ?? "",
+            sms?.date?.formatTime() ?? "",
             style: textTheme(context)
                 .bodySmall
                 ?.copyWith(color: AppColor.primaryColor),

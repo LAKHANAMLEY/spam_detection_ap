@@ -93,7 +93,7 @@ class SmsDetail {
   final String? isManually;
   final String? address;
   final String? countryCode;
-  final String? date;
+  final DateTime? date;
   final String? name;
 
   SmsDetail({
@@ -130,7 +130,10 @@ class SmsDetail {
         isSpam: json["is_spam"],
         spamMessage: json["spam_message"],
         score: json["score"],
-        date: json["date"],
+        // date: json["date"],
+        date: (json["date"]?.toString().isEmpty ?? true)
+            ? null
+            : DateTime.tryParse(json["date"]),
         name: json["name"],
         countryCode: json["countryCode"],
         address: json["address"],

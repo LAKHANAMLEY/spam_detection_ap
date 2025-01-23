@@ -55,6 +55,7 @@ dependencies:
   flutter_local_notifications_platform_interface: ^8.0.0
   flutter_contacts: ^1.1.9+2
   flutter_sms_inbox: ^1.0.3
+  sms_advanced: ^1.1.0
 
 dev_dependencies:
   flutter_test:

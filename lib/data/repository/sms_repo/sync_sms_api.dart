@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
@@ -13,14 +15,16 @@ Future<Response> syncSms({required List<SmsMessage> smsLogs}) async {
       'sms_list[$i][sendreceive_datetime]':
           sms.dateSent?.toString().splitFirstBy(".") ?? "",
       'sms_list[$i][date]': sms.date?.toString().splitFirstBy(".") ?? "",
-      'sms_list[$i][is_read]': '0',
-      'sms_list[$i][thread_id]': '123',
-      'sms_list[0][_id]': '12',
-      'sms_list[0][MessageState]': sms.state.name ?? "",
-      'sms_list[0][MessageKind]': sms.kind?.name ?? "",
-      'sms_list[0][QueryKind]': sms.kind?.name ?? "",
+      'sms_list[$i][is_read]': sms.isRead.toString(),
+      'sms_list[$i][thread_id]': sms.threadId.toString(),
+      'sms_list[$i][_id]': sms.id.toString(),
+      'sms_list[$i][MessageState]': sms.state.name ?? "",
+      'sms_list[$i][MessageKind]': sms.kind?.name ?? "",
+      'sms_list[$i][QueryKind]': sms.kind?.name ?? "",
     });
   }
+
+  log("$body");
 
   var request = http.MultipartRequest(
       'POST',

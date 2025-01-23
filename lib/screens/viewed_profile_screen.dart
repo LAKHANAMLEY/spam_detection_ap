@@ -155,7 +155,7 @@ class _ViewedProfileState extends State<ViewedProfile> {
                                 color: Colors.blueAccent),
                             child: Text(
                               appLocalization(context).saveMonths,
-                              style: TextStyle(color: AppColor.secondryColor),
+                              style: const TextStyle(color: AppColor.secondryColor),
                               textAlign: TextAlign.center,
                             ),
                           )

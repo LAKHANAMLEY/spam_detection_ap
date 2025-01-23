@@ -1,6 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
 
-import '../../models/sms_spam_list_model.dart';
 
 abstract class ApiState extends Equatable {
   @override

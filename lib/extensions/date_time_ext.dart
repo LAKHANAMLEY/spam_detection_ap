@@ -14,6 +14,12 @@ extension DateTimeExt on DateTime {
           ? "Yesterday @ ${formatTime()}"
           : formatDateTime();
 
+  String formatRelativeDay() => isToday
+      ? "Today"
+      : isYesterday
+          ? "Yesterday"
+          : formatDateTime();
+
   bool get isToday {
     final now = DateTime.now();
     return now.day == day && now.month == month && now.year == year;

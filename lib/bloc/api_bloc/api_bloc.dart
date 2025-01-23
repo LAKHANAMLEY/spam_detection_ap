@@ -1,6 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
 
-import '../../data/repository/sms_repo/sms_delete_api.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
   ApiBloc(super.initialState) {

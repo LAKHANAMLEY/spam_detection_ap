@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/sms_spam_list_model.dart';
 
 class SmsSpamListItem extends StatelessWidget {
   final SmsSpamList spamSms;

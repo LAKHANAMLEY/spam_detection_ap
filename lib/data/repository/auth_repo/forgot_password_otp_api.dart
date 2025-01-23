@@ -1,7 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<ForgotResponse> forgotPassword({required String phoneNumber}) async {
+Future<ForgotResponse> forgotPasswordWithPhone(
+    {required String phoneNumber}) async {
   // String? deviceToken = await getDeviceToken();
   // String deviceType = getDeviceType();
 

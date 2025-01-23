@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<ResetResponse> resetPassword(
+Future<ResetResponse> resetPasswordWithPhone(
     {required String phoneNumber,
     required String code,
     required String password,

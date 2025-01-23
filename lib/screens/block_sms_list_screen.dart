@@ -1,7 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/sms_spam_list_model.dart';
 
-import 'list_items/sms_list_items.dart';
 
 class BlockList extends StatefulWidget {
   const BlockList({super.key});

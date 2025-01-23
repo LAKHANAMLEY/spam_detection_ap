@@ -8,6 +8,6 @@ Future<List<SmsMessage>> getSms() async {
   var sms = await query.querySms(
     kinds: [SmsQueryKind.inbox, SmsQueryKind.sent],
   );
-  print(sms.first.toMap.toString());
+  // print(sms.first.toMap.toString());
   return sms;
 }
