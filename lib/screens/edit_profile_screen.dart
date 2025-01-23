@@ -338,7 +338,7 @@ class _EditProfileState extends State<EditProfile> {
                                     hintStyle: const TextStyle(
                                         color: AppColor.lightFillColor),
                                     enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(2),
+                                      borderRadius: BorderRadius.circular(5),
                                       borderSide: const BorderSide(
                                           width: 1.5,
                                           color: AppColor.fillColor),
@@ -348,7 +348,7 @@ class _EditProfileState extends State<EditProfile> {
                                           color: AppColor.fillColor,
                                           width: 1.5),
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(2)),
+                                          BorderRadius.all(Radius.circular(5)),
                                     ),
                                     filled: true,
                                     fillColor:
@@ -361,6 +361,8 @@ class _EditProfileState extends State<EditProfile> {
                                   bloc: selectCountryBloc,
                                   listener: (context, state) {
                                     if (state is SelectCountryState) {
+                                      print(
+                                          'Selected Country: ${state.value?.name}');
                                       countryController.text =
                                           state.value?.name ?? "";
                                       AppConstants.selectedCountry =

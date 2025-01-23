@@ -8,8 +8,6 @@ class ProtectionType extends StatefulWidget {
 }
 
 class _ProtectionTypeState extends State<ProtectionType> {
-  //int selectedTab = 0;
-
   var selectedTabBloc = SelectionBloc(SelectIntState(0));
 
   @override

@@ -197,21 +197,20 @@ class _ReportViewState extends State<ReportView> {
                               SnackBar(
                                 content: Text(appLocalization(context)
                                     .pleaseEnterCategory),
-                                backgroundColor: Colors.black,
+                                backgroundColor: AppColor.primaryColor,
                               ),
                             );
-                            return;
+                            return const Loader();
                           }
-
                           if (numberType == null) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(appLocalization(context)
                                     .pleaseEnterNumberType),
-                                backgroundColor: Colors.black,
+                                backgroundColor: AppColor.primaryColor,
                               ),
                             );
-                            return;
+                            return const Loader();
                           }
                           markSpamBloc.add(MarkSpamEvent(
                               contactId: contact?.id ?? "0",

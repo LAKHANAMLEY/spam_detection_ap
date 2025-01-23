@@ -123,6 +123,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "block": MessageLookupByLibrary.simpleMessage("Block"),
         "blockAccuracy": MessageLookupByLibrary.simpleMessage(
             "Block all scam, telemarketing and fraud calls thanks to AI -blocking accuracy."),
+        "blockSms": MessageLookupByLibrary.simpleMessage("Block SMS"),
+        "blockSmsSpam":
+            MessageLookupByLibrary.simpleMessage("Block Sms As Spam"),
         "blockedCalls": MessageLookupByLibrary.simpleMessage("Blocked Calls"),
         "blockedNumber":
             MessageLookupByLibrary.simpleMessage("Blocked Numbers"),
@@ -237,6 +240,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteCallLogs":
             MessageLookupByLibrary.simpleMessage("Delete call logs"),
         "deleteCalls": MessageLookupByLibrary.simpleMessage("Delete all Calls"),
+        "deleteConversation":
+            MessageLookupByLibrary.simpleMessage("Delete Conversation"),
         "deleteMember": MessageLookupByLibrary.simpleMessage("Delete Member"),
         "deleteStaffMember":
             MessageLookupByLibrary.simpleMessage("Delete Staff Member"),
@@ -376,6 +381,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your email address for the verification process. We will send 6 digit code to your email."),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
+        "forgotPasswordText":
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "freeTrialForNewSubscribers": MessageLookupByLibrary.simpleMessage(
             "3 days free trial for new subscribers only"),
         "from": MessageLookupByLibrary.simpleMessage("From"),
@@ -514,6 +521,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mustUppercaseLetter": MessageLookupByLibrary.simpleMessage(
             "Must include at least one uppercase letter"),
         "myBills": MessageLookupByLibrary.simpleMessage("My bills"),
+        "myBlockList": MessageLookupByLibrary.simpleMessage("My Block List"),
         "myContact": MessageLookupByLibrary.simpleMessage("My contact"),
         "mySubscriptions":
             MessageLookupByLibrary.simpleMessage("My subscriptions"),
@@ -757,6 +765,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please select back image"),
         "pleaseSelectCountryPhoneCode": MessageLookupByLibrary.simpleMessage(
             "Please select country phone code"),
+        "pleaseSelectDOB":
+            MessageLookupByLibrary.simpleMessage("please select date of birth"),
         "pleaseSelectFrontImage":
             MessageLookupByLibrary.simpleMessage("Please select front image"),
         "pleaseSelectInstitutionName": MessageLookupByLibrary.simpleMessage(
@@ -861,6 +871,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "roaming": MessageLookupByLibrary.simpleMessage("Roaming"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "saveMonths": MessageLookupByLibrary.simpleMessage("Save 23%"),
+        "saveYear": MessageLookupByLibrary.simpleMessage("Save 25%"),
         "scan": MessageLookupByLibrary.simpleMessage("Scan"),
         "scanBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Scan QR codes and make transactions."),
@@ -871,6 +883,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "searchCountry": MessageLookupByLibrary.simpleMessage("Search country"),
         "searchHere": MessageLookupByLibrary.simpleMessage("Search here..."),
+        "searchInConversation":
+            MessageLookupByLibrary.simpleMessage("Search in conversation"),
         "searchMore":
             MessageLookupByLibrary.simpleMessage("Search numbers,names & more"),
         "secureEmail": MessageLookupByLibrary.simpleMessage(
@@ -909,6 +923,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send money"),
         "sendMoneyBtnDescription": MessageLookupByLibrary.simpleMessage(
             "You can make transactions to your added beneficiaries and you can also manage beneficiaries."),
+        "sendSms": MessageLookupByLibrary.simpleMessage("Send Sms"),
         "senderDetails": MessageLookupByLibrary.simpleMessage("Sender details"),
         "senderName": MessageLookupByLibrary.simpleMessage("Sender name"),
         "sendingAmount": MessageLookupByLibrary.simpleMessage("Sending amount"),
@@ -952,6 +967,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "successful": MessageLookupByLibrary.simpleMessage("Successful"),
         "supportPin": MessageLookupByLibrary.simpleMessage("Support Pin"),
         "synCallLogs": MessageLookupByLibrary.simpleMessage("Sync call logs"),
+        "sync": MessageLookupByLibrary.simpleMessage("Sync"),
         "syncContacts": MessageLookupByLibrary.simpleMessage("Sync contacts"),
         "takeASelfie": MessageLookupByLibrary.simpleMessage("Take a selfie"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take a Photo"),
@@ -1051,6 +1067,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "warning": MessageLookupByLibrary.simpleMessage("Warning!"),
         "wasPersonalNumber": MessageLookupByLibrary.simpleMessage(
             "Was this a business or personal number?"),
+        "wasThisBusinessMessage": MessageLookupByLibrary.simpleMessage(
+            "Was this a bussiness or personal message?"),
         "water": MessageLookupByLibrary.simpleMessage("Water"),
         "weHaveSentTheCodeVerificationToYourMobileNumber":
             MessageLookupByLibrary.simpleMessage(

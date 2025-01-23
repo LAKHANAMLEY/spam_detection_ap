@@ -1,15 +1,14 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<CorporateResponse> corporateLogin(
-    {required String email,
-    required String password,
-    required String corporateid}) async {
+Future<CorporateResponse> corporateLogin({required String email,
+  required String password,
+  required String corporateId}) async {
   String? deviceToken = await getDeviceToken();
   String deviceType = getDeviceType();
 
   var body = {
-    'corporate_id': corporateid,
+    'corporate_id': corporateId,
     'email': email,
     'password': password,
     'device_token': deviceToken ?? '',

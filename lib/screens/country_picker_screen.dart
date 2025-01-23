@@ -43,12 +43,6 @@ class _CountryPickerScreenState extends State<CountryPickerScreen> {
                       searchBloc.add(SelectStringEvent(value));
                     },
                   ),
-                  // CustomTextField(
-                  //   controller: SearchController(),
-                  //   fillColor: Colors.white,
-                  //   hintText: appLocalization(context).searchCountry,
-                  //   // labelText: appLocalization(context).country,
-                  // ),
                   Expanded(
                     child: BlocBuilder(
                         bloc: searchBloc,

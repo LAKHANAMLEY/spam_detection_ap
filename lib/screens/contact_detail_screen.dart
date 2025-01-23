@@ -138,9 +138,9 @@ class _ContactDetailState extends State<ContactDetail> {
                                 },
                                 child: Image.asset(
                                   IconConstants.icBacKCircle,
-                                  color: Colors.white,
+                                  color: AppColor.secondryColor,
                                 )),
-                            backgroundColor: Colors.white,
+                            backgroundColor: AppColor.secondryColor,
                             flexibleSpace: FlexibleSpaceBar(
                               collapseMode: CollapseMode.pin,
                               background: Stack(
@@ -167,7 +167,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                         Container(
                                           padding: const EdgeInsets.all(5),
                                           decoration: const ShapeDecoration(
-                                            color: Colors.white,
+                                            color: AppColor.secondryColor,
                                             shape: CircleBorder(),
                                           ),
                                           child: CircleAvatar(
@@ -429,22 +429,28 @@ class _ContactDetailState extends State<ContactDetail> {
                                     ]),
                               ),
                             ),
-                            Container(
-                              margin: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  border:
-                                      Border.all(color: AppColor.fillColor)),
-                              child: ListTile(
-                                leading: const Icon(Icons.location_on,
-                                    color: AppColor.primaryColor),
-                                title: Text(
-                                  appLocalization(context).moreAvailable,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, AppRoutes.planType);
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    border:
+                                        Border.all(color: AppColor.fillColor)),
+                                child: ListTile(
+                                  leading: const Icon(Icons.location_on,
+                                      color: AppColor.primaryColor),
+                                  title: Text(
+                                    appLocalization(context).moreAvailable,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  subtitle: Text(appLocalization(context)
+                                      .upgradePremiumView),
                                 ),
-                                subtitle: Text(appLocalization(context)
-                                    .upgradePremiumView),
                               ),
                             ),
                             10.height(),

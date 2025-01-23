@@ -14,9 +14,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final List<Widget> _pages = [
     const HomeScreen(),
-    // const ChatScreen(),
     const MessagesScreen(),
-    // const ContactList(),
     const DeviceCallLogs(
       showAppBar: false,
     ),
@@ -220,11 +218,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           ),
                           PopupMenuItem(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const BlockedNumber()));
+                              Navigator.pushNamed(
+                                  context, AppRoutes.blockedCalls);
                             },
                             child: Row(
                               children: [
@@ -267,7 +262,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                                         fontWeight: FontWeight.w600))
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ]),
@@ -338,9 +333,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   Color? getColor(int i) {
     if (_page == i) {
-      return Colors.white;
+      return AppColor.secondryColor;
     }
-    return Colors.white;
+    return AppColor.secondryColor;
   }
 
   void getAndSyncContacts() {

@@ -113,8 +113,8 @@ class _ViewedProfileState extends State<ViewedProfile> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: AppColor.yellowLightColor),
-                            child: const Text(
-                              "Save 25%",
+                            child: Text(
+                              appLocalization(context).saveYear,
                               textAlign: TextAlign.center,
                             ),
                           )
@@ -153,8 +153,8 @@ class _ViewedProfileState extends State<ViewedProfile> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
                                 color: Colors.blueAccent),
-                            child: const Text(
-                              "Save 23%",
+                            child: Text(
+                              appLocalization(context).saveMonths,
                               style: TextStyle(color: AppColor.secondryColor),
                               textAlign: TextAlign.center,
                             ),

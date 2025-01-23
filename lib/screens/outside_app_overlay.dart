@@ -48,7 +48,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
 
   @override
   Widget build(BuildContext context) {
-    Color textColor = Colors.white;
+    Color textColor = AppColor.secondryColor;
     return Material(
         child: BlocConsumer(
             bloc: callLogDetailBloc,
@@ -58,23 +58,23 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                   var deviceCallLogs = state.value.first;
                   callLogDetailBloc.add(CheckSpamEvent(
                       callLogs: CallLogData(
-                        isManually: "1",
-                        mobileNo: deviceCallLogs.number
-                            ?.separeatePhoneAndPhoneCode()
-                            .phone,
-                        countryCode: deviceCallLogs.number
-                            ?.separeatePhoneAndPhoneCode()
-                            .phoneCode,
-                        name: deviceCallLogs.name,
-                        callDuration: deviceCallLogs.duration.toString(),
-                        callDurations: deviceCallLogs.duration.toString(),
-                        callDurationUnit: "1",
-                        callTime: deviceCallLogs.timestamp?.toDateTime(),
-                        callType: deviceCallLogs.callType?.name,
-                        simdisplayname: deviceCallLogs.simDisplayName,
-                        phoneaccountid: deviceCallLogs.phoneAccountId,
-                        contactListId: "0",
-                      )));
+                    isManually: "1",
+                    mobileNo: deviceCallLogs.number
+                        ?.separatePhoneAndPhoneCode()
+                        .phone,
+                    countryCode: deviceCallLogs.number
+                        ?.separatePhoneAndPhoneCode()
+                        .phoneCode,
+                    name: deviceCallLogs.name,
+                    callDuration: deviceCallLogs.duration.toString(),
+                    callDurations: deviceCallLogs.duration.toString(),
+                    callDurationUnit: "1",
+                    callTime: deviceCallLogs.timestamp?.toDateTime(),
+                    callType: deviceCallLogs.callType?.name,
+                    simdisplayname: deviceCallLogs.simDisplayName,
+                    phoneaccountid: deviceCallLogs.phoneAccountId,
+                    contactListId: "0",
+                  )));
                 }
               }
               if (state is CheckSpamState) {
@@ -112,10 +112,6 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                             //     ? IconConstants.icspamCircle
                             //     : IconConstants.icCaller),
                           ),
-                          // Padding(
-                          //   padding: const EdgeInsets.all(8.0),
-                          //   child: Image.asset(IconConstants.icBroadlogo),
-                          // ),
                           5.width(),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,16 +119,15 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                               Row(
                                 children: [
                                   Text(
-                                    "${callLog.callHistory?.first.callType ??
-                                        ""} call",
+                                    "${callLog.callHistory?.first.callType ?? ""} call",
                                     style:
-                                    textTheme(context).bodySmall?.copyWith(
-                                      color: Colors.white,
-                                      // color: getCallTypeColor(callLog
-                                      //     ?.callHistory
-                                      //     ?.first
-                                      //     .callType),
-                                    ),
+                                        textTheme(context).bodySmall?.copyWith(
+                                              color: AppColor.secondryColor,
+                                              // color: getCallTypeColor(callLog
+                                              //     ?.callHistory
+                                              //     ?.first
+                                              //     .callType),
+                                            ),
                                   ),
                                   5.width(),
                                   Text(
@@ -145,7 +140,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                                   5.width(),
                                   Text(
                                     callLog.callHistory?.first.callTime
-                                        ?.formatRelativeDateTime() ??
+                                            ?.formatRelativeDateTime() ??
                                         "",
                                     style: textTheme(context)
                                         .bodySmall
@@ -156,8 +151,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                               Text(
                                 callLog.name ??
                                     ((callLog.countryCode?.isNotEmpty ?? false)
-                                        ? ("+${callLog.countryCode ??
-                                        ""} ${callLog.mobileNo ?? ""}")
+                                        ? ("+${callLog.countryCode ?? ""} ${callLog.mobileNo ?? ""}")
                                         : callLog.mobileNo ?? ""),
                                 style: textTheme(context)
                                     .titleMedium
@@ -190,8 +184,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "+${callLog.countryCode ?? ""} ${callLog.mobileNo ??
-                                ""}",
+                            "+${callLog.countryCode ?? ""} ${callLog.mobileNo ?? ""}",
                             style: textTheme(context)
                                 .bodyMedium
                                 ?.copyWith(color: textColor),

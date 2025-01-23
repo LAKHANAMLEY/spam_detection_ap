@@ -18,7 +18,6 @@ class _CorporateProfileState extends State<CorporateProfile> {
   final TextEditingController companyNameController = TextEditingController();
   final TextEditingController crnIdController = TextEditingController();
 
-  final ImagePicker _picker = ImagePicker();
   XFile? _selectedImage;
 
   var corporateBloc = ApiBloc(ApiBlocInitialState());
@@ -46,7 +45,6 @@ class _CorporateProfileState extends State<CorporateProfile> {
                   if (state.value.statusCode == 200) {
                     if (state.value.data != null) {
                       updateData(CorporateData.fromJson(state.value.data));
-                      //sharedPrefBloc.add(GetUserDataFromLocalEvent());
                     }
                   } else if (state.value.statusCode ==
                       HTTPStatusCodes.sessionExpired) {

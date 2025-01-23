@@ -10,9 +10,9 @@ Future<SyncCallManuallyResponse> syncCallLogManually(
     'simdisplayname': log.simDisplayName ?? "",
     'phoneaccountid': log.phoneAccountId ?? "",
     'name': log.name ?? "",
-    'country_code': log.number?.separeatePhoneAndPhoneCode().phoneCode ?? "",
+    'country_code': log.number?.separatePhoneAndPhoneCode().phoneCode ?? "",
     'mobile_no': log.number
-            ?.separeatePhoneAndPhoneCode()
+            ?.separatePhoneAndPhoneCode()
             .phone
             .replaceAll(AppConstants.specialCharAndSpaceRegex, "") ??
         "",

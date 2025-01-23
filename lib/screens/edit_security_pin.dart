@@ -22,7 +22,6 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
   double scale = 3.5;
   var changeSecurityBloc = ApiBloc(ApiBlocInitialState());
   final _formKey = GlobalKey<FormState>();
-  String? _errorMessage;
 
   @override
   Widget build(BuildContext context) {

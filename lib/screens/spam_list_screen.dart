@@ -31,7 +31,6 @@ class _SpamListState extends State<SpamList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: AppColor.secondryColor,
       appBar: CustomAppBar(
         title: appLocalization(context).spamCalls,
       ),

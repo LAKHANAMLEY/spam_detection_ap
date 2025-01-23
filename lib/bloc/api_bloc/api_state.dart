@@ -1,5 +1,7 @@
 import 'package:spam_delection_app/lib.dart';
 
+import '../../models/sms_spam_list_model.dart';
+
 abstract class ApiState extends Equatable {
   @override
   List<Object?> get props => [];
@@ -537,6 +539,98 @@ class GetDeviceMessagesState extends ApiState {
   final List<SmsMessage> value;
 
   GetDeviceMessagesState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// sms list
+class SmsListState extends ApiState {
+  final SmsListResponse value;
+
+  SmsListState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// sync sms
+class SyncSmsState extends ApiState {
+  final Response value;
+
+  SyncSmsState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class SmsSeenState extends ApiState {
+  final Response value;
+
+  SmsSeenState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class SmsDeleteConversationState extends ApiState {
+  final Response value;
+
+  SmsDeleteConversationState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class SmsSpamListState extends ApiState {
+  final SmsSpamListResponse value;
+
+  SmsSpamListState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class MarkSpamSmsState extends ApiState {
+  final Response value;
+
+  MarkSpamSmsState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class RemoveSmsSpamState extends ApiState {
+  final Response value;
+
+  RemoveSmsSpamState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class SmsSpamState extends ApiState {
+  final SmsListResponse value;
+
+  SmsSpamState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class DeleteConversationState extends ApiState {
+  final Response value;
+
+  DeleteConversationState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class SmsDeleteState extends ApiState {
+  final Response value;
+
+  SmsDeleteState(this.value);
 
   @override
   List<Object?> get props => [value];

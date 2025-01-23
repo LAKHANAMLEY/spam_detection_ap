@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class Login extends StatefulWidget {
@@ -9,6 +10,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool _isRememberMeChecked = false;
+
   // int tabIndex = 0;
   var selectPhoneBloc =
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
@@ -17,6 +20,19 @@ class _LoginState extends State<Login> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   String? countryCode;
+
+  void _loadRememberMeState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _isRememberMeChecked = prefs.getBool('rememberMe') ?? false;
+    });
+  }
+
+  // Save the state to SharedPreferences
+  void _saveRememberMeState(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('rememberMe', value);
+  }
 
   Future<void> _verifyPhoneNumber() async {
     if (_formKey.currentState?.validate() ?? false) {
@@ -282,10 +298,71 @@ class _LoginState extends State<Login> {
                                               return const Loader();
                                             }),
                                       ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 18, right: 18),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                  value: _isRememberMeChecked,
+                                                  onChanged: (bool? value) {
+                                                    setState(() {
+                                                      _isRememberMeChecked =
+                                                          value ?? false;
+                                                      _saveRememberMeState(
+                                                          _isRememberMeChecked);
+                                                    });
+                                                  },
+                                                ),
+                                                Text(
+                                                  appLocalization(context)
+                                                      .rememberMe,
+                                                  style: const TextStyle(
+                                                    color:
+                                                        AppColor.lightFillColor,
+                                                    fontFamily:
+                                                        AppFont.fontFamily,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            TextButton(
+                                                child: Text(
+                                                  appLocalization(context)
+                                                      .forgotPasswordText,
+                                                  style: const TextStyle(
+                                                      fontSize: 14,
+                                                      color: AppColor
+                                                          .yellowLightColor,
+                                                      fontFamily:
+                                                          AppFont.fontFamily,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pushNamed(context,
+                                                      AppRoutes.forgotPassword);
+                                                }),
+                                          ],
+                                        ),
+                                      ),
                                       SizedBox(
                                         height:
                                             MediaQuery.of(context).size.height *
-                                                3 /
+                                                2 /
                                                 100,
                                       ),
                                       AppButton(
@@ -363,12 +440,8 @@ class _LoginState extends State<Login> {
                                                   100),
                                           InkWell(
                                             onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          const Register()));
+                                              Navigator.pushNamed(
+                                                  context, AppRoutes.register);
                                             },
                                             child: Text(
                                                 appLocalization(context)
@@ -430,13 +503,7 @@ class _LoginState extends State<Login> {
                                               );
                                             }),
                                       ),
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                2 /
-                                                100,
-                                      ),
-                                      10.height(),
+                                      20.height(),
                                       AppButton(
                                           text: appLocalization(context).getOtp,
                                           onPress: () {
@@ -544,8 +611,4 @@ class _LoginState extends State<Login> {
               }),
         ));
   }
-}
-
-extension on PhoneNumber? {
-  get isEmpty => null;
 }

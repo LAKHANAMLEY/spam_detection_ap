@@ -5,13 +5,13 @@ Future<ResetResponse> resetPassword(
     {required String email,
     required String code,
     required String password,
-    required String confirmpassword}) async {
+    required String confirmPassword}) async {
   print(email);
   var body = {
     'email': email,
     'code': code,
     'password': password,
-    'confirm_password': confirmpassword,
+    'confirm_password': confirmPassword,
   };
 
   final response = await http.post(

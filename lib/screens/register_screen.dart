@@ -254,6 +254,13 @@ class _RegisterState extends State<Register> {
                                   IconConstants.icCalenderData,
                                   scale: 1.5,
                                 ),
+                                validator: (p0) {
+                                  if (p0?.isEmpty ?? true) {
+                                    return appLocalization(context)
+                                        .pleaseSelectDOB;
+                                  }
+                                  return null;
+                                },
                               ),
                               10.height(),
                               BlocBuilder(
@@ -293,86 +300,7 @@ class _RegisterState extends State<Register> {
                                     }
                                     return const Loader();
                                   }),
-                              Padding(
-                                padding: const EdgeInsets.all(15),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          isCheckBoxValue = !isCheckBoxValue;
-                                        });
-                                      },
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                5 /
-                                                100,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                5 /
-                                                100,
-                                            child: isCheckBoxValue == false
-                                                ? Image.asset(
-                                                    IconConstants.icEnableCheck,
-                                                    fit: BoxFit.contain)
-                                                : Image.asset(
-                                                    IconConstants.checkboxIcon,
-                                                    fit: BoxFit.contain),
-                                          ),
-                                          SizedBox(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  3 /
-                                                  100),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                30 /
-                                                100,
-                                            margin:
-                                                const EdgeInsets.only(top: 6),
-                                            child: Text(
-                                              appLocalization(context)
-                                                  .rememberMe,
-                                              style: const TextStyle(
-                                                  color: AppColor.remainColor,
-                                                  fontSize: 15),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    TextButton(
-                                        child: Text(
-                                          appLocalization(context)
-                                              .resetPassword,
-                                          style: const TextStyle(
-                                              fontSize: 14,
-                                              color: AppColor.yellowLightColor,
-                                              fontFamily: AppFont.fontFamily,
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.pushNamed(context,
-                                              AppRoutes.forgotPassword);
-                                        }),
-                                  ],
-                                ),
-                              ),
+                              20.height(),
                               AppButton(
                                 text: appLocalization(context).register,
                                 onPress: () {

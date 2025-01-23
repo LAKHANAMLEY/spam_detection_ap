@@ -707,5 +707,17 @@
   "yourPasswordHasBeenChangedSuccessfully": "Votre mot de passe a été changé avec succès .",
   "yourPasswordHasBeenResetSuccessfully": "Votre mot de passe a été réinitialisé avec succès.",
   "yourPaymentHasBeenSuccessfullyDone": "Votre paiement a été effectué avec succès.",
-  "zip": "Código postal"
+  "zip": "Código postal",
+  "forgotPasswordText": "¿Has olvidado tu contraseña?",
+  "searchInConversation": "Buscar en conversación",
+  "deleteConversation": "Eliminar conversación",
+  "blockSms": "Bloquear SMS",
+  "wasThisBusinessMessage": "¿Fue este un mensaje comercial o personal?",
+  "BlockSmsSpam": "Bloquear SMS como spam",
+  "myBlockList": "Mi lista de bloqueo",
+  "sync": "Sincronizar",
+  "saveYear": "Ahorre un 25%",
+  "saveMonths": "Ahorre 23%",
+  "sendSms": "enviar sms",
+  "pleaseSelectDOB": "Por favor seleccione fecha de nacimiento"
 }

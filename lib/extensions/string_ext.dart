@@ -3,7 +3,8 @@ import 'package:spam_delection_app/lib.dart';
 
 extension StringExt on String {
   String splitFirstBy(String pattern) => split(pattern).first;
-  PhoneData separeatePhoneAndPhoneCode() {
+
+  PhoneData separatePhoneAndPhoneCode() {
     //TODO: get countries list by server
     var filteredCountries = countries.where((e) => contains("+${e.dialCode}"));
     if (filteredCountries.isNotEmpty) {

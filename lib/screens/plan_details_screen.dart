@@ -589,7 +589,7 @@ class PlanDurationTypeCardView extends StatelessWidget {
           borderRadius: BorderRadius.circular(
               8), // Applies general rounding to the card if needed
         ),
-        color: Colors.white,
+        color: AppColor.secondryColor,
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [

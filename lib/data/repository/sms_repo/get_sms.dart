@@ -1,6 +1,6 @@
-import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:spam_delection_app/utils/permission_request.dart';
+
+import '../../../lib.dart';
 
 Future<List<SmsMessage>> getSms() async {
   permissionRequest(Permission.sms);

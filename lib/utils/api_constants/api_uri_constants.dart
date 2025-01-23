@@ -135,4 +135,12 @@ class ApiUrlConstants {
   static String syncCallLogManually =
       '$baseUrl/contacts/sync-call-log-manually';
   static String dashboardStatistics = '$baseUrl/user/dashboard-statistics-data';
+  static String syncSms = '$baseUrl/sms/sync-sms';
+  static String smsList = '$baseUrl/sms/get-list';
+  static String smsSeen = '$baseUrl/sms/sms-seen';
+  static String smsSpamList = '$baseUrl/sms/spam-list';
+  static String smsDelete = '$baseUrl/sms/delete-sms';
+  static String markSpamSms = '$baseUrl/sms/mark-spam';
+  static String smsDeleteConversation = '$baseUrl/sms/delete-conversation';
+  static String removeSpamSms = '$baseUrl/sms/remove-spam';
 }

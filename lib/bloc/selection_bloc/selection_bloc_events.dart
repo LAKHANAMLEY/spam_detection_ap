@@ -67,3 +67,12 @@ class SelectCountryEvent extends SelectionBlocEvent {
   @override
   List<Object?> get props => [value];
 }
+
+// class SelectStEvent extends SelectionBlocEvent {
+//   final StateData? value;
+//
+//   SelectStEvent(this.value);
+//
+//   @override
+//   List<Object?> get props => [value];
+// }

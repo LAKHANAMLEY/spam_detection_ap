@@ -25,6 +25,8 @@ class SharedPref {
   static const String _zip = "zip";
   static const String _gender = "gender";
   static const String _dob = "dob";
+  static const String _relation = "relation";
+  static const String _position = "position";
 
   // corparte
   static const String _company = "company";
@@ -181,5 +183,15 @@ class SharedPref {
   static Future<String> getAddress2() async {
     var pref = await SharedPreferences.getInstance();
     return pref.getString(_address2) ?? "";
+  }
+
+  static Future<String> getRelation() async {
+    var pref = await SharedPreferences.getInstance();
+    return pref.getString(_relation) ?? "";
+  }
+
+  static Future<String> getPosition() async {
+    var pref = await SharedPreferences.getInstance();
+    return pref.getString(_position) ?? "";
   }
 }

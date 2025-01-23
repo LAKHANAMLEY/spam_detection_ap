@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7113,6 +7114,126 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password?`
+  String get forgotPasswordText {
+    return Intl.message(
+      'Forgot Password?',
+      name: 'forgotPasswordText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search in conversation`
+  String get searchInConversation {
+    return Intl.message(
+      'Search in conversation',
+      name: 'searchInConversation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Conversation`
+  String get deleteConversation {
+    return Intl.message(
+      'Delete Conversation',
+      name: 'deleteConversation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block SMS`
+  String get blockSms {
+    return Intl.message(
+      'Block SMS',
+      name: 'blockSms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Was this a bussiness or personal message?`
+  String get wasThisBusinessMessage {
+    return Intl.message(
+      'Was this a bussiness or personal message?',
+      name: 'wasThisBusinessMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block Sms As Spam`
+  String get blockSmsSpam {
+    return Intl.message(
+      'Block Sms As Spam',
+      name: 'blockSmsSpam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Block List`
+  String get myBlockList {
+    return Intl.message(
+      'My Block List',
+      name: 'myBlockList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sync`
+  String get sync {
+    return Intl.message(
+      'Sync',
+      name: 'sync',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save 25%`
+  String get saveYear {
+    return Intl.message(
+      'Save 25%',
+      name: 'saveYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save 23%`
+  String get saveMonths {
+    return Intl.message(
+      'Save 23%',
+      name: 'saveMonths',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Sms`
+  String get sendSms {
+    return Intl.message(
+      'Send Sms',
+      name: 'sendSms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please select date of birth`
+  String get pleaseSelectDOB {
+    return Intl.message(
+      'please select date of birth',
+      name: 'pleaseSelectDOB',
       desc: '',
       args: [],
     );

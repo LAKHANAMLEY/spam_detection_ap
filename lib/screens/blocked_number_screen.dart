@@ -1,14 +1,13 @@
 import 'package:spam_delection_app/lib.dart';
 
-class BlockedNumber extends StatefulWidget {
-  const BlockedNumber({super.key});
+class BlockedCalls extends StatefulWidget {
+  const BlockedCalls({super.key});
 
   @override
-  State<BlockedNumber> createState() => _BlockedNumberState();
+  State<BlockedCalls> createState() => _BlockedCallsState();
 }
 
-class _BlockedNumberState extends State<BlockedNumber> {
-  // var blockContactsBloc = ApiBloc(ApiBlocInitialState());
+class _BlockedCallsState extends State<BlockedCalls> {
   var selectTabBloc = SelectionBloc(SelectIntState(0));
 
   @override
@@ -40,7 +39,10 @@ class _BlockedNumberState extends State<BlockedNumber> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 2 / 100,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height * 2 / 100,
             ),
             BlocBuilder(
                 bloc: selectTabBloc,
@@ -49,8 +51,14 @@ class _BlockedNumberState extends State<BlockedNumber> {
                     int selectedTab = selectTabState.value;
                     return Column(children: [
                       Container(
-                        height: MediaQuery.of(context).size.height * 7 / 100,
-                        width: MediaQuery.of(context).size.width * 90 / 100,
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height * 7 / 100,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width * 90 / 100,
                         decoration: const BoxDecoration(
                           color: AppColor.secondryColor,
                         ),
@@ -107,7 +115,7 @@ class _BlockedNumberState extends State<BlockedNumber> {
                               if (contacts.isEmpty) {
                                 return Center(
                                   child:
-                                      Text(appLocalization(context).noContacts),
+                                  Text(appLocalization(context).noContacts),
                                 );
                               }
                               return ListView.builder(
@@ -143,20 +151,25 @@ class CustomTab extends StatelessWidget {
   final void Function() onTap;
   final String text;
 
-  const CustomTab(
-      {super.key,
-      required this.selectedTab,
-      required this.onTap,
-      required this.text,
-      required this.tabIndex});
+  const CustomTab({super.key,
+    required this.selectedTab,
+    required this.onTap,
+    required this.text,
+    required this.tabIndex});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: onTap,
         child: Container(
-          height: MediaQuery.of(context).size.height * 6 / 100,
-          width: MediaQuery.of(context).size.width * 40 / 100,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height * 6 / 100,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width * 40 / 100,
           decoration: BoxDecoration(
               color: selectedTab == tabIndex
                   ? AppColor.callColor
@@ -169,15 +182,15 @@ class CustomTab extends StatelessWidget {
               )),
           child: Center(
               child: Text(
-            text,
-            style: TextStyle(
-                color: selectedTab == tabIndex
-                    ? AppColor.secondryColor
-                    : AppColor.callColor,
-                fontSize: 18,
-                fontFamily: AppFont.fontFamily,
-                fontWeight: FontWeight.w600),
-          )),
+                text,
+                style: TextStyle(
+                    color: selectedTab == tabIndex
+                        ? AppColor.secondryColor
+                        : AppColor.callColor,
+                    fontSize: 18,
+                    fontFamily: AppFont.fontFamily,
+                    fontWeight: FontWeight.w600),
+              )),
         ));
   }
 }
