@@ -7148,10 +7148,10 @@ class S {
     );
   }
 
-  /// `Block Sms`
+  /// `Block SMS`
   String get blockSms {
     return Intl.message(
-      'Block Sms',
+      'Block SMS',
       name: 'blockSms',
       desc: '',
       args: [],
@@ -7183,6 +7183,56 @@ class S {
     return Intl.message(
       'My Block List',
       name: 'myBlockList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sync`
+  String get sync {
+    return Intl.message(
+      'Sync',
+      name: 'sync',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save 25%`
+  String get saveYear {
+    return Intl.message(
+      'Save 25%',
+      name: 'saveYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save 23%`
+  String get saveMonths {
+    return Intl.message(
+      'Save 23%',
+      name: 'saveMonths',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Sms`
+  String get sendSms {
+    return Intl.message(
+      'Send Sms',
+      name: 'sendSms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please select date of birth`
+  String get pleaseSelectDOB {
+    return Intl.message(
+      'please select date of birth',
+      name: 'pleaseSelectDOB',
       desc: '',
       args: [],
     );

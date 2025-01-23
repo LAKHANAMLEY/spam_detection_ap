@@ -123,7 +123,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "block": MessageLookupByLibrary.simpleMessage("Block"),
         "blockAccuracy": MessageLookupByLibrary.simpleMessage(
             "Block all scam, telemarketing and fraud calls thanks to AI -blocking accuracy."),
-        "blockSms": MessageLookupByLibrary.simpleMessage("Block Sms"),
+        "blockSms": MessageLookupByLibrary.simpleMessage("Block SMS"),
         "blockSmsSpam":
             MessageLookupByLibrary.simpleMessage("Block Sms As Spam"),
         "blockedCalls": MessageLookupByLibrary.simpleMessage("Blocked Calls"),
@@ -765,6 +765,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please select back image"),
         "pleaseSelectCountryPhoneCode": MessageLookupByLibrary.simpleMessage(
             "Please select country phone code"),
+        "pleaseSelectDOB":
+            MessageLookupByLibrary.simpleMessage("please select date of birth"),
         "pleaseSelectFrontImage":
             MessageLookupByLibrary.simpleMessage("Please select front image"),
         "pleaseSelectInstitutionName": MessageLookupByLibrary.simpleMessage(
@@ -869,6 +871,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "roaming": MessageLookupByLibrary.simpleMessage("Roaming"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "saveMonths": MessageLookupByLibrary.simpleMessage("Save 23%"),
+        "saveYear": MessageLookupByLibrary.simpleMessage("Save 25%"),
         "scan": MessageLookupByLibrary.simpleMessage("Scan"),
         "scanBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Scan QR codes and make transactions."),
@@ -919,6 +923,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send money"),
         "sendMoneyBtnDescription": MessageLookupByLibrary.simpleMessage(
             "You can make transactions to your added beneficiaries and you can also manage beneficiaries."),
+        "sendSms": MessageLookupByLibrary.simpleMessage("Send Sms"),
         "senderDetails": MessageLookupByLibrary.simpleMessage("Sender details"),
         "senderName": MessageLookupByLibrary.simpleMessage("Sender name"),
         "sendingAmount": MessageLookupByLibrary.simpleMessage("Sending amount"),
@@ -962,6 +967,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "successful": MessageLookupByLibrary.simpleMessage("Successful"),
         "supportPin": MessageLookupByLibrary.simpleMessage("Support Pin"),
         "synCallLogs": MessageLookupByLibrary.simpleMessage("Sync call logs"),
+        "sync": MessageLookupByLibrary.simpleMessage("Sync"),
         "syncContacts": MessageLookupByLibrary.simpleMessage("Sync contacts"),
         "takeASelfie": MessageLookupByLibrary.simpleMessage("Take a selfie"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take a Photo"),

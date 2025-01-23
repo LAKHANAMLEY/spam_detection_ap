@@ -807,6 +807,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Veuillez sélectionner l\'image arrière"),
         "pleaseSelectCountryPhoneCode": MessageLookupByLibrary.simpleMessage(
             "Veuillez sélectionner le code téléphonique du pays"),
+        "pleaseSelectDOB": MessageLookupByLibrary.simpleMessage(
+            "Por favor seleccione fecha de nacimiento"),
         "pleaseSelectFrontImage": MessageLookupByLibrary.simpleMessage(
             "Veuillez sélectionner l\'image de devant"),
         "pleaseSelectInstitutionName": MessageLookupByLibrary.simpleMessage(
@@ -919,6 +921,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Restablecer contraseña"),
         "roaming": MessageLookupByLibrary.simpleMessage("Itinérance"),
         "save": MessageLookupByLibrary.simpleMessage("Sauvegarder"),
+        "saveMonths": MessageLookupByLibrary.simpleMessage("Ahorre 23%"),
+        "saveYear": MessageLookupByLibrary.simpleMessage("Ahorre un 25%"),
         "scan": MessageLookupByLibrary.simpleMessage("Scanner QR Code"),
         "scanBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Scanner les QR codes et effectuer des transactions."),
@@ -974,6 +978,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Envoyer de l\'argent"),
         "sendMoneyBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Vous pouvez effectuer des transactions à vos bénéficiaires supplémentaires et vous pouvez également gérer les bénéficiaires."),
+        "sendSms": MessageLookupByLibrary.simpleMessage("enviar sms"),
         "senderDetails":
             MessageLookupByLibrary.simpleMessage("Détails de l\'expéditeur"),
         "senderName":
@@ -1024,6 +1029,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Pasador de soporte"),
         "synCallLogs": MessageLookupByLibrary.simpleMessage(
             "Sincronizar registros de llamadas"),
+        "sync": MessageLookupByLibrary.simpleMessage("Sincronizar"),
         "syncContacts":
             MessageLookupByLibrary.simpleMessage("Sincronizar contactos"),
         "takeASelfie": MessageLookupByLibrary.simpleMessage("Prenez un selfie"),

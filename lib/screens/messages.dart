@@ -24,10 +24,31 @@ class MessagesScreen extends StatelessWidget {
           suffix: PopupMenuButton(
             itemBuilder: (context) => [
               PopupMenuItem(
-                child: const Text("Sync"),
+                child: Text(appLocalization(context).sync),
                 onTap: () {
                   messagesBloc.add(GetDeviceMessagesEvent());
                 },
+              ),
+              PopupMenuItem(
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.blockList);
+                },
+                child: Row(
+                  children: [
+                    // Image.asset(
+                    //   IconConstants.icBlockedCall,
+                    //   scale: 2,
+                    // ),
+                    // SizedBox(
+                    //   width: MediaQuery.of(context).size.width * 5 / 100,
+                    // ),
+                    Text(appLocalization(context).myBlockList,
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600))
+                  ],
+                ),
               )
             ],
           ),
@@ -102,12 +123,16 @@ class MessagesScreen extends StatelessWidget {
 
   List<SmsLog> filterSearchResults(String searchString, List<SmsLog> messages) {
     return messages
-        .where((e) => (e.address
-                    ?.toLowerCase()
-                    .contains(searchString.toLowerCase()) ??
-                false)
-            // || (e.body?.toLowerCase().contains(searchString.toLowerCase()) ??
-            // false)
+        .where((e) =>
+                (e.address
+                        ?.toLowerCase()
+                        .contains(searchString.toLowerCase()) ??
+                    false) ||
+                (e.name?.toLowerCase().contains(searchString.toLowerCase()) ??
+                    false)
+            //&&
+            // (e.?.toLowerCase().contains(searchString.toLowerCase()) ??
+            //     false)
             )
         .toList();
   }

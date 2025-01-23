@@ -263,29 +263,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
                               ],
                             ),
                           ),
-                          PopupMenuItem(
-                            onTap: () {
-                              Navigator.pushNamed(context, AppRoutes.blockList);
-                            },
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  IconConstants.icBlockedCall,
-                                  scale: 2,
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      5 /
-                                      100,
-                                ),
-                                Text(appLocalization(context).myBlockList,
-                                    style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600))
-                              ],
-                            ),
-                          )
                         ],
                       ),
                     ]),

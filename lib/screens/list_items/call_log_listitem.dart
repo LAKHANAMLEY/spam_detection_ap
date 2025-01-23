@@ -34,6 +34,7 @@ class CallLogListItem extends StatelessWidget {
                 ));
           },
       leading: CircleAvatar(
+        backgroundColor: AppColor.newGreyColor,
         // backgroundImage: AssetImage(
         //   getIcon(callLog),
         // ),
@@ -65,6 +66,7 @@ class CallLogListItem extends StatelessWidget {
             callLog.callTime?.formatRelativeDateTime() ?? "",
             style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
           ),
+          //
         ],
       ),
       subtitle: Row(

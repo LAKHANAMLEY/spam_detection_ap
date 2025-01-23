@@ -569,7 +569,6 @@ class SmsListEvent extends ApiEvent {}
 
 //
 class SmsSeenEvent extends ApiEvent {
-  ///pass 1 for online 0 for offline
   final String id;
 
   SmsSeenEvent({required this.id});
@@ -579,7 +578,7 @@ class SmsSeenEvent extends ApiEvent {
 }
 
 class SmsDeleteConversationEvent extends ApiEvent {
-  final SmsDetail sms;
+  final SmsLog sms;
 
   SmsDeleteConversationEvent({required this.sms});
 
@@ -619,7 +618,7 @@ class RemoveSpamSmsEvent extends ApiEvent {
       ];
 }
 
-class SmsSpamEvent extends ApiEvent {}
+//class SmsSpamEvent extends ApiEvent {}
 
 class DeleteConversationEvent extends ApiEvent {
   final String address;
@@ -631,5 +630,18 @@ class DeleteConversationEvent extends ApiEvent {
   @override
   List<Object?> get props => [
         address,
+      ];
+}
+
+class SmsDeleteEvent extends ApiEvent {
+  final id;
+
+  SmsDeleteEvent({
+    required this.id,
+  });
+
+  @override
+  List<Object?> get props => [
+        id,
       ];
 }

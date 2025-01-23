@@ -74,3 +74,12 @@ class SelectCountryState extends SelectionBlocState {
   @override
   List<Object?> get props => [value];
 }
+
+class SelectStState extends SelectionBlocState {
+  final SelectStState? value;
+
+  SelectStState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}

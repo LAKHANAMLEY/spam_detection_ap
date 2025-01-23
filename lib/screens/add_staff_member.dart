@@ -301,7 +301,6 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                 builder: (context, state) {
                                   return CustomTextField(
                                     keyboardType: TextInputType.phone,
-                                    //readOnly: true,
                                     controller: phoneNumberController,
                                     hintText:
                                         appLocalization(context).phoneNumber,

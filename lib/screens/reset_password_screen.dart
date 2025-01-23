@@ -66,7 +66,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     //var argument = args(context) as ResetPassword;
     return Scaffold(
-        // backgroundColor: AppColor.secondryColor,
+        backgroundColor: AppColor.secondryColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -76,7 +76,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 listener: (context, state) {
                   if (state is ResetPasswordState) {
                     if (state.value.statusCode == 200) {
-                      Navigator.pushNamed(context, AppRoutes.register);
+                      Navigator.pushNamed(context, AppRoutes.login);
                     } else if (state.value.statusCode ==
                         HTTPStatusCodes.sessionExpired) {
                       sessionExpired(context, state.value.message);

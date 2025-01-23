@@ -1,11 +1,6 @@
 import 'package:spam_delection_app/lib.dart';
 
-import '../../data/repository/sms_repo/mark_spam_sms_api.dart';
-import '../../data/repository/sms_repo/remove_spam_sms_api.dart';
-import '../../data/repository/sms_repo/sms_delete_conversation_api.dart';
-import '../../data/repository/sms_repo/sms_list_api.dart';
-import '../../data/repository/sms_repo/sms_seen_api.dart';
-import '../../data/repository/sms_repo/sms_spam_list_api.dart';
+import '../../data/repository/sms_repo/sms_delete_api.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
   ApiBloc(super.initialState) {
@@ -439,7 +434,6 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(EditContactState(value));
       });
     }
-
      */
 // edit contact list
     if (event is DeleteContactEvent) {
@@ -533,6 +527,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await deleteConversation(address: event.address).then((value) {
         emit(DeleteConversationState(value));
+      });
+    }
+    if (event is SmsDeleteEvent) {
+      emit(ApiLoadingState());
+      await smsDelete(id: event.id).then((value) {
+        emit(SmsDeleteState(value));
       });
     }
   }

@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:spam_delection_app/globals/index.dart';
+
 SmsListResponse smsListResponseFromJson(String str) =>
     SmsListResponse.fromJson(json.decode(str));
 
@@ -82,7 +84,7 @@ class SmsDetail {
   final String? messageState;
   final String? messageKind;
   final String? queryKind;
-  final String? sendreceiveDatetime;
+  final DateTime? sendreceiveDatetime;
   final String? threadId;
   final String? id;
   final String? isSpam;
@@ -119,12 +121,19 @@ class SmsDetail {
         messageState: json["MessageState"],
         messageKind: json["MessageKind"],
         queryKind: json["QueryKind"],
-        sendreceiveDatetime: json["sendreceive_datetime"],
+        sendreceiveDatetime:
+            (json["send_receiveDatetime"]?.toString().isEmpty ?? true)
+                ? null
+                : DateTime.tryParse(json["send_receiveDatetime"]),
         threadId: json["thread_id"],
         id: json["_id"],
         isSpam: json["is_spam"],
         spamMessage: json["spam_message"],
         score: json["score"],
+        date: json["date"],
+        name: json["name"],
+        countryCode: json["countryCode"],
+        address: json["address"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -133,11 +142,15 @@ class SmsDetail {
         "MessageState": messageState,
         "MessageKind": messageKind,
         "QueryKind": queryKind,
-        "sendreceive_datetime": sendreceiveDatetime,
+        "sendreceive_datetime": sendreceiveDatetime?.toIso8601String(),
         "thread_id": threadId,
         "_id": id,
         "is_spam": isSpam,
         "spam_message": spamMessage,
         "score": score,
+        "name": name,
+        "countryCode": countryCode,
+        "address": address,
+        "date": date,
       };
 }

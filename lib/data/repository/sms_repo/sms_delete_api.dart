@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<Response> SmsDelete({
+Future<Response> smsDelete({
   required SmsDetail id,
   // required id,
 }) async {

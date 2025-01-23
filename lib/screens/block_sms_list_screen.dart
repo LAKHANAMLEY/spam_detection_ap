@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/models/sms_spam_list_model.dart';
 
 import 'list_items/sms_list_items.dart';
 
@@ -12,19 +13,19 @@ class BlockList extends StatefulWidget {
 class _BlockListState extends State<BlockList> {
   var markSmsSpamBloc = ApiBloc(ApiBlocInitialState());
   final TextEditingController editingController = TextEditingController();
-  List<SmsDetail> sms = [];
-  List<SmsDetail> filteredContacts = [];
+  List<SmsSpamList> sms = [];
+  List<SmsSpamList> filteredContacts = [];
 
   @override
   void initState() {
     super.initState();
-    markSmsSpamBloc.add(GetSpamEvent());
+    markSmsSpamBloc.add(SmsSpamListEvent());
   }
 
   void filterSearchResults(String query) {
     setState(() {
       filteredContacts = sms
-          .where((item) => "${item.address} ${item.spamMessage}"
+          .where((item) => "${item.name} ${item.address}"
               .toLowerCase()
               .contains(query.toLowerCase()))
           .toList();
@@ -51,9 +52,9 @@ class _BlockListState extends State<BlockList> {
               child: BlocConsumer(
                   bloc: markSmsSpamBloc,
                   listener: (context, state) {
-                    if (state is SmsSpamState) {
-                      //spamSm = state.value.smsLog ?? [];
-                      filteredContacts = sms;
+                    if (state is SmsSpamListState) {
+                      sms = state.value.smsSpamList ?? [];
+                      filterSearchResults("");
                     }
                     if (state is RemoveSmsSpamState) {
                       if (state.value.statusCode == 200) {
@@ -72,7 +73,7 @@ class _BlockListState extends State<BlockList> {
                     }
                   },
                   builder: (context, state) {
-                    if (state is SmsSpamState) {
+                    if (state is SmsSpamListState) {
                       // SmsDetail = state.value.smsLog ?? [];
                       if (filteredContacts.isEmpty) {
                         return Center(

@@ -254,6 +254,13 @@ class _RegisterState extends State<Register> {
                                   IconConstants.icCalenderData,
                                   scale: 1.5,
                                 ),
+                                validator: (p0) {
+                                  if (p0?.isEmpty ?? true) {
+                                    return appLocalization(context)
+                                        .pleaseSelectDOB;
+                                  }
+                                  return null;
+                                },
                               ),
                               10.height(),
                               BlocBuilder(

@@ -137,24 +137,24 @@ class ContactList extends StatelessWidget {
                                     }
                                   },
                                   builder: (context, searchState) {
-                                    // if (searchState is SelectStringState) {
-                                    if (filteredContacts.isEmpty) {
-                                      return Center(
-                                        child: Text(appLocalization(context)
-                                            .noContacts),
+                                    if (searchState is SelectStringState) {
+                                      if (filteredContacts.isEmpty) {
+                                        return Center(
+                                          child: Text(appLocalization(context)
+                                              .noContacts),
+                                        );
+                                      }
+                                      return ListView.builder(
+                                        itemCount: filteredContacts.length,
+                                        // shrinkWrap: true,
+                                        itemBuilder: (context, index) {
+                                          return ContactListItem(
+                                            contact: filteredContacts[index],
+                                          );
+                                        },
                                       );
                                     }
-                                    return ListView.builder(
-                                      itemCount: filteredContacts.length,
-                                      // shrinkWrap: true,
-                                      itemBuilder: (context, index) {
-                                        return ContactListItem(
-                                          contact: filteredContacts[index],
-                                        );
-                                      },
-                                    );
-                                    // }
-                                    // return const Loader();
+                                    return const Loader();
                                   });
                             }
                             return const Loader();

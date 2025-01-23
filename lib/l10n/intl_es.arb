@@ -714,5 +714,10 @@
   "blockSms": "Bloquear SMS",
   "wasThisBusinessMessage": "¿Fue este un mensaje comercial o personal?",
   "BlockSmsSpam": "Bloquear SMS como spam",
-  "myBlockList": "Mi lista de bloqueo"
+  "myBlockList": "Mi lista de bloqueo",
+  "sync": "Sincronizar",
+  "saveYear": "Ahorre un 25%",
+  "saveMonths": "Ahorre 23%",
+  "sendSms": "enviar sms",
+  "pleaseSelectDOB": "Por favor seleccione fecha de nacimiento"
 }

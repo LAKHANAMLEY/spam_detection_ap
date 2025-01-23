@@ -217,7 +217,8 @@ class _BlockSmsViewState extends State<BlockSmsView> {
                             numberType: numberType ?? "",
                             category: selectedCategory?.cateId ?? "",
                           ));
-                          Navigator.pop(context);
+                          Navigator.pushNamed(
+                              context, AppRoutes.bottomNavigation);
                         }
                       }),
                   SizedBox(

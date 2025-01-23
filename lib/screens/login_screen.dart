@@ -612,7 +612,3 @@ class _LoginState extends State<Login> {
         ));
   }
 }
-
-extension on PhoneNumber? {
-  get isEmpty => null;
-}

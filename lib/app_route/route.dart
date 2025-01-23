@@ -45,6 +45,7 @@ class AppRoutes {
   static const blockList = "/blockList";
   static const spamList = "/spamList";
   static const blockedCalls = "/blockCalls";
+  static const messageScreen = "/messageScreen";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -92,4 +93,5 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.blockList: (context) => const BlockList(),
   AppRoutes.spamList: (context) => const SpamList(),
   AppRoutes.blockedCalls: (context) => const BlockedCalls(),
+  AppRoutes.messageScreen: (context) => const MessagesScreen(),
 };

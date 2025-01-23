@@ -14,14 +14,20 @@ class MessageListItem extends StatelessWidget {
             arguments: MessagesDetail(sms: sms));
       },
       leading: const CircleAvatar(
-        backgroundImage: AssetImage(IconConstants.icMessageLock),
+        backgroundImage: AssetImage(IconConstants.icMessageLock,),
       ),
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            sms.name ?? "",
+            (sms.name?.isNotEmpty ?? false)
+                ? sms.name ?? ""
+                : sms.countryCode?.isNotEmpty ?? false
+                ? "+${sms.countryCode} ${sms.address ?? ""}"
+                : sms.address ?? "",
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: textTheme(context).titleMedium,
           ),
           10.width(),
@@ -33,10 +39,10 @@ class MessageListItem extends StatelessWidget {
       ),
       subtitle: Expanded(
           child: Text(
-        sms.smsDetails?.first.body ?? "",
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-      )),
+            sms.smsDetails?.first.body ?? "",
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          )),
       // trailing: const Icon(
       //   Icons.arrow_forward_ios,
       // ),

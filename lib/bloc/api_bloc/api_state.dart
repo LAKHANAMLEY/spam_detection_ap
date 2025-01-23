@@ -1,5 +1,7 @@
 import 'package:spam_delection_app/lib.dart';
 
+import '../../models/sms_spam_list_model.dart';
+
 abstract class ApiState extends Equatable {
   @override
   List<Object?> get props => [];
@@ -581,7 +583,7 @@ class SmsDeleteConversationState extends ApiState {
 }
 
 class SmsSpamListState extends ApiState {
-  final Response value;
+  final SmsSpamListResponse value;
 
   SmsSpamListState(this.value);
 
@@ -620,6 +622,15 @@ class DeleteConversationState extends ApiState {
   final Response value;
 
   DeleteConversationState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class SmsDeleteState extends ApiState {
+  final Response value;
+
+  SmsDeleteState(this.value);
 
   @override
   List<Object?> get props => [value];
