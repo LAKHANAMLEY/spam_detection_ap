@@ -16,7 +16,6 @@ class _BlockedCallsState extends State<BlockedCalls> {
     super.initState();
   }
 
-  //int selectedTab = 0;
   double scale = 3.5;
 
   @override

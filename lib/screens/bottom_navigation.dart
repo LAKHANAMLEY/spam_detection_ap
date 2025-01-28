@@ -134,7 +134,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
                         child: Image.asset(
                           IconConstants.icNotificationBell,
                           scale: 3.5,
-                          //height: MediaQuery.of(context).size.height * 3 / 100,
                         ),
                       ),
                       PopupMenuButton(

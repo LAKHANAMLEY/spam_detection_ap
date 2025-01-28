@@ -101,3 +101,12 @@ class DatePickerLoaded extends SelectionBlocState {
   @override
   List<Object?> get props => [value];
 }
+
+class SelectCategoriesState extends SelectionBlocState {
+  final CategoryData? value;
+
+  SelectCategoriesState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}

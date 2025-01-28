@@ -51,7 +51,7 @@ class MessagesDetail extends StatelessWidget {
                   PopupMenuItem(
                     onTap: () {
                       showModalBottomSheet(
-                        isScrollControlled: true,
+                        isScrollControlled: false,
                         backgroundColor: AppColor.secondaryColor,
                         context: context,
                         shape: const RoundedRectangleBorder(

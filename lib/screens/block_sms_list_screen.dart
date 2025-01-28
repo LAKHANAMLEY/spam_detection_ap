@@ -71,7 +71,7 @@ class _BlockListState extends State<BlockList> {
                   },
                   builder: (context, state) {
                     if (state is SmsSpamListState) {
-                      // SmsDetail = state.value.smsLog ?? [];
+                      // SmsDetail = state.value.smsLog ?? ;
                       if (filteredContacts.isEmpty) {
                         return Center(
                           child: Text(appLocalization(context).noContacts),

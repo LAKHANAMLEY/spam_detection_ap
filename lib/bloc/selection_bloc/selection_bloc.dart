@@ -43,5 +43,8 @@ class SelectionBloc extends Bloc<SelectionBlocEvent, SelectionBlocState> {
     if (event is DatePicked) {
       emit(DatePickerLoaded(event.selectedDate));
     }
+    if (event is SelectCategoriesEvent) {
+      emit(SelectCategoriesState(event.value));
+    }
   }
 }

@@ -221,7 +221,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            ActionButton(
+                                            TittleButton(
                                               onTap: () {
                                                 launchSms(context,
                                                     contact?.mobileNo ?? "");
@@ -231,7 +231,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                               icon: Icons.message,
                                             ),
                                             contact?.isSpam == 1
-                                                ? ActionButton(
+                                                ? TittleButton(
                                                     onTap: () {
                                                       markSpamBloc.add(
                                                           RemoveSpamEvent(
@@ -243,7 +243,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                                         appLocalization(context)
                                                             .unmarkSpam,
                                                     icon: Icons.check_circle)
-                                                : ActionButton(
+                                                : TittleButton(
                                                     onTap: () {
                                                       showModalBottomSheet(
                                                         isScrollControlled:
@@ -273,7 +273,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                                         appLocalization(context)
                                                             .reportText,
                                                     icon: Icons.report),
-                                            ActionButton(
+                                            TittleButton(
                                                 onTap: () {
                                                   markSpamBloc.add(
                                                       BlockUnBlockEvent(
@@ -482,12 +482,12 @@ class _ContactDetailState extends State<ContactDetail> {
   }
 }
 
-class ActionButton extends StatelessWidget {
+class TittleButton extends StatelessWidget {
   final String label;
   final IconData icon;
   final void Function()? onTap;
 
-  const ActionButton({
+  const TittleButton({
     super.key,
     required this.label,
     required this.icon,
