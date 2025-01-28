@@ -1,6 +1,7 @@
 import 'package:spam_delection_app/lib.dart';
 
 final TextEditingController messageController = TextEditingController();
+final messagesBloc = ApiBloc(ApiBlocInitialState());
 
 class MessagesDetail extends StatelessWidget {
   final SmsLog? sms;
@@ -51,7 +52,7 @@ class MessagesDetail extends StatelessWidget {
                     onTap: () {
                       showModalBottomSheet(
                         isScrollControlled: true,
-                        backgroundColor: AppColor.secondryColor,
+                        backgroundColor: AppColor.secondaryColor,
                         context: context,
                         shape: const RoundedRectangleBorder(
                           borderRadius:
@@ -101,7 +102,7 @@ class MessagesDetail extends StatelessWidget {
                   ),
                   PopupMenuItem(
                     onTap: () {
-                      //messagesBloc.add(DeleteConversationEvent(address: ''));
+                      messagesBloc.add(DeleteConversationEvent(address: ''));
                     },
                     child: Row(
                       children: [
@@ -185,7 +186,6 @@ class MessageView extends StatelessWidget {
                 ),
                 child: Text(sms?.date?.formatRelativeDay() ?? "")),
           ),
-
           Container(
               margin: const EdgeInsets.all(2),
               padding: const EdgeInsets.all(5),
@@ -194,7 +194,7 @@ class MessageView extends StatelessWidget {
               decoration: BoxDecoration(
                 color: sms?.messageKind == SmsMessageKind.sent.name
                     ? AppColor.orangeColor
-                    : AppColor.secondryColor,
+                    : AppColor.secondaryColor,
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(radius),
                   topLeft: Radius.circular(radius),
@@ -204,90 +204,14 @@ class MessageView extends StatelessWidget {
               child: Text(sms?.body ?? "")),
           Text(
             //print(sms?.sendreceiveDatetime);
-            // sms?.date?.formatRelativeDateTime() ?? "",
-            // style: textTheme(context).bodySmall?.copyWith(color: AppColor.primaryColor),
-            // ),
 
             sms?.date?.formatTime() ?? "",
             style: textTheme(context)
                 .bodySmall
                 ?.copyWith(color: AppColor.primaryColor),
           ),
-          /*Text(
-            //print(sms?.sendreceiveDatetime);
-            // sms?.date?.formatRelativeDateTime() ?? "",
-            // style: textTheme(context).bodySmall?.copyWith(color: AppColor.primaryColor),
-            // ),
-
-            sms?.messageKind ?? "",
-            style: textTheme(context)
-                .bodySmall
-                ?.copyWith(color: AppColor.primaryColor),
-          ),
-
-           */
-
-          /*Text(
-            sms?.sendreceiveDatetime?.formatRelativeDateTime() ?? "",
-            style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
-          ),
-
-           */
-          /*Text(
-            sms?.messageKind ?? "",
-            style: textTheme(context)
-                .bodySmall
-                ?.copyWith(color: AppColor.primaryColor),
-          ),
-
-           */
-          //print(sms?.sendreceiveDatetime);
         ],
       ),
     );
   }
-
-// Future<void> sendSMS(String phoneNumber, String message) async {
-//   final Uri smsUri = Uri(
-//     scheme: 'sms',
-//     path: phoneNumber,
-//     queryParameters: {'body': message}, // Message content
-//   );
-//
-//   if (await canLaunchUrl(smsUri)) {
-//     await launchUrl(smsUri);
-//   } else {
-//     throw 'Could not launch SMS';
-//   }
-// }
 }
-
-//extension on String? {
-//  formatRelativeDateTime() {}
-//}
-// extension DateTimeExt on DateTime {
-//   String formatDateTime() =>
-//       DateFormat('dd MMM yyyy hh:mm a', 'en').format(this);
-//
-//   String formatDate() => DateFormat('dd MMM yyyy').format(this);
-//
-//   String formatTime() => DateFormat('hh:mm a').format(this);
-//
-//   String formatRelativeDateTime() => isToday
-//       ? "Today @ ${formatTime()}"
-//       : isYesterday
-//           ? "Yesterday @ ${formatTime()}"
-//           : formatDateTime();
-//
-//   bool get isToday {
-//     final now = DateTime.now();
-//     return now.day == day && now.month == month && now.year == year;
-//   }
-//
-//   bool get isYesterday {
-//     final yesterday = DateTime.now().subtract(const Duration(days: 1));
-//     return yesterday.day == day &&
-//         yesterday.month == month &&
-//         yesterday.year == year;
-//   }
-// }

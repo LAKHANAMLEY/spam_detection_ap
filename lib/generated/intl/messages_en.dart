@@ -130,6 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "blockedNumber":
             MessageLookupByLibrary.simpleMessage("Blocked Numbers"),
         "business": MessageLookupByLibrary.simpleMessage("Business"),
+        "call": MessageLookupByLibrary.simpleMessage("Call"),
         "callHistory": MessageLookupByLibrary.simpleMessage("Call history"),
         "callHistoryText": MessageLookupByLibrary.simpleMessage("Call History"),
         "callLogs": MessageLookupByLibrary.simpleMessage("Call logs"),
@@ -251,7 +252,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "details": MessageLookupByLibrary.simpleMessage("Details"),
         "developerModeDialogDiscription": MessageLookupByLibrary.simpleMessage(
             "Developer mode is enabled, please disable to access the BCTPay app"),
-        "didRecieveCode":
+        "didReceiveCode":
             MessageLookupByLibrary.simpleMessage("Did\'t recieve Code?"),
         "didTxt": MessageLookupByLibrary.simpleMessage("Did\'t recieve Code?"),
         "discount": MessageLookupByLibrary.simpleMessage("Discount"),
@@ -273,7 +274,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "dontHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
-        "dontWorryItHappensPleaseEnterTheAdressAssociatedWithYourAccount":
+        "dontWorryItHappensPleaseEnterTheAddressAssociatedWithYourAccount":
             MessageLookupByLibrary.simpleMessage(
                 "Don\'t worry! it happens. Please enter the adress associated with your account."),
         "download": MessageLookupByLibrary.simpleMessage("Download"),

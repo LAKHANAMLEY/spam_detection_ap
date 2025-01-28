@@ -12,21 +12,21 @@ void main() async {
   // Bloc.observer = AppBlocObserver();
   firebaseAnalyticsConfig();
   firebaseCrashlyticsConfig();
-  /*SystemAlertWindow.checkPermissions().then((isHavingPermission) async {
-    if (isHavingPermission ?? false) {
-    } else {
-      await SystemAlertWindow.requestPermissions();
-    }
-  });
-  await PhoneStateBackground.checkPermission().then((isHavingPermission) async {
-    if (isHavingPermission) {
-      await PhoneStateBackground.initialize(
-          phoneStateBackgroundCallbackHandler);
-    } else {
-      await PhoneStateBackground.requestPermissions();
-    }
-  });
-  */
+  // SystemAlertWindow.checkPermissions().then((isHavingPermission) async {
+  //   if (isHavingPermission ?? false) {
+  //   } else {
+  //     await SystemAlertWindow.requestPermissions();
+  //   }
+  // });
+  // await PhoneStateBackground.checkPermission().then((isHavingPermission) async {
+  //   if (isHavingPermission) {
+  //     await PhoneStateBackground.initialize(
+  //         phoneStateBackgroundCallbackHandler);
+  //   } else {
+  //     await PhoneStateBackground.requestPermissions();
+  //   }
+  // });
+
   runApp(const MyApp());
 }
 

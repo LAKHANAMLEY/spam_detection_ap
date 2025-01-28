@@ -45,7 +45,7 @@ class _AddContactState extends State<AddContact> {
     ];
     String selectedType = appLocalization(context).mobile;
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
+      backgroundColor: AppColor.secondaryColor,
       appBar: CustomAppBar(title: appLocalization(context).addContact),
       //centerTitle: true,
       body: SafeArea(

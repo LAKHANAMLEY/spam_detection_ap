@@ -57,6 +57,7 @@ dependencies:
   flutter_sms_inbox: ^1.0.3
   sms_advanced: ^1.1.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,6 +67,23 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.2
   flutter_local_notifications: ^18.0.1
   flutter_native_splash: ^2.4.4
+
+# flutter_native_splash-development.yaml
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logo-development.png
+  branding: assets/branding-development.png
+  color_dark: "#ffffff"
+  image_dark: assets/logo-development.png
+  branding_dark: assets/branding-development.png
+
+  android_12:
+    image: assets/logo-development.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/logo-development.png
+    icon_background_color_dark: "#666666"
+
+  web: true
 
 flutter_launcher_icons:
   android: "launcher_icon"

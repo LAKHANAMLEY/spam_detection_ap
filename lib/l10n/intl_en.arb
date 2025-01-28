@@ -144,7 +144,7 @@
   "description": "Description: ",
   "details": "Details",
   "developerModeDialogDiscription": "Developer mode is enabled, please disable to access the BCTPay app",
-  "didRecieveCode": "Did't recieve Code?",
+  "didReceiveCode": "Did't recieve Code?",
   "didTxt": "Did't recieve Code?",
   "discount": "Discount",
   "doYouReallyWantToDeleteThisAccount": "Do you really want to delete this account ?",
@@ -157,7 +157,7 @@
   "documentType": "Document type",
   "done": "Done",
   "dontHaveAnAccount": "Don’t have an account?",
-  "dontWorryItHappensPleaseEnterTheAdressAssociatedWithYourAccount": "Don't worry! it happens. Please enter the adress associated with your account.",
+  "dontWorryItHappensPleaseEnterTheAddressAssociatedWithYourAccount": "Don't worry! it happens. Please enter the adress associated with your account.",
   "download": "Download",
   "drawerBtnDescription": "Get list of settings in the side menu.",
   "drivingLicence": "Driving licence",
@@ -717,5 +717,6 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code"
+  "zip": "Zip Code",
+  "call": "Call"
 }

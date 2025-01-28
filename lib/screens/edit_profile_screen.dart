@@ -13,7 +13,7 @@ class _EditProfileState extends State<EditProfile> {
   DateTime? selectedDate;
   SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
   double scale = 3.5;
-
+  var datePickerBlocData = SelectionBloc(DatePickerLoaded(DateTime.now()));
   final TextEditingController firstnameController = TextEditingController();
   final TextEditingController lastnameController = TextEditingController();
   final TextEditingController dateOfBirthController = TextEditingController();
@@ -35,20 +35,33 @@ class _EditProfileState extends State<EditProfile> {
 
   CountryData? selectedPhoneCodeCountry;
 
-  Future<void> _pickDate(BuildContext context) async {
+  Future<void> _pickDate(BuildContext context, datePickerBloc) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: DateTime(2000),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-        dateOfBirthController.text = picked.formatDate();
-      });
+
+    if (picked != null) {
+      datePickerBloc.add(DatePicked(picked));
     }
   }
+
+  // Future<void> _pickDate(BuildContext context) async {
+  //   final DateTime? picked = await showDatePicker(
+  //     context: context,
+  //     initialDate: DateTime.now(),
+  //     firstDate: DateTime(1900),
+  //     lastDate: DateTime.now(),
+  //   );
+  //   if (picked != null && picked != selectedDate) {
+  //     setState(() {
+  //       selectedDate = picked;
+  //       dateOfBirthController.text = picked.formatDate();
+  //     });
+  //   }
+  // }
 
   @override
   void initState() {
@@ -59,7 +72,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        backgroundColor: AppColor.secondaryColor,
         appBar: CustomAppBar(title: appLocalization(context).editProfile),
         body: SafeArea(
           child: BlocConsumer(
@@ -299,20 +312,44 @@ class _EditProfileState extends State<EditProfile> {
                                       ),
                                     );
                                   }),
-                              10.height(),
-                              CustomTextField(
-                                readOnly: true,
-                                controller: dateOfBirthController,
-                                onTap: () {
-                                  _pickDate(context);
-                                },
-                                hintText: appLocalization(context).dateOfBirth,
-                                labelText: appLocalization(context).dateOfBirth,
-                                suffix: Image.asset(
-                                  IconConstants.icCalenderData,
-                                  scale: 1.5,
-                                ),
-                              ),
+                              0.height(),
+                              BlocConsumer(
+                                  bloc: datePickerBlocData,
+                                  listener: (context, state) {
+                                    String dateText = 'Select a date';
+                                    if (state is DatePickerLoaded) {
+                                      dateText = state.value
+                                          .toString()
+                                          .split(".")
+                                          .first;
+                                    }
+                                    dateOfBirthController.text =
+                                        dateText; // Set text in controller
+                                  },
+                                  builder: (context, state) {
+                                    return CustomTextField(
+                                      readOnly: true,
+                                      controller: dateOfBirthController,
+                                      onTap: () {
+                                        _pickDate(context, datePickerBlocData);
+                                      },
+                                      hintText:
+                                          appLocalization(context).dateOfBirth,
+                                      labelText:
+                                          appLocalization(context).dateOfBirth,
+                                      suffix: Image.asset(
+                                        IconConstants.icCalenderData,
+                                        scale: 1.5,
+                                      ),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseSelectDOB;
+                                        }
+                                        return null;
+                                      },
+                                    );
+                                  }),
                               10.height(),
                               Padding(
                                 padding:

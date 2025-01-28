@@ -36,7 +36,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
+      backgroundColor: AppColor.secondaryColor,
       appBar: CustomAppBar(
         title: appLocalization(context).familyList,
       ),
@@ -65,7 +65,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                 borderSide:
                     const BorderSide(width: 0.5, color: Color(0xffE1E6EB)),
               ),
-              fillColor: AppColor.secondryColor,
+              fillColor: AppColor.secondaryColor,
               filled: true,
             ),
           ),

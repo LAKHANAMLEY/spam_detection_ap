@@ -38,7 +38,7 @@ class _SpamListState extends State<SpamList> {
           child: Column(
         children: <Widget>[
           CustomTextField(
-            fillColor: AppColor.secondryColor,
+            fillColor: AppColor.secondaryColor,
             onChanged: (value) => filterSearchResults(value),
             controller: editingController,
             prefix: const Icon(Icons.search),

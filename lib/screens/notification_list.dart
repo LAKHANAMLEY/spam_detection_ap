@@ -34,7 +34,6 @@ class _NotificationListState extends State<NotificationList> {
                 bloc: notificationListBloc,
                 listener: (context, state) {
                   if (state is NotificationListState) {
-                    //ye state list get hone pr hi milti h
                     if (state.value.statusCode == 200) {
                       // showCustomDialog(
                       //   context,

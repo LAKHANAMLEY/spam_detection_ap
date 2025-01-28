@@ -1,6 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
 
-
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
   ApiBloc(super.initialState) {
     on(eventHandler);
@@ -137,7 +136,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     // family add member
     if (event is FamilyAddMemberEvent) {
       emit(ApiLoadingState());
-      await familyaddMember(
+      await familyAddMember(
         email: event.email,
         firstname: event.firstName,
         lastname: event.lastName,
@@ -496,7 +495,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     if (event is SmsSeenEvent) {
       emit(ApiLoadingState());
       await smsSeen(
-        id: event.id,
+        messageId: event.messageId,
       ).then((value) {
         emit(SmsSeenState(value));
       });
@@ -530,7 +529,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     }
     if (event is SmsDeleteEvent) {
       emit(ApiLoadingState());
-      await smsDelete(id: event.id).then((value) {
+      await smsDelete(messageId: event.id).then((value) {
         emit(SmsDeleteState(value));
       });
     }

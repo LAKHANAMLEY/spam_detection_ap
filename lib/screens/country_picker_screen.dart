@@ -36,7 +36,7 @@ class _CountryPickerScreenState extends State<CountryPickerScreen> {
               return Column(
                 children: [
                   CustomTextField(
-                    fillColor: AppColor.secondryColor,
+                    fillColor: AppColor.secondaryColor,
                     controller: searchController,
                     hintText: appLocalization(context).searchHere,
                     onChanged: (value) {

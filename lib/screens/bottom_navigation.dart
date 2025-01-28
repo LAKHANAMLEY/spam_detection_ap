@@ -333,9 +333,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   Color? getColor(int i) {
     if (_page == i) {
-      return AppColor.secondryColor;
+      return AppColor.secondaryColor;
     }
-    return AppColor.secondryColor;
+    return AppColor.secondaryColor;
   }
 
   void getAndSyncContacts() {

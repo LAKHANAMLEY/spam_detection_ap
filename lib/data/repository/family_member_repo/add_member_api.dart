@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<FamilyMemberAddResponse> familyaddMember({
+Future<FamilyMemberAddResponse> familyAddMember({
   required String firstname,
   required String lastname,
   required String email,

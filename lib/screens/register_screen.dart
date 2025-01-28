@@ -84,7 +84,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        backgroundColor: AppColor.secondaryColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -252,6 +252,8 @@ class _RegisterState extends State<Register> {
                                           .split(".")
                                           .first;
                                     }
+                                    dateOfBirthController.text =
+                                        dateText; // Set text in controller
                                   },
                                   builder: (context, state) {
                                     return CustomTextField(

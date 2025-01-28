@@ -99,7 +99,7 @@ class Profile extends StatelessWidget {
               return Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                  color: AppColor.secondryColor,
+                  color: AppColor.secondaryColor,
                   borderRadius: BorderRadius.circular(16.0),
                 ),
                 child: SafeArea(
@@ -228,7 +228,7 @@ class Profile extends StatelessWidget {
                                 Text(
                                   appLocalization(context).upgradePremium,
                                   style: const TextStyle(
-                                      color: AppColor.secondryColor,
+                                      color: AppColor.secondaryColor,
                                       fontSize: 20,
                                       fontFamily: AppFont.fontFamily,
                                       fontWeight: FontWeight.w700),
@@ -351,7 +351,7 @@ class Profile extends StatelessWidget {
                                                                       .circular(
                                                                           4)),
                                                           color: AppColor
-                                                              .secondryColor),
+                                                              .secondaryColor),
                                                   child: Container(
                                                     margin:
                                                         const EdgeInsets.all(8),
@@ -634,7 +634,7 @@ class SubMenu extends StatelessWidget {
                 border: Border.all(
                   color: AppColor.greyArrowColor,
                 ),
-                color: AppColor.secondryColor),
+                color: AppColor.secondaryColor),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

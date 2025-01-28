@@ -167,6 +167,7 @@ export 'screens/corporate_login_screen.dart';
 export 'screens/country_phone_code_prefix.dart';
 export 'screens/country_picker_screen.dart';
 export 'screens/device_call_logs.dart';
+export 'screens/dial_pad_screen.dart';
 export 'screens/edit_contact_screen.dart';
 export 'screens/edit_family_member_screen.dart';
 export 'screens/edit_profile_screen.dart';

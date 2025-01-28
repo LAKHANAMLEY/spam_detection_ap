@@ -18,7 +18,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        backgroundColor: AppColor.secondaryColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),

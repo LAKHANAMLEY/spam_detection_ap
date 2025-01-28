@@ -67,4 +67,5 @@ class AppConstants {
 
   static String? selectedLanguage = 'en';
   static List<CountryData> countryList = [];
+//static List<CategoryData> categoryList = [];
 }

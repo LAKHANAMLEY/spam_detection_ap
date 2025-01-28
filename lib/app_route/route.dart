@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/dial_pad_screen.dart';
 
 class AppRoutes {
   static const splash = "/splash";
@@ -46,6 +47,7 @@ class AppRoutes {
   static const spamList = "/spamList";
   static const blockedCalls = "/blockCalls";
   static const messageScreen = "/messageScreen";
+  static const dialPadScreen = "/dialPadScreen";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -94,4 +96,5 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.spamList: (context) => const SpamList(),
   AppRoutes.blockedCalls: (context) => const BlockedCalls(),
   AppRoutes.messageScreen: (context) => const MessagesScreen(),
+  AppRoutes.dialPadScreen: (context) => const DialPad(),
 };

@@ -86,3 +86,16 @@ class DatePicked extends SelectionBlocEvent {
   @override
   List<Object?> get props => [selectedDate];
 }
+
+// class NumberPressed extends DialerEvent {
+//   final String number;
+//
+//   NumberPressed(this.number);
+//
+//   @override
+//   List<Object?> get props => [number];
+// }
+//
+// class DeletePressed extends DialerEvent {}
+//
+// class CallPressed extends DialerEvent {}

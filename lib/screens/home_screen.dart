@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
+      backgroundColor: AppColor.secondaryColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -202,7 +202,7 @@ class SecurityOption extends StatelessWidget {
                     //splashRadius: 10,
                     value: isEnabled,
                     onChanged: onToggle,
-                    inactiveTrackColor: AppColor.secondryColor,
+                    inactiveTrackColor: AppColor.secondaryColor,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     //activeThumbImage:AssetImage(IconConstants.icactiveThumb),
                     // inactiveThumbImage: AssetImage(IconConstants.icinactiveThumb),

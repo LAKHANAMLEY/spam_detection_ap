@@ -42,7 +42,7 @@ class _ViewedProfileState extends State<ViewedProfile> {
                 ],
                 faceSize: 80,
                 facePercentOverlap: .4,
-                borderColor: AppColor.secondryColor,
+                borderColor: AppColor.secondaryColor,
               ),
               10.height(),
               Padding(
@@ -96,14 +96,14 @@ class _ViewedProfileState extends State<ViewedProfile> {
                     children: [
                       Text(
                         appLocalization(context).yearlyPlan,
-                        style: const TextStyle(color: AppColor.secondryColor),
+                        style: const TextStyle(color: AppColor.secondaryColor),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
                             "\$20/Year",
-                            style: TextStyle(color: AppColor.secondryColor),
+                            style: TextStyle(color: AppColor.secondaryColor),
                           ),
                           5.width(),
                           Container(
@@ -155,7 +155,8 @@ class _ViewedProfileState extends State<ViewedProfile> {
                                 color: Colors.blueAccent),
                             child: Text(
                               appLocalization(context).saveMonths,
-                              style: const TextStyle(color: AppColor.secondryColor),
+                              style: const TextStyle(
+                                  color: AppColor.secondaryColor),
                               textAlign: TextAlign.center,
                             ),
                           )

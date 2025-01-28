@@ -117,7 +117,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
   Widget build(BuildContext context) {
     var argument = args(context) as ForgotOtpVerify;
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        backgroundColor: AppColor.secondaryColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -788,7 +788,7 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        appLocalization(context).didRecieveCode,
+                                        appLocalization(context).didReceiveCode,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontFamily: AppFont.fontFamily,
