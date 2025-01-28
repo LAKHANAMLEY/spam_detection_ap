@@ -13,7 +13,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        backgroundColor: AppColor.secondaryColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -90,7 +90,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                       colorFilter: ColorFilter.mode(
                                           selectedTab == 1
                                               ? AppColor.callColor
-                                              : AppColor.secondryColor,
+                                              : AppColor.secondaryColor,
                                           BlendMode.srcIn),
                                       image: const AssetImage(
                                           IconConstants.icPersonalShield),
@@ -107,7 +107,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                   style: TextStyle(
                                       color: selectedTab == 1
                                           ? AppColor.gracyColor
-                                          : AppColor.secondryColor,
+                                          : AppColor.secondaryColor,
                                       fontFamily: AppFont.fontFamily,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
@@ -147,7 +147,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                     image: DecorationImage(
                                       colorFilter: ColorFilter.mode(
                                           selectedTab == 1
-                                              ? AppColor.secondryColor
+                                              ? AppColor.secondaryColor
                                               : AppColor.callColor,
                                           BlendMode.srcIn),
                                       image: const AssetImage(
@@ -164,7 +164,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                   appLocalization(context).corporateProtection,
                                   style: TextStyle(
                                       color: selectedTab == 1
-                                          ? AppColor.secondryColor
+                                          ? AppColor.secondaryColor
                                           : AppColor.gracyColor,
                                       fontFamily: AppFont.fontFamily,
                                       fontSize: 18,

@@ -86,7 +86,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        backgroundColor: AppColor.secondaryColor,
         appBar: const CustomAppBar(),
         body: SafeArea(
           child: BlocConsumer(

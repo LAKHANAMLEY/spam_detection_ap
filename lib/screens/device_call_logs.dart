@@ -167,7 +167,7 @@ class DeviceCallLogs extends StatelessWidget {
                                             ? CustomTextField(
                                                 controller: searchController,
                                                 fillColor:
-                                                    AppColor.secondryColor,
+                                                    AppColor.secondaryColor,
                                                 prefix: const Icon(
                                                   Icons.search,
                                                   color: AppColor.redColor,
@@ -250,19 +250,36 @@ class DeviceCallLogs extends StatelessWidget {
                 });
           }),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColor.callColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: Image.asset(
-          IconConstants.icUserData,
-          scale: 2,
-          color: AppColor.secondryColor,
-        ),
-        onPressed: () async {
-          Navigator.pushNamed(context, AppRoutes.contactList);
-        },
-      ),
+          backgroundColor: AppColor.callColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Image.asset(
+            IconConstants.icDialPad,
+            scale: 1.5,
+            color: AppColor.secondaryColor,
+          ),
+          onPressed: () {
+            // Navigator.pushNamed(context, AppRoutes.dialPadScreen);
+            showModalBottomSheet(
+                //isScrollControlled: true,
+                backgroundColor: AppColor.secondaryColor,
+                context: context,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                ),
+                builder: (BuildContext context) {
+                  return DialPad(
+                      // contact: ContactData(
+                      // id: callLog.contactListId,
+                      // mobileNo: callLog.mobileNo,
+                      // name: callLog.name,
+                      // isSpam: callLog.isSpam,
+                      //  countryCode: callLog.countryCode,
+                      // ),
+                      );
+                });
+          }),
     );
   }
 

@@ -41,7 +41,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        backgroundColor: AppColor.secondaryColor,
         appBar: CustomAppBar(title: appLocalization(context).editStaffMember),
         body: SafeArea(
           child: BlocConsumer(

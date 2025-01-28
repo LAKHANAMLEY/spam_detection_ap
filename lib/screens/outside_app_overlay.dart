@@ -48,7 +48,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
 
   @override
   Widget build(BuildContext context) {
-    Color textColor = AppColor.secondryColor;
+    Color textColor = AppColor.secondaryColor;
     return Material(
         child: BlocConsumer(
             bloc: callLogDetailBloc,
@@ -122,7 +122,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                                     "${callLog.callHistory?.first.callType ?? ""} call",
                                     style:
                                         textTheme(context).bodySmall?.copyWith(
-                                              color: AppColor.secondryColor,
+                                              color: AppColor.secondaryColor,
                                               // color: getCallTypeColor(callLog
                                               //     ?.callHistory
                                               //     ?.first

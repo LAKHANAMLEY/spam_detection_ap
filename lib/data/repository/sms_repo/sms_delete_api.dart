@@ -2,14 +2,14 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
 Future<Response> smsDelete({
-  required SmsDetail id,
+  required String messageId,
   // required id,
 }) async {
   final response = await http.post(
     Uri.parse(ApiUrlConstants.smsDelete),
     headers: await ApiUrlConstants.headers(),
     body: {
-      '_id': id,
+      '_id': messageId,
     },
   );
   if (response.statusCode == 200) {

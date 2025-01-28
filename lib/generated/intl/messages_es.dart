@@ -133,6 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "blockedNumber":
             MessageLookupByLibrary.simpleMessage("Números bloqueados"),
         "business": MessageLookupByLibrary.simpleMessage("Negocio"),
+        "call": MessageLookupByLibrary.simpleMessage("Llamar"),
         "callHistory":
             MessageLookupByLibrary.simpleMessage("Historial de llamadas"),
         "callHistoryText":
@@ -265,7 +266,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "details": MessageLookupByLibrary.simpleMessage("Détails"),
         "developerModeDialogDiscription": MessageLookupByLibrary.simpleMessage(
             "Le mode développeur est activé, veuillez le désactiver pour accéder à l\'application BCTPay"),
-        "didRecieveCode":
+        "didReceiveCode":
             MessageLookupByLibrary.simpleMessage("¿No recibiste el código?"),
         "didTxt": MessageLookupByLibrary.simpleMessage("¿No recibiste OTP?"),
         "discount": MessageLookupByLibrary.simpleMessage("Rabais"),
@@ -288,9 +289,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "done": MessageLookupByLibrary.simpleMessage("Fait"),
         "dontHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("¿No tienes una cuenta?"),
-        "dontWorryItHappensPleaseEnterTheAdressAssociatedWithYourAccount":
-            MessageLookupByLibrary.simpleMessage(
-                "Ne vous inquiètez pas! Ca arrive. Saisissez l\'adresse associée à votre compte."),
         "download": MessageLookupByLibrary.simpleMessage("Téléchargez"),
         "drawerBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Obtenez la liste des paramètres dans le menu latéral."),

@@ -23,7 +23,7 @@ class _EditContactState extends State<EditContact> {
     ];
     String selectedType = appLocalization(context).mobile;
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
+      backgroundColor: AppColor.secondaryColor,
       appBar: CustomAppBar(title: appLocalization(context).editContact),
       body: SafeArea(
           child: SingleChildScrollView(

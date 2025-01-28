@@ -39,7 +39,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        backgroundColor: AppColor.secondaryColor,
         appBar: CustomAppBar(title: appLocalization(context).addFamilyMember),
         body: SafeArea(
             child: BlocConsumer(

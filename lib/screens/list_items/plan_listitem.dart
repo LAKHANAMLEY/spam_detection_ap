@@ -19,7 +19,7 @@ class PlanListItem extends StatelessWidget {
         decoration: BoxDecoration(
             color: plan.isActive ?? false
                 ? AppColor.yellowDecentColor
-                : AppColor.secondryColor,
+                : AppColor.secondaryColor,
             border: Border.all(
               color: plan.isActive ?? false
                   ? AppColor.yellowColor

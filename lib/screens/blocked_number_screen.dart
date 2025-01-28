@@ -22,7 +22,7 @@ class _BlockedCallsState extends State<BlockedCalls> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
+      backgroundColor: AppColor.secondaryColor,
       appBar: CustomAppBar(title: appLocalization(context).blockedNumber),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -39,10 +39,7 @@ class _BlockedCallsState extends State<BlockedCalls> {
               ),
             ),
             SizedBox(
-              height: MediaQuery
-                  .of(context)
-                  .size
-                  .height * 2 / 100,
+              height: MediaQuery.of(context).size.height * 2 / 100,
             ),
             BlocBuilder(
                 bloc: selectTabBloc,
@@ -51,16 +48,10 @@ class _BlockedCallsState extends State<BlockedCalls> {
                     int selectedTab = selectTabState.value;
                     return Column(children: [
                       Container(
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * 7 / 100,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width * 90 / 100,
+                        height: MediaQuery.of(context).size.height * 7 / 100,
+                        width: MediaQuery.of(context).size.width * 90 / 100,
                         decoration: const BoxDecoration(
-                          color: AppColor.secondryColor,
+                          color: AppColor.secondaryColor,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -115,7 +106,7 @@ class _BlockedCallsState extends State<BlockedCalls> {
                               if (contacts.isEmpty) {
                                 return Center(
                                   child:
-                                  Text(appLocalization(context).noContacts),
+                                      Text(appLocalization(context).noContacts),
                                 );
                               }
                               return ListView.builder(
@@ -151,29 +142,24 @@ class CustomTab extends StatelessWidget {
   final void Function() onTap;
   final String text;
 
-  const CustomTab({super.key,
-    required this.selectedTab,
-    required this.onTap,
-    required this.text,
-    required this.tabIndex});
+  const CustomTab(
+      {super.key,
+      required this.selectedTab,
+      required this.onTap,
+      required this.text,
+      required this.tabIndex});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: onTap,
         child: Container(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height * 6 / 100,
-          width: MediaQuery
-              .of(context)
-              .size
-              .width * 40 / 100,
+          height: MediaQuery.of(context).size.height * 6 / 100,
+          width: MediaQuery.of(context).size.width * 40 / 100,
           decoration: BoxDecoration(
               color: selectedTab == tabIndex
                   ? AppColor.callColor
-                  : AppColor.secondryColor,
+                  : AppColor.secondaryColor,
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
                 color: selectedTab == tabIndex
@@ -182,15 +168,15 @@ class CustomTab extends StatelessWidget {
               )),
           child: Center(
               child: Text(
-                text,
-                style: TextStyle(
-                    color: selectedTab == tabIndex
-                        ? AppColor.secondryColor
-                        : AppColor.callColor,
-                    fontSize: 18,
-                    fontFamily: AppFont.fontFamily,
-                    fontWeight: FontWeight.w600),
-              )),
+            text,
+            style: TextStyle(
+                color: selectedTab == tabIndex
+                    ? AppColor.secondaryColor
+                    : AppColor.callColor,
+                fontSize: 18,
+                fontFamily: AppFont.fontFamily,
+                fontWeight: FontWeight.w600),
+          )),
         ));
   }
 }

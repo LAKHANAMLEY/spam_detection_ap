@@ -24,7 +24,7 @@ class _PlanTypeState extends State<PlanType> {
   Widget build(BuildContext context) {
     var argument = args(context) as PlanType?;
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
+      backgroundColor: AppColor.secondaryColor,
       appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
           ? const CustomAppBar(
               centerTitle: true,

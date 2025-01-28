@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -639,6 +640,26 @@ class S {
     return Intl.message(
       'Block all scam, telemarketing and fraud calls thanks to AI -blocking accuracy.',
       name: 'blockAccuracy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block SMS`
+  String get blockSms {
+    return Intl.message(
+      'Block SMS',
+      name: 'blockSms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Block Sms As Spam`
+  String get blockSmsSpam {
+    return Intl.message(
+      'Block Sms As Spam',
+      name: 'blockSmsSpam',
       desc: '',
       args: [],
     );
@@ -1495,10 +1516,10 @@ class S {
   }
 
   /// `Did't recieve Code?`
-  String get didRecieveCode {
+  String get didReceiveCode {
     return Intl.message(
       'Did\'t recieve Code?',
-      name: 'didRecieveCode',
+      name: 'didReceiveCode',
       desc: '',
       args: [],
     );
@@ -1625,10 +1646,10 @@ class S {
   }
 
   /// `Don't worry! it happens. Please enter the adress associated with your account.`
-  String get dontWorryItHappensPleaseEnterTheAdressAssociatedWithYourAccount {
+  String get dontWorryItHappensPleaseEnterTheAddressAssociatedWithYourAccount {
     return Intl.message(
       'Don\'t worry! it happens. Please enter the adress associated with your account.',
-      name: 'dontWorryItHappensPleaseEnterTheAdressAssociatedWithYourAccount',
+      name: 'dontWorryItHappensPleaseEnterTheAddressAssociatedWithYourAccount',
       desc: '',
       args: [],
     );
@@ -7233,6 +7254,16 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call`
+  String get call {
+    return Intl.message(
+      'Call',
+      name: 'call',
       desc: '',
       args: [],
     );

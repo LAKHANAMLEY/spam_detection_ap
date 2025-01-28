@@ -26,7 +26,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondryColor,
+        backgroundColor: AppColor.secondaryColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),

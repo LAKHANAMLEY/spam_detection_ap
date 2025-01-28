@@ -43,7 +43,7 @@ class ContactList extends StatelessWidget {
                   children: <Widget>[
                     CustomTextField(
                       onTap: null,
-                      fillColor: AppColor.secondryColor,
+                      fillColor: AppColor.secondaryColor,
                       onChanged: (value) {
                         searchBloc.add(SelectStringEvent(value));
                       },

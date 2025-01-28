@@ -113,7 +113,7 @@ class CallLogListItem extends StatelessWidget {
                     onTap: () {
                       showModalBottomSheet(
                         isScrollControlled: true,
-                        backgroundColor: AppColor.secondryColor,
+                        backgroundColor: AppColor.secondaryColor,
                         context: context,
                         shape: const RoundedRectangleBorder(
                           borderRadius:

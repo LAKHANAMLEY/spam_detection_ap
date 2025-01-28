@@ -41,7 +41,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
       appBar: CustomAppBar(
         title: appLocalization(context).staffList,
       ),
-      backgroundColor: AppColor.secondryColor,
+      backgroundColor: AppColor.secondaryColor,
       body: SafeArea(
           child: Column(children: <Widget>[
         Padding(
@@ -67,7 +67,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
                 borderSide:
                     const BorderSide(width: 0.5, color: Color(0xffE1E6EB)),
               ),
-              fillColor: AppColor.secondryColor,
+              fillColor: AppColor.secondaryColor,
               filled: true,
             ),
           ),

@@ -1,6 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
 
-
 class BlockList extends StatefulWidget {
   const BlockList({super.key});
 
@@ -40,7 +39,7 @@ class _BlockListState extends State<BlockList> {
           child: Column(
         children: <Widget>[
           CustomTextField(
-            fillColor: AppColor.secondryColor,
+            fillColor: AppColor.secondaryColor,
             onChanged: (value) => filterSearchResults(value),
             controller: editingController,
             prefix: const Icon(Icons.search),

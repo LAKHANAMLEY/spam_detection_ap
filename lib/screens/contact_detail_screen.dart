@@ -36,7 +36,7 @@ class _ContactDetailState extends State<ContactDetail> {
     const expandedHeight = 300.0;
     const collapsedHeight = 60.0;
     return Scaffold(
-      backgroundColor: AppColor.secondryColor,
+      backgroundColor: AppColor.secondaryColor,
       body: BlocConsumer(
           bloc: markSpamBloc,
           listener: (context, state) {
@@ -138,9 +138,9 @@ class _ContactDetailState extends State<ContactDetail> {
                                 },
                                 child: Image.asset(
                                   IconConstants.icBacKCircle,
-                                  color: AppColor.secondryColor,
+                                  color: AppColor.secondaryColor,
                                 )),
-                            backgroundColor: AppColor.secondryColor,
+                            backgroundColor: AppColor.secondaryColor,
                             flexibleSpace: FlexibleSpaceBar(
                               collapseMode: CollapseMode.pin,
                               background: Stack(
@@ -167,7 +167,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                         Container(
                                           padding: const EdgeInsets.all(5),
                                           decoration: const ShapeDecoration(
-                                            color: AppColor.secondryColor,
+                                            color: AppColor.secondaryColor,
                                             shape: CircleBorder(),
                                           ),
                                           child: CircleAvatar(
@@ -250,7 +250,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                                             true,
                                                         backgroundColor:
                                                             AppColor
-                                                                .secondryColor,
+                                                                .secondaryColor,
                                                         context: context,
                                                         shape:
                                                             const RoundedRectangleBorder(

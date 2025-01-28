@@ -12,7 +12,7 @@ class AppColor {
   static const Color textInputColor = Color(0xff7c7c7c);
 
   static const Color greyLightColor = Color(0xffa7a7a7);
-  static const Color secondryColor = Colors.white;
+  static const Color secondaryColor = Colors.white;
   static const Color yellowLightColor = Color(0xffE6B333);
   static const Color darkColor = Color(0xff301A46);
   static const Color whiteLight = Color(0xffA2A6AB);
