@@ -126,6 +126,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "blockAccuracy": MessageLookupByLibrary.simpleMessage(
             "Bloquea todas las llamadas fraudulentas, de telemarketing y de fraude gracias a la precisión del bloqueo de la IA."),
         "blockSms": MessageLookupByLibrary.simpleMessage("Bloquear SMS"),
+        "blockSmsSpam":
+            MessageLookupByLibrary.simpleMessage("Bloquear SMS como spam"),
         "blockedCalls":
             MessageLookupByLibrary.simpleMessage("Llamadas bloqueadas"),
         "blockedNumber":
