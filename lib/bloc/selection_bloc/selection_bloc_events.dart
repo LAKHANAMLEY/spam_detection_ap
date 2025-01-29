@@ -99,3 +99,11 @@ class DatePicked extends SelectionBlocEvent {
 // class DeletePressed extends DialerEvent {}
 //
 // class CallPressed extends DialerEvent {}
+class SelectCategoriesEvent extends SelectionBlocEvent {
+  final CategoryData? value;
+
+  SelectCategoriesEvent(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
