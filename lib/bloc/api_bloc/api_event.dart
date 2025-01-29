@@ -532,25 +532,27 @@ class DashboardStatisticsEvent extends ApiEvent {
 class GetDeviceMessagesEvent extends ApiEvent {}
 
 //edit contact
-class EditContactEvent extends ApiEvent {
-  final String contactId;
-  final String name;
-  final String numberType;
-  final String countryCode;
-
-  // final String phone;
-
-  EditContactEvent({
-    required this.contactId,
-    required this.name,
-    required this.numberType,
-    required this.countryCode,
-    //required this.phone,
-  });
-
-  @override
-  List<Object?> get props => [contactId, name, numberType, countryCode];
-}
+// class EditContactEvent extends ApiEvent {
+//   final String contactId;
+//   final String name;
+//   final String numberType;
+//   final String countryCode;
+//   final String email;
+//
+//   // final String phone;
+//
+//   EditContactEvent({
+//     required this.contactId,
+//     required this.name,
+//     required this.numberType,
+//     required this.countryCode,
+//     required this email
+//     //required this.phone,
+//   });
+//
+//   @override
+//   List<Object?> get props => [contactId, name, numberType, countryCode,email];
+// }
 
 // sync sms
 class SyncSmsEvent extends ApiEvent {
@@ -644,4 +646,42 @@ class SmsDeleteEvent extends ApiEvent {
   List<Object?> get props => [
         id,
       ];
+}
+
+class EditContactEvent extends ApiEvent {
+  final ContactData contact;
+
+  EditContactEvent({required this.contact});
+
+  @override
+  List<Object?> get props => [contact];
+}
+
+class ForgetPasswordPhoneEvent extends ApiEvent {
+  final String phone;
+  final String countryCode;
+
+  ForgetPasswordPhoneEvent({required this.phone, required this.countryCode});
+
+  @override
+  List<Object?> get props => [phone];
+}
+
+class ResetPasswordPhoneEvent extends ApiEvent {
+  final String phone;
+  final String countryCode;
+  final String code;
+  final String password;
+  final String confirmPassword;
+
+  ResetPasswordPhoneEvent(
+      {required this.phone,
+      required this.countryCode,
+      required this.password,
+      required this.code,
+      required this.confirmPassword});
+
+  @override
+  List<Object?> get props =>
+      [phone, countryCode, password, code, confirmPassword];
 }

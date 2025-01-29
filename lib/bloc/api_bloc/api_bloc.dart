@@ -533,5 +533,31 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(SmsDeleteState(value));
       });
     }
+    if (event is EditContactEvent) {
+      emit(ApiLoadingState());
+      await editContact(contact: event.contact).then((value) {
+        emit(AddContactState(value));
+      });
+    }
+    if (event is ForgetPasswordPhoneEvent) {
+      emit(ApiLoadingState());
+      await forgotPasswordWithPhone(
+              phoneNumber: event.phone, countryCode: event.countryCode)
+          .then((value) {
+        emit(ForgetPasswordPhoneState(value));
+      });
+    }
+    if (event is ResetPasswordPhoneEvent) {
+      emit(ApiLoadingState());
+      await resetPasswordWithPhone(
+        phoneNumber: event.phone,
+        countryCode: event.countryCode,
+        code: event.code,
+        password: event.password,
+        confirmPassword: event.confirmPassword,
+      ).then((value) {
+        emit(ResetPasswordState(value));
+      });
+    }
   }
 }

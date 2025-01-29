@@ -21,13 +21,6 @@ class _LoginState extends State<Login> {
 
   String? countryCode;
 
-  void _loadRememberMeState() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _isRememberMeChecked = prefs.getBool('rememberMe') ?? false;
-    });
-  }
-
   // Save the state to SharedPreferences
   void _saveRememberMeState(bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -3,11 +3,11 @@ import 'package:spam_delection_app/lib.dart';
 
 Future<AddContactResponse> addContact({
   required ContactData contact,
-  // required String fullname,
+  // required String fullName,
   // required String email,
-  // required String numbertype,
-  // required phonenumber,
-  // required countrycode,
+  // required String numberType,
+  // required phoneNumber,
+  // required countryCode,
 }) async {
   final response = await http.post(
     Uri.parse(ApiUrlConstants.addContact),
