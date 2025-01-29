@@ -289,6 +289,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "done": MessageLookupByLibrary.simpleMessage("Fait"),
         "dontHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("¿No tienes una cuenta?"),
+        "dontWorryItHappensPleaseEnterTheAddressAssociatedWithYourAccount":
+            MessageLookupByLibrary.simpleMessage(
+                "¡NO TE PREOCUPES! Eso sucede. Por favor, introduzca la dirección asociada a su cuenta."),
         "download": MessageLookupByLibrary.simpleMessage("Téléchargez"),
         "drawerBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Obtenez la liste des paramètres dans le menu latéral."),

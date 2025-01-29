@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -665,26 +664,6 @@ class S {
     );
   }
 
-  /// `Block SMS`
-  String get blockSms {
-    return Intl.message(
-      'Block SMS',
-      name: 'blockSms',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Block Sms As Spam`
-  String get blockSmsSpam {
-    return Intl.message(
-      'Block Sms As Spam',
-      name: 'blockSmsSpam',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Blocked Calls`
   String get blockedCalls {
     return Intl.message(
@@ -710,6 +689,16 @@ class S {
     return Intl.message(
       'Business',
       name: 'business',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call`
+  String get call {
+    return Intl.message(
+      'Call',
+      name: 'call',
       desc: '',
       args: [],
     );
@@ -7254,16 +7243,6 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Call`
-  String get call {
-    return Intl.message(
-      'Call',
-      name: 'call',
       desc: '',
       args: [],
     );

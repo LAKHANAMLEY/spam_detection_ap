@@ -64,6 +64,7 @@
   "blockedCalls": "Blocked Calls",
   "blockedNumber": "Blocked Numbers",
   "business": "Business",
+  "call": "Call",
   "callHistory": "Call history",
   "callHistoryText": "Call History",
   "callLogs": "Call logs",
@@ -717,6 +718,5 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code",
-  "call": "Call"
+  "zip": "Zip Code"
 }

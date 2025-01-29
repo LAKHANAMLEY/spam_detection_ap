@@ -64,6 +64,7 @@
   "blockedCalls": "Llamadas bloqueadas",
   "blockedNumber": "Números bloqueados",
   "business": "Negocio",
+  "call": "Llamar",
   "callHistory": "Historial de llamadas",
   "callHistoryText": "Historial de llamadas",
   "callLogs": "Registros de llamadas",
@@ -159,6 +160,7 @@
   "documentType": "Type de document",
   "done": "Fait",
   "dontHaveAnAccount": "¿No tienes una cuenta?",
+  "dontWorryItHappensPleaseEnterTheAddressAssociatedWithYourAccount": "¡NO TE PREOCUPES! Eso sucede. Por favor, introduzca la dirección asociada a su cuenta.",
   "dontWorryItHappensPleaseEnterTheAdressAssociatedWithYourAccount": "Ne vous inquiètez pas! Ca arrive. Saisissez l'adresse associée à votre compte.",
   "download": "Téléchargez",
   "drawerBtnDescription": "Obtenez la liste des paramètres dans le menu latéral.",
@@ -719,6 +721,5 @@
   "yourPasswordHasBeenChangedSuccessfully": "Votre mot de passe a été changé avec succès .",
   "yourPasswordHasBeenResetSuccessfully": "Votre mot de passe a été réinitialisé avec succès.",
   "yourPaymentHasBeenSuccessfullyDone": "Votre paiement a été effectué avec succès.",
-  "zip": "Código postal",
-  "call": "Llamar"
+  "zip": "Código postal"
 }
