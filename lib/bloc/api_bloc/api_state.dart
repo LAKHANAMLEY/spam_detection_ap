@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/models/forgot_password_otp_model.dart';
 
 abstract class ApiState extends Equatable {
   @override
@@ -632,4 +633,22 @@ class SmsSeenState extends ApiState {
 
   @override
   List<Object?> get props => [messageId];
+}
+
+class ForgetPasswordPhoneState extends ApiState {
+  final ForgotPasswordPhoneResponse value;
+
+  ForgetPasswordPhoneState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class ResetPasswordPhoneState extends ApiState {
+  final Response value;
+
+  ResetPasswordPhoneState(this.value);
+
+  @override
+  List<Object?> get props => [value];
 }

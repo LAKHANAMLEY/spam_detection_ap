@@ -1,4 +1,4 @@
-import '../lib.dart';
+import 'package:spam_delection_app/lib.dart';
 
 class EditContact extends StatefulWidget {
   const EditContact({super.key});
@@ -8,8 +8,30 @@ class EditContact extends StatefulWidget {
 }
 
 class _EditContactState extends State<EditContact> {
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController EmailController = TextEditingController();
+  String? enteredPhone;
+  double scale = 3.5;
+
+  List<dynamic> countries = [];
+
+  final TextEditingController phoneController = TextEditingController();
+
+  PhoneNumber? phoneNumber;
+
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController _numberController = TextEditingController();
+  var selectPhoneCodeBloc =
+      SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
+  CountryData? selectedPhoneCodeCountry;
+
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _numberController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,83 +46,174 @@ class _EditContactState extends State<EditContact> {
     String selectedType = appLocalization(context).mobile;
     return Scaffold(
       backgroundColor: AppColor.secondaryColor,
-      appBar: CustomAppBar(title: appLocalization(context).editContact),
+      appBar: CustomAppBar(title: appLocalization(context).addContact),
+      //centerTitle: true,
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(
-          children: [
-            10.height(),
-            CustomTextField(
-              controller: fullNameController,
-              hintText: appLocalization(context).fullName,
-              labelText: appLocalization(context).fullName,
-              suffix: Image.asset(
-                IconConstants.icUsername,
-                scale: 1.5,
-              ),
-              validator: (p0) {
-                if (p0?.isEmpty ?? true) {
-                  return appLocalization(context).pleaseEnterYourFullName;
-                }
-                return null;
-              },
-            ),
-            10.height(),
-            CustomTextField(
-              controller: EmailController,
-              hintText: appLocalization(context).fullName,
-              labelText: appLocalization(context).fullName,
-              suffix: Image.asset(
-                IconConstants.icFluentMail,
-                scale: 1.5,
-              ),
-              validator: (p0) {
-                if (p0?.isEmpty ?? true) {
-                  return appLocalization(context).pleaseEnterYourEmailAddress;
-                }
-                return null;
-              },
-            ),
-            10.height(),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 1 / 100,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 6, right: 6),
-              child: DropdownButtonFormField<String>(
-                value: selectedType,
-                items: options.map((String option) {
-                  return DropdownMenuItem<String>(
-                    value: option,
-                    child: Text(option),
+        child: BlocConsumer(
+            bloc: contactListBloc,
+            listener: (context, state) {
+              if (state is AddContactState) {
+                if (state.value.statusCode == 200) {
+                  showCustomDialog(
+                    context,
+                    dialogType: DialogType.success,
+                    subTitle: state.value.message,
                   );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    selectedType = newValue!;
-                  });
-                },
-                decoration: InputDecoration(
-                  hintText: appLocalization(context).numberType,
-                  hintStyle: const TextStyle(color: AppColor.lightFillColor),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide:
-                        const BorderSide(width: 1.5, color: AppColor.fillColor),
+                } else if (state.value.statusCode ==
+                    HTTPStatusCodes.sessionExpired) {
+                  sessionExpired(context, state.value.message);
+                } else {
+                  showCustomDialog(context,
+                      dialogType: DialogType.failed,
+                      subTitle: state.value.message.toString());
+                }
+                contactListBloc.add(GetContactEvent());
+              }
+            },
+            builder: (context, state) {
+              return ModalProgressHUD(
+                progressIndicator: const Loader(),
+                inAsyncCall: state is ApiLoadingState,
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(10),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        10.height(),
+                        CustomTextField(
+                          controller: fullNameController,
+                          labelText: appLocalization(context).userName,
+                          hintText: appLocalization(context).userName,
+                          suffix: Image.asset(
+                            IconConstants.icUsername,
+                            scale: 1.5,
+                          ),
+                          validator: (p0) {
+                            if (p0?.isEmpty ?? true) {
+                              return appLocalization(context)
+                                  .pleaseEnterYourFullName;
+                            }
+                            return null;
+                          },
+                        ),
+                        10.height(),
+                        CustomTextField(
+                          keyboardType: TextInputType.emailAddress,
+                          labelText: appLocalization(context).emailAddress,
+                          hintText: appLocalization(context).emailAddress,
+                          controller: emailController,
+                          suffix: Image.asset(
+                            IconConstants.icFluentMail,
+                            scale: 3,
+                          ),
+                          validator: (p0) {
+                            if (p0?.isEmpty ?? true) {
+                              return appLocalization(context)
+                                  .pleaseEnterYourEmailAddress;
+                            }
+                            return null;
+                          },
+                        ),
+                        10.height(),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 1 / 100,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 6, right: 6),
+                          child: DropdownButtonFormField<String>(
+                            value: selectedType,
+                            items: options.map((String option) {
+                              return DropdownMenuItem<String>(
+                                value: option,
+                                child: Text(option),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                selectedType = newValue!;
+                              });
+                            },
+                            decoration: InputDecoration(
+                              hintText: appLocalization(context).numberType,
+                              hintStyle: const TextStyle(
+                                  color: AppColor.lightFillColor),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: const BorderSide(
+                                    width: 1.5, color: AppColor.fillColor),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: AppColor.fillColor, width: 1.5),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5)),
+                              ),
+                              filled: true,
+                              fillColor: AppColor.fillColor.withOpacity(0.2),
+                            ),
+                          ),
+                        ),
+                        18.height(),
+                        BlocConsumer(
+                            bloc: selectPhoneCodeBloc,
+                            listener: (context, state) {
+                              if (state is SelectCountryState) {
+                                selectedPhoneCodeCountry = state.value;
+                              }
+                            },
+                            builder: (context, state) {
+                              return CustomTextField(
+                                keyboardType: TextInputType.phone,
+                                //readOnly: true,
+                                controller: phoneNumberController,
+                                hintText: appLocalization(context).phoneNumber,
+                                labelText: appLocalization(context).phoneNumber,
+                                suffix: Image.asset(
+                                  IconConstants.icCallAdd,
+                                  scale: 1.5,
+                                ),
+                                prefix: CountryPhoneCodePrefix(
+                                  bloc: selectPhoneCodeBloc,
+                                ),
+                                validator: (p0) {
+                                  if (p0?.isEmpty ?? true) {
+                                    return appLocalization(context)
+                                        .pleaseEnterPhone;
+                                  }
+                                  return null;
+                                },
+                              );
+                            }),
+                        20.height(),
+                        AppButton(
+                          text: appLocalization(context).addContact,
+                          onPress: () {
+                            final email = emailController.text;
+                            final phone = phoneNumberController.text;
+                            final fullName = fullNameController.text;
+                            final numberType = _numberController.text;
+                            final contactId = UniqueKey().toString();
+
+                            if (_formKey.currentState?.validate() ?? false) {
+                              contactListBloc.add(EditContactEvent(
+                                  contact: ContactData(
+                                      id: contactId,
+                                      countryCode:
+                                          phoneNumber?.countryCode ?? "",
+                                      name: fullName,
+                                      numberType: numberType,
+                                      email: email)));
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-                  focusedBorder: const OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: AppColor.fillColor, width: 1.5),
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                  ),
-                  filled: true,
-                  fillColor: AppColor.fillColor.withOpacity(0.2),
                 ),
-              ),
-            ),
-          ],
-        ),
-      )),
+              );
+            }),
+      ),
     );
   }
 }

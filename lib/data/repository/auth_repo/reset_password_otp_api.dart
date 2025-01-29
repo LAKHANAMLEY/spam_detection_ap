@@ -3,12 +3,14 @@ import 'package:spam_delection_app/lib.dart';
 
 Future<ResetResponse> resetPasswordWithPhone(
     {required String phoneNumber,
+    required String countryCode,
     required String code,
     required String password,
     required String confirmPassword}) async {
   print(phoneNumber);
   var body = {
     'phone': phoneNumber,
+    'country_code': countryCode,
     'code': code,
     'password': password,
     'confirm_password': confirmPassword,
