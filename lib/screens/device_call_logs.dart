@@ -21,8 +21,6 @@ class DeviceCallLogs extends StatelessWidget {
           ? CustomAppBar(
               title: appLocalization(context).callLogs,
             )
-              title: appLocalization(context).callLogs,
-            )
           : null,
       body: BlocConsumer(
           bloc: markSpamBloc,
