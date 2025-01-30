@@ -9,7 +9,14 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   double scale = 3.5;
+  var selectPhoneBloc =
+      SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
+
+  var selectTabBloc = SelectionBloc(SelectIntState(0));
+
+  CountryData? selectedPhoneCodeCountry;
 
   var forgotBloc = ApiBloc(ApiBlocInitialState());
   final _formKey = GlobalKey<FormState>();
@@ -54,7 +61,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           child: Column(children: [
                             SizedBox(
                               height:
-                                  MediaQuery.of(context).size.height * 8 / 100,
+                                  MediaQuery.of(context).size.height * 4 / 100,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
@@ -87,51 +94,270 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             ),
                             SizedBox(
                               height:
-                                  MediaQuery.of(context).size.height * 4 / 100,
+                                  MediaQuery.of(context).size.height * 2 / 100,
                             ),
-                            CustomTextField(
-                              keyboardType: TextInputType.emailAddress,
-                              controller: emailController,
-                              labelText: appLocalization(context).emailAddress,
-                              hintText: appLocalization(context).emailAddress,
-                              suffix: Image.asset(
-                                IconConstants.icFluentMail,
-                                scale: 3,
-                              ),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .pleaseEnterYourEmailAddress;
-                                }
-                                return null;
-                              },
-                            ),
-                            SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 3 / 100,
-                            ),
-                            Text(
-                              appLocalization(context).pleaseCheckMail,
-                              style: const TextStyle(
-                                  color: AppColor.remainColor,
-                                  fontFamily: AppFont.fontFamily,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 3 / 100,
-                            ),
-                            AppButton(
-                              text: appLocalization(context).continueTxt,
-                              onPress: () {
-                                if (_formKey.currentState?.validate() ??
-                                    false) {
-                                  forgotBloc.add(ForgetPasswordEvent(
-                                    email: emailController.text,
-                                  ));
-                                }
-                              },
-                            ),
+                            BlocBuilder(
+                                bloc: selectTabBloc,
+                                builder: (context, selectTabState) {
+                                  if (selectTabState is SelectIntState) {
+                                    int tabIndex = selectTabState.value;
+                                    return Column(
+                                      children: [
+                                        Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              GestureDetector(
+                                                onTap: () {
+                                                  selectTabBloc
+                                                      .add(SelectIntEvent(0));
+                                                },
+                                                child: SizedBox(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      12 /
+                                                      100,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      18 /
+                                                      100,
+                                                  child: Center(
+                                                    child: tabIndex == 1
+                                                        ? Image.asset(IconConstants
+                                                            .icPhoneUnSelect) // Show secondary image
+                                                        : Image.asset(IconConstants
+                                                            .icSMSSelected), // Show primary image
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    5 /
+                                                    100,
+                                              ),
+                                              GestureDetector(
+                                                  onTap: () {
+                                                    selectTabBloc
+                                                        .add(SelectIntEvent(1));
+                                                  },
+                                                  child: SizedBox(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            12 /
+                                                            100,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            18 /
+                                                            100,
+                                                    child: Center(
+                                                      child: tabIndex == 1
+                                                          ? Image.asset(
+                                                              IconConstants
+                                                                  .icEmailSelected) // Show secondary image
+                                                          : Image.asset(
+                                                              IconConstants
+                                                                  .icEmailUnselected), // Show primary image
+                                                    ),
+                                                  )),
+                                            ]),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              3 /
+                                              100,
+                                        ),
+                                        if (tabIndex == 1) ...[
+                                          CustomTextField(
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            controller: emailController,
+                                            labelText: appLocalization(context)
+                                                .emailAddress,
+                                            hintText: appLocalization(context)
+                                                .emailAddress,
+                                            suffix: Image.asset(
+                                              IconConstants.icFluentMail,
+                                              scale: 3,
+                                            ),
+                                            validator: (p0) {
+                                              if (p0?.isEmpty ?? true) {
+                                                return appLocalization(context)
+                                                    .pleaseEnterYourEmailAddress;
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                3 /
+                                                100,
+                                          ),
+                                          Text(
+                                            appLocalization(context)
+                                                .pleaseCheckMail,
+                                            style: const TextStyle(
+                                                color: AppColor.remainColor,
+                                                fontFamily: AppFont.fontFamily,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                3 /
+                                                100,
+                                          ),
+                                          AppButton(
+                                            text: appLocalization(context)
+                                                .continueTxt,
+                                            onPress: () {
+                                              if (_formKey.currentState
+                                                      ?.validate() ??
+                                                  false) {
+                                                forgotBloc
+                                                    .add(ForgetPasswordEvent(
+                                                  email: emailController.text,
+                                                ));
+                                              }
+                                            },
+                                          ),
+                                          SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  5 /
+                                                  100),
+                                        ] else ...[
+                                          10.height(),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 18, right: 18),
+                                            child: BlocConsumer(
+                                                bloc: selectPhoneBloc,
+                                                listener: (context, state) {
+                                                  if (state
+                                                      is SelectCountryState) {
+                                                    selectedPhoneCodeCountry =
+                                                        state.value;
+                                                  }
+                                                },
+                                                builder: (context, state) {
+                                                  return CustomTextField(
+                                                    keyboardType:
+                                                        TextInputType.phone,
+                                                    //readOnly: true,
+                                                    controller: phoneController,
+                                                    hintText:
+                                                        appLocalization(context)
+                                                            .phoneNumber,
+                                                    labelText:
+                                                        appLocalization(context)
+                                                            .phoneNumber,
+                                                    suffix: Image.asset(
+                                                      IconConstants.icCallAdd,
+                                                      scale: 1.5,
+                                                    ),
+                                                    prefix:
+                                                        CountryPhoneCodePrefix(
+                                                      bloc: selectPhoneBloc,
+                                                    ),
+                                                    validator: (p0) {
+                                                      if (p0?.isEmpty ?? true) {
+                                                        return appLocalization(
+                                                                context)
+                                                            .pleaseEnterPhone;
+                                                      }
+                                                      return null;
+                                                    },
+                                                  );
+                                                }),
+                                          ),
+                                          20.height(),
+                                          AppButton(
+                                              text: appLocalization(context)
+                                                  .getOtp,
+                                              onPress: () {
+                                                if (_formKey.currentState
+                                                        ?.validate() ??
+                                                    false) {
+                                                  //_verifyPhoneNumber;
+                                                }
+                                              }),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                8 /
+                                                100,
+                                          ),
+                                          SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  5 /
+                                                  100),
+                                        ],
+                                      ],
+                                    );
+                                  }
+                                  return const Loader();
+                                })
+                            // CustomTextField(
+                            //   keyboardType: TextInputType.emailAddress,
+                            //   controller: emailController,
+                            //   labelText: appLocalization(context).emailAddress,
+                            //   hintText: appLocalization(context).emailAddress,
+                            //   suffix: Image.asset(
+                            //     IconConstants.icFluentMail,
+                            //     scale: 3,
+                            //   ),
+                            //   validator: (p0) {
+                            //     if (p0?.isEmpty ?? true) {
+                            //       return appLocalization(context)
+                            //           .pleaseEnterYourEmailAddress;
+                            //     }
+                            //     return null;
+                            //   },
+                            // ),
+                            // SizedBox(
+                            //   height:
+                            //       MediaQuery.of(context).size.height * 3 / 100,
+                            // ),
+                            // Text(
+                            //   appLocalization(context).pleaseCheckMail,
+                            //   style: const TextStyle(
+                            //       color: AppColor.remainColor,
+                            //       fontFamily: AppFont.fontFamily,
+                            //       fontWeight: FontWeight.w600),
+                            // ),
+                            // SizedBox(
+                            //   height:
+                            //       MediaQuery.of(context).size.height * 3 / 100,
+                            // ),
+                            // AppButton(
+                            //   text: appLocalization(context).continueTxt,
+                            //   onPress: () {
+                            //     if (_formKey.currentState?.validate() ??
+                            //         false) {
+                            //       forgotBloc.add(ForgetPasswordEvent(
+                            //         email: emailController.text,
+                            //       ));
+                            //     }
+                            //   },
+                            // ),
                           ]),
                         ),
                       ),
