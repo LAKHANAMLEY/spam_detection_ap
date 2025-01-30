@@ -21,6 +21,8 @@ class DeviceCallLogs extends StatelessWidget {
           ? CustomAppBar(
               title: appLocalization(context).callLogs,
             )
+              title: appLocalization(context).callLogs,
+            )
           : null,
       body: BlocConsumer(
           bloc: markSpamBloc,
@@ -209,18 +211,6 @@ class DeviceCallLogs extends StatelessWidget {
                                     }
                                     return const Loader();
                                   }),
-                              Row(
-                                children: [
-                                  ElevatedButton.icon(
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, AppRoutes.contactList);
-                                    },
-                                    label: const Text("Contacts"),
-                                    icon: const Icon(Icons.contacts_outlined),
-                                  )
-                                ],
-                              ),
                               BlocConsumer(
                                   bloc: searchBloc,
                                   listener: (context, state) {
@@ -309,42 +299,42 @@ class DeviceCallLogs extends StatelessWidget {
   }
 }
 
-class ActionButton extends StatelessWidget {
-  final String label;
-  final IconData icon;
-  final void Function()? onTap;
-
-  const ActionButton({
-    super.key,
-    required this.label,
-    required this.icon,
-    this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min, // Ensures buttons fit the row properly
-        children: [
-          CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.grey.shade300,
-            child: Icon(icon,
-                color: AppColor.redColor, size: 28), // Icon size adjusted
-          ),
-          const SizedBox(height: 8),
-          DefaultTextStyle(
-            style: const TextStyle(
-                color: AppColor.primaryColor,
-                fontSize: 12,
-                fontFamily: AppFont.fontFamily,
-                fontWeight: FontWeight.w600),
-            child: Text(label),
-          )
-        ],
-      ),
-    );
-  }
-}
+// class ActionButton extends StatelessWidget {
+//   final String label;
+//   final IconData icon;
+//   final void Function()? onTap;
+//
+//   const ActionButton({
+//     super.key,
+//     required this.label,
+//     required this.icon,
+//     this.onTap,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return InkWell(
+//       onTap: onTap,
+//       child: Column(
+//         mainAxisSize: MainAxisSize.min, // Ensures buttons fit the row properly
+//         children: [
+//           CircleAvatar(
+//             radius: 30,
+//             backgroundColor: Colors.grey.shade300,
+//             child: Icon(icon,
+//                 color: AppColor.redColor, size: 28), // Icon size adjusted
+//           ),
+//           const SizedBox(height: 8),
+//           DefaultTextStyle(
+//             style: const TextStyle(
+//                 color: AppColor.primaryColor,
+//                 fontSize: 12,
+//                 fontFamily: AppFont.fontFamily,
+//                 fontWeight: FontWeight.w600),
+//             child: Text(label),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
