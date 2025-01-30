@@ -141,6 +141,20 @@ class _ContactDetailState extends State<ContactDetail> {
                                   color: AppColor.secondaryColor,
                                 )),
                             backgroundColor: AppColor.secondaryColor,
+                            actions: [
+                              PopupMenuButton(
+                                itemBuilder: (context) => [
+                                  PopupMenuItem(
+                                    child: Text(
+                                        appLocalization(context).editContact),
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, AppRoutes.editContact);
+                                    },
+                                  ),
+                                ],
+                              )
+                            ],
                             flexibleSpace: FlexibleSpaceBar(
                               collapseMode: CollapseMode.pin,
                               background: Stack(

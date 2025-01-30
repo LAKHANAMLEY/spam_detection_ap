@@ -649,12 +649,21 @@ class SmsDeleteEvent extends ApiEvent {
 }
 
 class EditContactEvent extends ApiEvent {
-  final ContactData contact;
+  final ContactData user;
 
-  EditContactEvent({required this.contact});
+  EditContactEvent({required this.user});
 
   @override
-  List<Object?> get props => [contact];
+  List<Object?> get props => [user];
+}
+
+class GetContactDetailEvent extends ApiEvent {
+  final String mobileNo;
+
+  GetContactDetailEvent(this.mobileNo);
+
+  @override
+  List<Object?> get props => [mobileNo];
 }
 
 class ForgetPasswordPhoneEvent extends ApiEvent {

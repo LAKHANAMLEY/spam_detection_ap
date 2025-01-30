@@ -10,13 +10,14 @@ class ForgotPassword extends StatefulWidget {
 class _ForgotPasswordState extends State<ForgotPassword> {
   TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController countryController = TextEditingController();
+  CountryData? selectedPhoneCodeCountry;
+
   double scale = 3.5;
   var selectPhoneBloc =
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
 
   var selectTabBloc = SelectionBloc(SelectIntState(0));
-
-  CountryData? selectedPhoneCodeCountry;
 
   var forgotBloc = ApiBloc(ApiBlocInitialState());
   final _formKey = GlobalKey<FormState>();
@@ -33,6 +34,22 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 bloc: forgotBloc,
                 listener: (context, state) {
                   if (state is ForgetPasswordState) {
+                    if (state.value.statusCode == 200) {
+                      Navigator.pushNamed(
+                          context, AppRoutes.forgotOTPVerification,
+                          arguments: ForgotOtpVerify(
+                            email: emailController.text,
+                          ));
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(context, state.value.message);
+                    } else {
+                      showCustomDialog(context,
+                          dialogType: DialogType.failed,
+                          subTitle: state.value.message);
+                    }
+                  }
+                  if (state is ForgetPasswordPhoneState) {
                     if (state.value.statusCode == 200) {
                       Navigator.pushNamed(
                           context, AppRoutes.forgotOTPVerification,
@@ -293,16 +310,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                                 if (_formKey.currentState
                                                         ?.validate() ??
                                                     false) {
-                                                  //_verifyPhoneNumber;
+                                                  forgotBloc.add(
+                                                      ForgetPasswordPhoneEvent(
+                                                    phone: phoneController.text,
+                                                    countryCode:
+                                                        selectedPhoneCodeCountry
+                                                                ?.phonecode ??
+                                                            "",
+                                                  ));
                                                 }
                                               }),
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                8 /
-                                                100,
-                                          ),
                                           SizedBox(
                                               height: MediaQuery.of(context)
                                                       .size

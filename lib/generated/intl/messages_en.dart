@@ -873,6 +873,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "roaming": MessageLookupByLibrary.simpleMessage("Roaming"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "saveMonths": MessageLookupByLibrary.simpleMessage("Save 23%"),
+        "saveText": MessageLookupByLibrary.simpleMessage("Save"),
         "saveYear": MessageLookupByLibrary.simpleMessage("Save 25%"),
         "scan": MessageLookupByLibrary.simpleMessage("Scan"),
         "scanBtnDescription": MessageLookupByLibrary.simpleMessage(

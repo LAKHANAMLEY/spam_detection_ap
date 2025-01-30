@@ -7247,6 +7247,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Save`
+  String get saveText {
+    return Intl.message(
+      'Save',
+      name: 'saveText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

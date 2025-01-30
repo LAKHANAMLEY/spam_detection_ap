@@ -535,7 +535,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     }
     if (event is EditContactEvent) {
       emit(ApiLoadingState());
-      await editContact(contact: event.contact).then((value) {
+      await editContact(user: event.user).then((value) {
         emit(AddContactState(value));
       });
     }
@@ -557,6 +557,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         confirmPassword: event.confirmPassword,
       ).then((value) {
         emit(ResetPasswordState(value));
+      });
+    }
+    if (event is GetContactDetailEvent) {
+      emit(ApiLoadingState());
+      await getContactDetail(mobileNo: event.mobileNo).then((value) {
+        emit(GetContactDetailState(value));
       });
     }
   }

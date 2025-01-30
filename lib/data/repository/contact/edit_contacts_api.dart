@@ -29,7 +29,7 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
 Future<AddContactResponse> editContact({
-  required ContactData contact,
+  required ContactData user,
   // required String fullName,
   // required String email,
   // required String numberType,
@@ -40,12 +40,12 @@ Future<AddContactResponse> editContact({
     Uri.parse(ApiUrlConstants.editContacts),
     headers: await ApiUrlConstants.headers(),
     body: {
-      'name': contact.name,
-      'email': contact.email,
-      'number_type': contact.numberType,
-      'country_code': contact.countryCode,
+      'name': user.name,
+      'email': user.email,
+      'number_type': user.numberType,
+      'country_code': user.countryCode,
       // 'phone': contact.mobileNo,
-      'contacts_id': contact.id
+      'contacts_id': user.id
     },
   );
   if (response.statusCode == 200) {
