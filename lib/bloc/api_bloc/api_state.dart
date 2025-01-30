@@ -652,3 +652,12 @@ class ResetPasswordPhoneState extends ApiState {
   @override
   List<Object?> get props => [value];
 }
+
+class GetContactDetailState extends ApiState {
+  final ContactDetailsResponse value;
+
+  GetContactDetailState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}

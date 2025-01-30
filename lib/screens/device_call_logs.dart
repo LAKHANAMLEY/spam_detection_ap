@@ -268,12 +268,13 @@ class DeviceCallLogs extends StatelessWidget {
           ),
           child: Image.asset(
             IconConstants.icDialPad,
-            scale: 18,
+            scale: 16,
             color: AppColor.secondaryColor,
           ),
           onPressed: () {
             // Navigator.pushNamed(context, AppRoutes.dialPadScreen);
             showModalBottomSheet(
+                // enableDrag: true,
                 //isScrollControlled: true,
                 backgroundColor: AppColor.secondaryColor,
                 context: context,
@@ -281,15 +282,11 @@ class DeviceCallLogs extends StatelessWidget {
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
                 builder: (BuildContext context) {
-                  return const DialPad(
-                      // contact: ContactData(
-                      // id: callLog.contactListId,
-                      // mobileNo: callLog.mobileNo,
-                      // name: callLog.name,
-                      // isSpam: callLog.isSpam,
-                      //  countryCode: callLog.countryCode,
-                      // ),
-                      );
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height *
+                        0.8, // 80% of screen height
+                    child: DialPad(),
+                  );
                 });
           }),
     );

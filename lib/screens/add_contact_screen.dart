@@ -47,7 +47,6 @@ class _AddContactState extends State<AddContact> {
     return Scaffold(
       backgroundColor: AppColor.secondaryColor,
       appBar: CustomAppBar(title: appLocalization(context).addContact),
-      //centerTitle: true,
       body: SafeArea(
         child: BlocConsumer(
             bloc: contactListBloc,

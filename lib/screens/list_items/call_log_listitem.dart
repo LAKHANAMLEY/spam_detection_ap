@@ -112,7 +112,8 @@ class CallLogListItem extends StatelessWidget {
                 PopupMenuItem(
                     onTap: () {
                       showModalBottomSheet(
-                        isScrollControlled: true,
+                        // enableDrag: false,
+                        //isScrollControlled: true,
                         backgroundColor: AppColor.secondaryColor,
                         context: context,
                         shape: const RoundedRectangleBorder(

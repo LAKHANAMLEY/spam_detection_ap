@@ -925,6 +925,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "roaming": MessageLookupByLibrary.simpleMessage("Itinérance"),
         "save": MessageLookupByLibrary.simpleMessage("Sauvegarder"),
         "saveMonths": MessageLookupByLibrary.simpleMessage("Ahorre 23%"),
+        "saveText": MessageLookupByLibrary.simpleMessage("Ahorrar"),
         "saveYear": MessageLookupByLibrary.simpleMessage("Ahorre un 25%"),
         "scan": MessageLookupByLibrary.simpleMessage("Scanner QR Code"),
         "scanBtnDescription": MessageLookupByLibrary.simpleMessage(

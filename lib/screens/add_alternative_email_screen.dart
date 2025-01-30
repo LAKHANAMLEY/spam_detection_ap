@@ -76,7 +76,9 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                   AppButton(
                       text: appLocalization(context).submit,
                       onPress: () {
-                        if (_formKey.currentState?.validate() ?? false) {}
+                        if (_formKey.currentState?.validate() ?? false) {
+                          // alternative
+                        }
                       })
                 ],
               ),

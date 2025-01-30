@@ -159,6 +159,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                           onPress: () {
                             if (_formKey.currentState?.validate() ?? false) {
                               corporateBloc.add(CorporateLoginEvent(
+                                  // selected
                                   email: emailController.text,
                                   password: passwordController.text,
                                   corporateId: corporateIdController.text));
