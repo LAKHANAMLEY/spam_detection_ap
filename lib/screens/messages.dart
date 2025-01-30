@@ -9,7 +9,7 @@ class MessagesScreen extends StatelessWidget {
     final searchController = TextEditingController();
     final searchBloc = SelectionBloc(SelectStringState(""));
     final messagesBloc = ApiBloc(ApiBlocInitialState());
-    messagesBloc.add(GetDeviceMessagesEvent());
+    messagesBloc.add(SmsListEvent());
     // getDeviceToken();
     return Scaffold(
       body: Column(children: [

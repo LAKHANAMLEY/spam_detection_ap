@@ -25,9 +25,10 @@ class MessageListItem extends StatelessWidget {
           Text(
             (sms.name?.isNotEmpty ?? false)
                 ? sms.name ?? ""
-                : sms.countryCode?.isNotEmpty ?? false
-                    ? "+${sms.countryCode} ${sms.address ?? ""}"
-                    : sms.address ?? "",
+                : sms.address ?? "",
+            // : sms.countryCode?.isNotEmpty ?? false
+            //     ? "+${sms.countryCode} ${sms.address ?? ""}"
+            //     : sms.address ?? "",
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: textTheme(context).titleMedium,

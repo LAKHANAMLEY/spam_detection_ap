@@ -209,6 +209,18 @@ class DeviceCallLogs extends StatelessWidget {
                                     }
                                     return const Loader();
                                   }),
+                              Row(
+                                children: [
+                                  ElevatedButton.icon(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, AppRoutes.contactList);
+                                    },
+                                    label: const Text("Contacts"),
+                                    icon: const Icon(Icons.contacts_outlined),
+                                  )
+                                ],
+                              ),
                               BlocConsumer(
                                   bloc: searchBloc,
                                   listener: (context, state) {

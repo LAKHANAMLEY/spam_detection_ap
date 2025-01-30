@@ -2,32 +2,20 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state_background/phone_state_background.dart';
 import 'package:spam_delection_app/lib.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // Bloc.observer = AppBlocObserver();
   firebaseAnalyticsConfig();
   firebaseCrashlyticsConfig();
-  // SystemAlertWindow.checkPermissions().then((isHavingPermission) async {
-  //   if (isHavingPermission ?? false) {
-  //   } else {
-  //     await SystemAlertWindow.requestPermissions();
-  //   }
-  // });
-  // await PhoneStateBackground.checkPermission().then((isHavingPermission) async {
-  //   if (isHavingPermission) {
-  //     await PhoneStateBackground.initialize(
-  //         phoneStateBackgroundCallbackHandler);
-  //   } else {
-  //     await PhoneStateBackground.requestPermissions();
-  //   }
-  // });
-
+  FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
 

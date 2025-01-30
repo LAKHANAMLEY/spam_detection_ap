@@ -31,7 +31,7 @@ class _DialPadState extends State<DialPad> {
       return;
     }
 
-    String phoneNumber = "+${enteredNumber}";
+    String phoneNumber = enteredNumber;
     try {
       await DirectCallPlus.makeCall(phoneNumber);
       print("Calling $phoneNumber");
@@ -51,7 +51,7 @@ class _DialPadState extends State<DialPad> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              enteredNumber.isEmpty ? "Enter a Number" : enteredNumber,
+              enteredNumber.isEmpty ? "Enter a number" : enteredNumber,
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

@@ -9,7 +9,7 @@ Future<List<SmsMessage>> getSms() async {
   if (smsPermission?.isGranted ?? false) {
     SmsQuery query = SmsQuery();
     var sms = await query.querySms(
-      kinds: [SmsQueryKind.inbox, SmsQueryKind.sent],
+      kinds: [SmsQueryKind.Inbox, SmsQueryKind.Sent],
     );
     // print(sms.first.toMap.toString());
     return sms;

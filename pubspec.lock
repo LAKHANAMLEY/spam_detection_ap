@@ -41,14 +41,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  badges:
-    dependency: transitive
-    description:
-      name: badges
-      sha256: "727580d938b7a1ff47ea42df730d581415606b4224cfa708671c10287f8d3fe6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   bloc:
     dependency: transitive
     description:
@@ -137,14 +129,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
-  country_picker:
-    dependency: "direct dev"
-    description:
-      name: country_picker
-      sha256: "327f5e15a76352089a6b5057abb761ee5202e7516c9440d8d6a7524139f9b14e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.26"
   cross_file:
     dependency: transitive
     description:
@@ -484,7 +468,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_native_splash:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_native_splash
       sha256: "7062602e0dbd29141fb8eb19220b5871ca650be5197ab9c1f193a28b17537bc7"
@@ -499,14 +483,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.23"
-  flutter_sms_inbox:
-    dependency: "direct main"
-    description:
-      name: flutter_sms_inbox
-      sha256: fc1c069225916418bcd4e8b4999d2f5e1216db3394c8b86c8440a5a5b0ec4bd2
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.3"
   flutter_spinkit:
     dependency: "direct main"
     description:
@@ -693,22 +669,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
-  intl_phone_number_input:
-    dependency: "direct dev"
-    description:
-      name: intl_phone_number_input
-      sha256: "1c4328713a9503ab26a1fdbb6b00b4cada68c18aac922b35bedbc72eff1297c3"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.7.4"
-  js:
-    dependency: transitive
-    description:
-      name: js
-      sha256: f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.6.7"
   json_annotation:
     dependency: transitive
     description:
@@ -741,30 +701,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
-  libphonenumber_platform_interface:
-    dependency: transitive
-    description:
-      name: libphonenumber_platform_interface
-      sha256: f801f6c65523f56504b83f0890e6dad584ab3a7507dca65fec0eed640afea40f
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.2"
-  libphonenumber_plugin:
-    dependency: transitive
-    description:
-      name: libphonenumber_plugin
-      sha256: c615021d9816fbda2b2587881019ed595ecdf54d999652d7e4cce0e1f026368c
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.3"
-  libphonenumber_web:
-    dependency: transitive
-    description:
-      name: libphonenumber_web
-      sha256: "8186f420dbe97c3132283e52819daff1e55d60d6db46f7ea5ac42f42a28cc2ef"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.2"
   lints:
     dependency: transitive
     description:
@@ -773,6 +709,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      sha256: be4b23575aac7ebf01f225a241eb7f6b5641eeaf43c6a8613510fc2f8cf187d1
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.0"
   matcher:
     dependency: transitive
     description:
@@ -829,6 +773,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  package_rename:
+    dependency: "direct dev"
+    description:
+      name: package_rename
+      sha256: b38bec432e29a2dd29a330bb715dcc41b67c7916719ef9f95276704f32460572
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.8.0"
   path:
     dependency: transitive
     description:
@@ -973,14 +925,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
-  pricing_cards:
-    dependency: "direct main"
-    description:
-      name: pricing_cards
-      sha256: "02bac1947942d3cce2b2cda7eb7793360fab07c9048ec2bba46f0ad97056f957"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.8"
   provider:
     dependency: transitive
     description:

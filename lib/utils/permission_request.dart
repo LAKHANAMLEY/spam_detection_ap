@@ -15,6 +15,7 @@ Future<PermissionStatus?> permissionRequest(Permission permission) async {
     case PermissionStatus.limited:
       debugPrint("$status");
     case PermissionStatus.permanentlyDenied:
+      openAppSettings();
       debugPrint("$status");
     case PermissionStatus.provisional:
       debugPrint("$status");

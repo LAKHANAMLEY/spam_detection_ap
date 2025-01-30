@@ -31,7 +31,7 @@ AppLocalizations appLocalization(context) => AppLocalizations.of(context)!;
 S getText(context) => S.of(context);
 
 class AppConstants {
-  static const String projectName = "Spam detector";
+  static const String projectName = "BroadLink Protect";
 
   static const int appStatus = 0;
   static const TextStyle appBarTitleStyle = TextStyle(

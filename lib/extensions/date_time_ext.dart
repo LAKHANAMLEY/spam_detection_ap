@@ -18,7 +18,7 @@ extension DateTimeExt on DateTime {
       ? "Today"
       : isYesterday
           ? "Yesterday"
-          : formatDateTime();
+          : formatDate();
 
   bool get isToday {
     final now = DateTime.now();

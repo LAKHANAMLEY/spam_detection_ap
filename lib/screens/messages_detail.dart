@@ -16,9 +16,10 @@ class MessagesDetail extends StatelessWidget {
         appBar: CustomAppBar(
             title: (sms?.name?.isNotEmpty ?? false)
                 ? sms?.name ?? ""
-                : sms?.countryCode?.isNotEmpty ?? false
-                    ? "+${sms?.countryCode} ${sms?.address ?? ""}"
-                    : sms?.address ?? "",
+                : sms?.address ?? "",
+            // : sms?.countryCode?.isNotEmpty ?? false
+            //     ? "+${sms?.countryCode} ${sms?.address ?? ""}"
+            //     : sms?.address ?? "",
             actions: [
               PopupMenuButton(
                 itemBuilder: (context) => [
@@ -127,7 +128,7 @@ class MessagesDetail extends StatelessWidget {
                 ],
               ),
             ]),
-        bottomNavigationBar: messageField(context),
+        bottomNavigationBar: messageField(context, sms),
         body: ListView.builder(
           itemCount: sms?.smsDetails?.length,
           itemBuilder: (context, index) => MessageView(
@@ -136,24 +137,32 @@ class MessagesDetail extends StatelessWidget {
         ));
   }
 
-  send() {
-    sendSms(sms?.address ?? "", messageController.text);
+  send(SmsLog? sms) {
+    sendSms(sms?.address ?? "", messageController.text).onError(handleError);
     messageController.clear();
   }
 
-  messageField(context) => Container(
+  FutureOr<SmsMessage?> handleError(Object error, StackTrace stackTrace) {
+    showToast(error.toString());
+    return null;
+  }
+
+  messageField(context, SmsLog? sms) => Container(
         height: 80,
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(10)),
         margin:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: CustomTextField(
-            hintText: appLocalization(context).sendSms,
+            hintText: appLocalization(context).enterMessage,
             controller: messageController,
-            style: const TextStyle(color: AppColor.primaryColor),
             suffix: IconButton(
-              onPressed: send,
+              onPressed: () {
+                send(sms);
+              },
               icon: const Icon(
                 Icons.send,
-                color: Colors.blueAccent,
+                color: AppColor.orangeColor,
               ),
             )),
       );
@@ -167,51 +176,77 @@ class MessageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double radius = 10;
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Column(
-        crossAxisAlignment: sms?.messageKind == SmsMessageKind.sent.name
-            ? CrossAxisAlignment.end
-            : CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Container(
-                margin: const EdgeInsets.all(2),
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                constraints: BoxConstraints(maxWidth: mq(context).width * .8),
-                // width: mq(context).width * .8,
-                decoration: const BoxDecoration(
-                  color: AppColor.greyColor,
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                ),
-                child: Text(sms?.date?.formatRelativeDay() ?? "")),
-          ),
-          Container(
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: Container(
               margin: const EdgeInsets.all(2),
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               constraints: BoxConstraints(maxWidth: mq(context).width * .8),
               // width: mq(context).width * .8,
-              decoration: BoxDecoration(
-                color: sms?.messageKind == SmsMessageKind.sent.name
-                    ? AppColor.orangeColor
-                    : AppColor.secondaryColor,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(radius),
-                  topLeft: Radius.circular(radius),
-                  bottomRight: Radius.circular(radius),
-                ),
+              decoration: const BoxDecoration(
+                color: AppColor.greyColor,
+                borderRadius: BorderRadius.all(Radius.circular(6)),
               ),
-              child: Text(sms?.body ?? "")),
-          Text(
-            //print(sms?.sendreceiveDatetime);
+              child: Text(
+                sms?.date?.formatRelativeDay() ?? "",
+                style: textTheme(context)
+                    .bodyMedium
+                    ?.copyWith(color: Colors.white),
+              )),
+        ),
+        // 5.height(),
+        Align(
+          alignment: sms?.messageKind == SmsMessageKind.Sent.name
+              ? Alignment.centerRight
+              : Alignment.centerLeft,
+          child: Container(
+            padding: const EdgeInsets.all(5.0),
+            constraints: BoxConstraints(maxWidth: mq(context).width * .8),
+            child: Column(
+              crossAxisAlignment: sms?.messageKind == SmsMessageKind.Sent.name
+                  ? CrossAxisAlignment.end
+                  : CrossAxisAlignment.start,
+              children: [
+                Container(
+                    margin: const EdgeInsets.all(2),
+                    padding: const EdgeInsets.all(5),
+                    // constraints:
+                    //     BoxConstraints(maxWidth: mq(context).width * .8),
+                    // width: mq(context).width * .8,
+                    decoration: BoxDecoration(
+                      color: sms?.messageKind == SmsMessageKind.Sent.name
+                          ? AppColor.orangeColor
+                          : AppColor.secondaryColor,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: const Radius.circular(radius),
+                        bottomRight: const Radius.circular(radius),
+                        topLeft: (sms?.messageKind == SmsMessageKind.Sent.name)
+                            ? const Radius.circular(radius)
+                            : const Radius.circular(0),
+                        topRight: (sms?.messageKind == SmsMessageKind.Sent.name)
+                            ? const Radius.circular(0)
+                            : const Radius.circular(radius),
+                      ),
+                    ),
+                    child: Text(sms?.body ?? "")),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    //print(sms?.sendreceiveDatetime);
 
-            sms?.date?.formatTime() ?? "",
-            style: textTheme(context)
-                .bodySmall
-                ?.copyWith(color: AppColor.primaryColor),
+                    sms?.date?.formatTime() ?? "",
+                    style: textTheme(context)
+                        .bodySmall
+                        ?.copyWith(color: AppColor.greyColor),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

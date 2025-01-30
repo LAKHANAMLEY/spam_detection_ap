@@ -11,7 +11,6 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   double scale = 3.5;
-  int _page = 2;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final List<Widget> _pages = [
     const HomeScreen(),
@@ -35,6 +34,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
   StreamSubscription<ApiState>? streamSubsCallLog;
 
   StreamSubscription<PhoneState>? phoneStateStreamSubs;
+
+  StreamSubscription<ApiState>? streamSubsMessage;
 
   phoneStateConfig() {
     ///listen phone states and show overlay
@@ -74,6 +75,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     handleAppLifeCycle();
     getAndSyncContacts();
     getAndSyncCallLogs();
+    getAndSyncMessages();
     super.initState();
   }
 
@@ -82,6 +84,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     streamSubs?.cancel();
     streamSubsCallLog?.cancel();
     phoneStateStreamSubs?.cancel();
+    streamSubsMessage?.cancel();
     super.dispose();
   }
 
@@ -91,7 +94,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         bloc: bottomNavigationBloc,
         builder: (context, state) {
           if (state is SelectIntState) {
-            _page = state.value;
+            int page = state.value;
             return Scaffold(
                 key: _key,
                 drawer: const CustomDrawer(),
@@ -267,39 +270,39 @@ class _BottomNavigationState extends State<BottomNavigation> {
                         ],
                       ),
                     ]),
-                body: _pages[_page],
+                body: _pages[page],
                 bottomNavigationBar: CurvedNavigationBar(
                   key: _bottomNavigationKey,
-                  index: _page,
+                  index: page,
                   height: 75,
                   items: <Widget>[
                     Image.asset(
                       IconConstants.icHomeData,
-                      color: getColor(0),
+                      color: getColor(0, page),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
                     Image.asset(
                       IconConstants.icChatData,
-                      color: getColor(1),
+                      color: getColor(1, page),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
                     Image.asset(
                       IconConstants.icCallData,
-                      color: getColor(2),
+                      color: getColor(2, page),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
                     Image.asset(
                       IconConstants.icPremiumData,
-                      color: getColor(3),
+                      color: getColor(3, page),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
                     Image.asset(
                       IconConstants.icSettingData,
-                      color: getColor(4),
+                      color: getColor(4, page),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
@@ -332,8 +335,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
     }
   }
 
-  Color? getColor(int i) {
-    if (_page == i) {
+  Color? getColor(int i, page) {
+    if (page == i) {
       return AppColor.secondaryColor;
     }
     return AppColor.secondaryColor;
@@ -397,5 +400,34 @@ class _BottomNavigationState extends State<BottomNavigation> {
       }
     });
     callLogsListBloc.add(GetDeviceCallLogEvent());
+  }
+
+  void getAndSyncMessages() {
+    streamSubsMessage = messagesBloc.stream.listen((state) {
+      if (state is SmsListState) {
+        // filterSearchResults("");
+        if (state.value.statusCode == 200) {
+        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+          sessionExpired(context, state.value.message ?? "");
+        } else {
+          showToast(state.value.message);
+        }
+      }
+      if (state is SyncSmsState) {
+        if (state.value.statusCode == 200) {
+          showToast(state.value.message);
+        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+          sessionExpired(context, state.value.message ?? "");
+        } else {
+          showToast(state.value.message);
+        }
+        messagesBloc.add(SmsListEvent());
+      }
+      if (state is GetDeviceMessagesState) {
+        var deviceCallLogs = state.value;
+        messagesBloc.add(SyncSmsEvent(smsLogs: deviceCallLogs));
+      }
+    });
+    messagesBloc.add(GetDeviceMessagesEvent());
   }
 }

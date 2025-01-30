@@ -29,7 +29,7 @@ dependencies:
   shared_preferences: ^2.3.3
   fast_contacts: ^4.0.0
   permission_handler: ^11.3.1
-  pricing_cards: ^0.0.8
+  # pricing_cards: ^0.0.8
   image_picker: ^0.8.8+7
   path_provider: ^2.0.11
   modal_progress_hud_nsn: ^0.5.1
@@ -54,33 +54,33 @@ dependencies:
   firebase_analytics: ^11.3.6
   flutter_local_notifications_platform_interface: ^8.0.0
   flutter_contacts: ^1.1.9+2
-  flutter_sms_inbox: ^1.0.3
+  # flutter_sms_inbox: ^1.0.3
   sms_advanced: ^1.1.0
-
+  flutter_native_splash: ^2.4.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  intl_phone_number_input: ^0.7.0+2
-  country_picker: ^2.0.19
+  # intl_phone_number_input: ^0.7.0+2
+  # country_picker: ^2.0.19
   flutter_lints: ^3.0.0
   flutter_launcher_icons: ^0.14.2
-  flutter_local_notifications: ^18.0.1
-  flutter_native_splash: ^2.4.4
+
+  package_rename: ^1.8.0
 
 # flutter_native_splash-development.yaml
 flutter_native_splash:
   color: "#ffffff"
-  image: assets/logo-development.png
-  branding: assets/branding-development.png
+  image: assets/images/logo_white_1024.png
+  branding: assets/images/logo_white_1024.png
   color_dark: "#ffffff"
-  image_dark: assets/logo-development.png
-  branding_dark: assets/branding-development.png
+  image_dark: assets/images/logo_white_1024.png
+  branding_dark: assets/images/logo_white_1024.png
 
   android_12:
-    image: assets/logo-development.png
+    image: assets/images/logo_white_1024.png
     icon_background_color: "#ffffff"
-    image_dark: assets/logo-development.png
+    image_dark: assets/images/logo_white_1024.png
     icon_background_color_dark: "#666666"
 
   web: true

@@ -46,25 +46,27 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1036303425157',
     projectId: 'spam-detect-cfb50',
     authDomain: 'spam-detect-cfb50.firebaseapp.com',
-    storageBucket: 'spam-detect-cfb50.appspot.com',
+    storageBucket: 'spam-detect-cfb50.firebasestorage.app',
     measurementId: 'G-5EJQNTQZNN',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyChS9sWQVNwB0_KnbwRfGvfKo11asiTyso',
-    appId: '1:1036303425157:android:2ada947334054edd8713ec',
+    appId: '1:1036303425157:android:7bc901196f1729c98713ec',
     messagingSenderId: '1036303425157',
     projectId: 'spam-detect-cfb50',
-    storageBucket: 'spam-detect-cfb50.appspot.com',
+    storageBucket: 'spam-detect-cfb50.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAyn60nH-lcCOXetx_xfnAXjv9Lz1plv-k',
-    appId: '1:1036303425157:ios:6819cd9176cd2c278713ec',
+    appId: '1:1036303425157:ios:2eefef07a598c87a8713ec',
     messagingSenderId: '1036303425157',
     projectId: 'spam-detect-cfb50',
-    storageBucket: 'spam-detect-cfb50.appspot.com',
-    iosBundleId: 'com.example.spamDelectionApp',
+    storageBucket: 'spam-detect-cfb50.firebasestorage.app',
+    androidClientId: '1036303425157-0q2f94vuqs8kvldvthlgssfovk7ec7l5.apps.googleusercontent.com',
+    iosClientId: '1036303425157-j4n2boiv56e4jr5dppojk5jg3acs21ao.apps.googleusercontent.com',
+    iosBundleId: 'com.broadlink.protect',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -72,7 +74,9 @@ class DefaultFirebaseOptions {
     appId: '1:1036303425157:ios:6819cd9176cd2c278713ec',
     messagingSenderId: '1036303425157',
     projectId: 'spam-detect-cfb50',
-    storageBucket: 'spam-detect-cfb50.appspot.com',
+    storageBucket: 'spam-detect-cfb50.firebasestorage.app',
+    androidClientId: '1036303425157-0q2f94vuqs8kvldvthlgssfovk7ec7l5.apps.googleusercontent.com',
+    iosClientId: '1036303425157-ua0gfbcrr286aehm05559bk9ueta15s5.apps.googleusercontent.com',
     iosBundleId: 'com.example.spamDelectionApp',
   );
 
@@ -82,7 +86,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1036303425157',
     projectId: 'spam-detect-cfb50',
     authDomain: 'spam-detect-cfb50.firebaseapp.com',
-    storageBucket: 'spam-detect-cfb50.appspot.com',
+    storageBucket: 'spam-detect-cfb50.firebasestorage.app',
     measurementId: 'G-DGXY9E370M',
   );
 }

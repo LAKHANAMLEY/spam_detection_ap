@@ -13,11 +13,9 @@ String spamListResponseToJson(SpamListResponse data) =>
 class SpamListResponse {
   final int? statusCode;
   final List<SpamData>? spamcontactslist;
+  final String? message;
 
-  SpamListResponse({
-    this.statusCode,
-    this.spamcontactslist,
-  });
+  SpamListResponse({this.statusCode, this.spamcontactslist, this.message});
 
   factory SpamListResponse.fromJson(Map<String, dynamic> json) =>
       SpamListResponse(
@@ -26,6 +24,7 @@ class SpamListResponse {
             ? []
             : List<SpamData>.from(
                 json["spamcontactslist"]!.map((x) => SpamData.fromJson(x))),
+        message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -33,6 +32,7 @@ class SpamListResponse {
         "spamcontactslist": spamcontactslist == null
             ? []
             : List<dynamic>.from(spamcontactslist!.map((x) => x.toJson())),
+        "message": message,
       };
 }
 

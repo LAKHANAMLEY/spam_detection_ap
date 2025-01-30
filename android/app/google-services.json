@@ -2,17 +2,38 @@
   "project_info": {
     "project_number": "1036303425157",
     "project_id": "spam-detect-cfb50",
-    "storage_bucket": "spam-detect-cfb50.appspot.com"
+    "storage_bucket": "spam-detect-cfb50.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1036303425157:android:2ada947334054edd8713ec",
+        "mobilesdk_app_id": "1:1036303425157:android:7bc901196f1729c98713ec",
         "android_client_info": {
-          "package_name": "com.example.spam_delection_app"
+          "package_name": "com.broadlink.protect"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1036303425157-74phg9e6eg25h8pb031e87ci2em8fmlt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.broadlink.protect",
+            "certificate_hash": "85c36e23309b4aa393decff7d46fcae70c74ef1b"
+          }
+        },
+        {
+          "client_id": "1036303425157-ukqngc8fmea0fnh978lb0cif6sqe4h5u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.broadlink.protect",
+            "certificate_hash": "230c0fbb1a90f5d894b3365a2dd2030b81e02abd"
+          }
+        },
+        {
+          "client_id": "1036303425157-2u5fn1ug0vv87sfu2bdkkm7500qb9pe6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyChS9sWQVNwB0_KnbwRfGvfKo11asiTyso"
@@ -20,7 +41,71 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036303425157-2u5fn1ug0vv87sfu2bdkkm7500qb9pe6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1036303425157-j4n2boiv56e4jr5dppojk5jg3acs21ao.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.broadlink.protect"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036303425157:android:2ada947334054edd8713ec",
+        "android_client_info": {
+          "package_name": "com.example.spam_delection_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036303425157-0q2f94vuqs8kvldvthlgssfovk7ec7l5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.spam_delection_app",
+            "certificate_hash": "230c0fbb1a90f5d894b3365a2dd2030b81e02abd"
+          }
+        },
+        {
+          "client_id": "1036303425157-k95kn9725rv3fdeolkimj38q7koifenn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.spam_delection_app",
+            "certificate_hash": "85c36e23309b4aa393decff7d46fcae70c74ef1b"
+          }
+        },
+        {
+          "client_id": "1036303425157-2u5fn1ug0vv87sfu2bdkkm7500qb9pe6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChS9sWQVNwB0_KnbwRfGvfKo11asiTyso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036303425157-2u5fn1ug0vv87sfu2bdkkm7500qb9pe6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1036303425157-j4n2boiv56e4jr5dppojk5jg3acs21ao.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.broadlink.protect"
+              }
+            }
+          ]
         }
       }
     }

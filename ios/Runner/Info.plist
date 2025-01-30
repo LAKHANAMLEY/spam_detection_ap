@@ -5,7 +5,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Spam Delection App</string>
+	<string>BroadLink Protect</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>spam_delection_app</string>
+	<string>com.broadlink.protect</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -52,5 +52,7 @@
 			<string>tel</string>
 			<string>sms</string>
 		</array>
+		<key>UIStatusBarHidden</key>
+		<false/>
 	</dict>
 </plist>
