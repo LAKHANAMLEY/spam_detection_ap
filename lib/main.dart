@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state_background/phone_state_background.dart';
 import 'package:spam_delection_app/lib.dart';
 
@@ -45,6 +46,7 @@ Future<void> phoneStateBackgroundCallbackHandler(
   int duration,
 ) async {
   // if (event != null)
+  await permissionRequest(Permission.systemAlertWindow);
   showOverlay(
       callType: getCallTypeStringFromBGPhoneState(event),
       number: number,

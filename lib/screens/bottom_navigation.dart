@@ -1,3 +1,4 @@
+import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
 import 'package:spam_delection_app/lib.dart';
 
@@ -41,6 +42,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       if (state.status != PhoneStateStatus.NOTHING &&
           (state.number?.isNotEmpty ?? false)) {
         callLogsListBloc.add(GetCallLogsEvent());
+        await permissionRequest(Permission.systemAlertWindow);
         showOverlay(
             callType: getCallTypeByPhoneState(state),
             number: state.number ?? "",

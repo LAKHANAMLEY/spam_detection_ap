@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
@@ -23,6 +25,8 @@ Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
       'call_log[$i][call_duration_unit]': '1' //1 sec 2 min 3 horus
     });
   }
+
+  log("sync call log ${jsonEncode(body)}");
 
   var request = http.MultipartRequest(
       'POST',

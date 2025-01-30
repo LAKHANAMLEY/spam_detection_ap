@@ -19,8 +19,8 @@ class DeviceCallLogs extends StatelessWidget {
     return Scaffold(
       appBar: (showAppBar ?? showAppBar ?? false)
           ? CustomAppBar(
-        title: appLocalization(context).callLogs,
-      )
+              title: appLocalization(context).callLogs,
+            )
           : null,
       body: BlocConsumer(
           bloc: markSpamBloc,
@@ -150,104 +150,111 @@ class DeviceCallLogs extends StatelessWidget {
                             markSpamState is ApiLoadingState,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Column(children: [
-                            BlocBuilder(
-                                bloc: showHideTextFieldBloc,
-                                builder: (context, state) {
-                                  if (state is SelectBoolState) {
-                                    return AnimatedScale(
-                                      onEnd: () {
-                                        isVisible = state.value;
-                                      },
-                                      scale: state.value ? 1 : 0,
-                                      duration:
-                                      const Duration(milliseconds: 300),
-                                      child: !isVisible
-                                          ? CustomTextField(
-                                        controller: searchController,
-                                        fillColor:
-                                        AppColor.secondaryColor,
-                                        prefix: const Icon(
-                                          Icons.search,
-                                          color: AppColor.redColor,
-                                        ),
-                                        hintText:
-                                        appLocalization(context)
-                                            .searchMore,
-                                        //textAlign: TextAlign.center,
-
-                                        onChanged: (p0) {
-                                          // filter();
-                                          searchBloc.add(
-                                              SelectStringEvent(p0));
+                          child: Column(
+                            children: [
+                              BlocBuilder(
+                                  bloc: showHideTextFieldBloc,
+                                  builder: (context, state) {
+                                    if (state is SelectBoolState) {
+                                      return AnimatedScale(
+                                        onEnd: () {
+                                          isVisible = state.value;
                                         },
-                                        suffix: PopupMenuButton(
-                                          itemBuilder: (context) =>
-                                          [
-                                            PopupMenuItem(
-                                                onTap: () {
-                                                  callLogsListBloc.add(
-                                                      GetDeviceCallLogEvent());
-                                                },
-                                                child: Text(
-                                                    appLocalization(
-                                                        context)
-                                                        .synCallLogs)),
-                                            PopupMenuItem(
-                                                onTap: () {
-                                                  callLogsListBloc.add(
-                                                      DeleteAllCallLogEvent());
-                                                },
-                                                child: Text(appLocalization(
-                                                    context)
-                                                    .deleteAllCallLogs)),
-                                          ],
-                                        ),
-                                      )
-                                          : const SizedBox.shrink(),
-                                    );
-                                  }
-                                  return const Loader();
-                                }),
+                                        scale: state.value ? 1 : 0,
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        child: !isVisible
+                                            ? CustomTextField(
+                                                controller: searchController,
+                                                fillColor:
+                                                    AppColor.secondaryColor,
+                                                prefix: const Icon(
+                                                  Icons.search,
+                                                  color: AppColor.redColor,
+                                                ),
+                                                hintText:
+                                                    appLocalization(context)
+                                                        .searchMore,
+                                                //textAlign: TextAlign.center,
 
-                            BlocConsumer(
-                                bloc: searchBloc,
-                                listener: (context, state) {
-                                  if (state is SelectStringState) {
-                                    filteredCallLogs = filter(
-                                        state.value ?? "", callLogs);
-                                  }
-                                },
-                                builder: (context, state) {
-                                  return (filteredCallLogs.isEmpty &&
-                                      searchController
-                                          .text.isNotEmpty)
-                                      ? CallLogListItem(
-                                    // showPopupMenuBtn: false,
-                                      callLog: CallLogData(
-                                        mobileNo: searchController.text,
-                                      ))
-                                  // Center(
-                                  //     child: Text(appLocalization(context)
-                                  //         .noData),
-                                  //   )
-                                      : Expanded(
-                                    child: ListView.builder(
-                                        shrinkWrap: true,
-                                        controller:
-                                        scrollController,
-                                        itemCount:
-                                        filteredCallLogs.length,
-                                        itemBuilder:
-                                            (context, index) =>
-                                            CallLogListItem(
-                                              callLog:
-                                              filteredCallLogs[
-                                              index],
-                                            )),
-                                  );
-                                }),
-                          ],
+                                                onChanged: (p0) {
+                                                  // filter();
+                                                  searchBloc.add(
+                                                      SelectStringEvent(p0));
+                                                },
+                                                suffix: PopupMenuButton(
+                                                  itemBuilder: (context) => [
+                                                    PopupMenuItem(
+                                                        onTap: () {
+                                                          callLogsListBloc.add(
+                                                              GetDeviceCallLogEvent());
+                                                        },
+                                                        child: Text(
+                                                            appLocalization(
+                                                                    context)
+                                                                .synCallLogs)),
+                                                    PopupMenuItem(
+                                                        onTap: () {
+                                                          callLogsListBloc.add(
+                                                              DeleteAllCallLogEvent());
+                                                        },
+                                                        child: Text(appLocalization(
+                                                                context)
+                                                            .deleteAllCallLogs)),
+                                                  ],
+                                                ),
+                                              )
+                                            : const SizedBox.shrink(),
+                                      );
+                                    }
+                                    return const Loader();
+                                  }),
+                              Row(
+                                children: [
+                                  ElevatedButton.icon(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, AppRoutes.contactList);
+                                    },
+                                    label: const Text("Contacts"),
+                                    icon: const Icon(Icons.contacts_outlined),
+                                  )
+                                ],
+                              ),
+                              BlocConsumer(
+                                  bloc: searchBloc,
+                                  listener: (context, state) {
+                                    if (state is SelectStringState) {
+                                      filteredCallLogs =
+                                          filter(state.value ?? "", callLogs);
+                                    }
+                                  },
+                                  builder: (context, state) {
+                                    return (filteredCallLogs.isEmpty &&
+                                            searchController.text.isNotEmpty)
+                                        ? CallLogListItem(
+                                            // showPopupMenuBtn: false,
+                                            callLog: CallLogData(
+                                            mobileNo: searchController.text,
+                                          ))
+                                        // Center(
+                                        //     child: Text(appLocalization(context)
+                                        //         .noData),
+                                        //   )
+                                        : Expanded(
+                                            child: ListView.builder(
+                                                shrinkWrap: true,
+                                                controller: scrollController,
+                                                itemCount:
+                                                    filteredCallLogs.length,
+                                                itemBuilder: (context, index) =>
+                                                    CallLogListItem(
+                                                      callLog: filteredCallLogs[
+                                                          index],
+                                                    )),
+                                          );
+                                  }),
+                            ],
                           ),
                         ));
                   }
@@ -261,13 +268,13 @@ class DeviceCallLogs extends StatelessWidget {
           ),
           child: Image.asset(
             IconConstants.icDialPad,
-            scale: 1.5,
+            scale: 18,
             color: AppColor.secondaryColor,
           ),
           onPressed: () {
             // Navigator.pushNamed(context, AppRoutes.dialPadScreen);
             showModalBottomSheet(
-              //isScrollControlled: true,
+                //isScrollControlled: true,
                 backgroundColor: AppColor.secondaryColor,
                 context: context,
                 shape: const RoundedRectangleBorder(
@@ -275,14 +282,14 @@ class DeviceCallLogs extends StatelessWidget {
                 ),
                 builder: (BuildContext context) {
                   return const DialPad(
-                    // contact: ContactData(
-                    // id: callLog.contactListId,
-                    // mobileNo: callLog.mobileNo,
-                    // name: callLog.name,
-                    // isSpam: callLog.isSpam,
-                    //  countryCode: callLog.countryCode,
-                    // ),
-                  );
+                      // contact: ContactData(
+                      // id: callLog.contactListId,
+                      // mobileNo: callLog.mobileNo,
+                      // name: callLog.name,
+                      // isSpam: callLog.isSpam,
+                      //  countryCode: callLog.countryCode,
+                      // ),
+                      );
                 });
           }),
     );
@@ -291,12 +298,12 @@ class DeviceCallLogs extends StatelessWidget {
   List<CallLogData> filter(String searchText, List<CallLogData> callLogs) {
     return callLogs
         .where((e) =>
-    ((e.name?.toLowerCase().contains(searchText.toLowerCase()) ??
-        false) ||
-        (e.mobileNo?.toLowerCase().contains(searchText.toLowerCase()) ??
-            false)) &&
-        (e.callType?.toLowerCase().contains(filterBy.toLowerCase() ?? "") ??
-            false))
+            ((e.name?.toLowerCase().contains(searchText.toLowerCase()) ??
+                    false) ||
+                (e.mobileNo?.toLowerCase().contains(searchText.toLowerCase()) ??
+                    false)) &&
+            (e.callType?.toLowerCase().contains(filterBy.toLowerCase() ?? "") ??
+                false))
         .toList();
     // setState(() {});
   }
