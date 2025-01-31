@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/dial_pad_screen.dart';
 
 class AppRoutes {
   static const splash = "/splash";
