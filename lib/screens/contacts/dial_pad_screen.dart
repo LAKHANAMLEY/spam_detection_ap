@@ -11,12 +11,6 @@ class DialPad extends StatefulWidget {
 class _DialPadState extends State<DialPad> {
   String enteredNumber = "";
 
-  void onNumberPressed(String number) {
-    setState(() {
-      enteredNumber += number;
-    });
-  }
-
   void _onDeletePressed() {
     setState(() {
       if (enteredNumber.isNotEmpty) {
@@ -25,10 +19,24 @@ class _DialPadState extends State<DialPad> {
     });
   }
 
+  onDeleteLongPressed() {
+    setState(() {
+      enteredNumber = "";
+    });
+  }
+
   void _onDialPressed(String number) {
     setState(() {
       enteredNumber += number;
     });
+  }
+
+  void _onLongPressed(String subText) {
+    if (subText == "+") {
+      setState(() {
+        enteredNumber += subText;
+      });
+    }
   }
 
   void onCallPressed() async {
@@ -48,168 +56,101 @@ class _DialPadState extends State<DialPad> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      //backgroundColor: AppColor.secondaryColor,
-      backgroundColor: Colors.transparent,
-      //appBar: CustomAppBar(title: appLocalization(context).call),
-      body: Container(
-        // constraints: BoxConstraints(
-        //   minHeight: 50,
-        //   minWidth: double.infinity,
-        // ),
-        decoration: const BoxDecoration(
-          //color: Colors.green,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
+    return Wrap(
+      children: [
+        Container(
+          // height: 600,
+          // constraints: BoxConstraints(
+          //   minHeight: 50,
+          //   minWidth: double.infinity,
+          // ),
+          decoration: const BoxDecoration(
+            //color: Colors.green,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.0),
+              topRight: Radius.circular(20.0),
+            ),
           ),
-        ),
-        //constraints: BoxConstraints(minHeight: 20, minWidth: 20),
-        child: SafeArea(
+          padding: const EdgeInsets.all(10),
+          //constraints: BoxConstraints(minHeight: 20, minWidth: 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          enteredNumber.isEmpty
-                              ? "Enter a number"
-                              : enteredNumber,
-                          style: const TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
+              Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        enteredNumber.isEmpty
+                            ? "Enter a number"
+                            : enteredNumber,
+                        style: textTheme(context).headlineLarge,
+                        textAlign: TextAlign.center,
                       ),
-                      IconButton(
+                    ),
+                    GestureDetector(
+                      onLongPress: onDeleteLongPressed,
+                      child: IconButton(
                         onPressed: _onDeletePressed,
                         icon: const Icon(Icons.backspace),
                         iconSize: 32,
                         color: Colors.red,
                       ),
-                    ]),
-              ),
-              // Expanded(
-              //   child: GridView.builder(
-              //     padding: const EdgeInsets.all(16),
-              //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              //       mainAxisExtent: 60,
-              //       crossAxisCount: 3,
-              //       crossAxisSpacing: 16,
-              //       mainAxisSpacing: 16,
-              //     ),
-              //     itemCount: 12,
-              //     itemBuilder: (context, index) {
-              //       if (index == 9) {
-              //         return const SizedBox.shrink();
-              //       } else if (index == 10) {
-              //         return _buildDialerButton("0");
-              //       } else if (index == 11) {
-              //         return IconButton(
-              //           onPressed: _onDeletePressed,
-              //           icon: const Icon(Icons.backspace),
-              //           iconSize: 32,
-              //           color: Colors.red,
-              //         );
-              //       } else {
-              //         return _buildDialerButton((index + 1).toString());
-              //       }
-              //     },
-              //   ),
-              // ),
-              // Expanded(
-              //   child: GridView.builder(
-              //     padding: const EdgeInsets.all(16),
-              //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              //       mainAxisExtent: 60,
-              //       crossAxisCount: 3,
-              //       crossAxisSpacing: 16,
-              //       mainAxisSpacing: 16,
-              //     ),
-              //     itemCount: 12,
-              //     itemBuilder: (context, index) {
-              //       if (index == 9) {
-              //         return _buildDialerButton("*"); // Add "*"
-              //       } else if (index == 10) {
-              //         return _buildDialerButtonPress(
-              //             "0 +"); // Supports long-press for "+"
-              //       } else if (index == 11) {
-              //         return _buildDialerButton("#"); // Add "#"
-              //       } else {
-              //         return _buildDialerButton((index + 1).toString());
-              //       }
-              //     },
-              //   ),
-              // ),
-              //
-              // Call button
-              Expanded(
-                child: GridView.builder(
-                  padding: const EdgeInsets.all(16),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    ),
+                  ]),
+              10.height(),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    mainAxisExtent: 80,
-                  ),
-                  itemCount: 12,
-                  itemBuilder: (context, index) {
-                    if (index == 9) {
-                      return _buildDialerButton("*", subText: "");
-                    } else if (index == 10) {
-                      return _buildDialerButton("0", subText: "+");
-                    } else if (index == 11) {
-                      return _buildDialerButton("#", subText: "");
-                    } else {
-                      return buildDialerButton((index + 1).toString(),
-                          subText: getSubText(index + 1));
-                    }
-                  },
-                ),
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5,
+                    // mainAxisExtent: 80,
+                    childAspectRatio: 1.9),
+                itemCount: 12,
+                itemBuilder: (context, index) {
+                  if (index == 9) {
+                    return _buildDialerButton("*", subText: "");
+                  } else if (index == 10) {
+                    return _buildDialerButton("0", subText: "+");
+                  } else if (index == 11) {
+                    return _buildDialerButton("#", subText: "");
+                  } else {
+                    return _buildDialerButton((index + 1).toString(),
+                        subText: getSubText(index + 1));
+                  }
+                },
               ),
-
-              Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: FloatingActionButton(
-                  backgroundColor: Colors.green,
-                  onPressed: () {
-                    // Action on call button press
-                  },
-                  child: const Icon(Icons.call, size: 32, color: Colors.white),
+              10.height(),
+              FloatingActionButton.extended(
+                backgroundColor: AppColor.greenColor,
+                onPressed: () async {
+                  // await DirectCallPlus.makeCall(countryCode?.isNotEmpty ??
+                  //     false)
+                  //     ? "+${countryCode ?? ""} ${contact?.mobileNo ?? ""}"
+                  //     : contact?.mobileNo ?? "");
+                },
+                icon: const Icon(Icons.call, size: 32, color: Colors.white),
+                label: Text(
+                  appLocalization(context).call,
+                  style: textTheme(context)
+                      .titleMedium
+                      ?.copyWith(color: Colors.white),
                 ),
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget buildDialerButton(String number, {required String subText}) {
-    return GestureDetector(
-      onTap: () => onNumberPressed(number),
-      child: Container(
-        decoration: BoxDecoration(
-          //shape: BoxShape.circle,
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.blue.shade50,
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          number,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
+      ],
     );
   }
 
   Widget _buildDialerButton(String text, {String subText = ""}) {
     return GestureDetector(
       onTap: () => _onDialPressed(text),
+      onLongPress: () => _onLongPressed(subText),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.blue.shade50,
@@ -220,15 +161,14 @@ class _DialPadState extends State<DialPad> {
           children: [
             Text(
               text,
-              style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
+              style: textTheme(context).titleLarge,
             ),
             if (subText.isNotEmpty)
               Text(
                 subText,
-                style: const TextStyle(fontSize: 14, color: Colors.black54),
+                style: textTheme(context)
+                    .bodySmall
+                    ?.copyWith(color: Colors.black54),
               ),
           ],
         ),
@@ -261,25 +201,3 @@ class _DialPadState extends State<DialPad> {
     }
   }
 }
-//   Widget _buildDialerButtonPress(String text) {
-//     return GestureDetector(
-//       onTap: () => _onDialPressed(text),
-//       onLongPress: text == "0" ? () => _onDialPressed("+") : null,
-//       // Long press for "+"
-//       child: Container(
-//         decoration: BoxDecoration(
-//           shape: BoxShape.circle,
-//           color: Colors.blue.shade50,
-//         ),
-//         alignment: Alignment.center,
-//         child: Text(
-//           text,
-//           style: const TextStyle(
-//               fontSize: 24,
-//               color: AppColor.primaryColor,
-//               fontWeight: FontWeight.bold),
-//         ),
-//       ),
-//     );
-//   }
-// }

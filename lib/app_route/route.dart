@@ -48,6 +48,7 @@ class AppRoutes {
   static const messageScreen = "/messageScreen";
   static const dialPadScreen = "/dialPadScreen";
   static const editContact = "/editContact";
+  static const otpVerify = "/otpVerify";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -97,5 +98,6 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.blockedCalls: (context) => const BlockedCalls(),
   AppRoutes.messageScreen: (context) => const MessagesScreen(),
   AppRoutes.dialPadScreen: (context) => const DialPad(),
-  AppRoutes.editContact: (context) => const EditContact()
+  AppRoutes.editContact: (context) => const EditContact(),
+  AppRoutes.otpVerify: (context) => const OtpVerify()
 };

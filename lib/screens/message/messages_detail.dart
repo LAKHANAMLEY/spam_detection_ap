@@ -193,7 +193,7 @@ class MessageView extends StatelessWidget {
                 sms?.date?.formatRelativeDay() ?? "",
                 style: textTheme(context)
                     .bodyMedium
-                    ?.copyWith(color: Colors.white),
+                    ?.copyWith(color: Colors.black),
               )),
         ),
         // 5.height(),
@@ -230,9 +230,11 @@ class MessageView extends StatelessWidget {
                             : const Radius.circular(radius),
                       ),
                     ),
-                    child: Text(sms?.body ?? "")),
+                    child: Text(
+                      sms?.body ?? "",
+                    )),
                 Align(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     //print(sms?.sendreceiveDatetime);
 

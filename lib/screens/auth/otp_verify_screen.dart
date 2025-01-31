@@ -271,8 +271,7 @@ class _ForgotOtpVerifyState extends State<OtpVerify> {
                                   onChanged: (value) {
                                     print(firstInputController.text.length);
                                     print(firstInputController.text);
-                                    firstInputController.text =
-                                        value; //is line ki need nahi thi agar controller assign kr dete to
+                                    firstInputController.text = value;
                                     nextField(value, pin2FocusNode!);
                                   },
                                 ),

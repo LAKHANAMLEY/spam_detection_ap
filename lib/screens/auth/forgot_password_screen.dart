@@ -51,8 +51,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   }
                   if (state is ForgetPasswordPhoneState) {
                     if (state.value.statusCode == 200) {
-                      Navigator.pushNamed(
-                          context, AppRoutes.forgotOTPVerification,
+                      Navigator.pushNamed(context, AppRoutes.otpVerify,
                           arguments: ForgotOtpVerify(
                             email: emailController.text,
                           ));

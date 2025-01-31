@@ -14,8 +14,6 @@ class _EditContactState extends State<EditContact> {
 
   final _formKey = GlobalKey<FormState>();
 
-  PhoneNumber? phoneNumber;
-
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -23,9 +21,6 @@ class _EditContactState extends State<EditContact> {
   var selectPhoneCodeBloc =
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
   CountryData? selectedPhoneCodeCountry;
-
-  final ImagePicker _picker = ImagePicker();
-  XFile? _selectedImage;
 
   var editContactBloc = ApiBloc(ApiBlocInitialState());
 
@@ -54,7 +49,7 @@ class _EditContactState extends State<EditContact> {
     String selectedType = appLocalization(context).mobile;
     return Scaffold(
         backgroundColor: AppColor.whiteColor,
-        appBar: CustomAppBar(title: appLocalization(context).editMember),
+        appBar: CustomAppBar(title: appLocalization(context).editContact),
         body: SafeArea(
           child: BlocConsumer(
               bloc: editContactBloc,

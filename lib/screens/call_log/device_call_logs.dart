@@ -209,8 +209,6 @@ class DeviceCallLogs extends StatelessWidget {
                                     return const Loader();
                                   }),
                               Row(
-                                // mainAxisAlignment:
-                                //     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ElevatedButton.icon(
                                     onPressed: () {
@@ -219,23 +217,7 @@ class DeviceCallLogs extends StatelessWidget {
                                     },
                                     label: const Text("Contacts"),
                                     icon: const Icon(Icons.contacts_outlined),
-                                  ),
-                                  // ElevatedButton.icon(
-                                  //   onPressed: () {
-                                  //     // Navigator.pushNamed(
-                                  //     //     context, AppRoutes.contactList);
-                                  //   },
-                                  //   label: const Text("SMS"),
-                                  //   icon: const Icon(Icons.sms_outlined),
-                                  // ),
-                                  // ElevatedButton.icon(
-                                  //   onPressed: () {
-                                  //     // Navigator.pushNamed(
-                                  //     //     context, AppRoutes.contactList);
-                                  //   },
-                                  //   label: const Text("Email"),
-                                  //   icon: const Icon(Icons.email_outlined),
-                                  // )
+                                  )
                                 ],
                               ),
                               BlocConsumer(
@@ -292,18 +274,15 @@ class DeviceCallLogs extends StatelessWidget {
             // Navigator.pushNamed(context, AppRoutes.dialPadScreen);
             showModalBottomSheet(
                 // enableDrag: true,
-                //isScrollControlled: true,
+                isScrollControlled: true,
                 backgroundColor: AppColor.whiteColor,
                 context: context,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
+                useSafeArea: true,
                 builder: (BuildContext context) {
-                  return SizedBox(
-                    height: MediaQuery.of(context).size.height *
-                        0.8, // 80% of screen height
-                    child: DialPad(),
-                  );
+                  return const DialPad();
                 });
           }),
     );

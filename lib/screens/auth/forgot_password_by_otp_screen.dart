@@ -9,7 +9,6 @@ class ForgotPasswordMobile extends StatefulWidget {
 
 class _ForgotPasswordMobileState extends State<ForgotPasswordMobile> {
   TextEditingController phoneController = TextEditingController();
-  PhoneNumber? phoneNumber;
   var selectPhoneBloc =
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
   CountryData? selectedPhoneCodeCountry;
@@ -152,7 +151,9 @@ class _ForgotPasswordMobileState extends State<ForgotPasswordMobile> {
                                     false) {
                                   forgotBloc.add(ForgetPasswordPhoneEvent(
                                     phone: phoneController.text,
-                                    countryCode: phoneNumber?.countryCode ?? '',
+                                    countryCode:
+                                        selectedPhoneCodeCountry?.phonecode ??
+                                            '',
                                   ));
                                 }
                               },
