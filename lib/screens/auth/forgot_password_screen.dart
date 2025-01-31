@@ -25,7 +25,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -87,7 +87,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 appLocalization(context).forgotPassword,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    color: AppColor.blueLightColor,
+                                    color: AppColor.lightPurpleColor,
                                     fontSize: 35,
                                     fontFamily: AppFont.fontFamily,
                                     fontWeight: FontWeight.w600),
@@ -103,7 +103,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 appLocalization(context).forgotPassDetails,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    color: AppColor.verifyColor,
+                                    color: AppColor.materialGreyColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500),
@@ -226,7 +226,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                             appLocalization(context)
                                                 .pleaseCheckMail,
                                             style: const TextStyle(
-                                                color: AppColor.remainColor,
+                                                color:
+                                                    AppColor.constantGreyColor,
                                                 fontFamily: AppFont.fontFamily,
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -259,53 +260,49 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                                   100),
                                         ] else ...[
                                           10.height(),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 18, right: 18),
-                                            child: BlocConsumer(
-                                                bloc: selectPhoneBloc,
-                                                listener: (context, state) {
-                                                  if (state
-                                                      is SelectCountryState) {
-                                                    selectedPhoneCodeCountry =
-                                                        state.value;
-                                                  }
-                                                },
-                                                builder: (context, state) {
-                                                  return CustomTextField(
-                                                    keyboardType:
-                                                        TextInputType.phone,
-                                                    //readOnly: true,
-                                                    controller: phoneController,
-                                                    hintText:
-                                                        appLocalization(context)
-                                                            .phoneNumber,
-                                                    labelText:
-                                                        appLocalization(context)
-                                                            .phoneNumber,
-                                                    suffix: Image.asset(
-                                                      IconConstants.icCallAdd,
-                                                      scale: 1.5,
-                                                    ),
-                                                    prefix:
-                                                        CountryPhoneCodePrefix(
-                                                      bloc: selectPhoneBloc,
-                                                    ),
-                                                    validator: (p0) {
-                                                      if (p0?.isEmpty ?? true) {
-                                                        return appLocalization(
-                                                                context)
-                                                            .pleaseEnterPhone;
-                                                      }
-                                                      return null;
-                                                    },
-                                                  );
-                                                }),
-                                          ),
+                                          BlocConsumer(
+                                              bloc: selectPhoneBloc,
+                                              listener: (context, state) {
+                                                if (state
+                                                    is SelectCountryState) {
+                                                  selectedPhoneCodeCountry =
+                                                      state.value;
+                                                }
+                                              },
+                                              builder: (context, state) {
+                                                return CustomTextField(
+                                                  keyboardType:
+                                                      TextInputType.phone,
+                                                  //readOnly: true,
+                                                  controller: phoneController,
+                                                  hintText:
+                                                      appLocalization(context)
+                                                          .phoneNumber,
+                                                  labelText:
+                                                      appLocalization(context)
+                                                          .phoneNumber,
+                                                  suffix: Image.asset(
+                                                    IconConstants.icCallAdd,
+                                                    scale: 1.5,
+                                                  ),
+                                                  prefix:
+                                                      CountryPhoneCodePrefix(
+                                                    bloc: selectPhoneBloc,
+                                                  ),
+                                                  validator: (p0) {
+                                                    if (p0?.isEmpty ?? true) {
+                                                      return appLocalization(
+                                                              context)
+                                                          .pleaseEnterPhone;
+                                                    }
+                                                    return null;
+                                                  },
+                                                );
+                                              }),
                                           20.height(),
                                           AppButton(
                                               text: appLocalization(context)
-                                                  .getOtp,
+                                                  .continueTxt,
                                               onPress: () {
                                                 if (_formKey.currentState
                                                         ?.validate() ??

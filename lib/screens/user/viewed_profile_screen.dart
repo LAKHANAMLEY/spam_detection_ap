@@ -42,7 +42,7 @@ class _ViewedProfileState extends State<ViewedProfile> {
                 ],
                 faceSize: 80,
                 facePercentOverlap: .4,
-                borderColor: AppColor.secondaryColor,
+                borderColor: AppColor.whiteColor,
               ),
               10.height(),
               Padding(
@@ -51,7 +51,7 @@ class _ViewedProfileState extends State<ViewedProfile> {
                   appLocalization(context).inIndiaViewedYourProfileRecently,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      color: AppColor.primaryColor,
+                      color: AppColor.blackColor,
                       fontWeight: FontWeight.w500,
                       fontSize: 18),
                 ),
@@ -96,14 +96,14 @@ class _ViewedProfileState extends State<ViewedProfile> {
                     children: [
                       Text(
                         appLocalization(context).yearlyPlan,
-                        style: const TextStyle(color: AppColor.secondaryColor),
+                        style: const TextStyle(color: AppColor.whiteColor),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
                             "\$20/Year",
-                            style: TextStyle(color: AppColor.secondaryColor),
+                            style: TextStyle(color: AppColor.whiteColor),
                           ),
                           5.width(),
                           Container(
@@ -112,7 +112,7 @@ class _ViewedProfileState extends State<ViewedProfile> {
                             width: MediaQuery.of(context).size.width * 18 / 100,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6),
-                                color: AppColor.yellowLightColor),
+                                color: AppColor.themeYellowColor),
                             child: Text(
                               appLocalization(context).saveYear,
                               textAlign: TextAlign.center,
@@ -155,8 +155,8 @@ class _ViewedProfileState extends State<ViewedProfile> {
                                 color: Colors.blueAccent),
                             child: Text(
                               appLocalization(context).saveMonths,
-                              style: const TextStyle(
-                                  color: AppColor.secondaryColor),
+                              style:
+                                  const TextStyle(color: AppColor.whiteColor),
                               textAlign: TextAlign.center,
                             ),
                           )

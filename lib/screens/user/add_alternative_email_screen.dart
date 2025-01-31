@@ -16,7 +16,7 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondaryColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: CustomAppBar(
         title: appLocalization(context).addAlternativeEmail,
       ),
@@ -37,7 +37,7 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                       appLocalization(context).alternativeEmail,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          color: AppColor.blueLightColor,
+                          color: AppColor.lightPurpleColor,
                           fontSize: 35,
                           fontFamily: AppFont.fontFamily,
                           fontWeight: FontWeight.w600),
@@ -49,7 +49,7 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                       appLocalization(context).secureEmail,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          color: AppColor.verifyColor,
+                          color: AppColor.materialGreyColor,
                           fontFamily: AppFont.fontFamily,
                           fontSize: 16,
                           fontWeight: FontWeight.w500),

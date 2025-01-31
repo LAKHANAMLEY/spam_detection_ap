@@ -24,7 +24,7 @@ class _PlanTypeState extends State<PlanType> {
   Widget build(BuildContext context) {
     var argument = args(context) as PlanType?;
     return Scaffold(
-      backgroundColor: AppColor.secondaryColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
           ? const CustomAppBar(
               centerTitle: true,
@@ -47,7 +47,7 @@ class _PlanTypeState extends State<PlanType> {
                   appLocalization(context).chooseYourPlan,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      color: AppColor.blueLightColor,
+                      color: AppColor.lightPurpleColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600),
@@ -62,7 +62,7 @@ class _PlanTypeState extends State<PlanType> {
                   appLocalization(context).blockAccuracy,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                      color: AppColor.verifyColor,
+                      color: AppColor.materialGreyColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       fontFamily: AppFont.fontFamily),

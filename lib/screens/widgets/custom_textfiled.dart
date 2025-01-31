@@ -66,8 +66,8 @@ class CustomTextField extends StatelessWidget {
               color: fillColor ??
                   (isDarkMode
                       ? Colors.white
-                      : AppColor.fillColor.withOpacity(0.2)),
-              border: Border.all(color: AppColor.fillColor, width: 1.5),
+                      : AppColor.lightBrownColor.withOpacity(0.2)),
+              border: Border.all(color: AppColor.lightBrownColor, width: 1.5),
               borderRadius: BorderRadius.circular(5)),
           // // constraints: const BoxConstraints(maxHeight: 60, minHeight: 0),
           margin: const EdgeInsets.all(5),
@@ -102,12 +102,13 @@ class CustomTextField extends StatelessWidget {
                       // ),
                       // floatingLabelBehavior: FloatingLabelBehavior.never,
                       hintText: hintText,
-                      labelStyle: const TextStyle(color: AppColor.orangeColor),
+                      labelStyle:
+                          const TextStyle(color: AppColor.themeOrangeColor),
                       // alignLabelWithHint: true,
                       // floatingLabelAlignment: FloatingLabelAlignment.start,
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       hintStyle: const TextStyle(
-                        color: AppColor.lightFillColor,
+                        color: AppColor.decentBrownColor,
                         fontFamily: AppFont.fontFamily,
                         fontWeight: FontWeight.normal,
                       ),

@@ -41,7 +41,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
       appBar: CustomAppBar(
         title: appLocalization(context).staffList,
       ),
-      backgroundColor: AppColor.secondaryColor,
+      backgroundColor: AppColor.whiteColor,
       body: SafeArea(
           child: Column(children: <Widget>[
         Padding(
@@ -67,7 +67,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
                 borderSide:
                     const BorderSide(width: 0.5, color: Color(0xffE1E6EB)),
               ),
-              fillColor: AppColor.secondaryColor,
+              fillColor: AppColor.whiteColor,
               filled: true,
             ),
           ),
@@ -124,14 +124,16 @@ class _StaffMemberListState extends State<StaffMemberList> {
                                 return ListTile(
                                   leading: filteredContacts[index].photo != null
                                       ? CircleAvatar(
-                                          backgroundColor: AppColor.vanishColor
+                                          backgroundColor: AppColor
+                                              .whiteCreamColor
                                               .withOpacity(0.2),
                                           radius: 43.0,
                                           backgroundImage: NetworkImage(
                                               filteredContacts[index].photo!),
                                         )
                                       : CircleAvatar(
-                                          backgroundColor: AppColor.vanishColor
+                                          backgroundColor: AppColor
+                                              .whiteCreamColor
                                               .withOpacity(0.2),
                                           radius: 43.0,
                                           backgroundImage: const AssetImage(
@@ -140,7 +142,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
                                   subtitle: Text(
                                     filteredContacts[index].relation ?? "",
                                     style: const TextStyle(
-                                        color: AppColor.primaryColor,
+                                        color: AppColor.blackColor,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 12,
                                         fontFamily: AppFont.fontFamily),
@@ -148,7 +150,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
                                   title: Text(
                                     filteredContacts[index].firstName ?? "",
                                     style: const TextStyle(
-                                        color: AppColor.primaryColor,
+                                        color: AppColor.blackColor,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 18,
                                         fontFamily: AppFont.fontFamily),
@@ -188,7 +190,7 @@ class _StaffMemberListState extends State<StaffMemberList> {
                 }))
       ])),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColor.callColor,
+        backgroundColor: AppColor.darkPurpleColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),

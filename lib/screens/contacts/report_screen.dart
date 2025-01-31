@@ -54,7 +54,7 @@ class _ReportViewState extends State<ReportView> {
                       Text(
                         appLocalization(context).reportNumberSpam,
                         style: const TextStyle(
-                            color: AppColor.primaryColor,
+                            color: AppColor.blackColor,
                             fontSize: 18,
                             fontFamily: AppFont.fontFamily,
                             fontWeight: FontWeight.w600),
@@ -64,7 +64,7 @@ class _ReportViewState extends State<ReportView> {
                       Text(
                         appLocalization(context).wasPersonalNumber,
                         style: const TextStyle(
-                            color: AppColor.primaryColor,
+                            color: AppColor.blackColor,
                             fontSize: 14,
                             fontFamily: AppFont.fontFamily,
                             fontWeight: FontWeight.w600),
@@ -90,7 +90,8 @@ class _ReportViewState extends State<ReportView> {
                                       child: Row(
                                         children: [
                                           Radio(
-                                            focusColor: AppColor.yellowDeep,
+                                            focusColor:
+                                                AppColor.deepYellowColor,
                                             groupValue: numberType,
                                             // Current selected value
                                             onChanged: (value) {
@@ -115,7 +116,8 @@ class _ReportViewState extends State<ReportView> {
                                       child: Row(
                                         children: [
                                           Radio(
-                                            focusColor: AppColor.yellowDeep,
+                                            focusColor:
+                                                AppColor.deepYellowColor,
                                             groupValue: numberType,
                                             // Current selected value
                                             onChanged: (value) {
@@ -193,7 +195,7 @@ class _ReportViewState extends State<ReportView> {
                       Text(
                         appLocalization(context).writeComment,
                         style: const TextStyle(
-                            color: AppColor.primaryColor,
+                            color: AppColor.blackColor,
                             fontSize: 14,
                             fontFamily: AppFont.fontFamily,
                             fontWeight: FontWeight.w600),
@@ -274,7 +276,7 @@ class _ReportViewState extends State<ReportView> {
                                   SnackBar(
                                     content: Text(appLocalization(context)
                                         .pleaseEnterCategory),
-                                    backgroundColor: AppColor.primaryColor,
+                                    backgroundColor: AppColor.blackColor,
                                   ),
                                 );
                                 return const Loader();
@@ -284,7 +286,7 @@ class _ReportViewState extends State<ReportView> {
                                   SnackBar(
                                     content: Text(appLocalization(context)
                                         .pleaseEnterNumberType),
-                                    backgroundColor: AppColor.primaryColor,
+                                    backgroundColor: AppColor.blackColor,
                                   ),
                                 );
                                 return const Loader();

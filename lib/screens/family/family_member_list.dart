@@ -36,7 +36,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondaryColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: CustomAppBar(
         title: appLocalization(context).familyList,
       ),
@@ -65,7 +65,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                 borderSide:
                     const BorderSide(width: 0.5, color: Color(0xffE1E6EB)),
               ),
-              fillColor: AppColor.secondaryColor,
+              fillColor: AppColor.whiteColor,
               filled: true,
             ),
           ),
@@ -123,14 +123,16 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                                 return ListTile(
                                   leading: filteredContacts[index].photo != null
                                       ? CircleAvatar(
-                                          backgroundColor: AppColor.vanishColor
+                                          backgroundColor: AppColor
+                                              .whiteCreamColor
                                               .withOpacity(0.2),
                                           radius: 43.0,
                                           backgroundImage: NetworkImage(
                                               filteredContacts[index].photo!),
                                         )
                                       : CircleAvatar(
-                                          backgroundColor: AppColor.vanishColor
+                                          backgroundColor: AppColor
+                                              .whiteCreamColor
                                               .withOpacity(0.2),
                                           radius: 43.0,
                                           backgroundImage: const AssetImage(
@@ -139,7 +141,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                                   subtitle: Text(
                                     filteredContacts[index].relation ?? "",
                                     style: const TextStyle(
-                                        color: AppColor.primaryColor,
+                                        color: AppColor.blackColor,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 12,
                                         fontFamily: AppFont.fontFamily),
@@ -147,7 +149,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                                   title: Text(
                                     filteredContacts[index].firstName ?? "",
                                     style: const TextStyle(
-                                        color: AppColor.primaryColor,
+                                        color: AppColor.blackColor,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 18,
                                         fontFamily: AppFont.fontFamily),
@@ -187,7 +189,7 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                 }))
       ])),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColor.callColor,
+        backgroundColor: AppColor.darkPurpleColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),

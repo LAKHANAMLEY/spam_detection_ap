@@ -36,7 +36,7 @@ class _ContactDetailState extends State<ContactDetail> {
     const expandedHeight = 300.0;
     const collapsedHeight = 60.0;
     return Scaffold(
-      backgroundColor: AppColor.secondaryColor,
+      backgroundColor: AppColor.whiteColor,
       body: BlocConsumer(
           bloc: markSpamBloc,
           listener: (context, state) {
@@ -138,9 +138,9 @@ class _ContactDetailState extends State<ContactDetail> {
                                 },
                                 child: Image.asset(
                                   IconConstants.icBacKCircle,
-                                  color: AppColor.secondaryColor,
+                                  color: AppColor.whiteColor,
                                 )),
-                            backgroundColor: AppColor.secondaryColor,
+                            backgroundColor: AppColor.whiteColor,
                             actions: [
                               PopupMenuButton(
                                 itemBuilder: (context) => [
@@ -181,7 +181,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                         Container(
                                           padding: const EdgeInsets.all(5),
                                           decoration: const ShapeDecoration(
-                                            color: AppColor.secondaryColor,
+                                            color: AppColor.whiteColor,
                                             shape: CircleBorder(),
                                           ),
                                           child: CircleAvatar(
@@ -201,7 +201,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                                   ? "+${contact?.countryCode} ${contact?.mobileNo ?? ""}"
                                                   : contact?.mobileNo ?? "",
                                           style: const TextStyle(
-                                              color: AppColor.primaryColor,
+                                              color: AppColor.blackColor,
                                               fontSize: 18,
                                               fontWeight: FontWeight.w400),
                                         ),
@@ -263,8 +263,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                                         isScrollControlled:
                                                             true,
                                                         backgroundColor:
-                                                            AppColor
-                                                                .secondaryColor,
+                                                            AppColor.whiteColor,
                                                         context: context,
                                                         shape:
                                                             const RoundedRectangleBorder(
@@ -321,7 +320,7 @@ class _ContactDetailState extends State<ContactDetail> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.0),
                                 border: Border.all(
-                                  color: AppColor.fillColor,
+                                  color: AppColor.lightBrownColor,
                                 ),
                               ),
                               child: ListTile(
@@ -333,7 +332,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                       : contact?.mobileNo ?? "");
                                 },
                                 leading: const Icon(Icons.phone,
-                                    color: AppColor.primaryColor),
+                                    color: AppColor.blackColor),
                                 title: Text(
                                   (contact?.countryCode?.isNotEmpty ?? false)
                                       ? "+${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}"
@@ -357,7 +356,7 @@ class _ContactDetailState extends State<ContactDetail> {
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   border: Border.all(
-                                    color: AppColor.fillColor,
+                                    color: AppColor.lightBrownColor,
                                   )),
                               child: IntrinsicHeight(
                                 child: Row(
@@ -380,7 +379,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                                   contact!.spamReport ?? "",
                                                   style: const TextStyle(
                                                       color:
-                                                          AppColor.primaryColor,
+                                                          AppColor.blackColor,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       fontFamily:
@@ -406,8 +405,8 @@ class _ContactDetailState extends State<ContactDetail> {
                                                     contact.usuallyCalls ?? "",
                                                     textAlign: TextAlign.center,
                                                     style: const TextStyle(
-                                                        color: AppColor
-                                                            .primaryColor,
+                                                        color:
+                                                            AppColor.blackColor,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         fontFamily:
@@ -431,7 +430,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                               StringConstants.callactivitytext,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  color: AppColor.primaryColor,
+                                                  color: AppColor.blackColor,
                                                   fontWeight: FontWeight.w600,
                                                   fontFamily:
                                                       AppFont.fontFamily),
@@ -452,11 +451,11 @@ class _ContactDetailState extends State<ContactDetail> {
                                 margin: const EdgeInsets.all(10.0),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8.0),
-                                    border:
-                                        Border.all(color: AppColor.fillColor)),
+                                    border: Border.all(
+                                        color: AppColor.lightBrownColor)),
                                 child: ListTile(
                                   leading: const Icon(Icons.location_on,
-                                      color: AppColor.primaryColor),
+                                      color: AppColor.blackColor),
                                   title: Text(
                                     appLocalization(context).moreAvailable,
                                     style: const TextStyle(
@@ -524,7 +523,7 @@ class ActionButton extends StatelessWidget {
           const SizedBox(height: 8),
           DefaultTextStyle(
             style: const TextStyle(
-                color: AppColor.primaryColor,
+                color: AppColor.blackColor,
                 fontSize: 12,
                 fontFamily: AppFont.fontFamily,
                 fontWeight: FontWeight.w600),

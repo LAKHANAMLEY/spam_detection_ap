@@ -166,8 +166,7 @@ class DeviceCallLogs extends StatelessWidget {
                                         child: !isVisible
                                             ? CustomTextField(
                                                 controller: searchController,
-                                                fillColor:
-                                                    AppColor.secondaryColor,
+                                                fillColor: AppColor.whiteColor,
                                                 prefix: const Icon(
                                                   Icons.search,
                                                   color: AppColor.redColor,
@@ -210,6 +209,8 @@ class DeviceCallLogs extends StatelessWidget {
                                     return const Loader();
                                   }),
                               Row(
+                                // mainAxisAlignment:
+                                //     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ElevatedButton.icon(
                                     onPressed: () {
@@ -218,7 +219,23 @@ class DeviceCallLogs extends StatelessWidget {
                                     },
                                     label: const Text("Contacts"),
                                     icon: const Icon(Icons.contacts_outlined),
-                                  )
+                                  ),
+                                  // ElevatedButton.icon(
+                                  //   onPressed: () {
+                                  //     // Navigator.pushNamed(
+                                  //     //     context, AppRoutes.contactList);
+                                  //   },
+                                  //   label: const Text("SMS"),
+                                  //   icon: const Icon(Icons.sms_outlined),
+                                  // ),
+                                  // ElevatedButton.icon(
+                                  //   onPressed: () {
+                                  //     // Navigator.pushNamed(
+                                  //     //     context, AppRoutes.contactList);
+                                  //   },
+                                  //   label: const Text("Email"),
+                                  //   icon: const Icon(Icons.email_outlined),
+                                  // )
                                 ],
                               ),
                               BlocConsumer(
@@ -262,21 +279,21 @@ class DeviceCallLogs extends StatelessWidget {
                 });
           }),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColor.callColor,
+          backgroundColor: AppColor.darkPurpleColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Image.asset(
             IconConstants.icDialPad,
             scale: 16,
-            color: AppColor.secondaryColor,
+            color: AppColor.whiteColor,
           ),
           onPressed: () {
             // Navigator.pushNamed(context, AppRoutes.dialPadScreen);
             showModalBottomSheet(
                 // enableDrag: true,
                 //isScrollControlled: true,
-                backgroundColor: AppColor.secondaryColor,
+                backgroundColor: AppColor.whiteColor,
                 context: context,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),

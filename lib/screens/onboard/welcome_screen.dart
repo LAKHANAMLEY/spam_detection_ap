@@ -22,7 +22,7 @@ class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -100,7 +100,7 @@ class _WelcomeState extends State<Welcome> {
                 Text(
                   appLocalization(context).welcome,
                   style: const TextStyle(
-                      color: AppColor.blueLightColor,
+                      color: AppColor.lightPurpleColor,
                       fontSize: 35,
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600),
@@ -113,7 +113,7 @@ class _WelcomeState extends State<Welcome> {
                       appLocalization(context).welcomeTxt,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          color: AppColor.lightBlurColor,
+                          color: AppColor.lightGraniteColor,
                           fontSize: 15,
                           fontFamily: AppFont.fontFamily),
                     ),

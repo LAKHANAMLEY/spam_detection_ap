@@ -53,7 +53,7 @@ class MessagesDetail extends StatelessWidget {
                     onTap: () {
                       showModalBottomSheet(
                         isScrollControlled: false,
-                        backgroundColor: AppColor.secondaryColor,
+                        backgroundColor: AppColor.whiteColor,
                         context: context,
                         shape: const RoundedRectangleBorder(
                           borderRadius:
@@ -94,7 +94,7 @@ class MessagesDetail extends StatelessWidget {
                         Text(
                           appLocalization(context).blockSms,
                           style: const TextStyle(
-                              color: AppColor.primaryColor,
+                              color: AppColor.blackColor,
                               fontSize: 18,
                               fontWeight: FontWeight.w600),
                         )
@@ -162,7 +162,7 @@ class MessagesDetail extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.send,
-                color: AppColor.orangeColor,
+                color: AppColor.themeOrangeColor,
               ),
             )),
       );
@@ -217,8 +217,8 @@ class MessageView extends StatelessWidget {
                     // width: mq(context).width * .8,
                     decoration: BoxDecoration(
                       color: sms?.messageKind == SmsMessageKind.Sent.name
-                          ? AppColor.orangeColor
-                          : AppColor.secondaryColor,
+                          ? AppColor.themeOrangeColor
+                          : AppColor.whiteColor,
                       borderRadius: BorderRadius.only(
                         bottomLeft: const Radius.circular(radius),
                         bottomRight: const Radius.circular(radius),

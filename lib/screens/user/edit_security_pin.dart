@@ -26,7 +26,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -65,7 +65,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                 appLocalization(context).changeSecurity,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    color: AppColor.blueLightColor,
+                                    color: AppColor.lightPurpleColor,
                                     fontSize: 35,
                                     fontFamily: AppFont.fontFamily,
                                     fontWeight: FontWeight.w600),
@@ -81,7 +81,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                 appLocalization(context).pleaseNewPinSecure,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    color: AppColor.verifyColor,
+                                    color: AppColor.materialGreyColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500),

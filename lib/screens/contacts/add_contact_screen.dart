@@ -45,7 +45,7 @@ class _AddContactState extends State<AddContact> {
     ];
     String selectedType = appLocalization(context).mobile;
     return Scaffold(
-      backgroundColor: AppColor.secondaryColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: CustomAppBar(title: appLocalization(context).addContact),
       body: SafeArea(
         child: BlocConsumer(
@@ -136,20 +136,23 @@ class _AddContactState extends State<AddContact> {
                             decoration: InputDecoration(
                               hintText: appLocalization(context).numberType,
                               hintStyle: const TextStyle(
-                                  color: AppColor.lightFillColor),
+                                  color: AppColor.decentBrownColor),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5),
                                 borderSide: const BorderSide(
-                                    width: 1.5, color: AppColor.fillColor),
+                                    width: 1.5,
+                                    color: AppColor.lightBrownColor),
                               ),
                               focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: AppColor.fillColor, width: 1.5),
+                                    color: AppColor.lightBrownColor,
+                                    width: 1.5),
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5)),
                               ),
                               filled: true,
-                              fillColor: AppColor.fillColor.withOpacity(0.2),
+                              fillColor:
+                                  AppColor.lightBrownColor.withOpacity(0.2),
                             ),
                           ),
                         ),

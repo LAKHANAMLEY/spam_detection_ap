@@ -6,7 +6,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: AppColor.callColor,
+      backgroundColor: AppColor.darkPurpleColor,
       child: ListView(
         children: [
           DrawerHeader(child: Image.asset(IconConstants.icBroadLogo)),

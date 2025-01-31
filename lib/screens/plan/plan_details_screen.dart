@@ -21,7 +21,7 @@ class _PlanDetailState extends State<PlanDetail> {
     var arg = args(context) as PlanDetail;
     plan = arg.plan;
     return Scaffold(
-      backgroundColor: AppColor.secondaryColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: const CustomAppBar(
         centerTitle: true,
       ),
@@ -42,7 +42,7 @@ class _PlanDetailState extends State<PlanDetail> {
                 appLocalization(context).personalProtection,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    color: AppColor.callColor,
+                    color: AppColor.darkPurpleColor,
                     fontSize: 25,
                     fontFamily: AppFont.fontFamily,
                     fontWeight: FontWeight.w600),
@@ -57,7 +57,7 @@ class _PlanDetailState extends State<PlanDetail> {
                 appLocalization(context).spamScamDetection,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    color: AppColor.verifyColor,
+                    color: AppColor.materialGreyColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                     fontFamily: AppFont.fontFamily),
@@ -86,12 +86,12 @@ class _PlanDetailState extends State<PlanDetail> {
                             decoration: BoxDecoration(
                               border: Border.all(
                                   color: _selection == 1
-                                      ? AppColor.callColor
-                                      : AppColor.callColor,
+                                      ? AppColor.darkPurpleColor
+                                      : AppColor.darkPurpleColor,
                                   width: 1),
                               color: Selectedtab == 1
-                                  ? AppColor.callColor
-                                  : AppColor.callColor,
+                                  ? AppColor.darkPurpleColor
+                                  : AppColor.darkPurpleColor,
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(4)),
                             ),
@@ -101,8 +101,8 @@ class _PlanDetailState extends State<PlanDetail> {
                             children: <Widget>[
                               Radio(
                                 activeColor: _selection == 1
-                                    ? AppColor.borderStackColor
-                                    : AppColor.secondaryColor,
+                                    ? AppColor.magentaColor
+                                    : AppColor.whiteColor,
                                 groupValue: _selection,
                                 onChanged: (selectTime) {
                                   selectTime(int timeSelected) {
@@ -119,8 +119,8 @@ class _PlanDetailState extends State<PlanDetail> {
                                     fontWeight: FontWeight.w600,
                                     fontFamily: AppFont.fontFamily,
                                     color: _selection == 1
-                                        ? AppColor.callColor
-                                        : AppColor.secondaryColor,
+                                        ? AppColor.darkPurpleColor
+                                        : AppColor.whiteColor,
                                     fontSize: 18),
                               ),
                             ],
@@ -145,10 +145,10 @@ class _PlanDetailState extends State<PlanDetail> {
                             width: MediaQuery.of(context).size.width * 28 / 100,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: AppColor.borderStackColor, width: 1),
+                                  color: AppColor.magentaColor, width: 1),
                               color: _selection == 1
-                                  ? AppColor.callColor
-                                  : AppColor.secondaryColor,
+                                  ? AppColor.darkPurpleColor
+                                  : AppColor.whiteColor,
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(4)),
                             ),
@@ -175,7 +175,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontFamily: AppFont.fontFamily,
-                                    color: AppColor.callColor,
+                                    color: AppColor.darkPurpleColor,
                                     fontSize: 18),
                               ),
                             ],
@@ -200,8 +200,8 @@ class _PlanDetailState extends State<PlanDetail> {
                             width: MediaQuery.of(context).size.width * 28 / 100,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: AppColor.borderStackColor, width: 1),
-                              color: AppColor.secondaryColor,
+                                  color: AppColor.magentaColor, width: 1),
+                              color: AppColor.whiteColor,
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(4)),
                             ),
@@ -229,7 +229,7 @@ class _PlanDetailState extends State<PlanDetail> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontFamily: AppFont.fontFamily,
-                                    color: AppColor.callColor,
+                                    color: AppColor.darkPurpleColor,
                                     fontSize: 18),
                               ),
                             ],
@@ -589,7 +589,7 @@ class PlanDurationTypeCardView extends StatelessWidget {
           borderRadius: BorderRadius.circular(
               8), // Applies general rounding to the card if needed
         ),
-        color: AppColor.secondaryColor,
+        color: AppColor.whiteColor,
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -601,7 +601,7 @@ class PlanDurationTypeCardView extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: selectedPlanId == planId
-                    ? AppColor.yellowDeep
+                    ? AppColor.deepYellowColor
                     : AppColor.decentGreyColor,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(8),
@@ -620,7 +620,7 @@ class PlanDurationTypeCardView extends StatelessWidget {
                     month,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      color: AppColor.secondaryColor,
+                      color: AppColor.whiteColor,
                       fontSize: 20,
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600,
@@ -644,7 +644,7 @@ class PlanDurationTypeCardView extends StatelessWidget {
                   price,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    color: AppColor.primaryColor,
+                    color: AppColor.blackColor,
                     fontSize: 20,
                     fontFamily: AppFont.fontFamily,
                     fontWeight: FontWeight.w600,

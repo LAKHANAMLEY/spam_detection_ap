@@ -18,7 +18,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -55,7 +55,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                           child: Text(
                         appLocalization(context).login,
                         style: const TextStyle(
-                            color: AppColor.blueLightColor,
+                            color: AppColor.lightPurpleColor,
                             fontSize: 35,
                             fontFamily: AppFont.fontFamily,
                             fontWeight: FontWeight.w600),
@@ -95,9 +95,9 @@ class _LoginGoogleState extends State<LoginGoogle> {
                           width: MediaQuery.sizeOf(context).width * 90 / 100,
                           height: MediaQuery.sizeOf(context).height * 8 / 100,
                           decoration: BoxDecoration(
-                            color: AppColor.fillColor.withOpacity(0.2),
+                            color: AppColor.lightBrownColor.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(2),
-                            border: Border.all(color: AppColor.fillColor),
+                            border: Border.all(color: AppColor.lightBrownColor),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +123,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                               Text(
                                 appLocalization(context).loginWithGoogle,
                                 style: const TextStyle(
-                                    color: AppColor.gracyColor,
+                                    color: AppColor.deepGreyColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600),
@@ -141,9 +141,9 @@ class _LoginGoogleState extends State<LoginGoogle> {
                           width: MediaQuery.sizeOf(context).width * 90 / 100,
                           height: MediaQuery.sizeOf(context).height * 8 / 100,
                           decoration: BoxDecoration(
-                            color: AppColor.fillColor.withOpacity(0.2),
+                            color: AppColor.lightBrownColor.withOpacity(0.2),
                             borderRadius: BorderRadius.circular(2),
-                            border: Border.all(color: AppColor.fillColor),
+                            border: Border.all(color: AppColor.lightBrownColor),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -168,7 +168,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                               Text(
                                 appLocalization(context).loginWithApple,
                                 style: const TextStyle(
-                                    color: AppColor.gracyColor,
+                                    color: AppColor.deepGreyColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w600),
@@ -187,7 +187,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                               margin: const EdgeInsets.only(
                                   left: 50.0, right: 10.0),
                               child: Divider(
-                                color: AppColor.gracyColor,
+                                color: AppColor.deepGreyColor,
                                 height:
                                     MediaQuery.sizeOf(context).height * 6 / 100,
                               )),
@@ -195,7 +195,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                         Text(
                           appLocalization(context).orTxt,
                           style: const TextStyle(
-                              color: AppColor.primaryColor,
+                              color: AppColor.blackColor,
                               fontWeight: FontWeight.w600,
                               fontSize: 18),
                         ),
@@ -204,7 +204,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                               margin:
                                   const EdgeInsets.only(left: 10, right: 50),
                               child: Divider(
-                                color: AppColor.gracyColor,
+                                color: AppColor.deepGreyColor,
                                 height:
                                     MediaQuery.sizeOf(context).height * 6 / 100,
                               )),
@@ -235,7 +235,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                             style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontFamily: AppFont.fontFamily,
-                                color: AppColor.greylightColor,
+                                color: AppColor.darkGreyColor,
                                 fontSize: 15),
                           ),
                           SizedBox(
@@ -251,7 +251,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                             },
                             child: Text(appLocalization(context).register,
                                 style: const TextStyle(
-                                    color: AppColor.yellowLightColor,
+                                    color: AppColor.themeYellowColor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15)),
                           ),

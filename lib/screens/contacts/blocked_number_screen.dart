@@ -21,7 +21,7 @@ class _BlockedCallsState extends State<BlockedCalls> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondaryColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: CustomAppBar(title: appLocalization(context).blockedNumber),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -50,7 +50,7 @@ class _BlockedCallsState extends State<BlockedCalls> {
                         height: MediaQuery.of(context).size.height * 7 / 100,
                         width: MediaQuery.of(context).size.width * 90 / 100,
                         decoration: const BoxDecoration(
-                          color: AppColor.secondaryColor,
+                          color: AppColor.whiteColor,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -157,21 +157,21 @@ class CustomTab extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 40 / 100,
           decoration: BoxDecoration(
               color: selectedTab == tabIndex
-                  ? AppColor.callColor
-                  : AppColor.secondaryColor,
+                  ? AppColor.darkPurpleColor
+                  : AppColor.whiteColor,
               borderRadius: BorderRadius.circular(4),
               border: Border.all(
                 color: selectedTab == tabIndex
-                    ? AppColor.callColor
-                    : AppColor.borderStackColor,
+                    ? AppColor.darkPurpleColor
+                    : AppColor.magentaColor,
               )),
           child: Center(
               child: Text(
             text,
             style: TextStyle(
                 color: selectedTab == tabIndex
-                    ? AppColor.secondaryColor
-                    : AppColor.callColor,
+                    ? AppColor.whiteColor
+                    : AppColor.darkPurpleColor,
                 fontSize: 18,
                 fontFamily: AppFont.fontFamily,
                 fontWeight: FontWeight.w600),

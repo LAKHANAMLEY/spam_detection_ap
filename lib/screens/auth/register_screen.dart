@@ -84,7 +84,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -129,7 +129,7 @@ class _RegisterState extends State<Register> {
                                   child: Text(
                                 appLocalization(context).register,
                                 style: const TextStyle(
-                                    color: AppColor.blueLightColor,
+                                    color: AppColor.lightPurpleColor,
                                     fontSize: 35,
                                     fontFamily: AppFont.fontFamily,
                                     fontWeight: FontWeight.w600),
@@ -146,7 +146,7 @@ class _RegisterState extends State<Register> {
                                   appLocalization(context).enjoyMember,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
-                                      color: AppColor.blueLightColor,
+                                      color: AppColor.lightPurpleColor,
                                       fontFamily: AppFont.fontFamily,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500),
@@ -352,7 +352,7 @@ class _RegisterState extends State<Register> {
                                           fontFamily: AppFont.fontFamily,
                                           fontSize: 15,
                                           fontWeight: FontWeight.w600,
-                                          color: AppColor.haveColor)),
+                                          color: AppColor.constantWhiteColor)),
                                   SizedBox(
                                       width: MediaQuery.of(context).size.width *
                                           1 /
@@ -365,7 +365,7 @@ class _RegisterState extends State<Register> {
                                     child: Text(appLocalization(context).login,
                                         style: const TextStyle(
                                             fontSize: 15,
-                                            color: AppColor.yellowLightColor,
+                                            color: AppColor.themeYellowColor,
                                             fontWeight: FontWeight.bold)),
                                   ),
                                 ],

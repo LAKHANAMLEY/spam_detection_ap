@@ -31,7 +31,7 @@ class CountryPhoneCodePrefix extends StatelessWidget {
                         appLocalization(context).countryCode,
                         style: textTheme(context)
                             .bodySmall
-                            ?.copyWith(color: AppColor.orangeColor),
+                            ?.copyWith(color: AppColor.themeOrangeColor),
                       ),
                       Text("(${state.value?.code}) +${state.value?.phonecode}"),
                       10.height(),

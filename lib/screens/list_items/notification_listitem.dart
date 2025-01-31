@@ -25,7 +25,7 @@ class NotificationListItem extends StatelessWidget {
             child: Text(
               notification.message ?? "",
               style: const TextStyle(
-                  fontWeight: FontWeight.w600, color: AppColor.callColor),
+                  fontWeight: FontWeight.w600, color: AppColor.darkPurpleColor),
             ),
           ),
           10.width(),

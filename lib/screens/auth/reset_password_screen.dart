@@ -66,7 +66,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   Widget build(BuildContext context) {
     //var argument = args(context) as ResetPassword;
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -109,7 +109,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 appLocalization(context).resetPassword,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    color: AppColor.blueLightColor,
+                                    color: AppColor.lightPurpleColor,
                                     fontSize: 35,
                                     fontFamily: AppFont.fontFamily,
                                     fontWeight: FontWeight.w600),
@@ -125,7 +125,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 appLocalization(context).pleaseSecureAccount,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    color: AppColor.verifyColor,
+                                    color: AppColor.materialGreyColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500),

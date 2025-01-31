@@ -72,7 +72,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: CustomAppBar(title: appLocalization(context).editProfile),
         body: SafeArea(
           child: BlocConsumer(
@@ -133,7 +133,7 @@ class _EditProfileState extends State<EditProfile> {
                                       child: _selectedImage == null
                                           ? CircleAvatar(
                                               backgroundColor: AppColor
-                                                  .vanishColor
+                                                  .whiteCreamColor
                                                   .withOpacity(0.2),
                                               radius: 43.0,
                                               backgroundImage: const AssetImage(
@@ -142,8 +142,8 @@ class _EditProfileState extends State<EditProfile> {
                                                 alignment:
                                                     Alignment.bottomRight,
                                                 child: CircleAvatar(
-                                                    backgroundColor:
-                                                        AppColor.callColor,
+                                                    backgroundColor: AppColor
+                                                        .darkPurpleColor,
                                                     radius: 12.0,
                                                     child: GestureDetector(
                                                         onTap: () {
@@ -166,7 +166,7 @@ class _EditProfileState extends State<EditProfile> {
                                           : _selectedImage?.mimeType == "http"
                                               ? CircleAvatar(
                                                   backgroundColor: AppColor
-                                                      .vanishColor
+                                                      .whiteCreamColor
                                                       .withOpacity(0.2),
                                                   radius: 43.0,
                                                   backgroundImage: NetworkImage(
@@ -176,8 +176,8 @@ class _EditProfileState extends State<EditProfile> {
                                                     alignment:
                                                         Alignment.bottomRight,
                                                     child: CircleAvatar(
-                                                        backgroundColor:
-                                                            AppColor.callColor,
+                                                        backgroundColor: AppColor
+                                                            .darkPurpleColor,
                                                         radius: 12.0,
                                                         child: GestureDetector(
                                                             onTap: () {
@@ -199,7 +199,7 @@ class _EditProfileState extends State<EditProfile> {
                                                 )
                                               : CircleAvatar(
                                                   backgroundColor: AppColor
-                                                      .vanishColor
+                                                      .whiteCreamColor
                                                       .withOpacity(0.2),
                                                   radius: 43.0,
                                                   backgroundImage: FileImage(
@@ -210,8 +210,8 @@ class _EditProfileState extends State<EditProfile> {
                                                     alignment:
                                                         Alignment.bottomRight,
                                                     child: CircleAvatar(
-                                                        backgroundColor:
-                                                            AppColor.callColor,
+                                                        backgroundColor: AppColor
+                                                            .darkPurpleColor,
                                                         radius: 12.0,
                                                         child: GestureDetector(
                                                             onTap: () {
@@ -373,23 +373,23 @@ class _EditProfileState extends State<EditProfile> {
                                   decoration: InputDecoration(
                                     hintText: appLocalization(context).gender,
                                     hintStyle: const TextStyle(
-                                        color: AppColor.lightFillColor),
+                                        color: AppColor.decentBrownColor),
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5),
                                       borderSide: const BorderSide(
                                           width: 1.5,
-                                          color: AppColor.fillColor),
+                                          color: AppColor.lightBrownColor),
                                     ),
                                     focusedBorder: const OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          color: AppColor.fillColor,
+                                          color: AppColor.lightBrownColor,
                                           width: 1.5),
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(5)),
                                     ),
                                     filled: true,
-                                    fillColor:
-                                        AppColor.fillColor.withOpacity(0.2),
+                                    fillColor: AppColor.lightBrownColor
+                                        .withOpacity(0.2),
                                   ),
                                 ),
                               ),

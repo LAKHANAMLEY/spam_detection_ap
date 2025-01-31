@@ -307,8 +307,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
                   ],
-                  color: AppColor.callColor,
-                  buttonBackgroundColor: AppColor.yellowDeep,
+                  color: AppColor.darkPurpleColor,
+                  buttonBackgroundColor: AppColor.deepYellowColor,
                   backgroundColor: AppColor.whiteLightColor,
                   animationCurve: Curves.easeInOut,
                   animationDuration: const Duration(milliseconds: 600),
@@ -337,9 +337,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   Color? getColor(int i, page) {
     if (page == i) {
-      return AppColor.secondaryColor;
+      return AppColor.whiteColor;
     }
-    return AppColor.secondaryColor;
+    return AppColor.whiteColor;
   }
 
   void getAndSyncContacts() {

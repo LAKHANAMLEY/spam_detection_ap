@@ -13,7 +13,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -29,7 +29,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                 appLocalization(context).protectionType,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    color: AppColor.blueLightColor,
+                    color: AppColor.lightPurpleColor,
                     fontSize: 35,
                     fontFamily: AppFont.fontFamily,
                     fontWeight: FontWeight.w600),
@@ -45,7 +45,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                 appLocalization(context).pleaseTxt,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    color: AppColor.verifyColor,
+                    color: AppColor.materialGreyColor,
                     fontFamily: AppFont.fontFamily,
                     fontSize: 18,
                     fontWeight: FontWeight.w500),
@@ -70,10 +70,11 @@ class _ProtectionTypeState extends State<ProtectionType> {
                             height: MediaQuery.sizeOf(context).height * 8 / 100,
                             decoration: BoxDecoration(
                               color: selectedTab == 1
-                                  ? AppColor.fillColor.withOpacity(0.2)
-                                  : AppColor.callColor,
+                                  ? AppColor.lightBrownColor.withOpacity(0.2)
+                                  : AppColor.darkPurpleColor,
                               borderRadius: BorderRadius.circular(2),
-                              border: Border.all(color: AppColor.fillColor),
+                              border:
+                                  Border.all(color: AppColor.lightBrownColor),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -89,8 +90,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                     image: DecorationImage(
                                       colorFilter: ColorFilter.mode(
                                           selectedTab == 1
-                                              ? AppColor.callColor
-                                              : AppColor.secondaryColor,
+                                              ? AppColor.darkPurpleColor
+                                              : AppColor.whiteColor,
                                           BlendMode.srcIn),
                                       image: const AssetImage(
                                           IconConstants.icPersonalShield),
@@ -106,8 +107,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                   appLocalization(context).personalProtection,
                                   style: TextStyle(
                                       color: selectedTab == 1
-                                          ? AppColor.gracyColor
-                                          : AppColor.secondaryColor,
+                                          ? AppColor.deepGreyColor
+                                          : AppColor.whiteColor,
                                       fontFamily: AppFont.fontFamily,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),
@@ -128,10 +129,11 @@ class _ProtectionTypeState extends State<ProtectionType> {
                             height: MediaQuery.sizeOf(context).height * 8 / 100,
                             decoration: BoxDecoration(
                               color: selectedTab == 1
-                                  ? AppColor.callColor
-                                  : AppColor.fillColor.withOpacity(0.2),
+                                  ? AppColor.darkPurpleColor
+                                  : AppColor.lightBrownColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(2),
-                              border: Border.all(color: AppColor.fillColor),
+                              border:
+                                  Border.all(color: AppColor.lightBrownColor),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -147,8 +149,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                     image: DecorationImage(
                                       colorFilter: ColorFilter.mode(
                                           selectedTab == 1
-                                              ? AppColor.secondaryColor
-                                              : AppColor.callColor,
+                                              ? AppColor.whiteColor
+                                              : AppColor.darkPurpleColor,
                                           BlendMode.srcIn),
                                       image: const AssetImage(
                                           IconConstants.icCorporateShield),
@@ -164,8 +166,8 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                   appLocalization(context).corporateProtection,
                                   style: TextStyle(
                                       color: selectedTab == 1
-                                          ? AppColor.secondaryColor
-                                          : AppColor.gracyColor,
+                                          ? AppColor.whiteColor
+                                          : AppColor.deepGreyColor,
                                       fontFamily: AppFont.fontFamily,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600),

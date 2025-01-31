@@ -19,11 +19,11 @@ class PlanListItem extends StatelessWidget {
         decoration: BoxDecoration(
             color: plan.isActive ?? false
                 ? AppColor.yellowDecentColor
-                : AppColor.secondaryColor,
+                : AppColor.whiteColor,
             border: Border.all(
               color: plan.isActive ?? false
                   ? AppColor.yellowColor
-                  : AppColor.thumbColor,
+                  : AppColor.constantGraniteColor,
             ),
             borderRadius: BorderRadius.circular(6)),
         child: Padding(
@@ -34,7 +34,7 @@ class PlanListItem extends StatelessWidget {
               Text(
                 plan.title ?? "",
                 style: const TextStyle(
-                    color: AppColor.callColor,
+                    color: AppColor.darkPurpleColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     fontFamily: AppFont.fontFamily),
@@ -45,7 +45,7 @@ class PlanListItem extends StatelessWidget {
               Text(
                 plan.description ?? "",
                 style: const TextStyle(
-                    color: AppColor.borderStackColor,
+                    color: AppColor.magentaColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     fontFamily: AppFont.fontFamily),
@@ -56,7 +56,7 @@ class PlanListItem extends StatelessWidget {
               Text(
                 plan.price ?? "",
                 style: const TextStyle(
-                    color: AppColor.callColor,
+                    color: AppColor.darkPurpleColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     fontFamily: AppFont.fontFamily),

@@ -21,7 +21,7 @@ class _ForgotPasswordMobileState extends State<ForgotPasswordMobile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -67,7 +67,7 @@ class _ForgotPasswordMobileState extends State<ForgotPasswordMobile> {
                                 appLocalization(context).forgotPassword,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    color: AppColor.blueLightColor,
+                                    color: AppColor.lightPurpleColor,
                                     fontSize: 35,
                                     fontFamily: AppFont.fontFamily,
                                     fontWeight: FontWeight.w600),
@@ -83,7 +83,7 @@ class _ForgotPasswordMobileState extends State<ForgotPasswordMobile> {
                                 appLocalization(context).forgotPassDetails,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    color: AppColor.verifyColor,
+                                    color: AppColor.materialGreyColor,
                                     fontFamily: AppFont.fontFamily,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500),
@@ -137,7 +137,7 @@ class _ForgotPasswordMobileState extends State<ForgotPasswordMobile> {
                             Text(
                               appLocalization(context).pleaseCheckMail,
                               style: const TextStyle(
-                                  color: AppColor.remainColor,
+                                  color: AppColor.constantGreyColor,
                                   fontFamily: AppFont.fontFamily,
                                   fontWeight: FontWeight.w600),
                             ),

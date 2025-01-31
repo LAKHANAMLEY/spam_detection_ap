@@ -39,7 +39,7 @@ class _BlockListState extends State<BlockList> {
           child: Column(
         children: <Widget>[
           CustomTextField(
-            fillColor: AppColor.secondaryColor,
+            fillColor: AppColor.whiteColor,
             onChanged: (value) => filterSearchResults(value),
             controller: editingController,
             prefix: const Icon(Icons.search),

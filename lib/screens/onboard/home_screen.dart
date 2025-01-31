@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondaryColor,
+      backgroundColor: AppColor.whiteColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     appLocalization(context).pleaseActiveYourSubscription,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                        color: AppColor.yellowDeep,
+                        color: AppColor.deepYellowColor,
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         fontFamily: AppFont.fontFamily),
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     appLocalization(context).youAreProtected,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                        color: AppColor.verifyColor,
+                        color: AppColor.materialGreyColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         fontFamily: AppFont.fontFamily),
@@ -165,7 +165,7 @@ class SecurityOption extends StatelessWidget {
               alignment: Alignment.center,
               child: CircleAvatar(
                 radius: 28,
-                backgroundColor: AppColor.callColor,
+                backgroundColor: AppColor.darkPurpleColor,
                 child: Image.asset(image,
                     height: MediaQuery.of(context).size.height * 4 / 100),
               ),
@@ -180,13 +180,13 @@ class SecurityOption extends StatelessWidget {
                     style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: AppColor.callColor),
+                        color: AppColor.darkPurpleColor),
                   ),
                   const SizedBox(height: 5),
                   Text(
                     description,
                     style: const TextStyle(
-                        color: AppColor.thumbColor, fontSize: 14),
+                        color: AppColor.constantGraniteColor, fontSize: 14),
                   ),
                 ],
               ),
@@ -202,7 +202,7 @@ class SecurityOption extends StatelessWidget {
                     //splashRadius: 10,
                     value: isEnabled,
                     onChanged: onToggle,
-                    inactiveTrackColor: AppColor.secondaryColor,
+                    inactiveTrackColor: AppColor.whiteColor,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     //activeThumbImage:AssetImage(IconConstants.icactiveThumb),
                     // inactiveThumbImage: AssetImage(IconConstants.icinactiveThumb),

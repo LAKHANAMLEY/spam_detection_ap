@@ -48,7 +48,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
 
   @override
   Widget build(BuildContext context) {
-    Color textColor = AppColor.secondaryColor;
+    Color textColor = AppColor.whiteColor;
     return Material(
         child: BlocConsumer(
             bloc: callLogDetailBloc,
@@ -97,7 +97,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                   decoration: BoxDecoration(
                     color: callLog?.isSpam == 1
                         ? AppColor.redColor
-                        : AppColor.callColor,
+                        : AppColor.darkPurpleColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
@@ -122,7 +122,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                                     "${callLog.callHistory?.first.callType ?? ""} call",
                                     style:
                                         textTheme(context).bodySmall?.copyWith(
-                                              color: AppColor.secondaryColor,
+                                              color: AppColor.whiteColor,
                                               // color: getCallTypeColor(callLog
                                               //     ?.callHistory
                                               //     ?.first

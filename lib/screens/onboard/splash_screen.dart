@@ -25,7 +25,7 @@ class SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.secondaryColor,
+      backgroundColor: AppColor.whiteColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -57,7 +57,7 @@ class SplashState extends State<Splash> {
                     StringConstants.copyrighttext,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: AppColor.spelledColor,
+                        color: AppColor.slatWhiteColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w500),
                   )

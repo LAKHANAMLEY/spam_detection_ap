@@ -79,7 +79,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: const CustomAppBar(),
         body: SafeArea(
           child: BlocConsumer(
@@ -116,7 +116,7 @@ class _LoginState extends State<Login> {
                             child: Text(
                           appLocalization(context).login,
                           style: const TextStyle(
-                              color: AppColor.blueLightColor,
+                              color: AppColor.lightPurpleColor,
                               fontSize: 35,
                               fontFamily: AppFont.fontFamily,
                               fontWeight: FontWeight.w600),
@@ -131,7 +131,7 @@ class _LoginState extends State<Login> {
                             appLocalization(context).pleaseVerify,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                                color: AppColor.verifyColor,
+                                color: AppColor.materialGreyColor,
                                 fontFamily: AppFont.fontFamily,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500),
@@ -321,8 +321,8 @@ class _LoginState extends State<Login> {
                                                   appLocalization(context)
                                                       .rememberMe,
                                                   style: const TextStyle(
-                                                    color:
-                                                        AppColor.lightFillColor,
+                                                    color: AppColor
+                                                        .decentBrownColor,
                                                     fontFamily:
                                                         AppFont.fontFamily,
                                                     fontWeight:
@@ -344,7 +344,7 @@ class _LoginState extends State<Login> {
                                                     style: const TextStyle(
                                                         fontSize: 14,
                                                         color: AppColor
-                                                            .yellowLightColor,
+                                                            .themeYellowColor,
                                                         fontFamily:
                                                             AppFont.fontFamily,
                                                         fontWeight:
@@ -430,7 +430,7 @@ class _LoginState extends State<Login> {
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontFamily: AppFont.fontFamily,
-                                                color: AppColor.greylightColor,
+                                                color: AppColor.darkGreyColor,
                                                 fontSize: 15),
                                           ),
                                           SizedBox(
@@ -449,7 +449,7 @@ class _LoginState extends State<Login> {
                                                     .register,
                                                 style: const TextStyle(
                                                     color: AppColor
-                                                        .yellowLightColor,
+                                                        .themeYellowColor,
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 15)),
                                           ),
@@ -564,7 +564,7 @@ class _LoginState extends State<Login> {
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontFamily: AppFont.fontFamily,
-                                                color: AppColor.greylightColor,
+                                                color: AppColor.darkGreyColor,
                                                 fontSize: 15),
                                           ),
                                           SizedBox(
@@ -587,7 +587,7 @@ class _LoginState extends State<Login> {
                                                     .register,
                                                 style: const TextStyle(
                                                     color: AppColor
-                                                        .yellowLightColor,
+                                                        .themeYellowColor,
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 15)),
                                           ),

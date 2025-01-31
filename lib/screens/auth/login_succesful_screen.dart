@@ -13,7 +13,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: const CustomAppBar(
           centerTitle: true,
         ),
@@ -27,7 +27,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
               child: Text(
             appLocalization(context).successful,
             style: const TextStyle(
-                color: AppColor.blueLightColor,
+                color: AppColor.lightPurpleColor,
                 fontSize: 35,
                 fontFamily: AppFont.fontFamily,
                 fontWeight: FontWeight.w600),
@@ -38,7 +38,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           Text(
             '${appLocalization(context).yey} ${widget.user?.name ?? ''}',
             style: const TextStyle(
-                color: AppColor.yellowLightColor,
+                color: AppColor.themeYellowColor,
                 fontSize: 18,
                 fontWeight: FontWeight.bold),
           ),
@@ -47,7 +47,7 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
           ),
           Text(
             appLocalization(context).fromUs,
-            style: const TextStyle(color: AppColor.gracyColor),
+            style: const TextStyle(color: AppColor.deepGreyColor),
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 5 / 100,

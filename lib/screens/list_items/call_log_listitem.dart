@@ -34,7 +34,7 @@ class CallLogListItem extends StatelessWidget {
                 ));
           },
       leading: CircleAvatar(
-        backgroundColor: AppColor.newGreyColor,
+        backgroundColor: AppColor.graphiteColor,
         // backgroundImage: AssetImage(
         //   getIcon(callLog),
         // ),
@@ -114,7 +114,7 @@ class CallLogListItem extends StatelessWidget {
                       showModalBottomSheet(
                         // enableDrag: false,
                         //isScrollControlled: true,
-                        backgroundColor: AppColor.secondaryColor,
+                        backgroundColor: AppColor.whiteColor,
                         context: context,
                         shape: const RoundedRectangleBorder(
                           borderRadius:

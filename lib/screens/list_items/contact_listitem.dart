@@ -51,7 +51,7 @@ class _ContactListItemState extends State<ContactListItem> {
                     onTap: () {
                       showModalBottomSheet(
                         isScrollControlled: true,
-                        backgroundColor: AppColor.secondaryColor,
+                        backgroundColor: AppColor.whiteColor,
                         context: context,
                         shape: const RoundedRectangleBorder(
                           borderRadius:

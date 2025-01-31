@@ -43,7 +43,7 @@ class ContactList extends StatelessWidget {
                   children: <Widget>[
                     CustomTextField(
                       onTap: null,
-                      fillColor: AppColor.secondaryColor,
+                      fillColor: AppColor.whiteColor,
                       onChanged: (value) {
                         searchBloc.add(SelectStringEvent(value));
                       },
@@ -166,7 +166,7 @@ class ContactList extends StatelessWidget {
             }),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColor.callColor,
+        backgroundColor: AppColor.darkPurpleColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),

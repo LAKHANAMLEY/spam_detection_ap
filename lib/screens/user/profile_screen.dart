@@ -99,7 +99,7 @@ class Profile extends StatelessWidget {
               return Container(
                 margin: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
-                  color: AppColor.secondaryColor,
+                  color: AppColor.whiteColor,
                   borderRadius: BorderRadius.circular(16.0),
                 ),
                 child: SafeArea(
@@ -119,8 +119,8 @@ class Profile extends StatelessWidget {
                                           ));
                                     },
                                     child: CircleAvatar(
-                                      backgroundColor:
-                                          AppColor.vanishColor.withOpacity(0.2),
+                                      backgroundColor: AppColor.whiteCreamColor
+                                          .withOpacity(0.2),
                                       radius: 43.0,
                                       backgroundImage: NetworkImage(
                                         user.photo ?? "",
@@ -142,8 +142,8 @@ class Profile extends StatelessWidget {
                                     ),
                                   )
                                 : CircleAvatar(
-                                    backgroundColor:
-                                        AppColor.vanishColor.withOpacity(0.2),
+                                    backgroundColor: AppColor.whiteCreamColor
+                                        .withOpacity(0.2),
                                     radius: 43.0,
                                     backgroundImage: const AssetImage(
                                       IconConstants.icCircleAvatar,
@@ -172,7 +172,7 @@ class Profile extends StatelessWidget {
                           child: Text(
                             user.name ?? "",
                             style: const TextStyle(
-                              color: AppColor.primaryColor,
+                              color: AppColor.blackColor,
                               fontFamily: AppFont.fontFamily,
                               fontWeight: FontWeight.w700,
                               fontSize: 24.0,
@@ -183,7 +183,7 @@ class Profile extends StatelessWidget {
                           child: Text(
                             '${user.email}',
                             style: const TextStyle(
-                              color: AppColor.borderStackColor,
+                              color: AppColor.magentaColor,
                               fontFamily: AppFont.fontFamily,
                               fontSize: 16.0,
                             ),
@@ -203,7 +203,7 @@ class Profile extends StatelessWidget {
                             width:
                                 MediaQuery.of(context).size.height * 80 / 100,
                             decoration: const BoxDecoration(
-                              color: AppColor.callColor,
+                              color: AppColor.darkPurpleColor,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(6.0)),
                             ),
@@ -228,7 +228,7 @@ class Profile extends StatelessWidget {
                                 Text(
                                   appLocalization(context).upgradePremium,
                                   style: const TextStyle(
-                                      color: AppColor.secondaryColor,
+                                      color: AppColor.whiteColor,
                                       fontSize: 20,
                                       fontFamily: AppFont.fontFamily,
                                       fontWeight: FontWeight.w700),
@@ -244,10 +244,10 @@ class Profile extends StatelessWidget {
                           // height: MediaQuery.of(context).size.height * 56 / 100,
                           // width: MediaQuery.of(context).size.width * 90 / 100,
                           decoration: BoxDecoration(
-                            color: AppColor.whiteDeep,
+                            color: AppColor.snowWhiteColor,
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(6.0)),
-                            border: Border.all(color: AppColor.vanishColor),
+                            border: Border.all(color: AppColor.whiteCreamColor),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10),
@@ -284,7 +284,8 @@ class Profile extends StatelessWidget {
                                               appLocalization(context)
                                                   .lastThirtyDays,
                                               style: const TextStyle(
-                                                  color: AppColor.callColor,
+                                                  color:
+                                                      AppColor.darkPurpleColor,
                                                   fontSize: 14,
                                                   fontFamily:
                                                       AppFont.fontFamily,
@@ -351,7 +352,7 @@ class Profile extends StatelessWidget {
                                                                       .circular(
                                                                           4)),
                                                           color: AppColor
-                                                              .secondaryColor),
+                                                              .whiteColor),
                                                   child: Container(
                                                     margin:
                                                         const EdgeInsets.all(8),
@@ -391,7 +392,7 @@ class Profile extends StatelessWidget {
                                                             cardTexts[index],
                                                             style: const TextStyle(
                                                                 color: AppColor
-                                                                    .borderStackColor,
+                                                                    .magentaColor,
                                                                 fontSize: 20,
                                                                 fontFamily: AppFont
                                                                     .fontFamily),
@@ -400,7 +401,7 @@ class Profile extends StatelessWidget {
                                                         Text(spamTexts[index],
                                                             style: const TextStyle(
                                                                 color: AppColor
-                                                                    .spelledColor,
+                                                                    .slatWhiteColor,
                                                                 fontFamily: AppFont
                                                                     .fontFamily,
                                                                 fontSize: 16)),
@@ -632,9 +633,9 @@ class SubMenu extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(2.0)),
                 border: Border.all(
-                  color: AppColor.greyArrowColor,
+                  color: AppColor.whiteBrownColor,
                 ),
-                color: AppColor.secondaryColor),
+                color: AppColor.whiteColor),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -656,7 +657,8 @@ class SubMenu extends StatelessWidget {
                           child: Text(
                             title,
                             style: const TextStyle(
-                                color: AppColor.thumbColor, fontSize: 18),
+                                color: AppColor.constantGraniteColor,
+                                fontSize: 18),
                           ),
                         ),
                       ],

@@ -43,7 +43,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.secondaryColor,
+        backgroundColor: AppColor.whiteColor,
         appBar: CustomAppBar(title: appLocalization(context).editMember),
         body: SafeArea(
           child: BlocConsumer(
@@ -108,7 +108,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                       child: _selectedImage == null
                                           ? CircleAvatar(
                                               backgroundColor: AppColor
-                                                  .vanishColor
+                                                  .whiteCreamColor
                                                   .withOpacity(0.2),
                                               radius: 43.0,
                                               backgroundImage: const AssetImage(
@@ -117,8 +117,8 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                                 alignment:
                                                     Alignment.bottomRight,
                                                 child: CircleAvatar(
-                                                    backgroundColor:
-                                                        AppColor.callColor,
+                                                    backgroundColor: AppColor
+                                                        .darkPurpleColor,
                                                     radius: 12.0,
                                                     child: GestureDetector(
                                                         onTap: () {
@@ -141,7 +141,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                           : _selectedImage?.mimeType == "http"
                                               ? CircleAvatar(
                                                   backgroundColor: AppColor
-                                                      .vanishColor
+                                                      .whiteCreamColor
                                                       .withOpacity(0.2),
                                                   radius: 43.0,
                                                   backgroundImage: NetworkImage(
@@ -151,8 +151,8 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                                     alignment:
                                                         Alignment.bottomRight,
                                                     child: CircleAvatar(
-                                                        backgroundColor:
-                                                            AppColor.callColor,
+                                                        backgroundColor: AppColor
+                                                            .darkPurpleColor,
                                                         radius: 12.0,
                                                         child: GestureDetector(
                                                             onTap: () {
@@ -174,7 +174,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                                 )
                                               : CircleAvatar(
                                                   backgroundColor: AppColor
-                                                      .vanishColor
+                                                      .whiteCreamColor
                                                       .withOpacity(0.2),
                                                   radius: 43.0,
                                                   backgroundImage: FileImage(
@@ -185,8 +185,8 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                                     alignment:
                                                         Alignment.bottomRight,
                                                     child: CircleAvatar(
-                                                        backgroundColor:
-                                                            AppColor.callColor,
+                                                        backgroundColor: AppColor
+                                                            .darkPurpleColor,
                                                         radius: 12.0,
                                                         child: GestureDetector(
                                                             onTap: () {
