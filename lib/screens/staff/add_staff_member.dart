@@ -10,7 +10,6 @@ class AddStaffMember extends StatefulWidget {
 class _AddStaffMemberState extends State<AddStaffMember> {
   String? enteredPhone;
   SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
-  PhoneNumber? phoneNumber;
   var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
   double scale = 3.5;
   final _formKey = GlobalKey<FormState>();

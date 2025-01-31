@@ -1,4 +1,3 @@
-import 'package:intl_phone_field/countries.dart';
 import 'package:spam_delection_app/lib.dart';
 
 extension StringExt on String {
@@ -6,11 +5,12 @@ extension StringExt on String {
 
   PhoneData separatePhoneAndPhoneCode() {
     //TODO: get countries list by server
-    var filteredCountries = countries.where((e) => contains("+${e.dialCode}"));
+    var filteredCountries =
+        AppConstants.countryList.where((e) => contains("+${e.phonecode}"));
     if (filteredCountries.isNotEmpty) {
       var country = filteredCountries.first;
-      var phone = split("+${country.dialCode}").last;
-      return PhoneData(phone: phone, phoneCode: country.dialCode);
+      var phone = split("+${country.phonecode}").last;
+      return PhoneData(phone: phone, phoneCode: country.phonecode);
     } else {
       return PhoneData(
           phone: this, phoneCode: AppConstants.selectedCountry?.phonecode);

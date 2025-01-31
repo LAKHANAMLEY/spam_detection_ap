@@ -275,18 +275,15 @@ class DeviceCallLogs extends StatelessWidget {
             // Navigator.pushNamed(context, AppRoutes.dialPadScreen);
             showModalBottomSheet(
                 // enableDrag: true,
-                //isScrollControlled: true,
+                isScrollControlled: true,
                 backgroundColor: AppColor.secondaryColor,
                 context: context,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
+                useSafeArea: true,
                 builder: (BuildContext context) {
-                  return SizedBox(
-                    height: MediaQuery.of(context).size.height *
-                        0.8, // 80% of screen height
-                    child: DialPad(),
-                  );
+                  return const DialPad();
                 });
           }),
     );

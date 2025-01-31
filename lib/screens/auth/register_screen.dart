@@ -15,8 +15,6 @@ class _RegisterState extends State<Register> {
   String? enteredPhone;
   double scale = 3.5;
 
-  List<dynamic> countries = [];
-  bool isLoading = true;
   String? selectedCountryCode;
   String? selectedCountryName;
   final TextEditingController phoneController = TextEditingController();
@@ -33,27 +31,9 @@ class _RegisterState extends State<Register> {
 
   DateTime? selectedDate;
 
-  PhoneNumber? phoneNumber;
-
   @override
   void initState() {
     super.initState();
-    _loadCountries();
-  }
-
-  Future<void> _loadCountries() async {
-    try {
-      final countryData = await CountriesResponse.fetchCountriesResponse();
-      setState(() {
-        countries = countryData;
-        isLoading = false;
-      });
-    } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-      print('Error loading country data: $e');
-    }
   }
 
   //DateTime? selectedDate;

@@ -12,8 +12,6 @@ export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_face_pile/flutter_face_pile.dart';
 export 'package:google_sign_in/google_sign_in.dart';
 export 'package:image_picker/image_picker.dart';
-export 'package:intl_phone_field/intl_phone_field.dart';
-export 'package:intl_phone_field/phone_number.dart';
 export 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 // export 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
 export 'package:sms_advanced/sms_advanced.dart';

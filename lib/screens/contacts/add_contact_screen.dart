@@ -15,8 +15,6 @@ class _AddContactState extends State<AddContact> {
 
   final TextEditingController phoneController = TextEditingController();
 
-  PhoneNumber? phoneNumber;
-
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
@@ -203,7 +201,8 @@ class _AddContactState extends State<AddContact> {
                                   contact: ContactData(
                                       mobileNo: phone,
                                       countryCode:
-                                          phoneNumber?.countryCode ?? "",
+                                          selectedPhoneCodeCountry?.phonecode ??
+                                              "",
                                       name: fullName,
                                       numberType: numberType,
                                       email: email)));

@@ -23,7 +23,7 @@ dependencies:
   date_picker_plus: ^3.0.2
   flutter_bloc: ^8.1.6
 
-  intl_phone_field: any
+  # intl_phone_field: any
   curved_navigation_bar: any
   equatable: any
   shared_preferences: ^2.3.3

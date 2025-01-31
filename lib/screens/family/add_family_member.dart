@@ -15,7 +15,6 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
   CountryData? selectedPhoneCodeCountry;
 
-  PhoneNumber? phoneNumber;
   double scale = 3.5;
 
   List<dynamic> countries = [];
@@ -343,8 +342,9 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                           supportPin:
                                               supportPinController.text.trim(),
                                           phone: phoneController.text.trim(),
-                                          countryCode:
-                                              phoneNumber?.countryCode ?? '',
+                                          countryCode: selectedPhoneCodeCountry
+                                                  ?.phonecode ??
+                                              '',
                                           photoFile: selectedImage),
                                     );
                                   }

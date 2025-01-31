@@ -12,14 +12,11 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool _isRememberMeChecked = false;
 
-  // int tabIndex = 0;
   var selectPhoneBloc =
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
   CountryData? selectedPhoneCodeCountry;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  String? countryCode;
 
   // Save the state to SharedPreferences
   void _saveRememberMeState(bool value) async {
@@ -28,39 +25,37 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> _verifyPhoneNumber() async {
-    if (_formKey.currentState?.validate() ?? false) {
-      await _auth.verifyPhoneNumber(
-        phoneNumber: (countryCode ?? "") + phoneController.text,
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          await _auth.signInWithCredential(credential);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                content:
-                    Text(appLocalization(context).phoneAutomaticallySigned)),
-          );
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Phone verification failed: ${e.message}')),
-          );
-        },
-        codeSent: (String verificationId, int? resendToken) {
-          setState(() {
-            // _verificationId = verificationId;
-          });
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => OtpVerify(
-              verificationId: verificationId,
-              phoneNumber: phoneController.text,
-              countryCode: countryCode ?? "",
-            ),
-          ));
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {
+    await _auth.verifyPhoneNumber(
+      phoneNumber:
+          "+${selectedPhoneCodeCountry?.phonecode}${phoneController.text}",
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await _auth.signInWithCredential(credential);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text(appLocalization(context).phoneAutomaticallySigned)),
+        );
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Phone verification failed: ${e.message}')),
+        );
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        setState(() {
           // _verificationId = verificationId;
-        },
-      );
-    }
+        });
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => OtpVerify(
+            verificationId: verificationId,
+            phoneNumber: phoneController.text,
+            countryCode: selectedPhoneCodeCountry?.phonecode ?? "",
+          ),
+        ));
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+        // _verificationId = verificationId;
+      },
+    );
 
     // print("Phone number: ${phoneController.text}, Country code: $countryCode");
   }
@@ -93,11 +88,11 @@ class _LoginState extends State<Login> {
                             LoginSuccessful(user: state.value.data)));
                   } else if (state.value.statusCode ==
                       HTTPStatusCodes.sessionExpired) {
-                    sessionExpired(context, state.value.message);
+                    sessionExpired(context, state.value.message.toString());
                   } else {
                     showCustomDialog(context,
                         dialogType: DialogType.failed,
-                        subTitle: state.value.message);
+                        subTitle: state.value.message.toString());
                   }
                 }
               },
@@ -511,7 +506,7 @@ class _LoginState extends State<Login> {
                                             if (_formKey.currentState
                                                     ?.validate() ??
                                                 false) {
-                                              _verifyPhoneNumber;
+                                              _verifyPhoneNumber();
                                             }
                                           }),
                                       SizedBox(
