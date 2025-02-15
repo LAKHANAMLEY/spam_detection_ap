@@ -208,6 +208,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                                         if (p0?.isEmpty ?? true) {
                                           return appLocalization(context)
                                               .pleaseConfirmPass;
+                                        } else if (p0 !=
+                                            passwordController.text) {
+                                          return "Password is not matching";
                                         }
                                         return null;
                                       },

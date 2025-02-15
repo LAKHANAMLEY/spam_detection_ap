@@ -74,6 +74,7 @@ extension NotificationExtension on NotificationType {
   };
 
   String? get key => keys[this];
+
   String? get value => values[this];
 
   // NEW

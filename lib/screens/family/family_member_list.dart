@@ -108,7 +108,6 @@ class _FamilyMemberListState extends State<FamilyMemberList> {
                 builder: (context, state) {
                   if (state is GetFamilyMemberListState) {
                     contacts = state.value.familymemberslist ?? [];
-
                     return ModalProgressHUD(
                       progressIndicator: const Loader(),
                       inAsyncCall: state is ApiLoadingState,

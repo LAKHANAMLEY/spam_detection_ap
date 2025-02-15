@@ -18,6 +18,8 @@ class _ChangePasswordState extends State<ChangePassword> {
   var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
   var newPasswordVisibilityBloc = SelectionBloc(SelectBoolState(true));
   var confirmPasswordVisibilityBloc = SelectionBloc(SelectBoolState(true));
+
+  //var validationBloc = ValidationBloc();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -151,6 +153,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                                         if (p0?.isEmpty ?? true) {
                                           return appLocalization(context)
                                               .pleaseNewPass;
+                                        } else if (p0 !=
+                                            currentPasswordController.text) {
+                                          return "New password should not be same from previous one";
                                         }
                                         return null;
                                       },
@@ -188,6 +193,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                                         if (p0?.isEmpty ?? true) {
                                           return appLocalization(context)
                                               .pleaseConfirmPass;
+                                        } else if (p0 !=
+                                            newPasswordController.text) {
+                                          return "Password is not matching";
                                         }
                                         return null;
                                       },

@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state_background/phone_state_background.dart';
 import 'package:spam_delection_app/lib.dart';
@@ -60,22 +61,26 @@ class MyApp extends StatelessWidget {
         },
         builder: (context, state) {
           if (state is ChangeLocaleState) {
-            return MaterialApp(
-              title: AppConstants.projectName,
-              localizationsDelegates: const [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-                AppLocalizations.delegate,
-              ],
-              supportedLocales: AppLocalizations.supportedLocales,
-              debugShowCheckedModeBanner: false,
-              locale: state.locale,
-              theme: ThemeConstants.lightTheme,
-              darkTheme: ThemeConstants.darkTheme,
-              routes: routes,
-              home: isOverlay ? const OutSideAppOverlay() : const Splash(),
+            return ScreenUtilInit(
+              minTextAdapt: true,
+              splitScreenMode: true,
+              child: MaterialApp(
+                title: AppConstants.projectName,
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                  AppLocalizations.delegate,
+                ],
+                supportedLocales: AppLocalizations.supportedLocales,
+                debugShowCheckedModeBanner: false,
+                locale: state.locale,
+                theme: ThemeConstants.lightTheme,
+                darkTheme: ThemeConstants.darkTheme,
+                routes: routes,
+                home: isOverlay ? const OutSideAppOverlay() : const Splash(),
+              ),
             );
           }
           return const Loader();

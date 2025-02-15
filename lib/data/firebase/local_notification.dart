@@ -7,8 +7,8 @@ class LocalNotificationService {
       FlutterLocalNotificationsPlugin();
 
   static const AndroidNotificationDetails androidNotificationDetails =
-      AndroidNotificationDetails('com.bctpay', 'BCTPay',
-          channelDescription: 'BCTPay notification channel',
+      AndroidNotificationDetails('com.bctpay', 'Spam Detector',
+          channelDescription: 'Spam Detector notification channel',
           importance: Importance.max,
           priority: Priority.high,
           ticker: 'ticker');

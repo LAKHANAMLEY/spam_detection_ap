@@ -99,5 +99,5 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.messageScreen: (context) => const MessagesScreen(),
   AppRoutes.dialPadScreen: (context) => const DialPad(),
   AppRoutes.editContact: (context) => const EditContact(),
-  AppRoutes.otpVerify: (context) => const OtpVerify()
+  AppRoutes.otpVerify: (context) => const OtpVerify(),
 };

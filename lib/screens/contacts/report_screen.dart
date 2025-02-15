@@ -265,8 +265,9 @@ class _ReportViewState extends State<ReportView> {
                         hintText: appLocalization(context).phoneNumberOps,
                         keyboardType: TextInputType.phone,
                       ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 4 / 100),
+                      20.height(),
+                      // SizedBox(
+                      //     height: MediaQuery.of(context).size.height * 4 / 100),
                       AppButton(
                           text: appLocalization(context).reportText,
                           onPress: () {
@@ -300,8 +301,6 @@ class _ReportViewState extends State<ReportView> {
                               Navigator.pop(context);
                             }
                           }),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 4 / 100),
                     ],
                   ),
                 ),

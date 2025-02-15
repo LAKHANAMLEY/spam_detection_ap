@@ -18,7 +18,7 @@ class CallLogListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomListTile(
       onTap: onTap ??
-          () {
+              () {
             Navigator.pushNamed(context, AppRoutes.contactDetail,
                 arguments: ContactDetail(
                   contact: ContactData(
@@ -54,8 +54,8 @@ class CallLogListItem extends StatelessWidget {
               (callLog.name?.isNotEmpty ?? false)
                   ? callLog.name ?? ""
                   : callLog.countryCode?.isNotEmpty ?? false
-                      ? "+${callLog.countryCode} ${callLog.mobileNo ?? ""}"
-                      : callLog.mobileNo ?? "",
+                  ? "+${callLog.countryCode} ${callLog.mobileNo ?? ""}"
+                  : callLog.mobileNo ?? "",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: textTheme(context).titleMedium,
@@ -76,20 +76,21 @@ class CallLogListItem extends StatelessWidget {
               "${callLog.markSpamByUser ?? 0} Spam reports",
               style: textTheme(context).bodyMedium?.copyWith(color: Colors.red),
             )
-          else ...[
-            Icon(
-              getCallTypeIcon(callLog.callType),
-              color: getCallTypeColor(callLog.callType),
-              size: 15,
-            ),
-            5.width(),
-            Text(
-              callLog.callType ?? "",
-              style: textTheme(context)
-                  .bodyMedium
-                  ?.copyWith(color: getCallTypeColor(callLog.callType)),
-            ),
-          ],
+          else
+            ...[
+              Icon(
+                getCallTypeIcon(callLog.callType),
+                color: getCallTypeColor(callLog.callType),
+                size: 15,
+              ),
+              5.width(),
+              Text(
+                callLog.callType ?? "",
+                style: textTheme(context)
+                    .bodyMedium
+                    ?.copyWith(color: getCallTypeColor(callLog.callType)),
+              ),
+            ],
           const Circle(),
           // 2.width(),
           Text(callLog.callDuration?.convertInMinSec() ?? ""),
@@ -108,18 +109,20 @@ class CallLogListItem extends StatelessWidget {
               padding: EdgeInsets.zero,
               style: const ButtonStyle(visualDensity: VisualDensity.compact),
               // position: ,
-              itemBuilder: (context) => [
+              itemBuilder: (context) =>
+              [
                 PopupMenuItem(
                     onTap: () {
                       showModalBottomSheet(
                         // enableDrag: false,
-                        //isScrollControlled: true,
+                        isScrollControlled: true,
                         backgroundColor: AppColor.whiteColor,
                         context: context,
                         shape: const RoundedRectangleBorder(
                           borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(20.0)),
+                          BorderRadius.vertical(top: Radius.circular(20.0)),
                         ),
+                        useSafeArea: true,
                         builder: (BuildContext context) {
                           return ReportView(
                             contact: ContactData(

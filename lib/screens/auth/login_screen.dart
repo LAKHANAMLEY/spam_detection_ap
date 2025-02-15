@@ -105,7 +105,7 @@ class _LoginState extends State<Login> {
                       key: _formKey,
                       child: Column(children: [
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
+                          height: MediaQuery.of(context).size.height * 5 / 100,
                         ),
                         Center(
                             child: Text(
@@ -288,19 +288,20 @@ class _LoginState extends State<Login> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 16, right: 16),
+                                            left: 8, right: 8),
                                         child: Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .spaceBetween, // Better spacing
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Expanded(
+                                            Flexible(
+                                              flex: 2,
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
-                                                // crossAxisAlignment:
-                                                //     CrossAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
                                                 children: [
                                                   Checkbox(
                                                     value: _isRememberMeChecked,
@@ -329,25 +330,29 @@ class _LoginState extends State<Login> {
                                                 ],
                                               ),
                                             ),
-                                            TextButton(
-                                              child: Text(
-                                                appLocalization(context)
-                                                    .forgotPasswordText,
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                                style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color:
-                                                      AppColor.themeYellowColor,
-                                                  fontFamily:
-                                                      AppFont.fontFamily,
-                                                  fontWeight: FontWeight.w600,
+                                            Flexible(
+                                              flex: 2,
+                                              child: TextButton(
+                                                child: Text(
+                                                  appLocalization(context)
+                                                      .forgotPasswordText,
+                                                  softWrap: true,
+                                                  //overflow: TextOverflow.ellipsis,
+                                                  maxLines: 2,
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                    color: AppColor
+                                                        .themeYellowColor,
+                                                    fontFamily:
+                                                        AppFont.fontFamily,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                                 ),
+                                                onPressed: () {
+                                                  Navigator.pushNamed(context,
+                                                      AppRoutes.forgotPassword);
+                                                },
                                               ),
-                                              onPressed: () {
-                                                Navigator.pushNamed(context,
-                                                    AppRoutes.forgotPassword);
-                                              },
                                             ),
                                           ],
                                         ),

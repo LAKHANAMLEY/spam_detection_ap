@@ -9,7 +9,6 @@ Future<ForgotResponse> forgotPassword({required String email}) async {
   var body = {
     'email': email,
   };
-//karo login
   final response = await http.post(
     Uri.parse(ApiUrlConstants.forgotPassword),
     headers: <String, String>{

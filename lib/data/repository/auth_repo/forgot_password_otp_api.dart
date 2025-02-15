@@ -11,7 +11,6 @@ Future<ForgotPasswordPhoneResponse> forgotPasswordWithPhone(
     'phone': phoneNumber,
     'country_code': countryCode,
   };
-//karo login
   final response = await http.post(
     Uri.parse(ApiUrlConstants.forgotPasswordByOTP),
     headers: <String, String>{
@@ -20,6 +19,7 @@ Future<ForgotPasswordPhoneResponse> forgotPasswordWithPhone(
     },
     body: body,
   );
+
   print(body);
   // print('response.body ${response.body}');
   if (response.statusCode == 200) {

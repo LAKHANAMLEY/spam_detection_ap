@@ -127,9 +127,10 @@ class _DialPadState extends State<DialPad> {
               FloatingActionButton.extended(
                 backgroundColor: AppColor.greenColor,
                 onPressed: () async {
-                  // await DirectCallPlus.makeCall(countryCode?.isNotEmpty ??
-                  //     false)
-                  //     ? "+${countryCode ?? ""} ${contact?.mobileNo ?? ""}"
+                  // await DirectCallPlus.makeCall((contact
+                  //             ?.countryCode?.isNotEmpty ??
+                  //         false)
+                  //     ? "+${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}"
                   //     : contact?.mobileNo ?? "");
                 },
                 icon: const Icon(Icons.call, size: 32, color: Colors.white),

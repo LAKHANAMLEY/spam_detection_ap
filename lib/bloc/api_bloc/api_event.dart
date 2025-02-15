@@ -580,12 +580,12 @@ class SmsSeenEvent extends ApiEvent {
 }
 
 class SmsDeleteConversationEvent extends ApiEvent {
-  final SmsLog sms;
+  final SmsLog address;
 
-  SmsDeleteConversationEvent({required this.sms});
+  SmsDeleteConversationEvent({required this.address});
 
   @override
-  List<Object?> get props => [sms];
+  List<Object?> get props => [address];
 }
 
 class SmsSpamListEvent extends ApiEvent {}
@@ -623,7 +623,7 @@ class RemoveSpamSmsEvent extends ApiEvent {
 //class SmsSpamEvent extends ApiEvent {}
 
 class DeleteConversationEvent extends ApiEvent {
-  final String address;
+  final SmsLog address;
 
   DeleteConversationEvent({
     required this.address,

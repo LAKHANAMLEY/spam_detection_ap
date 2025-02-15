@@ -13,7 +13,7 @@ class StringConstants {
   static const String exit = "EXIT";
   static const String next = "Next";
   static const String doYouWantToExitAnApp = "Do you want to exit an App?";
-  static const String getstarted = 'Get Started';
+  static const String getStarted = 'Get Started';
   static const String registertext = 'Register';
   static const String enjoytext =
       'Enjoy all the benifits of being an explorer member';

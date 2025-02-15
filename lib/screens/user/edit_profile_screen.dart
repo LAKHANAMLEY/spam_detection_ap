@@ -26,7 +26,7 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
-  final ImagePicker _picker = ImagePicker();
+  // final ImagePicker _picker = ImagePicker();
   XFile? _selectedImage;
 
   final _formKey = GlobalKey<FormState>();
@@ -312,7 +312,7 @@ class _EditProfileState extends State<EditProfile> {
                                       ),
                                     );
                                   }),
-                              0.height(),
+                              10.height(),
                               BlocConsumer(
                                   bloc: datePickerBlocData,
                                   listener: (context, state) {

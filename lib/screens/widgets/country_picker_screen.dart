@@ -33,6 +33,7 @@ class _CountryPickerScreenState extends State<CountryPickerScreen> {
           builder: (context, state) {
             if (state is CountryListState) {
               AppConstants.countryList = state.value.countrylist ?? [];
+              //searchController.text = AppConstants.countryList.first.id ?? "";
               return Column(
                 children: [
                   CustomTextField(

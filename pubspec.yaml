@@ -54,6 +54,7 @@ dependencies:
   firebase_analytics: ^11.3.6
   flutter_local_notifications_platform_interface: ^8.0.0
   flutter_contacts: ^1.1.9+2
+  flutter_screenutil: ^5.9.3
   # flutter_sms_inbox: ^1.0.3
   sms_advanced: ^1.1.0
   flutter_native_splash: ^2.4.4

@@ -21,112 +21,130 @@ class MessagesDetail extends StatelessWidget {
             //     ? "+${sms?.countryCode} ${sms?.address ?? ""}"
             //     : sms?.address ?? "",
             actions: [
-              PopupMenuButton(
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    onTap: () {
-                      //Navigator.pushNamed(context, AppRoutes.callLogs,
-                      //    arguments:
-                      //     DeviceCallLogs(filterBy: CallType.outgoing.name));
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          IconConstants.icSearchCheck,
-                          color: AppColor.greyColor,
-                          scale: 2,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 5 / 100,
-                        ),
-                        Text(
-                          appLocalization(context).searchInConversation,
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    onTap: () {
-                      showModalBottomSheet(
-                        isScrollControlled: false,
-                        backgroundColor: AppColor.whiteColor,
-                        context: context,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(20.0)),
-                        ),
-                        builder: (BuildContext context) {
-                          return BlockSmsView(
-                            sms: SmsDetail(
-                              address: sms?.address,
-                              //spamMessage: SmsDetail().spamMessage,
-                            ),
-                          );
+              BlocBuilder(
+                  bloc: messagesBloc,
+                  builder: (context, state) {
+                    if (state is DeleteConversationState) {
+                      if (state.value.statusCode == 200) {
+                        showCustomDialog(context,
+                            dialogType: DialogType.success,
+                            subTitle: state.value.message ?? "");
+                      } else if (state.value.statusCode ==
+                          HTTPStatusCodes.sessionExpired) {
+                        sessionExpired(context, state.value.message ?? "");
+                      } else {
+                        showToast(state.value.message);
+                      }
+                    }
+                    return PopupMenuButton(
+                      itemBuilder: (context) => [
+                        // PopupMenuItem(
+                        //   onTap: () {
+                        //     //Navigator.pushNamed(context, AppRoutes.callLogs,
+                        //     //    arguments:
+                        //     //     DeviceCallLogs(filterBy: CallType.outgoing.name));
+                        //   },
+                        //   child: Row(
+                        //     children: [
+                        //       Image.asset(
+                        //         IconConstants.icSearchCheck,
+                        //         color: AppColor.greyColor,
+                        //         scale: 2,
+                        //       ),
+                        //       SizedBox(
+                        //         width: MediaQuery.of(context).size.width * 5 / 100,
+                        //       ),
+                        //       Text(
+                        //         appLocalization(context).searchInConversation,
+                        //         style: const TextStyle(
+                        //             color: Colors.black,
+                        //             fontSize: 18,
+                        //             fontWeight: FontWeight.w600),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
+                        PopupMenuItem(
+                          onTap: () {
+                            showModalBottomSheet(
+                              isScrollControlled: false,
+                              backgroundColor: AppColor.whiteColor,
+                              context: context,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20.0)),
+                              ),
+                              builder: (BuildContext context) {
+                                return BlockSmsView(
+                                  sms: SmsDetail(
+                                    address: sms?.address,
+                                    //spamMessage: SmsDetail().spamMessage,
+                                  ),
+                                );
 
-                          /*BlockSmsView(
-                      contact: SmsDetail(
-                        address: SmsLog().address,
-                        /* name: SmsLog.name,
-                        isSpam: callLog.isSpam,
-                        countryCode: callLog.countryCode,
-                      ),
+                                /*BlockSmsView(
+                          contact: SmsDetail(
+                            address: SmsLog().address,
+                            /* name: SmsLog.name,
+                            isSpam: callLog.isSpam,
+                            countryCode: callLog.countryCode,
+                          ),
 
+                            */
+                          ),
+                        );
                         */
-                      ),
+                              },
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                IconConstants.icBlockedCall,
+                                scale: 2.5,
+                              ),
+                              SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.width * 5 / 100,
+                              ),
+                              Text(
+                                appLocalization(context).blockSms,
+                                style: const TextStyle(
+                                    color: AppColor.blackColor,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600),
+                              )
+                            ],
+                          ),
+                        ),
+                        PopupMenuItem(
+                          onTap: () {
+                            // messagesBloc.add(DeleteConversationEvent());
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                IconConstants.icDelete,
+                                color: AppColor.redColor,
+                                scale: 1,
+                              ),
+                              SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.width * 5 / 100,
+                              ),
+                              Text(
+                                appLocalization(context).deleteConversation,
+                                style: const TextStyle(
+                                    color: AppColor.redColor,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
                     );
-                    */
-                        },
-                      );
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          IconConstants.icBlockedCall,
-                          scale: 2.5,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 5 / 100,
-                        ),
-                        Text(
-                          appLocalization(context).blockSms,
-                          style: const TextStyle(
-                              color: AppColor.blackColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    onTap: () {
-                      messagesBloc.add(DeleteConversationEvent(address: ''));
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          IconConstants.icDelete,
-                          color: AppColor.redColor,
-                          scale: 1,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 5 / 100,
-                        ),
-                        Text(
-                          appLocalization(context).deleteConversation,
-                          style: const TextStyle(
-                              color: AppColor.redColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                  }),
             ]),
         bottomNavigationBar: messageField(context, sms),
         body: ListView.builder(
