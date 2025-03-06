@@ -10,8 +10,6 @@ class EditFamilyMember extends StatefulWidget {
 }
 
 class _EditFamilyMemberState extends State<EditFamilyMember> {
-  bool agreeToTerms = false;
-
   double scale = 3.5;
 
   final _formKey = GlobalKey<FormState>();
@@ -36,7 +34,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
       familyMemberBloc
           .add(GetFamilyMemberDetailEvent(arg.familyMember?.userId ?? ""));
     });
-
     super.initState();
   }
 

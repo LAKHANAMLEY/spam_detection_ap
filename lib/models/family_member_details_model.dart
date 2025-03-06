@@ -15,11 +15,8 @@ class FamilyMemberDetailsResponse {
   final FamilyMember? familymemberdetails;
   final String? message;
 
-  FamilyMemberDetailsResponse({
-    this.statusCode,
-    this.familymemberdetails,
-    this.message,
-  });
+  FamilyMemberDetailsResponse(
+      {this.statusCode, this.familymemberdetails, this.message});
 
   factory FamilyMemberDetailsResponse.fromJson(Map<String, dynamic> json) =>
       FamilyMemberDetailsResponse(
