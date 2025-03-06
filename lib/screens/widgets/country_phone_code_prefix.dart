@@ -12,6 +12,7 @@ class CountryPhoneCodePrefix extends StatelessWidget {
         onTap: () {
           showModalBottomSheet(
             context: context,
+            showDragHandle: true,
             useSafeArea: true,
             isScrollControlled: true,
             builder: (context) => CountryPickerScreen(bloc: bloc),

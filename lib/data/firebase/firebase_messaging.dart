@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:spam_delection_app/lib.dart';
 
 final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
@@ -20,6 +21,7 @@ firebase(context) async {
     provisional: false,
     sound: true,
   );
+  await permissionRequest(Permission.notification);
   debugPrint(
       'User granted permission to receive push notification: ${settings.authorizationStatus}');
 

@@ -34,7 +34,30 @@ class _RegisterFirstState extends State<RegisterGoogle> {
             height: MediaQuery.of(context).size.height * 8 / 100,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () async {
+              try {
+                var userCredential = await signInWithGoogle();
+                if (userCredential != null) {
+                  Navigator.pushNamed(context, AppRoutes.register,
+                      arguments: Register(
+                        userCredencial: userCredential,
+                      ));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                        content: Text(appLocalization(context)
+                            .googleSignFailedPleaseAgain)),
+                  );
+                }
+              } catch (e) {
+                print('Error during Google Sign-In: $e');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      content: Text(appLocalization(context)
+                          .anErrorOccurredDuringGoogleSignIn)),
+                );
+              }
+            },
             child: Container(
               width: MediaQuery.sizeOf(context).width * 90 / 100,
               height: MediaQuery.sizeOf(context).height * 8 / 100,

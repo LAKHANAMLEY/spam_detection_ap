@@ -182,7 +182,8 @@ class User {
         address2: json["address2"],
         country: json["country"],
         token: json["token"],
-        countryData: getCountryByNameOrDialCode(countryName: json["country"]),
+        countryData: getCountryByNameOrDialCode(
+            countryName: json["country"], countryId: json['country_id']),
       );
 
   Map<String, dynamic> toJson() => {

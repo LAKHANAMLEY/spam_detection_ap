@@ -67,7 +67,9 @@ class MessagesDetail extends StatelessWidget {
                         PopupMenuItem(
                           onTap: () {
                             showModalBottomSheet(
-                              isScrollControlled: false,
+                              showDragHandle: true,
+                              useSafeArea: true,
+                              isScrollControlled: true,
                               backgroundColor: AppColor.whiteColor,
                               context: context,
                               shape: const RoundedRectangleBorder(
@@ -147,12 +149,33 @@ class MessagesDetail extends StatelessWidget {
                   }),
             ]),
         bottomNavigationBar: messageField(context, sms),
-        body: ListView.builder(
-          itemCount: sms?.smsDetails?.length,
-          itemBuilder: (context, index) => MessageView(
-            sms: sms?.smsDetails?[index],
-          ),
-        ));
+        body: BlocConsumer(
+            bloc: markSpamSmsBloc,
+            listener: (context, state) {
+              if (state is MarkSpamSmsState) {
+                if (state.value.statusCode == 200) {
+                  showCustomDialog(context,
+                      dialogType: DialogType.success,
+                      subTitle: state.value.message);
+                } else if (state.value.statusCode ==
+                    HTTPStatusCodes.sessionExpired) {
+                  sessionExpired(context, state.value.message);
+                } else {
+                  showCustomDialog(context,
+                      dialogType: DialogType.failed,
+                      subTitle: state.value.message);
+                }
+                markSpamSmsBloc.add(SmsSpamListEvent());
+              }
+            },
+            builder: (context, state) {
+              return ListView.builder(
+                itemCount: sms?.smsDetails?.length,
+                itemBuilder: (context, index) => MessageView(
+                  sms: sms?.smsDetails?[index],
+                ),
+              );
+            }));
   }
 
   send(SmsLog? sms) {

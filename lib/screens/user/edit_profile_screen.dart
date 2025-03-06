@@ -297,7 +297,7 @@ class _EditProfileState extends State<EditProfile> {
                                   builder: (context, state) {
                                     return CustomTextField(
                                       keyboardType: TextInputType.phone,
-                                      readOnly: true,
+                                      // readOnly: true,
                                       controller: phoneController,
                                       hintText:
                                           appLocalization(context).phoneNumber,
@@ -318,10 +318,7 @@ class _EditProfileState extends State<EditProfile> {
                                   listener: (context, state) {
                                     String dateText = 'Select a date';
                                     if (state is DatePickerLoaded) {
-                                      dateText = state.value
-                                          .toString()
-                                          .split(".")
-                                          .first;
+                                      dateText = state.value.formatDate();
                                     }
                                     dateOfBirthController.text =
                                         dateText; // Set text in controller
@@ -412,8 +409,9 @@ class _EditProfileState extends State<EditProfile> {
                                       onTap: () {
                                         showModalBottomSheet(
                                             context: context,
-                                            isScrollControlled: true,
+                                            showDragHandle: true,
                                             useSafeArea: true,
+                                            isScrollControlled: true,
                                             builder: (context) =>
                                                 const CountryPickerScreen());
                                       },

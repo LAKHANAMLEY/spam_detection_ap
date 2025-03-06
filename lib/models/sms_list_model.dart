@@ -47,6 +47,7 @@ class SmsLog {
   final int? unreadReceivedSms;
   final String? name;
   final List<SmsDetail>? smsDetails;
+  final int? isMarkSpam;
 
   SmsLog({
     this.address,
@@ -54,18 +55,19 @@ class SmsLog {
     this.unreadReceivedSms,
     this.smsDetails,
     this.name,
+    this.isMarkSpam,
   });
 
   factory SmsLog.fromJson(Map<String, dynamic> json) => SmsLog(
-        address: json["address"],
-        name: json["name"],
-        countryCode: json["country_code"],
-        unreadReceivedSms: json["unread_received_sms"],
-        smsDetails: json["sms_details"] == null
-            ? []
-            : List<SmsDetail>.from(
-                json["sms_details"]!.map((x) => SmsDetail.fromJson(x))),
-      );
+      address: json["address"],
+      name: json["name"],
+      countryCode: json["country_code"],
+      unreadReceivedSms: json["unread_received_sms"],
+      smsDetails: json["sms_details"] == null
+          ? []
+          : List<SmsDetail>.from(
+              json["sms_details"]!.map((x) => SmsDetail.fromJson(x))),
+      isMarkSpam: json["is_mark_spam"]);
 
   Map<String, dynamic> toJson() => {
         "address": address,
@@ -75,6 +77,7 @@ class SmsLog {
         "sms_details": smsDetails == null
             ? []
             : List<dynamic>.from(smsDetails!.map((x) => x.toJson())),
+        "is_mark_spam": isMarkSpam,
       };
 }
 

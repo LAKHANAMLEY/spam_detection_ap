@@ -24,7 +24,7 @@ Future<Response> syncSms({required List<SmsMessage> smsLogs}) async {
     });
   }
 
-  log("$body");
+  log("${ApiUrlConstants.syncSms}: ${jsonEncode(body)}");
 
   var request = http.MultipartRequest(
       'POST',

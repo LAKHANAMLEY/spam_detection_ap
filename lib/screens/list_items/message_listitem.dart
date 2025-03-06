@@ -13,9 +13,11 @@ class MessageListItem extends StatelessWidget {
         Navigator.pushNamed(context, AppRoutes.messagesDetail,
             arguments: MessagesDetail(sms: sms));
       },
-      leading: const CircleAvatar(
+      leading: CircleAvatar(
         backgroundImage: AssetImage(
-          IconConstants.icMessageLock,
+          sms.isMarkSpam == 1
+              ? IconConstants.icFraud
+              : IconConstants.icMessageLock,
         ),
       ),
       title: Row(

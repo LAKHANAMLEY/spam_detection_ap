@@ -7,15 +7,20 @@ class LocalNotificationService {
       FlutterLocalNotificationsPlugin();
 
   static const AndroidNotificationDetails androidNotificationDetails =
-      AndroidNotificationDetails('com.bctpay', 'Spam Detector',
-          channelDescription: 'Spam Detector notification channel',
+      AndroidNotificationDetails(
+          'com.broadlink.protect', AppConstants.projectName,
+          channelDescription:
+              '${AppConstants.projectName} notification channel',
+          // icon: "assets/images/logo_white_1024.png",
           importance: Importance.max,
           priority: Priority.high,
           ticker: 'ticker');
   static const DarwinNotificationDetails iosNotificationDetails =
       DarwinNotificationDetails();
   static const NotificationDetails notificationDetails = NotificationDetails(
-      android: androidNotificationDetails, iOS: iosNotificationDetails);
+    android: androidNotificationDetails,
+    iOS: iosNotificationDetails,
+  );
 
   static showNotification(
     int id,

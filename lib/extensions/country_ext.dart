@@ -1,11 +1,15 @@
+import 'dart:developer';
+
 import 'package:spam_delection_app/lib.dart';
 
 // extension CountryHelper on CountryData {
 CountryData? getCountryByNameOrDialCode(
-    {String? countryName, String? dialCode}) {
+    {String? countryName, String? dialCode, String? countryId}) {
   var filteredCountries = AppConstants.countryList.where((e) =>
-      (e.name?.contains(countryName ?? "") ?? false) ||
-      (e.name?.contains(dialCode ?? "") ?? false));
+      ((e.name == countryName) ||
+          (e.phonecode == dialCode) ||
+          (e.id == countryId)));
+  log("${filteredCountries.length}");
   if (filteredCountries.isNotEmpty) {
     var selectedCountry = filteredCountries.first;
     print(selectedCountry.code ?? "");

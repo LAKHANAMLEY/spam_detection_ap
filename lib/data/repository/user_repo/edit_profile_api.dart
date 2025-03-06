@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
@@ -17,7 +19,7 @@ Future<EditProfileResponse> editProfile({
     'phone': user?.phone ?? "",
     'email': user?.email ?? "",
     'country_id': user?.countryId ?? "",
-    // 'country_code': user?.countryCode ?? "",
+    'country_code': user?.countryCode ?? "",
     // 'photo': photo,
   };
 
@@ -37,7 +39,7 @@ Future<EditProfileResponse> editProfile({
     }
   }
 
-  print(body);
+  log(jsonEncode(body));
   // final response = await http.post(
   //   Uri.parse(ApiUrlConstants.endPointEditProfile),
   //   headers: await ApiUrlConstants.headers(),

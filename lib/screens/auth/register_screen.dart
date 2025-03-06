@@ -1,7 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class Register extends StatefulWidget {
-  const Register({super.key});
+  final UserCredential? userCredencial;
+  const Register({
+    super.key,
+    this.userCredencial,
+  });
 
   @override
   State<Register> createState() => _RegisterState();
@@ -33,6 +38,9 @@ class _RegisterState extends State<Register> {
 
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((d) {
+      updateData();
+    });
     super.initState();
   }
 
@@ -227,10 +235,7 @@ class _RegisterState extends State<Register> {
                                   listener: (context, state) {
                                     String dateText = 'Select a date';
                                     if (state is DatePickerLoaded) {
-                                      dateText = state.value
-                                          .toString()
-                                          .split(".")
-                                          .first;
+                                      dateText = state.value.formatDate();
                                     }
                                     dateOfBirthController.text =
                                         dateText; // Set text in controller
@@ -358,5 +363,16 @@ class _RegisterState extends State<Register> {
                             ]),
                           ))));
                 })));
+  }
+
+  void updateData() {
+    var arg = args(context) as Register;
+    var userCredencial = arg.userCredencial;
+    var user = userCredencial?.user;
+    firstnameController.text = user?.displayName?.split(" ").first ?? "";
+    lastnameController.text = user?.displayName?.split(" ").last ?? "";
+    emailController.text = user?.email ?? "";
+    phoneController.text = user?.phoneNumber ?? "";
+    // phoneController.text = user?.photoURL ?? "";
   }
 }

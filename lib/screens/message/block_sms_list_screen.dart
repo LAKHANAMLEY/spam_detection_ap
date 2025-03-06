@@ -8,7 +8,7 @@ class BlockList extends StatefulWidget {
 }
 
 class _BlockListState extends State<BlockList> {
-  var markSmsSpamBloc = ApiBloc(ApiBlocInitialState());
+  // var markSmsSpamBloc = ApiBloc(ApiBlocInitialState());
   final TextEditingController editingController = TextEditingController();
   List<SmsSpamList> sms = [];
   List<SmsSpamList> filteredContacts = [];
@@ -16,7 +16,7 @@ class _BlockListState extends State<BlockList> {
   @override
   void initState() {
     super.initState();
-    markSmsSpamBloc.add(SmsSpamListEvent());
+    markSpamSmsBloc.add(SmsSpamListEvent());
   }
 
   void filterSearchResults(String query) {
@@ -47,11 +47,26 @@ class _BlockListState extends State<BlockList> {
           ),
           Expanded(
               child: BlocConsumer(
-                  bloc: markSmsSpamBloc,
+                  bloc: markSpamSmsBloc,
                   listener: (context, state) {
                     if (state is SmsSpamListState) {
                       sms = state.value.smsSpamList ?? [];
                       filterSearchResults("");
+                    }
+                    if (state is MarkSpamSmsState) {
+                      if (state.value.statusCode == 200) {
+                        showCustomDialog(context,
+                            dialogType: DialogType.success,
+                            subTitle: state.value.message);
+                      } else if (state.value.statusCode ==
+                          HTTPStatusCodes.sessionExpired) {
+                        sessionExpired(context, state.value.message);
+                      } else {
+                        showCustomDialog(context,
+                            dialogType: DialogType.failed,
+                            subTitle: state.value.message);
+                      }
+                      markSpamSmsBloc.add(SmsSpamListEvent());
                     }
                     if (state is RemoveSmsSpamState) {
                       if (state.value.statusCode == 200) {
@@ -66,7 +81,7 @@ class _BlockListState extends State<BlockList> {
                             dialogType: DialogType.failed,
                             subTitle: state.value.message);
                       }
-                      markSmsSpamBloc.add(SmsSpamListEvent());
+                      markSpamSmsBloc.add(SmsSpamListEvent());
                     }
                   },
                   builder: (context, state) {

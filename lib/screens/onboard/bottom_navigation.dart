@@ -70,6 +70,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   void initState() {
+    firebase(context);
     phoneStateConfig();
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     handleAppLifeCycle();

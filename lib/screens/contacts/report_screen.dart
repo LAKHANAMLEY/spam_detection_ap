@@ -16,7 +16,7 @@ class _ReportViewState extends State<ReportView> {
 
   var commentController = TextEditingController();
   var phoneController = TextEditingController();
-  var selectedTabBloc = SelectionBloc(SelectIntState(0));
+  var selectedTabBloc = SelectionBloc(SelectStringState("business"));
 
   var categoryListBloc = ApiBloc(ApiBlocInitialState());
 
@@ -75,70 +75,65 @@ class _ReportViewState extends State<ReportView> {
                       BlocBuilder(
                           bloc: selectedTabBloc,
                           builder: (context, selectTabState) {
-                            if (selectTabState is SelectIntState) {
+                            if (selectTabState is SelectStringState) {
+                              numberType = selectTabState.value;
                               // int SelectedTab = selectTabState.value;
-                              return Column(children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        // Add event to update selected tab and numberType
-                                        selectedTabBloc.add(SelectIntEvent(1));
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Radio(
-                                            focusColor:
-                                                AppColor.deepYellowColor,
-                                            groupValue: numberType,
-                                            // Current selected value
-                                            onChanged: (value) {
-                                              // Trigger Bloc event and update numberType
-                                              selectedTabBloc
-                                                  .add(SelectIntEvent(0));
-                                              numberType = value;
-                                            },
-                                            value: appLocalization(context)
-                                                .business, // Value for this radio button
-                                          ),
-                                          Text(appLocalization(context)
-                                              .business),
-                                        ],
-                                      ),
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      // Add event to update selected tab and numberType
+                                      selectedTabBloc
+                                          .add(SelectStringEvent("business"));
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Radio(
+                                          focusColor: AppColor.deepYellowColor,
+                                          groupValue: numberType,
+                                          // Current selected value
+                                          onChanged: (value) {
+                                            // Trigger Bloc event and update numberType
+                                            selectedTabBloc
+                                                .add(SelectStringEvent(value));
+                                          },
+                                          value:
+                                              "business", // Value for this radio button
+                                        ),
+                                        Text(appLocalization(context).business),
+                                      ],
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        // Add event to update selected tab and numberType
-                                        selectedTabBloc.add(SelectIntEvent(1));
-                                      },
-                                      child: Row(
-                                        children: [
-                                          Radio(
-                                            focusColor:
-                                                AppColor.deepYellowColor,
-                                            groupValue: numberType,
-                                            // Current selected value
-                                            onChanged: (value) {
-                                              // Trigger Bloc event and update numberType
-                                              selectedTabBloc
-                                                  .add(SelectIntEvent(1));
-                                              numberType = value;
-                                            },
-                                            value: appLocalization(context)
-                                                .personal, // Value for this radio button
-                                          ),
-                                          Text(appLocalization(context)
-                                              .personal),
-                                        ],
-                                      ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      // Add event to update selected tab and numberType
+                                      selectedTabBloc
+                                          .add(SelectStringEvent("personal"));
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Radio(
+                                          focusColor: AppColor.deepYellowColor,
+                                          groupValue: numberType,
+                                          // Current selected value
+                                          onChanged: (value) {
+                                            // Trigger Bloc event and update numberType
+                                            selectedTabBloc
+                                                .add(SelectStringEvent(value));
+                                          },
+                                          value:
+                                              "personal", // Value for this radio button
+                                        ),
+                                        Text(appLocalization(context).personal),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ]);
+                                  ),
+                                ],
+                              );
                             }
-                            return Loader();
+                            return const Loader();
                           }),
                       // Row(
                       //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

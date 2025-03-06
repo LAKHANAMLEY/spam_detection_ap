@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
@@ -19,10 +21,10 @@ Future<Response> markSpamSms({
     headers: await ApiUrlConstants.headers(),
     body: body,
   );
-  print(body);
+  log(jsonEncode(body));
   // print('response.body ${response.body}');
   if (response.statusCode == 200) {
-    print(response.body);
+    // print(response.body);
     final data = json.decode(response.body);
     return Response.fromJson(data);
   } else {

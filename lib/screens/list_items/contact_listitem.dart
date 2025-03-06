@@ -50,6 +50,8 @@ class _ContactListItemState extends State<ContactListItem> {
                     child: Text(appLocalization(context).reportText),
                     onTap: () {
                       showModalBottomSheet(
+                        showDragHandle: true,
+                        useSafeArea: true,
                         isScrollControlled: true,
                         backgroundColor: AppColor.whiteColor,
                         context: context,

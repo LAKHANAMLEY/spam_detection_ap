@@ -273,6 +273,8 @@ class DeviceCallLogs extends StatelessWidget {
           onPressed: () {
             // Navigator.pushNamed(context, AppRoutes.dialPadScreen);
             showModalBottomSheet(
+                showDragHandle: true,
+
                 // enableDrag: true,
                 isScrollControlled: true,
                 backgroundColor: AppColor.whiteColor,

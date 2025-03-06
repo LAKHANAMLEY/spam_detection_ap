@@ -260,6 +260,8 @@ class _ContactDetailState extends State<ContactDetail> {
                                                 : ActionButton(
                                                     onTap: () {
                                                       showModalBottomSheet(
+                                                        showDragHandle: true,
+                                                        useSafeArea: true,
                                                         isScrollControlled:
                                                             true,
                                                         backgroundColor:
