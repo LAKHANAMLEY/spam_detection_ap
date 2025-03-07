@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class NotificationListItem extends StatelessWidget {
@@ -12,7 +13,13 @@ class NotificationListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomListTile(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.viewedProfile);
+        if (notification.isRead == "0") {
+          ///call read api
+          notificationListBloc.add(
+              ReadNotificationEvent(notificationId: notification.id ?? ""));
+        }
+        navigateByType(RemoteMessage(data: notification.toJson()), context);
+        // Navigator.pushNamed(context, AppRoutes.viewedProfile);
       },
       leading: const CircleAvatar(
           radius: 12,
@@ -24,8 +31,11 @@ class NotificationListItem extends StatelessWidget {
           Expanded(
             child: Text(
               notification.message ?? "",
-              style: const TextStyle(
-                  fontWeight: FontWeight.w600, color: AppColor.darkPurpleColor),
+              style: TextStyle(
+                  fontWeight: notification.isRead == "1"
+                      ? FontWeight.normal
+                      : FontWeight.w600,
+                  color: AppColor.darkPurpleColor),
             ),
           ),
           10.width(),
@@ -35,7 +45,7 @@ class NotificationListItem extends StatelessWidget {
           ),
         ],
       ),
-      subtitle: Text(notification.id.toString()),
+      // subtitle: Text(notification.type.toString()),
       /*
       trailing: Column(
         crossAxisAlignment: CrossAxisAlignment.end,

@@ -19,6 +19,15 @@ class PlanListResponse {
     this.planslist,
   });
 
+  PlanListResponse copyWith({
+    int? statusCode,
+    List<Planslist>? planslist,
+  }) =>
+      PlanListResponse(
+        statusCode: statusCode ?? this.statusCode,
+        planslist: planslist ?? this.planslist,
+      );
+
   factory PlanListResponse.fromJson(Map<String, dynamic> json) =>
       PlanListResponse(
         statusCode: json["status_code"],
@@ -37,94 +46,89 @@ class PlanListResponse {
 }
 
 class Planslist {
+  final String? id;
   final String? title;
   final String? code;
   final String? description;
-  final String? spamCheck;
-  final String? support;
-  final String? badge;
-  final String? adsFree;
-  final String? analytics;
-  final String? familySharing;
-  final String? whoViewedMyProfile;
-  final String? whoSearchedForMe;
-  final String? callRecording;
   final String? price;
   final String? isPopular;
-  final String? plansType;
-  final String? isAddon;
-  final String? threeMonthPrice;
-  final String? sixMonthPrice;
-  final String? yearlyPrice;
+  final String? callProtection;
   final String? emailProtection;
-  bool? isActive;
+  final String? smsProtection;
+  final String? familySharing;
+  final String? validity;
+  final int? isActive;
 
-  Planslist(
-      {this.title,
-      this.code,
-      this.description,
-      this.spamCheck,
-      this.support,
-      this.badge,
-      this.adsFree,
-      this.analytics,
-      this.familySharing,
-      this.whoViewedMyProfile,
-      this.whoSearchedForMe,
-      this.callRecording,
-      this.price,
-      this.isPopular,
-      this.plansType,
-      this.isAddon,
-      this.threeMonthPrice,
-      this.sixMonthPrice,
-      this.yearlyPrice,
-      this.emailProtection,
-      this.isActive});
+  Planslist({
+    this.id,
+    this.title,
+    this.code,
+    this.description,
+    this.price,
+    this.isPopular,
+    this.callProtection,
+    this.emailProtection,
+    this.smsProtection,
+    this.familySharing,
+    this.validity,
+    this.isActive,
+  });
 
-  factory Planslist.fromJson(Map<String, dynamic> json) => Planslist(
-        title: json["title"],
-        code: json["code"],
-        description: json["description"],
-        spamCheck: json["spam_check"],
-        support: json["support"],
-        badge: json["badge"],
-        adsFree: json["ads_free"],
-        analytics: json["analytics"],
-        familySharing: json["family_sharing"],
-        whoViewedMyProfile: json["who_viewed_my_profile"],
-        whoSearchedForMe: json["who_searched_for_me"],
-        callRecording: json["call_recording"],
-        price: json["price"],
-        isPopular: json["is_popular"],
-        plansType: json["plans_type"],
-        isAddon: json["is_addon"],
-        threeMonthPrice: json["three_month_price"],
-        sixMonthPrice: json["six_month_price"],
-        yearlyPrice: json["yearly_price"],
-        emailProtection: json["email_protection"],
+  Planslist copyWith({
+    String? id,
+    String? title,
+    String? code,
+    String? description,
+    String? price,
+    String? isPopular,
+    String? callProtection,
+    String? emailProtection,
+    String? smsProtection,
+    String? familySharing,
+    String? validity,
+    int? isActive,
+  }) =>
+      Planslist(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        code: code ?? this.code,
+        description: description ?? this.description,
+        price: price ?? this.price,
+        isPopular: isPopular ?? this.isPopular,
+        callProtection: callProtection ?? this.callProtection,
+        emailProtection: emailProtection ?? this.emailProtection,
+        smsProtection: smsProtection ?? this.smsProtection,
+        familySharing: familySharing ?? this.familySharing,
+        validity: validity ?? this.validity,
+        isActive: isActive ?? this.isActive,
       );
 
+  factory Planslist.fromJson(Map<String, dynamic> json) => Planslist(
+      id: json["id"],
+      title: json["title"],
+      code: json["code"],
+      description: json["description"],
+      price: json["price"],
+      isPopular: json["is_popular"],
+      callProtection: json["call_protection"],
+      emailProtection: json["email_protection"],
+      smsProtection: json["sms_protection"],
+      familySharing: json["family_sharing"],
+      validity: json["validity"],
+      isActive: json["is_active"]);
+
   Map<String, dynamic> toJson() => {
+        "id": id,
         "title": title,
         "code": code,
         "description": description,
-        "spam_check": spamCheck,
-        "support": support,
-        "badge": badge,
-        "ads_free": adsFree,
-        "analytics": analytics,
-        "family_sharing": familySharing,
-        "who_viewed_my_profile": whoViewedMyProfile,
-        "who_searched_for_me": whoSearchedForMe,
-        "call_recording": callRecording,
         "price": price,
         "is_popular": isPopular,
-        "plans_type": plansType,
-        "is_addon": isAddon,
-        "three_month_price": threeMonthPrice,
-        "six_month_price": sixMonthPrice,
-        "yearly_price": yearlyPrice,
+        "call_protection": callProtection,
         "email_protection": emailProtection,
+        "sms_protection": smsProtection,
+        "family_sharing": familySharing,
+        "validity": validity,
+        "is_active": isActive,
       };
 }

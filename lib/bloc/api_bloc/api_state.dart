@@ -195,6 +195,24 @@ class GetPlanListState extends ApiState {
   List<Object?> get props => [value];
 }
 
+class PurchasePlanState extends ApiState {
+  final Response value;
+
+  PurchasePlanState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class CancelPlanState extends ApiState {
+  final Response value;
+
+  CancelPlanState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
 // setting
 // call duration
 class GetCallDurationState extends ApiState {
@@ -358,6 +376,24 @@ class NotificationListState extends ApiState {
   final NotificationListResponse value;
 
   NotificationListState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class ReadNotificationState extends ApiState {
+  final Response value;
+
+  ReadNotificationState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class ClearAllNotificationState extends ApiState {
+  final Response value;
+
+  ClearAllNotificationState(this.value);
 
   @override
   List<Object?> get props => [value];

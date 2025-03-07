@@ -300,6 +300,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "electricity": MessageLookupByLibrary.simpleMessage("Electricity"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email address"),
+        "emailProtection":
+            MessageLookupByLibrary.simpleMessage("Email Protection"),
         "enjoy": MessageLookupByLibrary.simpleMessage("Enjoy"),
         "enjoyMember": MessageLookupByLibrary.simpleMessage(
             "Enjoy all the benefits of being an explorer member"),
@@ -369,6 +371,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Explore Home Page"),
         "failed": MessageLookupByLibrary.simpleMessage("Failed..."),
         "familyList": MessageLookupByLibrary.simpleMessage("Family List"),
+        "familySharing": MessageLookupByLibrary.simpleMessage("Family sharing"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "faster": MessageLookupByLibrary.simpleMessage("Faster"),
         "feeDetails": MessageLookupByLibrary.simpleMessage("Fee details"),
@@ -782,6 +785,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please select the type of account you will be setting up today."),
         "pleaseVerify": MessageLookupByLibrary.simpleMessage(
             "Please enter your valid phone number, We will send you a 4 digit code to verify."),
+        "popular": MessageLookupByLibrary.simpleMessage("Popular"),
         "position": MessageLookupByLibrary.simpleMessage("Position"),
         "poweredBy":
             MessageLookupByLibrary.simpleMessage("2024 @ Powered by BCTPay"),
@@ -947,6 +951,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
         "sms": MessageLookupByLibrary.simpleMessage("Sms"),
         "smsMth": MessageLookupByLibrary.simpleMessage("\$11.98/mth"),
+        "smsProtection": MessageLookupByLibrary.simpleMessage("SMS Protection"),
         "someOccurredAgain": MessageLookupByLibrary.simpleMessage(
             "Some error occurred. Please try again!"),
         "spamCalls": MessageLookupByLibrary.simpleMessage("Spam Calls"),

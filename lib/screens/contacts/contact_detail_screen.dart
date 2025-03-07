@@ -447,7 +447,7 @@ class _ContactDetailState extends State<ContactDetail> {
                             GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
-                                    context, AppRoutes.planType);
+                                    context, AppRoutes.planList);
                               },
                               child: Container(
                                 margin: const EdgeInsets.all(10.0),

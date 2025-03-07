@@ -72,6 +72,7 @@ class User {
   final XFile? photoFile;
   final String? companyName;
   final CountryData? countryData;
+  final Planslist? planDetails;
 
   User({
     this.userId,
@@ -101,6 +102,7 @@ class User {
     this.photoFile,
     this.companyName,
     this.countryData,
+    this.planDetails,
   });
 
   User copyWith(
@@ -128,7 +130,8 @@ class User {
           dynamic address2,
           String? country,
           String? token,
-          String? companyName}) =>
+          String? companyName,
+          Planslist? planDetails}) =>
       User(
         userId: userId ?? this.userId,
         userName: userName ?? this.userName,
@@ -155,36 +158,40 @@ class User {
         country: country ?? this.country,
         token: token ?? this.token,
         companyName: companyName ?? companyName,
+        planDetails: planDetails ?? this.planDetails,
       );
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        userId: json["user_id"],
-        userName: json["user_name"],
-        name: json["name"],
-        firstName: json["first_name"],
-        lastName: json["last_name"],
-        email: json["email"],
-        phone: json["phone"],
-        userRole: json["user_role"],
-        countryCode: json["country_code"],
-        crn: json["crn"],
-        corporateId: json["corporate_id"],
-        isEmailVerify: json["is_email_verify"],
-        photo: json["photo"],
-        supportPin: json["support_pin"],
-        gender: json["gender"],
-        dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
-        countryId: json["country_id"],
-        state: json["state"],
-        city: json["city"],
-        zip: json["zip"],
-        address: json["address"],
-        address2: json["address2"],
-        country: json["country"],
-        token: json["token"],
-        countryData: getCountryByNameOrDialCode(
-            countryName: json["country"], countryId: json['country_id']),
-      );
+      userId: json["user_id"],
+      userName: json["user_name"],
+      name: json["name"],
+      firstName: json["first_name"],
+      lastName: json["last_name"],
+      email: json["email"],
+      phone: json["phone"],
+      userRole: json["user_role"],
+      countryCode: json["country_code"],
+      crn: json["crn"],
+      corporateId: json["corporate_id"],
+      isEmailVerify: json["is_email_verify"],
+      photo: json["photo"],
+      supportPin: json["support_pin"],
+      gender: json["gender"],
+      dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+      countryId: json["country_id"],
+      state: json["state"],
+      city: json["city"],
+      zip: json["zip"],
+      address: json["address"],
+      address2: json["address2"],
+      country: json["country"],
+      token: json["token"],
+      countryData: getCountryByNameOrDialCode(
+          countryName: json["country"], countryId: json['country_id']),
+      companyName: json["company_name"],
+      planDetails: json["plan_details"] == null
+          ? null
+          : Planslist.fromJson(json["plan_details"]));
 
   Map<String, dynamic> toJson() => {
         "user_id": userId,
@@ -212,5 +219,7 @@ class User {
         "address2": address2,
         "country": country,
         "token": token,
+        "company_name": companyName,
+        "plan_details": planDetails?.toJson(),
       };
 }

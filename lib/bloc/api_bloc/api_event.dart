@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/models/api_body_model/purchase_plan_model.dart';
 
 abstract class ApiEvent extends Equatable {
   @override
@@ -223,6 +224,16 @@ class FamilyDeleteMemberEvent extends ApiEvent {
 // plan list
 class GetPlanListEvent extends ApiEvent {}
 
+class PurchasePlanEvent extends ApiEvent {
+  final PurchasePlanModel purchasePlanData;
+
+  PurchasePlanEvent({required this.purchasePlanData});
+  @override
+  List<Object?> get props => [purchasePlanData];
+}
+
+class CancelPlanEvent extends ApiEvent {}
+
 class GetCallDurationEvent extends ApiEvent {}
 
 class GetNumberTypeEvent extends ApiEvent {}
@@ -356,6 +367,17 @@ class DeleteAllCallLogEvent extends ApiEvent {}
 // notification
 // notification list
 class NotificationListEvent extends ApiEvent {}
+
+class ReadNotificationEvent extends ApiEvent {
+  final String notificationId;
+
+  ReadNotificationEvent({required this.notificationId});
+
+  @override
+  List<Object?> get props => [notificationId];
+}
+
+class ClearAllNotificationEvent extends ApiEvent {}
 
 // notification enabled
 class EnabledNotificationEvent extends ApiEvent {

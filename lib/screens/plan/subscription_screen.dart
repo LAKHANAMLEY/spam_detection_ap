@@ -1,13 +1,13 @@
 import 'package:spam_delection_app/lib.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class SubscriptionScreen extends StatefulWidget {
+  const SubscriptionScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SubscriptionScreen> createState() => _SubscriptionScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SubscriptionScreenState extends State<SubscriptionScreen> {
   bool isCallProtectionEnabled = true;
 
   bool isMessageProtectionEnabled = false;
@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    userBloc.add(GetUserProfileEvent());
     // subscriptionListBloc.add(GetPlanListEvent());
     super.initState();
   }
@@ -93,46 +94,83 @@ class _HomeScreenState extends State<HomeScreen> {
                   //       }
                   //       return const Loader();
                   //     }),
-                  SecurityOption(
-                    image: IconConstants.icCallSolar,
-                    title: appLocalization(context).callProtection,
-                    description: appLocalization(context).allSpamCalls,
-                    isEnabled: isCallProtectionEnabled,
-                    onToggle: (value) {
-                      setState(() {
-                        isCallProtectionEnabled = true;
-                      });
-                    },
-                  ),
-                  SecurityOption(
-                    image: IconConstants.icMessageLock,
-                    title: appLocalization(context).protectAIMessages,
-                    description:
-                        appLocalization(context).yourMessagesAreCurrently,
-                    isEnabled: isMessageProtectionEnabled,
-                    onToggle: (value) {
-                      setState(() {
-                        isMessageProtectionEnabled = value;
-                      });
-                    },
-                  ),
-                  SecurityOption(
-                    image: IconConstants.icEmailLock,
-                    title: appLocalization(context).protectAIEmail,
-                    description:
-                        appLocalization(context).yourEmailsAreCurrently,
-                    isEnabled: isEmailProtectionEnabled,
-                    onToggle: (value) {
-                      setState(() {
-                        isEmailProtectionEnabled = value;
-                      });
-                    },
-                  ),
+                  BlocBuilder(
+                      bloc: userBloc,
+                      builder: (context, state) {
+                        if (state is GetUserProfileState) {
+                          var user = User.fromJson(state.value.data);
+                          var plan = user.planDetails;
+                          return Column(
+                            children: [
+                              SecurityOption(
+                                image: IconConstants.icCallSolar,
+                                title: appLocalization(context).callProtection,
+                                description:
+                                    appLocalization(context).allSpamCalls,
+                                isEnabled: plan?.callProtection == "1",
+                                onToggle: (value) {
+                                  if (plan?.callProtection != "1") {
+                                    onActivatePressed();
+                                  }
+                                  // setState(() {
+                                  //   isCallProtectionEnabled = true;
+                                  // });
+                                },
+                              ),
+                              SecurityOption(
+                                image: IconConstants.icMessageLock,
+                                title:
+                                    appLocalization(context).protectAIMessages,
+                                description: appLocalization(context)
+                                    .yourMessagesAreCurrently,
+                                isEnabled: plan?.smsProtection == "1",
+                                onToggle: (value) {
+                                  if (plan?.smsProtection != "1") {
+                                    onActivatePressed();
+                                  }
+
+                                  // setState(() {
+                                  //   isMessageProtectionEnabled = value;
+                                  // });
+                                },
+                              ),
+                              SecurityOption(
+                                image: IconConstants.icEmailLock,
+                                title: appLocalization(context).protectAIEmail,
+                                description: appLocalization(context)
+                                    .yourEmailsAreCurrently,
+                                isEnabled: plan?.emailProtection == "1",
+                                onToggle: (value) {
+                                  if (plan?.emailProtection != "1") {
+                                    onActivatePressed();
+                                  }
+
+                                  // setState(() {
+                                  //   isEmailProtectionEnabled = value;
+                                  // });
+                                },
+                              ),
+                            ],
+                          );
+                        }
+                        return const Loader();
+                      }),
                 ]),
           ),
         ),
       ),
     );
+  }
+
+  void onActivatePressed() {
+    showCustomDialog(context, dialogType: DialogType.alert, onOkPressed: () {
+      bottomNavigationBloc.add(SelectIntEvent(3));
+      Navigator.pop(context);
+    },
+        content: const Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [Text("Upgrade to premium to active this feature")],
+        ));
   }
 }
 

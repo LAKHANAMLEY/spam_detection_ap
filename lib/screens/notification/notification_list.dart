@@ -8,7 +8,6 @@ class NotificationList extends StatefulWidget {
 }
 
 class _NotificationListState extends State<NotificationList> {
-  var notificationListBloc = ApiBloc(ApiBlocInitialState());
   var scrollController = ScrollController();
 
   @override
@@ -22,6 +21,17 @@ class _NotificationListState extends State<NotificationList> {
     return Scaffold(
       appBar: CustomAppBar(
         title: appLocalization(context).notificationList,
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                  onTap: () {
+                    notificationListBloc.add(ClearAllNotificationEvent());
+                  },
+                  child: Text(appLocalization(context).clearAllNotifications))
+            ],
+          )
+        ],
       ),
       backgroundColor: AppColor.whiteLightColor,
       body: SafeArea(
@@ -35,12 +45,6 @@ class _NotificationListState extends State<NotificationList> {
                 listener: (context, state) {
                   if (state is NotificationListState) {
                     if (state.value.statusCode == 200) {
-                      // showCustomDialog(
-                      //   context,
-                      //   dialogType: DialogType.success,
-                      //   subTitle:
-                      //       state.value.message ?? "Notification successfully!",
-                      // );
                     } else if (state.value.statusCode ==
                         HTTPStatusCodes.sessionExpired) {
                       sessionExpired(
@@ -50,11 +54,46 @@ class _NotificationListState extends State<NotificationList> {
                     } else {
                       showCustomDialog(
                         context,
-                        dialogType: DialogType.success,
+                        dialogType: DialogType.failed,
                         subTitle: state.value.message,
                       );
                     }
                     // notificationListBloc.add(NotificationListEvent());
+                  }
+                  if (state is ReadNotificationState) {
+                    if (state.value.statusCode == 200) {
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(
+                          context,
+                          state.value.message ??
+                              appLocalization(context).sessionPleaseLogInAgain);
+                    } else {
+                      showCustomDialog(
+                        context,
+                        dialogType: DialogType.failed,
+                        subTitle: state.value.message,
+                      );
+                    }
+                    notificationListBloc.add(NotificationListEvent());
+                  }
+
+                  if (state is ClearAllNotificationState) {
+                    if (state.value.statusCode == 200) {
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(
+                          context,
+                          state.value.message ??
+                              appLocalization(context).sessionPleaseLogInAgain);
+                    } else {
+                      showCustomDialog(
+                        context,
+                        dialogType: DialogType.failed,
+                        subTitle: state.value.message,
+                      );
+                    }
+                    notificationListBloc.add(NotificationListEvent());
                   }
                 },
                 builder: (context, state) {

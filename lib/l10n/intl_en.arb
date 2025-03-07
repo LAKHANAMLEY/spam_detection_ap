@@ -176,6 +176,7 @@
   "electricity": "Electricity",
   "email": "Email",
   "emailAddress": "Email address",
+  "emailProtection": "Email Protection",
   "enjoy": "Enjoy",
   "enjoyMember": "Enjoy all the benefits of being an explorer member",
   "enterAccountHolderName": "Enter account holder name",
@@ -217,6 +218,7 @@
   "exploreHomePage": "Explore Home Page",
   "failed": "Failed...",
   "familyList": "Family List",
+  "familySharing": "Family sharing",
   "faq": "FAQ",
   "faster": "Faster",
   "feeDetails": "Fee details",
@@ -481,6 +483,7 @@
   "pleaseSupportPin": "Please enter support pin",
   "pleaseTxt": "Please select the type of account you will be setting up today.",
   "pleaseVerify": "Please enter your valid phone number, We will send you a 4 digit code to verify.",
+  "popular": "Popular",
   "position": "Position",
   "poweredBy": "2024 @ Powered by BCTPay",
   "prev": "Prev",
@@ -549,6 +552,7 @@
   "roaming": "Roaming",
   "save": "Save",
   "saveMonths": "Save 23%",
+  "saveText": "Save",
   "saveYear": "Save 25%",
   "scan": "Scan",
   "scanBtnDescription": "Scan QR codes and make transactions.",
@@ -601,6 +605,7 @@
   "signUp": "Sign up",
   "sms": "Sms",
   "smsMth": "$11.98/mth",
+  "smsProtection": "SMS Protection",
   "someOccurredAgain": "Some error occurred. Please try again!",
   "spamCalls": "Spam Calls",
   "spamIdentified": "Spam calls identified",
@@ -718,6 +723,5 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code",
-  "saveText": "Save"
+  "zip": "Zip Code"
 }

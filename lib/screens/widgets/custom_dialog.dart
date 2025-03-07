@@ -9,24 +9,24 @@ enum DialogType {
   custom,
 }
 
-showCustomDialog(
-  context, {
-  DialogType dialogType = DialogType.info,
-  String? title,
-  String? subTitle,
-  Widget? titleWidget,
-  Widget? content,
-  List<Widget>? actions,
-  void Function()? onOkPressed,
-  void Function()? onCancelPressed,
-  bool showCancelBtn = false,
-  String? okBtnTxt,
-  String? cancelBtnTxt,
-  Color? okBtnColor,
-  Color? cancelBtnColor,
-}) =>
+showCustomDialog(context,
+        {DialogType dialogType = DialogType.info,
+        String? title,
+        String? subTitle,
+        Widget? titleWidget,
+        Widget? content,
+        List<Widget>? actions,
+        void Function()? onOkPressed,
+        void Function()? onCancelPressed,
+        bool showCancelBtn = false,
+        String? okBtnTxt,
+        String? cancelBtnTxt,
+        Color? okBtnColor,
+        Color? cancelBtnColor,
+        bool barrierDismissible = true}) =>
     showDialog(
       context: context,
+      barrierDismissible: barrierDismissible,
       builder: (context) => AlertDialog(
         title: titleWidget ?? Text(getTitle(dialogType) ?? title ?? ""),
         content: subTitle != null ? Text(subTitle) : content,

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
 Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
+  log(jsonEncode(callLogs));
   var body = [];
   for (int i = 0; i < callLogs.length; i++) {
     var log = callLogs[i];
@@ -43,6 +44,7 @@ Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
   var response = await http.Response.fromStream(streamedResponse);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
+    log(jsonEncode(jsonData));
     return Response.fromJson(jsonData);
   } else {
     throw Exception(response.body);

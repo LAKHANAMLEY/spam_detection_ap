@@ -126,7 +126,7 @@ class ApiUrlConstants {
       '$baseUrl/notifications/get-notifications-types';
 
   // call
-  static String syncCallLog = '$baseUrl/contacts/sync-call-log';
+  // static String syncCallLog = '$baseUrl/contacts/sync-call-log';
   static String getCallLogList = '$baseUrl/contacts/call-log-list';
   static String deleteCallLog =
       '$baseUrl/contacts/delete-call-log?lang=${AppConstants.selectedLanguage}';
@@ -143,4 +143,9 @@ class ApiUrlConstants {
   static String markSpamSms = '$baseUrl/sms/mark-spam';
   static String smsDeleteConversation = '$baseUrl/sms/delete-conversation';
   static String removeSpamSms = '$baseUrl/sms/remove-spam';
+  static String purchasePlan = '$baseUrl/plans/purchase-plan';
+  static String cancelPlan = '$baseUrl/plans/cancel-plan';
+  static String readNotification = '$baseUrl/notifications/seen-notification';
+  static String clearAllNotification =
+      '$baseUrl/notifications/clearallnotification';
 }

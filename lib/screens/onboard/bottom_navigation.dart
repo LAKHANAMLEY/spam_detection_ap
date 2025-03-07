@@ -13,12 +13,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
   double scale = 3.5;
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final List<Widget> _pages = [
-    const HomeScreen(),
+    const SubscriptionScreen(),
     const MessagesScreen(),
     const DeviceCallLogs(
       showAppBar: false,
     ),
-    const PlanType(
+    const PlanListScreen(
       showAppBar: false,
     ),
     // const Setting(),

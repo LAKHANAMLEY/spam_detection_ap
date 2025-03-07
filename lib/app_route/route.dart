@@ -8,7 +8,7 @@ class AppRoutes {
   static const callLogs = "/callLogs";
   static const contactList = "/contactList";
   static const contactDetail = "/contactDetail";
-  static const planType = "/planType";
+  static const planList = "/planList";
   static const register = "/register";
   static const forgotPwd = "/forgotPwd";
   static const forgotOTPVerification = "/forgotOTPVerification";
@@ -59,7 +59,7 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.callLogs: (context) => const DeviceCallLogs(),
   AppRoutes.contactList: (context) => const ContactList(),
   AppRoutes.contactDetail: (context) => const ContactDetail(),
-  AppRoutes.planType: (context) => const PlanType(),
+  AppRoutes.planList: (context) => const PlanListScreen(),
   AppRoutes.register: (context) => const Register(),
   AppRoutes.forgotPwd: (context) => const ForgotPassword(),
   AppRoutes.forgotOTPVerification: (context) => const ForgotOtpVerify(),

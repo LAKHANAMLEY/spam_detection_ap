@@ -1814,6 +1814,16 @@ class S {
     );
   }
 
+  /// `Email Protection`
+  String get emailProtection {
+    return Intl.message(
+      'Email Protection',
+      name: 'emailProtection',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enjoy`
   String get enjoy {
     return Intl.message(
@@ -2219,6 +2229,16 @@ class S {
     return Intl.message(
       'Family List',
       name: 'familyList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Family sharing`
+  String get familySharing {
+    return Intl.message(
+      'Family sharing',
+      name: 'familySharing',
       desc: '',
       args: [],
     );
@@ -4866,6 +4886,16 @@ class S {
     );
   }
 
+  /// `Popular`
+  String get popular {
+    return Intl.message(
+      'Popular',
+      name: 'popular',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Position`
   String get position {
     return Intl.message(
@@ -5546,6 +5576,16 @@ class S {
     );
   }
 
+  /// `Save`
+  String get saveText {
+    return Intl.message(
+      'Save',
+      name: 'saveText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Save 25%`
   String get saveYear {
     return Intl.message(
@@ -6061,6 +6101,16 @@ class S {
     return Intl.message(
       '\$11.98/mth',
       name: 'smsMth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SMS Protection`
+  String get smsProtection {
+    return Intl.message(
+      'SMS Protection',
+      name: 'smsProtection',
       desc: '',
       args: [],
     );
@@ -7243,16 +7293,6 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Save`
-  String get saveText {
-    return Intl.message(
-      'Save',
-      name: 'saveText',
       desc: '',
       args: [],
     );

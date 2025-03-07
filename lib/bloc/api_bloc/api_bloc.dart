@@ -1,3 +1,7 @@
+import 'package:spam_delection_app/data/repository/notification_repo/clear_all_notification_api.dart';
+import 'package:spam_delection_app/data/repository/notification_repo/read_notification_api.dart';
+import 'package:spam_delection_app/data/repository/plans_repo/cancel_plan_api.dart';
+import 'package:spam_delection_app/data/repository/plans_repo/purchase_plan_api.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
@@ -172,6 +176,22 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(GetPlanListState(value));
       });
     }
+
+    if (event is PurchasePlanEvent) {
+      emit(ApiLoadingState());
+      await purchasePlan(purchasePlanData: event.purchasePlanData)
+          .then((value) {
+        emit(PurchasePlanState(value));
+      });
+    }
+
+    if (event is CancelPlanEvent) {
+      emit(ApiLoadingState());
+      await cancelPlan().then((value) {
+        emit(CancelPlanState(value));
+      });
+    }
+
     //setting
     // call duration unit
     if (event is GetCallDurationEvent) {
@@ -311,6 +331,20 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       emit(ApiLoadingState());
       await notificationList().then((value) {
         emit(NotificationListState(value));
+      });
+    }
+
+    if (event is ReadNotificationEvent) {
+      emit(ApiLoadingState());
+      await readNotification(event.notificationId).then((value) {
+        emit(ReadNotificationState(value));
+      });
+    }
+
+    if (event is ClearAllNotificationEvent) {
+      emit(ApiLoadingState());
+      await clearAllNotification().then((value) {
+        emit(ClearAllNotificationState(value));
       });
     }
 

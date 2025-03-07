@@ -1,28 +1,28 @@
 import 'package:spam_delection_app/lib.dart';
 
-class PlanType extends StatefulWidget {
+class PlanListScreen extends StatefulWidget {
   final bool? showAppBar;
 
-  const PlanType({super.key, this.showAppBar = true});
+  const PlanListScreen({super.key, this.showAppBar = true});
 
   @override
-  State<PlanType> createState() => _PlanTypeState();
+  State<PlanListScreen> createState() => _PlanListScreenState();
 }
 
-class _PlanTypeState extends State<PlanType> {
-  var planTypeListBloc = ApiBloc(ApiBlocInitialState());
+class _PlanListScreenState extends State<PlanListScreen> {
+  var planListBloc = ApiBloc(ApiBlocInitialState());
 
   int selectedTab = 0;
 
   @override
   void initState() {
-    planTypeListBloc.add(GetPlanListEvent());
+    planListBloc.add(GetPlanListEvent());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var argument = args(context) as PlanType?;
+    var argument = args(context) as PlanListScreen?;
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
@@ -72,7 +72,7 @@ class _PlanTypeState extends State<PlanType> {
                 height: MediaQuery.of(context).size.height * 2 / 100,
               ),
               BlocBuilder(
-                  bloc: planTypeListBloc,
+                  bloc: planListBloc,
                   builder: (context, state) {
                     if (state is GetPlanListState) {
                       var plans = state.value.planslist ?? [];
@@ -94,7 +94,10 @@ class _PlanTypeState extends State<PlanType> {
                                 selectedTab = index;
                                 Navigator.pushNamed(
                                     context, AppRoutes.planDetail,
-                                    arguments: PlanDetail(plan: plans[index]));
+                                    arguments: PlanDetail(
+                                      plan: plans[index],
+                                      planListBloc: planListBloc,
+                                    ));
                                 // Navigator.push(
                                 //     context,
                                 //     MaterialPageRoute(

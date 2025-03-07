@@ -38,7 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nom du titulaire du compte"),
         "accountNumber":
             MessageLookupByLibrary.simpleMessage("Numéro de compte"),
-        "active": MessageLookupByLibrary.simpleMessage("Actif"),
+        "active": MessageLookupByLibrary.simpleMessage("Activa"),
         "addAlternativeEmail": MessageLookupByLibrary.simpleMessage(
             "Agregar correo electrónico alternativo"),
         "addBankAccount":
@@ -173,7 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseYourPlan": MessageLookupByLibrary.simpleMessage("Elige tu plan"),
         "city": MessageLookupByLibrary.simpleMessage("Ville"),
         "clearAllNotifications": MessageLookupByLibrary.simpleMessage(
-            "Effacer toutes les notifications"),
+            "Borrar todas las notificaciones"),
         "clientId": MessageLookupByLibrary.simpleMessage("Identité du client"),
         "close": MessageLookupByLibrary.simpleMessage("Fermer"),
         "closeQuery": MessageLookupByLibrary.simpleMessage("Fermer la requête"),
@@ -316,6 +316,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "email": MessageLookupByLibrary.simpleMessage("Correo electrónico"),
         "emailAddress": MessageLookupByLibrary.simpleMessage(
             "Dirección de correo electrónico"),
+        "emailProtection": MessageLookupByLibrary.simpleMessage(
+            "Protección de correo electrónico"),
         "enjoy": MessageLookupByLibrary.simpleMessage("Apprécier"),
         "enjoyMember": MessageLookupByLibrary.simpleMessage(
             "Disfruta de todos los beneficios de ser un miembro explorador"),
@@ -391,6 +393,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Explorar la página de inicio"),
         "failed": MessageLookupByLibrary.simpleMessage("Échoué..."),
         "familyList": MessageLookupByLibrary.simpleMessage("Lista familiar"),
+        "familySharing":
+            MessageLookupByLibrary.simpleMessage("Compartir en familia"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "faster": MessageLookupByLibrary.simpleMessage("Plus rapide"),
         "feeDetails": MessageLookupByLibrary.simpleMessage("Détails des frais"),
@@ -826,6 +830,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Seleccione el tipo de cuenta que va a configurar hoy."),
         "pleaseVerify": MessageLookupByLibrary.simpleMessage(
             "Ingrese su número de teléfono válido, le enviaremos un código de 4 dígitos para verificar."),
+        "popular": MessageLookupByLibrary.simpleMessage("Popular"),
         "position": MessageLookupByLibrary.simpleMessage("Posición"),
         "poweredBy":
             MessageLookupByLibrary.simpleMessage("2024 @ Propulsé par BCTPay"),
@@ -982,7 +987,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Envoyer de l\'argent"),
         "sendMoneyBtnDescription": MessageLookupByLibrary.simpleMessage(
             "Vous pouvez effectuer des transactions à vos bénéficiaires supplémentaires et vous pouvez également gérer les bénéficiaires."),
-        "sendSms": MessageLookupByLibrary.simpleMessage("enviar sms"),
+        "sendSms": MessageLookupByLibrary.simpleMessage("Enviar SMS"),
         "senderDetails":
             MessageLookupByLibrary.simpleMessage("Détails de l\'expéditeur"),
         "senderName":
@@ -1006,8 +1011,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "sideMenu": MessageLookupByLibrary.simpleMessage("Menu"),
         "signIn": MessageLookupByLibrary.simpleMessage("Connexion"),
         "signUp": MessageLookupByLibrary.simpleMessage("S\'inscrire"),
-        "sms": MessageLookupByLibrary.simpleMessage("mensajes de texto"),
+        "sms": MessageLookupByLibrary.simpleMessage("Mensaje de texto"),
         "smsMth": MessageLookupByLibrary.simpleMessage("\$11,98/mes"),
+        "smsProtection":
+            MessageLookupByLibrary.simpleMessage("Protección de SMS"),
         "someOccurredAgain": MessageLookupByLibrary.simpleMessage(
             "Se produjo un error. ¡Inténtalo de nuevo!"),
         "spamCalls":

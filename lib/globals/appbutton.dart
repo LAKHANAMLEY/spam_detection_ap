@@ -5,11 +5,13 @@ import 'colors.dart';
 class AppButton extends StatelessWidget {
   final String text;
   final Function onPress;
+  final Color? btnColor;
 
   const AppButton({
     super.key,
     required this.text,
     required this.onPress,
+    this.btnColor,
   });
 
   @override
@@ -21,15 +23,15 @@ class AppButton extends StatelessWidget {
       child: Container(
           width: MediaQuery.of(context).size.width * 90 / 100,
           height: MediaQuery.of(context).size.height * 7 / 100,
-          decoration: const BoxDecoration(
-            color: AppColor.themeYellowColor,
-            borderRadius: BorderRadius.all(Radius.circular(6)),
+          decoration: BoxDecoration(
+            color: btnColor ?? AppColor.themeYellowColor,
+            borderRadius: const BorderRadius.all(Radius.circular(6)),
           ),
           alignment: Alignment.center,
           child: Text(
             text,
             style: const TextStyle(
-                color: AppColor.blackColor,
+                color: AppColor.whiteColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 18),
           )),
