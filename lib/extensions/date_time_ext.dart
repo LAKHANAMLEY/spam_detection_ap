@@ -31,4 +31,7 @@ extension DateTimeExt on DateTime {
         yesterday.month == month &&
         yesterday.year == year;
   }
+
+  bool isSameDay(DateTime date) =>
+      day == date.day && month == date.month && year == date.year;
 }

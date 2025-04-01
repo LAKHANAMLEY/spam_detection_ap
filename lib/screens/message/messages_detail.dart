@@ -171,9 +171,24 @@ class MessagesDetail extends StatelessWidget {
             builder: (context, state) {
               return ListView.builder(
                 itemCount: sms?.smsDetails?.length,
-                itemBuilder: (context, index) => MessageView(
-                  sms: sms?.smsDetails?[index],
-                ),
+                itemBuilder: (context, index) {
+                  final previousMessageDate =
+                      index > 0 ? sms?.smsDetails![index - 1].date : null;
+                  final showDateHeader = (previousMessageDate == null ||
+                      (!sms!.smsDetails![index].date!
+                          .isSameDay(previousMessageDate)));
+                  return Column(
+                    children: [
+                      if (showDateHeader)
+                        Text(
+                            sms?.smsDetails?[index].date?.formatRelativeDay() ??
+                                ""),
+                      MessageView(
+                        sms: sms?.smsDetails?[index],
+                      ),
+                    ],
+                  );
+                },
               );
             }));
   }
@@ -217,79 +232,56 @@ class MessageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double radius = 10;
-    return Column(
-      children: [
-        Align(
-          alignment: Alignment.center,
-          child: Container(
-              margin: const EdgeInsets.all(2),
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              constraints: BoxConstraints(maxWidth: mq(context).width * .8),
-              // width: mq(context).width * .8,
-              decoration: const BoxDecoration(
-                color: AppColor.greyColor,
-                borderRadius: BorderRadius.all(Radius.circular(6)),
-              ),
-              child: Text(
-                sms?.date?.formatRelativeDay() ?? "",
-                style: textTheme(context)
-                    .bodyMedium
-                    ?.copyWith(color: Colors.black),
-              )),
-        ),
-        // 5.height(),
-        Align(
-          alignment: sms?.messageKind == SmsMessageKind.Sent.name
-              ? Alignment.centerRight
-              : Alignment.centerLeft,
-          child: Container(
-            padding: const EdgeInsets.all(5.0),
-            constraints: BoxConstraints(maxWidth: mq(context).width * .8),
-            child: Column(
-              crossAxisAlignment: sms?.messageKind == SmsMessageKind.Sent.name
-                  ? CrossAxisAlignment.end
-                  : CrossAxisAlignment.start,
-              children: [
-                Container(
-                    margin: const EdgeInsets.all(2),
-                    padding: const EdgeInsets.all(5),
-                    // constraints:
-                    //     BoxConstraints(maxWidth: mq(context).width * .8),
-                    // width: mq(context).width * .8,
-                    decoration: BoxDecoration(
-                      color: sms?.messageKind == SmsMessageKind.Sent.name
-                          ? AppColor.themeOrangeColor
-                          : AppColor.whiteColor,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: const Radius.circular(radius),
-                        bottomRight: const Radius.circular(radius),
-                        topLeft: (sms?.messageKind == SmsMessageKind.Sent.name)
-                            ? const Radius.circular(radius)
-                            : const Radius.circular(0),
-                        topRight: (sms?.messageKind == SmsMessageKind.Sent.name)
-                            ? const Radius.circular(0)
-                            : const Radius.circular(radius),
-                      ),
-                    ),
-                    child: Text(
-                      sms?.body ?? "",
-                    )),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    //print(sms?.sendreceiveDatetime);
-
-                    sms?.date?.formatTime() ?? "",
-                    style: textTheme(context)
-                        .bodySmall
-                        ?.copyWith(color: AppColor.greyColor),
+    return Align(
+      alignment: sms?.messageKind == SmsMessageKind.Sent.name
+          ? Alignment.centerRight
+          : Alignment.centerLeft,
+      child: Container(
+        padding: const EdgeInsets.all(5.0),
+        constraints: BoxConstraints(maxWidth: mq(context).width * .8),
+        child: Column(
+          crossAxisAlignment: sms?.messageKind == SmsMessageKind.Sent.name
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start,
+          children: [
+            Container(
+                margin: const EdgeInsets.all(2),
+                padding: const EdgeInsets.all(5),
+                // constraints:
+                //     BoxConstraints(maxWidth: mq(context).width * .8),
+                // width: mq(context).width * .8,
+                decoration: BoxDecoration(
+                  color: sms?.messageKind == SmsMessageKind.Sent.name
+                      ? AppColor.themeOrangeColor
+                      : AppColor.whiteColor,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: const Radius.circular(radius),
+                    bottomRight: const Radius.circular(radius),
+                    topLeft: (sms?.messageKind == SmsMessageKind.Sent.name)
+                        ? const Radius.circular(radius)
+                        : const Radius.circular(0),
+                    topRight: (sms?.messageKind == SmsMessageKind.Sent.name)
+                        ? const Radius.circular(0)
+                        : const Radius.circular(radius),
                   ),
                 ),
-              ],
+                child: Text(
+                  sms?.body ?? "",
+                )),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                //print(sms?.sendreceiveDatetime);
+
+                sms?.date?.formatTime() ?? "",
+                style: textTheme(context)
+                    .bodySmall
+                    ?.copyWith(color: AppColor.greyColor),
+              ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
