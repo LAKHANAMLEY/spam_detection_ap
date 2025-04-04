@@ -1,4 +1,6 @@
 // import 'package:spam_delection_app/utils/get_device_token.dart';
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
@@ -17,7 +19,7 @@ Future<ForgotResponse> forgotPassword({required String email}) async {
     },
     body: body,
   );
-  print(body);
+  log(jsonEncode(body));
   // print('response.body ${response.body}');
   if (response.statusCode == 200) {
     print(response.body);

@@ -2,7 +2,8 @@ import 'package:intl/intl.dart';
 
 extension DateTimeExt on DateTime {
   String formatDateTime() =>
-      DateFormat('dd MMM yyyy hh:mm a', 'en').format(this);
+      DateFormat('dd MMM, ${isCurrentYear(this) ? "" : "yyyy "}hh:mm a', 'en')
+          .format(this);
 
   String formatDate() => DateFormat('dd MMM yyyy').format(this);
 
@@ -34,4 +35,7 @@ extension DateTimeExt on DateTime {
 
   bool isSameDay(DateTime date) =>
       day == date.day && month == date.month && year == date.year;
+
+  bool isCurrentYear(DateTime date) => year == date.year;
+  bool isCurrentMonth(DateTime date) => month == date.month;
 }

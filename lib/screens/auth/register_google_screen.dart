@@ -97,44 +97,45 @@ class _RegisterFirstState extends State<RegisterGoogle> {
           SizedBox(
             height: MediaQuery.sizeOf(context).height * 4 / 100,
           ),
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              width: MediaQuery.sizeOf(context).width * 90 / 100,
-              height: MediaQuery.sizeOf(context).height * 8 / 100,
-              decoration: BoxDecoration(
-                color: AppColor.lightBrownColor.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(2),
-                border: Border.all(color: AppColor.lightBrownColor),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: MediaQuery.sizeOf(context).width * 8 / 100,
-                    height: MediaQuery.sizeOf(context).height * 4 / 100,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(IconConstants.icAppleLogo),
-                          fit: BoxFit.cover),
-                      shape: BoxShape.circle,
+          if (Platform.isIOS)
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                width: MediaQuery.sizeOf(context).width * 90 / 100,
+                height: MediaQuery.sizeOf(context).height * 8 / 100,
+                decoration: BoxDecoration(
+                  color: AppColor.lightBrownColor.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(2),
+                  border: Border.all(color: AppColor.lightBrownColor),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.sizeOf(context).width * 8 / 100,
+                      height: MediaQuery.sizeOf(context).height * 4 / 100,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(IconConstants.icAppleLogo),
+                            fit: BoxFit.cover),
+                        shape: BoxShape.circle,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 4 / 100,
-                  ),
-                  Text(
-                    appLocalization(context).registerWithApple,
-                    style: const TextStyle(
-                        color: AppColor.deepGreyColor,
-                        fontFamily: AppFont.fontFamily,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600),
-                  )
-                ],
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 4 / 100,
+                    ),
+                    Text(
+                      appLocalization(context).registerWithApple,
+                      style: const TextStyle(
+                          color: AppColor.deepGreyColor,
+                          fontFamily: AppFont.fontFamily,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 8 / 100,
           ),

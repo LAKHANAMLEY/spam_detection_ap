@@ -504,6 +504,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       });
     }
 
+    if (event is ListenMessagesStreamEvent) {
+      add(GetDeviceMessagesEvent());
+      // emit(ApiLoadingState());
+      // await getSms().then((value) {
+      //   emit(GetDeviceMessagesState(value));
+      // });
+    }
+
     if (event is GetDeviceMessagesEvent) {
       emit(ApiLoadingState());
       await getSms().then((value) {

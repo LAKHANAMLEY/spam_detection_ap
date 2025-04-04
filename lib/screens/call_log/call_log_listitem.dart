@@ -61,11 +61,11 @@ class CallLogListItem extends StatelessWidget {
               style: textTheme(context).titleMedium,
             ),
           ),
-          10.width(),
-          Text(
-            callLog.callTime?.formatRelativeDateTime() ?? "",
-            style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
-          ),
+          // 10.width(),
+          // Text(
+          //   callLog.callTime?.formatRelativeDateTime() ?? "",
+          //   style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
+          // ),
           //
         ],
       ),
@@ -74,7 +74,7 @@ class CallLogListItem extends StatelessWidget {
           if (callLog.markSpamByUser != null && callLog.markSpamByUser != 0)
             Text(
               "${callLog.markSpamByUser ?? 0} Spam reports",
-              style: textTheme(context).bodyMedium?.copyWith(color: Colors.red),
+              style: textTheme(context).bodySmall?.copyWith(color: Colors.red),
             )
           else ...[
             Icon(
@@ -86,13 +86,22 @@ class CallLogListItem extends StatelessWidget {
             Text(
               callLog.callType ?? "",
               style: textTheme(context)
-                  .bodyMedium
+                  .bodySmall
                   ?.copyWith(color: getCallTypeColor(callLog.callType)),
             ),
           ],
           const Circle(),
           // 2.width(),
-          Text(callLog.callDuration?.convertInMinSec() ?? ""),
+          Text(
+            callLog.callDuration?.convertInMinSec() ?? "",
+            style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
+          ),
+          const Circle(),
+
+          Text(
+            callLog.callTime?.formatRelativeDateTime() ?? "",
+            style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
+          ),
         ],
       ),
       trailing: Column(
@@ -176,11 +185,11 @@ String getCallTypeImage(CallLogData callLog) {
       case CallType.outgoing:
         return IconConstants.icOutgoing;
       case CallType.missed:
-        return IconConstants.icMissCall;
+        return IconConstants.icMissCall1;
       case CallType.voiceMail:
         return IconConstants.icFluentMail;
       case CallType.rejected:
-        return IconConstants.icMissCall;
+        return IconConstants.icMissCall1;
       case CallType.blocked:
         return IconConstants.icBlockCall;
       case CallType.answeredExternally:

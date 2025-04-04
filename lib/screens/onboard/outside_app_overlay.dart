@@ -14,6 +14,8 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
 
   StreamSubscription? streamSubs;
 
+  ContactData? contactData;
+
   void onData(data) {
     var callLog = CallLogData.fromJson(data);
     callLogDetailBloc.add(GetDeviceCallLogEvent(
@@ -56,8 +58,8 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
               if (state is GetDeviceCallLogState) {
                 if (state.value.isNotEmpty) {
                   var deviceCallLogs = state.value.first;
-                  callLogDetailBloc.add(CheckSpamEvent(
-                      callLogs: CallLogData(
+
+                  var callLog = CallLogData(
                     isManually: "1",
                     mobileNo: deviceCallLogs.number
                         ?.separatePhoneAndPhoneCode()
@@ -74,11 +76,35 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                     simdisplayname: deviceCallLogs.simDisplayName,
                     phoneaccountid: deviceCallLogs.phoneAccountId,
                     contactListId: "0",
-                  )));
+                  );
+                  contactData = ContactData(
+                    // isManually: "1",
+                    mobileNo: deviceCallLogs.number
+                        ?.separatePhoneAndPhoneCode()
+                        .phone,
+                    countryCode: deviceCallLogs.number
+                        ?.separatePhoneAndPhoneCode()
+                        .phoneCode,
+                    name: deviceCallLogs.name,
+                    callHistory: [callLog],
+                    isSpam: 0,
+                    isBlocked: 0,
+                    // callDurations: deviceCallLogs.duration.toString(),
+                    // callDurationUnit: "1",
+                    // callTime: deviceCallLogs.timestamp?.toDateTime(),
+                    // callType: deviceCallLogs.callType?.name,
+                    // simdisplayname: deviceCallLogs.simDisplayName,
+                    // phoneaccountid: deviceCallLogs.phoneAccountId,
+                    // contactListId: "0",
+                  );
+                  callLogDetailBloc.add(CheckSpamEvent(
+                    callLogs: callLog,
+                  ));
                 }
               }
               if (state is CheckSpamState) {
                 if (state.value.statusCode == 200) {
+                  contactData = state.value.phonespamdetails;
                   // var deviceCallLogs = state.value;
                 } else if (state.value.statusCode ==
                     HTTPStatusCodes.sessionExpired) {
@@ -89,137 +115,140 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
               }
             },
             builder: (context, state) {
-              if (state is CheckSpamState) {
-                var callLog = state.value.phonespamdetails;
-                return Container(
-                  padding: const EdgeInsets.all(15),
-                  margin: const EdgeInsets.all(0),
-                  decoration: BoxDecoration(
-                    color: callLog?.isSpam == 1
-                        ? AppColor.redColor
-                        : AppColor.darkPurpleColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
+              // if (state is CheckSpamState) {
+              return Container(
+                padding: const EdgeInsets.all(15),
+                margin: const EdgeInsets.all(0),
+                decoration: BoxDecoration(
+                  color: contactData?.isSpam == 1
+                      ? AppColor.redColor
+                      : AppColor.darkPurpleColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        if (contactData?.callHistory?.isNotEmpty ?? false)
                           CircleAvatar(
-                            child: Image.asset(
-                                getCallTypeImage(callLog!.callHistory!.first)),
+                            child: Image.asset(getCallTypeImage(
+                                contactData!.callHistory!.first)),
                             // backgroundImage: AssetImage(callLog?.isSpam == 1
                             //     ? IconConstants.icspamCircle
                             //     : IconConstants.icCaller),
                           ),
-                          5.width(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    "${callLog.callHistory?.first.callType ?? ""} call",
-                                    style:
-                                        textTheme(context).bodySmall?.copyWith(
-                                              color: AppColor.whiteColor,
-                                              // color: getCallTypeColor(callLog
-                                              //     ?.callHistory
-                                              //     ?.first
-                                              //     .callType),
-                                            ),
-                                  ),
-                                  5.width(),
-                                  Text(
-                                    callLog.callHistory?.first.simdisplayname ??
-                                        "",
-                                    style: textTheme(context)
-                                        .bodySmall
-                                        ?.copyWith(color: Colors.white),
-                                  ),
-                                  5.width(),
-                                  Text(
-                                    callLog.callHistory?.first.callTime
-                                            ?.formatRelativeDateTime() ??
-                                        "",
-                                    style: textTheme(context)
-                                        .bodySmall
-                                        ?.copyWith(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                callLog.name ??
-                                    ((callLog.countryCode?.isNotEmpty ?? false)
-                                        ? ("+${callLog.countryCode ?? ""} ${callLog.mobileNo ?? ""}")
-                                        : callLog.mobileNo ?? ""),
-                                style: textTheme(context)
-                                    .titleMedium
-                                    ?.copyWith(color: textColor),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      20.height(),
-                      ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(double.infinity, 40),
-                          // fixedSize: Size(double.infinity, 30),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, AppRoutes.contactDetail,
-                              arguments: ContactDetail(
-                                contact: ContactData(
-                                  name: callLog.name,
-                                  mobileNo: callLog.mobileNo ?? "",
+                        5.width(),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "${contactData?.callHistory?.first.callType ?? ""} call",
+                                  style: textTheme(context).bodySmall?.copyWith(
+                                        color: AppColor.whiteColor,
+                                        // color: getCallTypeColor(callLog
+                                        //     ?.callHistory
+                                        //     ?.first
+                                        //     .callType),
+                                      ),
                                 ),
-                              ));
-                        },
-                        label: Text(appLocalization(context).viewProfile),
-                        icon: const Icon(Icons.account_circle),
+                                5.width(),
+                                Text(
+                                  contactData
+                                          ?.callHistory?.first.simdisplayname ??
+                                      "",
+                                  style: textTheme(context)
+                                      .bodySmall
+                                      ?.copyWith(color: Colors.white),
+                                ),
+                                5.width(),
+                                Text(
+                                  contactData?.callHistory?.first.callTime
+                                          ?.formatRelativeDateTime() ??
+                                      "",
+                                  style: textTheme(context)
+                                      .bodySmall
+                                      ?.copyWith(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              contactData?.name ??
+                                  ((contactData?.countryCode?.isNotEmpty ??
+                                          false)
+                                      ? ("+${contactData?.countryCode ?? ""} ${contactData?.mobileNo ?? ""}")
+                                      : contactData?.mobileNo ?? ""),
+                              style: textTheme(context)
+                                  .titleMedium
+                                  ?.copyWith(color: textColor),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    20.height(),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 40),
+                        // fixedSize: Size(double.infinity, 30),
                       ),
-                      20.height(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "+${callLog.countryCode ?? ""} ${callLog.mobileNo ?? ""}",
-                            style: textTheme(context)
-                                .bodyMedium
-                                ?.copyWith(color: textColor),
-                          ),
-                          // Text(callLog.cachedNumberLabel ?? ""),
-                        ],
-                      ),
-                      10.height(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Btn(
-                            icon: Icons.phone,
-                            text: "CALL",
-                            onTap: () async {
-                              await DirectCallPlus.makeCall(
-                                  callLog.mobileNo ?? "");
-                            },
-                          ),
-                          Btn(
-                            icon: Icons.message,
-                            text: "MESSAGE",
-                            onTap: () {
-                              launchSms(context, callLog.mobileNo ?? "");
-                            },
-                          ),
-                          const Btn(icon: Icons.voice_chat, text: "VOICE"),
-                          const Btn(icon: Icons.edit, text: "EDIT"),
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              }
-              return const Loader();
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.contactDetail,
+                            arguments: ContactDetail(
+                              contact: ContactData(
+                                name: contactData?.name,
+                                mobileNo: contactData?.mobileNo ?? "",
+                              ),
+                            ));
+                      },
+                      label: Text(appLocalization(context).viewProfile),
+                      icon: const Icon(Icons.account_circle),
+                    ),
+                    20.height(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          (contactData?.countryCode?.isNotEmpty ?? false)
+                              ? "+${contactData?.countryCode ?? ""} ${contactData?.mobileNo ?? ""}"
+                              : contactData?.mobileNo ?? "",
+                          style: textTheme(context)
+                              .bodyMedium
+                              ?.copyWith(color: textColor),
+                        ),
+                        // Text(callLog.cachedNumberLabel ?? ""),
+                      ],
+                    ),
+                    10.height(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Btn(
+                          icon: Icons.phone,
+                          text: "CALL",
+                          onTap: () async {
+                            await DirectCallPlus.makeCall(
+                                contactData?.mobileNo ?? "");
+                          },
+                        ),
+                        Btn(
+                          icon: Icons.message,
+                          text: "MESSAGE",
+                          onTap: () {
+                            launchSms(context, contactData?.mobileNo ?? "");
+                          },
+                        ),
+                        const Btn(icon: Icons.voice_chat, text: "VOICE"),
+                        const Btn(icon: Icons.edit, text: "EDIT"),
+                      ],
+                    )
+                  ],
+                ),
+              );
+              // }
+              // return const Loader();
             }));
   }
 }

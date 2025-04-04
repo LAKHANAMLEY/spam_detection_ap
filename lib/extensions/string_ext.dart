@@ -12,8 +12,7 @@ extension StringExt on String {
       var phone = split("+${country.phonecode}").last;
       return PhoneData(phone: phone, phoneCode: country.phonecode);
     } else {
-      return PhoneData(
-          phone: this, phoneCode: AppConstants.selectedCountry?.phonecode);
+      return PhoneData(phone: this, phoneCode: "");
     }
   }
 

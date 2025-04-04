@@ -551,6 +551,8 @@ class DashboardStatisticsEvent extends ApiEvent {
   List<Object?> get props => [days];
 }
 
+class ListenMessagesStreamEvent extends ApiEvent {}
+
 class GetDeviceMessagesEvent extends ApiEvent {}
 
 //edit contact

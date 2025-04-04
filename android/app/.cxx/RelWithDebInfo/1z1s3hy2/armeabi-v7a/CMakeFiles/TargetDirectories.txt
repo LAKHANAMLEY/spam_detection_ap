@@ -1,0 +1,2 @@
+/Volumes/RK TOSHIBA EXT/Flutter Projects/new/spam_detection_ap/android/app/.cxx/RelWithDebInfo/1z1s3hy2/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Volumes/RK TOSHIBA EXT/Flutter Projects/new/spam_detection_ap/android/app/.cxx/RelWithDebInfo/1z1s3hy2/armeabi-v7a/CMakeFiles/rebuild_cache.dir

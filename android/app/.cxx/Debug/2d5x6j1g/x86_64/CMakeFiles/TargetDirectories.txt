@@ -1,0 +1,2 @@
+/Volumes/RK TOSHIBA EXT/Flutter Projects/new/spam_detection_ap/android/app/.cxx/Debug/2d5x6j1g/x86_64/CMakeFiles/edit_cache.dir
+/Volumes/RK TOSHIBA EXT/Flutter Projects/new/spam_detection_ap/android/app/.cxx/Debug/2d5x6j1g/x86_64/CMakeFiles/rebuild_cache.dir

@@ -7,8 +7,8 @@ class ImagePickerHelper {
     try {
       final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
       if (photo != null) {
-        return photo;
         debugPrint("Photo taken: ${photo.path}");
+        return photo;
       } else {
         return null;
       }

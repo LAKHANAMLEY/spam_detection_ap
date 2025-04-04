@@ -20,8 +20,8 @@ class CustomListTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-          margin: const EdgeInsets.all(5),
-          padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.all(2),
+          padding: const EdgeInsets.all(5),
           decoration: ThemeConstants.decoration,
           child: Row(
             children: [

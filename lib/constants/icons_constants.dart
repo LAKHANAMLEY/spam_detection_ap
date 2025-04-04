@@ -44,6 +44,7 @@ class IconConstants {
   static const String icIncomingCall = 'assets/icons/ic_incoming_call.png';
   static const String icOutgoingCall = 'assets/icons/ic_outgoing_call.png';
   static const String icMissCall = 'assets/icons/ic_missed_call.png';
+  static const String icMissCall1 = 'assets/icons/ic_missedCalls.png';
   static const String icBlockedCall = 'assets/icons/ic_blocked_call.png';
   static const String icDeleteCall = 'assets/icons/ic_delete_call.png';
   static const String icEditDetails = 'assets/icons/ic_Edit_details.png';
