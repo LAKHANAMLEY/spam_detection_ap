@@ -227,7 +227,7 @@
   "fileDownloaded": "File downloaded",
   "firstName": "First name",
   "forYou": "For you",
-  "forgotPassDetails": "Enter your email address for the verification process. We will send 6 digit code to your email.",
+  "forgotPassDetails": "Enter your email address for the verification process. We will send 6 digit code to your email or sms.",
   "forgotPassword": "Forgot Password",
   "forgotPasswordText": "Forgot Password?",
   "freeTrialForNewSubscribers": "3 days free trial for new subscribers only",
@@ -723,5 +723,11 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code"
+  "zip": "Zip Code",
+  "subscription": "Subscription",
+  "termsAndConditions": "Terms and Conditions",
+  "contactUS": "Contact us",
+  "privacyPolicyTxt": "Privacy Policy",
+  "pinNumberMustDigits": "Pin number must be 6 digits",
+  "pinNumberMustContainOnlDigits": "Pin number must contain only digits"
 }

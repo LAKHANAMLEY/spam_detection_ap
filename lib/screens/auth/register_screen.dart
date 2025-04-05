@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class Register extends StatefulWidget {
   final UserCredential? userCredencial;
+
   const Register({
     super.key,
     this.userCredencial,
@@ -206,6 +208,11 @@ class _RegisterState extends State<Register> {
                                   },
                                   builder: (context, state) {
                                     return CustomTextField(
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.deny(
+                                            RegExp(r'[/\\]')),
+                                        FilteringTextInputFormatter.digitsOnly,
+                                      ],
                                       keyboardType: TextInputType.phone,
                                       //readOnly: true,
                                       controller: phoneController,

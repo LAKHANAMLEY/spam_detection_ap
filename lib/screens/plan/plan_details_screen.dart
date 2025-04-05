@@ -514,7 +514,7 @@ class PlanDurationTypeCardView extends StatelessWidget {
       //   });
       // },
       child: Card(
-        elevation: 2.0, // Optional: adds shadow to the card
+        elevation: 2.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
               8), // Applies general rounding to the card if needed
@@ -592,6 +592,7 @@ class PlanDurationTypeCardView extends StatelessWidget {
 class ProtectionTypeView extends StatelessWidget {
   final bool isActive;
   final String title;
+
   const ProtectionTypeView(
       {super.key, required this.isActive, required this.title});
 

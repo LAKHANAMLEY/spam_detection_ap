@@ -194,7 +194,8 @@ class Profile extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            bottomNavigationBloc.add(SelectIntEvent(3));
+                            Navigator.pushNamed(context, AppRoutes.planList);
+                            //bottomNavigationBloc.add(SelectIntEvent(3));
                           },
                           child: Container(
                             margin: const EdgeInsets.only(left: 20, right: 20),

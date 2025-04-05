@@ -115,6 +115,7 @@ class _WelcomeState extends State<Welcome> {
                       style: const TextStyle(
                           color: AppColor.lightGraniteColor,
                           fontSize: 15,
+                          //fontWeight: FontWeight.w600,
                           fontFamily: AppFont.fontFamily),
                     ),
                   ),

@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class AddStaffMember extends StatefulWidget {
@@ -34,6 +35,17 @@ class _AddStaffMemberState extends State<AddStaffMember> {
 
   XFile? selectedImage;
 
+  String? _validatePin(String? value) {
+    if (value == null || value.isEmpty) {
+      return appLocalization(context).pleaseSupportPin;
+    } else if (value.length != 6) {
+      return appLocalization(context).pinNumberMustDigits;
+    } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+      return appLocalization(context).pinNumberMustContainOnlDigits;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +58,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                   if (state is StaffAddMemberState) {
                     if (state.value.statusCode == 200) {
                       Navigator.pop(context);
+                      addStaffBloc.add(GetStaffMemberListEvent());
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,
@@ -277,17 +290,24 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                             ),
                             10.height(),
                             CustomTextField(
+                              inputFormatters: [
+                                FilteringTextInputFormatter.deny(
+                                    RegExp(r'[/\\]')),
+                                FilteringTextInputFormatter.digitsOnly,
+                              ],
+                              keyboardType: TextInputType.phone,
                               controller: supportPinController,
                               labelText: appLocalization(context).supportPin,
                               hintText: appLocalization(context).supportPin,
                               //suffix: Image.asset(IconConstants.icUsername),
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .pleaseSupportPin;
-                                }
-                                return null;
-                              },
+                              validator: _validatePin,
+                              // validator:  (p0) {
+                              //   if (p0?.isEmpty ?? true) {
+                              //     return appLocalization(context)
+                              //         .pleaseSupportPin;
+                              //   }
+                              //   return null;
+                              // },
                             ),
                             10.height(),
                             BlocConsumer(
@@ -299,6 +319,11 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                 },
                                 builder: (context, state) {
                                   return CustomTextField(
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.deny(
+                                          RegExp(r'[/\\]')),
+                                      FilteringTextInputFormatter.digitsOnly,
+                                    ],
                                     keyboardType: TextInputType.phone,
                                     controller: phoneNumberController,
                                     hintText:

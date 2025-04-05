@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class AddFamilyMember extends StatefulWidget {
@@ -47,6 +48,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                   if (state is FamilyAddMemberState) {
                     if (state.value.statusCode == 200) {
                       Navigator.pop(context);
+                      addMemberBloc.add(GetFamilyMemberListEvent());
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,
@@ -299,6 +301,12 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 },
                                 builder: (context, state) {
                                   return CustomTextField(
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.deny(
+                                          RegExp(r'[/\\]')),
+                                      FilteringTextInputFormatter.digitsOnly,
+                                    ],
+
                                     keyboardType: TextInputType.phone,
                                     // readOnly: true,
                                     controller: phoneController,

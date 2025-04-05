@@ -157,6 +157,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                                     ),
                                   ),
                                 ),
+                                //30.height(),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
                                       4 /
@@ -176,6 +177,7 @@ class _ProtectionTypeState extends State<ProtectionType> {
                             ),
                           ),
                         ),
+                        //30.height(),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 5 / 100,
                         ),

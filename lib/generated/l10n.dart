@@ -2324,10 +2324,10 @@ class S {
     );
   }
 
-  /// `Enter your email address for the verification process. We will send 6 digit code to your email.`
+  /// `Enter your email address for the verification process. We will send 6 digit code to your email or sms.`
   String get forgotPassDetails {
     return Intl.message(
-      'Enter your email address for the verification process. We will send 6 digit code to your email.',
+      'Enter your email address for the verification process. We will send 6 digit code to your email or sms.',
       name: 'forgotPassDetails',
       desc: '',
       args: [],
@@ -7293,6 +7293,66 @@ class S {
     return Intl.message(
       'Zip Code',
       name: 'zip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscription`
+  String get subscription {
+    return Intl.message(
+      'Subscription',
+      name: 'subscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms and Conditions`
+  String get termsAndConditions {
+    return Intl.message(
+      'Terms and Conditions',
+      name: 'termsAndConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact us`
+  String get contactUS {
+    return Intl.message(
+      'Contact us',
+      name: 'contactUS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy Policy`
+  String get privacyPolicyTxt {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicyTxt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pin number must be 6 digits`
+  String get pinNumberMustDigits {
+    return Intl.message(
+      'Pin number must be 6 digits',
+      name: 'pinNumberMustDigits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pin number must contain only digits`
+  String get pinNumberMustContainOnlDigits {
+    return Intl.message(
+      'Pin number must contain only digits',
+      name: 'pinNumberMustContainOnlDigits',
       desc: '',
       args: [],
     );

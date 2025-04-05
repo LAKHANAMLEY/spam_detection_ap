@@ -177,6 +177,7 @@ class _LoginGoogleState extends State<LoginGoogle> {
                           ),
                         ),
                       ),
+                      //30.height(),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 8 / 100,
                       ),

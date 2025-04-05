@@ -81,35 +81,45 @@ class _PlanListScreenState extends State<PlanListScreen> {
                           child: Text(appLocalization(context).noData),
                         );
                       }
-                      return ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: plans.length,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return PlanListItem(
-                              plan: plans[index],
-                              selectedTab: selectedTab,
-                              onTap: () {
-                                // setState(() {
-                                selectedTab = index;
-                                Navigator.pushNamed(
-                                    context, AppRoutes.planDetail,
-                                    arguments: PlanDetail(
-                                      plan: plans[index],
-                                      planListBloc: planListBloc,
-                                    ));
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             const PlanDetail()));
-                                // });
-                              },
-                            );
-                          });
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          // color: AppColor.blackColor,
+                          height: 360,
+                          //width: 250,
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: plans.length,
+                              scrollDirection: Axis.horizontal,
+                              physics: ScrollPhysics(),
+                              itemBuilder: (context, index) {
+                                return PlanListItem(
+                                  plan: plans[index],
+                                  selectedTab: selectedTab,
+                                  onTap: () {
+                                    // setState(() {
+                                    selectedTab = index;
+                                    Navigator.pushNamed(
+                                        context, AppRoutes.planDetail,
+                                        arguments: PlanDetail(
+                                          plan: plans[index],
+                                          planListBloc: planListBloc,
+                                        ));
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //             const PlanDetail()));
+                                    // });
+                                  },
+                                );
+                              }),
+                        ),
+                      );
                     }
                     return const Loader();
                   }),
+              20.height()
               // SizedBox(
               //   height: MediaQuery.of(context).size.height * 2 / 100,
               // ),
