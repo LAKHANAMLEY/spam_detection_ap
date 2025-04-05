@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc.dart';
 import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_event.dart';
 import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_state.dart';
@@ -20,9 +22,11 @@ class MessagesScreen extends StatelessWidget {
         child: BlocListener<SmsBloc, SmsState>(
           listener: (context, state) {
             if (state is SmsInitial) {
+              log("Initial state");
               context.read<SmsBloc>().add(StartListeningSms());
             }
             if (state is SmsReceived) {
+              log("SMS received");
               messagesBloc.add(GetDeviceMessagesEvent());
             }
           },

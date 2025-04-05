@@ -111,12 +111,12 @@
                 <action android:name="android.provider.Telephony.SMS_DELIVER" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".IncomingSmsReceiver"
+        <!-- <receiver android:name=".IncomingSmsReceiver"
             android:permission="android.permission.BROADCAST_SMS" android:exported="true">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
-        </receiver>
+        </receiver> -->
         <!-- BroadcastReceiver that listens for incoming MMS messages -->
         <receiver android:name=".MmsReceiver"
             android:permission="android.permission.BROADCAST_WAP_PUSH"

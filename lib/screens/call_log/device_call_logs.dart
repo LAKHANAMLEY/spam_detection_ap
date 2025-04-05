@@ -8,14 +8,14 @@ class DeviceCallLogs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // List<CallLogData> callLogs = [];
-    // List<CallLogData> filteredCallLogs = [];
     final searchController = TextEditingController();
     final scrollController = ScrollController();
+    List<CallLogData> callLogs = [];
+    List<CallLogData> filteredCallLogs = [];
     // bool isVisible = false;
     // final showHideTextFieldBloc = SelectionBloc(SelectBoolState(true));
     final searchBloc = SelectionBloc(SelectStringState(""));
-    // callLogsListBloc.add(GetCallLogsEvent());
+    callLogsListBloc.add(GetCallLogsEvent());
     return Scaffold(
       appBar: (showAppBar ?? showAppBar ?? false)
           ? CustomAppBar(
@@ -116,16 +116,16 @@ class DeviceCallLogs extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, AppRoutes.contactList);
                       },
-                      label: const Text("Contacts"),
+                      label: Text(appLocalization(context).contacts),
                       icon: const Icon(Icons.contacts_outlined),
                     ),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.contactList);
-                      },
-                      label: const Text("Favourite"),
-                      icon: const Icon(Icons.favorite_border_outlined),
-                    )
+                    // ElevatedButton.icon(
+                    //   onPressed: () {
+                    //     Navigator.pushNamed(context, AppRoutes.contactList);
+                    //   },
+                    //   label: const Text("Favourite"),
+                    //   icon: const Icon(Icons.favorite_border_outlined),
+                    // )
                   ],
                 ),
                 Expanded(
@@ -137,13 +137,23 @@ class DeviceCallLogs extends StatelessWidget {
                         }
                         if (state is GetDeviceCallLogState) {
                           var deviceCallLogs = state.value;
+                          callLogs = deviceCallLogs
+                              .map((e) => CallLogData(
+                                    mobileNo: e.number,
+                                    callDuration: e.duration.toString(),
+                                    name: e.name,
+                                    callType: e.callType?.name,
+                                    callTime: e.timestamp?.toDateTime(),
+                                  ))
+                              .toList();
+                          filteredCallLogs = filter("", callLogs);
                           callLogsListBloc
                               .add(SyncCallLogEvent(callLogs: deviceCallLogs));
                         }
                         if (state is GetCallLogsState) {
                           if (state.value.statusCode == 200) {
-                            // callLogs = state.value.callloglist ?? [];
-                            // filteredCallLogs = filter("", callLogs);
+                            callLogs = state.value.callloglist ?? [];
+                            filteredCallLogs = filter("", callLogs);
                           } else if (state.value.statusCode ==
                               HTTPStatusCodes.sessionExpired) {
                             sessionExpired(context, state.value.message ?? "");
@@ -160,7 +170,8 @@ class DeviceCallLogs extends StatelessWidget {
                           } else {
                             showToast(state.value.message);
                           }
-                          callLogsListBloc.add(GetCallLogsEvent());
+
+                          (GetCallLogsEvent());
                         }
                         if (state is DeleteAllCallLogState) {
                           if (state.value.statusCode == 200) {
@@ -193,56 +204,67 @@ class DeviceCallLogs extends StatelessWidget {
                         }
                       },
                       builder: (context, state) {
-                        if (state is GetCallLogsState) {
-                          var callLogs = state.value.callloglist ?? [];
-                          var filteredCallLogs = filter("", callLogs);
-                          // if (filteredCallLogs.isEmpty) {
-                          //   return Center(
-                          //       child:
-                          //           Text(appLocalization(context).noContacts));
-                          // }
-                          return ModalProgressHUD(
-                              inAsyncCall: state is ApiLoadingState ||
-                                  markSpamState is ApiLoadingState,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: BlocConsumer(
-                                    bloc: searchBloc,
-                                    listener: (context, state) {
-                                      if (state is SelectStringState) {
-                                        filteredCallLogs =
-                                            filter(state.value ?? "", callLogs);
-                                      }
-                                    },
-                                    builder: (context, state) {
-                                      return (filteredCallLogs.isEmpty &&
-                                              searchController.text.isNotEmpty)
-                                          ? SizedBox(
-                                              height: 80,
-                                              child: CallLogListItem(
-                                                  // showPopupMenuBtn: false,
-                                                  callLog: CallLogData(
-                                                mobileNo: searchController.text,
-                                              )),
-                                            )
-                                          // Center(
-                                          //     child: Text(appLocalization(context)
-                                          //         .noData),
-                                          //   )
-                                          : ListView.builder(
-                                              shrinkWrap: true,
-                                              controller: scrollController,
-                                              itemCount:
-                                                  filteredCallLogs.length,
-                                              itemBuilder: (context, index) =>
-                                                  CallLogListItem(
-                                                    callLog:
-                                                        filteredCallLogs[index],
-                                                  ));
-                                    }),
-                              ));
-                        }
-                        return const Loader();
+                        // if (state is GetCallLogsState) {
+
+                        // if (filteredCallLogs.isEmpty) {
+                        //   return Center(
+                        //       child:
+                        //           Text(appLocalization(context).noContacts));
+                        // }
+                        return ModalProgressHUD(
+                            inAsyncCall: //state is ApiLoadingState ||
+                                markSpamState is ApiLoadingState,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: BlocConsumer(
+                                  bloc: searchBloc,
+                                  listener: (context, state) {
+                                    if (state is SelectStringState) {
+                                      filteredCallLogs =
+                                          filter(state.value ?? "", callLogs);
+                                    }
+                                  },
+                                  builder: (context, searchState) {
+                                    return (filteredCallLogs.isEmpty &&
+                                            searchController.text.isNotEmpty)
+                                        ? SizedBox(
+                                            height: 80,
+                                            child: CallLogListItem(
+                                                // showPopupMenuBtn: false,
+                                                callLog: CallLogData(
+                                              mobileNo: searchController.text,
+                                            )),
+                                          )
+                                        // Center(
+                                        //     child: Text(appLocalization(context)
+                                        //         .noData),
+                                        //   )
+                                        : (state is ApiLoadingState &&
+                                                filteredCallLogs.isEmpty)
+                                            ? Loader()
+                                            : filteredCallLogs.isEmpty
+                                                ? Center(
+                                                    child: Text(
+                                                        appLocalization(context)
+                                                            .noData),
+                                                  )
+                                                : ListView.builder(
+                                                    shrinkWrap: true,
+                                                    controller:
+                                                        scrollController,
+                                                    itemCount:
+                                                        filteredCallLogs.length,
+                                                    itemBuilder:
+                                                        (context, index) =>
+                                                            CallLogListItem(
+                                                              callLog:
+                                                                  filteredCallLogs[
+                                                                      index],
+                                                            ));
+                                  }),
+                            ));
+                        // }
+                        // return const Loader();
                       }),
                 ),
               ],

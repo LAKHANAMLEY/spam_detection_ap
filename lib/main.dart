@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state_background/phone_state_background.dart';
 import 'package:spam_delection_app/lib.dart';
 
@@ -35,7 +34,7 @@ Future<void> phoneStateBackgroundCallbackHandler(
   int duration,
 ) async {
   // if (event != null)
-  await permissionRequest(Permission.systemAlertWindow);
+  // await permissionRequest(Permission.systemAlertWindow);
   showOverlay(
       callType: getCallTypeStringFromBGPhoneState(event),
       number: number,
@@ -76,6 +75,7 @@ class MyApp extends StatelessWidget {
                 supportedLocales: AppLocalizations.supportedLocales,
                 debugShowCheckedModeBanner: false,
                 locale: state.locale,
+                themeMode: ThemeMode.light,
                 theme: ThemeConstants.lightTheme(),
                 darkTheme: ThemeConstants.darkTheme(),
                 routes: routes,

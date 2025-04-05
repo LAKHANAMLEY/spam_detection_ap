@@ -22,3 +22,28 @@ Future<PermissionStatus?> permissionRequest(Permission permission) async {
   }
   return status;
 }
+
+Future<void> requestMultiplePermissions() async {
+  Map<Permission, PermissionStatus> statuses = await [
+    Permission.contacts,
+    Permission.sms,
+    Permission.systemAlertWindow,
+    Permission.notification,
+    Permission.camera,
+    Permission.photos, // or Permission.storage for older versions
+    Permission.storage, //For read and write external storage, if you need this.
+  ].request();
+
+  statuses.forEach((permission, status) {
+    print('$permission: $status');
+    if (status.isGranted) {
+      print('$permission granted');
+    } else if (status.isDenied) {
+      print('$permission denied');
+    } else if (status.isPermanentlyDenied) {
+      print('$permission permanently denied');
+      // Open app settings to allow the user to grant the permission manually.
+      openAppSettings();
+    }
+  });
+}

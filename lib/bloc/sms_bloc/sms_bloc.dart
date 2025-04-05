@@ -1,4 +1,6 @@
 // Bloc
+import 'dart:developer';
+
 import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_event.dart';
 import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_state.dart';
 import 'package:spam_delection_app/globals/index.dart';
@@ -17,9 +19,11 @@ class SmsBloc extends Bloc<SmsEvent, SmsState> {
     emit(SmsListening());
     try {
       _smsSubscription = _receiver.onSmsReceived?.listen((SmsMessage msg) {
+        log(msg.toString());
         add(SmsReceived(msg));
       });
     } catch (e) {
+      log(e.toString());
       emit(SmsError(e.toString()));
     }
   }
