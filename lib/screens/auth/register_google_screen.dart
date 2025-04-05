@@ -37,19 +37,11 @@ class _RegisterFirstState extends State<RegisterGoogle> {
             onTap: () async {
               try {
                 var userCredential = await signInWithGoogle();
-                if (userCredential != null) {
-                  Navigator.pushNamed(context, AppRoutes.register,
-                      arguments: Register(
-                        userCredencial: userCredential,
-                      ));
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                        content: Text(appLocalization(context)
-                            .googleSignFailedPleaseAgain)),
-                  );
-                }
-              } catch (e) {
+                Navigator.pushNamed(context, AppRoutes.register,
+                    arguments: Register(
+                      userCredencial: userCredential,
+                    ));
+                            } catch (e) {
                 print('Error during Google Sign-In: $e');
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

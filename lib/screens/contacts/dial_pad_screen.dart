@@ -40,7 +40,7 @@ class _DialPadState extends State<DialPad> {
   }
 
   void onCallPressed() async {
-    if (enteredNumber == null || enteredNumber.isEmpty) {
+    if (enteredNumber.isEmpty) {
       print("Error: No number entered.");
       return;
     }

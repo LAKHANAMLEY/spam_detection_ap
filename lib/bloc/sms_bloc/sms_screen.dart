@@ -4,6 +4,8 @@ import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_state.dart';
 import 'package:spam_delection_app/globals/index.dart';
 
 class SmsScreen extends StatelessWidget {
+  const SmsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
