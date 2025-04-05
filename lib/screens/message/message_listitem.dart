@@ -24,16 +24,18 @@ class MessageListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(
-            (sms.name?.isNotEmpty ?? false)
-                ? sms.name ?? ""
-                : sms.address ?? "",
-            // : sms.countryCode?.isNotEmpty ?? false
-            //     ? "+${sms.countryCode} ${sms.address ?? ""}"
-            //     : sms.address ?? "",
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: textTheme(context).titleMedium,
+          Flexible(
+            child: Text(
+              (sms.name?.isNotEmpty ?? false)
+                  ? sms.name ?? ""
+                  : sms.address ?? "",
+              // : sms.countryCode?.isNotEmpty ?? false
+              //     ? "+${sms.countryCode} ${sms.address ?? ""}"
+              //     : sms.address ?? "",
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: textTheme(context).titleMedium,
+            ),
           ),
           10.width(),
           Text(

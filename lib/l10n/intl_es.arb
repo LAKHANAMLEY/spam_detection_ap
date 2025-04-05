@@ -231,7 +231,7 @@
   "fileDownloaded": "Fichier téléchargé",
   "firstName": "Prénom",
   "forYou": "Pour toi",
-  "forgotPassDetails": "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 6 dígitos a tu correo electrónico.",
+  "forgotPassDetails": "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 6 dígitos a tu correo electrónico o SMS.",
   "forgotPassword": "Has olvidado tu contraseña",
   "forgotPasswordText": "¿Has olvidado tu contraseña?",
   "freeTrialForNewSubscribers": "Prueba gratuita de 3 días solo para nuevos suscriptores",
@@ -727,5 +727,11 @@
   "yourPasswordHasBeenChangedSuccessfully": "Votre mot de passe a été changé avec succès .",
   "yourPasswordHasBeenResetSuccessfully": "Votre mot de passe a été réinitialisé avec succès.",
   "yourPaymentHasBeenSuccessfullyDone": "Votre paiement a été effectué avec succès.",
-  "zip": "Código postal"
+  "zip": "Código postal",
+  "subscription": "Suscripción",
+  "termsAndConditions": "Términos y condiciones",
+  "contactUS": "Contacta con nosotros",
+  "privacyPolicyTxt": "política de privacidad",
+  "pinNumberMustDigits": "El número PIN debe tener 6 dígitos",
+  "pinNumberMustContainOnlDigits": "El número PIN debe contener solo dígitos"
 }

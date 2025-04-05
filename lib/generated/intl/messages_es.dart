@@ -211,6 +211,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactPermission":
             MessageLookupByLibrary.simpleMessage("Autorisation de contact"),
         "contactText": MessageLookupByLibrary.simpleMessage("Contacto"),
+        "contactUS":
+            MessageLookupByLibrary.simpleMessage("Contacta con nosotros"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contactez-nous"),
         "continuePurchase":
             MessageLookupByLibrary.simpleMessage("Continuar comprando"),
@@ -405,7 +407,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("Prénom"),
         "forYou": MessageLookupByLibrary.simpleMessage("Pour toi"),
         "forgotPassDetails": MessageLookupByLibrary.simpleMessage(
-            "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 6 dígitos a tu correo electrónico."),
+            "Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 6 dígitos a tu correo electrónico o SMS."),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Has olvidado tu contraseña"),
         "forgotPasswordText": MessageLookupByLibrary.simpleMessage(
@@ -689,6 +691,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNumberOps": MessageLookupByLibrary.simpleMessage(
             "Número de teléfono (opcional)"),
         "pinCode": MessageLookupByLibrary.simpleMessage("Code PIN"),
+        "pinNumberMustContainOnlDigits": MessageLookupByLibrary.simpleMessage(
+            "El número PIN debe contener solo dígitos"),
+        "pinNumberMustDigits": MessageLookupByLibrary.simpleMessage(
+            "El número PIN debe tener 6 dígitos"),
         "pleasNewPasswordSecure": MessageLookupByLibrary.simpleMessage(
             "Ingrese una nueva contraseña para proteger su cuenta."),
         "pleaseAcceptTermsAndConditions": MessageLookupByLibrary.simpleMessage(
@@ -839,6 +845,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "primary": MessageLookupByLibrary.simpleMessage("Primaire"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage(
             "Politique de confidentialité"),
+        "privacyPolicyTxt":
+            MessageLookupByLibrary.simpleMessage("política de privacidad"),
         "proceedToPay":
             MessageLookupByLibrary.simpleMessage("Procéder au paiement"),
         "productName": MessageLookupByLibrary.simpleMessage("Nom du produit"),
@@ -1034,6 +1042,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "status": MessageLookupByLibrary.simpleMessage("Statut"),
         "submit": MessageLookupByLibrary.simpleMessage("Enrégistrer"),
         "submitText": MessageLookupByLibrary.simpleMessage("Entregar"),
+        "subscription": MessageLookupByLibrary.simpleMessage("Suscripción"),
         "success": MessageLookupByLibrary.simpleMessage("Succès!"),
         "successful": MessageLookupByLibrary.simpleMessage("Exitoso"),
         "supportPin":
@@ -1046,6 +1055,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "takeASelfie": MessageLookupByLibrary.simpleMessage("Prenez un selfie"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("tomar una foto"),
         "tax": MessageLookupByLibrary.simpleMessage("IMPÔT"),
+        "termsAndConditions":
+            MessageLookupByLibrary.simpleMessage("Términos y condiciones"),
         "theme": MessageLookupByLibrary.simpleMessage("Thème"),
         "thisFieldShouldNotBeEmpty": MessageLookupByLibrary.simpleMessage(
             "Ce champ ne devrait pas être vide"),

@@ -203,6 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactPermission":
             MessageLookupByLibrary.simpleMessage("Contact permission"),
         "contactText": MessageLookupByLibrary.simpleMessage("Contacts"),
+        "contactUS": MessageLookupByLibrary.simpleMessage("Contact us"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact us"),
         "continuePurchase":
             MessageLookupByLibrary.simpleMessage("Continue to Purchase"),
@@ -382,7 +383,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
         "forYou": MessageLookupByLibrary.simpleMessage("For you"),
         "forgotPassDetails": MessageLookupByLibrary.simpleMessage(
-            "Enter your email address for the verification process. We will send 6 digit code to your email."),
+            "Enter your email address for the verification process. We will send 6 digit code to your email or sms."),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "forgotPasswordText":
@@ -644,6 +645,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNumberOps":
             MessageLookupByLibrary.simpleMessage("Phone Number(optional)"),
         "pinCode": MessageLookupByLibrary.simpleMessage("Pincode"),
+        "pinNumberMustContainOnlDigits": MessageLookupByLibrary.simpleMessage(
+            "Pin number must contain only digits"),
+        "pinNumberMustDigits":
+            MessageLookupByLibrary.simpleMessage("Pin number must be 6 digits"),
         "pleasNewPasswordSecure": MessageLookupByLibrary.simpleMessage(
             "Please enter a new password to secure your account."),
         "pleaseAcceptTermsAndConditions": MessageLookupByLibrary.simpleMessage(
@@ -793,6 +798,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "price": MessageLookupByLibrary.simpleMessage("Price"),
         "primary": MessageLookupByLibrary.simpleMessage("Primary"),
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy policy"),
+        "privacyPolicyTxt":
+            MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "proceedToPay": MessageLookupByLibrary.simpleMessage("Proceed to pay"),
         "productName": MessageLookupByLibrary.simpleMessage("Product name"),
         "productTax": MessageLookupByLibrary.simpleMessage("Product TAX"),
@@ -970,6 +977,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "submitText": MessageLookupByLibrary.simpleMessage("Submit"),
+        "subscription": MessageLookupByLibrary.simpleMessage("Subscription"),
         "success": MessageLookupByLibrary.simpleMessage("Success!"),
         "successful": MessageLookupByLibrary.simpleMessage("Successful"),
         "supportPin": MessageLookupByLibrary.simpleMessage("Support Pin"),
@@ -979,6 +987,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "takeASelfie": MessageLookupByLibrary.simpleMessage("Take a selfie"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take a Photo"),
         "tax": MessageLookupByLibrary.simpleMessage("TAX"),
+        "termsAndConditions":
+            MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "thisFieldShouldNotBeEmpty": MessageLookupByLibrary.simpleMessage(
             "This field shouldn\'t be empty"),

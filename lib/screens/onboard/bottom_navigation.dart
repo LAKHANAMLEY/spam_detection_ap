@@ -18,9 +18,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
     const DeviceCallLogs(
       showAppBar: false,
     ),
-    const PlanListScreen(
-      showAppBar: false,
-    ),
+    // const PlanListScreen(
+    //   showAppBar: false,
+    // ),
     // const Setting(),
     const Profile(
       showAppBar: false,
@@ -130,7 +130,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                             var photo = state.user.photo;
                             return GestureDetector(
                               onTap: () {
-                                bottomNavigationBloc.add(SelectIntEvent(4));
+                                bottomNavigationBloc.add(SelectIntEvent(3));
                               },
                               child: (photo?.isNotEmpty ?? false)
                                   ? CircleAvatar(
@@ -166,7 +166,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                               children: [
                                 Image.asset(
                                   IconConstants.icOutgoingCall,
-                                  scale: 2,
+                                  scale: 2.5,
                                 ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
@@ -177,7 +177,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                                   appLocalization(context).outgoingCalls,
                                   style: const TextStyle(
                                       color: Colors.black,
-                                      fontSize: 18,
+                                      fontSize: 17,
                                       fontWeight: FontWeight.w600),
                                 )
                               ],
@@ -193,7 +193,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                               children: [
                                 Image.asset(
                                   IconConstants.icIncomingCall,
-                                  scale: 2,
+                                  scale: 2.5,
                                 ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
@@ -203,7 +203,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                                 Text(appLocalization(context).incomingCalls,
                                     style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 18,
+                                        fontSize: 17,
                                         fontWeight: FontWeight.w600))
                               ],
                             ),
@@ -218,7 +218,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                               children: [
                                 Image.asset(
                                   IconConstants.icMissCall,
-                                  scale: 2,
+                                  scale: 2.5,
                                 ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
@@ -242,7 +242,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                               children: [
                                 Image.asset(
                                   IconConstants.icBlockedCall,
-                                  scale: 2,
+                                  scale: 2.5,
                                 ),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width *
@@ -307,15 +307,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),
-                    Image.asset(
-                      IconConstants.icPremiumData,
-                      color: getColor(3, page),
-                      height: MediaQuery.of(context).size.height * 6 / 100,
-                      width: MediaQuery.of(context).size.width * 6 / 100,
-                    ),
+                    // Image.asset(
+                    //   IconConstants.icPremiumData,
+                    //   color: getColor(3, page),
+                    //   height: MediaQuery.of(context).size.height * 6 / 100,
+                    //   width: MediaQuery.of(context).size.width * 6 / 100,
+                    // ),
                     Image.asset(
                       IconConstants.icSettingData,
-                      color: getColor(4, page),
+                      color: getColor(3, page),
                       height: MediaQuery.of(context).size.height * 6 / 100,
                       width: MediaQuery.of(context).size.width * 6 / 100,
                     ),

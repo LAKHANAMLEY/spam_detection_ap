@@ -368,6 +368,7 @@ class _EditProfileState extends State<EditProfile> {
                                     });
                                   },
                                   decoration: InputDecoration(
+                                    //labelText: appLocalization(context).gender,
                                     hintText: appLocalization(context).gender,
                                     hintStyle: const TextStyle(
                                         color: AppColor.decentBrownColor),

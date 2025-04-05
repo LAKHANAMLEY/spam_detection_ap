@@ -49,6 +49,7 @@ class AppRoutes {
   static const dialPadScreen = "/dialPadScreen";
   static const editContact = "/editContact";
   static const otpVerify = "/otpVerify";
+  static const contactUS = "/contactUs";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -100,4 +101,5 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.dialPadScreen: (context) => const DialPad(),
   AppRoutes.editContact: (context) => const EditContact(),
   AppRoutes.otpVerify: (context) => const OtpVerify(),
+  AppRoutes.contactUS: (context) => const ContactUS(),
 };

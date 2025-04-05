@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spam_delection_app/lib.dart';
 
@@ -536,6 +537,12 @@ class _LoginState extends State<Login> {
                                             },
                                             builder: (context, state) {
                                               return CustomTextField(
+                                                inputFormatters: [
+                                                  FilteringTextInputFormatter
+                                                      .deny(RegExp(r'[/\\]')),
+                                                  FilteringTextInputFormatter
+                                                      .digitsOnly,
+                                                ],
                                                 keyboardType:
                                                     TextInputType.phone,
                                                 //readOnly: true,

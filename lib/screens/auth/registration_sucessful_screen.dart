@@ -40,7 +40,7 @@ class _RegistrationSuccessfulState extends State<RegistrationSuccessful> {
             height: MediaQuery.of(context).size.height * 2 / 100,
           ),
           Text(
-            '${appLocalization(context).yey} ${widget.user?.name}',
+            '${appLocalization(context).yey} ${widget.user?.name ?? ''}',
             style: const TextStyle(
                 color: AppColor.themeYellowColor,
                 fontSize: 18,

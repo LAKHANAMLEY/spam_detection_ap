@@ -38,4 +38,12 @@ class AppColor {
   static const Color decentGreyColor = Color(0xffD6D3D3);
   static const Color whiteDecentColor = Color(0xffF6F6F6);
   static const Color graphiteColor = Color(0xffE1E6EB);
+  static const Color yellowLightColor = Color(0xffFEEFC4);
+  static const Color blueLightColor = Color(0xffE2F0FE);
+  static const Color blueColor = Color(0xff0A4988);
+  static const Color grey = Color(0xff776969);
+  static const Color redLight = Color(0xffFFE2E2);
+  static const Color decentRed = Color(0xff9E0505);
+  static const Color darkBlue = Color(0xff0A4988);
+  static const Color decentYellow = Color(0xffD09B14);
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -270,6 +271,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                               },
                                               builder: (context, state) {
                                                 return CustomTextField(
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter
+                                                        .deny(RegExp(r'[/\\]')),
+                                                    FilteringTextInputFormatter
+                                                        .digitsOnly,
+                                                  ],
                                                   keyboardType:
                                                       TextInputType.phone,
                                                   //readOnly: true,
