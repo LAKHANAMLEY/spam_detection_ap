@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
@@ -6,6 +8,8 @@ Future<CallLogsListResponse> getCallLogs() async {
     Uri.parse(ApiUrlConstants.getCallLogs),
     headers: await ApiUrlConstants.headers(),
   );
+  log(ApiUrlConstants.getCallLogs);
+  log(jsonEncode(await ApiUrlConstants.headers()));
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
     return CallLogsListResponse.fromJson(jsonData);

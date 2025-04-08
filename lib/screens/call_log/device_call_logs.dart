@@ -110,24 +110,24 @@ class DeviceCallLogs extends StatelessWidget {
                     ],
                   ),
                 ),
-                Row(
-                  children: [
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.contactList);
-                      },
-                      label: Text(appLocalization(context).contacts),
-                      icon: const Icon(Icons.contacts_outlined),
-                    ),
-                    // ElevatedButton.icon(
-                    //   onPressed: () {
-                    //     Navigator.pushNamed(context, AppRoutes.contactList);
-                    //   },
-                    //   label: const Text("Favourite"),
-                    //   icon: const Icon(Icons.favorite_border_outlined),
-                    // )
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     ElevatedButton.icon(
+                //       onPressed: () {
+                //         Navigator.pushNamed(context, AppRoutes.contactList);
+                //       },
+                //       label: Text(appLocalization(context).contacts),
+                //       icon: const Icon(Icons.contacts_outlined),
+                //     ),
+                //     // ElevatedButton.icon(
+                //     //   onPressed: () {
+                //     //     Navigator.pushNamed(context, AppRoutes.contactList);
+                //     //   },
+                //     //   label: const Text("Favourite"),
+                //     //   icon: const Icon(Icons.favorite_border_outlined),
+                //     // )
+                //   ],
+                // ),
                 Expanded(
                   child: BlocConsumer(
                       bloc: callLogsListBloc,
@@ -170,8 +170,7 @@ class DeviceCallLogs extends StatelessWidget {
                           } else {
                             showToast(state.value.message);
                           }
-
-                          (GetCallLogsEvent());
+                          callLogsListBloc.add(GetCallLogsEvent());
                         }
                         if (state is DeleteAllCallLogState) {
                           if (state.value.statusCode == 200) {

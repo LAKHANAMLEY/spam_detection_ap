@@ -1,0 +1,2 @@
+/Users/rajkumar/Desktop/Raj/Flutter Projects/spam_detection_ap/android/app/.cxx/RelWithDebInfo/16e145z1/x86/CMakeFiles/edit_cache.dir
+/Users/rajkumar/Desktop/Raj/Flutter Projects/spam_detection_ap/android/app/.cxx/RelWithDebInfo/16e145z1/x86/CMakeFiles/rebuild_cache.dir

@@ -14,6 +14,7 @@ var familyBloc = ApiBloc(ApiBlocInitialState());
 var selectCountryBloc = SelectionBloc(SelectionBlocInitialState());
 var markSpamSmsBloc = ApiBloc(ApiBlocInitialState());
 var notificationListBloc = ApiBloc(ApiBlocInitialState());
+final messagesBloc = ApiBloc(ApiBlocInitialState());
 
 var bottomNavigationBloc = SelectionBloc(SelectIntState(2));
 

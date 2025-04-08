@@ -1,7 +1,7 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/message/message_bubble_view.dart';
 
 final TextEditingController messageController = TextEditingController();
-final messagesBloc = ApiBloc(ApiBlocInitialState());
 
 class MessagesDetail extends StatelessWidget {
   final SmsLog? sms;
@@ -35,6 +35,7 @@ class MessagesDetail extends StatelessWidget {
                       } else {
                         showToast(state.value.message);
                       }
+                      messagesBloc.add(SmsListEvent());
                     }
                     return PopupMenuButton(
                       itemBuilder: (context) => [
@@ -165,30 +166,35 @@ class MessagesDetail extends StatelessWidget {
                       dialogType: DialogType.failed,
                       subTitle: state.value.message);
                 }
-                markSpamSmsBloc.add(SmsSpamListEvent());
+                messagesBloc.add(SmsListEvent());
               }
             },
             builder: (context, state) {
-              return ListView.builder(
-                itemCount: sms?.smsDetails?.length,
-                itemBuilder: (context, index) {
-                  final previousMessageDate =
-                      index > 0 ? sms?.smsDetails![index - 1].date : null;
-                  final showDateHeader = (previousMessageDate == null ||
-                      (!sms!.smsDetails![index].date!
-                          .isSameDay(previousMessageDate)));
-                  return Column(
-                    children: [
-                      if (showDateHeader)
-                        Text(
-                            sms?.smsDetails?[index].date?.formatRelativeDay() ??
-                                ""),
-                      MessageView(
-                        sms: sms?.smsDetails?[index],
-                      ),
-                    ],
-                  );
-                },
+              return ModalProgressHUD(
+                progressIndicator: Loader(),
+                inAsyncCall: state is ApiLoadingState,
+                child: ListView.builder(
+                  reverse: true,
+                  itemCount: sms?.smsDetails?.length,
+                  itemBuilder: (context, index) {
+                    final previousMessageDate =
+                        index > 0 ? sms?.smsDetails![index - 1].date : null;
+                    final showDateHeader = (previousMessageDate == null ||
+                        (!sms!.smsDetails![index].date!
+                            .isSameDay(previousMessageDate)));
+                    return Column(
+                      children: [
+                        if (showDateHeader)
+                          Text(sms?.smsDetails?[index].date
+                                  ?.formatRelativeDay() ??
+                              ""),
+                        MessageView(
+                          sms: sms?.smsDetails?[index],
+                        ),
+                      ],
+                    );
+                  },
+                ),
               );
             }));
   }
@@ -222,66 +228,4 @@ class MessagesDetail extends StatelessWidget {
               ),
             )),
       );
-}
-
-class MessageView extends StatelessWidget {
-  final SmsDetail? sms;
-
-  const MessageView({super.key, this.sms});
-
-  @override
-  Widget build(BuildContext context) {
-    const double radius = 10;
-    return Align(
-      alignment: sms?.messageKind == SmsMessageKind.Sent.name
-          ? Alignment.centerRight
-          : Alignment.centerLeft,
-      child: Container(
-        padding: const EdgeInsets.all(5.0),
-        constraints: BoxConstraints(maxWidth: mq(context).width * .8),
-        child: Column(
-          crossAxisAlignment: sms?.messageKind == SmsMessageKind.Sent.name
-              ? CrossAxisAlignment.end
-              : CrossAxisAlignment.start,
-          children: [
-            Container(
-                margin: const EdgeInsets.all(2),
-                padding: const EdgeInsets.all(5),
-                // constraints:
-                //     BoxConstraints(maxWidth: mq(context).width * .8),
-                // width: mq(context).width * .8,
-                decoration: BoxDecoration(
-                  color: sms?.messageKind == SmsMessageKind.Sent.name
-                      ? AppColor.themeOrangeColor
-                      : AppColor.whiteColor,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: const Radius.circular(radius),
-                    bottomRight: const Radius.circular(radius),
-                    topLeft: (sms?.messageKind == SmsMessageKind.Sent.name)
-                        ? const Radius.circular(radius)
-                        : const Radius.circular(0),
-                    topRight: (sms?.messageKind == SmsMessageKind.Sent.name)
-                        ? const Radius.circular(0)
-                        : const Radius.circular(radius),
-                  ),
-                ),
-                child: Text(
-                  sms?.body ?? "",
-                )),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                //print(sms?.sendreceiveDatetime);
-
-                sms?.date?.formatTime() ?? "",
-                style: textTheme(context)
-                    .bodySmall
-                    ?.copyWith(color: AppColor.greyColor),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

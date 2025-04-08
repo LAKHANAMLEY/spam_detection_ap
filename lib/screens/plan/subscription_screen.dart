@@ -164,8 +164,9 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
 
   void onActivatePressed() {
     showCustomDialog(context, dialogType: DialogType.alert, onOkPressed: () {
-      bottomNavigationBloc.add(SelectIntEvent(3));
       Navigator.pop(context);
+      Navigator.pushNamed(context, AppRoutes.planList);
+      // bottomNavigationBloc.add(SelectIntEvent(3));
     },
         content: const Column(
           mainAxisSize: MainAxisSize.min,

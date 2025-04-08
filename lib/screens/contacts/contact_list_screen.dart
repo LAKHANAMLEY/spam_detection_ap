@@ -6,9 +6,9 @@ class ContactList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final searchBloc = SelectionBloc(SelectStringState(""));
-    // List<ContactData> contacts = [];
-    // List<ContactData> filteredContacts = [];
-    // contactListBloc.add(GetContactEvent());
+    List<ContactData> contacts = [];
+    List<ContactData> filteredContacts = [];
+    contactListBloc.add(GetContactEvent());
     return Scaffold(
       //backgroundColor: AppColor.whiteLightColor,
       appBar: CustomAppBar(title: appLocalization(context).contactList),
@@ -74,6 +74,19 @@ class ContactList extends StatelessWidget {
                             if (state is GetDeviceContactState) {
                               var deviceContacts = state.value;
                               if (deviceContacts != null) {
+                                contacts = deviceContacts
+                                    .map((e) => ContactData(
+                                          mobileNo: e.phones.isNotEmpty
+                                              ? e.phones.first.number
+                                              : "",
+                                          // callDuration: e.duration.toString(),
+                                          name: e.displayName,
+                                          // callType: e.callType?.name,
+                                          // callTime: e.timestamp?.toDateTime(),
+                                        ))
+                                    .toList();
+                                filteredContacts =
+                                    filterSearchResults("", contacts);
                                 contactListBloc.add(
                                     SyncContactEvent(contacts: deviceContacts));
                               }
@@ -81,9 +94,9 @@ class ContactList extends StatelessWidget {
                             if (state is GetContactState) {
                               // filterSearchResults("");
                               if (state.value.statusCode == 200) {
-                                // var contacts = state.value.contactslist ?? [];
-                                // var filteredContacts =
-                                //     filterSearchResults("", contacts);
+                                contacts = state.value.contactslist ?? [];
+                                filteredContacts =
+                                    filterSearchResults("", contacts);
                               } else if (state.value.statusCode ==
                                   HTTPStatusCodes.sessionExpired) {
                                 sessionExpired(
@@ -124,40 +137,40 @@ class ContactList extends StatelessWidget {
                             }
                           },
                           builder: (context, state) {
-                            if (state is GetContactState) {
-                              var contacts = state.value.contactslist ?? [];
-                              var filteredContacts =
-                                  filterSearchResults("", contacts);
-                              return BlocConsumer(
-                                  bloc: searchBloc,
-                                  listener: (context, state) {
-                                    if (state is SelectStringState) {
-                                      filteredContacts = filterSearchResults(
-                                          state.value ?? "", contacts);
-                                    }
-                                  },
-                                  builder: (context, searchState) {
-                                    if (searchState is SelectStringState) {
-                                      if (filteredContacts.isEmpty) {
-                                        return Center(
-                                          child: Text(appLocalization(context)
-                                              .noContacts),
-                                        );
-                                      }
-                                      return ListView.builder(
-                                        itemCount: filteredContacts.length,
-                                        // shrinkWrap: true,
-                                        itemBuilder: (context, index) {
-                                          return ContactListItem(
-                                            contact: filteredContacts[index],
-                                          );
-                                        },
+                            // if (state is GetContactState) {
+                            return BlocConsumer(
+                                bloc: searchBloc,
+                                listener: (context, state) {
+                                  if (state is SelectStringState) {
+                                    filteredContacts = filterSearchResults(
+                                        state.value ?? "", contacts);
+                                  }
+                                },
+                                builder: (context, searchState) {
+                                  if (searchState is SelectStringState) {
+                                    if (state is ApiLoadingState &&
+                                        filteredContacts.isEmpty) {
+                                      return Loader();
+                                    } else if (filteredContacts.isEmpty) {
+                                      return Center(
+                                        child: Text(appLocalization(context)
+                                            .noContacts),
                                       );
                                     }
-                                    return const Loader();
-                                  });
-                            }
-                            return const Loader();
+                                    return ListView.builder(
+                                      itemCount: filteredContacts.length,
+                                      // shrinkWrap: true,
+                                      itemBuilder: (context, index) {
+                                        return ContactListItem(
+                                          contact: filteredContacts[index],
+                                        );
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                });
+                            // }
+                            // return const Loader();
                           }),
                     ),
                   ],

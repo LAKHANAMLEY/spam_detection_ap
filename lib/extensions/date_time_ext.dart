@@ -36,6 +36,13 @@ extension DateTimeExt on DateTime {
   bool isSameDay(DateTime date) =>
       day == date.day && month == date.month && year == date.year;
 
-  bool isCurrentYear(DateTime date) => year == date.year;
-  bool isCurrentMonth(DateTime date) => month == date.month;
+  bool isCurrentYear(DateTime date) {
+    final now = DateTime.now();
+    return now.year == date.year;
+  }
+
+  bool isCurrentMonth(DateTime date) {
+    final now = DateTime.now();
+    return now.month == date.month;
+  }
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
@@ -5,24 +7,25 @@ Future<SyncCallManuallyResponse> syncCallLogManually(
     {required CallLogEntry callLogs}) async {
   // var body = [];
   // for (int i = 0; i < callLogs.length; i++) {
-  var log = callLogs;
+  var logData = callLogs;
   var body = {
-    'simdisplayname': log.simDisplayName ?? "",
-    'phoneaccountid': log.phoneAccountId ?? "",
-    'name': log.name ?? "",
-    'country_code': log.number?.separatePhoneAndPhoneCode().phoneCode ?? "",
-    'mobile_no': log.number
+    'simdisplayname': logData.simDisplayName ?? "",
+    'phoneaccountid': logData.phoneAccountId ?? "",
+    'name': logData.name ?? "",
+    'country_code': logData.number?.separatePhoneAndPhoneCode().phoneCode ?? "",
+    'mobile_no': logData.number
             ?.separatePhoneAndPhoneCode()
             .phone
             .replaceAll(AppConstants.specialCharAndSpaceRegex, "") ??
         "",
-    'call_type': log.callType?.name ?? "",
-    'call_time': log.timestamp?.toDateTime().toString().splitFirstBy(".") ?? "",
-    'call_duration': log.duration.toString(),
+    'call_type': logData.callType?.name ?? "",
+    'call_time':
+        logData.timestamp?.toDateTime().toString().splitFirstBy(".") ?? "",
+    'call_duration': logData.duration.toString(),
     'call_duration_unit': '1' //1 sec 2 min 3 horus
     // });
   };
-  print(body);
+  log("${ApiUrlConstants.syncCallLogManually} ${jsonEncode(body)}");
 
   var request = http.MultipartRequest(
       'POST',

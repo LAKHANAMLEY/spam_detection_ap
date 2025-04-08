@@ -79,9 +79,11 @@ Future navigateByType(
   var notificationType = notificationTypeValues.map[message.data['type']];
   switch (notificationType) {
     case NotificationType.membership:
-      bottomNavigationBloc.add(SelectIntEvent(3));
-      Navigator.pushNamedAndRemoveUntil(
-          context, AppRoutes.bottomNavigation, (route) => false);
+      Navigator.pop(context);
+      Navigator.pushNamed(context, AppRoutes.planList);
+      // bottomNavigationBloc.add(SelectIntEvent(3));
+      // Navigator.pushNamedAndRemoveUntil(
+      //     context, AppRoutes.bottomNavigation, (route) => false);
       break;
 
     case NotificationType.profileVisitor:

@@ -79,6 +79,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
     }
   }
 
+  syncAll() {
+    contactListBloc.add(GetDeviceContactEvent());
+    callLogsListBloc.add(GetDeviceCallLogEvent());
+    messagesBloc.add(GetDeviceMessagesEvent());
+  }
+
   @override
   void initState() {
     requestMultiplePermissions();
@@ -86,9 +92,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
     phoneStateConfig();
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     handleAppLifeCycle();
-    getAndSyncContacts();
-    getAndSyncCallLogs();
-    getAndSyncMessages();
+    syncAll();
+    // getAndSyncContacts();
+    // getAndSyncCallLogs();
+    // getAndSyncMessages();
     super.initState();
   }
 
@@ -153,6 +160,21 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           IconConstants.icNotificationBell,
                           scale: 3.5,
                         ),
+                      ),
+                      15.width(),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.contactList);
+                        },
+                        child: Icon(
+                          Icons.switch_account_sharp,
+                          color: Color.fromRGBO(102, 106, 119, 1),
+                        ),
+                        // child: Image.asset(
+                        //   IconConstants.icUsername,
+                        //   color: Colors.black,
+                        //   // scale: 3.5,
+                        // ),
                       ),
                       PopupMenuButton(
                         itemBuilder: (context) => [

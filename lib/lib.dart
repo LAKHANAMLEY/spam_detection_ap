@@ -182,7 +182,7 @@ export 'screens/message/block_sms_screen.dart';
 export 'screens/message/message_listitem.dart';
 export 'screens/message/messages.dart';
 export 'screens/message/messages_detail.dart';
-export 'screens/message/sms_list_items.dart';
+export 'screens/message/spam_message_listitem.dart';
 export 'screens/notification/notification_list.dart';
 export 'screens/notification/notification_listitem.dart';
 export 'screens/onboard/bottom_navigation.dart';

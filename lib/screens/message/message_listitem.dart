@@ -13,13 +13,26 @@ class MessageListItem extends StatelessWidget {
         Navigator.pushNamed(context, AppRoutes.messagesDetail,
             arguments: MessagesDetail(sms: sms));
       },
-      leading: CircleAvatar(
-        backgroundImage: AssetImage(
-          sms.isMarkSpam == 1
-              ? IconConstants.icFraud
-              : IconConstants.icMessageLock,
+      leading: Card(
+        // shape: BoxShape.circle,
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Image.asset(
+            sms.isMarkSpam == 1
+                ? IconConstants.icSpamMessage
+                : IconConstants.icMessageLock,
+            width: 40,
+            fit: BoxFit.contain,
+          ),
         ),
       ),
+      // leading: CircleAvatar(
+      //   backgroundImage: AssetImage(
+      //     sms.isMarkSpam == 1
+      //         ? IconConstants.icSpamAlertMessage
+      //         : IconConstants.icMessageLock,
+      //   ),
+      // ),
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,10 +58,22 @@ class MessageListItem extends StatelessWidget {
         ],
       ),
       subtitle: Expanded(
-          child: Text(
-        sms.smsDetails?.first.body ?? "",
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            sms.smsDetails?.first.body ?? "",
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          // if (sms.isMarkSpam == 1)
+          //   Text(
+          //     sms.smsDetails?.first.spamMessage ?? "",
+          //     maxLines: 2,
+          //     overflow: TextOverflow.ellipsis,
+          //     style: textTheme(context).bodySmall?.copyWith(color: Colors.red),
+          //   ),
+        ],
       )),
       // trailing: const Icon(
       //   Icons.arrow_forward_ios,
