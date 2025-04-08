@@ -206,6 +206,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulationsYourAccountHasBeenSuccessfullyUpdated":
             MessageLookupByLibrary.simpleMessage(
                 "Félicitations, votre compte a été mis à jour avec succès."),
+        "contact": MessageLookupByLibrary.simpleMessage("Contactos"),
         "contactList":
             MessageLookupByLibrary.simpleMessage("Lista de contactos"),
         "contactPermission":
@@ -214,6 +215,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "contactUS":
             MessageLookupByLibrary.simpleMessage("Contacta con nosotros"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contactez-nous"),
+        "contacts": MessageLookupByLibrary.simpleMessage("Contactos"),
         "continuePurchase":
             MessageLookupByLibrary.simpleMessage("Continuar comprando"),
         "continueTxt": MessageLookupByLibrary.simpleMessage("Continuar"),

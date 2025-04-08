@@ -88,4 +88,10 @@ class IconConstants {
   static const String icLogout = 'assets/icons/ic_logout.png';
   static const String icDialPad = 'assets/icons/ic_dial_pad.png';
   static const String icGoogleLogo = 'assets/icons/ic_google_logo.png';
+  static const String icSpain = 'assets/icons/ic_spain.png';
+  static const String icEnglish = 'assets/icons/ic_united_states.png';
+  static const String icLanguage = 'assets/icons/ic_language.png';
+  static const String icLogoutData = 'assets/icons/ic_logout_data.png';
+  static const String icLogoutDataIcon = 'assets/icons/ic_logout_icon.png';
+  static const String icFamilyRest = 'assets/icons/ic_family_restroom.png';
 }

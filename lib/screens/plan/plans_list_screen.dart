@@ -85,7 +85,7 @@ class _PlanListScreenState extends State<PlanListScreen> {
                         padding: const EdgeInsets.all(8.0),
                         child: SizedBox(
                           // color: AppColor.blackColor,
-                          height: 360,
+                          height: 300,
                           //width: 250,
                           child: ListView.builder(
                               shrinkWrap: true,

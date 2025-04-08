@@ -46,7 +46,7 @@ android {
     defaultConfig {
         applicationId = "com.broadlink.protect"
         minSdkVersion 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }

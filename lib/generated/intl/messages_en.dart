@@ -199,12 +199,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulationsYourAccountHasBeenSuccessfullyUpdated":
             MessageLookupByLibrary.simpleMessage(
                 "Congratulations, your account has been successfully updated."),
+        "contact": MessageLookupByLibrary.simpleMessage("Contacts"),
         "contactList": MessageLookupByLibrary.simpleMessage("Contact List"),
         "contactPermission":
             MessageLookupByLibrary.simpleMessage("Contact permission"),
         "contactText": MessageLookupByLibrary.simpleMessage("Contacts"),
         "contactUS": MessageLookupByLibrary.simpleMessage("Contact us"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact us"),
+        "contacts": MessageLookupByLibrary.simpleMessage("Contacts"),
         "continuePurchase":
             MessageLookupByLibrary.simpleMessage("Continue to Purchase"),
         "continueTxt": MessageLookupByLibrary.simpleMessage("Continue"),
@@ -372,7 +374,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Explore Home Page"),
         "failed": MessageLookupByLibrary.simpleMessage("Failed..."),
         "familyList": MessageLookupByLibrary.simpleMessage("Family List"),
-        "familySharing": MessageLookupByLibrary.simpleMessage("Family sharing"),
+        "familySharing": MessageLookupByLibrary.simpleMessage("Family Sharing"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "faster": MessageLookupByLibrary.simpleMessage("Faster"),
         "feeDetails": MessageLookupByLibrary.simpleMessage("Fee details"),
