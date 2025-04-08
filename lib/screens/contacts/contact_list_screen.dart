@@ -85,8 +85,7 @@ class ContactList extends StatelessWidget {
                                           // callTime: e.timestamp?.toDateTime(),
                                         ))
                                     .toList();
-                                filteredContacts =
-                                    filterSearchResults("", contacts);
+                                filteredContacts = filter("", contacts);
                                 contactListBloc.add(
                                     SyncContactEvent(contacts: deviceContacts));
                               }
@@ -95,8 +94,7 @@ class ContactList extends StatelessWidget {
                               // filterSearchResults("");
                               if (state.value.statusCode == 200) {
                                 contacts = state.value.contactslist ?? [];
-                                filteredContacts =
-                                    filterSearchResults("", contacts);
+                                filteredContacts = filter("", contacts);
                               } else if (state.value.statusCode ==
                                   HTTPStatusCodes.sessionExpired) {
                                 sessionExpired(
@@ -142,8 +140,8 @@ class ContactList extends StatelessWidget {
                                 bloc: searchBloc,
                                 listener: (context, state) {
                                   if (state is SelectStringState) {
-                                    filteredContacts = filterSearchResults(
-                                        state.value ?? "", contacts);
+                                    filteredContacts =
+                                        filter(state.value ?? "", contacts);
                                   }
                                 },
                                 builder: (context, searchState) {
