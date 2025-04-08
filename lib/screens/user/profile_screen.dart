@@ -268,6 +268,7 @@ class Profile extends StatelessWidget {
                                       builder: (context, state) {
                                         if (state is SelectStringState) {
                                           return DropdownButton(
+                                            dropdownColor: Color(0xffFFE8E3),
                                             value: state.value,
                                             // underline: const SizedBox.shrink(),
                                             // icon: Image.asset(
@@ -429,6 +430,7 @@ class Profile extends StatelessWidget {
                           SubMenu(
                             title: appLocalization(context).editProfile,
                             icon: IconConstants.icEdit,
+                            iconColor: AppColor.greyDecent,
                             onTap: () {
                               Navigator.pushNamed(
                                   context, AppRoutes.editProfile);
@@ -441,6 +443,7 @@ class Profile extends StatelessWidget {
                             title:
                                 appLocalization(context).corporateEditProfile,
                             icon: IconConstants.icEdit,
+                            iconColor: AppColor.greyDecent,
                             onTap: () {
                               Navigator.pushNamed(
                                   context, AppRoutes.corporateProfile);
@@ -453,6 +456,7 @@ class Profile extends StatelessWidget {
                         SubMenu(
                           title: appLocalization(context).editSecurityPin,
                           icon: IconConstants.icEditPin,
+                          iconColor: AppColor.greyDecent,
                           onTap: () {
                             Navigator.pushNamed(
                                 context, AppRoutes.changeSecurity);
@@ -464,6 +468,7 @@ class Profile extends StatelessWidget {
                         SubMenu(
                           title: appLocalization(context).changePassword,
                           icon: IconConstants.icChangePass,
+                          iconColor: AppColor.greyDecent,
                           onTap: () {
                             Navigator.pushNamed(
                                 context, AppRoutes.changePassword);
@@ -475,6 +480,7 @@ class Profile extends StatelessWidget {
                         SubMenu(
                           title: appLocalization(context).addAlternativeEmail,
                           icon: IconConstants.icAlternativeEmail,
+                          iconColor: AppColor.greyDecent,
                           onTap: () {
                             Navigator.pushNamed(
                                 context, AppRoutes.alternativeEmail);
@@ -485,7 +491,8 @@ class Profile extends StatelessWidget {
                         ),
                         SubMenu(
                           title: appLocalization(context).changeLanguage,
-                          icon: IconConstants.icAlternativeEmail,
+                          icon: IconConstants.icLanguage,
+                          iconColor: AppColor.greyDecent,
                           onTap: () {
                             _showEditOptions(context);
                           },
@@ -494,7 +501,8 @@ class Profile extends StatelessWidget {
                           10.height(),
                           SubMenu(
                             title: appLocalization(context).familyList,
-                            icon: IconConstants.icAlternativeEmail,
+                            icon: IconConstants.icFamilyRest,
+                            iconColor: AppColor.greyDecent.withOpacity(0.8),
                             onTap: () {
                               Navigator.pushNamed(
                                   context, AppRoutes.familyMemberList);
@@ -505,6 +513,7 @@ class Profile extends StatelessWidget {
                           10.height(),
                           SubMenu(
                             title: appLocalization(context).staffList,
+                            iconColor: AppColor.greyDecent,
                             icon: IconConstants.icAlternativeEmail,
                             onTap: () {
                               Navigator.pushNamed(
@@ -527,7 +536,8 @@ class Profile extends StatelessWidget {
                         // ),
                         SubMenu(
                           title: appLocalization(context).logout,
-                          icon: IconConstants.icLogout,
+                          icon: IconConstants.icLogoutDataIcon,
+                          iconColor: AppColor.redColor,
                           onTap: () async {
                             showLogoutDialog(context);
                             //  Navigator.pushNamed(
@@ -618,10 +628,15 @@ class Profile extends StatelessWidget {
 class SubMenu extends StatelessWidget {
   final String title;
   final String icon;
+  final Color iconColor;
   final void Function()? onTap;
 
   const SubMenu(
-      {super.key, required this.title, this.onTap, required this.icon});
+      {super.key,
+      required this.title,
+      this.onTap,
+      required this.icon,
+      required this.iconColor});
 
   @override
   Widget build(BuildContext context) {
@@ -649,7 +664,9 @@ class SubMenu extends StatelessWidget {
                           icon,
                           height: MediaQuery.of(context).size.height * 5 / 100,
                           width: MediaQuery.of(context).size.width * 5 / 100,
-                          // color: AppColor.thumbColor
+                          color: iconColor,
+
+                          //color: AppColor.constantGraniteColor
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 2 / 100,

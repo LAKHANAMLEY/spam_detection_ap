@@ -118,7 +118,7 @@ class StringConstants {
   static const unknowntext = 'Unknown number identified';
   static const messagestext = 'Messages moved to spam';
 
-  static const copyrighttext = '2024 BROADLINK';
+  static const copyrighttext = '2025 BROADLINK';
   static const messagescreenedtext =
       'Your messages are currently being screened by Detect AI to identity potential scams.';
   static const emailscreenedtext =

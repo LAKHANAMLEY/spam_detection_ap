@@ -219,7 +219,7 @@
   "exploreHomePage": "Explore Home Page",
   "failed": "Failed...",
   "familyList": "Family List",
-  "familySharing": "Family sharing",
+  "familySharing": "Family Sharing",
   "faq": "FAQ",
   "faster": "Faster",
   "feeDetails": "Fee details",
@@ -730,5 +730,6 @@
   "contactUS": "Contact us",
   "privacyPolicyTxt": "Privacy Policy",
   "pinNumberMustDigits": "Pin number must be 6 digits",
-  "pinNumberMustContainOnlDigits": "Pin number must contain only digits"
+  "pinNumberMustContainOnlDigits": "Pin number must contain only digits",
+  "contact": "Contacts"
 }

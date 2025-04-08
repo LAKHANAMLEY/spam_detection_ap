@@ -80,7 +80,20 @@ class _ContactListItemState extends State<ContactListItem> {
                       ),
                   PopupMenuItem(
                       child: Text(appLocalization(context).editContact),
-                      onTap: () {}
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.editContact,
+                            arguments: EditContact(
+                                contactData: ContactData(id: contact?.id)));
+                        // editDeviceContact(
+                        //     contactId: contact?.id ?? "",
+                        //     phone: contact?.mobileNo ?? "",
+                        //     name: contact?.name ?? "",
+                        //     email: contact?.email ?? "",
+                        //     numberType: contact?.numberType ?? "");
+                        //
+                        // // contactListBloc.add(DeleteContactEvent(
+                        // //     contact: ContactData(id: contact?.id)));
+                      }
                       //contactListBloc
                       ),
                 ]));

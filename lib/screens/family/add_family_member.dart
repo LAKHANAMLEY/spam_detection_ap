@@ -36,6 +36,17 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
 
   XFile? selectedImage;
 
+  String? _validatePin(String? value) {
+    if (value == null || value.isEmpty) {
+      return appLocalization(context).pleaseSupportPin;
+    } else if (value.length != 6) {
+      return appLocalization(context).pinNumberMustDigits;
+    } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+      return appLocalization(context).pinNumberMustContainOnlDigits;
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +59,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                   if (state is FamilyAddMemberState) {
                     if (state.value.statusCode == 200) {
                       Navigator.pop(context);
-                      addMemberBloc.add(GetFamilyMemberListEvent());
+                      familyBloc.add(GetFamilyMemberListEvent());
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,
@@ -280,16 +291,22 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                             ),
                             10.height(),
                             CustomTextField(
+                              inputFormatters: [
+                                FilteringTextInputFormatter.deny(
+                                    RegExp(r'[/\\]')),
+                                FilteringTextInputFormatter.digitsOnly,
+                              ],
                               controller: supportPinController,
                               labelText: appLocalization(context).supportPin,
                               hintText: appLocalization(context).supportPin,
-                              validator: (p0) {
-                                if (p0?.isEmpty ?? true) {
-                                  return appLocalization(context)
-                                      .pleaseSupportPin;
-                                }
-                                return null;
-                              },
+                              validator: _validatePin,
+                              // validator: (p0) {
+                              //   if (p0?.isEmpty ?? true) {
+                              //     return appLocalization(context)
+                              //         .pleaseSupportPin;
+                              //   }
+                              //   return null;
+                              // },
                             ),
                             10.height(),
                             BlocConsumer(

@@ -336,6 +336,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:spam_delection_app/extensions/int_ext.dart';
 import 'package:spam_delection_app/globals/app_constants.dart';
 import 'package:styled_text/styled_text.dart';
 
@@ -381,72 +382,79 @@ class PlanListItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  plan.title ?? "",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: plan.isActive == 1
-                        ? AppColor.decentYellow
-                        : plan.callProtection == "1"
-                            ? AppColor.darkBlue
-                            : AppColor.redLight,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(width: 5),
-                if (plan.isActive == 1)
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(12),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    plan.title ?? "",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: plan.isActive == 1
+                          ? AppColor.decentYellow
+                          : plan.callProtection == "1"
+                              ? AppColor.darkBlue
+                              : AppColor.redLight,
+                      fontWeight: FontWeight.bold,
                     ),
-                    child: Text(
-                      appLocalization(context).active,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
+                  ),
+                  60.width(),
+                  if (plan.isActive == 1)
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        appLocalization(context).active,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(height: 10),
-            StyledText(
-              text:
-                  '<price>${plan.price}</price>/<validity>${plan.validity}</validity>',
-              tags: {
-                'price': StyledTextTag(
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontFamily: AppFont.fontFamily,
-                    fontWeight: FontWeight.w600,
-                    color: AppColor.grey,
+            5.height(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: StyledText(
+                text:
+                    '<price>${plan.price}</price>/<validity>${plan.validity}</validity>',
+                tags: {
+                  'price': StyledTextTag(
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontFamily: AppFont.fontFamily,
+                      fontWeight: FontWeight.w600,
+                      color: AppColor.grey,
+                    ),
                   ),
-                ),
-                'validity': StyledTextTag(
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black87,
+                  'validity': StyledTextTag(
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                    ),
                   ),
-                ),
-              },
+                },
+              ),
             ),
-            const SizedBox(height: 20),
+            5.height(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildFeatureChip(appLocalization(context).callProtection,
+                _buildFeatureRow(appLocalization(context).callProtection,
                     plan.callProtection == "1"),
-                _buildFeatureChip(appLocalization(context).smsProtection,
+                _buildFeatureRow(appLocalization(context).smsProtection,
                     plan.smsProtection == "1"),
-                _buildFeatureChip(appLocalization(context).emailProtection,
+                _buildFeatureRow(appLocalization(context).emailProtection,
                     plan.emailProtection == "1"),
-                _buildFeatureChip(appLocalization(context).familySharing,
+                _buildFeatureRow(appLocalization(context).familySharing,
                     plan.familySharing != "0"),
               ],
             ),
@@ -456,25 +464,54 @@ class PlanListItem extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureChip(String label, bool isSelected) {
+//   Widget _buildFeatureChip(String label, bool isSelected) {
+//     return Padding(
+//       padding: const EdgeInsets.only(left: 2, right: 2),
+//       child: ChoiceChip(
+//         //color: AppColor.greenColor,
+//         avatarBorder: CircleBorder(),
+//
+//         avatar:
+//             isSelected ? null : const Icon(Icons.clear, color: Colors.black),
+//         selected: isSelected,
+//         selectedColor: AppColor.blueLightColor,
+//         label: Text(label),
+//         side: BorderSide.none,
+//         backgroundColor: Colors.transparent,
+//         //backgroundColor: Colors.transparent,
+//         // shape: RoundedRectangleBorder(
+//         //   //borderRadius: BorderRadius.circular(20),
+//         //   side: BorderSide.none,
+//         // ),
+//       ),
+//     );
+//   }
+// }
+  Widget _buildFeatureRow(String label, bool isSelected) {
     return Padding(
-      padding: const EdgeInsets.only(left: 2, right: 2),
-      child: ChoiceChip(
-        //color: AppColor.greenColor,
-        avatarBorder: CircleBorder(),
-
-        avatar:
-            isSelected ? null : const Icon(Icons.clear, color: Colors.black),
-        selected: isSelected,
-        selectedColor: AppColor.blueLightColor,
-        label: Text(label),
-        side: BorderSide.none,
-        backgroundColor: Colors.transparent,
-        //backgroundColor: Colors.transparent,
-        // shape: RoundedRectangleBorder(
-        //   //borderRadius: BorderRadius.circular(20),
-        //   side: BorderSide.none,
-        // ),
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        children: [
+          Icon(
+            isSelected ? Icons.check_circle : Icons.cancel,
+            color: plan.isActive == 1
+                ? AppColor.decentYellow.withOpacity(0.6)
+                : plan.callProtection == "1"
+                    ? AppColor.darkBlue.withOpacity(0.6)
+                    : AppColor.redLight,
+            //color: isSelected ? Colors.blue : Colors.redAccent,
+            size: 30,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff776969),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1164,6 +1164,16 @@ class S {
     );
   }
 
+  /// `Contacts`
+  String get contacts {
+    return Intl.message(
+      'Contacts',
+      name: 'contacts',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Continue to Purchase`
   String get continuePurchase {
     return Intl.message(
@@ -2234,10 +2244,10 @@ class S {
     );
   }
 
-  /// `Family sharing`
+  /// `Family Sharing`
   String get familySharing {
     return Intl.message(
-      'Family sharing',
+      'Family Sharing',
       name: 'familySharing',
       desc: '',
       args: [],
@@ -7353,6 +7363,16 @@ class S {
     return Intl.message(
       'Pin number must contain only digits',
       name: 'pinNumberMustContainOnlDigits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contacts`
+  String get contact {
+    return Intl.message(
+      'Contacts',
+      name: 'contact',
       desc: '',
       args: [],
     );

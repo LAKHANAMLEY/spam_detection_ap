@@ -58,7 +58,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                   if (state is StaffAddMemberState) {
                     if (state.value.statusCode == 200) {
                       Navigator.pop(context);
-                      addStaffBloc.add(GetStaffMemberListEvent());
+                      staffBloc.add(GetStaffMemberListEvent());
                     } else {
                       showCustomDialog(context,
                           dialogType: DialogType.success,

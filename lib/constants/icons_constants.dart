@@ -90,4 +90,10 @@ class IconConstants {
   static const String icGoogleLogo = 'assets/icons/ic_google_logo.png';
   static const String icSpamMessage = 'assets/icons/ic_spam_message.png';
   static String icSpamAlertMessage = "assets/icons/ic-spam-alert.png";
+  static const String icSpain = 'assets/icons/ic_spain.png';
+  static const String icEnglish = 'assets/icons/ic_united_states.png';
+  static const String icLanguage = 'assets/icons/ic_language.png';
+  static const String icLogoutData = 'assets/icons/ic_logout_data.png';
+  static const String icLogoutDataIcon = 'assets/icons/ic_logout_icon.png';
+  static const String icFamilyRest = 'assets/icons/ic_family_restroom.png';
 }

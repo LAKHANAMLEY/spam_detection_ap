@@ -733,5 +733,6 @@
   "contactUS": "Contacta con nosotros",
   "privacyPolicyTxt": "política de privacidad",
   "pinNumberMustDigits": "El número PIN debe tener 6 dígitos",
-  "pinNumberMustContainOnlDigits": "El número PIN debe contener solo dígitos"
+  "pinNumberMustContainOnlDigits": "El número PIN debe contener solo dígitos",
+  "contact": "Contactos"
 }

@@ -38,6 +38,7 @@ class MessagesDetail extends StatelessWidget {
                       messagesBloc.add(SmsListEvent());
                     }
                     return PopupMenuButton(
+                      color: AppColor.lightOrange,
                       itemBuilder: (context) => [
                         // PopupMenuItem(
                         //   onTap: () {
@@ -145,6 +146,34 @@ class MessagesDetail extends StatelessWidget {
                             ],
                           ),
                         ),
+                        // PopupMenuItem(
+                        //   onTap: () {
+                        //     // messagesBloc.add(DeleteConversationEvent());
+                        //   },
+                        //   child: Row(
+                        //     children: [
+                        //       Image.asset(
+                        //         IconConstants.icDelete,
+                        //         color: AppColor.redColor,
+                        //         scale: 1,
+                        //       ),
+                        //       SizedBox(
+                        //         width:
+                        //         MediaQuery
+                        //             .of(context)
+                        //             .size
+                        //             .width * 5 / 100,
+                        //       ),
+                        //       Text(
+                        //         appLocalization(context).report,
+                        //         style: const TextStyle(
+                        //             color: AppColor.redColor,
+                        //             fontSize: 18,
+                        //             fontWeight: FontWeight.w600),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     );
                   }),

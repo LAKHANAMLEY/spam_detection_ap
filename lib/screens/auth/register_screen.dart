@@ -15,7 +15,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  bool isCheckBoxValue = false;
+  // bool isCheckBoxValue = false;
   bool isApiCalling = false;
 
   //String? _errorMessage;

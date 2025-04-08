@@ -195,14 +195,26 @@ class ContactList extends StatelessWidget {
     );
   }
 
-  List<ContactData> filterSearchResults(
-    String searchText,
-    List<ContactData> contacts,
-  ) {
+//   List<ContactData> filterSearchResults(
+//     String searchText,
+//     List<ContactData> contacts,
+//   ) {
+//     return contacts
+//         .where((e) =>
+//             (e.name!.toLowerCase().contains(searchText.toLowerCase()) ||
+//                 e.mobileNo!.toLowerCase().contains(searchText.toLowerCase())))
+//         .toList();
+//   }
+// }
+
+  List<ContactData> filter(String searchText, List<ContactData> contacts) {
     return contacts
         .where((e) =>
-            (e.name!.toLowerCase().contains(searchText.toLowerCase()) ||
-                e.mobileNo!.toLowerCase().contains(searchText.toLowerCase())))
+            ((e.name?.toLowerCase().contains(searchText.toLowerCase()) ??
+                    false) ||
+                (e.mobileNo?.toLowerCase().contains(searchText.toLowerCase()) ??
+                    false)))
         .toList();
+    // setState(() {});
   }
 }
