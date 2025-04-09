@@ -62,6 +62,7 @@ export 'data/repository/notification_repo/enabled_disabled_notification_api.dart
 export 'data/repository/notification_repo/notification_list_api.dart';
 export 'data/repository/notification_repo/notification_type_api.dart';
 export 'data/repository/plans_repo/plans_list_api.dart';
+export 'data/repository/plans_repo/transaction_list_api.dart';
 export 'data/repository/setting_repo/call_duration_unit_api.dart';
 export 'data/repository/setting_repo/call_type_api.dart';
 export 'data/repository/setting_repo/category_list_api.dart';

@@ -731,5 +731,13 @@
   "privacyPolicyTxt": "Privacy Policy",
   "pinNumberMustDigits": "Pin number must be 6 digits",
   "pinNumberMustContainOnlDigits": "Pin number must contain only digits",
-  "contact": "Contacts"
+  "contact": "Contacts",
+  "reportSpam": "Report spam",
+  "reportSpamLabel": "This sender will be marked and labeled as spam in the conversation.",
+  "tellUsMore": "Tell us more...",
+  "whatTypeOfMessage": "What type of message was this?",
+  "unMarkSMs": "UnMark",
+  "notSpam": "Not spam",
+  "transactionList": "Transaction List",
+  "reportMessageExperience": "Report the message to improve the experience for millions users like you"
 }

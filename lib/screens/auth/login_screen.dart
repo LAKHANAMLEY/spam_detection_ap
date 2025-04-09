@@ -165,9 +165,9 @@ class _LoginState extends State<Login> {
                                               child: Center(
                                                 child: tabIndex == 1
                                                     ? Image.asset(IconConstants
-                                                        .icPhoneUnSelect) // Show secondary image
+                                                        .icPhoneUnSelect)
                                                     : Image.asset(IconConstants
-                                                        .icSMSSelected), // Show primary image
+                                                        .icSMSSelected),
                                               ),
                                             ),
                                           ),

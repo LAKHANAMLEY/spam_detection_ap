@@ -162,160 +162,162 @@ class _BottomNavigationState extends State<BottomNavigation> {
                         ),
                       ),
                       15.width(),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, AppRoutes.contactList);
-                        },
-                        child: Icon(
-                          Icons.switch_account_sharp,
-                          color: Color.fromRGBO(102, 106, 119, 1),
+                      if (page == 2)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, AppRoutes.contactList);
+                          },
+                          child: Icon(
+                            Icons.perm_contact_calendar_outlined,
+                            color: Color.fromRGBO(102, 106, 119, 1),
+                          ),
+                          // child: Image.asset(
+                          //   IconConstants.icUsername,
+                          //   color: Colors.black,
+                          //   // scale: 3.5,
+                          // ),
                         ),
-                        // child: Image.asset(
-                        //   IconConstants.icUsername,
-                        //   color: Colors.black,
-                        //   // scale: 3.5,
-                        // ),
-                      ),
-                      PopupMenuButton(
-                        color: Color(0xffFFE8E3),
-                        itemBuilder: (context) => [
-                          PopupMenuItem(
-                            onTap: () {
-                              Navigator.pushNamed(context, AppRoutes.callLogs,
-                                  arguments: DeviceCallLogs(
-                                      filterBy: CallType.outgoing.name));
-                            },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image.asset(
-                                  IconConstants.icOutgoingCall,
-                                  scale: 2.5,
-                                ),
-                                10.width(),
-                                // SizedBox(
-                                //   width: MediaQuery.of(context).size.width *
-                                //       5 /
-                                //       100,
-                                // ),
-                                Text(
-                                  appLocalization(context).outgoingCalls,
-                                  style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600),
-                                )
-                              ],
-                            ),
-                          ),
-                          PopupMenuItem(
-                            onTap: () {
-                              Navigator.pushNamed(context, AppRoutes.callLogs,
-                                  arguments: DeviceCallLogs(
-                                      filterBy: CallType.incoming.name));
-                            },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image.asset(
-                                  IconConstants.icIncomingCall,
-                                  scale: 2.5,
-                                ),
-                                10.width(),
-                                // SizedBox(
-                                //   width: MediaQuery.of(context).size.width *
-                                //       5 /
-                                //       100,
-                                // ),
-                                Text(appLocalization(context).incomingCalls,
+                      if (page == 2)
+                        PopupMenuButton(
+                          color: Color(0xffFFE8E3),
+                          itemBuilder: (context) => [
+                            PopupMenuItem(
+                              onTap: () {
+                                Navigator.pushNamed(context, AppRoutes.callLogs,
+                                    arguments: DeviceCallLogs(
+                                        filterBy: CallType.outgoing.name));
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    IconConstants.icOutgoingCall,
+                                    scale: 2.5,
+                                  ),
+                                  10.width(),
+                                  // SizedBox(
+                                  //   width: MediaQuery.of(context).size.width *
+                                  //       5 /
+                                  //       100,
+                                  // ),
+                                  Text(
+                                    appLocalization(context).outgoingCalls,
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 17,
-                                        fontWeight: FontWeight.w600))
-                              ],
+                                        fontWeight: FontWeight.w600),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          PopupMenuItem(
-                            onTap: () {
-                              Navigator.pushNamed(context, AppRoutes.callLogs,
-                                  arguments: DeviceCallLogs(
-                                      filterBy: CallType.missed.name));
-                            },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image.asset(
-                                  IconConstants.icMissCall,
-                                  scale: 2.5,
-                                ),
-                                10.width(),
-                                // SizedBox(
-                                //   width: MediaQuery.of(context).size.width *
-                                //       5 /
-                                //       100,
-                                // ),
-                                Text(appLocalization(context).missedCalls,
-                                    style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600))
-                              ],
+                            PopupMenuItem(
+                              onTap: () {
+                                Navigator.pushNamed(context, AppRoutes.callLogs,
+                                    arguments: DeviceCallLogs(
+                                        filterBy: CallType.incoming.name));
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    IconConstants.icIncomingCall,
+                                    scale: 2.5,
+                                  ),
+                                  10.width(),
+                                  // SizedBox(
+                                  //   width: MediaQuery.of(context).size.width *
+                                  //       5 /
+                                  //       100,
+                                  // ),
+                                  Text(appLocalization(context).incomingCalls,
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600))
+                                ],
+                              ),
                             ),
-                          ),
-                          PopupMenuItem(
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.blockedCalls);
-                            },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image.asset(
-                                  IconConstants.icBlockedCall,
-                                  scale: 2.5,
-                                ),
-                                10.width(),
-                                // SizedBox(
-                                //   width: MediaQuery.of(context).size.width *
-                                //       4 /
-                                //       100,
-                                // ),
-                                Text(appLocalization(context).blockedCalls,
-                                    style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w600))
-                              ],
+                            PopupMenuItem(
+                              onTap: () {
+                                Navigator.pushNamed(context, AppRoutes.callLogs,
+                                    arguments: DeviceCallLogs(
+                                        filterBy: CallType.missed.name));
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    IconConstants.icMissCall,
+                                    scale: 2.5,
+                                  ),
+                                  10.width(),
+                                  // SizedBox(
+                                  //   width: MediaQuery.of(context).size.width *
+                                  //       5 /
+                                  //       100,
+                                  // ),
+                                  Text(appLocalization(context).missedCalls,
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600))
+                                ],
+                              ),
                             ),
-                          ),
-                          PopupMenuItem(
-                            onTap: () {
-                              callLogsListBloc.add(DeleteAllCallLogEvent());
-                            },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Image.asset(
-                                  IconConstants.icDeleteCall,
-                                  color: Colors.red,
-                                  scale: 2.5,
-                                ),
-                                10.width(),
-                                // SizedBox(
-                                //   width: MediaQuery.of(context).size.width *
-                                //       5 /
-                                //       100,
-                                // ),
-                                Text(appLocalization(context).deleteCalls,
-                                    style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w600))
-                              ],
+                            PopupMenuItem(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, AppRoutes.blockedCalls);
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    IconConstants.icBlockedCall,
+                                    scale: 2.5,
+                                  ),
+                                  10.width(),
+                                  // SizedBox(
+                                  //   width: MediaQuery.of(context).size.width *
+                                  //       4 /
+                                  //       100,
+                                  // ),
+                                  Text(appLocalization(context).blockedCalls,
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600))
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
+                            PopupMenuItem(
+                              onTap: () {
+                                callLogsListBloc.add(DeleteAllCallLogEvent());
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Image.asset(
+                                    IconConstants.icDeleteCall,
+                                    color: Colors.red,
+                                    scale: 2.5,
+                                  ),
+                                  10.width(),
+                                  // SizedBox(
+                                  //   width: MediaQuery.of(context).size.width *
+                                  //       5 /
+                                  //       100,
+                                  // ),
+                                  Text(appLocalization(context).deleteCalls,
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600))
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                     ]),
                 body: _pages[page],
                 bottomNavigationBar: CurvedNavigationBar(

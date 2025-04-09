@@ -1,5 +1,7 @@
 import 'package:spam_delection_app/lib.dart';
 import 'package:spam_delection_app/screens/message/message_bubble_view.dart';
+import 'package:spam_delection_app/screens/message/report_message_screen.dart';
+import 'package:spam_delection_app/screens/message/unmark_spam_message_screen.dart';
 
 final TextEditingController messageController = TextEditingController();
 
@@ -115,7 +117,7 @@ class MessagesDetail extends StatelessWidget {
                                 appLocalization(context).blockSms,
                                 style: const TextStyle(
                                     color: AppColor.blackColor,
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w600),
                               )
                             ],
@@ -140,40 +142,105 @@ class MessagesDetail extends StatelessWidget {
                                 appLocalization(context).deleteConversation,
                                 style: const TextStyle(
                                     color: AppColor.redColor,
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w600),
                               )
                             ],
                           ),
                         ),
-                        // PopupMenuItem(
-                        //   onTap: () {
-                        //     // messagesBloc.add(DeleteConversationEvent());
-                        //   },
-                        //   child: Row(
-                        //     children: [
-                        //       Image.asset(
-                        //         IconConstants.icDelete,
-                        //         color: AppColor.redColor,
-                        //         scale: 1,
-                        //       ),
-                        //       SizedBox(
-                        //         width:
-                        //         MediaQuery
-                        //             .of(context)
-                        //             .size
-                        //             .width * 5 / 100,
-                        //       ),
-                        //       Text(
-                        //         appLocalization(context).report,
-                        //         style: const TextStyle(
-                        //             color: AppColor.redColor,
-                        //             fontSize: 18,
-                        //             fontWeight: FontWeight.w600),
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
+                        PopupMenuItem(
+                          onTap: () {
+                            showModalBottomSheet(
+                              // showDragHandle: true,
+                              // useSafeArea: true,
+                              // isScrollControlled: true,
+                              backgroundColor: AppColor.whiteColor,
+                              context: context,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20.0)),
+                              ),
+                              builder: (BuildContext context) {
+                                return ReportSmsView(
+                                  sms: SmsDetail(
+                                    address: sms?.address,
+                                    //spamMessage: SmsDetail().spamMessage,
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                IconConstants.icReport,
+                                color: AppColor.redColor,
+                                scale: 3,
+                              ),
+                              SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.width * 5 / 100,
+                              ),
+                              Text(
+                                appLocalization(context).reportText,
+                                style: const TextStyle(
+                                    color: AppColor.blackColor,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600),
+                              )
+                            ],
+                          ),
+                        ),
+                        PopupMenuItem(
+                          onTap: () {
+                            showModalBottomSheet(
+                              // showDragHandle: true,
+                              // useSafeArea: true,
+                              // isScrollControlled: true,
+                              backgroundColor: AppColor.whiteColor,
+                              context: context,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20.0)),
+                              ),
+                              builder: (BuildContext context) {
+                                return Container(
+                                  constraints: BoxConstraints(
+                                      minHeight:
+                                          MediaQuery.of(context).size.height *
+                                              20 /
+                                              100),
+                                  child: UnMarkSmsView(
+                                    sms: SmsDetail(
+                                      address: sms?.address,
+                                      //spamMessage: SmsDetail().spamMessage,
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                IconConstants.icReport,
+                                color: AppColor.redColor,
+                                scale: 3,
+                              ),
+                              SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.width * 5 / 100,
+                              ),
+                              Text(
+                                appLocalization(context).unMarkSMs,
+                                style: const TextStyle(
+                                    color: AppColor.blackColor,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600),
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     );
                   }),

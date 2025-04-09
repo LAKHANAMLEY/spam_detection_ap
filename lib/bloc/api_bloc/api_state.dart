@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/models/api_body_model/transaction_history_details_model.dart';
 import 'package:spam_delection_app/models/forgot_password_otp_model.dart';
 
 abstract class ApiState extends Equatable {
@@ -693,6 +694,15 @@ class GetContactDetailState extends ApiState {
   final ContactDetailsResponse value;
 
   GetContactDetailState(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class GetTransactionListState extends ApiState {
+  final TransactionHistoryDetailsResponse value;
+
+  GetTransactionListState(this.value);
 
   @override
   List<Object?> get props => [value];

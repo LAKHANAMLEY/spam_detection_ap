@@ -145,6 +145,7 @@ class ApiUrlConstants {
   static String removeSpamSms = '$baseUrl/sms/remove-spam';
   static String purchasePlan = '$baseUrl/plans/purchase-plan';
   static String cancelPlan = '$baseUrl/plans/cancel-plan';
+  static String transactionHistory = '$baseUrl/plans/transaction-history';
   static String readNotification = '$baseUrl/notifications/seen-notification';
   static String clearAllNotification =
       '$baseUrl/notifications/clearallnotification';

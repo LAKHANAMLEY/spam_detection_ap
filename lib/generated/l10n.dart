@@ -7377,6 +7377,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Report spam`
+  String get reportSpam {
+    return Intl.message(
+      'Report spam',
+      name: 'reportSpam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This sender will be marked and labeled as spam in the conversation.`
+  String get reportSpamLabel {
+    return Intl.message(
+      'This sender will be marked and labeled as spam in the conversation.',
+      name: 'reportSpamLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tell us more...`
+  String get tellUsMore {
+    return Intl.message(
+      'Tell us more...',
+      name: 'tellUsMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What type of message was this?`
+  String get whatTypeOfMessage {
+    return Intl.message(
+      'What type of message was this?',
+      name: 'whatTypeOfMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `UnMark`
+  String get unMarkSMs {
+    return Intl.message(
+      'UnMark',
+      name: 'unMarkSMs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not spam`
+  String get notSpam {
+    return Intl.message(
+      'Not spam',
+      name: 'notSpam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction List`
+  String get transactionList {
+    return Intl.message(
+      'Transaction List',
+      name: 'transactionList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report the message to improve the experience for millions users like you`
+  String get reportMessageExperience {
+    return Intl.message(
+      'Report the message to improve the experience for millions users like you',
+      name: 'reportMessageExperience',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

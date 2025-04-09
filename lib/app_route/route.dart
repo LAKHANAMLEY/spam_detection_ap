@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/plan/transaction_list_screen.dart';
 
 class AppRoutes {
   static const splash = "/splash";
@@ -50,6 +51,7 @@ class AppRoutes {
   static const editContact = "/editContact";
   static const otpVerify = "/otpVerify";
   static const contactUS = "/contactUs";
+  static const transactionList = "/transactionList";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -102,4 +104,5 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.editContact: (context) => const EditContact(),
   AppRoutes.otpVerify: (context) => const OtpVerify(),
   AppRoutes.contactUS: (context) => const ContactUS(),
+  AppRoutes.transactionList: (context) => const TransactionList()
 };

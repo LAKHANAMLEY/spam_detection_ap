@@ -607,5 +607,11 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(GetContactDetailState(value));
       });
     }
+    if (event is GetTransactionListEvent) {
+      emit(ApiLoadingState());
+      await getTransactionList().then((value) {
+        emit(GetTransactionListState(value));
+      });
+    }
   }
 }

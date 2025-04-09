@@ -615,6 +615,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notAMember": MessageLookupByLibrary.simpleMessage("Pas membre ?"),
         "notActive": MessageLookupByLibrary.simpleMessage("Pas actif"),
         "notFound": MessageLookupByLibrary.simpleMessage("Not found"),
+        "notSpam": MessageLookupByLibrary.simpleMessage("No spam"),
         "notVerified": MessageLookupByLibrary.simpleMessage("Non vérifié"),
         "noteDocFormates": MessageLookupByLibrary.simpleMessage(
             "Remarque: les formats de documents sont PNG, JPG, JPEG"),
@@ -911,8 +912,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "rent": MessageLookupByLibrary.simpleMessage("Loyer"),
         "renterPassword": MessageLookupByLibrary.simpleMessage(
             "Escriba la contraseña otra vez"),
+        "reportMessageExperience": MessageLookupByLibrary.simpleMessage(
+            "Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú"),
         "reportNumberSpam":
             MessageLookupByLibrary.simpleMessage("Reportar número como spam"),
+        "reportSpam": MessageLookupByLibrary.simpleMessage("Reportar spam"),
+        "reportSpamLabel": MessageLookupByLibrary.simpleMessage(
+            "Este remitente será marcado y etiquetado como spam en la conversación."),
         "reportText": MessageLookupByLibrary.simpleMessage("Informe"),
         "request": MessageLookupByLibrary.simpleMessage("Demande"),
         "requestAgain":
@@ -1086,6 +1092,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Frais de transaction: "),
         "transactionId":
             MessageLookupByLibrary.simpleMessage("Identifiant de transaction"),
+        "transactionList":
+            MessageLookupByLibrary.simpleMessage("Lista de transacciones"),
         "transactionStatus":
             MessageLookupByLibrary.simpleMessage("Statut de la transaction"),
         "transactionType":
@@ -1102,6 +1110,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transférer maintenant"),
         "transferTo": MessageLookupByLibrary.simpleMessage("Transférer à"),
         "tryAgain": MessageLookupByLibrary.simpleMessage("Essayer à nouveau.."),
+        "unMarkSMs": MessageLookupByLibrary.simpleMessage("Desmarcar"),
         "unblock": MessageLookupByLibrary.simpleMessage("Desatascar"),
         "unknown": MessageLookupByLibrary.simpleMessage("Inconnue"),
         "unknownIdentified": MessageLookupByLibrary.simpleMessage(
