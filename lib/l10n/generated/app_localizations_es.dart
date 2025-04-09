@@ -2207,4 +2207,28 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get contact => 'Contactos';
+
+  @override
+  String get reportSpam => 'Reportar spam';
+
+  @override
+  String get reportSpamLabel => 'Este remitente será marcado y etiquetado como spam en la conversación.';
+
+  @override
+  String get tellUsMore => 'Tell us more...';
+
+  @override
+  String get whatTypeOfMessage => 'What type of message was this?';
+
+  @override
+  String get unMarkSMs => 'Desmarcar';
+
+  @override
+  String get notSpam => 'No spam';
+
+  @override
+  String get transactionList => 'Lista de transacciones';
+
+  @override
+  String get reportMessageExperience => 'Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú';
 }

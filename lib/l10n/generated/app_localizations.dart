@@ -4486,6 +4486,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contacts'**
   String get contact;
+
+  /// No description provided for @reportSpam.
+  ///
+  /// In en, this message translates to:
+  /// **'Report spam'**
+  String get reportSpam;
+
+  /// No description provided for @reportSpamLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'This sender will be marked and labeled as spam in the conversation.'**
+  String get reportSpamLabel;
+
+  /// No description provided for @tellUsMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us more...'**
+  String get tellUsMore;
+
+  /// No description provided for @whatTypeOfMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'What type of message was this?'**
+  String get whatTypeOfMessage;
+
+  /// No description provided for @unMarkSMs.
+  ///
+  /// In en, this message translates to:
+  /// **'UnMark'**
+  String get unMarkSMs;
+
+  /// No description provided for @notSpam.
+  ///
+  /// In en, this message translates to:
+  /// **'Not spam'**
+  String get notSpam;
+
+  /// No description provided for @transactionList.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction List'**
+  String get transactionList;
+
+  /// No description provided for @reportMessageExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Report the message to improve the experience for millions users like you'**
+  String get reportMessageExperience;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
