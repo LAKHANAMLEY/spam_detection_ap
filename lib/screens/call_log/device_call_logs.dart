@@ -1,274 +1,336 @@
+import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_bloc.dart';
+import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_event.dart';
+import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_state.dart';
 import 'package:spam_delection_app/lib.dart';
 
-class DeviceCallLogs extends StatelessWidget {
+class DeviceCallLogs extends StatefulWidget {
   final bool? showAppBar;
   final String filterBy;
 
   const DeviceCallLogs({super.key, this.showAppBar = true, this.filterBy = ""});
 
   @override
+  State<DeviceCallLogs> createState() => _DeviceCallLogsState();
+}
+
+class _DeviceCallLogsState extends State<DeviceCallLogs> {
+  final searchController = TextEditingController();
+  final scrollController = ScrollController();
+  List<CallLogData> callLogs = [];
+  List<CallLogData> filteredCallLogs = [];
+  // bool isVisible = false;
+  // final showHideTextFieldBloc = SelectionBloc(SelectBoolState(true));
+  final searchBloc = SelectionBloc(SelectStringState(""));
+  // callLogsListBloc.add(GetCallLogsEvent());
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<CallLogDBBloc>().add(LoadDBCallLogs());
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final searchController = TextEditingController();
-    final scrollController = ScrollController();
-    List<CallLogData> callLogs = [];
-    List<CallLogData> filteredCallLogs = [];
-    // bool isVisible = false;
-    // final showHideTextFieldBloc = SelectionBloc(SelectBoolState(true));
-    final searchBloc = SelectionBloc(SelectStringState(""));
-    callLogsListBloc.add(GetCallLogsEvent());
     return Scaffold(
-      appBar: (showAppBar ?? showAppBar ?? false)
+      appBar: (widget.showAppBar ?? widget.showAppBar ?? false)
           ? CustomAppBar(
               title: appLocalization(context).callLogs,
             )
           : null,
-      body: BlocConsumer(
-          bloc: markSpamBloc,
-          listener: (context, state) {
-            if (state is MarkSpamState) {
-              if (state.value.statusCode == 200) {
-                showCustomDialog(
-                  context,
-                  dialogType: DialogType.success,
-                  subTitle: state.value.message,
-                );
-                callLogsListBloc.add(GetCallLogsEvent());
-              } else if (state.value.statusCode ==
-                  HTTPStatusCodes.sessionExpired) {
-                sessionExpired(context, state.value.message ?? "");
-              } else {
-                showCustomDialog(
-                  context,
-                  dialogType: DialogType.failed,
-                  subTitle: state.value.message,
-                );
-              }
-            }
-            if (state is RemoveSpamState) {
-              if (state.value.statusCode == 200) {
-                showCustomDialog(context,
-                    dialogType: DialogType.success,
-                    subTitle: state.value.message);
-              } else if (state.value.statusCode ==
-                  HTTPStatusCodes.sessionExpired) {
-                sessionExpired(context, state.value.message);
-              } else {
-                showCustomDialog(context,
-                    dialogType: DialogType.failed,
-                    subTitle: state.value.message);
-              }
-              callLogsListBloc.add(GetCallLogsEvent());
-              // markSpamBloc.add(GetSpamEvent());
-            }
-            if (state is BlockUnBlockState) {
-              if (state.value.statusCode == 200) {
-                showCustomDialog(context,
-                    dialogType: DialogType.success,
-                    subTitle: state.value.message);
-              } else if (state.value.statusCode ==
-                  HTTPStatusCodes.sessionExpired) {
-                sessionExpired(context, state.value.message);
-              } else {
-                showCustomDialog(context,
-                    dialogType: DialogType.failed,
-                    subTitle: state.value.message.toString());
-              }
-              callLogsListBloc.add(GetCallLogsEvent());
-              // markSpamBloc.add(GetSpamEvent());
-            }
-          },
-          builder: (context, markSpamState) {
-            return Column(
+      body: BlocBuilder<CallLogDBBloc, CallLogDBState>(
+          builder: (context, callLogDBState) {
+        if (callLogDBState is CallLogDBError) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CustomTextField(
-                  controller: searchController,
-                  fillColor: AppColor.whiteColor,
-                  prefix: const Icon(
-                    Icons.search,
-                    color: AppColor.redColor,
-                  ),
-                  hintText: appLocalization(context).searchMore,
-                  //textAlign: TextAlign.center,
-
-                  onChanged: (p0) {
-                    // filter();
-                    searchBloc.add(SelectStringEvent(p0));
-                  },
-                  suffix: PopupMenuButton(
-                    itemBuilder: (context) => [
-                      PopupMenuItem(
-                          onTap: () {
-                            callLogsListBloc.add(GetDeviceCallLogEvent());
-                          },
-                          child: Text(appLocalization(context).synCallLogs)),
-                      PopupMenuItem(
-                          onTap: () {
-                            callLogsListBloc.add(DeleteAllCallLogEvent());
-                          },
-                          child:
-                              Text(appLocalization(context).deleteAllCallLogs)),
-                    ],
-                  ),
+                Text(
+                  callLogDBState.message,
+                  textAlign: TextAlign.center,
                 ),
-                // Row(
-                //   children: [
-                //     ElevatedButton.icon(
-                //       onPressed: () {
-                //         Navigator.pushNamed(context, AppRoutes.contactList);
-                //       },
-                //       label: Text(appLocalization(context).contacts),
-                //       icon: const Icon(Icons.contacts_outlined),
-                //     ),
-                //     // ElevatedButton.icon(
-                //     //   onPressed: () {
-                //     //     Navigator.pushNamed(context, AppRoutes.contactList);
-                //     //   },
-                //     //   label: const Text("Favourite"),
-                //     //   icon: const Icon(Icons.favorite_border_outlined),
-                //     // )
-                //   ],
-                // ),
-                Expanded(
-                  child: BlocConsumer(
-                      bloc: callLogsListBloc,
-                      listener: (context, state) {
-                        if (state is ApiBlocInitialState) {
-                          callLogsListBloc.add(GetCallLogsEvent());
-                        }
-                        if (state is GetDeviceCallLogState) {
-                          var deviceCallLogs = state.value;
-                          callLogs = deviceCallLogs
-                              .map((e) => CallLogData(
-                                    mobileNo: e.number,
-                                    callDuration: e.duration.toString(),
-                                    name: e.name,
-                                    callType: e.callType?.name,
-                                    callTime: e.timestamp?.toDateTime(),
-                                  ))
-                              .toList();
-                          filteredCallLogs = filter("", callLogs);
-                          callLogsListBloc
-                              .add(SyncCallLogEvent(callLogs: deviceCallLogs));
-                        }
-                        if (state is GetCallLogsState) {
-                          if (state.value.statusCode == 200) {
-                            callLogs = state.value.callloglist ?? [];
-                            filteredCallLogs = filter("", callLogs);
-                          } else if (state.value.statusCode ==
-                              HTTPStatusCodes.sessionExpired) {
-                            sessionExpired(context, state.value.message ?? "");
-                          } else {
-                            showToast(state.value.message ?? "");
-                          }
-                        }
-                        if (state is SyncCallLogState) {
-                          if (state.value.statusCode == 200) {
-                            showToast(state.value.message);
-                          } else if (state.value.statusCode ==
-                              HTTPStatusCodes.sessionExpired) {
-                            sessionExpired(context, state.value.message ?? "");
-                          } else {
-                            showToast(state.value.message);
-                          }
-                          callLogsListBloc.add(GetCallLogsEvent());
-                        }
-                        if (state is DeleteAllCallLogState) {
-                          if (state.value.statusCode == 200) {
-                            showCustomDialog(context,
-                                dialogType: DialogType.success,
-                                subTitle: state.value.message ?? "");
-                          } else if (state.value.statusCode ==
-                              HTTPStatusCodes.sessionExpired) {
-                            sessionExpired(context, state.value.message ?? "");
-                          } else {
-                            showToast(state.value.message);
-                          }
-                          callLogsListBloc.add(GetCallLogsEvent());
-                        }
-                        if (state is DeleteCallLogState) {
-                          if (state.value.statusCode == 200) {
-                            showCustomDialog(context,
-                                dialogType: DialogType.success,
-                                subTitle: state.value.message);
-                          } else if (state.value.statusCode ==
-                              HTTPStatusCodes.sessionExpired) {
-                            sessionExpired(context, state.value.message);
-                          } else {
-                            showCustomDialog(context,
-                                dialogType: DialogType.failed,
-                                subTitle: state.value.message.toString());
-                          }
-                          callLogsListBloc.add(GetCallLogsEvent());
-                          // markSpamBloc.add(GetSpamEvent());
-                        }
-                      },
-                      builder: (context, state) {
-                        // if (state is GetCallLogsState) {
-
-                        // if (filteredCallLogs.isEmpty) {
-                        //   return Center(
-                        //       child:
-                        //           Text(appLocalization(context).noContacts));
-                        // }
-                        return ModalProgressHUD(
-                            inAsyncCall: //state is ApiLoadingState ||
-                                markSpamState is ApiLoadingState,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: BlocConsumer(
-                                  bloc: searchBloc,
-                                  listener: (context, state) {
-                                    if (state is SelectStringState) {
-                                      filteredCallLogs =
-                                          filter(state.value ?? "", callLogs);
-                                    }
-                                  },
-                                  builder: (context, searchState) {
-                                    return (filteredCallLogs.isEmpty &&
-                                            searchController.text.isNotEmpty)
-                                        ? SizedBox(
-                                            height: 80,
-                                            child: CallLogListItem(
-                                                // showPopupMenuBtn: false,
-                                                callLog: CallLogData(
-                                              mobileNo: searchController.text,
-                                            )),
-                                          )
-                                        // Center(
-                                        //     child: Text(appLocalization(context)
-                                        //         .noData),
-                                        //   )
-                                        : (state is ApiLoadingState &&
-                                                filteredCallLogs.isEmpty)
-                                            ? Loader()
-                                            : filteredCallLogs.isEmpty
-                                                ? Center(
-                                                    child: Text(
-                                                        appLocalization(context)
-                                                            .noData),
-                                                  )
-                                                : ListView.builder(
-                                                    shrinkWrap: true,
-                                                    controller:
-                                                        scrollController,
-                                                    itemCount:
-                                                        filteredCallLogs.length,
-                                                    itemBuilder:
-                                                        (context, index) =>
-                                                            CallLogListItem(
-                                                              callLog:
-                                                                  filteredCallLogs[
-                                                                      index],
-                                                            ));
-                                  }),
-                            ));
-                        // }
-                        // return const Loader();
-                      }),
-                ),
+                ElevatedButton(
+                    onPressed: () {
+                      context.read<CallLogDBBloc>().add(DeleteDBCallLogs());
+                    },
+                    child: Text("Delete DB"))
               ],
-            );
-          }),
+            ),
+          );
+        }
+        if (callLogDBState is CallLogDBInitial) {
+          return Center(
+            child: ElevatedButton(
+              onPressed: () {
+                context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+              },
+              child: Text("Load call logs"),
+            ),
+          );
+        }
+        if (callLogDBState is CallLogDBLoaded) {
+          callLogs = callLogDBState.callLogs;
+          filteredCallLogs = filter("", callLogs);
+          return BlocConsumer(
+              bloc: markSpamBloc,
+              listener: (context, state) {
+                if (state is MarkSpamState) {
+                  if (state.value.statusCode == 200) {
+                    showCustomDialog(
+                      context,
+                      dialogType: DialogType.success,
+                      subTitle: state.value.message,
+                    );
+                    callLogsListBloc.add(GetCallLogsEvent());
+                  } else if (state.value.statusCode ==
+                      HTTPStatusCodes.sessionExpired) {
+                    sessionExpired(context, state.value.message ?? "");
+                  } else {
+                    showCustomDialog(
+                      context,
+                      dialogType: DialogType.failed,
+                      subTitle: state.value.message,
+                    );
+                  }
+                }
+                if (state is RemoveSpamState) {
+                  if (state.value.statusCode == 200) {
+                    showCustomDialog(context,
+                        dialogType: DialogType.success,
+                        subTitle: state.value.message);
+                  } else if (state.value.statusCode ==
+                      HTTPStatusCodes.sessionExpired) {
+                    sessionExpired(context, state.value.message);
+                  } else {
+                    showCustomDialog(context,
+                        dialogType: DialogType.failed,
+                        subTitle: state.value.message);
+                  }
+                  callLogsListBloc.add(GetCallLogsEvent());
+                  // markSpamBloc.add(GetSpamEvent());
+                }
+                if (state is BlockUnBlockState) {
+                  if (state.value.statusCode == 200) {
+                    showCustomDialog(context,
+                        dialogType: DialogType.success,
+                        subTitle: state.value.message);
+                  } else if (state.value.statusCode ==
+                      HTTPStatusCodes.sessionExpired) {
+                    sessionExpired(context, state.value.message);
+                  } else {
+                    showCustomDialog(context,
+                        dialogType: DialogType.failed,
+                        subTitle: state.value.message.toString());
+                  }
+                  callLogsListBloc.add(GetCallLogsEvent());
+                  // markSpamBloc.add(GetSpamEvent());
+                }
+              },
+              builder: (context, markSpamState) {
+                return Column(
+                  children: [
+                    CustomTextField(
+                      controller: searchController,
+                      fillColor: AppColor.whiteColor,
+                      prefix: const Icon(
+                        Icons.search,
+                        color: AppColor.redColor,
+                      ),
+                      hintText: appLocalization(context).searchMore,
+                      //textAlign: TextAlign.center,
+
+                      onChanged: (p0) {
+                        // filter();
+                        searchBloc.add(SelectStringEvent(p0));
+                      },
+                      suffix: PopupMenuButton(
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                              onTap: () {
+                                callLogsListBloc.add(GetDeviceCallLogEvent());
+                              },
+                              child:
+                                  Text(appLocalization(context).synCallLogs)),
+                          PopupMenuItem(
+                              onTap: () {
+                                callLogsListBloc.add(DeleteAllCallLogEvent());
+                              },
+                              child: Text(
+                                  appLocalization(context).deleteAllCallLogs)),
+                        ],
+                      ),
+                    ),
+                    // Row(
+                    //   children: [
+                    //     ElevatedButton.icon(
+                    //       onPressed: () {
+                    //         Navigator.pushNamed(context, AppRoutes.contactList);
+                    //       },
+                    //       label: Text(appLocalization(context).contacts),
+                    //       icon: const Icon(Icons.contacts_outlined),
+                    //     ),
+                    //     // ElevatedButton.icon(
+                    //     //   onPressed: () {
+                    //     //     Navigator.pushNamed(context, AppRoutes.contactList);
+                    //     //   },
+                    //     //   label: const Text("Favourite"),
+                    //     //   icon: const Icon(Icons.favorite_border_outlined),
+                    //     // )
+                    //   ],
+                    // ),
+                    Expanded(
+                      child: BlocConsumer(
+                          bloc: callLogsListBloc,
+                          listener: (context, state) {
+                            if (state is ApiBlocInitialState) {
+                              callLogsListBloc.add(GetCallLogsEvent());
+                            }
+                            if (state is GetDeviceCallLogState) {
+                              var deviceCallLogs = state.value;
+                              callLogs = deviceCallLogs
+                                  .map((e) => CallLogData(
+                                        mobileNo: e.number,
+                                        callDuration: e.duration.toString(),
+                                        name: e.name,
+                                        callType: e.callType?.name,
+                                        callTime: e.timestamp?.toDateTime(),
+                                      ))
+                                  .toList();
+                              filteredCallLogs = filter("", callLogs);
+                              callLogsListBloc.add(
+                                  SyncCallLogEvent(callLogs: deviceCallLogs));
+                            }
+                            if (state is GetCallLogsState) {
+                              if (state.value.statusCode == 200) {
+                                callLogs = state.value.callloglist ?? [];
+                                filteredCallLogs = filter("", callLogs);
+                              } else if (state.value.statusCode ==
+                                  HTTPStatusCodes.sessionExpired) {
+                                sessionExpired(
+                                    context, state.value.message ?? "");
+                              } else {
+                                showToast(state.value.message ?? "");
+                              }
+                            }
+                            if (state is SyncCallLogState) {
+                              if (state.value.statusCode == 200) {
+                                showToast(state.value.message);
+                              } else if (state.value.statusCode ==
+                                  HTTPStatusCodes.sessionExpired) {
+                                sessionExpired(
+                                    context, state.value.message ?? "");
+                              } else {
+                                showToast(state.value.message);
+                              }
+                              callLogsListBloc.add(GetCallLogsEvent());
+                            }
+                            if (state is DeleteAllCallLogState) {
+                              if (state.value.statusCode == 200) {
+                                showCustomDialog(context,
+                                    dialogType: DialogType.success,
+                                    subTitle: state.value.message ?? "");
+                              } else if (state.value.statusCode ==
+                                  HTTPStatusCodes.sessionExpired) {
+                                sessionExpired(
+                                    context, state.value.message ?? "");
+                              } else {
+                                showToast(state.value.message);
+                              }
+                              callLogsListBloc.add(GetCallLogsEvent());
+                            }
+                            if (state is DeleteCallLogState) {
+                              if (state.value.statusCode == 200) {
+                                showCustomDialog(context,
+                                    dialogType: DialogType.success,
+                                    subTitle: state.value.message);
+                              } else if (state.value.statusCode ==
+                                  HTTPStatusCodes.sessionExpired) {
+                                sessionExpired(context, state.value.message);
+                              } else {
+                                showCustomDialog(context,
+                                    dialogType: DialogType.failed,
+                                    subTitle: state.value.message.toString());
+                              }
+                              callLogsListBloc.add(GetCallLogsEvent());
+                              // markSpamBloc.add(GetSpamEvent());
+                            }
+                          },
+                          builder: (context, state) {
+                            // if (state is GetCallLogsState) {
+
+                            // if (filteredCallLogs.isEmpty) {
+                            //   return Center(
+                            //       child:
+                            //           Text(appLocalization(context).noContacts));
+                            // }
+                            return ModalProgressHUD(
+                                inAsyncCall: //state is ApiLoadingState ||
+                                    markSpamState is ApiLoadingState,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: BlocConsumer(
+                                      bloc: searchBloc,
+                                      listener: (context, state) {
+                                        if (state is SelectStringState) {
+                                          filteredCallLogs = filter(
+                                              state.value ?? "", callLogs);
+                                        }
+                                      },
+                                      builder: (context, searchState) {
+                                        return (filteredCallLogs.isEmpty &&
+                                                searchController
+                                                    .text.isNotEmpty)
+                                            ? SizedBox(
+                                                height: 80,
+                                                child: CallLogListItem(
+                                                    // showPopupMenuBtn: false,
+                                                    callLog: CallLogData(
+                                                  mobileNo:
+                                                      searchController.text,
+                                                )),
+                                              )
+                                            // Center(
+                                            //     child: Text(appLocalization(context)
+                                            //         .noData),
+                                            //   )
+                                            : (state is ApiLoadingState &&
+                                                    filteredCallLogs.isEmpty)
+                                                ? Loader()
+                                                : filteredCallLogs.isEmpty
+                                                    ? Center(
+                                                        child: Text(
+                                                            appLocalization(
+                                                                    context)
+                                                                .noData),
+                                                      )
+                                                    : ListView.builder(
+                                                        shrinkWrap: true,
+                                                        controller:
+                                                            scrollController,
+                                                        itemCount:
+                                                            filteredCallLogs
+                                                                .length,
+                                                        itemBuilder:
+                                                            (context, index) =>
+                                                                CallLogListItem(
+                                                                  callLog:
+                                                                      filteredCallLogs[
+                                                                          index],
+                                                                ));
+                                      }),
+                                ));
+                            // }
+                            // return const Loader();
+                          }),
+                    ),
+                  ],
+                );
+              });
+        }
+        return Loader();
+      }),
       floatingActionButton: FloatingActionButton(
           backgroundColor: AppColor.darkPurpleColor,
           shape: RoundedRectangleBorder(
@@ -306,7 +368,9 @@ class DeviceCallLogs extends StatelessWidget {
                     false) ||
                 (e.mobileNo?.toLowerCase().contains(searchText.toLowerCase()) ??
                     false)) &&
-            (e.callType?.toLowerCase().contains(filterBy.toLowerCase() ?? "") ??
+            (e.callType
+                    ?.toLowerCase()
+                    .contains(widget.filterBy.toLowerCase() ?? "") ??
                 false))
         .toList();
     // setState(() {});

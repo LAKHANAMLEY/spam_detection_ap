@@ -1,5 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:phone_state/phone_state.dart';
+import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_bloc.dart';
+import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_event.dart';
+import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_bloc.dart';
+import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -80,9 +84,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
   }
 
   syncAll() {
-    contactListBloc.add(GetDeviceContactEvent());
-    callLogsListBloc.add(GetDeviceCallLogEvent());
-    messagesBloc.add(GetDeviceMessagesEvent());
+    // contactListBloc.add(GetDeviceContactEvent());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<ContactDBBloc>().add(SyncDBContacts());
+      context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+      // callLogsListBloc.add(GetDeviceCallLogEvent());
+      messagesBloc.add(GetDeviceMessagesEvent());
+    });
   }
 
   @override

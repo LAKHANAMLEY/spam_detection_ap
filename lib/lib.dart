@@ -99,7 +99,6 @@ export 'extensions/date_time_ext.dart';
 export 'extensions/int_ext.dart';
 export 'extensions/string_ext.dart';
 export 'extensions/timestamp_ext.dart';
-export 'generated/l10n.dart';
 export 'globals/app_constants.dart';
 export 'globals/app_fonts.dart';
 export 'globals/appbutton.dart';

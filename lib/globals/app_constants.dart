@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:spam_delection_app/l10n/generated/app_localizations.dart';
 import 'package:spam_delection_app/lib.dart';
 
 int language = 0;
@@ -30,7 +30,7 @@ TextTheme textTheme(context) => Theme.of(context).textTheme;
 
 AppLocalizations appLocalization(context) => AppLocalizations.of(context)!;
 
-S getText(context) => S.of(context);
+// S getText(context) => S.of(context);
 
 class AppConstants {
   static const String projectName = "BroadLink Protect";

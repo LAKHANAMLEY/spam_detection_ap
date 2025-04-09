@@ -5,140 +5,149 @@ import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_event.dart';
 import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_state.dart';
 import 'package:spam_delection_app/lib.dart';
 
-class MessagesScreen extends StatelessWidget {
+class MessagesScreen extends StatefulWidget {
   const MessagesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // List<SmsMessage> messages = [];
-    final searchController = TextEditingController();
-    final searchBloc = SelectionBloc(SelectStringState(""));
-    // final messagesBloc = ApiBloc(ApiBlocInitialState());
+  State<MessagesScreen> createState() => _MessagesScreenState();
+}
+
+class _MessagesScreenState extends State<MessagesScreen> {
+  // List<SmsMessage> messages = [];
+  final searchController = TextEditingController();
+  final searchBloc = SelectionBloc(SelectStringState(""));
+  // final messagesBloc = ApiBloc(ApiBlocInitialState());
+
+  @override
+  void initState() {
     messagesBloc.add(SmsListEvent());
-    // getDeviceToken();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<SmsBloc>().add(StartListeningSms());
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => SmsBloc(),
-        child: BlocListener<SmsBloc, SmsState>(
-          listener: (context, state) {
-            if (state is SmsInitial) {
-              log("Initial state");
-              context.read<SmsBloc>().add(StartListeningSms());
-            }
-            if (state is SmsReceived) {
-              log("SMS received");
-              messagesBloc.add(GetDeviceMessagesEvent());
-            }
-          },
-          child: Column(
-            children: [
-              CustomTextField(
-                onChanged: (value) {
-                  searchBloc.add(SelectStringEvent(value));
-                },
-                prefix: const Icon(
-                  Icons.search,
-                  color: AppColor.redColor,
-                ),
-                suffix: PopupMenuButton(
-                  itemBuilder: (context) => [
-                    PopupMenuItem(
-                      child: Text(appLocalization(context).sync),
-                      onTap: () {
-                        messagesBloc.add(GetDeviceMessagesEvent());
-                      },
-                    ),
-                    PopupMenuItem(
-                      onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.blockList);
-                      },
-                      child: Row(
-                        children: [
-                          // Image.asset(
-                          //   IconConstants.icBlockedCall,
-                          //   scale: 2,
-                          // ),
-                          // SizedBox(
-                          //   width: MediaQuery.of(context).size.width * 5 / 100,
-                          // ),
-                          Text(appLocalization(context).myBlockList,
-                              style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600))
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                controller: searchController,
-                hintText: appLocalization(context).searchMore,
-                fillColor: Colors.white,
+      body: BlocListener<SmsBloc, SmsState>(
+        listener: (context, state) {
+          if (state is SmsInitial) {
+            log("Initial state");
+            context.read<SmsBloc>().add(StartListeningSms());
+          }
+          if (state is NewSmsReceived) {
+            log("SMS received");
+            messagesBloc.add(GetDeviceMessagesEvent());
+          }
+        },
+        child: Column(
+          children: [
+            CustomTextField(
+              onChanged: (value) {
+                searchBloc.add(SelectStringEvent(value));
+              },
+              prefix: const Icon(
+                Icons.search,
+                color: AppColor.redColor,
               ),
-              Expanded(
-                child: BlocConsumer(
-                  bloc: messagesBloc,
-                  listener: (context, state) {
-                    if (state is ApiBlocInitialState) {
+              suffix: PopupMenuButton(
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    child: Text(appLocalization(context).sync),
+                    onTap: () {
                       messagesBloc.add(GetDeviceMessagesEvent());
+                    },
+                  ),
+                  PopupMenuItem(
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.blockList);
+                    },
+                    child: Row(
+                      children: [
+                        // Image.asset(
+                        //   IconConstants.icBlockedCall,
+                        //   scale: 2,
+                        // ),
+                        // SizedBox(
+                        //   width: MediaQuery.of(context).size.width * 5 / 100,
+                        // ),
+                        Text(appLocalization(context).myBlockList,
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600))
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              controller: searchController,
+              hintText: appLocalization(context).searchMore,
+              fillColor: Colors.white,
+            ),
+            Expanded(
+              child: BlocConsumer(
+                bloc: messagesBloc,
+                listener: (context, state) {
+                  if (state is ApiBlocInitialState) {
+                    messagesBloc.add(GetDeviceMessagesEvent());
+                  }
+                  if (state is GetDeviceMessagesState) {
+                    // messages = state.value;
+                    messagesBloc.add(SyncSmsEvent(smsLogs: state.value));
+                  }
+                  if (state is SyncSmsState) {
+                    if (state.value.statusCode == 200) {
+                      showToast(state.value.message);
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(context, state.value.message);
+                    } else {
+                      showToast(state.value.message);
                     }
-                    if (state is GetDeviceMessagesState) {
-                      // messages = state.value;
-                      messagesBloc.add(SyncSmsEvent(smsLogs: state.value));
+                    messagesBloc.add(SmsListEvent());
+                  }
+                  if (state is SmsListState) {
+                    if (state.value.statusCode == 200) {
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(context, state.value.message);
+                    } else {
+                      showToast(state.value.message);
                     }
-                    if (state is SyncSmsState) {
-                      if (state.value.statusCode == 200) {
-                        showToast(state.value.message);
-                      } else if (state.value.statusCode ==
-                          HTTPStatusCodes.sessionExpired) {
-                        sessionExpired(context, state.value.message);
-                      } else {
-                        showToast(state.value.message);
-                      }
-                      messagesBloc.add(SmsListEvent());
-                    }
-                    if (state is SmsListState) {
-                      if (state.value.statusCode == 200) {
-                      } else if (state.value.statusCode ==
-                          HTTPStatusCodes.sessionExpired) {
-                        sessionExpired(context, state.value.message);
-                      } else {
-                        showToast(state.value.message);
-                      }
-                    }
-                    //if (state is smsDelete) {}
-                  },
-                  builder: (context, state) {
-                    if (state is SmsListState) {
-                      var messages = state.value.smsLog ?? [];
-                      return BlocBuilder(
-                        bloc: searchBloc,
-                        builder: (context, state) {
-                          if (state is SelectStringState) {
-                            var filteredMessages = filterSearchResults(
-                                state.value ?? "", messages);
-                            if (filteredMessages.isEmpty) {
-                              return Center(
-                                child:
-                                    Text(appLocalization(context).noMessages),
-                              );
-                            }
-                            return ListView.builder(
-                              itemCount: filteredMessages.length,
-                              itemBuilder: (context, index) =>
-                                  MessageListItem(sms: filteredMessages[index]),
+                  }
+                  //if (state is smsDelete) {}
+                },
+                builder: (context, state) {
+                  if (state is SmsListState) {
+                    var messages = state.value.smsLog ?? [];
+                    return BlocBuilder(
+                      bloc: searchBloc,
+                      builder: (context, state) {
+                        if (state is SelectStringState) {
+                          var filteredMessages =
+                              filterSearchResults(state.value ?? "", messages);
+                          if (filteredMessages.isEmpty) {
+                            return Center(
+                              child: Text(appLocalization(context).noMessages),
                             );
                           }
-                          return const Loader();
-                        },
-                      );
-                    }
-                    return const Loader();
-                  },
-                ),
+                          return ListView.builder(
+                            itemCount: filteredMessages.length,
+                            itemBuilder: (context, index) =>
+                                MessageListItem(sms: filteredMessages[index]),
+                          );
+                        }
+                        return const Loader();
+                      },
+                    );
+                  }
+                  return const Loader();
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
