@@ -42,7 +42,7 @@ class SplashState extends State<Splash> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 30 / 100,
+              height: MediaQuery.of(context).size.height * 28 / 100,
             ),
             Center(
               child: Row(

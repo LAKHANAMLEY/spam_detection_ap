@@ -734,5 +734,12 @@
   "privacyPolicyTxt": "política de privacidad",
   "pinNumberMustDigits": "El número PIN debe tener 6 dígitos",
   "pinNumberMustContainOnlDigits": "El número PIN debe contener solo dígitos",
-  "contact": "Contactos"
+  "contact": "Contactos",
+  "reportSpam": "Reportar spam",
+  "reportSpamLabel": "Este remitente será marcado y etiquetado como spam en la conversación.",
+  "whatTypeOFMessage": "¿Qué tipo de mensaje era éste?",
+  "unMarkSMs": "Desmarcar",
+  "notSpam": "No spam",
+  "transactionList": "Lista de transacciones",
+  "reportMessageExperience": "Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú"
 }

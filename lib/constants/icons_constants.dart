@@ -96,4 +96,5 @@ class IconConstants {
   static const String icLogoutData = 'assets/icons/ic_logout_data.png';
   static const String icLogoutDataIcon = 'assets/icons/ic_logout_icon.png';
   static const String icFamilyRest = 'assets/icons/ic_family_restroom.png';
+  static const String icReport = 'assets/icons/ic_report.png';
 }

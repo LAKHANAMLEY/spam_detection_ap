@@ -244,6 +244,14 @@ class CustomDrawer extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, AppRoutes.planList),
             isImageIcon: true,
           ),
+          _buildListTile(
+            context,
+            icon: IconConstants.icPremiumData,
+            title: appLocalization(context).transactions,
+            onTap: () =>
+                Navigator.pushNamed(context, AppRoutes.transactionList),
+            isImageIcon: true,
+          ),
           BlocConsumer(
             bloc: sharedPrefBloc,
             listener: (context, state) {},

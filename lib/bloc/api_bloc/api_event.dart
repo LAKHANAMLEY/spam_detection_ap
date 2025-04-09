@@ -228,6 +228,7 @@ class PurchasePlanEvent extends ApiEvent {
   final PurchasePlanModel purchasePlanData;
 
   PurchasePlanEvent({required this.purchasePlanData});
+
   @override
   List<Object?> get props => [purchasePlanData];
 }
@@ -718,3 +719,5 @@ class ResetPasswordPhoneEvent extends ApiEvent {
   List<Object?> get props =>
       [phone, countryCode, password, code, confirmPassword];
 }
+
+class GetTransactionListEvent extends ApiEvent {}
