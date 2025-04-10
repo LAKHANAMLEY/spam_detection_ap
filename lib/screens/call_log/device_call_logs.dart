@@ -255,7 +255,10 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                           10.width(),
                           ElevatedButton.icon(
                             onPressed: () {
-                              callLogsListBloc.add(DeleteAllCallLogEvent());
+                              // callLogsListBloc.add(DeleteAllCallLogEvent());
+                              context
+                                  .read<CallLogDBBloc>()
+                                  .add(DeleteAllDBCallLog());
                             },
                             label: Text(appLocalization(context).deleteCalls,
                                 style: TextStyle(
