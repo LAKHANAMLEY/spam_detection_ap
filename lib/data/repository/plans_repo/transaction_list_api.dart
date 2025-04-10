@@ -3,10 +3,11 @@ import 'package:spam_delection_app/lib.dart';
 import 'package:spam_delection_app/models/api_body_model/transaction_history_details_model.dart';
 
 Future<TransactionHistoryDetailsResponse> getTransactionList() async {
-  final response = await http.get(
+  final response = await http.post(
     Uri.parse(ApiUrlConstants.transactionHistory),
     headers: await ApiUrlConstants.headers(),
   );
+  print(response.body);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
     return TransactionHistoryDetailsResponse.fromJson(jsonData);

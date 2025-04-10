@@ -1,100 +1,69 @@
 import 'package:spam_delection_app/lib.dart';
 
 class TransactionList extends StatefulWidget {
-  const TransactionList({super.key});
+  final bool? showAppBar;
+
+  const TransactionList({super.key, this.showAppBar = true});
 
   @override
   State<TransactionList> createState() => _TransactionListState();
 }
 
 class _TransactionListState extends State<TransactionList> {
+  var transactionListBloc = ApiBloc(ApiBlocInitialState());
+
+  int selectedTab = 0;
+
+  @override
+  void initState() {
+    transactionListBloc.add(GetTransactionListEvent());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    var argument = args(context) as TransactionList?;
     return Scaffold(
-      appBar: CustomAppBar(),
-      body: Column(
-        children: [
-          Container(
-            color: AppColor.greyDecent.withOpacity(0.5),
-            height: MediaQuery.of(context).size.height * 20 / 100,
-            width: MediaQuery.of(context).size.width * 100 / 100,
-            child: Column(children: [
-              10.height(),
-              Image.asset(
-                IconConstants.icPremiumPurchase,
-                height: MediaQuery.of(context).size.height * 6 / 100,
+      backgroundColor: AppColor.whiteColor,
+      appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
+          ? const CustomAppBar(
+              //centerTitle: true,
+              )
+          : null,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 2 / 100,
               ),
-              Text(
-                'Basic',
-                style: TextStyle(
-                    color: AppColor.whiteColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: AppFont.fontFamily),
-              ),
-              // Row(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Text(
-              //       plan.title ?? "",
-              //       style: TextStyle(
-              //         fontSize: 20,
-              //         color: plan.isActive == 1
-              //             ? AppColor.decentYellow
-              //             : plan.callProtection == "1"
-              //             ? AppColor.darkBlue
-              //             : AppColor.redLight,
-              //         fontWeight: FontWeight.bold,
-              //       ),
-              //     ),
-              //       60.width(),
-              //       if (plan.isActive == 1)
-              //         Container(
-              //           padding: const EdgeInsets.symmetric(
-              //               horizontal: 8, vertical: 4),
-              //           decoration: BoxDecoration(
-              //             color: Colors.green,
-              //             borderRadius: BorderRadius.circular(12),
-              //           ),
-              //           child: Text(
-              //             appLocalization(context).active,
-              //             style: const TextStyle(
-              //               color: Colors.white,
-              //               fontSize: 12,
-              //             ),
-              //           ),
-              //         ),
-              //     ],
-              //   ),
-              // ),
-              // 5.height(),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: StyledText(
-              //     text:
-              //     '<price>${plan.price}</price>/<validity>${plan.validity}</validity>',
-              //     tags: {
-              //       'price': StyledTextTag(
-              //         style: const TextStyle(
-              //           fontSize: 22,
-              //           fontFamily: AppFont.fontFamily,
-              //           fontWeight: FontWeight.w600,
-              //           color: AppColor.grey,
-              //         ),
-              //       ),
-              //       'validity': StyledTextTag(
-              //         style: const TextStyle(
-              //           fontSize: 16,
-              //           color: Colors.black87,
-              //         ),
-              //       ),
-              //     },
-              //   ),
-              // ),
-            ]),
-          )
-        ],
+              BlocBuilder(
+                  bloc: transactionListBloc,
+                  builder: (context, state) {
+                    if (state is GetTransactionListState) {
+                      var transactions = state.value.transactionHistory ?? [];
+                      //print()
+                      if (transactions.isEmpty) {
+                        return Center(
+                          child: Text(appLocalization(context).noData),
+                        );
+                      }
+                      return ListView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: transactions.length,
+                          itemBuilder: (context, index) => Text('hello')
+                          // TransactionListItem(
+                          //   transactionData: transactions[index],
+                          // ),
+                          );
+                    }
+                    return const Loader();
+                  }),
+            ],
+          ),
+        ),
       ),
     );
   }

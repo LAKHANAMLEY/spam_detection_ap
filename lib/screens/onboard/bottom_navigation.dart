@@ -186,147 +186,148 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           //   // scale: 3.5,
                           // ),
                         ),
-                      if (page == 2)
-                        PopupMenuButton(
-                          color: Color(0xffFFE8E3),
-                          itemBuilder: (context) => [
-                            PopupMenuItem(
-                              onTap: () {
-                                Navigator.pushNamed(context, AppRoutes.callLogs,
-                                    arguments: DeviceCallLogs(
-                                        filterBy: CallType.outgoing.name));
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.asset(
-                                    IconConstants.icOutgoingCall,
-                                    scale: 2.5,
-                                  ),
-                                  10.width(),
-                                  // SizedBox(
-                                  //   width: MediaQuery.of(context).size.width *
-                                  //       5 /
-                                  //       100,
-                                  // ),
-                                  Text(
-                                    appLocalization(context).outgoingCalls,
-                                    style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w600),
-                                  )
-                                ],
-                              ),
-                            ),
-                            PopupMenuItem(
-                              onTap: () {
-                                Navigator.pushNamed(context, AppRoutes.callLogs,
-                                    arguments: DeviceCallLogs(
-                                        filterBy: CallType.incoming.name));
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.asset(
-                                    IconConstants.icIncomingCall,
-                                    scale: 2.5,
-                                  ),
-                                  10.width(),
-                                  // SizedBox(
-                                  //   width: MediaQuery.of(context).size.width *
-                                  //       5 /
-                                  //       100,
-                                  // ),
-                                  Text(appLocalization(context).incomingCalls,
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w600))
-                                ],
-                              ),
-                            ),
-                            PopupMenuItem(
-                              onTap: () {
-                                Navigator.pushNamed(context, AppRoutes.callLogs,
-                                    arguments: DeviceCallLogs(
-                                        filterBy: CallType.missed.name));
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.asset(
-                                    IconConstants.icMissCall,
-                                    scale: 2.5,
-                                  ),
-                                  10.width(),
-                                  // SizedBox(
-                                  //   width: MediaQuery.of(context).size.width *
-                                  //       5 /
-                                  //       100,
-                                  // ),
-                                  Text(appLocalization(context).missedCalls,
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600))
-                                ],
-                              ),
-                            ),
-                            PopupMenuItem(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, AppRoutes.blockedCalls);
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.asset(
-                                    IconConstants.icBlockedCall,
-                                    scale: 2.5,
-                                  ),
-                                  10.width(),
-                                  // SizedBox(
-                                  //   width: MediaQuery.of(context).size.width *
-                                  //       4 /
-                                  //       100,
-                                  // ),
-                                  Text(appLocalization(context).blockedCalls,
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w600))
-                                ],
-                              ),
-                            ),
-                            PopupMenuItem(
-                              onTap: () {
-                                callLogsListBloc.add(DeleteAllCallLogEvent());
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Image.asset(
-                                    IconConstants.icDeleteCall,
-                                    color: Colors.red,
-                                    scale: 2.5,
-                                  ),
-                                  10.width(),
-                                  // SizedBox(
-                                  //   width: MediaQuery.of(context).size.width *
-                                  //       5 /
-                                  //       100,
-                                  // ),
-                                  Text(appLocalization(context).deleteCalls,
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w600))
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                      // if (page == 2)
+                      //   PopupMenuButton(
+                      //     color: Color(0xffFFE8E3),
+                      //     itemBuilder: (context) => [
+                      //       PopupMenuItem(
+                      //         onTap: () {
+                      //           Navigator.pushNamed(context, AppRoutes.callLogs,
+                      //               arguments: DeviceCallLogs(
+                      //                   filterBy: CallType.outgoing.name));
+                      //         },
+                      //         child: Row(
+                      //           mainAxisSize: MainAxisSize.min,
+                      //           children: [
+                      //             Image.asset(
+                      //               IconConstants.icOutgoingCall,
+                      //               scale: 2.5,
+                      //             ),
+                      //             10.width(),
+                      //             // SizedBox(
+                      //             //   width: MediaQuery.of(context).size.width *
+                      //             //       5 /
+                      //             //       100,
+                      //             // ),
+                      //             Text(
+                      //               appLocalization(context).outgoingCalls,
+                      //               style: const TextStyle(
+                      //                   color: Colors.black,
+                      //                   fontSize: 17,
+                      //                   fontWeight: FontWeight.w600),
+                      //             )
+                      //           ],
+                      //         ),
+                      //       ),
+                      //       ])
+                      //       PopupMenuItem(
+                      //         onTap: () {
+                      //           Navigator.pushNamed(context, AppRoutes.callLogs,
+                      //               arguments: DeviceCallLogs(
+                      //                   filterBy: CallType.incoming.name));
+                      //         },
+                      //         child: Row(
+                      //           mainAxisSize: MainAxisSize.min,
+                      //           children: [
+                      //             Image.asset(
+                      //               IconConstants.icIncomingCall,
+                      //               scale: 2.5,
+                      //             ),
+                      //             10.width(),
+                      //             // SizedBox(
+                      //             //   width: MediaQuery.of(context).size.width *
+                      //             //       5 /
+                      //             //       100,
+                      //             // ),
+                      //             Text(appLocalization(context).incomingCalls,
+                      //                 style: const TextStyle(
+                      //                     color: Colors.black,
+                      //                     fontSize: 17,
+                      //                     fontWeight: FontWeight.w600))
+                      //           ],
+                      //         ),
+                      //       ),
+                      //       PopupMenuItem(
+                      //         onTap: () {
+                      //           Navigator.pushNamed(context, AppRoutes.callLogs,
+                      //               arguments: DeviceCallLogs(
+                      //                   filterBy: CallType.missed.name));
+                      //         },
+                      //         child: Row(
+                      //           mainAxisSize: MainAxisSize.min,
+                      //           children: [
+                      //             Image.asset(
+                      //               IconConstants.icMissCall,
+                      //               scale: 2.5,
+                      //             ),
+                      //             10.width(),
+                      //             // SizedBox(
+                      //             //   width: MediaQuery.of(context).size.width *
+                      //             //       5 /
+                      //             //       100,
+                      //             // ),
+                      //             Text(appLocalization(context).missedCalls,
+                      //                 style: const TextStyle(
+                      //                     color: Colors.black,
+                      //                     fontSize: 18,
+                      //                     fontWeight: FontWeight.w600))
+                      //           ],
+                      //         ),
+                      //       ),
+                      //       PopupMenuItem(
+                      //         onTap: () {
+                      //           Navigator.pushNamed(
+                      //               context, AppRoutes.blockedCalls);
+                      //         },
+                      //         child: Row(
+                      //           mainAxisSize: MainAxisSize.min,
+                      //           children: [
+                      //             Image.asset(
+                      //               IconConstants.icBlockedCall,
+                      //               scale: 2.5,
+                      //             ),
+                      //             10.width(),
+                      //             // SizedBox(
+                      //             //   width: MediaQuery.of(context).size.width *
+                      //             //       4 /
+                      //             //       100,
+                      //             // ),
+                      //             Text(appLocalization(context).blockedCalls,
+                      //                 style: const TextStyle(
+                      //                     color: Colors.black,
+                      //                     fontSize: 17,
+                      //                     fontWeight: FontWeight.w600))
+                      //           ],
+                      //         ),
+                      //       ),
+                      //       PopupMenuItem(
+                      //         onTap: () {
+                      //           callLogsListBloc.add(DeleteAllCallLogEvent());
+                      //         },
+                      //         child: Row(
+                      //           mainAxisSize: MainAxisSize.min,
+                      //           children: [
+                      //             Image.asset(
+                      //               IconConstants.icDeleteCall,
+                      //               color: Colors.red,
+                      //               scale: 2.5,
+                      //             ),
+                      //             10.width(),
+                      //             // SizedBox(
+                      //             //   width: MediaQuery.of(context).size.width *
+                      //             //       5 /
+                      //             //       100,
+                      //             // ),
+                      //             Text(appLocalization(context).deleteCalls,
+                      //                 style: const TextStyle(
+                      //                     color: Colors.black,
+                      //                     fontSize: 17,
+                      //                     fontWeight: FontWeight.w600))
+                      //           ],
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
                     ]),
                 body: _pages[page],
                 bottomNavigationBar: CurvedNavigationBar(

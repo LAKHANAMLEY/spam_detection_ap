@@ -18,9 +18,11 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
   final scrollController = ScrollController();
   List<CallLogData> callLogs = [];
   List<CallLogData> filteredCallLogs = [];
+
   // bool isVisible = false;
   // final showHideTextFieldBloc = SelectionBloc(SelectBoolState(true));
   final searchBloc = SelectionBloc(SelectStringState(""));
+
   // callLogsListBloc.add(GetCallLogsEvent());
 
   @override
@@ -162,24 +164,109 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                         ],
                       ),
                     ),
-                    // Row(
-                    //   children: [
-                    //     ElevatedButton.icon(
-                    //       onPressed: () {
-                    //         Navigator.pushNamed(context, AppRoutes.contactList);
-                    //       },
-                    //       label: Text(appLocalization(context).contacts),
-                    //       icon: const Icon(Icons.contacts_outlined),
-                    //     ),
-                    //     // ElevatedButton.icon(
-                    //     //   onPressed: () {
-                    //     //     Navigator.pushNamed(context, AppRoutes.contactList);
-                    //     //   },
-                    //     //   label: const Text("Favourite"),
-                    //     //   icon: const Icon(Icons.favorite_border_outlined),
-                    //     // )
-                    //   ],
-                    // ),
+                    SizedBox(
+                      height: 35,
+                      child: ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        physics: ScrollPhysics(),
+                        children: [
+                          10.width(),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              Navigator.pushNamed(context, AppRoutes.callLogs,
+                                  arguments: DeviceCallLogs(
+                                      filterBy: CallType.outgoing.name));
+                            },
+                            label: Text(appLocalization(context).outgoingCalls,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600)),
+                            icon: Image.asset(
+                              IconConstants.icOutgoingCall,
+                              scale: 2.5,
+                            ),
+                            // icon: const Icon(Icons.contacts_outlined),
+                            // style: ElevatedButton.styleFrom(
+                            //   minimumSize: const Size(20, 40),
+                            // ),
+                          ),
+                          10.width(),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              Navigator.pushNamed(context, AppRoutes.callLogs,
+                                  arguments: DeviceCallLogs(
+                                      filterBy: CallType.incoming.name));
+                            },
+                            label: Text(appLocalization(context).incomingCalls,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600)),
+                            icon: Image.asset(
+                              IconConstants.icIncomingCall,
+                              scale: 2.5,
+                            ),
+                          ),
+                          10.width(),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              Navigator.pushNamed(context, AppRoutes.callLogs,
+                                  arguments: DeviceCallLogs(
+                                      filterBy: CallType.missed.name));
+                            },
+                            label: Text(appLocalization(context).missedCalls,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600)),
+                            icon: Image.asset(
+                              IconConstants.icMissCall,
+                              scale: 2.5,
+                            ),
+                          ),
+                          10.width(),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, AppRoutes.blockedCalls);
+                            },
+                            label: Text(appLocalization(context).blockedCalls,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600)),
+                            icon: Image.asset(
+                              IconConstants.icBlockedCall,
+                              scale: 2.5,
+                            ),
+                          ),
+                          10.width(),
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              callLogsListBloc.add(DeleteAllCallLogEvent());
+                            },
+                            label: Text(appLocalization(context).deleteCalls,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600)),
+                            icon: Image.asset(
+                              IconConstants.icDeleteCall,
+                              color: Colors.red,
+                              scale: 2.5,
+                            ),
+                            // style: ElevatedButton.styleFrom(
+                            //   // elevation: 3,
+                            //   // shape: RoundedRectangleBorder(
+                            //   //     borderRadius: BorderRadius.circular(32.0)),
+                            //   minimumSize: const Size(20, 40),
+                            // ),
+                          )
+                        ],
+                      ),
+                    ),
                     Expanded(
                       child: BlocConsumer(
                           bloc: callLogsListBloc,
