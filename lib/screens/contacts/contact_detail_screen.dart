@@ -1,4 +1,6 @@
 import 'package:direct_call_plus/direct_call_plus.dart';
+import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_bloc.dart';
+import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ContactDetail extends StatefulWidget {
@@ -57,7 +59,8 @@ class _ContactDetailState extends State<ContactDetail> {
                   subTitle: state.value.message,
                 );
               }
-              callLogsListBloc.add(GetCallLogsEvent());
+              context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+              // callLogsListBloc.add(GetCallLogsEvent());
               contactDetailBloc.add(CheckSpamEvent(
                   callLogs: CallLogData.fromJson(contact?.toJson() ?? {})));
             }
@@ -74,7 +77,8 @@ class _ContactDetailState extends State<ContactDetail> {
                     dialogType: DialogType.failed,
                     subTitle: state.value.message);
               }
-              callLogsListBloc.add(GetCallLogsEvent());
+              // callLogsListBloc.add(GetCallLogsEvent());
+              context.read<CallLogDBBloc>().add(SyncDBCallLogs());
               contactDetailBloc.add(CheckSpamEvent(
                   callLogs: CallLogData.fromJson(contact?.toJson() ?? {})));
             }
@@ -91,7 +95,8 @@ class _ContactDetailState extends State<ContactDetail> {
                     dialogType: DialogType.failed,
                     subTitle: state.value.message.toString());
               }
-              callLogsListBloc.add(GetCallLogsEvent());
+              // callLogsListBloc.add(GetCallLogsEvent());
+              context.read<CallLogDBBloc>().add(SyncDBCallLogs());
               contactDetailBloc.add(CheckSpamEvent(
                   callLogs: CallLogData.fromJson(contact?.toJson() ?? {})));
             }
@@ -190,8 +195,8 @@ class _ContactDetailState extends State<ContactDetail> {
                                         child: CircleAvatar(
                                           backgroundImage: AssetImage(
                                               contact?.isSpam == 1
-                                                  ? IconConstants.icFraud
-                                                  : IconConstants.icAvatar),
+                                                  ? IconConstants.icSpamCall
+                                                  : IconConstants.icUsername),
                                           radius: 45,
                                         ),
                                       ),

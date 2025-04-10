@@ -52,7 +52,9 @@ class MessageListItem extends StatelessWidget {
           ),
           10.width(),
           Text(
-            sms.smsDetails?.first.date?.formatDateTime() ?? "",
+            sms.smsDetails?.isNotEmpty ?? false
+                ? sms.smsDetails?.first.date?.formatDateTime() ?? ""
+                : "",
             style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
           ),
         ],
@@ -62,7 +64,9 @@ class MessageListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            sms.smsDetails?.first.body ?? "",
+            sms.smsDetails?.isNotEmpty ?? false
+                ? sms.smsDetails?.first.body ?? ""
+                : "",
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

@@ -1,5 +1,7 @@
 import 'package:phone_state/phone_state.dart';
 import 'package:phone_state_background/phone_state_background.dart';
+import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_bloc.dart';
+import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class CallLogListItem extends StatelessWidget {
@@ -159,8 +161,11 @@ class CallLogListItem extends StatelessWidget {
                       // deleteDeviceCallLog(
                       //    id: contact?.id ?? "",
                       //   number: contact?.mobileNo ?? "");
-                      callLogsListBloc.add(DeleteCallLogEvent(
-                          callLog: CallLogData(id: callLog.id)));
+                      // callLogsListBloc.add(DeleteCallLogEvent(
+                      //     callLog: CallLogData(id: callLog.id)));
+                      context
+                          .read<CallLogDBBloc>()
+                          .add(DeleteDBCallLog(callLog.id ?? ""));
                     },
                     child: Text(appLocalization(context).deleteCallLogs))
               ],
@@ -175,7 +180,7 @@ class CallLogListItem extends StatelessWidget {
 String getCallTypeImage(CallLogData callLog) {
   var callType = getCallLogType(callLog.callType);
   if (callLog.isSpam == 1) {
-    return IconConstants.icFraud;
+    return IconConstants.icSpamCall;
   } else {
     switch (callType) {
       case null:

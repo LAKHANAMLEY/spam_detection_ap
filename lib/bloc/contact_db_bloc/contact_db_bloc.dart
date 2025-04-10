@@ -43,6 +43,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       DeleteDBContact event, Emitter<ContactDBState> emit) async {
     emit(ContactDBLoading());
     try {
+      await deleteContact(contact: ContactData(id: event.contactId));
       await _databaseHelper.delete(event.contactId);
       final contacts = await _databaseHelper.getAllContacts();
       emit(ContactDBLoaded(contacts));
@@ -67,7 +68,8 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
     emit(ContactDBLoading());
     try {
       final deviceContacts = await getLocalContacts();
-      var res = await syncContacts(deviceContacts!);
+      await syncContacts(deviceContacts!);
+      var res = await getContacts();
       var contacts = res.contactslist ?? [];
       for (final contactData in contacts) {
         // var contactData = ContactData(

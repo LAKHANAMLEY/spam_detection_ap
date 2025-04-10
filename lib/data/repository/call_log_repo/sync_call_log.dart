@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/utils/api_constants/exception_handling.dart';
 
 Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
   // log(jsonEncode(callLogs));
@@ -72,6 +73,7 @@ Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
   var response = await http.Response.fromStream(streamedResponse);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
+    handleException(jsonData);
     log(jsonEncode(jsonData));
     return Response.fromJson(jsonData);
   } else {

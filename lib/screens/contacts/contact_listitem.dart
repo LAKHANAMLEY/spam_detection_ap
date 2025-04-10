@@ -1,27 +1,11 @@
+import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_bloc.dart';
+import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
-class ContactListItem extends StatefulWidget {
+class ContactListItem extends StatelessWidget {
   final ContactData contact;
 
-  const ContactListItem({
-    super.key,
-    required this.contact,
-  });
-
-  @override
-  State<ContactListItem> createState() => _ContactListItemState();
-}
-
-class _ContactListItemState extends State<ContactListItem> {
-  ContactData? contact;
-
-  late List<ContactData> filteredContacts;
-
-  @override
-  void initState() {
-    contact = widget.contact;
-    super.initState();
-  }
+  const ContactListItem({super.key, required this.contact});
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +17,17 @@ class _ContactListItemState extends State<ContactListItem> {
               ));
         },
         leading: CircleAvatar(
-          backgroundImage: AssetImage(contact?.isSpam == 1
-              ? IconConstants.icFraud
+          backgroundImage: AssetImage(contact.isSpam == 1
+              ? IconConstants.icSpamCall
               : IconConstants.icCallRegular),
         ),
         title: Text(
-          contact?.name ?? "",
+          contact.name ?? "",
           style: textTheme(context).titleMedium,
         ),
-        subtitle: Text(contact?.countryCode?.isNotEmpty ?? false
-            ? "+${contact?.countryCode} ${contact?.mobileNo ?? ""}"
-            : contact?.mobileNo ?? ""),
+        subtitle: Text(contact.countryCode?.isNotEmpty ?? false
+            ? "+${contact.countryCode} ${contact.mobileNo ?? ""}"
+            : contact.mobileNo ?? ""),
         trailing: PopupMenuButton(
             itemBuilder: (context) => [
                   PopupMenuItem(
@@ -61,7 +45,7 @@ class _ContactListItemState extends State<ContactListItem> {
                         ),
                         builder: (BuildContext context) {
                           return ReportView(
-                            contact: contact!,
+                            contact: contact,
                           );
                         },
                       );
@@ -71,10 +55,14 @@ class _ContactListItemState extends State<ContactListItem> {
                       child: Text(appLocalization(context).delete),
                       onTap: () {
                         deleteDeviceContact(
-                            id: contact?.id ?? "",
-                            number: contact?.mobileNo ?? "");
-                        contactListBloc.add(DeleteContactEvent(
-                            contact: ContactData(id: contact?.id)));
+                            id: contact.id ?? "",
+                            number: contact.mobileNo ?? "");
+                        context
+                            .read<ContactDBBloc>()
+                            .add(DeleteDBContact(contact.id ?? ""));
+
+                        // contactListBloc.add(DeleteContactEvent(
+                        //     contact: ContactData(id: contact?.id)));
                       }
                       //contactListBloc
                       ),
@@ -82,8 +70,7 @@ class _ContactListItemState extends State<ContactListItem> {
                       child: Text(appLocalization(context).editContact),
                       onTap: () {
                         Navigator.pushNamed(context, AppRoutes.editContact,
-                            arguments: EditContact(
-                                contactData: ContactData(id: contact?.id)));
+                            arguments: EditContact(contactData: contact));
                         // editDeviceContact(
                         //     contactId: contact?.id ?? "",
                         //     phone: contact?.mobileNo ?? "",

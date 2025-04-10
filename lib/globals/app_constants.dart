@@ -6,15 +6,15 @@ int language = 0;
 var authBloc = ApiBloc(ApiBlocInitialState());
 var userBloc = ApiBloc(ApiBlocInitialState());
 var sharedPrefBloc = SharedPrefBloc(SharedPrefInitialState());
-var contactListBloc = ApiBloc(ApiBlocInitialState());
-var callLogsListBloc = ApiBloc(ApiBlocInitialState());
+// var contactListBloc = ApiBloc(ApiBlocInitialState());
+// var callLogsListBloc = ApiBloc(ApiBlocInitialState());
 var markSpamBloc = ApiBloc(ApiBlocInitialState());
 var staffBloc = ApiBloc(ApiBlocInitialState());
 var familyBloc = ApiBloc(ApiBlocInitialState());
 var selectCountryBloc = SelectionBloc(SelectionBlocInitialState());
 var markSpamSmsBloc = ApiBloc(ApiBlocInitialState());
 var notificationListBloc = ApiBloc(ApiBlocInitialState());
-final messagesBloc = ApiBloc(ApiBlocInitialState());
+// final messagesBloc = ApiBloc(ApiBlocInitialState());
 
 var bottomNavigationBloc = SelectionBloc(SelectIntState(2));
 

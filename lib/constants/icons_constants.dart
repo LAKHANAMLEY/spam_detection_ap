@@ -89,6 +89,7 @@ class IconConstants {
   static const String icDialPad = 'assets/icons/ic_dial_pad.png';
   static const String icGoogleLogo = 'assets/icons/ic_google_logo.png';
   static const String icSpamMessage = 'assets/icons/ic_spam_message.png';
+  static const String icSpamCall = 'assets/icons/ic_spam_call.png';
   static String icSpamAlertMessage = "assets/icons/ic-spam-alert.png";
   static const String icSpain = 'assets/icons/ic_spain.png';
   static const String icEnglish = 'assets/icons/ic_united_states.png';

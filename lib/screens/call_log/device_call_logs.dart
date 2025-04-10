@@ -83,7 +83,8 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                       dialogType: DialogType.success,
                       subTitle: state.value.message,
                     );
-                    callLogsListBloc.add(GetCallLogsEvent());
+                    context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+                    // callLogsListBloc.add(GetCallLogsEvent());
                   } else if (state.value.statusCode ==
                       HTTPStatusCodes.sessionExpired) {
                     sessionExpired(context, state.value.message ?? "");
@@ -108,7 +109,8 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                         dialogType: DialogType.failed,
                         subTitle: state.value.message);
                   }
-                  callLogsListBloc.add(GetCallLogsEvent());
+                  // callLogsListBloc.add(GetCallLogsEvent());
+                  context.read<CallLogDBBloc>().add(SyncDBCallLogs());
                   // markSpamBloc.add(GetSpamEvent());
                 }
                 if (state is BlockUnBlockState) {
@@ -124,7 +126,9 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                         dialogType: DialogType.failed,
                         subTitle: state.value.message.toString());
                   }
-                  callLogsListBloc.add(GetCallLogsEvent());
+                  // callLogsListBloc.add(GetCallLogsEvent());
+                  context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+
                   // markSpamBloc.add(GetSpamEvent());
                 }
               },
@@ -149,13 +153,19 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                         itemBuilder: (context) => [
                           PopupMenuItem(
                               onTap: () {
-                                callLogsListBloc.add(GetDeviceCallLogEvent());
+                                // callLogsListBloc.add(GetDeviceCallLogEvent());
+                                context
+                                    .read<CallLogDBBloc>()
+                                    .add(SyncDBCallLogs());
                               },
                               child:
                                   Text(appLocalization(context).synCallLogs)),
                           PopupMenuItem(
                               onTap: () {
-                                callLogsListBloc.add(DeleteAllCallLogEvent());
+                                // callLogsListBloc.add(DeleteAllCallLogEvent());
+                                context
+                                    .read<CallLogDBBloc>()
+                                    .add(DeleteAllDBCallLog());
                               },
                               child: Text(
                                   appLocalization(context).deleteAllCallLogs)),
@@ -181,149 +191,145 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                     //   ],
                     // ),
                     Expanded(
-                      child: BlocConsumer(
-                          bloc: callLogsListBloc,
-                          listener: (context, state) {
-                            if (state is ApiBlocInitialState) {
-                              callLogsListBloc.add(GetCallLogsEvent());
-                            }
-                            if (state is GetDeviceCallLogState) {
-                              var deviceCallLogs = state.value;
-                              callLogs = deviceCallLogs
-                                  .map((e) => CallLogData(
-                                        mobileNo: e.number,
-                                        callDuration: e.duration.toString(),
-                                        name: e.name,
-                                        callType: e.callType?.name,
-                                        callTime: e.timestamp?.toDateTime(),
-                                      ))
-                                  .toList();
-                              filteredCallLogs = filter("", callLogs);
-                              callLogsListBloc.add(
-                                  SyncCallLogEvent(callLogs: deviceCallLogs));
-                            }
-                            if (state is GetCallLogsState) {
-                              if (state.value.statusCode == 200) {
-                                callLogs = state.value.callloglist ?? [];
-                                filteredCallLogs = filter("", callLogs);
-                              } else if (state.value.statusCode ==
-                                  HTTPStatusCodes.sessionExpired) {
-                                sessionExpired(
-                                    context, state.value.message ?? "");
-                              } else {
-                                showToast(state.value.message ?? "");
-                              }
-                            }
-                            if (state is SyncCallLogState) {
-                              if (state.value.statusCode == 200) {
-                                showToast(state.value.message);
-                              } else if (state.value.statusCode ==
-                                  HTTPStatusCodes.sessionExpired) {
-                                sessionExpired(
-                                    context, state.value.message ?? "");
-                              } else {
-                                showToast(state.value.message);
-                              }
-                              callLogsListBloc.add(GetCallLogsEvent());
-                            }
-                            if (state is DeleteAllCallLogState) {
-                              if (state.value.statusCode == 200) {
-                                showCustomDialog(context,
-                                    dialogType: DialogType.success,
-                                    subTitle: state.value.message ?? "");
-                              } else if (state.value.statusCode ==
-                                  HTTPStatusCodes.sessionExpired) {
-                                sessionExpired(
-                                    context, state.value.message ?? "");
-                              } else {
-                                showToast(state.value.message);
-                              }
-                              callLogsListBloc.add(GetCallLogsEvent());
-                            }
-                            if (state is DeleteCallLogState) {
-                              if (state.value.statusCode == 200) {
-                                showCustomDialog(context,
-                                    dialogType: DialogType.success,
-                                    subTitle: state.value.message);
-                              } else if (state.value.statusCode ==
-                                  HTTPStatusCodes.sessionExpired) {
-                                sessionExpired(context, state.value.message);
-                              } else {
-                                showCustomDialog(context,
-                                    dialogType: DialogType.failed,
-                                    subTitle: state.value.message.toString());
-                              }
-                              callLogsListBloc.add(GetCallLogsEvent());
-                              // markSpamBloc.add(GetSpamEvent());
-                            }
-                          },
-                          builder: (context, state) {
-                            // if (state is GetCallLogsState) {
+                      child: Builder(
+                          // bloc: callLogsListBloc,
+                          // listener: (context, state) {
+                          //   if (state is ApiBlocInitialState) {
+                          //     callLogsListBloc.add(GetCallLogsEvent());
+                          //   }
+                          //   if (state is GetDeviceCallLogState) {
+                          //     var deviceCallLogs = state.value;
+                          //     callLogs = deviceCallLogs
+                          //         .map((e) => CallLogData(
+                          //               mobileNo: e.number,
+                          //               callDuration: e.duration.toString(),
+                          //               name: e.name,
+                          //               callType: e.callType?.name,
+                          //               callTime: e.timestamp?.toDateTime(),
+                          //             ))
+                          //         .toList();
+                          //     filteredCallLogs = filter("", callLogs);
+                          //     callLogsListBloc.add(
+                          //         SyncCallLogEvent(callLogs: deviceCallLogs));
+                          //   }
+                          //   if (state is GetCallLogsState) {
+                          //     if (state.value.statusCode == 200) {
+                          //       callLogs = state.value.callloglist ?? [];
+                          //       filteredCallLogs = filter("", callLogs);
+                          //     } else if (state.value.statusCode ==
+                          //         HTTPStatusCodes.sessionExpired) {
+                          //       sessionExpired(
+                          //           context, state.value.message ?? "");
+                          //     } else {
+                          //       showToast(state.value.message ?? "");
+                          //     }
+                          //   }
+                          //   if (state is SyncCallLogState) {
+                          //     if (state.value.statusCode == 200) {
+                          //       showToast(state.value.message);
+                          //     } else if (state.value.statusCode ==
+                          //         HTTPStatusCodes.sessionExpired) {
+                          //       sessionExpired(
+                          //           context, state.value.message ?? "");
+                          //     } else {
+                          //       showToast(state.value.message);
+                          //     }
+                          //     callLogsListBloc.add(GetCallLogsEvent());
+                          //   }
+                          //   if (state is DeleteAllCallLogState) {
+                          //     if (state.value.statusCode == 200) {
+                          //       showCustomDialog(context,
+                          //           dialogType: DialogType.success,
+                          //           subTitle: state.value.message ?? "");
+                          //     } else if (state.value.statusCode ==
+                          //         HTTPStatusCodes.sessionExpired) {
+                          //       sessionExpired(
+                          //           context, state.value.message ?? "");
+                          //     } else {
+                          //       showToast(state.value.message);
+                          //     }
+                          //     callLogsListBloc.add(GetCallLogsEvent());
+                          //   }
+                          //   if (state is DeleteCallLogState) {
+                          //     if (state.value.statusCode == 200) {
+                          //       showCustomDialog(context,
+                          //           dialogType: DialogType.success,
+                          //           subTitle: state.value.message);
+                          //     } else if (state.value.statusCode ==
+                          //         HTTPStatusCodes.sessionExpired) {
+                          //       sessionExpired(context, state.value.message);
+                          //     } else {
+                          //       showCustomDialog(context,
+                          //           dialogType: DialogType.failed,
+                          //           subTitle: state.value.message.toString());
+                          //     }
+                          //     callLogsListBloc.add(GetCallLogsEvent());
+                          //     // markSpamBloc.add(GetSpamEvent());
+                          //   }
+                          // },
+                          builder: (context) {
+                        // if (state is GetCallLogsState) {
 
-                            // if (filteredCallLogs.isEmpty) {
-                            //   return Center(
-                            //       child:
-                            //           Text(appLocalization(context).noContacts));
-                            // }
-                            return ModalProgressHUD(
-                                inAsyncCall: //state is ApiLoadingState ||
-                                    markSpamState is ApiLoadingState,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: BlocConsumer(
-                                      bloc: searchBloc,
-                                      listener: (context, state) {
-                                        if (state is SelectStringState) {
-                                          filteredCallLogs = filter(
-                                              state.value ?? "", callLogs);
-                                        }
-                                      },
-                                      builder: (context, searchState) {
-                                        return (filteredCallLogs.isEmpty &&
-                                                searchController
-                                                    .text.isNotEmpty)
-                                            ? SizedBox(
-                                                height: 80,
-                                                child: CallLogListItem(
-                                                    // showPopupMenuBtn: false,
-                                                    callLog: CallLogData(
-                                                  mobileNo:
-                                                      searchController.text,
-                                                )),
-                                              )
-                                            // Center(
-                                            //     child: Text(appLocalization(context)
-                                            //         .noData),
-                                            //   )
-                                            : (state is ApiLoadingState &&
-                                                    filteredCallLogs.isEmpty)
-                                                ? Loader()
-                                                : filteredCallLogs.isEmpty
-                                                    ? Center(
-                                                        child: Text(
-                                                            appLocalization(
-                                                                    context)
-                                                                .noData),
-                                                      )
-                                                    : ListView.builder(
-                                                        shrinkWrap: true,
-                                                        controller:
-                                                            scrollController,
-                                                        itemCount:
-                                                            filteredCallLogs
-                                                                .length,
-                                                        itemBuilder:
-                                                            (context, index) =>
-                                                                CallLogListItem(
-                                                                  callLog:
-                                                                      filteredCallLogs[
-                                                                          index],
-                                                                ));
-                                      }),
-                                ));
-                            // }
-                            // return const Loader();
-                          }),
+                        // if (filteredCallLogs.isEmpty) {
+                        //   return Center(
+                        //       child:
+                        //           Text(appLocalization(context).noContacts));
+                        // }
+                        return ModalProgressHUD(
+                            inAsyncCall: //state is ApiLoadingState ||
+                                markSpamState is ApiLoadingState,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: BlocConsumer(
+                                  bloc: searchBloc,
+                                  listener: (context, state) {
+                                    if (state is SelectStringState) {
+                                      filteredCallLogs =
+                                          filter(state.value ?? "", callLogs);
+                                    }
+                                  },
+                                  builder: (context, searchState) {
+                                    return (filteredCallLogs.isEmpty &&
+                                            searchController.text.isNotEmpty)
+                                        ? SizedBox(
+                                            height: 80,
+                                            child: CallLogListItem(
+                                                // showPopupMenuBtn: false,
+                                                callLog: CallLogData(
+                                              mobileNo: searchController.text,
+                                            )),
+                                          )
+                                        // Center(
+                                        //     child: Text(appLocalization(context)
+                                        //         .noData),
+                                        //   )
+                                        : (callLogDBState is CallLogDBLoading &&
+                                                filteredCallLogs.isEmpty)
+                                            ? Loader()
+                                            : filteredCallLogs.isEmpty
+                                                ? Center(
+                                                    child: Text(
+                                                        appLocalization(context)
+                                                            .noData),
+                                                  )
+                                                : ListView.builder(
+                                                    shrinkWrap: true,
+                                                    controller:
+                                                        scrollController,
+                                                    itemCount:
+                                                        filteredCallLogs.length,
+                                                    itemBuilder:
+                                                        (context, index) =>
+                                                            CallLogListItem(
+                                                              callLog:
+                                                                  filteredCallLogs[
+                                                                      index],
+                                                            ));
+                                  }),
+                            ));
+                        // }
+                        // return const Loader();
+                      }),
                     ),
                   ],
                 );

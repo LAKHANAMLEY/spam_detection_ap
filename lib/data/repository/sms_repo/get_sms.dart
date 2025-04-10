@@ -4,7 +4,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../../lib.dart';
 
-Future<List<SmsMessage>> getSms() async {
+Future<List<SmsMessage>> getDeviceSms() async {
   var smsPermission = await permissionRequest(Permission.sms);
   if (smsPermission?.isGranted ?? false) {
     SmsQuery query = SmsQuery();

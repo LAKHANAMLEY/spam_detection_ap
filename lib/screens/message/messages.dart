@@ -1,5 +1,8 @@
 import 'dart:developer';
 
+import 'package:spam_delection_app/bloc/message_db_bloc/message_db_bloc.dart';
+import 'package:spam_delection_app/bloc/message_db_bloc/message_db_event.dart';
+import 'package:spam_delection_app/bloc/message_db_bloc/message_db_state.dart';
 import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc.dart';
 import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_event.dart';
 import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_state.dart';
@@ -20,9 +23,10 @@ class _MessagesScreenState extends State<MessagesScreen> {
 
   @override
   void initState() {
-    messagesBloc.add(SmsListEvent());
+    // messagesBloc.add(SmsListEvent());
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<SmsBloc>().add(StartListeningSms());
+      context.read<MessageDBBloc>().add(GetAllSmsFromDB());
     });
     super.initState();
   }
@@ -38,7 +42,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
           }
           if (state is NewSmsReceived) {
             log("SMS received");
-            messagesBloc.add(GetDeviceMessagesEvent());
+            // messagesBloc.add(GetDeviceMessagesEvent());
+            context.read<MessageDBBloc>().add(SyncMessagesWithServer());
           }
         },
         child: Column(
@@ -56,7 +61,10 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   PopupMenuItem(
                     child: Text(appLocalization(context).sync),
                     onTap: () {
-                      messagesBloc.add(GetDeviceMessagesEvent());
+                      // messagesBloc.add(GetDeviceMessagesEvent());
+                      context
+                          .read<MessageDBBloc>()
+                          .add(SyncMessagesWithServer());
                     },
                   ),
                   PopupMenuItem(
@@ -87,41 +95,75 @@ class _MessagesScreenState extends State<MessagesScreen> {
               fillColor: Colors.white,
             ),
             Expanded(
-              child: BlocConsumer(
-                bloc: messagesBloc,
-                listener: (context, state) {
-                  if (state is ApiBlocInitialState) {
-                    messagesBloc.add(GetDeviceMessagesEvent());
-                  }
-                  if (state is GetDeviceMessagesState) {
-                    // messages = state.value;
-                    messagesBloc.add(SyncSmsEvent(smsLogs: state.value));
-                  }
-                  if (state is SyncSmsState) {
-                    if (state.value.statusCode == 200) {
-                      showToast(state.value.message);
-                    } else if (state.value.statusCode ==
-                        HTTPStatusCodes.sessionExpired) {
-                      sessionExpired(context, state.value.message);
-                    } else {
-                      showToast(state.value.message);
-                    }
-                    messagesBloc.add(SmsListEvent());
-                  }
-                  if (state is SmsListState) {
-                    if (state.value.statusCode == 200) {
-                    } else if (state.value.statusCode ==
-                        HTTPStatusCodes.sessionExpired) {
-                      sessionExpired(context, state.value.message);
-                    } else {
-                      showToast(state.value.message);
-                    }
-                  }
-                  //if (state is smsDelete) {}
-                },
+              child: BlocBuilder<MessageDBBloc, MessageDBState>(
+                // bloc: messagesBloc,
+                // listener: (context, state) {
+                //   if (state is ApiBlocInitialState) {
+                //     messagesBloc.add(GetDeviceMessagesEvent());
+                //   }
+                //   if (state is GetDeviceMessagesState) {
+                //     // messages = state.value;
+                //     messagesBloc.add(SyncSmsEvent(smsLogs: state.value));
+                //   }
+                //   if (state is SyncSmsState) {
+                //     if (state.value.statusCode == 200) {
+                //       showToast(state.value.message);
+                //     } else if (state.value.statusCode ==
+                //         HTTPStatusCodes.sessionExpired) {
+                //       sessionExpired(context, state.value.message);
+                //     } else {
+                //       showToast(state.value.message);
+                //     }
+                //     messagesBloc.add(SmsListEvent());
+                //   }
+                //   if (state is SmsListState) {
+                //     if (state.value.statusCode == 200) {
+                //     } else if (state.value.statusCode ==
+                //         HTTPStatusCodes.sessionExpired) {
+                //       sessionExpired(context, state.value.message);
+                //     } else {
+                //       showToast(state.value.message);
+                //     }
+                //   }
+                //   //if (state is smsDelete) {}
+                // },
                 builder: (context, state) {
-                  if (state is SmsListState) {
-                    var messages = state.value.smsLog ?? [];
+                  if (state is MessageDBError) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            state.message,
+                            textAlign: TextAlign.center,
+                          ),
+                          ElevatedButton(
+                              onPressed: () {
+                                context
+                                    .read<MessageDBBloc>()
+                                    .add(DeleteMessageDB());
+                              },
+                              child: Text("Delete DB"))
+                        ],
+                      ),
+                    );
+                  }
+                  if (state is MessageDBInitial) {
+                    return Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context
+                              .read<MessageDBBloc>()
+                              .add(SyncMessagesWithServer());
+                        },
+                        child: Text("Load SMS logs"),
+                      ),
+                    );
+                  }
+                  if (state is MessageDBLoaded) {
+                    // var messages = state.value.smsLog ?? [];
+                    var messages = state.smsLogs;
                     return BlocBuilder(
                       bloc: searchBloc,
                       builder: (context, state) {

@@ -17,8 +17,16 @@ class SmsSpamListItem extends StatelessWidget {
               //  isSpam: '1',
             ));
       },
-      leading: const CircleAvatar(
-        backgroundImage: AssetImage(IconConstants.icFraud),
+      leading: Card(
+        // shape: BoxShape.circle,
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Image.asset(
+            IconConstants.icSpamMessage,
+            width: 40,
+            fit: BoxFit.contain,
+          ),
+        ),
       ),
       title: Row(
         children: [

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<Response> syncSms({required List<SmsMessage> smsLogs}) async {
+Future<Response> syncSmsWithServer({required List<SmsMessage> smsLogs}) async {
   var body = [];
   for (int i = 0; i < smsLogs.length; i++) {
     var sms = smsLogs[i];

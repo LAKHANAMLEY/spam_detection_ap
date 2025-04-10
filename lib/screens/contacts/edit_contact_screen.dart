@@ -1,3 +1,5 @@
+import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_bloc.dart';
+import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class EditContact extends StatefulWidget {
@@ -86,7 +88,8 @@ class _EditContactState extends State<EditContact> {
                   }
                   editContactBloc
                       .add(GetContactDetailEvent(contactData?.id ?? ''));
-                  contactListBloc.add(GetDeviceContactEvent());
+                  // contactListBloc.add(GetDeviceContactEvent());
+                  context.read<ContactDBBloc>().add(SyncDBContacts());
                 }
               },
               builder: (context, state) {

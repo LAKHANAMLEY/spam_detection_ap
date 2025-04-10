@@ -4,6 +4,8 @@ import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_bloc.dart';
 import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_event.dart';
 import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_bloc.dart';
 import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_event.dart';
+import 'package:spam_delection_app/bloc/message_db_bloc/message_db_bloc.dart';
+import 'package:spam_delection_app/bloc/message_db_bloc/message_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -46,7 +48,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
     phoneStateStreamSubs = PhoneState.stream.listen((state) async {
       if (state.status != PhoneStateStatus.NOTHING &&
           (state.number?.isNotEmpty ?? false)) {
-        callLogsListBloc.add(GetCallLogsEvent());
+        context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+        // callLogsListBloc.add(GetCallLogsEvent());
         // await permissionRequest(Permission.systemAlertWindow);
 
         showOverlay(
@@ -89,8 +92,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<ContactDBBloc>().add(SyncDBContacts());
       context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+      context.read<MessageDBBloc>().add(SyncMessagesWithServer());
       // callLogsListBloc.add(GetDeviceCallLogEvent());
-      messagesBloc.add(GetDeviceMessagesEvent());
+      // messagesBloc.add(GetDeviceMessagesEvent());
     });
   }
 
@@ -301,7 +305,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
                             ),
                             PopupMenuItem(
                               onTap: () {
-                                callLogsListBloc.add(DeleteAllCallLogEvent());
+                                // callLogsListBloc.add(DeleteAllCallLogEvent());
+                                context
+                                    .read<CallLogDBBloc>()
+                                    .add(DeleteAllDBCallLog());
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -400,92 +407,92 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return AppColor.whiteColor;
   }
 
-  void getAndSyncContacts() {
-    streamSubs = contactListBloc.stream.listen((state) {
-      if (state is GetContactState) {
-        // filterSearchResults("");
-        if (state.value.statusCode == 200) {
-        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
-          sessionExpired(context, state.value.message ?? "");
-        } else {
-          showToast(state.value.message);
-        }
-      }
-      if (state is SyncContactState) {
-        if (state.value.statusCode == 200) {
-          showToast(state.value.message);
-        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
-          sessionExpired(context, state.value.message ?? "");
-        } else {
-          showToast(state.value.message);
-        }
-        contactListBloc.add(GetContactEvent());
-      }
-      if (state is GetDeviceContactState) {
-        var contacts = state.value;
-        if (contacts != null) {
-          contactListBloc.add(SyncContactEvent(contacts: contacts));
-        }
-      }
-    });
-    contactListBloc.add(GetDeviceContactEvent());
-  }
+  // void getAndSyncContacts() {
+  //   streamSubs = contactListBloc.stream.listen((state) {
+  //     if (state is GetContactState) {
+  //       // filterSearchResults("");
+  //       if (state.value.statusCode == 200) {
+  //       } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+  //         sessionExpired(context, state.value.message ?? "");
+  //       } else {
+  //         showToast(state.value.message);
+  //       }
+  //     }
+  //     if (state is SyncContactState) {
+  //       if (state.value.statusCode == 200) {
+  //         showToast(state.value.message);
+  //       } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+  //         sessionExpired(context, state.value.message ?? "");
+  //       } else {
+  //         showToast(state.value.message);
+  //       }
+  //       contactListBloc.add(GetContactEvent());
+  //     }
+  //     if (state is GetDeviceContactState) {
+  //       var contacts = state.value;
+  //       if (contacts != null) {
+  //         contactListBloc.add(SyncContactEvent(contacts: contacts));
+  //       }
+  //     }
+  //   });
+  //   contactListBloc.add(GetDeviceContactEvent());
+  // }
 
-  void getAndSyncCallLogs() {
-    streamSubsCallLog = callLogsListBloc.stream.listen((state) {
-      if (state is GetCallLogsState) {
-        // filterSearchResults("");
-        if (state.value.statusCode == 200) {
-        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
-          sessionExpired(context, state.value.message ?? "");
-        } else {
-          showToast(state.value.message);
-        }
-      }
-      if (state is SyncCallLogState) {
-        if (state.value.statusCode == 200) {
-          showToast(state.value.message);
-        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
-          sessionExpired(context, state.value.message ?? "");
-        } else {
-          showToast(state.value.message);
-        }
-        callLogsListBloc.add(GetCallLogsEvent());
-      }
-      if (state is GetDeviceCallLogState) {
-        var deviceCallLogs = state.value;
-        callLogsListBloc.add(SyncCallLogEvent(callLogs: deviceCallLogs));
-      }
-    });
-    callLogsListBloc.add(GetDeviceCallLogEvent());
-  }
+  // void getAndSyncCallLogs() {
+  //   streamSubsCallLog = callLogsListBloc.stream.listen((state) {
+  //     if (state is GetCallLogsState) {
+  //       // filterSearchResults("");
+  //       if (state.value.statusCode == 200) {
+  //       } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+  //         sessionExpired(context, state.value.message ?? "");
+  //       } else {
+  //         showToast(state.value.message);
+  //       }
+  //     }
+  //     if (state is SyncCallLogState) {
+  //       if (state.value.statusCode == 200) {
+  //         showToast(state.value.message);
+  //       } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+  //         sessionExpired(context, state.value.message ?? "");
+  //       } else {
+  //         showToast(state.value.message);
+  //       }
+  //       callLogsListBloc.add(GetCallLogsEvent());
+  //     }
+  //     if (state is GetDeviceCallLogState) {
+  //       var deviceCallLogs = state.value;
+  //       callLogsListBloc.add(SyncCallLogEvent(callLogs: deviceCallLogs));
+  //     }
+  //   });
+  //   callLogsListBloc.add(GetDeviceCallLogEvent());
+  // }
 
-  void getAndSyncMessages() {
-    streamSubsMessage = messagesBloc.stream.listen((state) {
-      if (state is SmsListState) {
-        // filterSearchResults("");
-        if (state.value.statusCode == 200) {
-        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
-          sessionExpired(context, state.value.message ?? "");
-        } else {
-          showToast(state.value.message);
-        }
-      }
-      if (state is SyncSmsState) {
-        if (state.value.statusCode == 200) {
-          showToast(state.value.message);
-        } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
-          sessionExpired(context, state.value.message ?? "");
-        } else {
-          showToast(state.value.message);
-        }
-        messagesBloc.add(SmsListEvent());
-      }
-      if (state is GetDeviceMessagesState) {
-        var deviceCallLogs = state.value;
-        messagesBloc.add(SyncSmsEvent(smsLogs: deviceCallLogs));
-      }
-    });
-    messagesBloc.add(GetDeviceMessagesEvent());
-  }
+  // void getAndSyncMessages() {
+  //   streamSubsMessage = messagesBloc.stream.listen((state) {
+  //     if (state is SmsListState) {
+  //       // filterSearchResults("");
+  //       if (state.value.statusCode == 200) {
+  //       } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+  //         sessionExpired(context, state.value.message ?? "");
+  //       } else {
+  //         showToast(state.value.message);
+  //       }
+  //     }
+  //     if (state is SyncSmsState) {
+  //       if (state.value.statusCode == 200) {
+  //         showToast(state.value.message);
+  //       } else if (state.value.statusCode == HTTPStatusCodes.sessionExpired) {
+  //         sessionExpired(context, state.value.message ?? "");
+  //       } else {
+  //         showToast(state.value.message);
+  //       }
+  //       messagesBloc.add(SmsListEvent());
+  //     }
+  //     if (state is GetDeviceMessagesState) {
+  //       var deviceCallLogs = state.value;
+  //       messagesBloc.add(SyncSmsEvent(smsLogs: deviceCallLogs));
+  //     }
+  //   });
+  //   messagesBloc.add(GetDeviceMessagesEvent());
+  // }
 }

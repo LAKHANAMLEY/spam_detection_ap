@@ -103,7 +103,7 @@ class _EditProfileState extends State<EditProfile> {
                     sessionExpired(context, state.value.message ?? "");
                   } else {
                     showCustomDialog(context,
-                        subTitle: state.value.message,
+                        subTitle: state.value.message.toString(),
                         dialogType: DialogType.failed);
                   }
                   userBloc.add(GetUserProfileEvent());
@@ -298,6 +298,7 @@ class _EditProfileState extends State<EditProfile> {
                                     return CustomTextField(
                                       keyboardType: TextInputType.phone,
                                       // readOnly: true,
+                                      readOnly: phoneController.text.isNotEmpty,
                                       controller: phoneController,
                                       hintText:
                                           appLocalization(context).phoneNumber,

@@ -11,10 +11,11 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     // Updated initial state
     on<AddDBCallLog>(_onAddCallLogDB);
     on<UpdateDBCallLog>(_onUpdateCallLogDB);
-    on<DeleteDBCallLog>(_onDeleteCallLogDB); // Updated event handler name
-    on<LoadDBCallLogs>(_onLoadCallLogDBs); // Updated event handler name
-    on<SyncDBCallLogs>(_onSyncCallLogDBs); // Updated event handler name
-    on<DeleteDBCallLogs>(_onDeleteCallLogsDB); // Updated event handler name
+    on<DeleteDBCallLog>(_onDeleteCallLogDB);
+    on<DeleteAllDBCallLog>(_onDeleteAllCallLogDB);
+    on<LoadDBCallLogs>(_onLoadCallLogDBs);
+    on<SyncDBCallLogs>(_onSyncCallLogDBs);
+    on<DeleteDBCallLogs>(_onDeleteCallLogsDB);
   }
 
   Future<void> _onAddCallLogDB(
@@ -49,7 +50,23 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     // Updated event and state types
     emit(CallLogDBLoading()); // Updated state name
     try {
+      await deleteCallLog(callLog: CallLogData(id: event.callLogId));
       await _databaseHelper.deleteCallLog(event.callLogId);
+      final callLogs = await _databaseHelper.getAllCallLogs();
+      emit(CallLogDBLoaded(callLogs)); // Updated state name
+    } catch (e) {
+      emit(CallLogDBError(
+          'Failed to delete call log: $e')); // Updated state name
+    }
+  }
+
+  Future<void> _onDeleteAllCallLogDB(
+      DeleteAllDBCallLog event, Emitter<CallLogDBState> emit) async {
+    // Updated event and state types
+    emit(CallLogDBLoading()); // Updated state name
+    try {
+      await deleteAllCallLogs();
+      await _databaseHelper.deleteAllCallLogs();
       final callLogs = await _databaseHelper.getAllCallLogs();
       emit(CallLogDBLoaded(callLogs)); // Updated state name
     } catch (e) {
@@ -94,27 +111,6 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     } catch (e) {
       emit(CallLogDBError(
           'Failed to sync and store call logs: $e')); // Updated state name
-    }
-  }
-
-  String? _mapCallType(CallType? callType) {
-    switch (callType) {
-      case CallType.incoming:
-        return 'INCOMING';
-      case CallType.outgoing:
-        return 'OUTGOING';
-      case CallType.missed:
-        return 'MISSED';
-      case CallType.rejected:
-        return 'REJECTED';
-      case CallType.blocked:
-        return 'BLOCKED';
-      case CallType.voiceMail:
-        return 'VOICEMAIL';
-      case CallType.answeredExternally:
-        return 'ANSWERED_EXTERNALLY';
-      default:
-        return null;
     }
   }
 

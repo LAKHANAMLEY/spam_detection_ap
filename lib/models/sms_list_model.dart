@@ -42,6 +42,7 @@ class SmsListResponse {
 }
 
 class SmsLog {
+  final String? id;
   final String? address;
   final String? countryCode;
   final int? unreadReceivedSms;
@@ -50,6 +51,7 @@ class SmsLog {
   final int? isMarkSpam;
 
   SmsLog({
+    this.id,
     this.address,
     this.countryCode,
     this.unreadReceivedSms,
@@ -59,6 +61,7 @@ class SmsLog {
   });
 
   factory SmsLog.fromJson(Map<String, dynamic> json) => SmsLog(
+      id: json["id"],
       address: json["address"],
       name: json["name"],
       countryCode: json["country_code"],
@@ -70,6 +73,7 @@ class SmsLog {
       isMarkSpam: json["is_mark_spam"]);
 
   Map<String, dynamic> toJson() => {
+        "id": id,
         "address": address,
         "country_code": countryCode,
         "unread_received_sms": unreadReceivedSms,

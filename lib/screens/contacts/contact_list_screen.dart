@@ -14,6 +14,7 @@ class _ContactListState extends State<ContactList> {
   final searchBloc = SelectionBloc(SelectStringState(""));
   List<ContactData> contacts = [];
   List<ContactData> filteredContacts = [];
+  final searchController = TextEditingController();
   // contactListBloc.add(GetContactEvent());
 
   @override
@@ -22,6 +23,21 @@ class _ContactListState extends State<ContactList> {
       context.read<ContactDBBloc>().add(LoadDBContacts());
     });
     super.initState();
+  }
+
+  List<ContactData> filter() {
+    filteredContacts = contacts
+        .where((e) => ((e.name
+                    ?.toLowerCase()
+                    .contains(searchController.text.toLowerCase()) ??
+                false) ||
+            (e.mobileNo
+                    ?.toLowerCase()
+                    .contains(searchController.text.toLowerCase()) ??
+                false)))
+        .toList();
+    searchBloc.add(SelectStringEvent(searchController.text));
+    return filteredContacts;
   }
 
   @override
@@ -63,7 +79,8 @@ class _ContactListState extends State<ContactList> {
           }
           if (contactDBState is ContactDBLoaded) {
             contacts = contactDBState.contacts;
-            filteredContacts = filter("", contacts);
+            filter();
+            // filteredContacts = filter();
             return BlocConsumer(
                 bloc: markSpamBloc,
                 listener: (context, state) {
@@ -93,10 +110,11 @@ class _ContactListState extends State<ContactList> {
                     child: Column(
                       children: <Widget>[
                         CustomTextField(
+                          controller: searchController,
                           onTap: null,
                           fillColor: AppColor.whiteColor,
                           onChanged: (value) {
-                            searchBloc.add(SelectStringEvent(value));
+                            filter();
                           },
                           prefix: const Icon(
                             Icons.search,
@@ -107,8 +125,11 @@ class _ContactListState extends State<ContactList> {
                             itemBuilder: (context) => [
                               PopupMenuItem(
                                   onTap: () {
-                                    contactListBloc
-                                        .add(GetDeviceContactEvent());
+                                    // contactListBloc
+                                    //     .add(GetDeviceContactEvent());
+                                    context
+                                        .read<ContactDBBloc>()
+                                        .add(SyncDBContacts());
                                   },
                                   child: Text(
                                       appLocalization(context).syncContacts))
@@ -117,111 +138,105 @@ class _ContactListState extends State<ContactList> {
                         ),
                         // 5.height(),
                         Expanded(
-                          child: BlocConsumer(
-                              bloc: contactListBloc,
-                              listener: (context, state) {
-                                if (state is ApiBlocInitialState) {
-                                  contactListBloc.add(GetContactEvent());
-                                }
-                                if (state is GetDeviceContactState) {
-                                  var deviceContacts = state.value;
-                                  if (deviceContacts != null) {
-                                    contacts = deviceContacts
-                                        .map((e) => ContactData(
-                                              mobileNo: e.phones.isNotEmpty
-                                                  ? e.phones.first.number
-                                                  : "",
-                                              // callDuration: e.duration.toString(),
-                                              name: e.displayName,
-                                              // callType: e.callType?.name,
-                                              // callTime: e.timestamp?.toDateTime(),
-                                            ))
-                                        .toList();
-                                    filteredContacts = filter("", contacts);
-                                    contactListBloc.add(SyncContactEvent(
-                                        contacts: deviceContacts));
-                                  }
-                                }
-                                if (state is GetContactState) {
-                                  // filterSearchResults("");
-                                  if (state.value.statusCode == 200) {
-                                    contacts = state.value.contactslist ?? [];
-                                    filteredContacts = filter("", contacts);
-                                  } else if (state.value.statusCode ==
-                                      HTTPStatusCodes.sessionExpired) {
-                                    sessionExpired(
-                                        context, state.value.message ?? "");
-                                  } else {
-                                    showToast(state.value.message);
-                                  }
-                                }
-                                if (state is SyncContactState) {
-                                  if (state.value.statusCode == 200) {
-                                    showToast(state.value.message);
-                                  } else if (state.value.statusCode ==
-                                      HTTPStatusCodes.sessionExpired) {
-                                    sessionExpired(
-                                        context, state.value.message ?? "");
-                                  } else {
-                                    showToast(state.value.message);
-                                  }
-                                  contactListBloc.add(GetContactEvent());
-                                }
-                                if (state is DeleteContactState) {
-                                  if (state.value.statusCode == 200) {
-                                    showCustomDialog(
-                                      context,
-                                      dialogType: DialogType.success,
-                                      subTitle: state.value.message ??
-                                          appLocalization(context)
-                                              .deletedSuccessfully,
-                                    );
-                                  } else if (state.value.statusCode ==
-                                      HTTPStatusCodes.sessionExpired) {
-                                    sessionExpired(
-                                        context, state.value.message ?? "");
-                                  } else {
-                                    showToast(state.value.message);
-                                  }
-                                  contactListBloc.add(GetContactEvent());
-                                }
-                              },
-                              builder: (context, state) {
-                                // if (state is GetContactState) {
-                                return BlocConsumer(
-                                    bloc: searchBloc,
-                                    listener: (context, state) {
-                                      if (state is SelectStringState) {
-                                        filteredContacts =
-                                            filter(state.value ?? "", contacts);
-                                      }
-                                    },
-                                    builder: (context, searchState) {
-                                      if (searchState is SelectStringState) {
-                                        if (state is ApiLoadingState &&
-                                            filteredContacts.isEmpty) {
-                                          return Loader();
-                                        } else if (filteredContacts.isEmpty) {
-                                          return Center(
-                                            child: Text(appLocalization(context)
-                                                .noContacts),
-                                          );
-                                        }
-                                        return ListView.builder(
-                                          itemCount: filteredContacts.length,
-                                          // shrinkWrap: true,
-                                          itemBuilder: (context, index) {
-                                            return ContactListItem(
-                                              contact: filteredContacts[index],
-                                            );
-                                          },
+                          child: Builder(
+                              // bloc: contactListBloc,
+                              // listener: (context, state) {
+                              //   if (state is ApiBlocInitialState) {
+                              //     contactListBloc.add(GetContactEvent());
+                              //   }
+                              //   if (state is GetDeviceContactState) {
+                              //     var deviceContacts = state.value;
+                              //     if (deviceContacts != null) {
+                              //       contacts = deviceContacts
+                              //           .map((e) => ContactData(
+                              //                 mobileNo: e.phones.isNotEmpty
+                              //                     ? e.phones.first.number
+                              //                     : "",
+                              //                 // callDuration: e.duration.toString(),
+                              //                 name: e.displayName,
+                              //                 // callType: e.callType?.name,
+                              //                 // callTime: e.timestamp?.toDateTime(),
+                              //               ))
+                              //           .toList();
+                              //       filteredContacts = filter("", contacts);
+                              //       contactListBloc.add(SyncContactEvent(
+                              //           contacts: deviceContacts));
+                              //     }
+                              //   }
+                              //   if (state is GetContactState) {
+                              //     // filterSearchResults("");
+                              //     if (state.value.statusCode == 200) {
+                              //       contacts = state.value.contactslist ?? [];
+                              //       filteredContacts = filter("", contacts);
+                              //     } else if (state.value.statusCode ==
+                              //         HTTPStatusCodes.sessionExpired) {
+                              //       sessionExpired(
+                              //           context, state.value.message ?? "");
+                              //     } else {
+                              //       showToast(state.value.message);
+                              //     }
+                              //   }
+                              //   if (state is SyncContactState) {
+                              //     if (state.value.statusCode == 200) {
+                              //       showToast(state.value.message);
+                              //     } else if (state.value.statusCode ==
+                              //         HTTPStatusCodes.sessionExpired) {
+                              //       sessionExpired(
+                              //           context, state.value.message ?? "");
+                              //     } else {
+                              //       showToast(state.value.message);
+                              //     }
+                              //     contactListBloc.add(GetContactEvent());
+                              //   }
+                              //   if (state is DeleteContactState) {
+                              //     if (state.value.statusCode == 200) {
+                              //       showCustomDialog(
+                              //         context,
+                              //         dialogType: DialogType.success,
+                              //         subTitle: state.value.message ??
+                              //             appLocalization(context)
+                              //                 .deletedSuccessfully,
+                              //       );
+                              //     } else if (state.value.statusCode ==
+                              //         HTTPStatusCodes.sessionExpired) {
+                              //       sessionExpired(
+                              //           context, state.value.message ?? "");
+                              //     } else {
+                              //       showToast(state.value.message);
+                              //     }
+                              //     contactListBloc.add(GetContactEvent());
+                              //   }
+                              // },
+                              builder: (context) {
+                            // if (state is GetContactState) {
+                            return BlocBuilder(
+                                bloc: searchBloc,
+                                builder: (context, searchState) {
+                                  if (searchState is SelectStringState) {
+                                    if (contactDBState is ContactDBLoading &&
+                                        filteredContacts.isEmpty) {
+                                      return Loader();
+                                    } else if (filteredContacts.isEmpty) {
+                                      return Center(
+                                        child: Text(appLocalization(context)
+                                            .noContacts),
+                                      );
+                                    }
+                                    return ListView.builder(
+                                      itemCount: filteredContacts.length,
+                                      // shrinkWrap: true,
+                                      itemBuilder: (context, i) {
+                                        return ContactListItem(
+                                          contact: filteredContacts[i],
                                         );
-                                      }
-                                      return const Loader();
-                                    });
-                                // }
-                                // return const Loader();
-                              }),
+                                      },
+                                    );
+                                  }
+                                  return const Loader();
+                                });
+                            // }
+                            // return const Loader();
+                          }),
                         ),
                       ],
                     ),
@@ -246,17 +261,5 @@ class _ContactListState extends State<ContactList> {
         },
       ),
     );
-  }
-
-//   List<ContactData> filterSearchResults(
-  List<ContactData> filter(String searchText, List<ContactData> contacts) {
-    return contacts
-        .where((e) =>
-            ((e.name?.toLowerCase().contains(searchText.toLowerCase()) ??
-                    false) ||
-                (e.mobileNo?.toLowerCase().contains(searchText.toLowerCase()) ??
-                    false)))
-        .toList();
-    // setState(() {});
   }
 }

@@ -514,7 +514,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 
     if (event is GetDeviceMessagesEvent) {
       emit(ApiLoadingState());
-      await getSms().then((value) {
+      await getDeviceSms().then((value) {
         emit(GetDeviceMessagesState(value));
       });
     }
@@ -528,7 +528,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 
     if (event is SyncSmsEvent) {
       emit(ApiLoadingState());
-      await syncSms(
+      await syncSmsWithServer(
         smsLogs: event.smsLogs,
       ).then((value) {
         emit(SyncSmsState(value));

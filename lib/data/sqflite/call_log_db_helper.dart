@@ -116,6 +116,13 @@ class CallLogDBHelper {
     );
   }
 
+  Future<int> deleteAllCallLogs() async {
+    Database db = await instance.database;
+    return await db.delete(
+      callLogTable,
+    );
+  }
+
   // New method to delete the entire database
   Future<void> deleteDatabase1() async {
     io.Directory documentsDirectory = await getApplicationDocumentsDirectory();

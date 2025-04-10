@@ -4,13 +4,15 @@
 
 import 'dart:convert';
 
-EditProfileResponse editProfileResponseFromJson(String str) => EditProfileResponse.fromJson(json.decode(str));
+EditProfileResponse editProfileResponseFromJson(String str) =>
+    EditProfileResponse.fromJson(json.decode(str));
 
-String editProfileResponseToJson(EditProfileResponse data) => json.encode(data.toJson());
+String editProfileResponseToJson(EditProfileResponse data) =>
+    json.encode(data.toJson());
 
 class EditProfileResponse {
   final int? statusCode;
-  final String? message;
+  final dynamic message;
   final Data? data;
 
   EditProfileResponse({
@@ -19,17 +21,18 @@ class EditProfileResponse {
     this.data,
   });
 
-  factory EditProfileResponse.fromJson(Map<String, dynamic> json) => EditProfileResponse(
-    statusCode: json["status_code"],
-    message: json["message"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
-  );
+  factory EditProfileResponse.fromJson(Map<String, dynamic> json) =>
+      EditProfileResponse(
+        statusCode: json["status_code"],
+        message: json["message"],
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status_code": statusCode,
-    "message": message,
-    "data": data?.toJson(),
-  };
+        "status_code": statusCode,
+        "message": message,
+        "data": data?.toJson(),
+      };
 }
 
 class Data {
@@ -76,46 +79,47 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    userId: json["user_id"],
-    lastName: json["last_name"],
-    email: json["email"],
-    countryCode: json["country_code"],
-    phone: json["phone"],
-    userRole: json["user_role"],
-    isEmailVerify: json["is_email_verify"],
-    photo: json["photo"],
-    supportPin: json["support_pin"],
-    gender: json["gender"],
-    dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
-    countryId: json["country_id"],
-    state: json["state"],
-    city: json["city"],
-    zip: json["zip"],
-    address: json["address"],
-    address2: json["address2"],
-    name: json["name"],
-    country: json["country"],
-  );
+        userId: json["user_id"],
+        lastName: json["last_name"],
+        email: json["email"],
+        countryCode: json["country_code"],
+        phone: json["phone"],
+        userRole: json["user_role"],
+        isEmailVerify: json["is_email_verify"],
+        photo: json["photo"],
+        supportPin: json["support_pin"],
+        gender: json["gender"],
+        dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+        countryId: json["country_id"],
+        state: json["state"],
+        city: json["city"],
+        zip: json["zip"],
+        address: json["address"],
+        address2: json["address2"],
+        name: json["name"],
+        country: json["country"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "user_id": userId,
-    "last_name": lastName,
-    "email": email,
-    "country_code": countryCode,
-    "phone": phone,
-    "user_role": userRole,
-    "is_email_verify": isEmailVerify,
-    "photo": photo,
-    "support_pin": supportPin,
-    "gender": gender,
-    "dob": "${dob!.year.toString().padLeft(4, '0')}-${dob!.month.toString().padLeft(2, '0')}-${dob!.day.toString().padLeft(2, '0')}",
-    "country_id": countryId,
-    "state": state,
-    "city": city,
-    "zip": zip,
-    "address": address,
-    "address2": address2,
-    "name": name,
-    "country": country,
-  };
+        "user_id": userId,
+        "last_name": lastName,
+        "email": email,
+        "country_code": countryCode,
+        "phone": phone,
+        "user_role": userRole,
+        "is_email_verify": isEmailVerify,
+        "photo": photo,
+        "support_pin": supportPin,
+        "gender": gender,
+        "dob":
+            "${dob!.year.toString().padLeft(4, '0')}-${dob!.month.toString().padLeft(2, '0')}-${dob!.day.toString().padLeft(2, '0')}",
+        "country_id": countryId,
+        "state": state,
+        "city": city,
+        "zip": zip,
+        "address": address,
+        "address2": address2,
+        "name": name,
+        "country": country,
+      };
 }

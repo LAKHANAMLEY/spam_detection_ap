@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_contacts/flutter_contacts.dart';
 
 Future<Contact> addDeviceContact({
@@ -6,12 +8,17 @@ Future<Contact> addDeviceContact({
   required String phone,
   required String numberType,
 }) async {
-  Contact contact = Contact(
-    name: Name(first: name),
-    emails: [Email(email)],
-    phones: [Phone(phone, label: getPhoneLabel(numberType))],
-  );
-  return await contact.insert();
+  try {
+    Contact contact = Contact(
+      name: Name(first: name),
+      emails: [Email(email)],
+      phones: [Phone(phone, label: getPhoneLabel(numberType))],
+    );
+    return await contact.insert();
+  } catch (e) {
+    log(e.toString());
+    throw Exception(e);
+  }
 }
 
 PhoneLabel getPhoneLabel(String? phoneLabel) {
