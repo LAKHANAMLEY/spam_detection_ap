@@ -1,6 +1,5 @@
 import 'package:permission_handler/permission_handler.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/widgets/permission_widget.dart';
 
 class ContactList extends StatefulWidget {
   const ContactList({super.key});

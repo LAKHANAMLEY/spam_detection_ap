@@ -12,7 +12,7 @@ Future<List<CallLogEntry>> getDeviceCallLogs({
   // var phonePermissionStatus = await permissionRequest(Permission.phone);
 // GET WHOLE CALL LOG
   // Iterable<CallLogEntry> entries = await CallLog.get();
-  if ((phonePermissionStatus?.isGranted ?? false)) {
+  if ((phonePermissionStatus.isGranted ?? false)) {
     Iterable<CallLogEntry> entries = await CallLog.query(
       number: number,
       dateTimeFrom: dateTimeFrom,
@@ -21,7 +21,7 @@ Future<List<CallLogEntry>> getDeviceCallLogs({
     return entries.toList();
   } else {
     // log("Contact Permission status: ${contactPermissionStatus?.name}");
-    log("Phone Permission status: ${phonePermissionStatus?.name}");
+    log("Phone Permission status: ${phonePermissionStatus.name}");
     // return [];
     throw PermissionException(
         "Phone Permission status : ${phonePermissionStatus.name}");

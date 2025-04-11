@@ -13,7 +13,7 @@ Future<List<Contact>?> getLocalContacts() async {
     return contacts;
     // syncContacts(contacts);
   } else {
-    log("Phone Permission status: ${status?.name}");
+    log("Phone Permission status: ${status.name}");
     // return contacts;
     throw PermissionException("Contact permission status : ${status.name}");
   }

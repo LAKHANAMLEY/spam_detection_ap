@@ -1,5 +1,4 @@
 import 'package:permission_handler/permission_handler.dart';
-import 'package:spam_delection_app/extensions/permission_ext.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class PermissionWidget extends StatelessWidget {

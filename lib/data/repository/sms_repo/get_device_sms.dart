@@ -16,7 +16,7 @@ Future<List<SmsMessage>> getDeviceSms() async {
     // print(sms.first.toMap.toString());
     return sms;
   } else {
-    log("Permission status: ${status?.name}");
+    log("Permission status: ${status.name}");
     throw PermissionException("SMS permission status : ${status.name}");
     // return [];
   }

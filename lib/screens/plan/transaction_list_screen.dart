@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/plan/transaction_listitem.dart';
 
 class TransactionList extends StatefulWidget {
   final bool? showAppBar;
