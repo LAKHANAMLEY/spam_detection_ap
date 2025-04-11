@@ -22,9 +22,10 @@ class ContactDBLoaded extends ContactDBState {
 
 class ContactDBError extends ContactDBState {
   final String message;
+  final Object exception;
 
-  const ContactDBError(this.message);
+  const ContactDBError(this.message, this.exception);
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [message, exception];
 }

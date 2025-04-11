@@ -1,20 +1,18 @@
 import 'dart:developer';
 
-import 'package:call_e_log/call_log.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:spam_delection_app/utils/functions/permission_request.dart';
+import 'package:spam_delection_app/lib.dart';
 
 Future<List<CallLogEntry>> getDeviceCallLogs({
   String? number,
   DateTime? dateTimeFrom,
   DateTime? dateTimeTo,
 }) async {
-  var contactPermissionStatus = await permissionRequest(Permission.contacts);
-  var phonePermissionStatus = await permissionRequest(Permission.phone);
+  var phonePermissionStatus = await Permission.phone.status;
+  // var phonePermissionStatus = await permissionRequest(Permission.phone);
 // GET WHOLE CALL LOG
   // Iterable<CallLogEntry> entries = await CallLog.get();
-  if ((contactPermissionStatus?.isGranted ?? false) &&
-      (phonePermissionStatus?.isGranted ?? false)) {
+  if ((phonePermissionStatus?.isGranted ?? false)) {
     Iterable<CallLogEntry> entries = await CallLog.query(
       number: number,
       dateTimeFrom: dateTimeFrom,
@@ -22,9 +20,11 @@ Future<List<CallLogEntry>> getDeviceCallLogs({
     );
     return entries.toList();
   } else {
-    log("Contact Permission status: ${contactPermissionStatus?.name}");
+    // log("Contact Permission status: ${contactPermissionStatus?.name}");
     log("Phone Permission status: ${phonePermissionStatus?.name}");
-    return [];
+    // return [];
+    throw PermissionException(
+        "Phone Permission status : ${phonePermissionStatus.name}");
   }
 
 // QUERY CALL LOG (ALL PARAMS ARE OPTIONAL)

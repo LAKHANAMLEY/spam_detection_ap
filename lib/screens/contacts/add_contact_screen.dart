@@ -1,5 +1,3 @@
-import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_bloc.dart';
-import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class AddContact extends StatefulWidget {

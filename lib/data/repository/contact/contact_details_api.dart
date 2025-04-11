@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<Response> getContactDetail(String id) async {
+Future<Response> getFamilyMemberDetail(String id) async {
   final response = await http.post(
     Uri.parse(ApiUrlConstants.familyMemberDetails + id),
     headers: await ApiUrlConstants.headers(),

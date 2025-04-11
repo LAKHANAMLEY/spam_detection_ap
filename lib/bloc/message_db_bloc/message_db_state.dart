@@ -45,9 +45,10 @@ class MessageDBSynced extends MessageDBState {
 
 class MessageDBError extends MessageDBState {
   final String message;
+  final Object exception;
 
-  const MessageDBError(this.message);
+  const MessageDBError(this.message, this.exception);
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [message, exception];
 }

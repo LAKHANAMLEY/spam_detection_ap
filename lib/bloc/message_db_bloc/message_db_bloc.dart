@@ -1,7 +1,4 @@
 // BLoC
-import 'package:spam_delection_app/bloc/message_db_bloc/message_db_event.dart';
-import 'package:spam_delection_app/bloc/message_db_bloc/message_db_state.dart';
-import 'package:spam_delection_app/data/sqflite/message_db_helper.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
@@ -15,6 +12,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     on<DeleteMessageDB>(_onDeleteDatabase);
     // on<LoadDeviceSms>(_onLoadDeviceSms);
     on<SyncMessagesWithServer>(_onSyncMessagesWithServer);
+    on<SyncChangedMessageWithServer>(_onSyncChangedMessagesWithServer);
     on<AddSmsLogsToDB>(_onAddSmsLogsToDB);
     on<GetAllSmsFromDB>(_onGetAllSmsFromDB);
   }
@@ -38,7 +36,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       final smsLogs = await _databaseHelper.getAllSmsLogs();
       emit(MessageDBLoaded(smsLogs));
     } catch (e) {
-      emit(MessageDBError('Failed to add SMS log to DB: $e'));
+      emit(MessageDBError('Failed to add SMS log to DB: $e', e));
     }
   }
 
@@ -49,7 +47,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       await _databaseHelper.deleteTable();
       emit(const MessageDBLoaded([]));
     } catch (e) {
-      emit(MessageDBError('Failed to delete all SMS logs from DB: $e'));
+      emit(MessageDBError('Failed to delete all SMS logs from DB: $e', e));
     }
   }
 
@@ -60,7 +58,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       await _databaseHelper.delete(event.id);
       emit(const MessageDBLoaded([]));
     } catch (e) {
-      emit(MessageDBError('Failed to delete all SMS logs from DB: $e'));
+      emit(MessageDBError('Failed to delete all SMS logs from DB: $e', e));
     }
   }
 
@@ -71,7 +69,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       await _databaseHelper.deleteDatabase1();
       emit(MessageDBInitial());
     } catch (e) {
-      emit(MessageDBError('Failed to delete the database: $e'));
+      emit(MessageDBError('Failed to delete the database: $e', e));
     }
   }
 
@@ -107,7 +105,31 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
       emit(MessageDBLoaded(syncedSmsLogs));
     } catch (e) {
-      emit(MessageDBError('Failed to sync messages with server: $e'));
+      emit(MessageDBError('Failed to sync messages with server: $e', e));
+    }
+  }
+
+  Future<void> _onSyncChangedMessagesWithServer(
+      SyncChangedMessageWithServer event, Emitter<MessageDBState> emit) async {
+    emit(MessageDBSyncing());
+    try {
+      await syncSmsWithServer(smsLogs: [event.smsMessage]);
+      final resp = await smsList();
+      final serverMessages = resp.smsLog ?? [];
+      for (final smsLog in serverMessages) {
+        final existingCallLog =
+            await _databaseHelper.getSmsLog(smsLog.id ?? "");
+        if (existingCallLog == null) {
+          await _databaseHelper.insertSmsLog(smsLog);
+        } else {
+          await _databaseHelper.updateSmsLog(smsLog);
+        }
+      }
+      final syncedSmsLogs = await _databaseHelper.getAllSmsLogs();
+
+      emit(MessageDBLoaded(syncedSmsLogs));
+    } catch (e) {
+      emit(MessageDBError('Failed to sync messages with server: $e', e));
     }
   }
 
@@ -121,7 +143,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       final allSms = await _databaseHelper.getAllSmsLogs();
       emit(MessageDBLoaded(allSms));
     } catch (e) {
-      emit(MessageDBError('Failed to add SMS logs to DB: $e'));
+      emit(MessageDBError('Failed to add SMS logs to DB: $e', e));
     }
   }
 
@@ -132,7 +154,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       final allSms = await _databaseHelper.getAllSmsLogs();
       emit(MessageDBLoaded(allSms));
     } catch (e) {
-      emit(MessageDBError('Failed to get all SMS from DB: $e'));
+      emit(MessageDBError('Failed to get all SMS from DB: $e', e));
     }
   }
 }

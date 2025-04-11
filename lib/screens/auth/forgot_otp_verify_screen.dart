@@ -61,11 +61,12 @@ class _ForgotOtpVerifyState extends State<ForgotOtpVerify> {
         fifthInput +
         sixthInput);
     if (otpInput.isEmpty) {
-      SnackBarToastMessage.showSnackBar(context, StringConstants.otpMessage);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(StringConstants.otpMessage)));
       return false;
     } else if (otpInput.length < 6) {
-      SnackBarToastMessage.showSnackBar(
-          context, StringConstants.otpMinLenthMessage);
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(StringConstants.otpMinLenthMessage)));
       return false;
     } else {
       forgotOtpUserApiCall(firstInput, secondInput, thirdInput, fourthInput,

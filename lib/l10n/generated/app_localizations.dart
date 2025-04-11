@@ -737,6 +737,12 @@ abstract class AppLocalizations {
   /// **'Congratulations, your account has been successfully updated.'**
   String get congratulationsYourAccountHasBeenSuccessfullyUpdated;
 
+  /// No description provided for @contact.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts'**
+  String get contact;
+
   /// No description provided for @contactList.
   ///
   /// In en, this message translates to:
@@ -754,6 +760,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contacts'**
   String get contactText;
+
+  /// No description provided for @contactUS.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact us'**
+  String get contactUS;
 
   /// No description provided for @contactUs.
   ///
@@ -2285,6 +2297,12 @@ abstract class AppLocalizations {
   /// **'Not found'**
   String get notFound;
 
+  /// No description provided for @notSpam.
+  ///
+  /// In en, this message translates to:
+  /// **'Not spam'**
+  String get notSpam;
+
   /// No description provided for @notVerified.
   ///
   /// In en, this message translates to:
@@ -2549,6 +2567,12 @@ abstract class AppLocalizations {
   /// **'Payment success!'**
   String get paymentSuccess;
 
+  /// No description provided for @permissionNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission not allowed'**
+  String get permissionNotAllowed;
+
   /// No description provided for @personal.
   ///
   /// In en, this message translates to:
@@ -2590,6 +2614,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pincode'**
   String get pinCode;
+
+  /// No description provided for @pinNumberMustContainOnlDigits.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin number must contain only digits'**
+  String get pinNumberMustContainOnlDigits;
+
+  /// No description provided for @pinNumberMustDigits.
+  ///
+  /// In en, this message translates to:
+  /// **'Pin number must be 6 digits'**
+  String get pinNumberMustDigits;
 
   /// No description provided for @pleasNewPasswordSecure.
   ///
@@ -3041,6 +3077,12 @@ abstract class AppLocalizations {
   /// **'Privacy policy'**
   String get privacyPolicy;
 
+  /// No description provided for @privacyPolicyTxt.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicyTxt;
+
   /// No description provided for @proceedToPay.
   ///
   /// In en, this message translates to:
@@ -3287,11 +3329,29 @@ abstract class AppLocalizations {
   /// **'Re-enter Password'**
   String get renterPassword;
 
+  /// No description provided for @reportMessageExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Report the message to improve the experience for millions users like you'**
+  String get reportMessageExperience;
+
   /// No description provided for @reportNumberSpam.
   ///
   /// In en, this message translates to:
   /// **'Report Number As Spam'**
   String get reportNumberSpam;
+
+  /// No description provided for @reportSpam.
+  ///
+  /// In en, this message translates to:
+  /// **'Report spam'**
+  String get reportSpam;
+
+  /// No description provided for @reportSpamLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'This sender will be marked and labeled as spam in the conversation.'**
+  String get reportSpamLabel;
 
   /// No description provided for @reportText.
   ///
@@ -3815,6 +3875,12 @@ abstract class AppLocalizations {
   /// **'Submit'**
   String get submitText;
 
+  /// No description provided for @subscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription'**
+  String get subscription;
+
   /// No description provided for @success.
   ///
   /// In en, this message translates to:
@@ -3868,6 +3934,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'TAX'**
   String get tax;
+
+  /// No description provided for @tellUsMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us more...'**
+  String get tellUsMore;
+
+  /// No description provided for @termsAndConditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms and Conditions'**
+  String get termsAndConditions;
 
   /// No description provided for @theme.
   ///
@@ -3965,6 +4043,12 @@ abstract class AppLocalizations {
   /// **'Transaction ID'**
   String get transactionId;
 
+  /// No description provided for @transactionList.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction List'**
+  String get transactionList;
+
   /// No description provided for @transactionStatus.
   ///
   /// In en, this message translates to:
@@ -4024,6 +4108,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try again..'**
   String get tryAgain;
+
+  /// No description provided for @unMarkSMs.
+  ///
+  /// In en, this message translates to:
+  /// **'UnMark'**
+  String get unMarkSMs;
 
   /// No description provided for @unblock.
   ///
@@ -4307,6 +4397,12 @@ abstract class AppLocalizations {
   /// **'What type of spam was it?'**
   String get whatSpamIt;
 
+  /// No description provided for @whatTypeOfMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'What type of message was this?'**
+  String get whatTypeOfMessage;
+
   /// No description provided for @whoViewedMyProfile.
   ///
   /// In en, this message translates to:
@@ -4444,96 +4540,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zip Code'**
   String get zip;
-
-  /// No description provided for @subscription.
-  ///
-  /// In en, this message translates to:
-  /// **'Subscription'**
-  String get subscription;
-
-  /// No description provided for @termsAndConditions.
-  ///
-  /// In en, this message translates to:
-  /// **'Terms and Conditions'**
-  String get termsAndConditions;
-
-  /// No description provided for @contactUS.
-  ///
-  /// In en, this message translates to:
-  /// **'Contact us'**
-  String get contactUS;
-
-  /// No description provided for @privacyPolicyTxt.
-  ///
-  /// In en, this message translates to:
-  /// **'Privacy Policy'**
-  String get privacyPolicyTxt;
-
-  /// No description provided for @pinNumberMustDigits.
-  ///
-  /// In en, this message translates to:
-  /// **'Pin number must be 6 digits'**
-  String get pinNumberMustDigits;
-
-  /// No description provided for @pinNumberMustContainOnlDigits.
-  ///
-  /// In en, this message translates to:
-  /// **'Pin number must contain only digits'**
-  String get pinNumberMustContainOnlDigits;
-
-  /// No description provided for @contact.
-  ///
-  /// In en, this message translates to:
-  /// **'Contacts'**
-  String get contact;
-
-  /// No description provided for @reportSpam.
-  ///
-  /// In en, this message translates to:
-  /// **'Report spam'**
-  String get reportSpam;
-
-  /// No description provided for @reportSpamLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'This sender will be marked and labeled as spam in the conversation.'**
-  String get reportSpamLabel;
-
-  /// No description provided for @tellUsMore.
-  ///
-  /// In en, this message translates to:
-  /// **'Tell us more...'**
-  String get tellUsMore;
-
-  /// No description provided for @whatTypeOfMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'What type of message was this?'**
-  String get whatTypeOfMessage;
-
-  /// No description provided for @unMarkSMs.
-  ///
-  /// In en, this message translates to:
-  /// **'UnMark'**
-  String get unMarkSMs;
-
-  /// No description provided for @notSpam.
-  ///
-  /// In en, this message translates to:
-  /// **'Not spam'**
-  String get notSpam;
-
-  /// No description provided for @transactionList.
-  ///
-  /// In en, this message translates to:
-  /// **'Transaction List'**
-  String get transactionList;
-
-  /// No description provided for @reportMessageExperience.
-  ///
-  /// In en, this message translates to:
-  /// **'Report the message to improve the experience for millions users like you'**
-  String get reportMessageExperience;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

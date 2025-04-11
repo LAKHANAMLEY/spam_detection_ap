@@ -240,7 +240,9 @@ class _EditProfileState extends State<EditProfile> {
                                 labelText: appLocalization(context).firstName,
                                 suffix: Image.asset(
                                   IconConstants.icUsername,
-                                  scale: 1.5,
+                                  // scale: 1.5,
+                                  height: AppConstants.suffixIconHeight,
+                                  width: AppConstants.suffixIconWidth,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
@@ -257,7 +259,9 @@ class _EditProfileState extends State<EditProfile> {
                                 labelText: appLocalization(context).lastName,
                                 suffix: Image.asset(
                                   IconConstants.icUsername,
-                                  scale: 1.5,
+                                  // scale: 1.5,
+                                  height: AppConstants.suffixIconHeight,
+                                  width: AppConstants.suffixIconWidth,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
@@ -276,7 +280,9 @@ class _EditProfileState extends State<EditProfile> {
                                 labelText: appLocalization(context).email,
                                 suffix: Image.asset(
                                   IconConstants.icAlternativeEmail,
-                                  scale: 1.5,
+                                  // scale: 1.5,
+                                  height: AppConstants.suffixIconHeight,
+                                  width: AppConstants.suffixIconWidth,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
@@ -306,7 +312,9 @@ class _EditProfileState extends State<EditProfile> {
                                           appLocalization(context).phoneNumber,
                                       suffix: Image.asset(
                                         IconConstants.icCallAdd,
-                                        scale: 1.5,
+                                        // scale: 1.5,
+                                        height: AppConstants.suffixIconHeight,
+                                        width: AppConstants.suffixIconWidth,
                                       ),
                                       prefix: CountryPhoneCodePrefix(
                                         bloc: selectPhoneCodeBloc,
@@ -337,7 +345,9 @@ class _EditProfileState extends State<EditProfile> {
                                           appLocalization(context).dateOfBirth,
                                       suffix: Image.asset(
                                         IconConstants.icCalenderData,
-                                        scale: 1.5,
+                                        // scale: 1.5,
+                                        height: AppConstants.suffixIconHeight,
+                                        width: AppConstants.suffixIconWidth,
                                       ),
                                       validator: (p0) {
                                         if (p0?.isEmpty ?? true) {

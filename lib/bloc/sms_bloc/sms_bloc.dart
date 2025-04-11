@@ -7,20 +7,27 @@ import 'package:spam_delection_app/globals/index.dart';
 
 class SmsBloc extends Bloc<SmsEvent, SmsState> {
   final SmsReceiver _receiver = SmsReceiver();
-  StreamSubscription<SmsMessage>? _smsSubscription;
+  final SmsSender _sender = SmsSender();
+  StreamSubscription<SmsMessage>? _smsRSubscription;
+  StreamSubscription<SmsMessage?>? _smsSSubscription;
 
   SmsBloc() : super(SmsInitial()) {
     on<StartListeningSms>(_onStartListeningSms);
     on<SmsReceived>(_onSmsReceived);
+    on<SmsSent>(_onSmsSent);
   }
 
   Future<void> _onStartListeningSms(
       StartListeningSms event, Emitter<SmsState> emit) async {
     emit(SmsListening());
     try {
-      _smsSubscription = _receiver.onSmsReceived?.listen((SmsMessage msg) {
+      _smsRSubscription = _receiver.onSmsReceived?.listen((SmsMessage msg) {
         log(msg.toString());
         add(SmsReceived(msg));
+      });
+      _smsSSubscription = _sender.onSmsDelivered.listen((SmsMessage? msg) {
+        log(msg.toString());
+        if (msg != null) add(SmsSent(msg));
       });
     } catch (e) {
       log(e.toString());
@@ -32,9 +39,14 @@ class SmsBloc extends Bloc<SmsEvent, SmsState> {
     emit(NewSmsReceived(event.message));
   }
 
+  Future<void> _onSmsSent(SmsSent event, Emitter<SmsState> emit) async {
+    emit(NewSmsSent(event.message));
+  }
+
   @override
   Future<void> close() {
-    _smsSubscription?.cancel();
+    _smsRSubscription?.cancel();
+    _smsSSubscription?.cancel();
     return super.close();
   }
 }

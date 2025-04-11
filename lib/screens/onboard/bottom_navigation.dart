@@ -1,11 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
-import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_bloc.dart';
-import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_event.dart';
-import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_bloc.dart';
-import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_event.dart';
-import 'package:spam_delection_app/bloc/message_db_bloc/message_db_bloc.dart';
-import 'package:spam_delection_app/bloc/message_db_bloc/message_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -48,7 +45,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
     phoneStateStreamSubs = PhoneState.stream.listen((state) async {
       if (state.status != PhoneStateStatus.NOTHING &&
           (state.number?.isNotEmpty ?? false)) {
-        context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+        context.read<CallLogDBBloc>().add(SyncManuallyDBCallLog(
+            callLogEntry: CallLogEntry(
+                number: state.number,
+                duration: state.duration?.inSeconds ?? 0,
+                callType: getCallLogType(
+                    getCallTypeByPhoneState(state))))); //TODO: fiz the callType
         // callLogsListBloc.add(GetCallLogsEvent());
         // await permissionRequest(Permission.systemAlertWindow);
 
@@ -87,12 +89,22 @@ class _BottomNavigationState extends State<BottomNavigation> {
   }
 
   syncAll() {
-    // contactListBloc.add(GetDeviceContactEvent());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ContactDBBloc>().add(SyncDBContacts());
-      context.read<CallLogDBBloc>().add(SyncDBCallLogs());
-      context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      var permissionsStatusList = await requestMultiplePermissions();
+      if (mounted) {
+        if (permissionsStatusList[Permission.contacts]?.isGranted ?? false) {
+          context.read<ContactDBBloc>().add(SyncDBContacts());
+        }
+        if (permissionsStatusList[Permission.phone]?.isGranted ?? false) {
+          context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+        }
+        if (permissionsStatusList[Permission.sms]?.isGranted ?? false) {
+          context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+        }
+      } else {
+        log("Mounted : $mounted");
+      }
+      // contactListBloc.add(GetDeviceContactEvent());
       // callLogsListBloc.add(GetDeviceCallLogEvent());
       // messagesBloc.add(GetDeviceMessagesEvent());
     });
@@ -100,12 +112,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   void initState() {
-    requestMultiplePermissions();
+    syncAll();
     firebase(context);
     phoneStateConfig();
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     handleAppLifeCycle();
-    syncAll();
+
     // getAndSyncContacts();
     // getAndSyncCallLogs();
     // getAndSyncMessages();
@@ -190,6 +202,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           //   // scale: 3.5,
                           // ),
                         ),
+                      15.width(),
                       // if (page == 2)
                       //   PopupMenuButton(
                       //     color: Color(0xffFFE8E3),

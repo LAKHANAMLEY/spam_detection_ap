@@ -12,6 +12,12 @@ class NewSmsReceived extends SmsState {
   NewSmsReceived(this.message);
 }
 
+class NewSmsSent extends SmsState {
+  final SmsMessage message;
+
+  NewSmsSent(this.message);
+}
+
 class SmsError extends SmsState {
   final String error;
 

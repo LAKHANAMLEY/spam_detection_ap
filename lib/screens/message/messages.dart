@@ -1,12 +1,8 @@
 import 'dart:developer';
 
-import 'package:spam_delection_app/bloc/message_db_bloc/message_db_bloc.dart';
-import 'package:spam_delection_app/bloc/message_db_bloc/message_db_event.dart';
-import 'package:spam_delection_app/bloc/message_db_bloc/message_db_state.dart';
-import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc.dart';
-import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_event.dart';
-import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc_state.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/widgets/permission_widget.dart';
 
 class MessagesScreen extends StatefulWidget {
   const MessagesScreen({super.key});
@@ -16,7 +12,8 @@ class MessagesScreen extends StatefulWidget {
 }
 
 class _MessagesScreenState extends State<MessagesScreen> {
-  // List<SmsMessage> messages = [];
+  List<SmsLog> messages = [];
+  List<SmsLog> filteredMessages = [];
   final searchController = TextEditingController();
   final searchBloc = SelectionBloc(SelectStringState(""));
   // final messagesBloc = ApiBloc(ApiBlocInitialState());
@@ -43,14 +40,27 @@ class _MessagesScreenState extends State<MessagesScreen> {
           if (state is NewSmsReceived) {
             log("SMS received");
             // messagesBloc.add(GetDeviceMessagesEvent());
-            context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+            context
+                .read<MessageDBBloc>()
+                .add(SyncChangedMessageWithServer(smsMessage: state.message));
+          }
+          if (state is NewSmsSent) {
+            log("SMS delivered");
+            // messagesBloc.add(GetDeviceMessagesEvent());
+            context
+                .read<MessageDBBloc>()
+                .add(SyncChangedMessageWithServer(smsMessage: state.message));
           }
         },
         child: Column(
           children: [
+            PermissionWidget(
+              permission: Permission.sms,
+            ),
             CustomTextField(
               onChanged: (value) {
-                searchBloc.add(SelectStringEvent(value));
+                // searchBloc.add(SelectStringEvent(value));
+                filterSearchResults();
               },
               prefix: const Icon(
                 Icons.search,
@@ -95,7 +105,13 @@ class _MessagesScreenState extends State<MessagesScreen> {
               fillColor: Colors.white,
             ),
             Expanded(
-              child: BlocBuilder<MessageDBBloc, MessageDBState>(
+              child: BlocConsumer<MessageDBBloc, MessageDBState>(
+                listener: (context, state) {
+                  if (state is MessageDBLoaded) {
+                    messages = state.smsLogs;
+                    filterSearchResults();
+                  }
+                },
                 // bloc: messagesBloc,
                 // listener: (context, state) {
                 //   if (state is ApiBlocInitialState) {
@@ -129,6 +145,11 @@ class _MessagesScreenState extends State<MessagesScreen> {
                 // },
                 builder: (context, state) {
                   if (state is MessageDBError) {
+                    // if (state.exception is PermissionException) {
+                    //   return Center(
+                    //       child: Text(
+                    //           appLocalization(context).permissionNotAllowed));
+                    // }
                     return Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -139,12 +160,20 @@ class _MessagesScreenState extends State<MessagesScreen> {
                             textAlign: TextAlign.center,
                           ),
                           ElevatedButton(
-                              onPressed: () {
-                                context
-                                    .read<MessageDBBloc>()
-                                    .add(DeleteMessageDB());
-                              },
-                              child: Text("Delete DB"))
+                            onPressed: () {
+                              context
+                                  .read<MessageDBBloc>()
+                                  .add(SyncMessagesWithServer());
+                            },
+                            child: Text(appLocalization(context).sync),
+                          ),
+                          // ElevatedButton(
+                          //     onPressed: () {
+                          //       context
+                          //           .read<MessageDBBloc>()
+                          //           .add(DeleteMessageDB());
+                          //     },
+                          //     child: Text("Delete DB"))
                         ],
                       ),
                     );
@@ -161,31 +190,28 @@ class _MessagesScreenState extends State<MessagesScreen> {
                       ),
                     );
                   }
-                  if (state is MessageDBLoaded) {
-                    // var messages = state.value.smsLog ?? [];
-                    var messages = state.smsLogs;
-                    return BlocBuilder(
-                      bloc: searchBloc,
-                      builder: (context, state) {
-                        if (state is SelectStringState) {
-                          var filteredMessages =
-                              filterSearchResults(state.value ?? "", messages);
-                          if (filteredMessages.isEmpty) {
-                            return Center(
-                              child: Text(appLocalization(context).noMessages),
-                            );
-                          }
-                          return ListView.builder(
-                            itemCount: filteredMessages.length,
-                            itemBuilder: (context, index) =>
-                                MessageListItem(sms: filteredMessages[index]),
+                  // if (state is MessageDBLoaded) {
+                  //   var messages = state.smsLogs;
+                  return BlocBuilder(
+                    bloc: searchBloc,
+                    builder: (context, state) {
+                      if (state is SelectStringState) {
+                        if (filteredMessages.isEmpty) {
+                          return Center(
+                            child: Text(appLocalization(context).noMessages),
                           );
                         }
-                        return const Loader();
-                      },
-                    );
-                  }
-                  return const Loader();
+                        return ListView.builder(
+                          itemCount: filteredMessages.length,
+                          itemBuilder: (context, index) =>
+                              MessageListItem(sms: filteredMessages[index]),
+                        );
+                      }
+                      return const Loader();
+                    },
+                  );
+                  // }
+                  // return const Loader();
                 },
               ),
             ),
@@ -195,19 +221,23 @@ class _MessagesScreenState extends State<MessagesScreen> {
     );
   }
 
-  List<SmsLog> filterSearchResults(String searchString, List<SmsLog> messages) {
-    return messages
+  List<SmsLog> filterSearchResults() {
+    filteredMessages = messages
         .where((e) =>
                 (e.address
                         ?.toLowerCase()
-                        .contains(searchString.toLowerCase()) ??
+                        .contains(searchController.text.toLowerCase()) ??
                     false) ||
-                (e.name?.toLowerCase().contains(searchString.toLowerCase()) ??
+                (e.name
+                        ?.toLowerCase()
+                        .contains(searchController.text.toLowerCase()) ??
                     false)
             //&&
             // (e.?.toLowerCase().contains(searchString.toLowerCase()) ??
             //     false)
             )
         .toList();
+    searchBloc.add(SelectStringEvent(searchController.text));
+    return filteredMessages;
   }
 }

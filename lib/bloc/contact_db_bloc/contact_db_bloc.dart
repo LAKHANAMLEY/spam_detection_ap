@@ -1,6 +1,3 @@
-import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_event.dart';
-import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_state.dart';
-import 'package:spam_delection_app/data/sqflite/contact_db_helper.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
@@ -23,7 +20,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       final contacts = await _databaseHelper.getAllContacts();
       emit(ContactDBLoaded(contacts));
     } catch (e) {
-      emit(ContactDBError('Failed to add contact: $e'));
+      emit(ContactDBError('Failed to add contact: $e', e));
     }
   }
 
@@ -35,7 +32,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       final contacts = await _databaseHelper.getAllContacts();
       emit(ContactDBLoaded(contacts));
     } catch (e) {
-      emit(ContactDBError('Failed to update contact: $e'));
+      emit(ContactDBError('Failed to update contact: $e', e));
     }
   }
 
@@ -48,7 +45,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       final contacts = await _databaseHelper.getAllContacts();
       emit(ContactDBLoaded(contacts));
     } catch (e) {
-      emit(ContactDBError('Failed to delete contact: $e'));
+      emit(ContactDBError('Failed to delete contact: $e', e));
     }
   }
 
@@ -59,7 +56,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       final contacts = await _databaseHelper.getAllContacts();
       emit(ContactDBLoaded(contacts));
     } catch (e) {
-      emit(ContactDBError('Failed to load contacts: $e'));
+      emit(ContactDBError('Failed to load contacts: $e', e));
     }
   }
 
@@ -100,7 +97,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       final updatedContacts = await _databaseHelper.getAllContacts();
       emit(ContactDBLoaded(updatedContacts));
     } catch (e) {
-      emit(ContactDBError('Failed to sync and store contacts: $e'));
+      emit(ContactDBError('Failed to sync and store contacts: $e', e));
     }
   }
 

@@ -11,19 +11,23 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 firebase(context) async {
-  LocalNotificationService.init(context);
-  NotificationSettings settings = await _firebaseMessaging.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
-  await permissionRequest(Permission.notification);
-  debugPrint(
-      'User granted permission to receive push notification: ${settings.authorizationStatus}');
+  var status = await permissionRequest(Permission.notification);
+  if (status == PermissionStatus.granted) {
+    LocalNotificationService.init(context);
+
+    NotificationSettings settings = await _firebaseMessaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    debugPrint(
+        'User granted permission to receive push notification: ${settings.authorizationStatus}');
+  }
 
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     debugPrint(

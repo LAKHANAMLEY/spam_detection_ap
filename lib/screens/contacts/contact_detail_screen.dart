@@ -1,6 +1,4 @@
 import 'package:direct_call_plus/direct_call_plus.dart';
-import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_bloc.dart';
-import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ContactDetail extends StatefulWidget {
@@ -157,7 +155,10 @@ class _ContactDetailState extends State<ContactDetail> {
                                       appLocalization(context).editContact),
                                   onTap: () {
                                     Navigator.pushNamed(
-                                        context, AppRoutes.editContact);
+                                        context, AppRoutes.editContact,
+                                        arguments: EditContact(
+                                          contactData: contact,
+                                        ));
                                   },
                                 ),
                               ],

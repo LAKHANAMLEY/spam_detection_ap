@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/api_body_model/purchase_plan_model.dart';
 
 class PlanDetail extends StatefulWidget {
   final Planslist? plan;

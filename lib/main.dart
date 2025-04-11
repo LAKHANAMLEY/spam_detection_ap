@@ -5,11 +5,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_state_background/phone_state_background.dart';
-import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_bloc.dart';
-import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_bloc.dart';
-import 'package:spam_delection_app/bloc/message_db_bloc/message_db_bloc.dart';
-import 'package:spam_delection_app/bloc/sms_bloc/sms_bloc.dart';
-import 'package:spam_delection_app/l10n/generated/app_localizations.dart';
 import 'package:spam_delection_app/lib.dart';
 
 void main() async {

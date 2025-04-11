@@ -1,7 +1,5 @@
 import 'package:phone_state/phone_state.dart';
 import 'package:phone_state_background/phone_state_background.dart';
-import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_bloc.dart';
-import 'package:spam_delection_app/bloc/call_log_db_bloc/call_log_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class CallLogListItem extends StatelessWidget {

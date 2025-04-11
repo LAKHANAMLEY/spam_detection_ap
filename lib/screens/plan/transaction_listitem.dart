@@ -337,7 +337,6 @@
 
 import 'package:spam_delection_app/lib.dart';
 
-import '../../models/api_body_model/transaction_history_details_model.dart';
 
 class TransactionListItem extends StatelessWidget {
   final TransactionData transactionData;

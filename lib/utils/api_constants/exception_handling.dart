@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-void handleException(dynamic jsonData) {
-  if (jsonData != null && jsonData is Map<String, dynamic>) {
+Map<String, dynamic> handleException(Map<String, dynamic>? jsonData) {
+  if (jsonData != null) {
     if (jsonData.containsKey('status_code')) {
       final statusCode = jsonData['status_code'];
       final message = jsonData['message']?.toString() ?? 'An error occurred';
@@ -38,6 +38,8 @@ void handleException(dynamic jsonData) {
           final errorMessage = jsonData['error'].toString();
           log('API Success with Error: $errorMessage');
           throw ApiException('API Success with Error: $errorMessage');
+        } else {
+          return jsonData;
         }
         // You can add checks for other error indicators in your success response if needed
       }
@@ -52,6 +54,7 @@ void handleException(dynamic jsonData) {
     log('API Response format is unexpected: $jsonData');
     throw ApiException('Unexpected API response format');
   }
+  return jsonData;
 }
 
 class ApiException implements Exception {
@@ -78,4 +81,8 @@ class NotFoundException extends ApiException {
 
 class ServerErrorException extends ApiException {
   ServerErrorException(super.message);
+}
+
+class PermissionException extends ApiException {
+  PermissionException(super.message);
 }

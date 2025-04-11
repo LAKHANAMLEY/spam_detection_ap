@@ -1,5 +1,3 @@
-import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_bloc.dart';
-import 'package:spam_delection_app/bloc/contact_db_bloc/contact_db_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class EditContact extends StatefulWidget {
@@ -19,7 +17,6 @@ class _EditContactState extends State<EditContact> {
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController _numberController = TextEditingController();
   var selectPhoneCodeBloc =
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
   CountryData? selectedPhoneCodeCountry;
@@ -33,22 +30,25 @@ class _EditContactState extends State<EditContact> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((s) {
       var arg = args(context) as EditContact;
-      editContactBloc.add(GetContactDetailEvent(arg.contactData?.id ?? ""));
+      contactData = arg.contactData;
+      updateData(contactData!);
+      // editContactBloc.add(GetContactDetailEvent(arg.contactData?.id ?? ""));
     });
     super.initState();
   }
 
+  final List<String> options = [
+    "Mobile",
+    "Home",
+    "Work",
+    "Home fax",
+    "Work fax",
+    "Other",
+  ];
+  String selectedType = "Mobile";
+
   @override
   Widget build(BuildContext context) {
-    final List<String> options = [
-      appLocalization(context).mobile,
-      appLocalization(context).home,
-      appLocalization(context).work,
-      appLocalization(context).homeFax,
-      appLocalization(context).workFax,
-      appLocalization(context).other,
-    ];
-    String selectedType = appLocalization(context).mobile;
     return Scaffold(
         backgroundColor: AppColor.whiteColor,
         appBar: CustomAppBar(title: appLocalization(context).editContact),
@@ -233,7 +233,7 @@ class _EditContactState extends State<EditContact> {
                                           user: ContactData(
                                         name: fullNameController.text,
                                         email: emailController.text,
-                                        numberType: _numberController.text,
+                                        numberType: selectedType,
                                         id: contactData?.id ?? "",
                                         // supportPin:
                                         //  supportPinController.text,
@@ -262,7 +262,9 @@ class _EditContactState extends State<EditContact> {
     fullNameController.text = user.name ?? "";
     emailController.text = user.email ?? "";
     phoneController.text = user.mobileNo ?? "";
-    _numberController.text = user.numberType ?? "";
+    selectedType = user.numberType ?? "";
+    selectedPhoneCodeCountry =
+        getCountryByNameOrDialCode(dialCode: user.countryCode);
   }
 }
 

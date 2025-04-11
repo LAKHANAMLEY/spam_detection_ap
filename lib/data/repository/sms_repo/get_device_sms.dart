@@ -5,8 +5,10 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../../lib.dart';
 
 Future<List<SmsMessage>> getDeviceSms() async {
-  var smsPermission = await permissionRequest(Permission.sms);
-  if (smsPermission?.isGranted ?? false) {
+  var status = await Permission.sms.status;
+
+  // var smsPermission = await permissionRequest(Permission.sms);
+  if (status.isGranted ?? false) {
     SmsQuery query = SmsQuery();
     var sms = await query.querySms(
       kinds: [SmsQueryKind.Inbox, SmsQueryKind.Sent],
@@ -14,7 +16,8 @@ Future<List<SmsMessage>> getDeviceSms() async {
     // print(sms.first.toMap.toString());
     return sms;
   } else {
-    log("Permission status: ${smsPermission?.name}");
-    return [];
+    log("Permission status: ${status?.name}");
+    throw PermissionException("SMS permission status : ${status.name}");
+    // return [];
   }
 }

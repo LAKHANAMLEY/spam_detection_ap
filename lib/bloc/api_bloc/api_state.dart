@@ -1,6 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/api_body_model/transaction_history_details_model.dart';
-import 'package:spam_delection_app/models/forgot_password_otp_model.dart';
 
 abstract class ApiState extends Equatable {
   @override

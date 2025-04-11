@@ -25,9 +25,10 @@ class CallLogDBLoaded extends CallLogDBState {
 class CallLogDBError extends CallLogDBState {
   // States remain the same
   final String message;
+  final Object exception;
 
-  const CallLogDBError(this.message);
+  const CallLogDBError(this.message, this.exception);
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [message, exception];
 }

@@ -36,6 +36,15 @@ class DeleteMessageDB extends MessageDBEvent {}
 
 class SyncMessagesWithServer extends MessageDBEvent {}
 
+class SyncChangedMessageWithServer extends MessageDBEvent {
+  final SmsMessage smsMessage;
+
+  const SyncChangedMessageWithServer({required this.smsMessage});
+
+  @override
+  List<Object> get props => [smsMessage];
+}
+
 class AddSmsLogsToDB extends MessageDBEvent {
   final List<SmsLog> smsLogs;
 

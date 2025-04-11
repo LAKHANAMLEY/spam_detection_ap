@@ -330,6 +330,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get congratulationsYourAccountHasBeenSuccessfullyUpdated => 'Félicitations, votre compte a été mis à jour avec succès.';
 
   @override
+  String get contact => 'Contactos';
+
+  @override
   String get contactList => 'Lista de contactos';
 
   @override
@@ -337,6 +340,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get contactText => 'Contacto';
+
+  @override
+  String get contactUS => 'Contacta con nosotros';
 
   @override
   String get contactUs => 'Contactez-nous';
@@ -1108,6 +1114,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get notFound => 'Not found';
 
   @override
+  String get notSpam => 'No spam';
+
+  @override
   String get notVerified => 'Non vérifié';
 
   @override
@@ -1240,6 +1249,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get paymentSuccess => 'Succès de paiement!';
 
   @override
+  String get permissionNotAllowed => 'Permiso no permitido';
+
+  @override
   String get personal => 'Personal';
 
   @override
@@ -1259,6 +1271,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get pinCode => 'Code PIN';
+
+  @override
+  String get pinNumberMustContainOnlDigits => 'El número PIN debe contener solo dígitos';
+
+  @override
+  String get pinNumberMustDigits => 'El número PIN debe tener 6 dígitos';
 
   @override
   String get pleasNewPasswordSecure => 'Ingrese una nueva contraseña para proteger su cuenta.';
@@ -1486,6 +1504,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get privacyPolicy => 'Politique de confidentialité';
 
   @override
+  String get privacyPolicyTxt => 'política de privacidad';
+
+  @override
   String get proceedToPay => 'Procéder au paiement';
 
   @override
@@ -1609,7 +1630,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get renterPassword => 'Escriba la contraseña otra vez';
 
   @override
+  String get reportMessageExperience => 'Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú';
+
+  @override
   String get reportNumberSpam => 'Reportar número como spam';
+
+  @override
+  String get reportSpam => 'Reportar spam';
+
+  @override
+  String get reportSpamLabel => 'Este remitente será marcado y etiquetado como spam en la conversación.';
 
   @override
   String get reportText => 'Informe';
@@ -1873,6 +1903,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get submitText => 'Entregar';
 
   @override
+  String get subscription => 'Suscripción';
+
+  @override
   String get success => 'Succès!';
 
   @override
@@ -1898,6 +1931,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tax => 'IMPÔT';
+
+  @override
+  String get tellUsMore => 'Tell us more...';
+
+  @override
+  String get termsAndConditions => 'Términos y condiciones';
 
   @override
   String get theme => 'Thème';
@@ -1948,6 +1987,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get transactionId => 'Identifiant de transaction';
 
   @override
+  String get transactionList => 'Lista de transacciones';
+
+  @override
   String get transactionStatus => 'Statut de la transaction';
 
   @override
@@ -1976,6 +2018,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tryAgain => 'Essayer à nouveau..';
+
+  @override
+  String get unMarkSMs => 'Desmarcar';
 
   @override
   String get unblock => 'Desatascar';
@@ -2119,6 +2164,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get whatSpamIt => '¿Qué tipo de spam era?';
 
   @override
+  String get whatTypeOfMessage => 'What type of message was this?';
+
+  @override
   String get whoViewedMyProfile => '¿Quién vio mi perfil?';
 
   @override
@@ -2186,49 +2234,4 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get zip => 'Código postal';
-
-  @override
-  String get subscription => 'Suscripción';
-
-  @override
-  String get termsAndConditions => 'Términos y condiciones';
-
-  @override
-  String get contactUS => 'Contacta con nosotros';
-
-  @override
-  String get privacyPolicyTxt => 'política de privacidad';
-
-  @override
-  String get pinNumberMustDigits => 'El número PIN debe tener 6 dígitos';
-
-  @override
-  String get pinNumberMustContainOnlDigits => 'El número PIN debe contener solo dígitos';
-
-  @override
-  String get contact => 'Contactos';
-
-  @override
-  String get reportSpam => 'Reportar spam';
-
-  @override
-  String get reportSpamLabel => 'Este remitente será marcado y etiquetado como spam en la conversación.';
-
-  @override
-  String get tellUsMore => 'Tell us more...';
-
-  @override
-  String get whatTypeOfMessage => 'What type of message was this?';
-
-  @override
-  String get unMarkSMs => 'Desmarcar';
-
-  @override
-  String get notSpam => 'No spam';
-
-  @override
-  String get transactionList => 'Lista de transacciones';
-
-  @override
-  String get reportMessageExperience => 'Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú';
 }

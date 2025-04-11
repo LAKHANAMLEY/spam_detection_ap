@@ -1,5 +1,4 @@
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/utils/functions/get_and_set_default_country.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

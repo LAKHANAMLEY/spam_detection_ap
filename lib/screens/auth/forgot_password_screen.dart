@@ -386,11 +386,3 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 })));
   }
 }
-
-class Constants {
-  static var emailValidatorRegExp;
-}
-
-class SnackBarToastMessage {
-  static void showSnackBar(BuildContext context, emailMessage) {}
-}

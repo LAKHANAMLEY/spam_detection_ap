@@ -1,7 +1,3 @@
-import 'package:spam_delection_app/data/repository/notification_repo/clear_all_notification_api.dart';
-import 'package:spam_delection_app/data/repository/notification_repo/read_notification_api.dart';
-import 'package:spam_delection_app/data/repository/plans_repo/cancel_plan_api.dart';
-import 'package:spam_delection_app/data/repository/plans_repo/purchase_plan_api.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {

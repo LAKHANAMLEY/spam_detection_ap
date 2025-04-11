@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:spam_delection_app/l10n/generated/app_localizations.dart';
 import 'package:spam_delection_app/lib.dart';
 
 int language = 0;
@@ -56,6 +55,9 @@ class AppConstants {
   static const int fullNameText = 50;
   static const int mobileMaxLength = 15;
   static const int messageMaxLength = 250;
+
+  static const double suffixIconHeight = 25;
+  static const double suffixIconWidth = 25;
 
   static const TextStyle textFilledHeading =
       TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500);
