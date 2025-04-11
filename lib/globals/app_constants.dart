@@ -58,9 +58,6 @@ class AppConstants {
   static const double suffixIconHeight = 25;
   static const double suffixIconWidth = 25;
 
-  static const double suffixIconHeight = 25;
-  static const double suffixIconWidth = 25;
-
   static const TextStyle textFilledHeading =
       TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500);
   static const SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
