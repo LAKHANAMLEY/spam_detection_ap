@@ -98,7 +98,7 @@ class _CorporateProfileState extends State<CorporateProfile> {
                                                 .withOpacity(0.2),
                                             radius: 43.0,
                                             backgroundImage: const AssetImage(
-                                                IconConstants.icCircleAvatar),
+                                                IconConstants.icUsername),
                                             child: Align(
                                               alignment: Alignment.bottomRight,
                                               child: CircleAvatar(
@@ -197,7 +197,15 @@ class _CorporateProfileState extends State<CorporateProfile> {
                               labelText: appLocalization(context).corporateName,
                               suffix: Image.asset(
                                 IconConstants.icUsername,
-                                scale: 1.5,
+                                height: AppConstants.suffixIconHeight,
+                                width: AppConstants.suffixIconWidth,
+                                // height: MediaQuery.of(context).size.height *
+                                //     5 /
+                                //     100,
+                                // width: MediaQuery.of(context).size.width *
+                                //     5 /
+                                //     100
+                                //scale: 1.5,
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {

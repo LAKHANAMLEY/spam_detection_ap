@@ -2231,4 +2231,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get reportMessageExperience => 'Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú';
+
+  @override
+  String get areYouWantDelete => '¿Estás seguro de que quieres eliminar?';
+
+  @override
+  String get deleteTxt => 'Delete';
 }

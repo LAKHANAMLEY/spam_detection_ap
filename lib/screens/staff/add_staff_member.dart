@@ -190,7 +190,9 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               hintText: appLocalization(context).firstName,
                               suffix: Image.asset(
                                 IconConstants.icUsername,
-                                scale: 1.5,
+                                height: AppConstants.suffixIconHeight,
+                                width: AppConstants.suffixIconWidth,
+                                //scale: 1.5,
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {
@@ -207,7 +209,9 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               hintText: appLocalization(context).lastName,
                               suffix: Image.asset(
                                 IconConstants.icUsername,
-                                scale: 1.5,
+                                // scale: 1.5,
+                                height: AppConstants.suffixIconHeight,
+                                width: AppConstants.suffixIconWidth,
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {
@@ -278,7 +282,9 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               labelText: appLocalization(context).relation,
                               suffix: Image.asset(
                                 IconConstants.icUsername,
-                                scale: 1.5,
+                                height: AppConstants.suffixIconHeight,
+                                width: AppConstants.suffixIconWidth,
+                                //scale: 1.5,
                               ),
                               validator: (p0) {
                                 if (p0?.isEmpty ?? true) {

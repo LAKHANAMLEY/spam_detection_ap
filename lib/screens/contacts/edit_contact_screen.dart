@@ -21,7 +21,7 @@ class _EditContactState extends State<EditContact> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController _numberController = TextEditingController();
   var selectPhoneCodeBloc =
-      SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
+  SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
   CountryData? selectedPhoneCodeCountry;
 
   var editContactBloc = ApiBloc(ApiBlocInitialState());
@@ -109,9 +109,16 @@ class _EditContactState extends State<EditContact> {
                                 controller: fullNameController,
                                 labelText: appLocalization(context).userName,
                                 hintText: appLocalization(context).userName,
-                                suffix: Image.asset(
-                                  IconConstants.icUsername,
-                                  scale: 1.5,
+                                suffix: Image.asset(IconConstants.icUsername,
+                                  height: AppConstants.suffixIconHeight,
+                                  width: AppConstants.suffixIconWidth,
+                                  // height: MediaQuery.of(context).size.height *
+                                  //     5 /
+                                  //     100,
+                                  // width: MediaQuery.of(context).size.width *
+                                  //     5 /
+                                  //     100
+                                  // scale: 1.5,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
@@ -125,7 +132,7 @@ class _EditContactState extends State<EditContact> {
                               CustomTextField(
                                 keyboardType: TextInputType.emailAddress,
                                 labelText:
-                                    appLocalization(context).emailAddress,
+                                appLocalization(context).emailAddress,
                                 hintText: appLocalization(context).emailAddress,
                                 controller: emailController,
                                 suffix: Image.asset(
@@ -142,13 +149,16 @@ class _EditContactState extends State<EditContact> {
                               ),
                               10.height(),
                               SizedBox(
-                                height: MediaQuery.of(context).size.height *
+                                height: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height *
                                     1 /
                                     100,
                               ),
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 6, right: 6),
+                                const EdgeInsets.only(left: 6, right: 6),
                                 child: DropdownButtonFormField<String>(
                                   value: selectedType,
                                   items: options.map((String option) {
@@ -164,7 +174,7 @@ class _EditContactState extends State<EditContact> {
                                   },
                                   decoration: InputDecoration(
                                     hintText:
-                                        appLocalization(context).numberType,
+                                    appLocalization(context).numberType,
                                     hintStyle: const TextStyle(
                                         color: AppColor.decentBrownColor),
                                     enabledBorder: OutlineInputBorder(
@@ -178,7 +188,7 @@ class _EditContactState extends State<EditContact> {
                                           color: AppColor.lightBrownColor,
                                           width: 1.5),
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
+                                      BorderRadius.all(Radius.circular(5)),
                                     ),
                                     filled: true,
                                     fillColor: AppColor.lightBrownColor
@@ -200,9 +210,9 @@ class _EditContactState extends State<EditContact> {
                                       readOnly: true,
                                       controller: phoneController,
                                       hintText:
-                                          appLocalization(context).phoneNumber,
+                                      appLocalization(context).phoneNumber,
                                       labelText:
-                                          appLocalization(context).phoneNumber,
+                                      appLocalization(context).phoneNumber,
                                       suffix: Image.asset(
                                         IconConstants.icCallAdd,
                                         scale: 1.5,
@@ -220,7 +230,10 @@ class _EditContactState extends State<EditContact> {
                                     );
                                   }),
                               SizedBox(
-                                height: MediaQuery.of(context).size.height *
+                                height: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height *
                                     3 /
                                     100,
                               ),
@@ -231,19 +244,22 @@ class _EditContactState extends State<EditContact> {
                                         false) {
                                       editContactBloc.add(EditContactEvent(
                                           user: ContactData(
-                                        name: fullNameController.text,
-                                        email: emailController.text,
-                                        numberType: _numberController.text,
-                                        id: contactData?.id ?? "",
-                                        // supportPin:
-                                        //  supportPinController.text,
-                                        //photo: _selectedImage?.path,
-                                        //photoFile: _selectedImage
-                                      )));
+                                            name: fullNameController.text,
+                                            email: emailController.text,
+                                            numberType: _numberController.text,
+                                            id: contactData?.id ?? "",
+                                            // supportPin:
+                                            //  supportPinController.text,
+                                            //photo: _selectedImage?.path,
+                                            //photoFile: _selectedImage
+                                          )));
                                     }
                                   }),
                               SizedBox(
-                                height: MediaQuery.of(context).size.height *
+                                height: MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height *
                                     2 /
                                     100,
                               ),

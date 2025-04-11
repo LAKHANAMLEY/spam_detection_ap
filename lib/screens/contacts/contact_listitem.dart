@@ -54,12 +54,36 @@ class ContactListItem extends StatelessWidget {
                   PopupMenuItem(
                       child: Text(appLocalization(context).delete),
                       onTap: () {
-                        deleteDeviceContact(
-                            id: contact.id ?? "",
-                            number: contact.mobileNo ?? "");
-                        context
-                            .read<ContactDBBloc>()
-                            .add(DeleteDBContact(contact.id ?? ""));
+                        Future.delayed(Duration.zero, () {
+                          showCustomDialog(context,
+                              dialogType: DialogType.delete,
+                              title: appLocalization(context).deleteMember,
+                              subTitle:
+                                  appLocalization(context).areYouWantDelete,
+                              showCancelBtn: true,
+                              okBtnTxt: appLocalization(context).delete,
+                              cancelBtnTxt: appLocalization(context).cancel,
+                              okBtnColor: Colors.red, onOkPressed: () {
+                            deleteDeviceContact(
+                                id: contact.id ?? "",
+                                number: contact.mobileNo ?? "");
+                            context
+                                .read<ContactDBBloc>()
+                                .add(DeleteDBContact(contact.id ?? ""));
+                            Navigator.pop(context);
+                            // familyBloc.add(
+                            //     FamilyDeleteMemberEvent(
+                            //         id: filteredContacts[index]
+                            //                 .userId ??
+                            //             ""));
+                          });
+                        });
+                        // deleteDeviceContact(
+                        //     id: contact.id ?? "",
+                        //     number: contact.mobileNo ?? "");
+                        // context
+                        //     .read<ContactDBBloc>()
+                        //     .add(DeleteDBContact(contact.id ?? ""));
 
                         // contactListBloc.add(DeleteContactEvent(
                         //     contact: ContactData(id: contact?.id)));

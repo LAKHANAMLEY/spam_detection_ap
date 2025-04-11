@@ -739,5 +739,7 @@
   "unMarkSMs": "UnMark",
   "notSpam": "Not spam",
   "transactionList": "Transaction List",
-  "reportMessageExperience": "Report the message to improve the experience for millions users like you"
+  "reportMessageExperience": "Report the message to improve the experience for millions users like you",
+  "areYouWantDelete": "Are you sure you want to delete",
+  "deleteTxt": "Delete"
 }

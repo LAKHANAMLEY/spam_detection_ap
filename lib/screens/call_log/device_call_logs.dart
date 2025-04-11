@@ -175,7 +175,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                       ),
                     ),
                     SizedBox(
-                      height: 35,
+                      height: 30,
                       child: ListView(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -184,23 +184,29 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                           10.width(),
                           ElevatedButton.icon(
                             onPressed: () {
-                              Navigator.pushNamed(context, AppRoutes.callLogs,
-                                  arguments: DeviceCallLogs(
-                                      filterBy: CallType.outgoing.name));
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.callLogs,
+                                arguments: DeviceCallLogs(
+                                  filterBy: CallType.outgoing.name,
+                                ),
+                              );
                             },
-                            label: Text(appLocalization(context).outgoingCalls,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600)),
                             icon: Image.asset(
                               IconConstants.icOutgoingCall,
-                              scale: 2.5,
+                              scale: 4,
                             ),
-                            // icon: const Icon(Icons.contacts_outlined),
-                            // style: ElevatedButton.styleFrom(
-                            //   minimumSize: const Size(20, 40),
-                            // ),
+                            label: Text(
+                              appLocalization(context).outgoingCalls,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: Size(20, 20),
+                            ),
                           ),
                           10.width(),
                           ElevatedButton.icon(
@@ -212,11 +218,14 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                             label: Text(appLocalization(context).incomingCalls,
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 16,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w600)),
                             icon: Image.asset(
                               IconConstants.icIncomingCall,
-                              scale: 2.5,
+                              scale: 4,
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: Size(20, 20),
                             ),
                           ),
                           10.width(),
@@ -229,11 +238,11 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                             label: Text(appLocalization(context).missedCalls,
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 16,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w600)),
                             icon: Image.asset(
                               IconConstants.icMissCall,
-                              scale: 2.5,
+                              scale: 4,
                             ),
                           ),
                           10.width(),
@@ -245,30 +254,51 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                             label: Text(appLocalization(context).blockedCalls,
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 16,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w600)),
                             icon: Image.asset(
                               IconConstants.icBlockedCall,
-                              scale: 2.5,
+                              scale: 4,
                             ),
                           ),
                           10.width(),
                           ElevatedButton.icon(
                             onPressed: () {
+                              Future.delayed(Duration.zero, () {
+                                showCustomDialog(context,
+                                    dialogType: DialogType.delete,
+                                    title:
+                                        appLocalization(context).deleteMember,
+                                    subTitle: appLocalization(context)
+                                        .areYouWantDelete,
+                                    showCancelBtn: true,
+                                    okBtnTxt: appLocalization(context).delete,
+                                    cancelBtnTxt:
+                                        appLocalization(context).cancel,
+                                    okBtnColor: Colors.red, onOkPressed: () {
+                                  context
+                                      .read<CallLogDBBloc>()
+                                      .add(DeleteAllDBCallLog());
+                                  Navigator.pop(context);
+                                });
+                              });
                               // callLogsListBloc.add(DeleteAllCallLogEvent());
-                              context
-                                  .read<CallLogDBBloc>()
-                                  .add(DeleteAllDBCallLog());
+                              // context
+                              //     .read<CallLogDBBloc>()
+                              //     .add(DeleteAllDBCallLog());
                             },
                             label: Text(appLocalization(context).deleteCalls,
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 16,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w600)),
                             icon: Image.asset(
                               IconConstants.icDeleteCall,
                               color: Colors.red,
-                              scale: 2.5,
+                              scale: 4,
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: Size(20, 20),
                             ),
                             // style: ElevatedButton.styleFrom(
                             //   // elevation: 3,

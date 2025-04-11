@@ -4534,6 +4534,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Report the message to improve the experience for millions users like you'**
   String get reportMessageExperience;
+
+  /// No description provided for @areYouWantDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete'**
+  String get areYouWantDelete;
+
+  /// No description provided for @deleteTxt.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteTxt;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

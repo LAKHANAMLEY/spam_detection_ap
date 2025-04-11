@@ -45,32 +45,6 @@ class MessagesDetail extends StatelessWidget {
                 return PopupMenuButton(
                   color: AppColor.lightOrange,
                   itemBuilder: (context) => [
-                    // PopupMenuItem(
-                    //   onTap: () {
-                    //     //Navigator.pushNamed(context, AppRoutes.callLogs,
-                    //     //    arguments:
-                    //     //     DeviceCallLogs(filterBy: CallType.outgoing.name));
-                    //   },
-                    //   child: Row(
-                    //     children: [
-                    //       Image.asset(
-                    //         IconConstants.icSearchCheck,
-                    //         color: AppColor.greyColor,
-                    //         scale: 2,
-                    //       ),
-                    //       SizedBox(
-                    //         width: MediaQuery.of(context).size.width * 5 / 100,
-                    //       ),
-                    //       Text(
-                    //         appLocalization(context).searchInConversation,
-                    //         style: const TextStyle(
-                    //             color: Colors.black,
-                    //             fontSize: 18,
-                    //             fontWeight: FontWeight.w600),
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
                     PopupMenuItem(
                       onTap: () {
                         showModalBottomSheet(

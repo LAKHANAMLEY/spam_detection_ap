@@ -109,7 +109,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                                   .withOpacity(0.2),
                                               radius: 43.0,
                                               backgroundImage: const AssetImage(
-                                                  IconConstants.icCircleAvatar),
+                                                  IconConstants.icUsername),
                                               child: Align(
                                                 alignment:
                                                     Alignment.bottomRight,
@@ -212,7 +212,21 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                 labelText: appLocalization(context).firstName,
                                 suffix: Image.asset(
                                   IconConstants.icUsername,
-                                  scale: 1.5,
+                                  height: AppConstants.suffixIconHeight,
+                                  width: AppConstants.suffixIconWidth,
+                                  // height: MediaQuery
+                                  //     .of(context)
+                                  //     .size
+                                  //     .height *
+                                  //     5 /
+                                  //     100,
+                                  // width: MediaQuery
+                                  //     .of(context)
+                                  //     .size
+                                  //     .width *
+                                  //     5 /
+                                  //     100
+                                  //scale: 1.5,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
@@ -229,7 +243,21 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                 labelText: appLocalization(context).lastName,
                                 suffix: Image.asset(
                                   IconConstants.icUsername,
-                                  scale: 1.5,
+                                  height: AppConstants.suffixIconHeight,
+                                  width: AppConstants.suffixIconWidth,
+                                  // height: MediaQuery
+                                  //     .of(context)
+                                  //     .size
+                                  //     .height *
+                                  //     5 /
+                                  //     100,
+                                  // width: MediaQuery
+                                  //     .of(context)
+                                  //     .size
+                                  //     .width *
+                                  //     5 /
+                                  //     100
+                                  //scale: 1.5,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {
@@ -247,7 +275,21 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                 keyboardType: TextInputType.text,
                                 suffix: Image.asset(
                                   IconConstants.icUsername,
-                                  scale: 1.5,
+                                  height: AppConstants.suffixIconHeight,
+                                  width: AppConstants.suffixIconWidth,
+                                  // height: MediaQuery
+                                  //     .of(context)
+                                  //     .size
+                                  //     .height *
+                                  //     5 /
+                                  //     100,
+                                  // width: MediaQuery
+                                  //     .of(context)
+                                  //     .size
+                                  //     .width *
+                                  //     5 /
+                                  //     100
+                                  // scale: 1.5,
                                 ),
                                 validator: (p0) {
                                   if (p0?.isEmpty ?? true) {

@@ -741,5 +741,6 @@
   "unMarkSMs": "Desmarcar",
   "notSpam": "No spam",
   "transactionList": "Lista de transacciones",
-  "reportMessageExperience": "Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú"
+  "reportMessageExperience": "Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú",
+  "areYouWantDelete": "¿Estás seguro de que quieres eliminar?"
 }
