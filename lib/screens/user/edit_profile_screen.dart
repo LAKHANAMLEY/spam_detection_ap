@@ -137,7 +137,7 @@ class _EditProfileState extends State<EditProfile> {
                                                   .withOpacity(0.2),
                                               radius: 43.0,
                                               backgroundImage: const AssetImage(
-                                                  IconConstants.icCircleAvatar),
+                                                  IconConstants.icUsername),
                                               child: Align(
                                                 alignment:
                                                     Alignment.bottomRight,

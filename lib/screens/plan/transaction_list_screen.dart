@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/plan/transaction_listitem.dart';
 
 class TransactionList extends StatefulWidget {
   final bool? showAppBar;
@@ -50,14 +51,13 @@ class _TransactionListState extends State<TransactionList> {
                         );
                       }
                       return ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: transactions.length,
-                          itemBuilder: (context, index) => Text('hello')
-                          // TransactionListItem(
-                          //   transactionData: transactions[index],
-                          // ),
-                          );
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: transactions.length,
+                        itemBuilder: (context, index) => TransactionListItem(
+                          transactionData: transactions[index],
+                        ),
+                      );
                     }
                     return const Loader();
                   }),

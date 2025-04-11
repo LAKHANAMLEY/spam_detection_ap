@@ -297,9 +297,26 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                 ElevatedButton.icon(
                                   onPressed: () {
                                     // callLogsListBloc.add(DeleteAllCallLogEvent());
-                                    context
-                                        .read<CallLogDBBloc>()
-                                        .add(DeleteAllDBCallLog());
+                                    Future.delayed(Duration.zero, () {
+                                      showCustomDialog(context,
+                                          dialogType: DialogType.delete,
+                                          title: appLocalization(context)
+                                              .deleteMember,
+                                          subTitle: appLocalization(context)
+                                              .areYouWantDelete,
+                                          showCancelBtn: true,
+                                          okBtnTxt:
+                                              appLocalization(context).delete,
+                                          cancelBtnTxt:
+                                              appLocalization(context).cancel,
+                                          okBtnColor: Colors.red,
+                                          onOkPressed: () {
+                                        context
+                                            .read<CallLogDBBloc>()
+                                            .add(DeleteAllDBCallLog());
+                                        Navigator.pop(context);
+                                      });
+                                    });
                                   },
                                   label: Text(
                                       appLocalization(context).deleteCalls,

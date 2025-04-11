@@ -172,11 +172,38 @@ class _StaffMemberListState extends State<StaffMemberList> {
                                           child: Text(appLocalization(context)
                                               .deleteMember),
                                           onTap: () {
-                                            staffBloc.add(
-                                                StaffDeleteMemberEvent(
-                                                    id: filteredContacts[index]
-                                                            .userId ??
-                                                        ""));
+                                            Future.delayed(Duration.zero, () {
+                                              showCustomDialog(context,
+                                                  dialogType: DialogType.delete,
+                                                  title:
+                                                      appLocalization(context)
+                                                          .deleteMember,
+                                                  subTitle:
+                                                      appLocalization(context)
+                                                          .areYouWantDelete,
+                                                  showCancelBtn: true,
+                                                  okBtnTxt:
+                                                      appLocalization(context)
+                                                          .delete,
+                                                  cancelBtnTxt:
+                                                      appLocalization(context)
+                                                          .cancel,
+                                                  okBtnColor: Colors.red,
+                                                  onOkPressed: () {
+                                                staffBloc.add(
+                                                    StaffDeleteMemberEvent(
+                                                        id: filteredContacts[
+                                                                    index]
+                                                                .userId ??
+                                                            ""));
+                                                Navigator.pop(context);
+                                              });
+                                            });
+                                            // staffBloc.add(
+                                            //     StaffDeleteMemberEvent(
+                                            //         id: filteredContacts[index]
+                                            //                 .userId ??
+                                            //             ""));
                                             // Navigator.pop(context);
                                           })
                                     ],

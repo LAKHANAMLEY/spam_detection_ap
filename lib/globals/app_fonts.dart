@@ -1,4 +1,3 @@
 class AppFont {
-  static const fontFamily ='Robooto';
-
+  static const fontFamily = 'Robooto';
 }

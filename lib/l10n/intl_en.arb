@@ -740,5 +740,22 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code"
+  "zip": "Zip Code",
+  "subscription": "Subscription",
+  "termsAndConditions": "Terms and Conditions",
+  "contactUS": "Contact us",
+  "privacyPolicyTxt": "Privacy Policy",
+  "pinNumberMustDigits": "Pin number must be 6 digits",
+  "pinNumberMustContainOnlDigits": "Pin number must contain only digits",
+  "contact": "Contacts",
+  "reportSpam": "Report spam",
+  "reportSpamLabel": "This sender will be marked and labeled as spam in the conversation.",
+  "tellUsMore": "Tell us more...",
+  "whatTypeOfMessage": "What type of message was this?",
+  "unMarkSMs": "UnMark",
+  "notSpam": "Not spam",
+  "transactionList": "Transaction List",
+  "reportMessageExperience": "Report the message to improve the experience for millions users like you",
+  "areYouWantDelete": "Are you sure you want to delete",
+  "deleteTxt": "Delete"
 }
