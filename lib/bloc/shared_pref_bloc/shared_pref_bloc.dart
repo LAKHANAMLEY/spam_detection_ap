@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_event.dart';
@@ -60,7 +61,7 @@ class SharedPrefBloc extends Bloc<SharedPrefEvent, SharedPrefState> {
         token: token,
         userRole: userRole,
       );
-
+      log("access token : $token");
       emit(GetUserDataFromLocalState(user));
     }
   }

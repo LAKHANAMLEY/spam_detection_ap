@@ -73,7 +73,7 @@ class CallLogListItem extends StatelessWidget {
         children: [
           if (callLog.markSpamByUser != null && callLog.markSpamByUser != 0)
             Text(
-              "${callLog.markSpamByUser ?? 0} Spam reports",
+              "${callLog.markSpamByUser ?? 0} ${appLocalization(context).spamReports}",
               style: textTheme(context).bodySmall?.copyWith(color: Colors.red),
             )
           else ...[
@@ -232,8 +232,6 @@ Color getCallTypeColor(String? callLogType) {
       return Colors.grey;
     case null:
       return Colors.grey;
-    default:
-      return Colors.grey;
   }
 }
 
@@ -261,8 +259,6 @@ IconData getCallTypeIcon(String? callLogType) {
     case CallType.wifiOutgoing:
       return Icons.wifi_calling_3;
     case null:
-      return Icons.call_received;
-    default:
       return Icons.call_received;
   }
 }
@@ -332,8 +328,6 @@ String getCallTypeStringFromBGPhoneState(PhoneStateBackgroundEvent phoneState) {
       return "Call end";
     case PhoneStateBackgroundEvent.outgoingstart:
       return "Ongoing call";
-    default:
-      return "Unknown";
   }
 }
 
@@ -347,7 +341,5 @@ String getCallTypeByPhoneState(PhoneState phoneState) {
       return "Ongoing call";
     case PhoneStateStatus.CALL_ENDED:
       return "Call end";
-    default:
-      return "Unknown";
   }
 }

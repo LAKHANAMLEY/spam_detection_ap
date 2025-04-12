@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:spam_delection_app/lib.dart';
 
 class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
@@ -11,7 +13,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     on<DeleteDBCallLog>(_onDeleteCallLogDB);
     on<DeleteAllDBCallLog>(_onDeleteAllCallLogDB);
     on<LoadDBCallLogs>(_onLoadCallLogDBs);
-    on<SyncDBCallLogs>(_onSyncCallLogDBs);
+    on<SyncDBCallLogs>(_onSyncCallLogsDB);
     on<SyncManuallyDBCallLog>(_onSyncManuallyDBCallLog);
     on<DeleteDBCallLogs>(_onDeleteCallLogsDB);
   }
@@ -87,16 +89,94 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     }
   }
 
-  Future<void> _onSyncCallLogDBs(
+  List<CallLogData> mouldCallLogEntryAsCallLogData(
+      List<CallLogEntry> localCallLogs, List<CallLogData> serverCallLogs) {
+    Map<String, List<CallLogEntry>> groupedLocalCallLogs = {};
+    for (var sms in localCallLogs) {
+      final address = sms.number;
+      if (address != null) {
+        groupedLocalCallLogs.putIfAbsent(address, () => []).add(sms);
+      }
+    }
+
+    Map<String, CallLogData> serverMessagesMap = {
+      for (var msg in serverCallLogs) msg.mobileNo!: msg
+    };
+
+    List<CallLogData> syncedSmsLogs = [];
+
+    for (final address in groupedLocalCallLogs.keys) {
+      final localSmsList = groupedLocalCallLogs[address]!;
+      final serverLog = serverMessagesMap[address];
+      List<CallLogData> smsDetails = [];
+
+      // Add local SMS details
+      smsDetails.addAll(localSmsList.map((sms) => CallLogData(
+            id: sms.number,
+            mobileNo: sms.number,
+            callDuration: sms.duration.toString(),
+            callDurations: sms.duration.toString(),
+            countryCode: sms.number?.separatePhoneAndPhoneCode().phoneCode,
+            callDurationUnit: "1",
+            callTime: sms.timestamp?.toDateTime(),
+            callType: sms.callType?.name,
+            simdisplayname: sms.simDisplayName,
+            phoneaccountid: sms.phoneAccountId,
+            name: sms.name,
+          )));
+
+      // Add server SMS details if available (and if a local message with this address exists)
+      // if (serverLog?.smsDetails != null) {
+      //   smsDetails.addAll(serverLog!.smsDetails!);
+      // }
+
+      syncedSmsLogs.add(
+        CallLogData(
+          id: serverLog?.id ?? address,
+          countryCode: serverLog?.countryCode,
+          name: serverLog?.name ?? localSmsList.firstOrNull?.name,
+          mobileNo: serverLog?.mobileNo,
+          callDuration: serverLog?.callDuration?.toString(),
+          callDurations: serverLog?.callDurations.toString(),
+          callDurationUnit: "1",
+          callTime: serverLog?.callTime,
+          callType: serverLog?.callType,
+          simdisplayname: serverLog?.simdisplayname,
+          phoneaccountid: serverLog?.phoneaccountid,
+          contactListId: serverLog?.contactListId,
+          isBlocked: serverLog?.isBlocked,
+          isManually: serverLog?.isManually ?? "",
+          isSpam: serverLog?.isSpam,
+          markSpamByUser: serverLog?.markSpamByUser,
+        ),
+      );
+
+      // Optionally remove from the server map to avoid processing later
+      serverMessagesMap.remove(address);
+    }
+
+    // We no longer add any remaining server messages here.
+
+    return syncedSmsLogs;
+  }
+
+  Future<void> _onSyncCallLogsDB(
       SyncDBCallLogs event, Emitter<CallLogDBState> emit) async {
     // Updated event and state types
     emit(CallLogDBLoading()); // Updated state name
     try {
       Iterable<CallLogEntry> deviceCallLogs = await getDeviceCallLogs();
+      log("Call logs (Device) : ${deviceCallLogs.map((e) => e).toList()}");
       await syncCallLog(callLogs: deviceCallLogs.toList());
       var res = await getCallLogs();
       var callLogsData = res.callloglist ?? [];
-      for (final callLog in callLogsData) {
+
+      var mouldedLogs =
+          mouldCallLogEntryAsCallLogData(deviceCallLogs.toList(), callLogsData);
+
+      log("Moulded call logs : ${mouldedLogs.map((e) => e.toJson()).toList()}");
+
+      for (final callLog in mouldedLogs) {
         final existingCallLog = await _databaseHelper.getCallLog(callLog.id!);
         if (existingCallLog == null) {
           await _databaseHelper.insertCallLog(callLog);
@@ -106,6 +186,9 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       }
 
       final storedCallLogs = await _databaseHelper.getAllCallLogs();
+
+      log("Call logs (stored in DB) : ${mouldedLogs.map((e) => e.toJson()).toList()}");
+
       emit(CallLogDBLoaded(storedCallLogs)); // Updated state name
     } catch (e) {
       emit(CallLogDBError(

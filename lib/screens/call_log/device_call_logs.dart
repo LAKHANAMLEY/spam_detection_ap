@@ -532,7 +532,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                     false)) &&
             (e.callType
                     ?.toLowerCase()
-                    .contains(widget.filterBy.toLowerCase() ?? "") ??
+                    .contains(widget.filterBy.toLowerCase()) ??
                 false))
         .toList();
     // setState(() {});

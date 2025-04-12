@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../lib.dart';
@@ -13,10 +11,10 @@ Future<List<SmsMessage>> getDeviceSms() async {
     var sms = await query.querySms(
       kinds: [SmsQueryKind.Inbox, SmsQueryKind.Sent],
     );
-    // print(sms.first.toMap.toString());
+    // log("Device sms : " + jsonEncode(sms.map((e) => e.toMap).toList()));
     return sms;
   } else {
-    log("Permission status: ${status.name}");
+    // log("Permission status: ${status.name}");
     throw PermissionException("SMS permission status : ${status.name}");
     // return [];
   }

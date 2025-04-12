@@ -32,8 +32,6 @@ class MessageDBLoaded extends MessageDBState {
 
 class MessageDBSyncing extends MessageDBState {}
 
-class DeletedDBSmsLog extends MessageDBState {}
-
 class MessageDBSynced extends MessageDBState {
   final List<SmsLog> syncedSmsLogs;
 

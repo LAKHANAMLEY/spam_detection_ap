@@ -58,6 +58,7 @@ Future<Response> syncSmsWithServer({required List<SmsMessage> smsLogs}) async {
   var response = await http.Response.fromStream(streamedResponse);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
+    log(jsonEncode(jsonData));
     return Response.fromJson(jsonData);
   } else {
     throw Exception(response.body);

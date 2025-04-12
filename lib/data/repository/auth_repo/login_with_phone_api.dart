@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
@@ -13,12 +15,15 @@ Future<LoginResponse> loginWithPhone(
     'device_type': deviceType,
   };
 
+  log("${ApiUrlConstants.loinWithMobile} ${jsonEncode(body)}");
+
   final response = await http.post(
-    Uri.parse(ApiUrlConstants.loginWithEmailPassword),
+    Uri.parse(ApiUrlConstants.loinWithMobile),
     headers: await ApiUrlConstants.headers(),
     body: body,
   );
   if (response.statusCode == 200) {
+    log(response.body);
     final data = json.decode(response.body);
     return LoginResponse.fromJson(data);
   } else {

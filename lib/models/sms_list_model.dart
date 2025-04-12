@@ -94,6 +94,7 @@ class SmsDetail {
   final DateTime? sendreceiveDatetime;
   final String? threadId;
   final String? id;
+  final String? deviceMessageId;
   final String? isSpam;
   final String? spamMessage;
   final String? score;
@@ -112,6 +113,7 @@ class SmsDetail {
     this.sendreceiveDatetime,
     this.threadId,
     this.id,
+    this.deviceMessageId,
     this.isSpam,
     this.spamMessage,
     this.score,
@@ -133,7 +135,8 @@ class SmsDetail {
                 ? null
                 : DateTime.tryParse(json["send_receiveDatetime"]),
         threadId: json["thread_id"],
-        id: json["_id"],
+        id: json["id"],
+        deviceMessageId: json["_id"],
         isSpam: json["is_spam"],
         spamMessage: json["spam_message"],
         score: json["score"],
@@ -154,7 +157,8 @@ class SmsDetail {
         "QueryKind": queryKind,
         "sendreceive_datetime": sendreceiveDatetime?.toIso8601String(),
         "thread_id": threadId,
-        "_id": id,
+        "id": id,
+        "_id": deviceMessageId,
         "is_spam": isSpam,
         "spam_message": spamMessage,
         "score": score,

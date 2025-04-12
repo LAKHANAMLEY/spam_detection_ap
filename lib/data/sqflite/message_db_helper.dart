@@ -116,7 +116,7 @@ class SmsLogDBHandler {
     if (smsLog.smsDetails != null) {
       for (final detail in smsLog.smsDetails!) {
         await db.insert(tableSmsDetail, {
-          columnLogIdFk: logId,
+          columnLogIdFk: smsLog.id, //TODO: logId
           columnBody: detail.body,
           columnIsRead: detail.isRead,
           columnMessageState: detail.messageState,
@@ -139,31 +139,131 @@ class SmsLogDBHandler {
     return logId;
   }
 
+  // Future<int> updateSmsLog(SmsLog smsLog) async {
+  //   final db = await database;
+
+  //   if (smsLog.smsDetails != null) {
+  //     for (final detail in smsLog.smsDetails!) {
+  //       await db.insert(tableSmsDetail, {
+  //         columnLogIdFk: smsLog.id, //TODO: logId
+  //         columnBody: detail.body,
+  //         columnIsRead: detail.isRead,
+  //         columnMessageState: detail.messageState,
+  //         columnMessageKind: detail.messageKind,
+  //         columnQueryKind: detail.queryKind,
+  //         columnSendReceiveDatetime: _dateTimeToInt(detail.sendreceiveDatetime),
+  //         columnThreadId: detail.threadId,
+  //         columnSmsId: detail.id,
+  //         columnIsSpam: detail.isSpam,
+  //         columnSpamMessage: detail.spamMessage,
+  //         columnScore: detail.score,
+  //         columnIsManually: detail.isManually,
+  //         columnDetailAddress: detail.address,
+  //         columnDetailCountryCode: detail.countryCode,
+  //         columnDate: _dateTimeToInt(detail.date),
+  //         columnDetailName: detail.name,
+  //       });
+  //     }
+  //   }
+
+  //   return await db.update(
+  //     tableSmsLog,
+  //     {
+  //       columnAddress: smsLog.address,
+  //       columnCountryCode: smsLog.countryCode,
+  //       columnUnreadReceivedSms: smsLog.unreadReceivedSms,
+  //       columnName: smsLog.name,
+  //       columnIsMarkSpam: smsLog.isMarkSpam,
+  //     },
+  //     where: '$columnLogId = ?',
+  //     whereArgs: [
+  //       // Assuming your SmsLog object has a way to identify the existing record,
+  //       // ideally by the auto-incremented ID. If not, you might need to update
+  //       // based on a unique field like 'address' (use with caution if not truly unique).
+  //       // For proper updating, ensure your SmsLog object carries the ID.
+  //       // Example assuming SmsLog has an 'id' property:
+  //       // smsLog.id,
+  //       // If you don't have an ID in your SmsLog class, you might need to
+  //       // update based on a unique identifier like address (if it's guaranteed unique).
+  //       // Replace 'smsLog.address' with the actual identifier you want to use.
+  //       smsLog.address,
+  //     ],
+  //   );
+  // }
+
   Future<int> updateSmsLog(SmsLog smsLog) async {
     final db = await database;
-    return await db.update(
-      tableSmsLog,
-      {
-        columnAddress: smsLog.address,
-        columnCountryCode: smsLog.countryCode,
-        columnUnreadReceivedSms: smsLog.unreadReceivedSms,
-        columnName: smsLog.name,
-        columnIsMarkSpam: smsLog.isMarkSpam,
-      },
-      where: '$columnLogId = ?',
-      whereArgs: [
-        // Assuming your SmsLog object has a way to identify the existing record,
-        // ideally by the auto-incremented ID. If not, you might need to update
-        // based on a unique field like 'address' (use with caution if not truly unique).
-        // For proper updating, ensure your SmsLog object carries the ID.
-        // Example assuming SmsLog has an 'id' property:
-        // smsLog.id,
-        // If you don't have an ID in your SmsLog class, you might need to
-        // update based on a unique identifier like address (if it's guaranteed unique).
-        // Replace 'smsLog.address' with the actual identifier you want to use.
-        smsLog.address,
-      ],
-    );
+    int updatedRows = 0;
+
+    // Ensure the SmsLog has an ID for updating
+    if (smsLog.id != null) {
+      updatedRows = await db.update(
+        tableSmsLog,
+        {
+          columnAddress: smsLog.address,
+          columnCountryCode: smsLog.countryCode,
+          columnUnreadReceivedSms: smsLog.unreadReceivedSms,
+          columnName: smsLog.name,
+          columnIsMarkSpam: smsLog.isMarkSpam,
+        },
+        where: '$columnLogId = ?',
+        whereArgs: [smsLog.address],
+      );
+
+      if (smsLog.smsDetails != null) {
+        // Logic to update or insert SmsDetail records
+        for (final detail in smsLog.smsDetails!) {
+          // Check if the SmsDetail already exists (you'll need a unique identifier)
+          final existingDetail = await db.query(
+            tableSmsDetail,
+            where:
+                '$columnLogIdFk = ? AND $columnSmsId = ?', // Example: check by logId and smsId
+            whereArgs: [
+              smsLog.address,
+              detail.address
+            ], // Assuming detail.id is somewhat unique
+          );
+
+          final smsDetailMap = {
+            columnLogIdFk: smsLog.address,
+            columnBody: detail.body,
+            columnIsRead: detail.isRead,
+            columnMessageState: detail.messageState,
+            columnMessageKind: detail.messageKind,
+            columnQueryKind: detail.queryKind,
+            columnSendReceiveDatetime:
+                _dateTimeToInt(detail.sendreceiveDatetime),
+            columnThreadId: detail.threadId,
+            columnSmsId: detail.id,
+            columnIsSpam: detail.isSpam,
+            columnSpamMessage: detail.spamMessage,
+            columnScore: detail.score,
+            columnIsManually: detail.isManually,
+            columnDetailAddress: detail.address,
+            columnDetailCountryCode: detail.countryCode,
+            columnDate: _dateTimeToInt(detail.date),
+            columnDetailName: detail.name,
+          };
+
+          if (existingDetail.isNotEmpty) {
+            // Update existing SmsDetail
+            await db.update(
+              tableSmsDetail,
+              smsDetailMap,
+              where: '$columnLogIdFk = ? AND $columnSmsId = ?',
+              whereArgs: [smsLog.id, detail.id],
+            );
+          } else {
+            // Insert new SmsDetail
+            await db.insert(tableSmsDetail, smsDetailMap);
+          }
+        }
+      }
+    } else {
+      print('Error: Cannot update SmsLog without an ID.');
+    }
+
+    return updatedRows;
   }
 
   Future<int> delete(String id) async {

@@ -11,7 +11,8 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 firebase(context) async {
-  var status = await permissionRequest(Permission.notification);
+  // var status = await permissionRequest(Permission.notification);
+  var status = await Permission.notification.status;
   if (status == PermissionStatus.granted) {
     LocalNotificationService.init(context);
 

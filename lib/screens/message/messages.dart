@@ -21,7 +21,6 @@ class _MessagesScreenState extends State<MessagesScreen> {
   void initState() {
     // messagesBloc.add(SmsListEvent());
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<SmsBloc>().add(StartListeningSms());
       context.read<MessageDBBloc>().add(GetAllSmsFromDB());
     });
     super.initState();
@@ -74,6 +73,13 @@ class _MessagesScreenState extends State<MessagesScreen> {
                       context
                           .read<MessageDBBloc>()
                           .add(SyncMessagesWithServer());
+                    },
+                  ),
+                  PopupMenuItem(
+                    child: Text(appLocalization(context).delete),
+                    onTap: () {
+                      // messagesBloc.add(GetDeviceMessagesEvent());
+                      context.read<MessageDBBloc>().add(DeleteMessageDB());
                     },
                   ),
                   PopupMenuItem(
