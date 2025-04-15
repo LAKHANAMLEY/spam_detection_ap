@@ -13,7 +13,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
   SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
   var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
   var selectPhoneCodeBloc =
-  SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
+      SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
   CountryData? selectedPhoneCodeCountry;
 
   double scale = 3.5;
@@ -88,103 +88,100 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                   return SizedBox(
                                     child: selectedImage == null
                                         ? CircleAvatar(
-                                      backgroundColor: AppColor
-                                          .whiteCreamColor
-                                          .withOpacity(0.2),
-                                      radius: 43.0,
-                                      backgroundImage: const AssetImage(
-                                          IconConstants.icUsername),
-                                      child: Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: CircleAvatar(
-                                            backgroundColor:
-                                            AppColor.darkPurpleColor,
-                                            radius: 12.0,
-                                            child: GestureDetector(
-                                                onTap: () {
-                                                  showImagePickerDialog(
-                                                      context,
-                                                      selectImageBloc);
-                                                },
-                                                child: Image.asset(
-                                                  IconConstants.icCamera,
-                                                  height: MediaQuery
-                                                      .of(
-                                                      context)
-                                                      .size
-                                                      .height *
-                                                      2 /
-                                                      100,
-                                                ))),
-                                      ),
-                                    )
+                                            backgroundColor: AppColor
+                                                .whiteCreamColor
+                                                .withOpacity(0.2),
+                                            radius: 43.0,
+                                            backgroundImage: const AssetImage(
+                                                IconConstants.icUsername4X),
+                                            child: Align(
+                                              alignment: Alignment.bottomRight,
+                                              child: CircleAvatar(
+                                                  backgroundColor:
+                                                      AppColor.darkPurpleColor,
+                                                  radius: 12.0,
+                                                  child: GestureDetector(
+                                                      onTap: () {
+                                                        showImagePickerDialog(
+                                                            context,
+                                                            selectImageBloc);
+                                                      },
+                                                      child: Image.asset(
+                                                        IconConstants.icCamera,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            2 /
+                                                            100,
+                                                      ))),
+                                            ),
+                                          )
                                         : selectedImage?.mimeType == "http"
-                                        ? CircleAvatar(
-                                      backgroundColor: AppColor
-                                          .whiteCreamColor
-                                          .withOpacity(0.2),
-                                      radius: 43.0,
-                                      backgroundImage: NetworkImage(
-                                          selectedImage?.path ?? ""),
-                                      child: Align(
-                                        alignment:
-                                        Alignment.bottomRight,
-                                        child: CircleAvatar(
-                                            backgroundColor: AppColor
-                                                .darkPurpleColor,
-                                            radius: 12.0,
-                                            child: GestureDetector(
-                                                onTap: () {
-                                                  showImagePickerDialog(
-                                                      context,
-                                                      selectImageBloc);
-                                                },
-                                                child: Image.asset(
-                                                  IconConstants
-                                                      .icCamera,
-                                                  height: MediaQuery
-                                                      .of(
-                                                      context)
-                                                      .size
-                                                      .height *
-                                                      2 /
-                                                      100,
-                                                ))),
-                                      ),
-                                    )
-                                        : CircleAvatar(
-                                      backgroundColor: AppColor
-                                          .whiteCreamColor
-                                          .withOpacity(0.2),
-                                      radius: 43.0,
-                                      backgroundImage: FileImage(File(
-                                          selectedImage?.path ?? "")),
-                                      child: Align(
-                                        alignment:
-                                        Alignment.bottomRight,
-                                        child: CircleAvatar(
-                                            backgroundColor: AppColor
-                                                .darkPurpleColor,
-                                            radius: 12.0,
-                                            child: GestureDetector(
-                                                onTap: () {
-                                                  showImagePickerDialog(
-                                                      context,
-                                                      selectImageBloc);
-                                                },
-                                                child: Image.asset(
-                                                  IconConstants
-                                                      .icCamera,
-                                                  height: MediaQuery
-                                                      .of(
-                                                      context)
-                                                      .size
-                                                      .height *
-                                                      2 /
-                                                      100,
-                                                ))),
-                                      ),
-                                    ),
+                                            ? CircleAvatar(
+                                                backgroundColor: AppColor
+                                                    .whiteCreamColor
+                                                    .withOpacity(0.2),
+                                                radius: 43.0,
+                                                backgroundImage: NetworkImage(
+                                                    selectedImage?.path ?? ""),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.bottomRight,
+                                                  child: CircleAvatar(
+                                                      backgroundColor: AppColor
+                                                          .darkPurpleColor,
+                                                      radius: 12.0,
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            showImagePickerDialog(
+                                                                context,
+                                                                selectImageBloc);
+                                                          },
+                                                          child: Image.asset(
+                                                            IconConstants
+                                                                .icCamera,
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                2 /
+                                                                100,
+                                                          ))),
+                                                ),
+                                              )
+                                            : CircleAvatar(
+                                                backgroundColor: AppColor
+                                                    .whiteCreamColor
+                                                    .withOpacity(0.2),
+                                                radius: 43.0,
+                                                backgroundImage: FileImage(File(
+                                                    selectedImage?.path ?? "")),
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.bottomRight,
+                                                  child: CircleAvatar(
+                                                      backgroundColor: AppColor
+                                                          .darkPurpleColor,
+                                                      radius: 12.0,
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            showImagePickerDialog(
+                                                                context,
+                                                                selectImageBloc);
+                                                          },
+                                                          child: Image.asset(
+                                                            IconConstants
+                                                                .icCamera,
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                2 /
+                                                                100,
+                                                          ))),
+                                                ),
+                                              ),
                                   );
                                 }),
                             10.height(),
@@ -192,7 +189,8 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               controller: firstNameController,
                               labelText: appLocalization(context).firstName,
                               hintText: appLocalization(context).firstName,
-                              suffix: Image.asset(IconConstants.icUsername,
+                              suffixIcon: Image.asset(
+                                IconConstants.icUsername,
                                 height: AppConstants.suffixIconHeight,
                                 width: AppConstants.suffixIconWidth,
                                 // height: MediaQuery.of(context).size.height *
@@ -216,7 +214,8 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               controller: lastNameController,
                               labelText: appLocalization(context).lastName,
                               hintText: appLocalization(context).lastName,
-                              suffix: Image.asset(IconConstants.icUsername,
+                              suffixIcon: Image.asset(
+                                IconConstants.icUsername,
                                 height: AppConstants.suffixIconHeight,
                                 width: AppConstants.suffixIconWidth,
                                 // height: MediaQuery.of(context).size.height *
@@ -240,7 +239,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               controller: emailController,
                               labelText: appLocalization(context).emailAddress,
                               hintText: appLocalization(context).emailAddress,
-                              suffix: Image.asset(
+                              suffixIcon: Image.asset(
                                 IconConstants.icFluentMail,
                                 scale: scale,
                               ),
@@ -261,23 +260,23 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                       controller: passwordController,
                                       obscureText: state.value,
                                       labelText:
-                                      appLocalization(context).password,
+                                          appLocalization(context).password,
                                       hintText:
-                                      appLocalization(context).password,
-                                      suffix: InkWell(
+                                          appLocalization(context).password,
+                                      suffixIcon: InkWell(
                                           onTap: () {
                                             passwordVisibilityBloc.add(
                                                 SelectBoolEvent(!state.value));
                                           },
                                           child: state.value
                                               ? Image.asset(
-                                            IconConstants.icPassRemove,
-                                            scale: 3,
-                                          )
+                                                  IconConstants.icPassRemove,
+                                                  scale: 3,
+                                                )
                                               : Image.asset(
-                                            IconConstants.icPassLock,
-                                            scale: 3,
-                                          )),
+                                                  IconConstants.icPassLock,
+                                                  scale: 3,
+                                                )),
                                       validator: (p0) {
                                         if (p0?.isEmpty ?? true) {
                                           return appLocalization(context)
@@ -294,7 +293,8 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                               controller: relationController,
                               hintText: appLocalization(context).relation,
                               labelText: appLocalization(context).relation,
-                              suffix: Image.asset(IconConstants.icUsername,
+                              suffixIcon: Image.asset(
+                                IconConstants.icUsername,
                                 height: AppConstants.suffixIconHeight,
                                 width: AppConstants.suffixIconWidth,
                                 // height: MediaQuery
@@ -358,10 +358,10 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                     // readOnly: true,
                                     controller: phoneController,
                                     hintText:
-                                    appLocalization(context).phoneNumber,
+                                        appLocalization(context).phoneNumber,
                                     labelText:
-                                    appLocalization(context).phoneNumber,
-                                    suffix: Image.asset(
+                                        appLocalization(context).phoneNumber,
+                                    suffixIcon: Image.asset(
                                       IconConstants.icCallAdd,
                                       scale: 1.5,
                                     ),
@@ -387,18 +387,18 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                       FamilyAddMemberEvent(
                                           email: emailController.text.trim(),
                                           password:
-                                          passwordController.text.trim(),
+                                              passwordController.text.trim(),
                                           firstName:
-                                          firstNameController.text.trim(),
+                                              firstNameController.text.trim(),
                                           lastName:
-                                          lastNameController.text.trim(),
+                                              lastNameController.text.trim(),
                                           relation:
-                                          relationController.text.trim(),
+                                              relationController.text.trim(),
                                           supportPin:
-                                          supportPinController.text.trim(),
+                                              supportPinController.text.trim(),
                                           phone: phoneController.text.trim(),
                                           countryCode: selectedPhoneCodeCountry
-                                              ?.phonecode ??
+                                                  ?.phonecode ??
                                               '',
                                           photoFile: selectedImage),
                                     );
@@ -406,10 +406,7 @@ class _AddFamilyMemberState extends State<AddFamilyMember> {
                                 }),
                             SizedBox(
                               height:
-                              MediaQuery
-                                  .of(context)
-                                  .size
-                                  .height * 2 / 100,
+                                  MediaQuery.of(context).size.height * 2 / 100,
                             ),
                           ]),
                         ),

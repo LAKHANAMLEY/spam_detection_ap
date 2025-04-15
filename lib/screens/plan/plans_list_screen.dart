@@ -14,6 +14,18 @@ class _PlanListScreenState extends State<PlanListScreen> {
 
   int selectedTab = 0;
 
+  var bgColors = [
+    Color(0xffFFE2E2),
+    Color(0xffFEEFC4),
+    Color(0xffE2F0FE),
+  ];
+
+  var colors = [
+    Color(0xff9E0505),
+    Color(0xffD09B14),
+    Color(0xff0A4988),
+  ];
+
   @override
   void initState() {
     planListBloc.add(GetPlanListEvent());
@@ -96,6 +108,8 @@ class _PlanListScreenState extends State<PlanListScreen> {
                                 return PlanListItem(
                                   plan: plans[index],
                                   selectedTab: selectedTab,
+                                  bgColor: bgColors[index % 3],
+                                  color: colors[index % 3],
                                   onTap: () {
                                     // setState(() {
                                     selectedTab = index;

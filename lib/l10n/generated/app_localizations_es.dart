@@ -87,6 +87,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get alignQRCodeWithinFrameToScan => 'Placez le QR code dans le cadre';
 
   @override
+  String get all => 'Toda';
+
+  @override
   String get allSpamCalls => 'Actualmente se están bloqueando todas las llamadas spam a su número de teléfono. Puede perder una llamada importante si la red marca el número de la persona que llama como spam.';
 
   @override
@@ -115,6 +118,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get anErrorOccurredDuringGoogleSignIn => 'Se produjo un error durante el inicio de sesión en Google.';
+
+  @override
+  String get areYouWantDelete => '¿Estás seguro de que quieres eliminar?';
 
   @override
   String get asPerDocument => 'Selon le document';
@@ -439,6 +445,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get deleteStaffMember => 'Eliminar miembro del personal';
+
+  @override
+  String get deleteTxt => 'Delete';
 
   @override
   String get deletedSuccessfully => '¡Eliminado exitosamente!';
@@ -2234,10 +2243,4 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get zip => 'Código postal';
-
-  @override
-  String get areYouWantDelete => '¿Estás seguro de que quieres eliminar?';
-
-  @override
-  String get deleteTxt => 'Delete';
 }

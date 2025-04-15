@@ -109,7 +109,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                                   .withOpacity(0.2),
                                               radius: 43.0,
                                               backgroundImage: const AssetImage(
-                                                  IconConstants.icUsername),
+                                                  IconConstants.icUsername4X),
                                               child: Align(
                                                 alignment:
                                                     Alignment.bottomRight,
@@ -210,7 +210,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                 controller: firstnameController,
                                 hintText: appLocalization(context).firstName,
                                 labelText: appLocalization(context).firstName,
-                                suffix: Image.asset(
+                                suffixIcon: Image.asset(
                                   IconConstants.icUsername,
                                   height: AppConstants.suffixIconHeight,
                                   width: AppConstants.suffixIconWidth,
@@ -241,7 +241,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                 controller: lastnameController,
                                 hintText: appLocalization(context).lastName,
                                 labelText: appLocalization(context).lastName,
-                                suffix: Image.asset(
+                                suffixIcon: Image.asset(
                                   IconConstants.icUsername,
                                   height: AppConstants.suffixIconHeight,
                                   width: AppConstants.suffixIconWidth,
@@ -273,7 +273,7 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
                                 hintText: appLocalization(context).relation,
                                 labelText: appLocalization(context).relation,
                                 keyboardType: TextInputType.text,
-                                suffix: Image.asset(
+                                suffixIcon: Image.asset(
                                   IconConstants.icUsername,
                                   height: AppConstants.suffixIconHeight,
                                   width: AppConstants.suffixIconWidth,

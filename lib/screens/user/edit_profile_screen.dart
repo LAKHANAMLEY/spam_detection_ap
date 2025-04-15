@@ -137,7 +137,7 @@ class _EditProfileState extends State<EditProfile> {
                                                   .withOpacity(0.2),
                                               radius: 43.0,
                                               backgroundImage: const AssetImage(
-                                                  IconConstants.icUsername),
+                                                  IconConstants.icUsername4X),
                                               child: Align(
                                                 alignment:
                                                     Alignment.bottomRight,
@@ -238,7 +238,7 @@ class _EditProfileState extends State<EditProfile> {
                                 controller: firstnameController,
                                 hintText: appLocalization(context).firstName,
                                 labelText: appLocalization(context).firstName,
-                                suffix: Image.asset(
+                                suffixIcon: Image.asset(
                                   IconConstants.icUsername,
                                   // scale: 1.5,
                                   height: AppConstants.suffixIconHeight,
@@ -257,7 +257,7 @@ class _EditProfileState extends State<EditProfile> {
                                 controller: lastnameController,
                                 hintText: appLocalization(context).lastName,
                                 labelText: appLocalization(context).lastName,
-                                suffix: Image.asset(
+                                suffixIcon: Image.asset(
                                   IconConstants.icUsername,
                                   // scale: 1.5,
                                   height: AppConstants.suffixIconHeight,
@@ -278,9 +278,9 @@ class _EditProfileState extends State<EditProfile> {
                                 controller: emailController,
                                 hintText: appLocalization(context).email,
                                 labelText: appLocalization(context).email,
-                                suffix: Image.asset(
+                                suffixIcon: Image.asset(
                                   IconConstants.icAlternativeEmail,
-                                  // scale: 1.5,
+                                  scale: 1.5,
                                   height: AppConstants.suffixIconHeight,
                                   width: AppConstants.suffixIconWidth,
                                 ),
@@ -310,9 +310,9 @@ class _EditProfileState extends State<EditProfile> {
                                           appLocalization(context).phoneNumber,
                                       labelText:
                                           appLocalization(context).phoneNumber,
-                                      suffix: Image.asset(
+                                      suffixIcon: Image.asset(
                                         IconConstants.icCallAdd,
-                                        // scale: 1.5,
+                                        scale: 1.5,
                                         height: AppConstants.suffixIconHeight,
                                         width: AppConstants.suffixIconWidth,
                                       ),
@@ -343,9 +343,9 @@ class _EditProfileState extends State<EditProfile> {
                                           appLocalization(context).dateOfBirth,
                                       labelText:
                                           appLocalization(context).dateOfBirth,
-                                      suffix: Image.asset(
+                                      suffixIcon: Image.asset(
                                         IconConstants.icCalenderData,
-                                        // scale: 1.5,
+                                        scale: 1.5,
                                         height: AppConstants.suffixIconHeight,
                                         width: AppConstants.suffixIconWidth,
                                       ),

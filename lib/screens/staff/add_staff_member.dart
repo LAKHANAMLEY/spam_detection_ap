@@ -188,7 +188,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               controller: firstnameController,
                               labelText: appLocalization(context).firstName,
                               hintText: appLocalization(context).firstName,
-                              suffix: Image.asset(
+                              suffixIcon: Image.asset(
                                 IconConstants.icUsername,
                                 height: AppConstants.suffixIconHeight,
                                 width: AppConstants.suffixIconWidth,
@@ -207,7 +207,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               controller: lastnameController,
                               labelText: appLocalization(context).lastName,
                               hintText: appLocalization(context).lastName,
-                              suffix: Image.asset(
+                              suffixIcon: Image.asset(
                                 IconConstants.icUsername,
                                 // scale: 1.5,
                                 height: AppConstants.suffixIconHeight,
@@ -226,7 +226,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               controller: emailController,
                               labelText: appLocalization(context).emailAddress,
                               hintText: appLocalization(context).emailAddress,
-                              suffix: Image.asset(
+                              suffixIcon: Image.asset(
                                 IconConstants.icFluentMail,
                                 scale: scale,
                               ),
@@ -250,7 +250,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                           appLocalization(context).password,
                                       hintText:
                                           appLocalization(context).password,
-                                      suffix: InkWell(
+                                      suffixIcon: InkWell(
                                           onTap: () {
                                             passwordVisibilityBloc.add(
                                                 SelectBoolEvent(!state.value));
@@ -280,7 +280,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                               controller: positionController,
                               hintText: appLocalization(context).relation,
                               labelText: appLocalization(context).relation,
-                              suffix: Image.asset(
+                              suffixIcon: Image.asset(
                                 IconConstants.icUsername,
                                 height: AppConstants.suffixIconHeight,
                                 width: AppConstants.suffixIconWidth,
@@ -336,7 +336,7 @@ class _AddStaffMemberState extends State<AddStaffMember> {
                                         appLocalization(context).phoneNumber,
                                     labelText:
                                         appLocalization(context).phoneNumber,
-                                    suffix: Image.asset(
+                                    suffixIcon: Image.asset(
                                       IconConstants.icCallAdd,
                                       scale: 1.5,
                                     ),

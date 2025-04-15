@@ -143,7 +143,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                           appLocalization(context).password,
                                       hintText:
                                           appLocalization(context).password,
-                                      suffix: InkWell(
+                                      suffixIcon: InkWell(
                                           onTap: () {
                                             passwordVisibilityBloc.add(
                                                 SelectBoolEvent(!state.value));
@@ -190,7 +190,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                           .renterPassword,
                                       hintText: appLocalization(context)
                                           .renterPassword,
-                                      suffix: InkWell(
+                                      suffixIcon: InkWell(
                                           onTap: () {
                                             renterPasswordVisibilityBloc.add(
                                                 SelectBoolEvent(!state.value));

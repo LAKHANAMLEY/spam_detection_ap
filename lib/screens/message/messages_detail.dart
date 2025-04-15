@@ -282,7 +282,7 @@ class MessagesDetail extends StatelessWidget {
         child: CustomTextField(
             hintText: appLocalization(context).enterMessage,
             controller: messageController,
-            suffix: IconButton(
+            suffixIcon: IconButton(
               onPressed: () {
                 send(sms);
               },

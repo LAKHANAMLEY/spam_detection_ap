@@ -98,7 +98,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                           appLocalization(context).currentPass,
                                       hintText:
                                           appLocalization(context).currentPass,
-                                      suffix: InkWell(
+                                      suffixIcon: InkWell(
                                           onTap: () {
                                             passwordVisibilityBloc.add(
                                                 SelectBoolEvent(!state.value));
@@ -135,7 +135,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                           appLocalization(context).newPassword,
                                       hintText:
                                           appLocalization(context).newPassword,
-                                      suffix: InkWell(
+                                      suffixIcon: InkWell(
                                           onTap: () {
                                             newPasswordVisibilityBloc.add(
                                                 SelectBoolEvent(!state.value));
@@ -175,7 +175,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                           .confirmNewPassword,
                                       hintText: appLocalization(context)
                                           .confirmNewPassword,
-                                      suffix: InkWell(
+                                      suffixIcon: InkWell(
                                           onTap: () {
                                             confirmPasswordVisibilityBloc.add(
                                                 SelectBoolEvent(!state.value));

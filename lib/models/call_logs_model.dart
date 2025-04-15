@@ -82,6 +82,45 @@ class CallLogData {
       this.markSpamByUser,
       this.isManually = "0"});
 
+  CallLogData copyWith({
+    String? totalcalllog,
+    String? id,
+    String? phoneaccountid,
+    String? simdisplayname,
+    String? name,
+    String? callType,
+    String? countryCode,
+    String? mobileNo,
+    DateTime? callTime,
+    String? callDuration,
+    String? callDurationUnit,
+    String? contactListId,
+    int? isSpam,
+    int? markspambyuser,
+    int? isBlocked,
+    String? callDurations,
+    String? isManually,
+  }) =>
+      CallLogData(
+        // totalcalllog: totalcalllog ?? this.totalcalllog,
+        id: id ?? this.id,
+        phoneaccountid: phoneaccountid ?? this.phoneaccountid,
+        simdisplayname: simdisplayname ?? this.simdisplayname,
+        name: name ?? this.name,
+        callType: callType ?? this.callType,
+        countryCode: countryCode ?? this.countryCode,
+        mobileNo: mobileNo ?? this.mobileNo,
+        callTime: callTime ?? this.callTime,
+        callDuration: callDuration ?? this.callDuration,
+        callDurationUnit: callDurationUnit ?? this.callDurationUnit,
+        contactListId: contactListId ?? this.contactListId,
+        isSpam: isSpam ?? this.isSpam,
+        markSpamByUser: markspambyuser ?? this.markSpamByUser,
+        isBlocked: isBlocked ?? this.isBlocked,
+        callDurations: callDurations ?? this.callDurations,
+        isManually: isManually ?? this.isManually,
+      );
+
   factory CallLogData.fromJson(Map<String, dynamic> json) => CallLogData(
         id: json["id"],
         phoneaccountid: json["phoneaccountid"].runtimeType == int

@@ -92,49 +92,52 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
   List<CallLogData> mouldCallLogEntryAsCallLogData(
       List<CallLogEntry> localCallLogs, List<CallLogData> serverCallLogs) {
     Map<String, List<CallLogEntry>> groupedLocalCallLogs = {};
-    for (var sms in localCallLogs) {
-      final address = sms.number;
+    for (var log in localCallLogs) {
+      final address = log.number;
       if (address != null) {
-        groupedLocalCallLogs.putIfAbsent(address, () => []).add(sms);
+        groupedLocalCallLogs.putIfAbsent(address, () => []).add(log);
       }
     }
 
     Map<String, CallLogData> serverMessagesMap = {
-      for (var msg in serverCallLogs) msg.mobileNo!: msg
+      for (var msg in serverCallLogs)
+        (msg.countryCode?.isNotEmpty ?? false
+            ? "+${msg.countryCode!}${msg.mobileNo!}"
+            : msg.mobileNo!): msg
     };
 
-    List<CallLogData> syncedSmsLogs = [];
+    List<CallLogData> syncedCallLogs = [];
 
     for (final address in groupedLocalCallLogs.keys) {
-      final localSmsList = groupedLocalCallLogs[address]!;
+      final localCallLogList = groupedLocalCallLogs[address]!;
       final serverLog = serverMessagesMap[address];
-      List<CallLogData> smsDetails = [];
+      // List<CallLogData> callHistory = [];
 
-      // Add local SMS details
-      smsDetails.addAll(localSmsList.map((sms) => CallLogData(
-            id: sms.number,
-            mobileNo: sms.number,
-            callDuration: sms.duration.toString(),
-            callDurations: sms.duration.toString(),
-            countryCode: sms.number?.separatePhoneAndPhoneCode().phoneCode,
-            callDurationUnit: "1",
-            callTime: sms.timestamp?.toDateTime(),
-            callType: sms.callType?.name,
-            simdisplayname: sms.simDisplayName,
-            phoneaccountid: sms.phoneAccountId,
-            name: sms.name,
-          )));
+      // // Add local SMS details
+      // callHistory.addAll(localCallLogList.map((sms) => CallLogData(
+      //       id: sms.number,
+      //       mobileNo: sms.number,
+      //       callDuration: sms.duration.toString(),
+      //       callDurations: sms.duration.toString(),
+      //       countryCode: sms.number?.separatePhoneAndPhoneCode().phoneCode,
+      //       callDurationUnit: "1",
+      //       callTime: sms.timestamp?.toDateTime(),
+      //       callType: sms.callType?.name,
+      //       simdisplayname: sms.simDisplayName,
+      //       phoneaccountid: sms.phoneAccountId,
+      //       name: sms.name,
+      //     )));
 
       // Add server SMS details if available (and if a local message with this address exists)
       // if (serverLog?.smsDetails != null) {
       //   smsDetails.addAll(serverLog!.smsDetails!);
       // }
 
-      syncedSmsLogs.add(
+      syncedCallLogs.add(
         CallLogData(
           id: serverLog?.id ?? address,
           countryCode: serverLog?.countryCode,
-          name: serverLog?.name ?? localSmsList.firstOrNull?.name,
+          name: serverLog?.name ?? localCallLogList.firstOrNull?.name,
           mobileNo: serverLog?.mobileNo,
           callDuration: serverLog?.callDuration?.toString(),
           callDurations: serverLog?.callDurations.toString(),
@@ -157,7 +160,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
 
     // We no longer add any remaining server messages here.
 
-    return syncedSmsLogs;
+    return syncedCallLogs;
   }
 
   Future<void> _onSyncCallLogsDB(
@@ -201,9 +204,25 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     // Updated event and state types
     emit(CallLogDBLoading()); // Updated state name
     try {
+      var log = event.callLogEntry;
       // Iterable<CallLogEntry> deviceCallLogs = await getDeviceCallLogs();
-      var callLogData = await syncCallLogManually(callLogs: event.callLogEntry);
-      var callLog = callLogData.callLog;
+      // var callLogData = await
+      syncCallLogManually(callLogs: log);
+      // var callLog = callLogData.callLog;
+      var callLog = CallLogData(
+        id: log.number,
+        name: log.name,
+        mobileNo: log.number?.separatePhoneAndPhoneCode().phone,
+        countryCode: log.number?.separatePhoneAndPhoneCode().phoneCode,
+        callDuration: log.duration.toString(),
+        callTime: log.timestamp?.toDateTime(),
+        callDurationUnit: "1",
+        callDurations: log.duration.toString(),
+        callType: log.callType?.name,
+        contactListId: log.number,
+        phoneaccountid: log.phoneAccountId,
+        simdisplayname: log.simDisplayName,
+      );
       // var res = await getCallLogs();
       // var callLogsData = res.callloglist ?? [];
       // for (final callLog in callLogsData) {

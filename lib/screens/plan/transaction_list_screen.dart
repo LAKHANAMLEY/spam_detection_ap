@@ -35,9 +35,6 @@ class _TransactionListState extends State<TransactionList> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 2 / 100,
-              ),
               BlocBuilder(
                   bloc: transactionListBloc,
                   builder: (context, state) {

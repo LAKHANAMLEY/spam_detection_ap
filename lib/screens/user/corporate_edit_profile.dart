@@ -98,7 +98,7 @@ class _CorporateProfileState extends State<CorporateProfile> {
                                                 .withOpacity(0.2),
                                             radius: 43.0,
                                             backgroundImage: const AssetImage(
-                                                IconConstants.icUsername),
+                                                IconConstants.icUsername4X),
                                             child: Align(
                                               alignment: Alignment.bottomRight,
                                               child: CircleAvatar(
@@ -195,7 +195,7 @@ class _CorporateProfileState extends State<CorporateProfile> {
                               controller: userNameController,
                               hintText: appLocalization(context).corporateName,
                               labelText: appLocalization(context).corporateName,
-                              suffix: Image.asset(
+                              suffixIcon: Image.asset(
                                 IconConstants.icUsername,
                                 height: AppConstants.suffixIconHeight,
                                 width: AppConstants.suffixIconWidth,
@@ -220,7 +220,7 @@ class _CorporateProfileState extends State<CorporateProfile> {
                               controller: companyNameController,
                               hintText: appLocalization(context).companyName,
                               labelText: appLocalization(context).companyName,
-                              suffix: Image.asset(
+                              suffixIcon: Image.asset(
                                 IconConstants.icCorporateID,
                                 scale: 3,
                               ),
@@ -237,7 +237,7 @@ class _CorporateProfileState extends State<CorporateProfile> {
                               controller: crnIdController,
                               hintText: appLocalization(context).crnId,
                               labelText: appLocalization(context).crnId,
-                              suffix: Image.asset(
+                              suffixIcon: Image.asset(
                                 IconConstants.icCorporateID,
                                 scale: 3,
                               ),

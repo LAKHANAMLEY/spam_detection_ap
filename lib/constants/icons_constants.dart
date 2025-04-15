@@ -4,6 +4,7 @@ class IconConstants {
   static const icBroadLogo = 'assets/icons/ic_broad_logo.png';
 
   static const icUsername = 'assets/icons/ic_username.png';
+  static const icUsername4X = 'assets/icons/ic_username4x.png';
   static const icEmailAdd = 'assets/icons/ic_email_add.png';
 
   static const icCallAdd = 'assets/icons/ic_call_add.png';

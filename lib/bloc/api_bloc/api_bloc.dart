@@ -454,16 +454,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(RegisterState(value));
       });
     }
-    //Edit Contact
-    /*
+
     if (event is EditContactEvent) {
       emit(ApiLoadingState());
-      await EditContact(contact: event.contact).then((value) {
+      await editContact(user: event.user).then((value) {
         emit(EditContactState(value));
       });
     }
-     */
-// edit contact list
+
     if (event is DeleteContactEvent) {
       emit(ApiLoadingState());
       await deleteContact(contact: event.contact).then((value) {
@@ -479,14 +477,12 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(SetUserOnlineOrOfflineState(value));
       });
     }
-// logout
     if (event is LogoutEvent) {
       emit(ApiLoadingState());
       await logout().then((value) {
         emit(LogoutState(value));
       });
     }
-// country list
     if (event is CountryListEvent) {
       emit(ApiLoadingState());
       await getCountries().then((value) {
@@ -571,12 +567,14 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         emit(SmsDeleteState(value));
       });
     }
-    if (event is EditContactEvent) {
+
+    if (event is AddContactEvent) {
       emit(ApiLoadingState());
-      await editContact(user: event.user).then((value) {
+      await addContact(contact: event.contact).then((value) {
         emit(AddContactState(value));
       });
     }
+
     if (event is ForgetPasswordPhoneEvent) {
       emit(ApiLoadingState());
       await forgotPasswordWithPhone(

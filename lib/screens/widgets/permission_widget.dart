@@ -41,6 +41,7 @@ class PermissionWidget extends StatelessWidget {
                                       await permissionRequest(permission);
                                   if (status?.isGranted ?? false) {
                                     isAllowed = true;
+                                    await sync(context);
                                   } else {
                                     isAllowed = false;
                                   }
@@ -56,5 +57,16 @@ class PermissionWidget extends StatelessWidget {
           }
           return Loader();
         });
+  }
+
+  Future<void> sync(BuildContext context) async {
+    switch (permission) {
+      case Permission.contacts:
+        context.read<ContactDBBloc>().add(SyncDBContacts());
+      case Permission.phone:
+        context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+      case Permission.sms:
+        context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+    }
   }
 }

@@ -16,8 +16,8 @@ extension StringExt on String {
     }
   }
 
-  String convertInMinSec() {
-    Duration duration = Duration(seconds: int.parse(this));
+  String? convertInMinSec() {
+    Duration duration = Duration(seconds: int.tryParse(this) ?? 0);
     return duration.inMinutes > 0
         ? "${duration.inMinutes} min ${duration.inSeconds % 60} sec"
         : "${duration.inSeconds % 60} sec";

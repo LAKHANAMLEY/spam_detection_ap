@@ -7,6 +7,7 @@ class CustomTextField extends StatelessWidget {
 
   final String? labelText;
   final String? hintText;
+  final Widget? suffixIcon;
   final Widget? suffix;
   final Widget? prefix;
   final TextInputType? keyboardType;
@@ -29,6 +30,7 @@ class CustomTextField extends StatelessWidget {
       {super.key,
       this.labelText,
       this.hintText,
+      this.suffixIcon,
       this.suffix,
       this.prefix,
       this.keyboardType,
@@ -119,6 +121,8 @@ class CustomTextField extends StatelessWidget {
                       ),
                       // fillColor: Colors.white,
                       // filled: isNewDesign ? true : false,
+                      // suffix: suffix,
+                      suffixIcon: suffixIcon,
                       suffix: suffix,
                       // prefix: prefix,
                       // prefix: Padding(

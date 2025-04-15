@@ -61,7 +61,7 @@ class _AlternativeEmailState extends State<AlternativeEmail> {
                     controller: emailController,
                     hintText: appLocalization(context).emailAddress,
                     labelText: appLocalization(context).emailAddress,
-                    suffix:
+                    suffixIcon:
                         Image.asset(IconConstants.icFluentMail, scale: scale),
                     validator: (p0) {
                       if (p0?.isEmpty ?? true) {

@@ -251,6 +251,12 @@ abstract class AppLocalizations {
   /// **'Align QR code within frame to scan'**
   String get alignQRCodeWithinFrameToScan;
 
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
   /// No description provided for @allSpamCalls.
   ///
   /// In en, this message translates to:
@@ -310,6 +316,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An error occurred during Google Sign-In.'**
   String get anErrorOccurredDuringGoogleSignIn;
+
+  /// No description provided for @areYouWantDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete'**
+  String get areYouWantDelete;
 
   /// No description provided for @asPerDocument.
   ///
@@ -958,6 +970,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete Staff Member'**
   String get deleteStaffMember;
+
+  /// No description provided for @deleteTxt.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteTxt;
 
   /// No description provided for @deletedSuccessfully.
   ///
@@ -4540,18 +4558,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zip Code'**
   String get zip;
-
-  /// No description provided for @areYouWantDelete.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete'**
-  String get areYouWantDelete;
-
-  /// No description provided for @deleteTxt.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get deleteTxt;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

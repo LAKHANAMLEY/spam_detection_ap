@@ -19,12 +19,15 @@ class _EditContactState extends State<EditContact> {
   final TextEditingController phoneController = TextEditingController();
   var selectPhoneCodeBloc =
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
+
   CountryData? selectedPhoneCodeCountry;
 
   var editContactBloc = ApiBloc(ApiBlocInitialState());
 
   ContactData? contactData;
   SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
+  SelectionBloc selectNumberTypeBloc =
+      SelectionBloc(SelectStringState("Mobile"));
 
   @override
   void initState() {
@@ -87,9 +90,10 @@ class _EditContactState extends State<EditContact> {
                         dialogType: DialogType.failed);
                   }
                   editContactBloc
-                      .add(GetContactDetailEvent(contactData?.id ?? ''));
+                      .add(GetContactDetailEvent(contactData?.mobileNo ?? ''));
                   // contactListBloc.add(GetDeviceContactEvent());
                   context.read<ContactDBBloc>().add(SyncDBContacts());
+                  context.read<CallLogDBBloc>().add(SyncDBCallLogs());
                 }
               },
               builder: (context, state) {
@@ -109,7 +113,7 @@ class _EditContactState extends State<EditContact> {
                                 controller: fullNameController,
                                 labelText: appLocalization(context).userName,
                                 hintText: appLocalization(context).userName,
-                                suffix: Image.asset(
+                                suffixIcon: Image.asset(
                                   IconConstants.icUsername,
                                   height: AppConstants.suffixIconHeight,
                                   width: AppConstants.suffixIconWidth,
@@ -136,17 +140,17 @@ class _EditContactState extends State<EditContact> {
                                     appLocalization(context).emailAddress,
                                 hintText: appLocalization(context).emailAddress,
                                 controller: emailController,
-                                suffix: Image.asset(
+                                suffixIcon: Image.asset(
                                   IconConstants.icFluentMail,
                                   scale: 3,
                                 ),
-                                validator: (p0) {
-                                  if (p0?.isEmpty ?? true) {
-                                    return appLocalization(context)
-                                        .pleaseEnterYourEmailAddress;
-                                  }
-                                  return null;
-                                },
+                                // validator: (p0) {
+                                //   if (p0?.isEmpty ?? true) {
+                                //     return appLocalization(context)
+                                //         .pleaseEnterYourEmailAddress;
+                                //   }
+                                //   return null;
+                                // },
                               ),
                               10.height(),
                               SizedBox(
@@ -154,46 +158,59 @@ class _EditContactState extends State<EditContact> {
                                     1 /
                                     100,
                               ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 6, right: 6),
-                                child: DropdownButtonFormField<String>(
-                                  value: selectedType,
-                                  items: options.map((String option) {
-                                    return DropdownMenuItem<String>(
-                                      value: option,
-                                      child: Text(option),
-                                    );
-                                  }).toList(),
-                                  onChanged: (String? newValue) {
-                                    setState(() {
-                                      selectedType = newValue!;
-                                    });
-                                  },
-                                  decoration: InputDecoration(
-                                    hintText:
-                                        appLocalization(context).numberType,
-                                    hintStyle: const TextStyle(
-                                        color: AppColor.decentBrownColor),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                      borderSide: const BorderSide(
-                                          width: 1.5,
-                                          color: AppColor.lightBrownColor),
-                                    ),
-                                    focusedBorder: const OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: AppColor.lightBrownColor,
-                                          width: 1.5),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5)),
-                                    ),
-                                    filled: true,
-                                    fillColor: AppColor.lightBrownColor
-                                        .withOpacity(0.2),
-                                  ),
-                                ),
-                              ),
+                              BlocBuilder(
+                                  bloc: selectNumberTypeBloc,
+                                  builder: (context, state) {
+                                    if (state is SelectStringState) {
+                                      selectedType = state.value ?? "";
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 6, right: 6),
+                                        child: DropdownButtonFormField<String>(
+                                          value: selectedType,
+                                          items: options.map((String option) {
+                                            return DropdownMenuItem<String>(
+                                              value: option,
+                                              child: Text(option),
+                                            );
+                                          }).toList(),
+                                          onChanged: (String? newValue) {
+                                            selectedType = newValue!;
+                                            selectNumberTypeBloc.add(
+                                                SelectStringEvent(newValue));
+                                          },
+                                          decoration: InputDecoration(
+                                            hintText: appLocalization(context)
+                                                .numberType,
+                                            hintStyle: const TextStyle(
+                                                color:
+                                                    AppColor.decentBrownColor),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: const BorderSide(
+                                                  width: 1.5,
+                                                  color:
+                                                      AppColor.lightBrownColor),
+                                            ),
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color:
+                                                      AppColor.lightBrownColor,
+                                                  width: 1.5),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(5)),
+                                            ),
+                                            filled: true,
+                                            fillColor: AppColor.lightBrownColor
+                                                .withOpacity(0.2),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    return Loader();
+                                  }),
                               18.height(),
                               BlocConsumer(
                                   bloc: selectPhoneCodeBloc,
@@ -211,7 +228,7 @@ class _EditContactState extends State<EditContact> {
                                           appLocalization(context).phoneNumber,
                                       labelText:
                                           appLocalization(context).phoneNumber,
-                                      suffix: Image.asset(
+                                      suffixIcon: Image.asset(
                                         IconConstants.icCallAdd,
                                         scale: 1.5,
                                       ),
@@ -243,6 +260,9 @@ class _EditContactState extends State<EditContact> {
                                         email: emailController.text,
                                         numberType: selectedType,
                                         id: contactData?.id ?? "",
+                                        mobileNo: phoneController.text,
+                                        countryCode:
+                                            selectedPhoneCodeCountry?.phonecode,
                                         // supportPin:
                                         //  supportPinController.text,
                                         //photo: _selectedImage?.path,

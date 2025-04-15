@@ -105,108 +105,105 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                     return SizedBox(
                                       child: _selectedImage == null
                                           ? CircleAvatar(
-                                        backgroundColor: AppColor
-                                            .whiteCreamColor
-                                            .withOpacity(0.2),
-                                        radius: 43.0,
-                                        backgroundImage: const AssetImage(
-                                            IconConstants.icUsername),
-                                        child: Align(
-                                          alignment:
-                                          Alignment.bottomRight,
-                                          child: CircleAvatar(
                                               backgroundColor: AppColor
-                                                  .darkPurpleColor,
-                                              radius: 12.0,
-                                              child: GestureDetector(
-                                                  onTap: () {
-                                                    showImagePickerDialog(
-                                                        context,
-                                                        selectImageBloc);
-                                                  },
-                                                  child: Image.asset(
-                                                    IconConstants
-                                                        .icCamera,
-                                                    height: MediaQuery
-                                                        .of(
-                                                        context)
-                                                        .size
-                                                        .height *
-                                                        2 /
-                                                        100,
-                                                  ))),
-                                        ),
-                                      )
+                                                  .whiteCreamColor
+                                                  .withOpacity(0.2),
+                                              radius: 43.0,
+                                              backgroundImage: const AssetImage(
+                                                  IconConstants.icUsername4X),
+                                              child: Align(
+                                                alignment:
+                                                    Alignment.bottomRight,
+                                                child: CircleAvatar(
+                                                    backgroundColor: AppColor
+                                                        .darkPurpleColor,
+                                                    radius: 12.0,
+                                                    child: GestureDetector(
+                                                        onTap: () {
+                                                          showImagePickerDialog(
+                                                              context,
+                                                              selectImageBloc);
+                                                        },
+                                                        child: Image.asset(
+                                                          IconConstants
+                                                              .icCamera,
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              2 /
+                                                              100,
+                                                        ))),
+                                              ),
+                                            )
                                           : _selectedImage?.mimeType == "http"
-                                          ? CircleAvatar(
-                                        backgroundColor: AppColor
-                                            .whiteCreamColor
-                                            .withOpacity(0.2),
-                                        radius: 43.0,
-                                        backgroundImage: NetworkImage(
-                                            _selectedImage?.path ??
-                                                ""),
-                                        child: Align(
-                                          alignment:
-                                          Alignment.bottomRight,
-                                          child: CircleAvatar(
-                                              backgroundColor: AppColor
-                                                  .darkPurpleColor,
-                                              radius: 12.0,
-                                              child: GestureDetector(
-                                                  onTap: () {
-                                                    showImagePickerDialog(
-                                                        context,
-                                                        selectImageBloc);
-                                                  },
-                                                  child: Image.asset(
-                                                    IconConstants
-                                                        .icCamera,
-                                                    height: MediaQuery
-                                                        .of(
-                                                        context)
-                                                        .size
-                                                        .height *
-                                                        2 /
-                                                        100,
-                                                  ))),
-                                        ),
-                                      )
-                                          : CircleAvatar(
-                                        backgroundColor: AppColor
-                                            .whiteCreamColor
-                                            .withOpacity(0.2),
-                                        radius: 43.0,
-                                        backgroundImage: FileImage(
-                                            File(_selectedImage
-                                                ?.path ??
-                                                "")),
-                                        child: Align(
-                                          alignment:
-                                          Alignment.bottomRight,
-                                          child: CircleAvatar(
-                                              backgroundColor: AppColor
-                                                  .darkPurpleColor,
-                                              radius: 12.0,
-                                              child: GestureDetector(
-                                                  onTap: () {
-                                                    showImagePickerDialog(
-                                                        context,
-                                                        selectImageBloc);
-                                                  },
-                                                  child: Image.asset(
-                                                    IconConstants
-                                                        .icCamera,
-                                                    height: MediaQuery
-                                                        .of(
-                                                        context)
-                                                        .size
-                                                        .height *
-                                                        2 /
-                                                        100,
-                                                  ))),
-                                        ),
-                                      ),
+                                              ? CircleAvatar(
+                                                  backgroundColor: AppColor
+                                                      .whiteCreamColor
+                                                      .withOpacity(0.2),
+                                                  radius: 43.0,
+                                                  backgroundImage: NetworkImage(
+                                                      _selectedImage?.path ??
+                                                          ""),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.bottomRight,
+                                                    child: CircleAvatar(
+                                                        backgroundColor: AppColor
+                                                            .darkPurpleColor,
+                                                        radius: 12.0,
+                                                        child: GestureDetector(
+                                                            onTap: () {
+                                                              showImagePickerDialog(
+                                                                  context,
+                                                                  selectImageBloc);
+                                                            },
+                                                            child: Image.asset(
+                                                              IconConstants
+                                                                  .icCamera,
+                                                              height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  2 /
+                                                                  100,
+                                                            ))),
+                                                  ),
+                                                )
+                                              : CircleAvatar(
+                                                  backgroundColor: AppColor
+                                                      .whiteCreamColor
+                                                      .withOpacity(0.2),
+                                                  radius: 43.0,
+                                                  backgroundImage: FileImage(
+                                                      File(_selectedImage
+                                                              ?.path ??
+                                                          "")),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.bottomRight,
+                                                    child: CircleAvatar(
+                                                        backgroundColor: AppColor
+                                                            .darkPurpleColor,
+                                                        radius: 12.0,
+                                                        child: GestureDetector(
+                                                            onTap: () {
+                                                              showImagePickerDialog(
+                                                                  context,
+                                                                  selectImageBloc);
+                                                            },
+                                                            child: Image.asset(
+                                                              IconConstants
+                                                                  .icCamera,
+                                                              height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  2 /
+                                                                  100,
+                                                            ))),
+                                                  ),
+                                                ),
                                     );
                                   }),
                               10.height(),
@@ -214,7 +211,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                 labelText: appLocalization(context).firstName,
                                 controller: firstnameController,
                                 hintText: appLocalization(context).firstName,
-                                suffix: Image.asset(
+                                suffixIcon: Image.asset(
                                   IconConstants.icUsername,
                                   scale: 8,
                                 ),
@@ -231,7 +228,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                 labelText: appLocalization(context).lastName,
                                 controller: lastnameController,
                                 hintText: appLocalization(context).lastName,
-                                suffix: Image.asset(
+                                suffixIcon: Image.asset(
                                   IconConstants.icUsername,
                                   height: AppConstants.suffixIconHeight,
                                   width: AppConstants.suffixIconWidth,
@@ -257,7 +254,8 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                 keyboardType: TextInputType.text,
                                 labelText: appLocalization(context).position,
                                 hintText: appLocalization(context).position,
-                                suffix: Image.asset(IconConstants.icUsername,
+                                suffixIcon: Image.asset(
+                                  IconConstants.icUsername,
                                   height: AppConstants.suffixIconHeight,
                                   width: AppConstants.suffixIconWidth,
                                   //scale: 1.5,
@@ -285,10 +283,7 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                 },
                               ),
                               SizedBox(
-                                height: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .height *
+                                height: MediaQuery.of(context).size.height *
                                     2 /
                                     100,
                               ),
@@ -299,22 +294,18 @@ class _EditStaffMemberState extends State<EditStaffMember> {
                                         false) {
                                       staffMemberBloc.add(StaffEditMemberEvent(
                                           user: StaffMember(
-                                            firstName: firstnameController.text,
-                                            lastName: lastnameController.text,
-                                            relation: positionController.text,
-                                            userId: staffMember?.userId ?? "",
-                                            supportPin: supportPinController
-                                                .text,
-                                            photo: _selectedImage?.path,
-                                            photoFile: _selectedImage,
-                                          )));
+                                        firstName: firstnameController.text,
+                                        lastName: lastnameController.text,
+                                        relation: positionController.text,
+                                        userId: staffMember?.userId ?? "",
+                                        supportPin: supportPinController.text,
+                                        photo: _selectedImage?.path,
+                                        photoFile: _selectedImage,
+                                      )));
                                     }
                                   }),
                               SizedBox(
-                                height: MediaQuery
-                                    .of(context)
-                                    .size
-                                    .height *
+                                height: MediaQuery.of(context).size.height *
                                     2 /
                                     100,
                               ),

@@ -3,9 +3,9 @@ import 'package:spam_delection_app/lib.dart';
 
 class DeviceCallLogs extends StatefulWidget {
   final bool? showAppBar;
-  final String filterBy;
+  // final String filterBy;
 
-  const DeviceCallLogs({super.key, this.showAppBar = true, this.filterBy = ""});
+  const DeviceCallLogs({super.key, this.showAppBar = true});
 
   @override
   State<DeviceCallLogs> createState() => _DeviceCallLogsState();
@@ -20,6 +20,9 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
   // bool isVisible = false;
   // final showHideTextFieldBloc = SelectionBloc(SelectBoolState(true));
   final searchBloc = SelectionBloc(SelectStringState(""));
+  final filterBloc = SelectionBloc(SelectStringState(""));
+
+  String filterBy = "";
 
   // callLogsListBloc.add(GetCallLogsEvent());
 
@@ -50,7 +53,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                 listener: (context, callLogDBState) {
               if (callLogDBState is CallLogDBLoaded) {
                 callLogs = callLogDBState.callLogs;
-                filteredCallLogs = filter("", callLogs);
+                filter();
               }
               if (callLogDBState is CallLogDBError) {
                 if (callLogDBState.exception is UnauthorizedException) {
@@ -167,325 +170,350 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                     }
                   },
                   builder: (context, markSpamState) {
-                    return Column(
-                      children: [
-                        CustomTextField(
-                          controller: searchController,
-                          fillColor: AppColor.whiteColor,
-                          prefix: const Icon(
-                            Icons.search,
-                            color: AppColor.redColor,
-                          ),
-                          hintText: appLocalization(context).searchMore,
-                          //textAlign: TextAlign.center,
+                    return BlocConsumer(
+                        bloc: filterBloc,
+                        listener: (context, state) {
+                          if (state is SelectStringState) {
+                            filterBy = state.value ?? "";
+                            filter();
+                          }
+                        },
+                        builder: (context, filterState) {
+                          return Column(
+                            children: [
+                              CustomTextField(
+                                controller: searchController,
+                                fillColor: AppColor.whiteColor,
+                                prefix: const Icon(
+                                  Icons.search,
+                                  color: AppColor.redColor,
+                                ),
+                                hintText: appLocalization(context).searchMore,
+                                //textAlign: TextAlign.center,
 
-                          onChanged: (p0) {
-                            // filter();
-                            searchBloc.add(SelectStringEvent(p0));
-                          },
-                          suffix: PopupMenuButton(
-                            itemBuilder: (context) => [
-                              PopupMenuItem(
-                                  onTap: () {
-                                    // callLogsListBloc.add(GetDeviceCallLogEvent());
-                                    context
-                                        .read<CallLogDBBloc>()
-                                        .add(SyncDBCallLogs());
-                                  },
-                                  child: Text(
-                                      appLocalization(context).synCallLogs)),
-                              PopupMenuItem(
-                                  onTap: () {
-                                    // callLogsListBloc.add(DeleteAllCallLogEvent());
-                                    context
-                                        .read<CallLogDBBloc>()
-                                        .add(DeleteAllDBCallLog());
-                                  },
-                                  child: Text(appLocalization(context)
-                                      .deleteAllCallLogs)),
+                                onChanged: (p0) {
+                                  // filter();
+                                  searchBloc.add(SelectStringEvent(p0));
+                                },
+                                suffix: PopupMenuButton(
+                                  menuPadding: EdgeInsets.zero,
+                                  style: ButtonStyle(
+                                    visualDensity: VisualDensity.compact,
+                                  ),
+                                  itemBuilder: (context) => [
+                                    PopupMenuItem(
+                                        onTap: () {
+                                          // callLogsListBloc.add(GetDeviceCallLogEvent());
+                                          context
+                                              .read<CallLogDBBloc>()
+                                              .add(SyncDBCallLogs());
+                                        },
+                                        child: Text(appLocalization(context)
+                                            .synCallLogs)),
+                                    PopupMenuItem(
+                                        onTap: () {
+                                          // callLogsListBloc.add(DeleteAllCallLogEvent());
+                                          context
+                                              .read<CallLogDBBloc>()
+                                              .add(DeleteAllDBCallLog());
+                                        },
+                                        child: Text(appLocalization(context)
+                                            .deleteAllCallLogs)),
+                                    PopupMenuItem(
+                                        onTap: () {
+                                          // callLogsListBloc.add(DeleteAllCallLogEvent());
+                                          Navigator.pushNamed(
+                                              context, AppRoutes.blockedCalls);
+                                        },
+                                        child: Text(appLocalization(context)
+                                            .blockedCalls)),
+                                    PopupMenuItem(
+                                        onTap: () {
+                                          // callLogsListBloc.add(DeleteAllCallLogEvent());
+                                          Navigator.pushNamed(
+                                              context, AppRoutes.spamList);
+                                        },
+                                        child: Text(appLocalization(context)
+                                            .spamCalls)),
+                                  ],
+                                ),
+                              ),
+                              if (!(widget.showAppBar ??
+                                  arg?.showAppBar ??
+                                  false))
+                                SizedBox(
+                                  height: 35,
+                                  child: ListView(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5),
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    physics: ScrollPhysics(),
+                                    children: [
+                                      ChoiceChip(
+                                        selected: filterBy == "",
+                                        onSelected: (value) {
+                                          filterBloc.add(SelectStringEvent(""));
+                                        },
+                                        label: Text(
+                                            appLocalization(context).all,
+                                            style:
+                                                textTheme(context).titleSmall),
+                                        // icon: Image.asset(
+                                        //   IconConstants.icOutgoingCall,
+                                        //   scale: 2.5,
+                                        // ),
+                                        // icon: const Icon(Icons.contacts_outlined),
+                                        // style: ElevatedButton.styleFrom(
+                                        //   minimumSize: const Size(20, 40),
+                                        // ),
+                                      ),
+
+                                      10.width(),
+                                      ChoiceChip(
+                                        selected:
+                                            filterBy == CallType.outgoing.name,
+                                        onSelected: (value) {
+                                          filterBloc.add(SelectStringEvent(
+                                              CallType.outgoing.name));
+                                          // Navigator.pushNamed(
+                                          //     context, AppRoutes.callLogs,
+                                          //     arguments: DeviceCallLogs(
+                                          //         filterBy:
+                                          //             CallType.outgoing.name));
+                                        },
+                                        label: Text(
+                                            appLocalization(context)
+                                                .outgoingCalls,
+                                            style:
+                                                textTheme(context).titleSmall),
+                                        // icon: Image.asset(
+                                        //   IconConstants.icOutgoingCall,
+                                        //   scale: 2.5,
+                                        // ),
+                                        // icon: const Icon(Icons.contacts_outlined),
+                                        // style: ElevatedButton.styleFrom(
+                                        //   minimumSize: const Size(20, 40),
+                                        // ),
+                                      ),
+                                      10.width(),
+                                      ChoiceChip(
+                                        selected:
+                                            filterBy == CallType.incoming.name,
+                                        onSelected: (value) {
+                                          filterBloc.add(SelectStringEvent(
+                                              CallType.incoming.name));
+                                          // Navigator.pushNamed(
+                                          //     context, AppRoutes.callLogs,
+                                          //     arguments: DeviceCallLogs(
+                                          //         filterBy:
+                                          //             CallType.incoming.name));
+                                        },
+                                        label: Text(
+                                            appLocalization(context)
+                                                .incomingCalls,
+                                            style:
+                                                textTheme(context).titleSmall),
+                                        // icon: Image.asset(
+                                        //   IconConstants.icIncomingCall,
+                                        //   scale: 2.5,
+                                        // ),
+                                      ),
+                                      10.width(),
+                                      ChoiceChip(
+                                        selected:
+                                            filterBy == CallType.missed.name,
+                                        onSelected: (value) {
+                                          filterBloc.add(SelectStringEvent(
+                                              CallType.missed.name));
+                                          // Navigator.pushNamed(
+                                          //     context, AppRoutes.callLogs,
+                                          //     arguments: DeviceCallLogs(
+                                          //         filterBy:
+                                          //             CallType.missed.name));
+                                        },
+                                        label: Text(
+                                            appLocalization(context)
+                                                .missedCalls,
+                                            style:
+                                                textTheme(context).titleSmall),
+                                        // icon: Image.asset(
+                                        //   IconConstants.icMissCall,
+                                        //   scale: 2.5,
+                                        // ),
+                                      ),
+                                      // 10.width(),
+                                      // ChoiceChip(
+                                      //   selected: filterBy == CallType.outgoing.name,
+                                      //   onSelected: (value) {
+                                      //     Navigator.pushNamed(
+                                      //         context, AppRoutes.blockedCalls);
+                                      //   },
+                                      //   label: Text(
+                                      //       appLocalization(context).blockedCalls,
+                                      //       style: TextStyle(
+                                      //           color: Colors.black,
+                                      //           fontSize: 16,
+                                      //           fontWeight: FontWeight.w600)),
+                                      //   // icon: Image.asset(
+                                      //   //   IconConstants.icBlockedCall,
+                                      //   //   scale: 2.5,
+                                      //   // ),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                              Expanded(
+                                child: Builder(
+                                    // bloc: callLogsListBloc,
+                                    // listener: (context, state) {
+                                    //   if (state is ApiBlocInitialState) {
+                                    //     callLogsListBloc.add(GetCallLogsEvent());
+                                    //   }
+                                    //   if (state is GetDeviceCallLogState) {
+                                    //     var deviceCallLogs = state.value;
+                                    //     callLogs = deviceCallLogs
+                                    //         .map((e) => CallLogData(
+                                    //               mobileNo: e.number,
+                                    //               callDuration: e.duration.toString(),
+                                    //               name: e.name,
+                                    //               callType: e.callType?.name,
+                                    //               callTime: e.timestamp?.toDateTime(),
+                                    //             ))
+                                    //         .toList();
+                                    //     filteredCallLogs = filter("", callLogs);
+                                    //     callLogsListBloc.add(
+                                    //         SyncCallLogEvent(callLogs: deviceCallLogs));
+                                    //   }
+                                    //   if (state is GetCallLogsState) {
+                                    //     if (state.value.statusCode == 200) {
+                                    //       callLogs = state.value.callloglist ?? [];
+                                    //       filteredCallLogs = filter("", callLogs);
+                                    //     } else if (state.value.statusCode ==
+                                    //         HTTPStatusCodes.sessionExpired) {
+                                    //       sessionExpired(
+                                    //           context, state.value.message ?? "");
+                                    //     } else {
+                                    //       showToast(state.value.message ?? "");
+                                    //     }
+                                    //   }
+                                    //   if (state is SyncCallLogState) {
+                                    //     if (state.value.statusCode == 200) {
+                                    //       showToast(state.value.message);
+                                    //     } else if (state.value.statusCode ==
+                                    //         HTTPStatusCodes.sessionExpired) {
+                                    //       sessionExpired(
+                                    //           context, state.value.message ?? "");
+                                    //     } else {
+                                    //       showToast(state.value.message);
+                                    //     }
+                                    //     callLogsListBloc.add(GetCallLogsEvent());
+                                    //   }
+                                    //   if (state is DeleteAllCallLogState) {
+                                    //     if (state.value.statusCode == 200) {
+                                    //       showCustomDialog(context,
+                                    //           dialogType: DialogType.success,
+                                    //           subTitle: state.value.message ?? "");
+                                    //     } else if (state.value.statusCode ==
+                                    //         HTTPStatusCodes.sessionExpired) {
+                                    //       sessionExpired(
+                                    //           context, state.value.message ?? "");
+                                    //     } else {
+                                    //       showToast(state.value.message);
+                                    //     }
+                                    //     callLogsListBloc.add(GetCallLogsEvent());
+                                    //   }
+                                    //   if (state is DeleteCallLogState) {
+                                    //     if (state.value.statusCode == 200) {
+                                    //       showCustomDialog(context,
+                                    //           dialogType: DialogType.success,
+                                    //           subTitle: state.value.message);
+                                    //     } else if (state.value.statusCode ==
+                                    //         HTTPStatusCodes.sessionExpired) {
+                                    //       sessionExpired(context, state.value.message);
+                                    //     } else {
+                                    //       showCustomDialog(context,
+                                    //           dialogType: DialogType.failed,
+                                    //           subTitle: state.value.message.toString());
+                                    //     }
+                                    //     callLogsListBloc.add(GetCallLogsEvent());
+                                    //     // markSpamBloc.add(GetSpamEvent());
+                                    //   }
+                                    // },
+                                    builder: (context) {
+                                  // if (state is GetCallLogsState) {
+
+                                  // if (filteredCallLogs.isEmpty) {
+                                  //   return Center(
+                                  //       child:
+                                  //           Text(appLocalization(context).noContacts));
+                                  // }
+                                  return ModalProgressHUD(
+                                      inAsyncCall: //state is ApiLoadingState ||
+                                          markSpamState is ApiLoadingState,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: BlocConsumer(
+                                            bloc: searchBloc,
+                                            listener: (context, state) {
+                                              if (state is SelectStringState) {
+                                                filter();
+                                              }
+                                            },
+                                            builder: (context, searchState) {
+                                              return (filteredCallLogs
+                                                          .isEmpty &&
+                                                      searchController
+                                                          .text.isNotEmpty)
+                                                  ? SizedBox(
+                                                      height: 80,
+                                                      child: CallLogListItem(
+                                                          // showPopupMenuBtn: false,
+                                                          callLog: CallLogData(
+                                                        mobileNo:
+                                                            searchController
+                                                                .text,
+                                                      )),
+                                                    )
+                                                  // Center(
+                                                  //     child: Text(appLocalization(context)
+                                                  //         .noData),
+                                                  //   )
+                                                  : (callLogDBState
+                                                              is CallLogDBLoading &&
+                                                          filteredCallLogs
+                                                              .isEmpty)
+                                                      ? Loader()
+                                                      : filteredCallLogs.isEmpty
+                                                          ? Center(
+                                                              child: Text(
+                                                                  appLocalization(
+                                                                          context)
+                                                                      .noData),
+                                                            )
+                                                          : ListView.builder(
+                                                              shrinkWrap: true,
+                                                              controller:
+                                                                  scrollController,
+                                                              itemCount:
+                                                                  filteredCallLogs
+                                                                      .length,
+                                                              itemBuilder: (context,
+                                                                      index) =>
+                                                                  CallLogListItem(
+                                                                    callLog:
+                                                                        filteredCallLogs[
+                                                                            index],
+                                                                  ));
+                                            }),
+                                      ));
+                                  // }
+                                  // return const Loader();
+                                }),
+                              ),
                             ],
-                          ),
-                        ),
-                        if (!(widget.showAppBar ?? arg?.showAppBar ?? false))
-                          SizedBox(
-                            height: 35,
-                            child: ListView(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              physics: ScrollPhysics(),
-                              children: [
-                                10.width(),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, AppRoutes.callLogs,
-                                        arguments: DeviceCallLogs(
-                                            filterBy: CallType.outgoing.name));
-                                  },
-                                  label: Text(
-                                      appLocalization(context).outgoingCalls,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600)),
-                                  icon: Image.asset(
-                                    IconConstants.icOutgoingCall,
-                                    scale: 2.5,
-                                  ),
-                                  // icon: const Icon(Icons.contacts_outlined),
-                                  // style: ElevatedButton.styleFrom(
-                                  //   minimumSize: const Size(20, 40),
-                                  // ),
-                                ),
-                                10.width(),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, AppRoutes.callLogs,
-                                        arguments: DeviceCallLogs(
-                                            filterBy: CallType.incoming.name));
-                                  },
-                                  label: Text(
-                                      appLocalization(context).incomingCalls,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600)),
-                                  icon: Image.asset(
-                                    IconConstants.icIncomingCall,
-                                    scale: 2.5,
-                                  ),
-                                ),
-                                10.width(),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, AppRoutes.callLogs,
-                                        arguments: DeviceCallLogs(
-                                            filterBy: CallType.missed.name));
-                                  },
-                                  label: Text(
-                                      appLocalization(context).missedCalls,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600)),
-                                  icon: Image.asset(
-                                    IconConstants.icMissCall,
-                                    scale: 2.5,
-                                  ),
-                                ),
-                                10.width(),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, AppRoutes.blockedCalls);
-                                  },
-                                  label: Text(
-                                      appLocalization(context).blockedCalls,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600)),
-                                  icon: Image.asset(
-                                    IconConstants.icBlockedCall,
-                                    scale: 2.5,
-                                  ),
-                                ),
-                                10.width(),
-                                ElevatedButton.icon(
-                                  onPressed: () {
-                                    // callLogsListBloc.add(DeleteAllCallLogEvent());
-                                    Future.delayed(Duration.zero, () {
-                                      showCustomDialog(context,
-                                          dialogType: DialogType.delete,
-                                          title: appLocalization(context)
-                                              .deleteMember,
-                                          subTitle: appLocalization(context)
-                                              .areYouWantDelete,
-                                          showCancelBtn: true,
-                                          okBtnTxt:
-                                              appLocalization(context).delete,
-                                          cancelBtnTxt:
-                                              appLocalization(context).cancel,
-                                          okBtnColor: Colors.red,
-                                          onOkPressed: () {
-                                        context
-                                            .read<CallLogDBBloc>()
-                                            .add(DeleteAllDBCallLog());
-                                        Navigator.pop(context);
-                                      });
-                                    });
-                                  },
-                                  label: Text(
-                                      appLocalization(context).deleteCalls,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600)),
-                                  icon: Image.asset(
-                                    IconConstants.icDeleteCall,
-                                    color: Colors.red,
-                                    scale: 2.5,
-                                  ),
-                                  // style: ElevatedButton.styleFrom(
-                                  //   // elevation: 3,
-                                  //   // shape: RoundedRectangleBorder(
-                                  //   //     borderRadius: BorderRadius.circular(32.0)),
-                                  //   minimumSize: const Size(20, 40),
-                                  // ),
-                                )
-                              ],
-                            ),
-                          ),
-                        Expanded(
-                          child: Builder(
-                              // bloc: callLogsListBloc,
-                              // listener: (context, state) {
-                              //   if (state is ApiBlocInitialState) {
-                              //     callLogsListBloc.add(GetCallLogsEvent());
-                              //   }
-                              //   if (state is GetDeviceCallLogState) {
-                              //     var deviceCallLogs = state.value;
-                              //     callLogs = deviceCallLogs
-                              //         .map((e) => CallLogData(
-                              //               mobileNo: e.number,
-                              //               callDuration: e.duration.toString(),
-                              //               name: e.name,
-                              //               callType: e.callType?.name,
-                              //               callTime: e.timestamp?.toDateTime(),
-                              //             ))
-                              //         .toList();
-                              //     filteredCallLogs = filter("", callLogs);
-                              //     callLogsListBloc.add(
-                              //         SyncCallLogEvent(callLogs: deviceCallLogs));
-                              //   }
-                              //   if (state is GetCallLogsState) {
-                              //     if (state.value.statusCode == 200) {
-                              //       callLogs = state.value.callloglist ?? [];
-                              //       filteredCallLogs = filter("", callLogs);
-                              //     } else if (state.value.statusCode ==
-                              //         HTTPStatusCodes.sessionExpired) {
-                              //       sessionExpired(
-                              //           context, state.value.message ?? "");
-                              //     } else {
-                              //       showToast(state.value.message ?? "");
-                              //     }
-                              //   }
-                              //   if (state is SyncCallLogState) {
-                              //     if (state.value.statusCode == 200) {
-                              //       showToast(state.value.message);
-                              //     } else if (state.value.statusCode ==
-                              //         HTTPStatusCodes.sessionExpired) {
-                              //       sessionExpired(
-                              //           context, state.value.message ?? "");
-                              //     } else {
-                              //       showToast(state.value.message);
-                              //     }
-                              //     callLogsListBloc.add(GetCallLogsEvent());
-                              //   }
-                              //   if (state is DeleteAllCallLogState) {
-                              //     if (state.value.statusCode == 200) {
-                              //       showCustomDialog(context,
-                              //           dialogType: DialogType.success,
-                              //           subTitle: state.value.message ?? "");
-                              //     } else if (state.value.statusCode ==
-                              //         HTTPStatusCodes.sessionExpired) {
-                              //       sessionExpired(
-                              //           context, state.value.message ?? "");
-                              //     } else {
-                              //       showToast(state.value.message);
-                              //     }
-                              //     callLogsListBloc.add(GetCallLogsEvent());
-                              //   }
-                              //   if (state is DeleteCallLogState) {
-                              //     if (state.value.statusCode == 200) {
-                              //       showCustomDialog(context,
-                              //           dialogType: DialogType.success,
-                              //           subTitle: state.value.message);
-                              //     } else if (state.value.statusCode ==
-                              //         HTTPStatusCodes.sessionExpired) {
-                              //       sessionExpired(context, state.value.message);
-                              //     } else {
-                              //       showCustomDialog(context,
-                              //           dialogType: DialogType.failed,
-                              //           subTitle: state.value.message.toString());
-                              //     }
-                              //     callLogsListBloc.add(GetCallLogsEvent());
-                              //     // markSpamBloc.add(GetSpamEvent());
-                              //   }
-                              // },
-                              builder: (context) {
-                            // if (state is GetCallLogsState) {
-
-                            // if (filteredCallLogs.isEmpty) {
-                            //   return Center(
-                            //       child:
-                            //           Text(appLocalization(context).noContacts));
-                            // }
-                            return ModalProgressHUD(
-                                inAsyncCall: //state is ApiLoadingState ||
-                                    markSpamState is ApiLoadingState,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: BlocConsumer(
-                                      bloc: searchBloc,
-                                      listener: (context, state) {
-                                        if (state is SelectStringState) {
-                                          filteredCallLogs = filter(
-                                              state.value ?? "", callLogs);
-                                        }
-                                      },
-                                      builder: (context, searchState) {
-                                        return (filteredCallLogs.isEmpty &&
-                                                searchController
-                                                    .text.isNotEmpty)
-                                            ? SizedBox(
-                                                height: 80,
-                                                child: CallLogListItem(
-                                                    // showPopupMenuBtn: false,
-                                                    callLog: CallLogData(
-                                                  mobileNo:
-                                                      searchController.text,
-                                                )),
-                                              )
-                                            // Center(
-                                            //     child: Text(appLocalization(context)
-                                            //         .noData),
-                                            //   )
-                                            : (callLogDBState
-                                                        is CallLogDBLoading &&
-                                                    filteredCallLogs.isEmpty)
-                                                ? Loader()
-                                                : filteredCallLogs.isEmpty
-                                                    ? Center(
-                                                        child: Text(
-                                                            appLocalization(
-                                                                    context)
-                                                                .noData),
-                                                      )
-                                                    : ListView.builder(
-                                                        shrinkWrap: true,
-                                                        controller:
-                                                            scrollController,
-                                                        itemCount:
-                                                            filteredCallLogs
-                                                                .length,
-                                                        itemBuilder:
-                                                            (context, index) =>
-                                                                CallLogListItem(
-                                                                  callLog:
-                                                                      filteredCallLogs[
-                                                                          index],
-                                                                ));
-                                      }),
-                                ));
-                            // }
-                            // return const Loader();
-                          }),
-                        ),
-                      ],
-                    );
+                          );
+                        });
                   });
               // }
               // return Loader();
@@ -523,18 +551,18 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
     );
   }
 
-  List<CallLogData> filter(String searchText, List<CallLogData> callLogs) {
-    return callLogs
+  List<CallLogData> filter() {
+    filteredCallLogs = callLogs
         .where((e) =>
-            ((e.name?.toLowerCase().contains(searchText.toLowerCase()) ??
-                    false) ||
-                (e.mobileNo?.toLowerCase().contains(searchText.toLowerCase()) ??
+            ((e.name?.toLowerCase().contains(searchController.text) ?? false) ||
+                (e.mobileNo
+                        ?.toLowerCase()
+                        .contains(searchController.text.toLowerCase()) ??
                     false)) &&
-            (e.callType
-                    ?.toLowerCase()
-                    .contains(widget.filterBy.toLowerCase()) ??
+            (e.callType?.toLowerCase().contains(filterBy.toLowerCase()) ??
                 false))
         .toList();
+    return filteredCallLogs;
     // setState(() {});
   }
 }

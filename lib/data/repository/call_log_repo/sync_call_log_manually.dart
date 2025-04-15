@@ -42,6 +42,7 @@ Future<SyncCallManuallyResponse> syncCallLogManually(
   var response = await http.Response.fromStream(streamedResponse);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
+    log(response.body);
     return SyncCallManuallyResponse.fromJson(jsonData);
   } else {
     throw Exception(response.body);

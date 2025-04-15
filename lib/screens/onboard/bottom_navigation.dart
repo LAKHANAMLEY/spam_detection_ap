@@ -73,24 +73,30 @@ class _BottomNavigationState extends State<BottomNavigation> {
     });
   }
 
+  bool _isProcessingCall = false;
+
   void _phoneStateListener() {
     _phoneStateStreamSubs = PhoneState.stream.listen((state) async {
       if (state.status != PhoneStateStatus.NOTHING &&
           state.number?.isNotEmpty == true) {
-        context.read<CallLogDBBloc>().add(
-              SyncManuallyDBCallLog(
-                callLogEntry: CallLogEntry(
-                  number: state.number,
-                  duration: state.duration?.inSeconds ?? 0,
-                  callType: getCallLogType(getCallTypeByPhoneState(state)),
-                ),
+        _isProcessingCall = true;
+        context.read<CallLogDBBloc>().add(SyncManuallyDBCallLog(
+              callLogEntry: CallLogEntry(
+                number: state.number,
+                duration: state.duration?.inSeconds ?? 0,
+                callType: getCallLogType(getCallTypeByPhoneState(state)),
               ),
-            );
+            ));
         showOverlay(
           callType: getCallTypeByPhoneState(state),
           number: state.number ?? "",
           duration: 0,
         );
+        // You might need a way to reset _isProcessingCall when the call ends
+        // This might involve listening for a specific PhoneStateStatus (e.g., NOTHING)
+        // or using a timer.
+      } else if (state.status == PhoneStateStatus.NOTHING) {
+        _isProcessingCall = false; // Reset when call ends
       }
     });
   }

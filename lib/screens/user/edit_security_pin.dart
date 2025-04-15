@@ -104,7 +104,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                           .currentSecurityPin,
                                       hintText: appLocalization(context)
                                           .currentSecurityPin,
-                                      suffix: InkWell(
+                                      suffixIcon: InkWell(
                                           onTap: () {
                                             currentPinVisibilityBloc.add(
                                                 SelectBoolEvent(!state.value));
@@ -142,7 +142,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                           .newSecurityPin,
                                       hintText: appLocalization(context)
                                           .newSecurityPin,
-                                      suffix: InkWell(
+                                      suffixIcon: InkWell(
                                           onTap: () {
                                             newPinVisibilityBloc.add(
                                                 SelectBoolEvent(!state.value));
@@ -180,7 +180,7 @@ class _ChangeSecurityState extends State<ChangeSecurity> {
                                           .confirmSecurityPin,
                                       hintText: appLocalization(context)
                                           .confirmSecurityPin,
-                                      suffix: InkWell(
+                                      suffixIcon: InkWell(
                                           onTap: () {
                                             confirmPinVisibilityBloc.add(
                                                 SelectBoolEvent(!state.value));

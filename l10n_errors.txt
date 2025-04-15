@@ -1,7 +1,7 @@
 {
   "es": [
+    "deleteTxt",
     "tellUsMore",
-    "whatTypeOfMessage",
-    "deleteTxt"
+    "whatTypeOfMessage"
   ]
 }

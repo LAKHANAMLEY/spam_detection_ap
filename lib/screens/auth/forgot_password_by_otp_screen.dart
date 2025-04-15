@@ -112,7 +112,7 @@ class _ForgotPasswordMobileState extends State<ForgotPasswordMobile> {
                                           appLocalization(context).phoneNumber,
                                       labelText:
                                           appLocalization(context).phoneNumber,
-                                      suffix: Image.asset(
+                                      suffixIcon: Image.asset(
                                         IconConstants.icCallAdd,
                                         scale: 1.5,
                                       ),

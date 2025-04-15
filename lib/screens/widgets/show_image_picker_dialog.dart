@@ -1,42 +1,50 @@
-import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/lib.dart'; // Assuming lib.dart contains necessary imports like ImagePickerHelper, SelectionBloc, and SelectFileEvent
 
-Future<dynamic> showImagePickerDialog(
-    BuildContext context, SelectionBloc selectImageBloc) {
-  return showModalBottomSheet(
+Future<void> showImagePickerDialog(
+  BuildContext context,
+  SelectionBloc selectImageBloc,
+) async {
+  await showModalBottomSheet(
     context: context,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
     ),
     builder: (BuildContext context) {
+      final localizations = appLocalization(context);
+      final textTheme = Theme.of(context).textTheme;
+
       return Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              appLocalization(context).chooseOption,
-              style: Theme.of(context).textTheme.titleLarge,
+              localizations.chooseOption,
+              style: textTheme.titleLarge,
             ),
             const SizedBox(height: 16.0),
-            ListTile(
-              leading: const Icon(Icons.camera_alt, color: Colors.blue),
-              title: Text(appLocalization(context).takePhoto),
+            _buildImageOptionTile(
+              icon: Icons.camera_alt,
+              color: Colors.blue,
+              text: localizations.takePhoto,
               onTap: () async {
-                // Call your camera function here
-                ImagePickerHelper.takePhoto().then((file) {
+                final file = await ImagePickerHelper.takePhoto();
+                if (file != null) {
                   selectImageBloc.add(SelectFileEvent(file));
-                  Navigator.pop(context);
-                });
+                }
+                Navigator.pop(context);
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.photo_library, color: Colors.green),
-              title: Text(appLocalization(context).chooseGallery),
+            _buildImageOptionTile(
+              icon: Icons.photo_library,
+              color: Colors.green,
+              text: localizations.chooseGallery,
               onTap: () async {
-                ImagePickerHelper.chooseFromGallery().then((file) {
+                final file = await ImagePickerHelper.chooseFromGallery();
+                if (file != null) {
                   selectImageBloc.add(SelectFileEvent(file));
-                  Navigator.pop(context);
-                });
+                }
+                Navigator.pop(context);
               },
             ),
             const SizedBox(height: 8.0),
@@ -45,7 +53,7 @@ Future<dynamic> showImagePickerDialog(
                 Navigator.pop(context);
               },
               child: Text(
-                appLocalization(context).cancelText,
+                localizations.cancelText,
                 style: const TextStyle(color: Colors.red),
               ),
             ),
@@ -53,5 +61,18 @@ Future<dynamic> showImagePickerDialog(
         ),
       );
     },
+  );
+}
+
+Widget _buildImageOptionTile({
+  required IconData icon,
+  required Color color,
+  required String text,
+  required VoidCallback onTap,
+}) {
+  return ListTile(
+    leading: Icon(icon, color: color),
+    title: Text(text),
+    onTap: onTap,
   );
 }

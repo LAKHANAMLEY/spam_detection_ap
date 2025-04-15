@@ -344,17 +344,39 @@ import '../../globals/app_fonts.dart';
 import '../../globals/colors.dart';
 import '../../models/plan_list_model.dart';
 
+Color _darken(Color color, [double amount = .1]) {
+  assert(amount >= 0 && amount <= 1);
+
+  final hsl = HSLColor.fromColor(color);
+  final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+
+  return hslDark.toColor();
+}
+
+Color _lighten(Color color, [double amount = .1]) {
+  assert(amount >= 0 && amount <= 1);
+
+  final hsl = HSLColor.fromColor(color);
+  final hslLight = hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+
+  return hslLight.toColor();
+}
+
 class PlanListItem extends StatelessWidget {
   final Planslist plan;
 
   final int selectedTab;
   final void Function()? onTap;
+  final Color bgColor;
+  final Color color;
 
   const PlanListItem({
     super.key,
     required this.plan,
     required this.selectedTab,
     this.onTap,
+    required this.bgColor,
+    required this.color,
   });
 
   @override
@@ -365,11 +387,13 @@ class PlanListItem extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-            color: plan.isActive == 1
-                ? AppColor.yellowLightColor.withOpacity(0.9)
-                : plan.callProtection == "1"
-                    ? AppColor.blueLightColor
-                    : AppColor.redLight.withOpacity(0.9),
+            color: bgColor,
+            // color: plan.isActive == 1
+            //     ? AppColor.yellowLightColor.withOpacity(0.9)
+            //     : color,
+            // plan.callProtection == "1"
+            //     ? AppColor.blueLightColor
+            //     : AppColor.redLight.withOpacity(0.9),
 
             // border: Border.all(
             //   color: plan.isActive == 1 ? Colors.yellow : Colors.grey,
@@ -392,11 +416,12 @@ class PlanListItem extends StatelessWidget {
                     plan.title ?? "",
                     style: TextStyle(
                       fontSize: 20,
-                      color: plan.isActive == 1
-                          ? AppColor.decentYellow
-                          : plan.callProtection == "1"
-                              ? AppColor.darkBlue
-                              : AppColor.redLight,
+                      color: color,
+                      // color: plan.isActive == 1
+                      //     ? AppColor.decentYellow
+                      //     : plan.callProtection == "1"
+                      //         ? AppColor.darkBlue
+                      //         : AppColor.redLight,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -425,11 +450,11 @@ class PlanListItem extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: StyledText(
                 text:
-                    '<price>${plan.price}</price>/<validity>${plan.validity}</validity>',
+                    '<price>${plan.price}</price> / <validity>${plan.validity}</validity>',
                 tags: {
                   'price': StyledTextTag(
                     style: const TextStyle(
-                      fontSize: 22,
+                      fontSize: 30,
                       fontFamily: AppFont.fontFamily,
                       fontWeight: FontWeight.w600,
                       color: AppColor.grey,
@@ -437,7 +462,7 @@ class PlanListItem extends StatelessWidget {
                   ),
                   'validity': StyledTextTag(
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 12,
                       color: Colors.black87,
                     ),
                   ),
@@ -492,21 +517,26 @@ class PlanListItem extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         children: [
-          Icon(
-            isSelected ? Icons.check_circle : Icons.cancel,
-            color: plan.isActive == 1
-                ? AppColor.decentYellow.withOpacity(0.6)
-                : plan.callProtection == "1"
-                    ? AppColor.darkBlue.withOpacity(0.6)
-                    : AppColor.redLight,
-            //color: isSelected ? Colors.blue : Colors.redAccent,
-            size: 30,
+          Container(
+            padding: EdgeInsets.all(5),
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+            child: Icon(
+              isSelected ? Icons.check : Icons.clear,
+              color: Colors.white,
+              // color: plan.isActive == 1
+              //     ? AppColor.decentYellow.withOpacity(0.6)
+              //     : plan.callProtection == "1"
+              //         ? AppColor.darkBlue.withOpacity(0.6)
+              //         : AppColor.redLight,
+              //color: isSelected ? Colors.blue : Colors.redAccent,
+              size: 15,
+            ),
           ),
           const SizedBox(width: 8),
           Text(
             label,
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
               color: Color(0xff776969),
             ),

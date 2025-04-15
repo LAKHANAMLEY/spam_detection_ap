@@ -87,6 +87,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get alignQRCodeWithinFrameToScan => 'Align QR code within frame to scan';
 
   @override
+  String get all => 'All';
+
+  @override
   String get allSpamCalls => 'All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam.';
 
   @override
@@ -115,6 +118,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get anErrorOccurredDuringGoogleSignIn => 'An error occurred during Google Sign-In.';
+
+  @override
+  String get areYouWantDelete => 'Are you sure you want to delete';
 
   @override
   String get asPerDocument => 'As per document';
@@ -439,6 +445,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteStaffMember => 'Delete Staff Member';
+
+  @override
+  String get deleteTxt => 'Delete';
 
   @override
   String get deletedSuccessfully => 'Deleted successfully!';
@@ -2234,10 +2243,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get zip => 'Zip Code';
-
-  @override
-  String get areYouWantDelete => 'Are you sure you want to delete';
-
-  @override
-  String get deleteTxt => 'Delete';
 }

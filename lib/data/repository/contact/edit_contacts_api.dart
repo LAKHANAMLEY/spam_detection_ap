@@ -28,7 +28,7 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<AddContactResponse> editContact({
+Future<Response> editContact({
   required ContactData user,
   // required String fullName,
   // required String email,
@@ -44,13 +44,13 @@ Future<AddContactResponse> editContact({
       'email': user.email,
       'number_type': user.numberType,
       'country_code': user.countryCode,
-      // 'phone': contact.mobileNo,
-      'contacts_id': user.id
+      'phone': user.mobileNo,
+      // 'contacts_id': user.id
     },
   );
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
-    return AddContactResponse.fromJson(jsonData);
+    return Response.fromJson(jsonData);
   } else {
     throw Exception(response.body);
   }

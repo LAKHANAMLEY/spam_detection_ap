@@ -1,37 +1,30 @@
-import 'package:spam_delection_app/lib.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ImagePickerHelper {
-  static final _picker = ImagePicker();
+  static final ImagePicker _picker = ImagePicker();
 
-  static Future<XFile?> takePhoto() async {
+  static Future<XFile?> _pickImage(ImageSource source) async {
     try {
-      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-      if (photo != null) {
-        debugPrint("Photo taken: ${photo.path}");
-        return photo;
+      final XFile? pickedFile = await _picker.pickImage(source: source);
+      if (pickedFile != null) {
+        debugPrint("Image picked from $source: ${pickedFile.path}");
+        return pickedFile;
       } else {
+        debugPrint("No image selected from $source.");
         return null;
       }
     } catch (e) {
-      debugPrint("Error taking photo: $e");
+      debugPrint("Error picking image from $source: $e");
       return null;
     }
   }
 
+  static Future<XFile?> takePhoto() async {
+    return _pickImage(ImageSource.camera);
+  }
+
   static Future<XFile?> chooseFromGallery() async {
-    try {
-      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        debugPrint("Image selected: ${image.path}");
-        return image;
-      } else {
-        debugPrint("No image selected.");
-        return null;
-      }
-      // Handle the selected image
-    } catch (e) {
-      debugPrint("Error selecting image: $e");
-      return null;
-    }
+    return _pickImage(ImageSource.gallery);
   }
 }

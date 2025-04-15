@@ -221,7 +221,7 @@ class _LoginState extends State<Login> {
                                           controller: emailController,
                                           hintText: appLocalization(context)
                                               .emailAddress,
-                                          suffix: Image.asset(
+                                          suffixIcon: Image.asset(
                                             IconConstants.icEmailAdd,
                                             scale: 1.5,
                                           ),
@@ -257,7 +257,7 @@ class _LoginState extends State<Login> {
                                                   hintText:
                                                       appLocalization(context)
                                                           .password,
-                                                  suffix: InkWell(
+                                                  suffixIcon: InkWell(
                                                       onTap: () {
                                                         passwordVisibilityBloc
                                                             .add(SelectBoolEvent(
@@ -553,7 +553,7 @@ class _LoginState extends State<Login> {
                                                 labelText:
                                                     appLocalization(context)
                                                         .phoneNumber,
-                                                suffix: Image.asset(
+                                                suffixIcon: Image.asset(
                                                   IconConstants.icCallAdd,
                                                   scale: 1.5,
                                                 ),

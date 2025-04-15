@@ -86,7 +86,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                           controller: corporateIdController,
                           labelText: appLocalization(context).corporateID,
                           hintText: appLocalization(context).corporateID,
-                          suffix: Image.asset(
+                          suffixIcon: Image.asset(
                             IconConstants.icCorporateID,
                             scale: 3,
                           ),
@@ -104,7 +104,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                           controller: emailController,
                           hintText: appLocalization(context).emailAddress,
                           labelText: appLocalization(context).emailAddress,
-                          suffix: Image.asset(
+                          suffixIcon: Image.asset(
                             IconConstants.icFluentMail,
                             scale: 3,
                           ),
@@ -126,7 +126,7 @@ class _CorporateLoginState extends State<CorporateLogin> {
                                   obscureText: state.value,
                                   labelText: appLocalization(context).password,
                                   hintText: appLocalization(context).password,
-                                  suffix: InkWell(
+                                  suffixIcon: InkWell(
                                       onTap: () {
                                         passwordVisibilityBloc
                                             .add(SelectBoolEvent(!state.value));

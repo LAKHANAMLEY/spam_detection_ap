@@ -203,7 +203,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                                 .emailAddress,
                                             hintText: appLocalization(context)
                                                 .emailAddress,
-                                            suffix: Image.asset(
+                                            suffixIcon: Image.asset(
                                               IconConstants.icFluentMail,
                                               scale: 3,
                                             ),
@@ -287,7 +287,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                                   labelText:
                                                       appLocalization(context)
                                                           .phoneNumber,
-                                                  suffix: Image.asset(
+                                                  suffixIcon: Image.asset(
                                                     IconConstants.icCallAdd,
                                                     scale: 1.5,
                                                   ),

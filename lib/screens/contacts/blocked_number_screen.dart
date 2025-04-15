@@ -31,7 +31,7 @@ class _BlockedCallsState extends State<BlockedCalls> {
               child: CustomTextField(
                 readOnly: true,
                 hintText: appLocalization(context).addPhoneNumber,
-                suffix: Image.asset(
+                suffixIcon: Image.asset(
                   IconConstants.icAddPhone,
                   scale: 3,
                 ),
