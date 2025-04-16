@@ -80,7 +80,8 @@ class CallLogDBHelper {
 
   Future<List<CallLogData>> getAllCallLogs() async {
     Database db = await instance.database;
-    final List<Map<String, dynamic>> maps = await db.query(callLogTable);
+    final List<Map<String, dynamic>> maps =
+        await db.query(callLogTable, orderBy: "$callLogColumnCallTime DESC");
     return maps.map((map) => _callLogFromMap(map)).toList();
   }
 

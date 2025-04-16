@@ -9,6 +9,7 @@ Future<List<SmsMessage>> getDeviceSms() async {
   if (status.isGranted ?? false) {
     SmsQuery query = SmsQuery();
     var sms = await query.querySms(
+      count: 100,
       kinds: [SmsQueryKind.Inbox, SmsQueryKind.Sent],
     );
     // log("Device sms : " + jsonEncode(sms.map((e) => e.toMap).toList()));

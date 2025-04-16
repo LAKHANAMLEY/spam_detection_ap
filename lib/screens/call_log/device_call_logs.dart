@@ -464,7 +464,9 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                               return (filteredCallLogs
                                                           .isEmpty &&
                                                       searchController
-                                                          .text.isNotEmpty)
+                                                          .text.isNotEmpty &&
+                                                      searchController
+                                                          .text.isNumber)
                                                   ? SizedBox(
                                                       height: 80,
                                                       child: CallLogListItem(
@@ -552,16 +554,23 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
   }
 
   List<CallLogData> filter() {
-    filteredCallLogs = callLogs
-        .where((e) =>
-            ((e.name?.toLowerCase().contains(searchController.text) ?? false) ||
-                (e.mobileNo
-                        ?.toLowerCase()
-                        .contains(searchController.text.toLowerCase()) ??
-                    false)) &&
-            (e.callType?.toLowerCase().contains(filterBy.toLowerCase()) ??
-                false))
-        .toList();
+    final searchTextLower = searchController.text.toLowerCase();
+    final filterByLower = filterBy.toLowerCase();
+    if (filterByLower.isNotEmpty || searchTextLower.isNotEmpty) {
+      filteredCallLogs = callLogs.where((log) {
+        final nameMatch =
+            log.name?.toLowerCase().contains(searchTextLower) ?? false;
+        final mobileNoMatch =
+            log.mobileNo?.toLowerCase().contains(searchTextLower) ?? false;
+        final callTypeMatch =
+            log.callType?.toLowerCase().contains(filterByLower) ?? false;
+
+        return ((nameMatch || mobileNoMatch) && callTypeMatch);
+      }).toList();
+    } else {
+      filteredCallLogs = callLogs;
+    }
+
     return filteredCallLogs;
     // setState(() {});
   }

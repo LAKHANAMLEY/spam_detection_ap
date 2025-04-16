@@ -134,16 +134,37 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       // }
 
       syncedCallLogs.add(
+        // CallLogData(
+        //   id: serverLog?.id ?? address,
+        //   countryCode: serverLog?.countryCode,
+        //   name: serverLog?.name ?? localCallLogList.firstOrNull?.name,
+        //   mobileNo: serverLog?.mobileNo,
+        //   callDuration: serverLog?.callDuration?.toString(),
+        //   callDurations: serverLog?.callDurations.toString(),
+        //   callDurationUnit: "1",
+        //   callTime: serverLog?.callTime,
+        //   callType: serverLog?.callType,
+        //   simdisplayname: serverLog?.simdisplayname,
+        //   phoneaccountid: serverLog?.phoneaccountid,
+        //   contactListId: serverLog?.contactListId,
+        //   isBlocked: serverLog?.isBlocked,
+        //   isManually: serverLog?.isManually ?? "",
+        //   isSpam: serverLog?.isSpam,
+        //   markSpamByUser: serverLog?.markSpamByUser,
+        // ),
         CallLogData(
           id: serverLog?.id ?? address,
           countryCode: serverLog?.countryCode,
-          name: serverLog?.name ?? localCallLogList.firstOrNull?.name,
+          name: localCallLogList.firstOrNull?.name ??
+              serverLog?.name, // priority local
           mobileNo: serverLog?.mobileNo,
           callDuration: serverLog?.callDuration?.toString(),
           callDurations: serverLog?.callDurations.toString(),
           callDurationUnit: "1",
-          callTime: serverLog?.callTime,
-          callType: serverLog?.callType,
+          callTime: localCallLogList.firstOrNull?.timestamp?.toDateTime() ??
+              serverLog?.callTime,
+          callType: localCallLogList.firstOrNull?.callType?.name ??
+              serverLog?.callType,
           simdisplayname: serverLog?.simdisplayname,
           phoneaccountid: serverLog?.phoneaccountid,
           contactListId: serverLog?.contactListId,
@@ -168,8 +189,31 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     // Updated event and state types
     emit(CallLogDBLoading()); // Updated state name
     try {
-      Iterable<CallLogEntry> deviceCallLogs = await getDeviceCallLogs();
-      log("Call logs (Device) : ${deviceCallLogs.map((e) => e).toList()}");
+      Iterable<CallLogEntry> deviceCallLogs = await getDeviceCallLogs(
+        dateTimeFrom:
+            DateTime.now().subtract(Duration(days: 30 * 6)), //6 months
+        dateTimeTo: DateTime.now(),
+      );
+
+      ///here we are emitting the local data
+      emit(CallLogDBLoaded(deviceCallLogs
+          .map((e) => CallLogData(
+                name: e.name,
+                countryCode: e.number?.separatePhoneAndPhoneCode().phoneCode,
+                mobileNo: e.number?.separatePhoneAndPhoneCode().phone,
+                callType: e.callType?.name,
+                callDuration: e.duration.toString(),
+                callDurations: e.duration.toString(),
+                callDurationUnit: "1",
+                callTime: e.timestamp?.toDateTime(),
+                phoneaccountid: e.phoneAccountId,
+                simdisplayname: e.simDisplayName,
+                isManually: "1",
+
+                ///rest of the things we weill update from server after sync
+              ))
+          .toList()));
+      // log("Call logs (Device) : ${deviceCallLogs.map((e) => e).toList()}");
       await syncCallLog(callLogs: deviceCallLogs.toList());
       var res = await getCallLogs();
       var callLogsData = res.callloglist ?? [];
@@ -236,7 +280,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
         }
       }
       // }
-
+      // emit(CallLogDBLoading());
       final storedCallLogs = await _databaseHelper.getAllCallLogs();
       emit(CallLogDBLoaded(storedCallLogs)); // Updated state name
     } catch (e) {

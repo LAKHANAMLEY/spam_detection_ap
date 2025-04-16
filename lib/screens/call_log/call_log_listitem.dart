@@ -55,7 +55,7 @@ class CallLogListItem extends StatelessWidget {
                   ? callLog.name ?? ""
                   : callLog.countryCode?.isNotEmpty ?? false
                       ? "+${callLog.countryCode} ${callLog.mobileNo ?? ""}"
-                      : callLog.mobileNo ?? "",
+                      : callLog.mobileNo ?? callLog.id ?? "",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: textTheme(context).titleMedium,
@@ -77,11 +77,12 @@ class CallLogListItem extends StatelessWidget {
               style: textTheme(context).bodySmall?.copyWith(color: Colors.red),
             )
           else ...[
-            Icon(
-              getCallTypeIcon(callLog.callType),
-              color: getCallTypeColor(callLog.callType),
-              size: 15,
-            ),
+            if (callLog.callType?.isNotEmpty ?? false)
+              Icon(
+                getCallTypeIcon(callLog.callType),
+                color: getCallTypeColor(callLog.callType),
+                size: 15,
+              ),
             5.width(),
             Text(
               callLog.callType ?? "",
@@ -90,13 +91,13 @@ class CallLogListItem extends StatelessWidget {
                   ?.copyWith(color: getCallTypeColor(callLog.callType)),
             ),
           ],
-          const Circle(),
+          if (callLog.callDuration != null) const Circle(),
           // 2.width(),
           Text(
             callLog.callDuration?.convertInMinSec() ?? "",
             style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
           ),
-          const Circle(),
+          if (callLog.callTime != null) const Circle(),
 
           Text(
             callLog.callTime?.formatRelativeDateTime() ?? "",

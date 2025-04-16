@@ -1,6 +1,7 @@
 import 'package:spam_delection_app/lib.dart';
 
 extension StringExt on String {
+  bool get isNumber => num.tryParse(this) != null;
   String splitFirstBy(String pattern) => split(pattern).first;
 
   PhoneData separatePhoneAndPhoneCode() {

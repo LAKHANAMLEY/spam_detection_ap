@@ -16,7 +16,7 @@ Future<List<CallLogEntry>> getDeviceCallLogs({
     Iterable<CallLogEntry> entries = await CallLog.query(
       number: number,
       dateTimeFrom: dateTimeFrom,
-      dateTimeTo: dateTimeFrom,
+      dateTimeTo: dateTimeTo,
     );
     return entries.toList();
   } else {

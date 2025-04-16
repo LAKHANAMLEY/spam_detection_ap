@@ -191,7 +191,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                               .read<MessageDBBloc>()
                               .add(SyncMessagesWithServer());
                         },
-                        child: Text("Load SMS logs"),
+                        child: Text(appLocalization(context).sync),
                       ),
                     );
                   }
@@ -199,20 +199,23 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   //   var messages = state.smsLogs;
                   return BlocBuilder(
                     bloc: searchBloc,
-                    builder: (context, state) {
-                      if (state is SelectStringState) {
-                        if (filteredMessages.isEmpty) {
-                          return Center(
-                            child: Text(appLocalization(context).noMessages),
-                          );
-                        }
-                        return ListView.builder(
-                          itemCount: filteredMessages.length,
-                          itemBuilder: (context, index) =>
-                              MessageListItem(sms: filteredMessages[index]),
+                    builder: (context, searchState) {
+                      // if (state is SelectStringState) {
+                      if (filteredMessages.isEmpty &&
+                          state is MessageDBLoading) {
+                        return Loader();
+                      } else if (filteredMessages.isEmpty) {
+                        return Center(
+                          child: Text(appLocalization(context).noMessages),
                         );
                       }
-                      return const Loader();
+                      return ListView.builder(
+                        itemCount: filteredMessages.length,
+                        itemBuilder: (context, index) =>
+                            MessageListItem(sms: filteredMessages[index]),
+                      );
+                      // }
+                      // return const Loader();
                     },
                   );
                   // }

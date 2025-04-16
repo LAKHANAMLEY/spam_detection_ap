@@ -309,11 +309,10 @@ class SmsLogDBHandler {
 
   Future<List<SmsDetail>> _getSmsDetailsForLogId(
       Database db, String logId) async {
-    final List<Map<String, dynamic>> detailMaps = await db.query(
-      tableSmsDetail,
-      where: '$columnLogIdFk = ?',
-      whereArgs: [logId],
-    );
+    final List<Map<String, dynamic>> detailMaps = await db.query(tableSmsDetail,
+        where: '$columnLogIdFk = ?',
+        whereArgs: [logId],
+        orderBy: "$columnSendReceiveDatetime DESC");
     return detailMaps
         .map((detailMap) => SmsDetail(
               body: detailMap[columnBody] as String?,

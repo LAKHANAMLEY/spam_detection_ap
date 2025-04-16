@@ -136,7 +136,9 @@ class CallLogData {
             : DateTime.tryParse(json["call_time"]),
         callDuration: json["call_duration"],
         callDurationUnit: json["call_duration_unit"],
-        contactListId: json["contact_list_id"],
+        contactListId: json["contact_list_id"] is int
+            ? json["contact_list_id"].toString()
+            : json["contact_list_id"],
         callDurations: json["call_durations"],
         isSpam: json["is_spam"],
         isBlocked: json["is_blocked"],

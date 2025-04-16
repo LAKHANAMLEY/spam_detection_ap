@@ -39,7 +39,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
     _phoneStateListener();
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     handleAppLifeCycle();
-    setDefaultSMSApp(); // Consider when this should be called
+    setDefaultSMSApp().whenComplete(() {
+      setDefaultCallingApp();
+    });
   }
 
   @override
@@ -84,6 +86,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               callLogEntry: CallLogEntry(
                 number: state.number,
                 duration: state.duration?.inSeconds ?? 0,
+                timestamp: DateTime.now().millisecondsSinceEpoch,
                 callType: getCallLogType(getCallTypeByPhoneState(state)),
               ),
             ));
@@ -102,12 +105,21 @@ class _BottomNavigationState extends State<BottomNavigation> {
   }
 
   static const _platform = MethodChannel("com.broadlink.protect/chat");
+  static const _platformCall = MethodChannel("com.broadlink.protect/call");
 
   Future<void> setDefaultSMSApp() async {
     try {
       await _platform.invokeMethod('setDefaultSms');
     } on PlatformException catch (e) {
       print("Error setting default SMS app: $e");
+    }
+  }
+
+  Future<void> setDefaultCallingApp() async {
+    try {
+      await _platformCall.invokeMethod('requestDefaultDialer');
+    } on PlatformException catch (e) {
+      print("Error setting default Calling app: $e");
     }
   }
 

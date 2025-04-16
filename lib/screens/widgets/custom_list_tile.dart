@@ -32,14 +32,15 @@ class CustomListTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (title != null) title!,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        (subtitle != null) ? subtitle! : const Spacer(),
-                        // 5.width(),
-                        // if (trailing != null) trailing!
-                      ],
-                    ),
+                    if (subtitle != null)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          (subtitle != null) ? subtitle! : const Spacer(),
+                          // 5.width(),
+                          // if (trailing != null) trailing!
+                        ],
+                      ),
                   ],
                 ),
               ),

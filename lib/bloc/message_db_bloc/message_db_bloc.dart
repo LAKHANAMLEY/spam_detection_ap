@@ -113,17 +113,22 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
       // Add local SMS details
       smsDetails.addAll(localSmsList.map((sms) => SmsDetail(
-            id: sms.id?.toString(),
+            id: sms.address ?? serverLog?.address,
             deviceMessageId: sms.id?.toString(),
-            address: sms.address,
+            address: serverLog?.address ?? sms.address,
             countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
             body: sms.body,
             date: sms.date,
             messageKind: sms.kind?.name,
             messageState: sms.state?.name,
-            name: sms.sender,
+            name: serverLog?.name ?? sms.sender,
             threadId: sms.threadId?.toString(),
             sendreceiveDatetime: sms.dateSent,
+            isSpam: serverLog?.isMarkSpam.toString(),
+            isRead: serverLog?.smsDetails?.firstOrNull?.isRead,
+            queryKind: serverLog?.smsDetails?.firstOrNull?.queryKind,
+            score: serverLog?.smsDetails?.firstOrNull?.score,
+            spamMessage: serverLog?.smsDetails?.firstOrNull?.spamMessage,
           )));
 
       // Add server SMS details if available (and if a local message with this address exists)
@@ -133,13 +138,13 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
       syncedSmsLogs.add(
         SmsLog(
-          id: serverLog?.id ?? address,
-          address: address,
+          id: address,
+          address: serverLog?.address ?? address,
           countryCode: serverLog?.countryCode,
           unreadReceivedSms: serverLog?.unreadReceivedSms,
           name: serverLog?.name ?? localSmsList.firstOrNull?.sender,
           isMarkSpam: serverLog?.isMarkSpam,
-          smsDetails: smsDetails.isNotEmpty ? smsDetails : null,
+          smsDetails: smsDetails,
         ),
       );
 
@@ -158,6 +163,24 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     try {
       ///1. Get device messages
       final localSmsLogs = await getDeviceSms();
+
+      emit(MessageDBLoaded(localSmsLogs
+          .map((e) => SmsLog(address: e.address, name: e.sender, smsDetails: [
+                SmsDetail(
+                  address: e.address?.separatePhoneAndPhoneCode().phone,
+                  countryCode: e.address?.separatePhoneAndPhoneCode().phoneCode,
+                  body: e.body,
+                  id: e.address,
+                  deviceMessageId: e.id.toString(),
+                  date: e.date,
+                  messageKind: e.kind?.name,
+                  messageState: e.state?.name,
+                  name: e.sender,
+                  threadId: e.threadId?.toString(),
+                  sendreceiveDatetime: e.dateSent,
+                )
+              ]))
+          .toList()));
 
       ///2. Sync with server
       await syncSmsWithServer(smsLogs: localSmsLogs);
