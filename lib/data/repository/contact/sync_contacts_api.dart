@@ -98,7 +98,7 @@ Future<ContactListResponse> syncContacts(List<Contact> contacts) async {
 //     //         : "";
 //   }
 
-  log(request.body);
+  // log(request.body);
 
   request.headers.addAll(headers);
 
@@ -107,6 +107,7 @@ Future<ContactListResponse> syncContacts(List<Contact> contacts) async {
 
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
+    log("Contact Synced");
     return ContactListResponse.fromJson(jsonData);
   } else {
     throw Exception(response.body);

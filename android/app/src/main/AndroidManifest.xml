@@ -105,12 +105,14 @@
             </intent-filter>
         </service>
 
-        <receiver android:name=".SmsReceiver" android:permission="android.permission.BROADCAST_SMS"
+        <!-- <receiver android:name=".SmsReceiver"
+        android:permission="android.permission.BROADCAST_SMS"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_DELIVER" />
             </intent-filter>
-        </receiver>
+        </receiver> -->
+
         <!-- <receiver android:name=".IncomingSmsReceiver"
             android:permission="android.permission.BROADCAST_SMS" android:exported="true">
             <intent-filter>
@@ -127,7 +129,8 @@
             </intent-filter>
         </receiver>
         <!-- Activity that allows the user to send new SMS/MMS messages -->
-        <activity android:name=".ComposeSmsActivity" android:exported="true">
+        <activity android:name=".ComposeSmsActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <action android:name="android.intent.action.SENDTO" />
@@ -141,7 +144,8 @@
         </activity>
         <!-- Service that delivers messages from the phone "quick response" -->
         <service android:name=".HeadlessSmsSendService"
-            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE" android:exported="true">
+            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
                 <category android:name="android.intent.category.DEFAULT" />

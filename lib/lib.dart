@@ -260,7 +260,6 @@ export 'utils/api_constants/api_uri_constants.dart';
 export 'utils/api_constants/exception_handling.dart';
 export 'utils/api_constants/http_status_codes.dart';
 export 'utils/api_keys/api_key_constants.dart';
-export 'utils/functions/app_lifecycle.dart';
 export 'utils/functions/get_and_set_default_country.dart';
 export 'utils/functions/get_device_token.dart';
 export 'utils/functions/helpers.dart';

@@ -25,7 +25,7 @@ Future<SyncCallManuallyResponse> syncCallLogManually(
     'call_duration_unit': '1' //1 sec 2 min 3 horus
     // });
   };
-  log("${ApiUrlConstants.syncCallLogManually} ${jsonEncode(body)}");
+  // log("${ApiUrlConstants.syncCallLogManually} ${jsonEncode(body)}");
 
   var request = http.MultipartRequest(
       'POST',
@@ -42,7 +42,8 @@ Future<SyncCallManuallyResponse> syncCallLogManually(
   var response = await http.Response.fromStream(streamedResponse);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
-    log(response.body);
+    // log(response.body);
+    log("Call Log Synced Manually");
     return SyncCallManuallyResponse.fromJson(jsonData);
   } else {
     throw Exception(response.body);

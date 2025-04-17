@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class Login extends StatefulWidget {
@@ -13,17 +12,11 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool _isRememberMeChecked = false;
 
-  var selectPhoneBloc =
+  var selectPhoneCodeBloc =
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
   CountryData? selectedPhoneCodeCountry;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  // Save the state to SharedPreferences
-  void _saveRememberMeState(bool value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('rememberMe', value);
-  }
 
   Future<void> _verifyPhoneNumber() async {
     await _auth.verifyPhoneNumber(
@@ -62,7 +55,6 @@ class _LoginState extends State<Login> {
   }
 
   final TextEditingController phoneController = TextEditingController(); //#2
-  final TextEditingController countryController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -71,6 +63,27 @@ class _LoginState extends State<Login> {
   var passwordVisibilityBloc = SelectionBloc(SelectBoolState(true));
 
   var selectTabBloc = SelectionBloc(SelectIntState(0));
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((d) {
+      SharedPref.getIsRemember().then((value) async {
+        if (value) {
+          var phoneCode = await SharedPref.getCountryCode();
+          selectedPhoneCodeCountry = getCountryByNameOrDialCode(
+              dialCode: phoneCode.isNotEmpty
+                  ? phoneCode
+                  : AppConstants.selectedCountry?.phonecode);
+          selectPhoneCodeBloc.add(SelectCountryEvent(selectedPhoneCodeCountry));
+          phoneController.text = await SharedPref.getPhone();
+          emailController.text = await SharedPref.getEmail();
+          passwordController.text = await SharedPref.getPassword();
+          _isRememberMeChecked = await SharedPref.getIsRemember();
+        }
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -298,37 +311,61 @@ class _LoginState extends State<Login> {
                                           children: [
                                             Flexible(
                                               flex: 2,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Checkbox(
-                                                    value: _isRememberMeChecked,
-                                                    onChanged: (bool? value) {
-                                                      setState(() {
-                                                        _isRememberMeChecked =
-                                                            value ?? false;
-                                                        _saveRememberMeState(
-                                                            _isRememberMeChecked);
-                                                      });
-                                                    },
-                                                  ),
-                                                  Text(
-                                                    appLocalization(context)
-                                                        .rememberMe,
-                                                    style: const TextStyle(
-                                                      color: AppColor
-                                                          .decentBrownColor,
-                                                      fontFamily:
-                                                          AppFont.fontFamily,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                      fontSize: 16,
+                                              child: InkWell(
+                                                onTap: () {
+                                                  setState(() {
+                                                    _isRememberMeChecked =
+                                                        !_isRememberMeChecked;
+                                                    SharedPref.saveRememberMeData(
+                                                        _isRememberMeChecked,
+                                                        emailController.text,
+                                                        passwordController.text,
+                                                        phoneController.text,
+                                                        selectedPhoneCodeCountry
+                                                            ?.phonecode);
+                                                  });
+                                                },
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Checkbox(
+                                                      value:
+                                                          _isRememberMeChecked,
+                                                      onChanged: (bool? value) {
+                                                        setState(() {
+                                                          _isRememberMeChecked =
+                                                              value ?? false;
+                                                          SharedPref.saveRememberMeData(
+                                                              _isRememberMeChecked,
+                                                              emailController
+                                                                  .text,
+                                                              passwordController
+                                                                  .text,
+                                                              phoneController
+                                                                  .text,
+                                                              selectedPhoneCodeCountry
+                                                                  ?.phonecode);
+                                                        });
+                                                      },
                                                     ),
-                                                  ),
-                                                ],
+                                                    Text(
+                                                      appLocalization(context)
+                                                          .rememberMe,
+                                                      style: const TextStyle(
+                                                        color: AppColor
+                                                            .decentBrownColor,
+                                                        fontFamily:
+                                                            AppFont.fontFamily,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        fontSize: 16,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                             Flexible(
@@ -528,7 +565,7 @@ class _LoginState extends State<Login> {
                                         padding: const EdgeInsets.only(
                                             left: 18, right: 18),
                                         child: BlocConsumer(
-                                            bloc: selectPhoneBloc,
+                                            bloc: selectPhoneCodeBloc,
                                             listener: (context, state) {
                                               if (state is SelectCountryState) {
                                                 selectedPhoneCodeCountry =
@@ -558,7 +595,7 @@ class _LoginState extends State<Login> {
                                                   scale: 1.5,
                                                 ),
                                                 prefix: CountryPhoneCodePrefix(
-                                                  bloc: selectPhoneBloc,
+                                                  bloc: selectPhoneCodeBloc,
                                                 ),
                                                 validator: (p0) {
                                                   if (p0?.isEmpty ?? true) {

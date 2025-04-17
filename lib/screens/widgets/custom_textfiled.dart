@@ -89,11 +89,11 @@ class CustomTextField extends StatelessWidget {
                   obscureText: obscureText,
                   initialValue: initialValue,
                   maxLines: maxLines,
-                  style: style ??
-                      const TextStyle().copyWith(
-                        color: isDarkMode ? Colors.black : Colors.black,
-                        height: 1,
-                      ),
+                  // style: style ??
+                  //     const TextStyle().copyWith(
+                  //       color: isDarkMode ? Colors.black : Colors.black,
+                  //       height: 1,
+                  //     ),
                   textAlign: textAlign,
                   decoration: InputDecoration(
                       fillColor: AppColor.whiteLight.withOpacity(0.2),
@@ -114,11 +114,11 @@ class CustomTextField extends StatelessWidget {
                         fontFamily: AppFont.fontFamily,
                         fontWeight: FontWeight.normal,
                       ),
-                      errorStyle: const TextStyle(
-                        color: Colors.red,
-                        height: 1,
-                        inherit: false,
-                      ),
+                      // errorStyle: const TextStyle(
+                      //   color: Colors.red,
+                      //   height: 1,
+                      //   inherit: false,
+                      // ),
                       // fillColor: Colors.white,
                       // filled: isNewDesign ? true : false,
                       // suffix: suffix,

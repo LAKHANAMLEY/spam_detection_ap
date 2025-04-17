@@ -8,6 +8,11 @@ class StartListeningSms extends SmsEvent {
   List<Object?> get props => [];
 }
 
+class CancelSmsListeningStream extends SmsEvent {
+  @override
+  List<Object?> get props => [];
+}
+
 class SmsReceived extends SmsEvent {
   final SmsMessage message;
 

@@ -89,8 +89,9 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     }
   }
 
-  List<CallLogData> mouldCallLogEntryAsCallLogData(
-      List<CallLogEntry> localCallLogs, List<CallLogData> serverCallLogs) {
+  Map<String, List<CallLogEntry>> getGroupedLocalCallLogs(
+    List<CallLogEntry> localCallLogs,
+  ) {
     Map<String, List<CallLogEntry>> groupedLocalCallLogs = {};
     for (var log in localCallLogs) {
       final address = log.number;
@@ -98,7 +99,13 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
         groupedLocalCallLogs.putIfAbsent(address, () => []).add(log);
       }
     }
+    return groupedLocalCallLogs;
+  }
 
+  List<CallLogData> mouldCallLogEntryAsCallLogData(
+      Map<String, List<CallLogEntry>> groupedLocalCallLogs,
+      List<CallLogData> serverCallLogs,
+      Emitter<CallLogDBState> emit) {
     Map<String, CallLogData> serverMessagesMap = {
       for (var msg in serverCallLogs)
         (msg.countryCode?.isNotEmpty ?? false
@@ -155,8 +162,9 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
         CallLogData(
           id: serverLog?.id ?? address,
           countryCode: serverLog?.countryCode,
-          name: localCallLogList.firstOrNull?.name ??
-              serverLog?.name, // priority local
+          name: localCallLogList.firstOrNull?.name?.isNotEmpty ?? false
+              ? localCallLogList.firstOrNull?.name
+              : serverLog?.name, // priority local
           mobileNo: serverLog?.mobileNo,
           callDuration: serverLog?.callDuration?.toString(),
           callDurations: serverLog?.callDurations.toString(),
@@ -189,39 +197,43 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     // Updated event and state types
     emit(CallLogDBLoading()); // Updated state name
     try {
-      Iterable<CallLogEntry> deviceCallLogs = await getDeviceCallLogs(
+      List<CallLogEntry> deviceCallLogs = await getDeviceCallLogs(
         dateTimeFrom:
             DateTime.now().subtract(Duration(days: 30 * 6)), //6 months
         dateTimeTo: DateTime.now(),
       );
 
-      ///here we are emitting the local data
-      emit(CallLogDBLoaded(deviceCallLogs
-          .map((e) => CallLogData(
-                name: e.name,
-                countryCode: e.number?.separatePhoneAndPhoneCode().phoneCode,
-                mobileNo: e.number?.separatePhoneAndPhoneCode().phone,
-                callType: e.callType?.name,
-                callDuration: e.duration.toString(),
-                callDurations: e.duration.toString(),
-                callDurationUnit: "1",
-                callTime: e.timestamp?.toDateTime(),
-                phoneaccountid: e.phoneAccountId,
-                simdisplayname: e.simDisplayName,
-                isManually: "1",
+      Map<String, List<CallLogEntry>> groupedLocalCallLogs =
+          getGroupedLocalCallLogs(deviceCallLogs);
 
-                ///rest of the things we weill update from server after sync
-              ))
-          .toList()));
-      // log("Call logs (Device) : ${deviceCallLogs.map((e) => e).toList()}");
+      ///here we are emitting the local data
+      emit(CallLogDBLoaded(groupedLocalCallLogs.keys.map((key) {
+        var e = groupedLocalCallLogs[key]!.first;
+        return CallLogData(
+          name: e.name,
+          countryCode: e.number?.separatePhoneAndPhoneCode().phoneCode,
+          mobileNo: e.number?.separatePhoneAndPhoneCode().phone,
+          callType: e.callType?.name,
+          callDuration: e.duration.toString(),
+          callDurations: e.duration.toString(),
+          callDurationUnit: "1",
+          callTime: e.timestamp?.toDateTime(),
+          phoneaccountid: e.phoneAccountId,
+          simdisplayname: e.simDisplayName,
+          isManually: "1",
+
+          ///rest of the things we weill update from server after sync
+        );
+      }).toList()));
+
       await syncCallLog(callLogs: deviceCallLogs.toList());
       var res = await getCallLogs();
       var callLogsData = res.callloglist ?? [];
 
-      var mouldedLogs =
-          mouldCallLogEntryAsCallLogData(deviceCallLogs.toList(), callLogsData);
+      var mouldedLogs = mouldCallLogEntryAsCallLogData(
+          groupedLocalCallLogs, callLogsData, emit);
 
-      log("Moulded call logs : ${mouldedLogs.map((e) => e.toJson()).toList()}");
+      // log("Moulded call logs : ${mouldedLogs.map((e) => e.toJson()).toList()}");
 
       for (final callLog in mouldedLogs) {
         final existingCallLog = await _databaseHelper.getCallLog(callLog.id!);
@@ -234,7 +246,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
 
       final storedCallLogs = await _databaseHelper.getAllCallLogs();
 
-      log("Call logs (stored in DB) : ${mouldedLogs.map((e) => e.toJson()).toList()}");
+      // log("Call logs (stored in DB) : ${mouldedLogs.map((e) => e.toJson()).toList()}");
 
       emit(CallLogDBLoaded(storedCallLogs)); // Updated state name
     } catch (e) {

@@ -37,7 +37,7 @@ Future<Response> syncSmsWithServer({required List<SmsMessage> smsLogs}) async {
     // });
   }
 
-  log("${ApiUrlConstants.syncSms}: ${jsonEncode(body)}");
+  // log("${ApiUrlConstants.syncSms}: ${jsonEncode(body)}");
 
   // var request = http.MultipartRequest(
   //     'POST',
@@ -58,7 +58,9 @@ Future<Response> syncSmsWithServer({required List<SmsMessage> smsLogs}) async {
   var response = await http.Response.fromStream(streamedResponse);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
-    log(jsonEncode(jsonData));
+    // log(jsonEncode(jsonData));
+    log("Sms Log Synced");
+
     return Response.fromJson(jsonData);
   } else {
     throw Exception(response.body);

@@ -20,6 +20,9 @@ class _MessagesScreenState extends State<MessagesScreen> {
   @override
   void initState() {
     // messagesBloc.add(SmsListEvent());
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   context.read<SmsBloc>().add(StartListeningSms());
+    // });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<MessageDBBloc>().add(GetAllSmsFromDB());
     });
@@ -38,16 +41,18 @@ class _MessagesScreenState extends State<MessagesScreen> {
           if (state is NewSmsReceived) {
             log("SMS received");
             // messagesBloc.add(GetDeviceMessagesEvent());
-            context
-                .read<MessageDBBloc>()
-                .add(SyncChangedMessageWithServer(smsMessage: state.message));
+            // context
+            //     .read<MessageDBBloc>()
+            //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
+            context.read<MessageDBBloc>().add(SyncMessagesWithServer());
           }
           if (state is NewSmsSent) {
             log("SMS delivered");
             // messagesBloc.add(GetDeviceMessagesEvent());
-            context
-                .read<MessageDBBloc>()
-                .add(SyncChangedMessageWithServer(smsMessage: state.message));
+            // context
+            //     .read<MessageDBBloc>()
+            //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
+            context.read<MessageDBBloc>().add(SyncMessagesWithServer());
           }
         },
         child: Column(

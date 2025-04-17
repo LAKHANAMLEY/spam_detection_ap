@@ -1,3 +1,6 @@
+import 'package:permission_handler/permission_handler.dart';
+import 'package:spam_delection_app/bloc/permission_bloc/permission_bloc.dart';
+import 'package:spam_delection_app/bloc/permission_bloc/permission_bloc_event.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class Splash extends StatefulWidget {
@@ -11,6 +14,13 @@ class SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
+    context.read<PermissionBloc>().add(RequestMultiplePermissionsEvent([
+          Permission.phone,
+          Permission.contacts,
+          Permission.sms,
+          Permission.notification,
+          Permission.systemAlertWindow,
+        ]));
     getAndSetDefaultCountry();
     SharedPref.getIsLogin().then((isLogin) {
       Future.delayed(

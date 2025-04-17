@@ -3,6 +3,9 @@ import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
+import 'package:spam_delection_app/bloc/permission_bloc/permission_bloc.dart';
+import 'package:spam_delection_app/bloc/permission_bloc/permission_bloc_event.dart';
+import 'package:spam_delection_app/bloc/permission_bloc/permission_bloc_state.dart';
 import 'package:spam_delection_app/lib.dart'; // Assuming this imports necessary constants and extensions
 // import 'package:async/async.dart'; // If you use locks
 
@@ -35,7 +38,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   void initState() {
     super.initState();
-    _syncInitialData();
+    // WidgetsBinding.instance.addObserver(this);
+    _syncInitialData(context);
     _phoneStateListener();
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     handleAppLifeCycle();
@@ -44,44 +48,103 @@ class _BottomNavigationState extends State<BottomNavigation> {
     });
   }
 
+  // Future<void> _checkUpdatedPermissions() async {
+  //   final statuses = await <Permission>[
+  //     Permission.contacts,
+  //     Permission.sms,
+  //     Permission.systemAlertWindow,
+  //     Permission.notification,
+  //     Permission.camera,
+  //     Permission.photos,
+  //     Permission.storage,
+  //   ].request(); // Use .status to check the current state
+
+  //   statuses.forEach((permission, status) {
+  //     log('Updated $permission: $status');
+  //     if (status.isGranted) {
+  //       if (permission == Permission.phone) {
+  //         context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+  //       }
+  //       if (permission == Permission.contacts) {
+  //         context.read<ContactDBBloc>().add(SyncDBContacts());
+  //       }
+  //       if (permission == Permission.sms) {
+  //         context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+  //       }
+  //     } else if (status.isDenied) {
+  //     } else if (status.isPermanentlyDenied) {
+  //       // Permission is still permanently denied, maybe show a message again
+  //     }
+  //   });
+  // }
+
+  handleAppLifeCycle() {
+    // how to get in flutter user is online and offline
+    AppLifecycleListener(
+      onResume: () {
+        _syncInitialData(context);
+        userOnlineOfflineStatusBloc
+            .add(SetUserOnlineOfflineEvent(isOnline: "1"));
+      },
+      onInactive: () {
+        permissionStreamSubscription?.cancel();
+        userOnlineOfflineStatusBloc
+            .add(SetUserOnlineOfflineEvent(isOnline: "0"));
+      },
+    );
+  }
+
   @override
   void dispose() {
+    // WidgetsBinding.instance.removeObserver(this);
+    permissionStreamSubscription?.cancel();
+    context.read<SmsBloc>().add(CancelSmsListeningStream());
     _phoneStateStreamSubs?.cancel();
     super.dispose();
   }
 
-  Future<void> _syncInitialData() async {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final permissions = await requestMultiplePermissions();
-      if (mounted) {
-        if (permissions[Permission.contacts]?.isGranted == true) {
-          context.read<ContactDBBloc>().add(SyncDBContacts());
+  Future<void> _syncInitialData(BuildContext context) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<PermissionBloc>().add(GetMultiplePermissionsStatusEvent([
+            Permission.phone,
+            Permission.contacts,
+            Permission.sms,
+            Permission.notification,
+            Permission.systemAlertWindow,
+          ]));
+    });
+
+    permissionStreamSubscription =
+        context.read<PermissionBloc>().stream.listen((state) {
+      if (state is MultiplePermissionsStatusLoadedState) {
+        if (mounted) {
+          if (state.statuses[Permission.contacts] == PermissionStatus.granted) {
+            context.read<ContactDBBloc>().add(SyncDBContacts());
+          }
+          if (state.statuses[Permission.phone] == PermissionStatus.granted) {
+            context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+          }
+          if (state.statuses[Permission.sms] == PermissionStatus.granted) {
+            context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+          }
+          if (state.statuses[Permission.notification] ==
+              PermissionStatus.granted) {
+            firebase(context);
+          }
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.read<SmsBloc>().add(StartListeningSms());
+          });
+        } else {
+          log("Mounted : $mounted");
         }
-        if (permissions[Permission.phone]?.isGranted == true) {
-          context.read<CallLogDBBloc>().add(SyncDBCallLogs());
-        }
-        if (permissions[Permission.sms]?.isGranted == true) {
-          context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-        }
-        if (permissions[Permission.notification]?.isGranted == true) {
-          firebase(context);
-        }
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          context.read<SmsBloc>().add(StartListeningSms());
-        });
-      } else {
-        log("Mounted : $mounted");
       }
     });
   }
-
-  bool _isProcessingCall = false;
 
   void _phoneStateListener() {
     _phoneStateStreamSubs = PhoneState.stream.listen((state) async {
       if (state.status != PhoneStateStatus.NOTHING &&
           state.number?.isNotEmpty == true) {
-        _isProcessingCall = true;
         context.read<CallLogDBBloc>().add(SyncManuallyDBCallLog(
               callLogEntry: CallLogEntry(
                 number: state.number,
@@ -98,14 +161,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
         // You might need a way to reset _isProcessingCall when the call ends
         // This might involve listening for a specific PhoneStateStatus (e.g., NOTHING)
         // or using a timer.
-      } else if (state.status == PhoneStateStatus.NOTHING) {
-        _isProcessingCall = false; // Reset when call ends
-      }
+      } else if (state.status == PhoneStateStatus.NOTHING) {}
     });
   }
 
   static const _platform = MethodChannel("com.broadlink.protect/chat");
   static const _platformCall = MethodChannel("com.broadlink.protect/call");
+
+  StreamSubscription<PermissionState>? permissionStreamSubscription;
 
   Future<void> setDefaultSMSApp() async {
     try {

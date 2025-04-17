@@ -16,6 +16,7 @@ var notificationListBloc = ApiBloc(ApiBlocInitialState());
 // final messagesBloc = ApiBloc(ApiBlocInitialState());
 
 var bottomNavigationBloc = SelectionBloc(SelectIntState(2));
+final userOnlineOfflineStatusBloc = ApiBloc(ApiBlocInitialState());
 
 final localizationBloc =
     LocalizationBloc(ChangeLocaleState(const Locale("en")));

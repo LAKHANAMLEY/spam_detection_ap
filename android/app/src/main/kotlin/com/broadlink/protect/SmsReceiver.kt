@@ -17,7 +17,7 @@ class SmsReceiver : BroadcastReceiver() {
                 for (sms in Telephony.Sms.Intents.getMessagesFromIntent(intent)) {
                     System.out.println("SMS from Receiver:" + sms.displayMessageBody);
 
-                    Toast.makeText(context, "${sms.displayMessageBody}", Toast.LENGTH_SHORT).show()
+                    // Toast.makeText(context, "${sms.displayMessageBody}", Toast.LENGTH_SHORT).show()
                 }
             }
         } catch (e: Exception) {

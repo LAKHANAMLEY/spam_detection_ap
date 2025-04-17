@@ -28,7 +28,7 @@ Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
     );
   }
 
-  log("${ApiUrlConstants.syncCallLogs} ${jsonEncode(body)}");
+  // log("${ApiUrlConstants.syncCallLogs} ${jsonEncode(body)}");
 
   var request = http.Request('POST', Uri.parse(ApiUrlConstants.syncCallLogs));
   request.body = json.encode({"call_log": body});
@@ -73,7 +73,8 @@ Future<Response> syncCallLog({required List<CallLogEntry> callLogs}) async {
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
     handleException(jsonData);
-    log(jsonEncode(jsonData));
+    // log(jsonEncode(jsonData));
+    log("Call Log Synced");
     return Response.fromJson(jsonData);
   } else {
     throw Exception(response.body);

@@ -90,8 +90,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
   //   }
   // }
 
-  List<SmsLog> syncLocalAndServerMessagesOneLoopLocalPriority(
-      List<SmsMessage> localSms, List<SmsLog> serverMessages) {
+  Map<String, List<SmsMessage>> getGroupedLocalSms(List<SmsMessage> localSms) {
     Map<String, List<SmsMessage>> groupedLocalSms = {};
     for (var sms in localSms) {
       final address = sms.address;
@@ -99,6 +98,14 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
         groupedLocalSms.putIfAbsent(address, () => []).add(sms);
       }
     }
+    return groupedLocalSms;
+  }
+
+  List<SmsLog> syncLocalAndServerMessagesOneLoopLocalPriority(
+      Map<String, List<SmsMessage>> groupedLocalSms,
+      List<SmsLog> serverMessages) {
+    // Map<String, List<SmsMessage>> groupedLocalSms =
+    //     getGroupedLocalSms(localSms);
 
     Map<String, SmsLog> serverMessagesMap = {
       for (var msg in serverMessages) msg.address!: msg
@@ -164,9 +171,13 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       ///1. Get device messages
       final localSmsLogs = await getDeviceSms();
 
-      emit(MessageDBLoaded(localSmsLogs
-          .map((e) => SmsLog(address: e.address, name: e.sender, smsDetails: [
-                SmsDetail(
+      Map<String, List<SmsMessage>> groupedLocalSms =
+          getGroupedLocalSms(localSmsLogs);
+
+      emit(MessageDBLoaded(groupedLocalSms.keys.map((key) {
+        List<SmsMessage> log = groupedLocalSms[key] ?? [];
+        var smsDetail = log
+            .map((e) => SmsDetail(
                   address: e.address?.separatePhoneAndPhoneCode().phone,
                   countryCode: e.address?.separatePhoneAndPhoneCode().phoneCode,
                   body: e.body,
@@ -178,9 +189,32 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
                   name: e.sender,
                   threadId: e.threadId?.toString(),
                   sendreceiveDatetime: e.dateSent,
-                )
-              ]))
-          .toList()));
+                ))
+            .toList();
+        return SmsLog(
+            id: log.first.address,
+            address: log.first.address,
+            name: log.first.sender,
+            smsDetails: smsDetail);
+      }).toList()));
+
+      // emit(MessageDBLoaded(localSmsLogs
+      //     .map((e) => SmsLog(address: e.address, name: e.sender, smsDetails: [
+      //           SmsDetail(
+      //             address: e.address?.separatePhoneAndPhoneCode().phone,
+      //             countryCode: e.address?.separatePhoneAndPhoneCode().phoneCode,
+      //             body: e.body,
+      //             id: e.address,
+      //             deviceMessageId: e.id.toString(),
+      //             date: e.date,
+      //             messageKind: e.kind?.name,
+      //             messageState: e.state?.name,
+      //             name: e.sender,
+      //             threadId: e.threadId?.toString(),
+      //             sendreceiveDatetime: e.dateSent,
+      //           )
+      //         ]))
+      //     .toList()));
 
       ///2. Sync with server
       await syncSmsWithServer(smsLogs: localSmsLogs);
@@ -191,7 +225,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
       ///4. Merge local and server messages
       final syncedSmsLogs = syncLocalAndServerMessagesOneLoopLocalPriority(
-          localSmsLogs, serverMessages);
+          groupedLocalSms, serverMessages);
       // log("synced sms : ${syncedSmsLogs.map((e) => e.toJson()).toList()}");
 
       for (final smsLog in syncedSmsLogs) {
@@ -227,8 +261,8 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
           name: sms.sender,
           smsDetails: [
             SmsDetail(
-              id: sms.id?.toString(),
-              deviceMessageId: sms.id?.toString(),
+              id: sms.address?.toString(),
+              deviceMessageId: sms.address?.toString(),
               address: sms.address,
               countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
               body: sms.body,

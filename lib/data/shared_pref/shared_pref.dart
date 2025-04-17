@@ -31,6 +31,10 @@ class SharedPref {
   // corparte
   static const String _company = "company";
 
+  //remember
+  static const String _rememberMe = "rememberMe";
+  static const String _password = "password";
+
   // static Future<SharedPreferences> get pref async =>
   //     await SharedPreferences.getInstance();
 
@@ -65,9 +69,42 @@ class SharedPref {
     pref.setString(_company, user?.companyName ?? "");
   }
 
+  static saveRememberMeData(bool isRemember, String? email, String? password,
+      String? phone, String? phonecode) async {
+    var pref = await SharedPreferences.getInstance();
+    pref.setBool(_rememberMe, isRemember);
+    pref.setString(_email, email ?? "");
+    pref.setString(_password, password ?? "");
+    pref.setString(_phone, phone ?? "");
+    pref.setString(_countryCode, phonecode ?? "");
+  }
+
   static Future<bool> clearAll() async {
     var pref = await SharedPreferences.getInstance();
-    return pref.clear();
+
+    var isRemember = pref.getBool(_rememberMe);
+    if (isRemember ?? false) {
+      var email = pref.getString(_email);
+      var password = pref.getString(_password);
+      var phone = pref.getString(_phone);
+      var phonecode = pref.getString(_countryCode);
+      var value = pref.clear();
+      saveRememberMeData(
+          isRemember ?? false, email, password, phone, phonecode);
+      return value;
+    } else {
+      return pref.clear();
+    }
+  }
+
+  static Future<bool> getIsRemember() async {
+    var pref = await SharedPreferences.getInstance();
+    return pref.getBool(_rememberMe) ?? false;
+  }
+
+  static Future<String> getPassword() async {
+    var pref = await SharedPreferences.getInstance();
+    return pref.getString(_password) ?? "";
   }
 
   static Future<bool> getIsLogin() async {

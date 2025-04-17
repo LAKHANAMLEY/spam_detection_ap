@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_state_background/phone_state_background.dart';
+import 'package:spam_delection_app/bloc/permission_bloc/permission_bloc.dart';
 import 'package:spam_delection_app/lib.dart';
 
 void main() async {
@@ -90,6 +91,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => PermissionBloc(),
+        ),
         BlocProvider(
           create: (context) => ContactDBBloc(),
         ),

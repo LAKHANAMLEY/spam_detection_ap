@@ -13,6 +13,7 @@ class SmsBloc extends Bloc<SmsEvent, SmsState> {
 
   SmsBloc() : super(SmsInitial()) {
     on<StartListeningSms>(_onStartListeningSms);
+    on<CancelSmsListeningStream>(_onCancelListeningSms);
     on<SmsReceived>(_onSmsReceived);
     on<SmsSent>(_onSmsSent);
   }
@@ -48,5 +49,12 @@ class SmsBloc extends Bloc<SmsEvent, SmsState> {
     _smsRSubscription?.cancel();
     _smsSSubscription?.cancel();
     return super.close();
+  }
+
+  FutureOr<void> _onCancelListeningSms(
+      CancelSmsListeningStream event, Emitter<SmsState> emit) {
+    _smsRSubscription?.cancel();
+    _smsSSubscription?.cancel();
+    // emit(SmsInitial());
   }
 }
