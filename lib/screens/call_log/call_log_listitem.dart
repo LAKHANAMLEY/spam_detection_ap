@@ -1,4 +1,3 @@
-import 'package:phone_state/phone_state.dart';
 import 'package:phone_state_background/phone_state_background.dart';
 import 'package:spam_delection_app/lib.dart';
 
@@ -100,7 +99,7 @@ class CallLogListItem extends StatelessWidget {
           if (callLog.callTime != null) const Circle(),
 
           Text(
-            callLog.callTime?.formatRelativeDateTime() ?? "",
+            callLog.callTime?.formatTime() ?? "",
             style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
           ),
         ],
@@ -347,15 +346,15 @@ String getCallTypeStringFromBGPhoneState(PhoneStateBackgroundEvent phoneState) {
   }
 }
 
-String getCallTypeByPhoneState(PhoneState phoneState) {
-  switch (phoneState.status) {
-    case PhoneStateStatus.NOTHING:
-      return "Unknown";
-    case PhoneStateStatus.CALL_INCOMING:
-      return "Incoming call";
-    case PhoneStateStatus.CALL_STARTED:
-      return "Ongoing call";
-    case PhoneStateStatus.CALL_ENDED:
-      return "Call end";
-  }
-}
+// String getCallTypeByPhoneState(PhoneState phoneState) {
+//   switch (phoneState.status) {
+//     case PhoneStateStatus.NOTHING:
+//       return "Unknown";
+//     case PhoneStateStatus.CALL_INCOMING:
+//       return "Incoming call";
+//     case PhoneStateStatus.CALL_STARTED:
+//       return "Ongoing call";
+//     case PhoneStateStatus.CALL_ENDED:
+//       return "Call end";
+//   }
+// }

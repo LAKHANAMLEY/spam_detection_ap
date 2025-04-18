@@ -24,6 +24,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   StreamSubscription<PhoneState>? _phoneStateStreamSubs;
+  bool _isProcessingCall = false; // To avoid showing the screen multiple times
 
   final List<Widget> _pages = const [
     SubscriptionScreen(),
@@ -140,26 +141,69 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   void _phoneStateListener() {
     _phoneStateStreamSubs = PhoneState.stream.listen((state) async {
+      log("${state.number} ${state.status.name} ${state.duration}");
+      if (_isProcessingCall) {
+        if (state.status == PhoneStateStatus.NOTHING) {
+          _isProcessingCall = false;
+        }
+        return;
+      }
+
       if (state.status != PhoneStateStatus.NOTHING &&
           state.number?.isNotEmpty == true) {
-        context.read<CallLogDBBloc>().add(SyncManuallyDBCallLog(
-              callLogEntry: CallLogEntry(
-                number: state.number,
-                duration: state.duration?.inSeconds ?? 0,
-                timestamp: DateTime.now().millisecondsSinceEpoch,
-                callType: getCallLogType(getCallTypeByPhoneState(state)),
-              ),
-            ));
-        showOverlay(
-          callType: getCallTypeByPhoneState(state),
-          number: state.number ?? "",
-          duration: 0,
-        );
-        // You might need a way to reset _isProcessingCall when the call ends
-        // This might involve listening for a specific PhoneStateStatus (e.g., NOTHING)
-        // or using a timer.
-      } else if (state.status == PhoneStateStatus.NOTHING) {}
+        _isProcessingCall = true;
+
+        // Optionally, navigate to the full CallScreen as well
+        // You might want to do this based on a specific condition or user preference
+        if (state.status == PhoneStateStatus.CALL_STARTED ||
+            state.status == PhoneStateStatus.CALL_ENDED ||
+            state.status == PhoneStateStatus.CALL_INCOMING) {
+          context.read<CallLogDBBloc>().add(SyncManuallyDBCallLog(
+                callLogEntry: CallLogEntry(
+                  number: state.number,
+                  duration: state.duration?.inSeconds ?? 0,
+                  timestamp: DateTime.now().millisecondsSinceEpoch,
+                  callType: getCallLogType(state.status.name),
+                ),
+              ));
+
+          // Call your existing showOverlay function
+          showOverlay(
+            callType: getCallLogType(state.status.name)?.name ?? "",
+            number: state.number ?? "",
+            duration: state.duration?.inSeconds ?? 0,
+          );
+
+          ///Check ig this is a default phone app
+          // _showCallScreen(
+          //   context: context,
+          //   callType: getCallLogType(state.status.name)!,
+          //   number: state.number ?? "",
+          //   duration: state.duration?.inSeconds ?? 0,
+          // );
+        }
+      } else if (state.status == PhoneStateStatus.NOTHING) {
+        _isProcessingCall = false;
+      }
     });
+  }
+
+  void _showCallScreen({
+    required BuildContext context,
+    required CallType callType,
+    required String number,
+    required int duration,
+  }) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => OutSideAppOverlay(
+            // callType: callType,
+            // number: number,
+            // duration: duration,
+            ),
+      ),
+    );
   }
 
   static const _platform = MethodChannel("com.broadlink.protect/chat");

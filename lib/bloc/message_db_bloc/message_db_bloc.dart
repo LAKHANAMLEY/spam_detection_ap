@@ -120,10 +120,11 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
       // Add local SMS details
       smsDetails.addAll(localSmsList.map((sms) => SmsDetail(
-            id: sms.address ?? serverLog?.address,
+            id: sms.id?.toString() ?? serverLog?.id,
             deviceMessageId: sms.id?.toString(),
             address: serverLog?.address ?? sms.address,
-            countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
+            countryCode: serverLog?.countryCode ??
+                sms.address?.separatePhoneAndPhoneCode().phoneCode,
             body: sms.body,
             date: sms.date,
             messageKind: sms.kind?.name,
@@ -174,33 +175,10 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       Map<String, List<SmsMessage>> groupedLocalSms =
           getGroupedLocalSms(localSmsLogs);
 
-      emit(MessageDBLoaded(groupedLocalSms.keys.map((key) {
-        List<SmsMessage> log = groupedLocalSms[key] ?? [];
-        var smsDetail = log
-            .map((e) => SmsDetail(
-                  address: e.address?.separatePhoneAndPhoneCode().phone,
-                  countryCode: e.address?.separatePhoneAndPhoneCode().phoneCode,
-                  body: e.body,
-                  id: e.address,
-                  deviceMessageId: e.id.toString(),
-                  date: e.date,
-                  messageKind: e.kind?.name,
-                  messageState: e.state.name,
-                  name: e.sender,
-                  threadId: e.threadId?.toString(),
-                  sendreceiveDatetime: e.dateSent,
-                ))
-            .toList();
-        return SmsLog(
-            id: log.first.address,
-            address: log.first.address,
-            name: log.first.sender,
-            smsDetails: smsDetail);
-      }).toList()));
-
-      // emit(MessageDBLoaded(localSmsLogs
-      //     .map((e) => SmsLog(address: e.address, name: e.sender, smsDetails: [
-      //           SmsDetail(
+      // emit(MessageDBLoaded(groupedLocalSms.keys.map((key) {
+      //   List<SmsMessage> log = groupedLocalSms[key] ?? [];
+      //   var smsDetail = log
+      //       .map((e) => SmsDetail(
       //             address: e.address?.separatePhoneAndPhoneCode().phone,
       //             countryCode: e.address?.separatePhoneAndPhoneCode().phoneCode,
       //             body: e.body,
@@ -208,13 +186,18 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       //             deviceMessageId: e.id.toString(),
       //             date: e.date,
       //             messageKind: e.kind?.name,
-      //             messageState: e.state?.name,
+      //             messageState: e.state.name,
       //             name: e.sender,
       //             threadId: e.threadId?.toString(),
       //             sendreceiveDatetime: e.dateSent,
-      //           )
-      //         ]))
-      //     .toList()));
+      //           ))
+      //       .toList();
+      //   return SmsLog(
+      //       id: log.first.address,
+      //       address: log.first.address,
+      //       name: log.first.sender,
+      //       smsDetails: smsDetail);
+      // }).toList()));
 
       ///2. Sync with server
       await syncSmsWithServer(smsLogs: localSmsLogs);

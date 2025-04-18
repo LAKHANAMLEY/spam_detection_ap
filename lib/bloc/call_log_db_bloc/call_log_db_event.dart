@@ -38,6 +38,15 @@ class DeleteAllDBCallLog extends CallLogDBEvent {}
 
 class LoadDBCallLogs extends CallLogDBEvent {}
 
+class GetDBCallLog extends CallLogDBEvent {
+  final CallLogData callLogData;
+
+  const GetDBCallLog({required this.callLogData});
+
+  @override
+  List<Object> get props => [callLogData];
+}
+
 // New event for syncing call logs
 class SyncDBCallLogs extends CallLogDBEvent {}
 

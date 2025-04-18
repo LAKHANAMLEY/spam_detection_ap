@@ -37,6 +37,8 @@ class MainActivity : FlutterFragmentActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
             flutterResult = result;
             if (call.method == "setDefaultSms") {
+                System.out.println("Setting default sms app...");
+
                 try {
                     if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                         val roleManager: RoleManager = getSystemService(RoleManager::class.java);
@@ -59,7 +61,14 @@ class MainActivity : FlutterFragmentActivity() {
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CALL_CHANNEL).setMethodCallHandler { call, result ->
             flutterCallResult = result;
             if (call.method == "requestDefaultDialer") {
+                System.out.println("Setting default calling app...");
+                
                 try {
+            //             if (getSystemService(TelecomManager.class).getDefaultDialerPackage() != getPackageName()) {
+            // Intent ChangeDialer = new Intent(TelecomManager.ACTION_CHANGE_DEFAULT_DIALER);
+            // ChangeDialer.putExtra(TelecomManager.EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME, getPackageName());
+            // startActivity(ChangeDialer);
+        // }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         val roleManager = getSystemService(RoleManager::class.java)
                         val intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_DIALER)

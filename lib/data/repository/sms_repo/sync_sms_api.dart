@@ -8,7 +8,8 @@ Future<Response> syncSmsWithServer({required List<SmsMessage> smsLogs}) async {
   for (int i = 0; i < smsLogs.length; i++) {
     var sms = smsLogs[i];
     body.add(<String, String>{
-      'address': sms.address ?? "",
+      'address': sms.sender?.separatePhoneAndPhoneCode().phone ??
+          "", //Check err if special message
       'body': sms.body ?? "",
       'country_code': sms.sender?.separatePhoneAndPhoneCode().phoneCode ?? "",
       'sendreceive_datetime': sms.dateSent?.toString().splitFirstBy(".") ?? "",

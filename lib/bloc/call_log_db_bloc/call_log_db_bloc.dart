@@ -13,6 +13,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     on<DeleteDBCallLog>(_onDeleteCallLogDB);
     on<DeleteAllDBCallLog>(_onDeleteAllCallLogDB);
     on<LoadDBCallLogs>(_onLoadCallLogDBs);
+    on<GetDBCallLog>(_onGetDBCallLog);
     on<SyncDBCallLogs>(_onSyncCallLogsDB);
     on<SyncManuallyDBCallLog>(_onSyncManuallyDBCallLog);
     on<DeleteDBCallLogs>(_onDeleteCallLogsDB);
@@ -40,6 +41,20 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       await _databaseHelper.updateCallLog(event.callLog);
       final callLogs = await _databaseHelper.getAllCallLogs();
       emit(CallLogDBLoaded(callLogs)); // Updated state name
+    } catch (e) {
+      emit(CallLogDBError(
+          'Failed to update call log: $e', e)); // Updated state name
+    }
+  }
+
+  Future<void> _onGetDBCallLog(
+      GetDBCallLog event, Emitter<CallLogDBState> emit) async {
+    // Updated event and state types
+    emit(CallLogDBLoading()); // Updated state name
+    try {
+      final callLogs =
+          await _databaseHelper.getCallLog(event.callLogData.mobileNo ?? "");
+      emit(CallLogDBLoaded([callLogs!])); // Updated state name
     } catch (e) {
       emit(CallLogDBError(
           'Failed to update call log: $e', e)); // Updated state name
@@ -207,24 +222,24 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
           getGroupedLocalCallLogs(deviceCallLogs);
 
       ///here we are emitting the local data
-      emit(CallLogDBLoaded(groupedLocalCallLogs.keys.map((key) {
-        var e = groupedLocalCallLogs[key]!.first;
-        return CallLogData(
-          name: e.name,
-          countryCode: e.number?.separatePhoneAndPhoneCode().phoneCode,
-          mobileNo: e.number?.separatePhoneAndPhoneCode().phone,
-          callType: e.callType?.name,
-          callDuration: e.duration.toString(),
-          callDurations: e.duration.toString(),
-          callDurationUnit: "1",
-          callTime: e.timestamp?.toDateTime(),
-          phoneaccountid: e.phoneAccountId,
-          simdisplayname: e.simDisplayName,
-          isManually: "1",
+      // emit(CallLogDBLoaded(groupedLocalCallLogs.keys.map((key) {
+      //   var e = groupedLocalCallLogs[key]!.first;
+      //   return CallLogData(
+      //     name: e.name,
+      //     countryCode: e.number?.separatePhoneAndPhoneCode().phoneCode,
+      //     mobileNo: e.number?.separatePhoneAndPhoneCode().phone,
+      //     callType: e.callType?.name,
+      //     callDuration: e.duration.toString(),
+      //     callDurations: e.duration.toString(),
+      //     callDurationUnit: "1",
+      //     callTime: e.timestamp?.toDateTime(),
+      //     phoneaccountid: e.phoneAccountId,
+      //     simdisplayname: e.simDisplayName,
+      //     isManually: "1",
 
-          ///rest of the things we weill update from server after sync
-        );
-      }).toList()));
+      //     ///rest of the things we weill update from server after sync
+      //   );
+      // }).toList()));
 
       await syncCallLog(callLogs: deviceCallLogs.toList());
       var res = await getCallLogs();
@@ -289,7 +304,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       } else {
         await _databaseHelper.updateCallLog(callLog);
       }
-          // }
+      // }
       // emit(CallLogDBLoading());
       final storedCallLogs = await _databaseHelper.getAllCallLogs();
       emit(CallLogDBLoaded(storedCallLogs)); // Updated state name

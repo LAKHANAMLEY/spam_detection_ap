@@ -293,7 +293,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                         // ),
                                       ),
 
-                                      10.width(),
+                                      5.width(),
                                       ChoiceChip(
                                         selected:
                                             filterBy == CallType.outgoing.name,
@@ -319,7 +319,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                         //   minimumSize: const Size(20, 40),
                                         // ),
                                       ),
-                                      10.width(),
+                                      5.width(),
                                       ChoiceChip(
                                         selected:
                                             filterBy == CallType.incoming.name,
@@ -341,7 +341,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                         //   scale: 2.5,
                                         // ),
                                       ),
-                                      10.width(),
+                                      5.width(),
                                       ChoiceChip(
                                         selected:
                                             filterBy == CallType.missed.name,
@@ -521,13 +521,41 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                                               itemCount:
                                                                   filteredCallLogs
                                                                       .length,
-                                                              itemBuilder: (context,
-                                                                      index) =>
-                                                                  CallLogListItem(
-                                                                    callLog:
-                                                                        filteredCallLogs[
-                                                                            index],
-                                                                  ));
+                                                              itemBuilder:
+                                                                  (context,
+                                                                      index) {
+                                                                final previousMessageDate = index >
+                                                                        0
+                                                                    ? filteredCallLogs[
+                                                                            index -
+                                                                                1]
+                                                                        .callTime
+                                                                    : null;
+                                                                final showDateHeader = (previousMessageDate ==
+                                                                        null ||
+                                                                    (!filteredCallLogs[
+                                                                            index]
+                                                                        .callTime!
+                                                                        .isSameDay(
+                                                                            previousMessageDate)));
+                                                                return Column(
+                                                                  children: [
+                                                                    if (showDateHeader)
+                                                                      Padding(
+                                                                        padding: const EdgeInsets
+                                                                            .all(
+                                                                            8.0),
+                                                                        child: Text(filteredCallLogs[index].callTime?.formatRelativeDay() ??
+                                                                            ""),
+                                                                      ),
+                                                                    CallLogListItem(
+                                                                      callLog:
+                                                                          filteredCallLogs[
+                                                                              index],
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              });
                                             }),
                                       ));
                                   // }
