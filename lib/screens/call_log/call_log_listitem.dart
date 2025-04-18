@@ -157,14 +157,29 @@ class CallLogListItem extends StatelessWidget {
                         : appLocalization(context).block)),
                 PopupMenuItem(
                     onTap: () {
+                      Future.delayed(Duration.zero, () {
+                        showCustomDialog(context,
+                            dialogType: DialogType.delete,
+                            title: appLocalization(context).delete,
+                            subTitle: appLocalization(context).areYouWantDelete,
+                            showCancelBtn: true,
+                            okBtnTxt: appLocalization(context).delete,
+                            cancelBtnTxt: appLocalization(context).cancel,
+                            okBtnColor: Colors.redAccent, onOkPressed: () {
+                          context
+                              .read<CallLogDBBloc>()
+                              .add(DeleteDBCallLog(callLog.id ?? ""));
+                          Navigator.pop(context);
+                        });
+                      });
                       // deleteDeviceCallLog(
                       //    id: contact?.id ?? "",
                       //   number: contact?.mobileNo ?? "");
                       // callLogsListBloc.add(DeleteCallLogEvent(
                       //     callLog: CallLogData(id: callLog.id)));
-                      context
-                          .read<CallLogDBBloc>()
-                          .add(DeleteDBCallLog(callLog.id ?? ""));
+                      // context
+                      //     .read<CallLogDBBloc>()
+                      //     .add(DeleteDBCallLog(callLog.id ?? ""));
                     },
                     child: Text(appLocalization(context).deleteCallLogs))
               ],

@@ -3,6 +3,7 @@ import 'package:spam_delection_app/lib.dart';
 
 class DeviceCallLogs extends StatefulWidget {
   final bool? showAppBar;
+
   // final String filterBy;
 
   const DeviceCallLogs({super.key, this.showAppBar = true});
@@ -212,10 +213,33 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                             .synCallLogs)),
                                     PopupMenuItem(
                                         onTap: () {
+                                          Future.delayed(Duration.zero, () {
+                                            showCustomDialog(context,
+                                                dialogType: DialogType.delete,
+                                                title: appLocalization(context)
+                                                    .delete,
+                                                subTitle:
+                                                    appLocalization(context)
+                                                        .areYouWantDelete,
+                                                showCancelBtn: true,
+                                                okBtnTxt:
+                                                    appLocalization(context)
+                                                        .delete,
+                                                cancelBtnTxt:
+                                                    appLocalization(context)
+                                                        .cancel,
+                                                okBtnColor: Colors.red,
+                                                onOkPressed: () {
+                                              context
+                                                  .read<CallLogDBBloc>()
+                                                  .add(DeleteAllDBCallLog());
+                                              Navigator.pop(context);
+                                            });
+                                          });
                                           // callLogsListBloc.add(DeleteAllCallLogEvent());
-                                          context
-                                              .read<CallLogDBBloc>()
-                                              .add(DeleteAllDBCallLog());
+                                          // context
+                                          //     .read<CallLogDBBloc>()
+                                          //     .add(DeleteAllDBCallLog());
                                         },
                                         child: Text(appLocalization(context)
                                             .deleteAllCallLogs)),
@@ -283,8 +307,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                           //             CallType.outgoing.name));
                                         },
                                         label: Text(
-                                            appLocalization(context)
-                                                .outgoingCalls,
+                                            appLocalization(context).outgoing,
                                             style:
                                                 textTheme(context).titleSmall),
                                         // icon: Image.asset(
@@ -310,8 +333,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                           //             CallType.incoming.name));
                                         },
                                         label: Text(
-                                            appLocalization(context)
-                                                .incomingCalls,
+                                            appLocalization(context).incoming,
                                             style:
                                                 textTheme(context).titleSmall),
                                         // icon: Image.asset(
@@ -333,8 +355,7 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                                           //             CallType.missed.name));
                                         },
                                         label: Text(
-                                            appLocalization(context)
-                                                .missedCalls,
+                                            appLocalization(context).missed,
                                             style:
                                                 textTheme(context).titleSmall),
                                         // icon: Image.asset(

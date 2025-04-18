@@ -153,11 +153,6 @@ class _EditContactState extends State<EditContact> {
                                 // },
                               ),
                               10.height(),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    1 /
-                                    100,
-                              ),
                               BlocBuilder(
                                   bloc: selectNumberTypeBloc,
                                   builder: (context, state) {

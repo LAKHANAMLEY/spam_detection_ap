@@ -344,23 +344,23 @@ import '../../globals/app_fonts.dart';
 import '../../globals/colors.dart';
 import '../../models/plan_list_model.dart';
 
-Color _darken(Color color, [double amount = .1]) {
-  assert(amount >= 0 && amount <= 1);
-
-  final hsl = HSLColor.fromColor(color);
-  final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
-
-  return hslDark.toColor();
-}
-
-Color _lighten(Color color, [double amount = .1]) {
-  assert(amount >= 0 && amount <= 1);
-
-  final hsl = HSLColor.fromColor(color);
-  final hslLight = hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
-
-  return hslLight.toColor();
-}
+// Color _darken(Color color, [double amount = .1]) {
+//   assert(amount >= 0 && amount <= 1);
+//
+//   final hsl = HSLColor.fromColor(color);
+//   final hslDark = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+//
+//   return hslDark.toColor();
+// }
+//
+// Color _lighten(Color color, [double amount = .1]) {
+//   assert(amount >= 0 && amount <= 1);
+//
+//   final hsl = HSLColor.fromColor(color);
+//   final hslLight = hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+//
+//   return hslLight.toColor();
+// }
 
 class PlanListItem extends StatelessWidget {
   final Planslist plan;

@@ -48,7 +48,8 @@ class TransactionData {
   final String? status;
   final String? transactionId;
   final String? cancelledAt;
-  final String? expiredAt;
+  final DateTime? expiredAt;
+  final DateTime? date;
 
   TransactionData({
     this.id,
@@ -60,6 +61,7 @@ class TransactionData {
     this.transactionId,
     this.cancelledAt,
     this.expiredAt,
+    this.date,
   });
 
   factory TransactionData.fromJson(Map<String, dynamic> json) =>
@@ -72,7 +74,10 @@ class TransactionData {
         status: json["status"],
         transactionId: json["transaction_id"],
         cancelledAt: json["cancelled_at"],
-        expiredAt: json["expired_at"],
+        //expiredAt: json["expired_at"],
+        expiredAt: (json["expired_at"]?.toString().isEmpty ?? true)
+            ? null
+            : DateTime.tryParse(json["expired_at"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -84,6 +89,6 @@ class TransactionData {
         "status": status,
         "transaction_id": transactionId,
         "cancelled_at": cancelledAt,
-        "expired_at": expiredAt,
+        "expired_at": expiredAt?.toIso8601String(),
       };
 }
