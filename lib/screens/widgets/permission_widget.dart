@@ -1,7 +1,4 @@
 import 'package:permission_handler/permission_handler.dart';
-import 'package:spam_delection_app/bloc/permission_bloc/permission_bloc.dart';
-import 'package:spam_delection_app/bloc/permission_bloc/permission_bloc_event.dart';
-import 'package:spam_delection_app/bloc/permission_bloc/permission_bloc_state.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class PermissionWidget extends StatelessWidget {
@@ -35,7 +32,7 @@ class PermissionWidget extends StatelessWidget {
                   child: Text(
                     "${permission.name} permission not allowed. Allow access to sync your ${permission.name} in realtime.",
                     style: textTheme(context)
-                        ?.bodySmall
+                        .bodySmall
                         ?.copyWith(color: Colors.white),
                   ),
                 ),

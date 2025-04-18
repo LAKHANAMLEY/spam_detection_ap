@@ -115,7 +115,7 @@ class CallLogData {
         callDurationUnit: callDurationUnit ?? this.callDurationUnit,
         contactListId: contactListId ?? this.contactListId,
         isSpam: isSpam ?? this.isSpam,
-        markSpamByUser: markspambyuser ?? this.markSpamByUser,
+        markSpamByUser: markspambyuser ?? markSpamByUser,
         isBlocked: isBlocked ?? this.isBlocked,
         callDurations: callDurations ?? this.callDurations,
         isManually: isManually ?? this.isManually,

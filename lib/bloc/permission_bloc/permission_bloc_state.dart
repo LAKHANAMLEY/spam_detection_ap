@@ -12,8 +12,7 @@ class PermissionInitialState extends PermissionState {
 }
 
 class PermissionLoadingState extends PermissionState {
-  PermissionLoadingState({required Map<Permission, PermissionStatus> statuses})
-      : super(statuses: statuses);
+  PermissionLoadingState({required super.statuses});
 }
 
 class SinglePermissionStatusLoadedState extends PermissionState {
@@ -26,20 +25,18 @@ class SinglePermissionStatusLoadedState extends PermissionState {
 
 class MultiplePermissionsStatusLoadedState extends PermissionState {
   MultiplePermissionsStatusLoadedState({
-    required Map<Permission, PermissionStatus> statuses,
-  }) : super(statuses: statuses);
+    required super.statuses,
+  });
 }
 
 class PermissionsRequestedState extends PermissionState {
   PermissionsRequestedState(
-      {required Map<Permission, PermissionStatus> statuses})
-      : super(statuses: statuses);
+      {required super.statuses});
 }
 
 class PermissionErrorState extends PermissionState {
   final String message;
   PermissionErrorState(
       {required this.message,
-      required Map<Permission, PermissionStatus> statuses})
-      : super(statuses: statuses);
+      required super.statuses});
 }

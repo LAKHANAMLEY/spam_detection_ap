@@ -282,16 +282,14 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       // var res = await getCallLogs();
       // var callLogsData = res.callloglist ?? [];
       // for (final callLog in callLogsData) {
-      if (callLog != null) {
-        final existingCallLog =
-            await _databaseHelper.getCallLog(callLog.id ?? "");
-        if (existingCallLog == null) {
-          await _databaseHelper.insertCallLog(callLog);
-        } else {
-          await _databaseHelper.updateCallLog(callLog);
-        }
+      final existingCallLog =
+          await _databaseHelper.getCallLog(callLog.id ?? "");
+      if (existingCallLog == null) {
+        await _databaseHelper.insertCallLog(callLog);
+      } else {
+        await _databaseHelper.updateCallLog(callLog);
       }
-      // }
+          // }
       // emit(CallLogDBLoading());
       final storedCallLogs = await _databaseHelper.getAllCallLogs();
       emit(CallLogDBLoaded(storedCallLogs)); // Updated state name
