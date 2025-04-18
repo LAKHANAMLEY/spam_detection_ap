@@ -33,7 +33,9 @@ class _BlockedCallsState extends State<BlockedCalls> {
                 hintText: appLocalization(context).addPhoneNumber,
                 suffixIcon: Image.asset(
                   IconConstants.icAddPhone,
-                  scale: 3,
+                  scale: 2.5,
+                  // height: AppConstants.suffixIconHeight,
+                  // width: AppConstants.suffixIconWidth,
                 ),
               ),
             ),

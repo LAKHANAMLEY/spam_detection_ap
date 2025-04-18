@@ -51,6 +51,8 @@ class AppRoutes {
   static const otpVerify = "/otpVerify";
   static const contactUS = "/contactUs";
   static const transactionList = "/transactionList";
+  static const defaultCall = "/defaultCall";
+  static const setting = "/setting";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -103,5 +105,7 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.editContact: (context) => const EditContact(),
   AppRoutes.otpVerify: (context) => const OtpVerify(),
   AppRoutes.contactUS: (context) => const ContactUS(),
-  AppRoutes.transactionList: (context) => const TransactionList()
+  AppRoutes.transactionList: (context) => const TransactionList(),
+  AppRoutes.defaultCall: (context) => const DefaultCall(),
+  AppRoutes.setting: (context) => const Setting()
 };

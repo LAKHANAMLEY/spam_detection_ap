@@ -161,6 +161,14 @@ class _ContactDetailState extends State<ContactDetail> {
                                         ));
                                   },
                                 ),
+                                PopupMenuItem(
+                                  child: Text(
+                                      appLocalization(context).defaultPhone),
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, AppRoutes.defaultCall);
+                                  },
+                                ),
                               ],
                             )
                           ],

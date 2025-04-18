@@ -120,7 +120,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get anErrorOccurredDuringGoogleSignIn => 'An error occurred during Google Sign-In.';
 
   @override
-  String get areYouWantDelete => 'Are you sure you want to delete';
+  String get areYouWantDelete => 'Are you sure you want to delete?';
 
   @override
   String get asPerDocument => 'As per document';
@@ -2255,4 +2255,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteText => 'Delete';
+
+  @override
+  String get defaultPhone => 'Default Phone App';
+
+  @override
+  String get setting => 'Setting';
 }

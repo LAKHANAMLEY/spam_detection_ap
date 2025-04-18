@@ -320,7 +320,7 @@ abstract class AppLocalizations {
   /// No description provided for @areYouWantDelete.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to delete'**
+  /// **'Are you sure you want to delete?'**
   String get areYouWantDelete;
 
   /// No description provided for @asPerDocument.
@@ -4582,6 +4582,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete'**
   String get deleteText;
+
+  /// No description provided for @defaultPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Default Phone App'**
+  String get defaultPhone;
+
+  /// No description provided for @setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Setting'**
+  String get setting;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

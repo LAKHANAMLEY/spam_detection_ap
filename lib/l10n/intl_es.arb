@@ -748,5 +748,7 @@
   "outgoing": "Extrovertido",
   "incoming": "Entrante",
   "missed": "Omitido",
-  "deleteText": "Delete"
+  "deleteText": "Borrar",
+  "defaultPhone": "Aplicación de teléfono predeterminada",
+  "setting": "Setting"
 }
