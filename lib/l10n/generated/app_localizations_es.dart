@@ -2243,4 +2243,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get zip => 'Código postal';
+
+  @override
+  String get outgoing => 'Extrovertido';
+
+  @override
+  String get incoming => 'Entrante';
+
+  @override
+  String get missed => 'Omitido';
+
+  @override
+  String get deleteText => 'Delete';
 }

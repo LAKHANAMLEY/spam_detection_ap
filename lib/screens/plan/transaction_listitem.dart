@@ -335,6 +335,85 @@
 //   }
 // }
 
+// import 'package:spam_delection_app/lib.dart';
+//
+// class TransactionListItem extends StatelessWidget {
+//   final TransactionData transactionData;
+//
+//   const TransactionListItem({
+//     super.key,
+//     required this.transactionData,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return CustomListTile(
+//       leading: Image.asset(
+//         IconConstants.icPremiumPurchase,
+//         height: 30,
+//       ),
+//       title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+//         Text(
+//           transactionData.title ?? "",
+//           style: TextStyle(
+//               color: AppColor.greyDecent,
+//               fontWeight: FontWeight.w500,
+//               fontSize: 15),
+//         ),
+//         Text(transactionData.price ?? '',
+//             style: TextStyle(
+//                 color: AppColor.greyDecent,
+//                 fontWeight: FontWeight.w500,
+//                 fontSize: 15)),
+//       ]),
+//       subtitle: Column(
+//         children: [
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               Text(
+//                 'Txn id: ${transactionData.transactionId ?? ""}',
+//                 style: TextStyle(
+//                     color: AppColor.greyDecent,
+//                     fontWeight: FontWeight.w500,
+//                     fontSize: 15),
+//               ),
+//               // 10.width(),
+//               // Spacer(),
+//               Text(
+//                 transactionData.expiredAt ?? "",
+//                 style: TextStyle(
+//                     color: AppColor.greyDecent,
+//                     fontWeight: FontWeight.w500,
+//                     fontSize: 15),
+//               )
+//             ],
+//           ),
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             children: [
+//               Text(
+//                 transactionData.status ?? "",
+//                 style: TextStyle(
+//                     color: AppColor.greyDecent,
+//                     fontWeight: FontWeight.w500,
+//                     fontSize: 15),
+//               ),
+//               Text(
+//                 transactionData.cancelledAt ?? "",
+//                 style: TextStyle(
+//                     color: AppColor.greyDecent,
+//                     fontWeight: FontWeight.w500,
+//                     fontSize: 15),
+//               )
+//             ],
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+
 import 'package:spam_delection_app/lib.dart';
 
 class TransactionListItem extends StatelessWidget {
@@ -347,46 +426,87 @@ class TransactionListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomListTile(
-      leading: Image.asset(
-        IconConstants.icPremiumPurchase,
-        height: 30,
-      ),
-      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(
-          transactionData.title ?? "",
-          style: TextStyle(
-              color: AppColor.greyDecent,
-              fontWeight: FontWeight.w500,
-              fontSize: 15),
+    return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: AppColor.whiteColor,
         ),
-        Text(transactionData.price ?? '',
-            style: TextStyle(
-                color: AppColor.greyDecent,
-                fontWeight: FontWeight.w500,
-                fontSize: 15)),
-      ]),
-      subtitle: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Txn id: ${transactionData.transactionId ?? ""}',
-            style: TextStyle(
-                color: AppColor.greyDecent,
-                fontWeight: FontWeight.w500,
-                fontSize: 15),
-          ),
-          10.width(),
-          // Spacer(),
-          Text(
-            transactionData.status ?? "",
-            style: TextStyle(
-                color: AppColor.greyDecent,
-                fontWeight: FontWeight.w500,
-                fontSize: 15),
-          )
-        ],
-      ),
-    );
+        //color: AppColor.whiteColor,
+        padding: EdgeInsets.all(8),
+        margin: EdgeInsets.all(2),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              IconConstants.icPremiumPurchase,
+              height: 40,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          transactionData.title ?? "",
+                          style: TextStyle(
+                              color: AppColor.blackColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16),
+                        ),
+                        Text(transactionData.price ?? '',
+                            style: TextStyle(
+                                color: AppColor.yellowColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16)),
+                      ]),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Txn id: ${transactionData.transactionId ?? ""}',
+                          //print(transactionData.expiredAt??"")
+                          style: TextStyle(
+                              color: AppColor.greyDecent,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16),
+                        ),
+                        Text(
+                          transactionData.expiredAt?.formatDateTime() ?? "",
+                          style: textTheme(context)
+                              .bodySmall
+                              ?.copyWith(color: Colors.grey),
+                        ),
+                        // print(transactionData?.expiredAt ?? ''),
+                        // Text(transactionData?.expiredAt?.formatDateTime() ?? "",
+                        //     style: TextStyle(
+                        //         color: AppColor.greyDecent,
+                        //         fontWeight: FontWeight.w500,
+                        //         fontSize: 14)),
+                      ]),
+                  5.height(),
+                  Container(
+                    padding: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: (transactionData.status?.toLowerCase() == 'active')
+                          ? AppColor.greenColor.withOpacity(0.8)
+                          : AppColor.redColor.withOpacity(0.8),
+                    ),
+                    child: Text(transactionData.status ?? '',
+                        style: TextStyle(
+                            color: AppColor.whiteColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ));
   }
 }

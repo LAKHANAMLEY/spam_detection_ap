@@ -24,7 +24,7 @@ class _TransactionListState extends State<TransactionList> {
   Widget build(BuildContext context) {
     var argument = args(context) as TransactionList?;
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
+      //backgroundColor: AppColor.whiteColor,
       appBar: (widget.showAppBar ?? argument?.showAppBar ?? false)
           ? const CustomAppBar(
               //centerTitle: true,
@@ -32,32 +32,41 @@ class _TransactionListState extends State<TransactionList> {
           : null,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              BlocBuilder(
-                  bloc: transactionListBloc,
-                  builder: (context, state) {
-                    if (state is GetTransactionListState) {
-                      var transactions = state.value.transactionHistory ?? [];
-                      //print()
-                      if (transactions.isEmpty) {
-                        return Center(
-                          child: Text(appLocalization(context).noData),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                5.height(),
+                BlocBuilder(
+                    bloc: transactionListBloc,
+                    builder: (context, state) {
+                      if (state is GetTransactionListState) {
+                        var transactions = state.value.transactionHistory ?? [];
+                        print(transactions.first.expiredAt ?? "");
+                        if (transactions.isEmpty) {
+                          return Center(
+                            child: Text(appLocalization(context).noData),
+                          );
+                        }
+                        return ListView.separated(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: transactions.length,
+                          itemBuilder: (context, index) => TransactionListItem(
+                            transactionData: transactions[index],
+                          ),
+                          separatorBuilder: (BuildContext context, int index) {
+                            return SizedBox(
+                              height: 5,
+                            );
+                          },
                         );
                       }
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: transactions.length,
-                        itemBuilder: (context, index) => TransactionListItem(
-                          transactionData: transactions[index],
-                        ),
-                      );
-                    }
-                    return const Loader();
-                  }),
-            ],
+                      return const Loader();
+                    }),
+              ],
+            ),
           ),
         ),
       ),

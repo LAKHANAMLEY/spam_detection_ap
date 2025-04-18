@@ -2243,4 +2243,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get zip => 'Zip Code';
+
+  @override
+  String get outgoing => 'Outgoing';
+
+  @override
+  String get incoming => 'Incoming';
+
+  @override
+  String get missed => 'Missed';
+
+  @override
+  String get deleteText => 'Delete';
 }
