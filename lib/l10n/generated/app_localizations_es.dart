@@ -2254,5 +2254,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get missed => 'Omitido';
 
   @override
-  String get deleteText => 'Delete';
+  String get deleteText => 'Borrar';
+
+  @override
+  String get defaultPhone => 'Aplicación de teléfono predeterminada';
+
+  @override
+  String get setting => 'Setting';
 }

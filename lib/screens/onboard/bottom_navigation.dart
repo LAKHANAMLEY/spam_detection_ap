@@ -222,7 +222,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                           ? CircleAvatar(backgroundImage: NetworkImage(photo!))
                           : const CircleAvatar(
                               backgroundImage:
-                                  AssetImage(ImageConstants.imageProfile)),
+                                  AssetImage(IconConstants.icUsername4X)),
                     );
                   }
                   return const Loader();

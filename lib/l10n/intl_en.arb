@@ -37,7 +37,7 @@
   "amountRequestedSuccessfully": "Amount requested successfully",
   "amountShouldBeGreaterThanZero": "Amount should be greater than 0",
   "anErrorOccurredDuringGoogleSignIn": "An error occurred during Google Sign-In.",
-  "areYouWantDelete": "Are you sure you want to delete",
+  "areYouWantDelete": "Are you sure you want to delete?",
   "asPerDocument": "As per document",
   "authenticationIsRequiredToAccessTheBCTPayApp": "Authentication is required to access the BCTPay app",
   "availableBalance": "Available balance",
@@ -747,5 +747,7 @@
   "outgoing": "Outgoing",
   "incoming": "Incoming",
   "missed": "Missed",
-  "deleteText": "Delete"
+  "deleteText": "Delete",
+  "defaultPhone": "Default Phone App",
+  "setting": "Setting"
 }

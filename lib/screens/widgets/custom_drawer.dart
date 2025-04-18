@@ -310,6 +310,12 @@ class CustomDrawer extends StatelessWidget {
           ),
           _buildListTile(
             context,
+            icon: Icons.settings,
+            title: appLocalization(context).setting,
+            onTap: () => Navigator.pushNamed(context, AppRoutes.setting),
+          ),
+          _buildListTile(
+            context,
             icon: Icons.logout,
             title: appLocalization(context).logout,
             onTap: () => showLogoutDialog(context),

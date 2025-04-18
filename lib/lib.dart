@@ -255,6 +255,7 @@ export 'screens/widgets/custom_textfiled.dart';
 export 'screens/widgets/error_widget.dart';
 export 'screens/widgets/image_view.dart';
 export 'screens/widgets/loader.dart';
+export 'screens/contacts/default_phone_call_screen.dart';
 export 'screens/widgets/permission_widget.dart';
 export 'screens/widgets/progress_indicator_builder.dart';
 export 'screens/widgets/show_image_picker_dialog.dart';
