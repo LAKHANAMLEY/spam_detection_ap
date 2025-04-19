@@ -30,6 +30,8 @@
   "allSpamCalls": "All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam.",
   "allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam": "All spam calls are currently being blocked from calling your telephone number you may miss important call if the caller number is flagged by the network as spam.",
   "allTransactions": "All transactions",
+  "allowNotification": "Allow notifications",
+  "allowPushNotification": "Allow push notifications",
   "alreadyHaveAnAccount": " Already have an account?",
   "alreadyPaid": "Already paid",
   "alternativeEmail": "Alternative Email",
@@ -620,7 +622,7 @@
   "setAsPrimaryAccount": "Set as primary account",
   "setInActive": "Set inactive",
   "setPrimary": "Set primary",
-  "setting": "Setting",
+  "settings": "Settings",
   "share": "Share",
   "sideMenu": "Side menu",
   "signIn": "Sign in",
@@ -751,13 +753,5 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code",
-  "outgoing": "Outgoing",
-  "incoming": "Incoming",
-  "missed": "Missed",
-  "deleteText": "Delete",
-  "defaultPhone": "Default Phone App",
-  "setting": "Settings",
-  "allowNotification": "Allow notifications",
-  "allowPushNotification": "Allow push notifications"
+  "zip": "Zip Code"
 }

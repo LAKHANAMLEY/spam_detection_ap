@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -76,8 +75,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get addressVerification => 'Vérification de l\'adresse';
 
   @override
-  String get addressVerificationDesc =>
-      'Afin de compléter votre KYC, veuillez télécharger une copie de votre justificatif de domicile';
+  String get addressVerificationDesc => 'Afin de compléter votre KYC, veuillez télécharger une copie de votre justificatif de domicile';
 
   @override
   String get adminCommision => 'Commission de l\'administration: ';
@@ -92,15 +90,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get all => 'Toda';
 
   @override
-  String get allSpamCalls =>
-      'Actualmente se están bloqueando todas las llamadas spam a su número de teléfono. Puede perder una llamada importante si la red marca el número de la persona que llama como spam.';
+  String get allSpamCalls => 'Actualmente se están bloqueando todas las llamadas spam a su número de teléfono. Puede perder una llamada importante si la red marca el número de la persona que llama como spam.';
 
   @override
-  String get allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam =>
-      'Actualmente se han bloqueado todas las llamadas de spam a su número de teléfono Puede perder una llamada importante si número de la persona que llama está marcado por la red como spam.';
+  String get allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam => 'Actualmente se han bloqueado todas las llamadas de spam a su número de teléfono Puede perder una llamada importante si número de la persona que llama está marcado por la red como spam.';
 
   @override
   String get allTransactions => 'Transactions';
+
+  @override
+  String get allowNotification => 'Allow Notifications';
+
+  @override
+  String get allowPushNotification => 'Permitir notificaciones push';
 
   @override
   String get alreadyHaveAnAccount => '¿Ya tienes una cuenta?';
@@ -118,12 +120,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get amountRequestedSuccessfully => 'Montant demandé avec succès';
 
   @override
-  String get amountShouldBeGreaterThanZero =>
-      'Le montant doit être supérieur à 0';
+  String get amountShouldBeGreaterThanZero => 'Le montant doit être supérieur à 0';
 
   @override
-  String get anErrorOccurredDuringGoogleSignIn =>
-      'Se produjo un error durante el inicio de sesión en Google.';
+  String get anErrorOccurredDuringGoogleSignIn => 'Se produjo un error durante el inicio de sesión en Google.';
 
   @override
   String get areYouWantDelete => '¿Estás seguro de que quieres eliminar?';
@@ -132,15 +132,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get asPerDocument => 'Selon le document';
 
   @override
-  String get authenticationIsRequiredToAccessTheBCTPayApp =>
-      'L\'authentification est nécessaire pour accéder à l\'application BCTPay';
+  String get authenticationIsRequiredToAccessTheBCTPayApp => 'L\'authentification est nécessaire pour accéder à l\'application BCTPay';
 
   @override
   String get availableBalance => 'Solde disponible';
 
   @override
-  String get bCTPayCanHelpYouReachAWideUserBaseWithTargetedCampaignsDesignedToMeetYourBusinessNeeds =>
-      'BCTPay peut vous aider à atteindre une large base d\'utilisateurs avec des campagnes ciblées conçues pour répondre aux besoins de votre entreprise.';
+  String get bCTPayCanHelpYouReachAWideUserBaseWithTargetedCampaignsDesignedToMeetYourBusinessNeeds => 'BCTPay peut vous aider à atteindre une large base d\'utilisateurs avec des campagnes ciblées conçues pour répondre aux besoins de votre entreprise.';
 
   @override
   String get bCTPayIsLocked => 'BCTPay est verrouillé';
@@ -155,8 +153,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get balance => 'Solde';
 
   @override
-  String get balanceBtnDescription =>
-      'Vous irez dans la liste des comptes pour vérifier le solde en appuyant sur le bouton Balance.';
+  String get balanceBtnDescription => 'Vous irez dans la liste des comptes pour vérifier le solde en appuyant sur le bouton Balance.';
 
   @override
   String get bank => 'Banque';
@@ -186,8 +183,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get beneficiaryName => 'Nom du bénéficiaire';
 
   @override
-  String get biggestScholarshipCandidates =>
-      'Prueba de becas más grande para los candidatos Gate.';
+  String get biggestScholarshipCandidates => 'Prueba de becas más grande para los candidatos Gate.';
 
   @override
   String get billers => 'Fournisseurs';
@@ -199,8 +195,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get block => 'Bloquear';
 
   @override
-  String get blockAccuracy =>
-      'Bloquea todas las llamadas fraudulentas, de telemarketing y de fraude gracias a la precisión del bloqueo de la IA.';
+  String get blockAccuracy => 'Bloquea todas las llamadas fraudulentas, de telemarketing y de fraude gracias a la precisión del bloqueo de la IA.';
 
   @override
   String get blockSms => 'Bloquear SMS';
@@ -251,8 +246,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cancelTxt => 'Cancelar';
 
   @override
-  String get cantAddMoreAccountsForThisBankYouHaveReachedTheLimit =>
-      'Impossible d\'ajouter d\'autres comptes pour cette banque. Vous avez atteint la limite.';
+  String get cantAddMoreAccountsForThisBankYouHaveReachedTheLimit => 'Impossible d\'ajouter d\'autres comptes pour cette banque. Vous avez atteint la limite.';
 
   @override
   String get capture => 'Capturer';
@@ -276,8 +270,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get checkBalance => 'Vérifier le solde';
 
   @override
-  String get checkBalanceBtnDescription =>
-      'Vérifiez le solde du portefeuille ainsi que le solde du compte bancaire ou vous pouvez gérer vos comptes comme vous pouvez ajouter, actif, inactif, définir le compte principal ou vous pouvez supprimer le compte.';
+  String get checkBalanceBtnDescription => 'Vérifiez le solde du portefeuille ainsi que le solde du compte bancaire ou vous pouvez gérer vos comptes comme vous pouvez ajouter, actif, inactif, définir le compte principal ou vous pouvez supprimer le compte.';
 
   @override
   String get chooseGallery => 'Elija de la galería';
@@ -322,8 +315,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get confirm => 'Confirmer';
 
   @override
-  String get confirmContactDialogDesc =>
-      'Veuillez confirmer le numéro de contact';
+  String get confirmContactDialogDesc => 'Veuillez confirmer le numéro de contact';
 
   @override
   String get confirmNewPass => 'Confirmar nueva contraseña';
@@ -338,20 +330,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get confirmSecurityPin => 'Confirmar pin de seguridad';
 
   @override
-  String get congratulationsCreated =>
-      'Felicitaciones, su cuenta ha sido creada exitosamente.';
+  String get congratulationsCreated => 'Felicitaciones, su cuenta ha sido creada exitosamente.';
 
   @override
-  String get congratulationsSuccessfullyCreated =>
-      'Felicitaciones, su cuenta ha sido creada exitosamente.';
+  String get congratulationsSuccessfullyCreated => 'Felicitaciones, su cuenta ha sido creada exitosamente.';
 
   @override
-  String get congratulationsYourAccountHasBeenSuccessfullyCreated =>
-      'Félicitations, votre compte a été créé avec succès.';
+  String get congratulationsYourAccountHasBeenSuccessfullyCreated => 'Félicitations, votre compte a été créé avec succès.';
 
   @override
-  String get congratulationsYourAccountHasBeenSuccessfullyUpdated =>
-      'Félicitations, votre compte a été mis à jour avec succès.';
+  String get congratulationsYourAccountHasBeenSuccessfullyUpdated => 'Félicitations, votre compte a été mis à jour avec succès.';
 
   @override
   String get contact => 'Contactos';
@@ -426,23 +414,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get data => 'Données';
 
   @override
-  String get dataBtnDescription =>
-      'Explorez l\'achat de forfaits de données avant votre visite pour bénéficier potentiellement de tarifs réduits.';
+  String get dataBtnDescription => 'Explorez l\'achat de forfaits de données avant votre visite pour bénéficier potentiellement de tarifs réduits.';
 
   @override
   String get dateOfBirth => 'Fecha de nacimiento';
 
   @override
-  String get dearApplicantToday =>
-      'Estimado solicitante, el último día para postularse es hoy.';
+  String get dearApplicantToday => 'Estimado solicitante, el último día para postularse es hoy.';
 
   @override
-  String get dearCustomerMissedCall =>
-      'Estimado cliente, Tiene una llamada perdida.';
+  String get dearCustomerMissedCall => 'Estimado cliente, Tiene una llamada perdida.';
 
   @override
-  String get dearUserShortlisted =>
-      'Estimado usuario, tu perfil está preseleccionado.';
+  String get dearUserShortlisted => 'Estimado usuario, tu perfil está preseleccionado.';
 
   @override
   String get debitedFrom => 'Débité de';
@@ -478,7 +462,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deleteText => 'Borrar';
 
   @override
-  String get deleteTxt => 'Delete';
+  String get deleteTxt => 'Borrar';
 
   @override
   String get deletedSuccessfully => '¡Eliminado exitosamente!';
@@ -490,8 +474,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get details => 'Détails';
 
   @override
-  String get developerModeDialogDiscription =>
-      'Le mode développeur est activé, veuillez le désactiver pour accéder à l\'application BCTPay';
+  String get developerModeDialogDiscription => 'Le mode développeur est activé, veuillez le désactiver pour accéder à l\'application BCTPay';
 
   @override
   String get didReceiveCode => '¿No recibiste el código?';
@@ -503,20 +486,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get discount => 'Rabais';
 
   @override
-  String get doYouReallyWantToDeleteThisAccount =>
-      'Voulez-vous vraiment supprimer ce compte ?';
+  String get doYouReallyWantToDeleteThisAccount => 'Voulez-vous vraiment supprimer ce compte ?';
 
   @override
-  String get doYouReallyWantToExitTheApp =>
-      'Voulez-vous vraiment quitter l\'application ?';
+  String get doYouReallyWantToExitTheApp => 'Voulez-vous vraiment quitter l\'application ?';
 
   @override
-  String get doYouReallyWantToLogout =>
-      'Voulez-vous vraiment vous déconnecter ?';
+  String get doYouReallyWantToLogout => 'Voulez-vous vraiment vous déconnecter ?';
 
   @override
-  String get doYouReallyWantToUpdateProfileImage =>
-      'Voulez-vous vraiment mettre à jour l\'image du profil ?';
+  String get doYouReallyWantToUpdateProfileImage => 'Voulez-vous vraiment mettre à jour l\'image du profil ?';
 
   @override
   String get dob => 'Date de naissance';
@@ -537,15 +516,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dontHaveAnAccount => '¿No tienes una cuenta?';
 
   @override
-  String get dontWorryItHappensPleaseEnterTheAddressAssociatedWithYourAccount =>
-      '¡NO TE PREOCUPES! Eso sucede. Por favor, introduzca la dirección asociada a su cuenta.';
+  String get dontWorryItHappensPleaseEnterTheAddressAssociatedWithYourAccount => '¡NO TE PREOCUPES! Eso sucede. Por favor, introduzca la dirección asociada a su cuenta.';
 
   @override
   String get download => 'Téléchargez';
 
   @override
-  String get drawerBtnDescription =>
-      'Obtenez la liste des paramètres dans le menu latéral.';
+  String get drawerBtnDescription => 'Obtenez la liste des paramètres dans le menu latéral.';
 
   @override
   String get drivingLicence => 'Permis de conduire';
@@ -599,8 +576,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enjoy => 'Apprécier';
 
   @override
-  String get enjoyMember =>
-      'Disfruta de todos los beneficios de ser un miembro explorador';
+  String get enjoyMember => 'Disfruta de todos los beneficios de ser un miembro explorador';
 
   @override
   String get enterAccountHolderName => 'Entrez le nom du titulaire du compte';
@@ -630,12 +606,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enterClientId => 'Entrez l\'ID client';
 
   @override
-  String get enterCode =>
-      'Ingresa el código de 6 dígitos que recibiste en tu correo electrónico';
+  String get enterCode => 'Ingresa el código de 6 dígitos que recibiste en tu correo electrónico';
 
   @override
-  String get enterConfirmNewPassword =>
-      'Entrez confirmer le nouveau mot de passe';
+  String get enterConfirmNewPassword => 'Entrez confirmer le nouveau mot de passe';
 
   @override
   String get enterConfirmPassword => 'Entrez Confirmer le mot de passe';
@@ -683,8 +657,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enterPaymentNote => 'Entrez la note de paiement';
 
   @override
-  String get enterPhoneScreenLockPatternPINPasswordOrFingerprint =>
-      'Entrez le modèle de verrouillage d\'écran du téléphone, la broche, le mot de passe ou l\'empreinte digitale';
+  String get enterPhoneScreenLockPatternPINPasswordOrFingerprint => 'Entrez le modèle de verrouillage d\'écran du téléphone, la broche, le mot de passe ou l\'empreinte digitale';
 
   @override
   String get enterPinCode => 'Entrez le code PIN';
@@ -693,12 +666,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enterTxnId => 'Entrez l\'ID de transaction';
 
   @override
-  String get enterVerificationProcess =>
-      'Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 4 dígitos a tu correo electrónico.';
+  String get enterVerificationProcess => 'Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 4 dígitos a tu correo electrónico.';
 
   @override
-  String get enterWalletPhoneNumber =>
-      'Entrez le numéro de téléphone du portefeuille';
+  String get enterWalletPhoneNumber => 'Entrez le numéro de téléphone du portefeuille';
 
   @override
   String get enterYourFirstName => 'Entrez votre prénom';
@@ -752,8 +723,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get forYou => 'Pour toi';
 
   @override
-  String get forgotPassDetails =>
-      'Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 6 dígitos a tu correo electrónico o SMS.';
+  String get forgotPassDetails => 'Ingresa tu dirección de correo electrónico para el proceso de verificación. Te enviaremos un código de 6 dígitos a tu correo electrónico o SMS.';
 
   @override
   String get forgotPassword => 'Has olvidado tu contraseña';
@@ -762,15 +732,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get forgotPasswordText => '¿Has olvidado tu contraseña?';
 
   @override
-  String get freeTrialForNewSubscribers =>
-      'Prueba gratuita de 3 días solo para nuevos suscriptores';
+  String get freeTrialForNewSubscribers => 'Prueba gratuita de 3 días solo para nuevos suscriptores';
 
   @override
   String get from => 'Depuis';
 
   @override
-  String get fromNowOnYouArePartOfUs =>
-      'A partir de ahora, eres parte de nosotros!';
+  String get fromNowOnYouArePartOfUs => 'A partir de ahora, eres parte de nosotros!';
 
   @override
   String get fromUs => 'A partir de ahora, eres parte de nosotros!';
@@ -797,8 +765,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get giftCard => 'Carte cadeau';
 
   @override
-  String get giftCardBtnDescription =>
-      'Choisissez la marque de carte-cadeau spécifique et la valeur souhaitée en fonction de vos besoins et préférences.';
+  String get giftCardBtnDescription => 'Choisissez la marque de carte-cadeau spécifique et la valeur souhaitée en fonction de vos besoins et préférences.';
 
   @override
   String get goBack => 'Go back';
@@ -807,8 +774,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get goals => 'Objectifs';
 
   @override
-  String get googleSignFailedPleaseAgain =>
-      'Error al iniciar sesión en Google. Inténtalo de nuevo.';
+  String get googleSignFailedPleaseAgain => 'Error al iniciar sesión en Google. Inténtalo de nuevo.';
 
   @override
   String get grossTotal => 'Total brut';
@@ -820,8 +786,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get haveAnAccount => 'tener una cuenta?';
 
   @override
-  String get helloThereSignInToContinue =>
-      'Bonjour, connectez-vous pour continuer';
+  String get helloThereSignInToContinue => 'Bonjour, connectez-vous pour continuer';
 
   @override
   String get helpNSupport => 'Support d\'aide';
@@ -830,15 +795,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get history => 'Transactions';
 
   @override
-  String get historyBtnDescription =>
-      'Vous irez sur la liste des histoires de transaction en appuyant sur le bouton de l\'historique.';
+  String get historyBtnDescription => 'Vous irez sur la liste des histoires de transaction en appuyant sur le bouton de l\'historique.';
 
   @override
   String get home => 'Accueil';
 
   @override
-  String get homeBtnDescription =>
-      'Vous irez au tableau de bord en appuyant sur le bouton d\'accueil.';
+  String get homeBtnDescription => 'Vous irez au tableau de bord en appuyant sur le bouton d\'accueil.';
 
   @override
   String get homeFax => 'Fax a domicilio';
@@ -850,8 +813,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get howMuchYouWantToSend => 'Combien tu veux envoyer ?';
 
   @override
-  String get idVerificationDesc =>
-      'Afin de compléter votre KYC, veuillez télécharger une copie de votre pièce d\'identité';
+  String get idVerificationDesc => 'Afin de compléter votre KYC, veuillez télécharger une copie de votre pièce d\'identité';
 
   @override
   String get identityVerification => 'Vérification d\'identité';
@@ -863,12 +825,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get inActive => 'Inactif';
 
   @override
-  String get inIndiaViewedYourProfileRecently =>
-      '127 personas (127 en India) vieron tu perfil recientemente';
+  String get inIndiaViewedYourProfileRecently => '127 personas (127 en India) vieron tu perfil recientemente';
 
   @override
-  String get includesALetterDigitAndSpecialCharacter =>
-      'Comprend une lettre, un chiffre et un caractère spécial';
+  String get includesALetterDigitAndSpecialCharacter => 'Comprend une lettre, un chiffre et un caractère spécial';
 
   @override
   String get incoming => 'Entrante';
@@ -886,15 +846,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get institutionName => 'Nom de l\'institution';
 
   @override
-  String get invalidVerificationFailed =>
-      'OTP no válido o verificación fallida';
+  String get invalidVerificationFailed => 'OTP no válido o verificación fallida';
 
   @override
   String get invoice => 'Facture';
 
   @override
-  String get invoiceAlreadyPaid =>
-      'Facture déjà payée. Voir les détails du paiement';
+  String get invoiceAlreadyPaid => 'Facture déjà payée. Voir les détails du paiement';
 
   @override
   String get invoiceDate => 'Date de la facture';
@@ -927,8 +885,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get kycHistory => 'Historique KYC';
 
   @override
-  String get kycNotApprovedDialogMessage =>
-      'Votre KYC n\'est pas encore validé, veuillez mettre à jour votre KYC pour effectuer des transactions.';
+  String get kycNotApprovedDialogMessage => 'Votre KYC n\'est pas encore validé, veuillez mettre à jour votre KYC pour effectuer des transactions.';
 
   @override
   String get kycPending => 'KYC en attente';
@@ -967,8 +924,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get learnMore => 'Más información';
 
   @override
-  String get leaveUsAMessageAboutYourQuestionsOrInquiriesAndSomeoneFromOurTeamWillBeInTouchSoon =>
-      'Laissez-nous un message sur vos questions ou vos demandes et quelqu\'un de notre équipe sera bientôt en contact.';
+  String get leaveUsAMessageAboutYourQuestionsOrInquiriesAndSomeoneFromOurTeamWillBeInTouchSoon => 'Laissez-nous un message sur vos questions ou vos demandes et quelqu\'un de notre équipe sera bientôt en contact.';
 
   @override
   String get light => 'Lumière';
@@ -1015,8 +971,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get messagesSpam => 'Mensajes movidos a spam';
 
   @override
-  String get minimumCharactersRequired =>
-      'Se requieren un mínimo de 8 caracteres.';
+  String get minimumCharactersRequired => 'Se requieren un mínimo de 8 caracteres.';
 
   @override
   String get minimumOrderValueIs => 'La valeur minimale de la commande est';
@@ -1066,12 +1021,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get mtnMoMo => 'MTN MoMo';
 
   @override
-  String get mustLowercaseLetter =>
-      'Debe incluir al menos una letra minúscula.';
+  String get mustLowercaseLetter => 'Debe incluir al menos una letra minúscula.';
 
   @override
-  String get mustSpecialCharacter =>
-      'Debe incluir al menos un carácter especial.';
+  String get mustSpecialCharacter => 'Debe incluir al menos un carácter especial.';
 
   @override
   String get mustUppercaseLetter => 'Debe incluir al menos una letra mayúscula';
@@ -1098,8 +1051,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get newPass => 'Nueva contraseña';
 
   @override
-  String get newPassConfirmPass =>
-      'La nueva contraseña y la confirmación de contraseña no coinciden.';
+  String get newPassConfirmPass => 'La nueva contraseña y la confirmación de contraseña no coinciden.';
 
   @override
   String get newPassword => 'Nouveau mot de passe';
@@ -1147,8 +1099,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noNotificationsText => 'Sin notificaciones';
 
   @override
-  String get noPermissionToUpdateText =>
-      'Il semble que vous n\'ayez pas l\'autorisation de mettre à jour ou que vous n\'avez pas ajouté de données obligatoires';
+  String get noPermissionToUpdateText => 'Il semble que vous n\'ayez pas l\'autorisation de mettre à jour ou que vous n\'avez pas ajouté de données obligatoires';
 
   @override
   String get noPlans => 'Aucun projet';
@@ -1199,12 +1150,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get notVerified => 'Non vérifié';
 
   @override
-  String get noteDocFormates =>
-      'Remarque: les formats de documents sont PNG, JPG, JPEG';
+  String get noteDocFormates => 'Remarque: les formats de documents sont PNG, JPG, JPEG';
 
   @override
-  String get notePlatformFeeWillBeImposedOnSenderForThisTransaction =>
-      'Remarque: les frais de plate-forme seront imposés à l\'expéditeur pour cette transaction.';
+  String get notePlatformFeeWillBeImposedOnSenderForThisTransaction => 'Remarque: les frais de plate-forme seront imposés à l\'expéditeur pour cette transaction.';
 
   @override
   String get notificationList => 'Lista de notificaciones';
@@ -1213,15 +1162,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get notifications => 'Notifications';
 
   @override
-  String get notificationsBtnDescription =>
-      'Vous irez dans la liste des notifications en appuyant sur le bouton Notifications.';
+  String get notificationsBtnDescription => 'Vous irez dans la liste des notifications en appuyant sur le bouton Notifications.';
 
   @override
   String get numberType => 'Tipo de número';
 
   @override
-  String get ohNoTheOTPTimedOutPleaseRequestANewCodeAndTryAgain =>
-      'Oh non!Le OTP a chronométré.Veuillez demander un nouveau code et réessayer.';
+  String get ohNoTheOTPTimedOutPleaseRequestANewCodeAndTryAgain => 'Oh non!Le OTP a chronométré.Veuillez demander un nouveau code et réessayer.';
 
   @override
   String get ok => 'D\'accord';
@@ -1245,8 +1192,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get openXpressAccount => 'Ouvrir un compte Ecobank Xpress';
 
   @override
-  String get openXpressAccountViewTitle =>
-      'Ouvrez instantanément un compte Ecobank Xpress avec BCTPay';
+  String get openXpressAccountViewTitle => 'Ouvrez instantanément un compte Ecobank Xpress avec BCTPay';
 
   @override
   String get or => 'O';
@@ -1348,8 +1294,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get personalProtection => 'Protección Personal';
 
   @override
-  String get phoneAutomaticallySigned =>
-      '¡Número de teléfono verificado y registrado automáticamente!';
+  String get phoneAutomaticallySigned => '¡Número de teléfono verificado y registrado automáticamente!';
 
   @override
   String get phoneNumber => 'Número de teléfono';
@@ -1361,52 +1306,43 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pinCode => 'Code PIN';
 
   @override
-  String get pinNumberMustContainOnlDigits =>
-      'El número PIN debe contener solo dígitos';
+  String get pinNumberMustContainOnlDigits => 'El número PIN debe contener solo dígitos';
 
   @override
   String get pinNumberMustDigits => 'El número PIN debe tener 6 dígitos';
 
   @override
-  String get pleasNewPasswordSecure =>
-      'Ingrese una nueva contraseña para proteger su cuenta.';
+  String get pleasNewPasswordSecure => 'Ingrese una nueva contraseña para proteger su cuenta.';
 
   @override
-  String get pleaseAcceptTermsAndConditions =>
-      'Veuillez accepter les conditions générales';
+  String get pleaseAcceptTermsAndConditions => 'Veuillez accepter les conditions générales';
 
   @override
   String get pleaseActiveYourSubscription => 'Por favor activa tu suscripción';
 
   @override
-  String get pleaseAddAtleastOneactiveAccount =>
-      'Veuillez ajouter au moins un compte actif';
+  String get pleaseAddAtleastOneactiveAccount => 'Veuillez ajouter au moins un compte actif';
 
   @override
-  String get pleaseAlternativeEmail =>
-      'Por favor todos los correos electrónicos alternativos';
+  String get pleaseAlternativeEmail => 'Por favor todos los correos electrónicos alternativos';
 
   @override
   String get pleaseCheckMail => 'Por favor revisa tu correo';
 
   @override
-  String get pleaseCheckYourNetworkConnection =>
-      'Veuillez vérifier votre connexion réseau.';
+  String get pleaseCheckYourNetworkConnection => 'Veuillez vérifier votre connexion réseau.';
 
   @override
   String get pleaseCompanyName => 'Por favor ingrese el nombre de la empresa';
 
   @override
-  String get pleaseConfirmPass =>
-      'Por favor ingrese y confirme la nueva contraseña';
+  String get pleaseConfirmPass => 'Por favor ingrese y confirme la nueva contraseña';
 
   @override
-  String get pleaseConfirmSecurityPin =>
-      'Por favor ingrese el PIN de seguridad de confirmación';
+  String get pleaseConfirmSecurityPin => 'Por favor ingrese el PIN de seguridad de confirmación';
 
   @override
-  String get pleaseCorporateID =>
-      'Por favor ingrese su correo electrónico válido / ID corporativo';
+  String get pleaseCorporateID => 'Por favor ingrese su correo electrónico válido / ID corporativo';
 
   @override
   String get pleaseCorporateIDText => 'Por favor, introduzca el ID corporativo';
@@ -1421,19 +1357,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pleaseCurrentPass => 'Por favor ingrese la contraseña actual';
 
   @override
-  String get pleaseCurrentSecurityPin =>
-      'Por favor ingrese el PIN de seguridad actual';
+  String get pleaseCurrentSecurityPin => 'Por favor ingrese el PIN de seguridad actual';
 
   @override
-  String get pleaseEnterAccountHolderName =>
-      'Veuillez saisir le nom du titulaire du compte';
+  String get pleaseEnterAccountHolderName => 'Veuillez saisir le nom du titulaire du compte';
 
   @override
   String get pleaseEnterAccountNumber => 'Veuillez entrer le numéro de compte';
 
   @override
-  String get pleaseEnterBeneficiaryName =>
-      'Veuillez saisir le nom du bénéficiaire';
+  String get pleaseEnterBeneficiaryName => 'Veuillez saisir le nom du bénéficiaire';
 
   @override
   String get pleaseEnterCategory => 'Por favor ingrese la categoría';
@@ -1448,8 +1381,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pleaseEnterFields => 'Por favor, introduzca todos los campos.';
 
   @override
-  String get pleaseEnterInstitutionCode =>
-      'Veuillez saisir le code de l\'établissement';
+  String get pleaseEnterInstitutionCode => 'Veuillez saisir le code de l\'établissement';
 
   @override
   String get pleaseEnterMessage => 'Veuillez saisir le message';
@@ -1470,19 +1402,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pleaseEnterValidAmount => 'Veuillez saisir le montant valide';
 
   @override
-  String get pleaseEnterValidMobileNumber =>
-      'Veuillez saisir le numéro de mobile valide';
+  String get pleaseEnterValidMobileNumber => 'Veuillez saisir le numéro de mobile valide';
 
   @override
   String get pleaseEnterValidValue => 'Veuillez saisir une valeur valide';
 
   @override
-  String get pleaseEnterValidWalletPhoneNumber =>
-      'Veuillez saisir le numéro de téléphone du portefeuille valide';
+  String get pleaseEnterValidWalletPhoneNumber => 'Veuillez saisir le numéro de téléphone du portefeuille valide';
 
   @override
-  String get pleaseEnterWalletPhoneNumber =>
-      'Veuillez saisir le numéro de téléphone du portefeuille';
+  String get pleaseEnterWalletPhoneNumber => 'Veuillez saisir le numéro de téléphone du portefeuille';
 
   @override
   String get pleaseEnterYourAddress => 'Veuillez entrer votre adresse';
@@ -1491,49 +1420,40 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pleaseEnterYourCity => 'Veuillez entrer dans votre ville';
 
   @override
-  String get pleaseEnterYourConfirmNewPassword =>
-      'Veuillez saisir votre nouveau mot de passe Confirmer';
+  String get pleaseEnterYourConfirmNewPassword => 'Veuillez saisir votre nouveau mot de passe Confirmer';
 
   @override
-  String get pleaseEnterYourConfirmPassword =>
-      'Veuillez saisir votre mot de passe Confirmer';
+  String get pleaseEnterYourConfirmPassword => 'Veuillez saisir votre mot de passe Confirmer';
 
   @override
   String get pleaseEnterYourCountry => 'Veuillez entrer dans votre pays';
 
   @override
-  String get pleaseEnterYourEmailAddress =>
-      'Veuillez saisir votre adresse e-mail';
+  String get pleaseEnterYourEmailAddress => 'Veuillez saisir votre adresse e-mail';
 
   @override
   String get pleaseEnterYourFirstName => 'Entrez votre prénom s\'il vous plait';
 
   @override
-  String get pleaseEnterYourFullName =>
-      'S\'il vous plait entrez votre nom entier';
+  String get pleaseEnterYourFullName => 'S\'il vous plait entrez votre nom entier';
 
   @override
   String get pleaseEnterYourLastName => 'Veuillez entrer votre nom de famille';
 
   @override
-  String get pleaseEnterYourMobileNumber =>
-      'Entrez s\'il vous plaît votre numéro de téléphone';
+  String get pleaseEnterYourMobileNumber => 'Entrez s\'il vous plaît votre numéro de téléphone';
 
   @override
-  String get pleaseEnterYourNewPassword =>
-      'Veuillez saisir votre nouveau mot de passe';
+  String get pleaseEnterYourNewPassword => 'Veuillez saisir votre nouveau mot de passe';
 
   @override
-  String get pleaseEnterYourOldPassword =>
-      'Veuillez saisir votre ancien mot de passe';
+  String get pleaseEnterYourOldPassword => 'Veuillez saisir votre ancien mot de passe';
 
   @override
-  String get pleaseEnterYourPassword =>
-      'S\'il vous plait entrez votre mot de passe';
+  String get pleaseEnterYourPassword => 'S\'il vous plait entrez votre mot de passe';
 
   @override
-  String get pleaseEnterYourValidEmailAddress =>
-      'Veuillez saisir l\'adresse e-mail valide';
+  String get pleaseEnterYourValidEmailAddress => 'Veuillez saisir l\'adresse e-mail valide';
 
   @override
   String get pleaseEnterZipCode => 'por favor ingrese el código postal';
@@ -1551,8 +1471,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pleaseNewPass => 'Por favor ingresa Nueva contraseña';
 
   @override
-  String get pleaseNewPinSecure =>
-      'Ingrese un nuevo PIN para proteger su cuenta.';
+  String get pleaseNewPinSecure => 'Ingrese un nuevo PIN para proteger su cuenta.';
 
   @override
   String get pleaseNewSecurityPin => 'Por favor ingrese nuevo PIN de seguridad';
@@ -1561,30 +1480,25 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pleaseRelation => 'Por favor ingrese la relación';
 
   @override
-  String get pleaseSecureAccount =>
-      'Ingrese una nueva contraseña para proteger su cuenta.';
+  String get pleaseSecureAccount => 'Ingrese una nueva contraseña para proteger su cuenta.';
 
   @override
-  String get pleaseSelectAllMandatoryField =>
-      'Veuillez sélectionner tous les champs obligatoires';
+  String get pleaseSelectAllMandatoryField => 'Veuillez sélectionner tous les champs obligatoires';
 
   @override
   String get pleaseSelectBackImage => 'Veuillez sélectionner l\'image arrière';
 
   @override
-  String get pleaseSelectCountryPhoneCode =>
-      'Veuillez sélectionner le code téléphonique du pays';
+  String get pleaseSelectCountryPhoneCode => 'Veuillez sélectionner le code téléphonique du pays';
 
   @override
   String get pleaseSelectDOB => 'Por favor seleccione fecha de nacimiento';
 
   @override
-  String get pleaseSelectFrontImage =>
-      'Veuillez sélectionner l\'image de devant';
+  String get pleaseSelectFrontImage => 'Veuillez sélectionner l\'image de devant';
 
   @override
-  String get pleaseSelectInstitutionName =>
-      'Veuillez sélectionner le nom de l\'institution';
+  String get pleaseSelectInstitutionName => 'Veuillez sélectionner le nom de l\'institution';
 
   @override
   String get pleaseSelectYourState => 'Veuillez sélectionner votre état';
@@ -1596,12 +1510,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pleaseSupportPin => 'Por favor ingresa el pin de soporte';
 
   @override
-  String get pleaseTxt =>
-      'Seleccione el tipo de cuenta que va a configurar hoy.';
+  String get pleaseTxt => 'Seleccione el tipo de cuenta que va a configurar hoy.';
 
   @override
-  String get pleaseVerify =>
-      'Ingrese su número de teléfono válido, le enviaremos un código de 4 dígitos para verificar.';
+  String get pleaseVerify => 'Ingrese su número de teléfono válido, le enviaremos un código de 4 dígitos para verificar.';
 
   @override
   String get popular => 'Popular';
@@ -1700,12 +1612,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get recharge => 'Recharger';
 
   @override
-  String get rechargeBtnDescription =>
-      'Rechargez tout mobile en entrant le numéro de mobile ou en choisissant des contacts dans votre liste de contacts.';
+  String get rechargeBtnDescription => 'Rechargez tout mobile en entrant le numéro de mobile ou en choisissant des contacts dans votre liste de contacts.';
 
   @override
-  String get rechargeHasBeenSuccessfullyDone =>
-      'La recharge a été réalisée avec succès';
+  String get rechargeHasBeenSuccessfullyDone => 'La recharge a été réalisée avec succès';
 
   @override
   String get recoverPassword => 'Récupérer le mot de passe';
@@ -1753,12 +1663,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get renterPassword => 'Escriba la contraseña otra vez';
 
   @override
-  String get replyingIsNotSupportedByThisSender =>
-      'Este remitente no admite la respuesta';
+  String get replyingIsNotSupportedByThisSender => 'Este remitente no admite la respuesta';
 
   @override
-  String get reportMessageExperience =>
-      'Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú';
+  String get reportMessageExperience => 'Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú';
 
   @override
   String get reportNumberSpam => 'Reportar número como spam';
@@ -1767,8 +1675,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get reportSpam => 'Reportar spam';
 
   @override
-  String get reportSpamLabel =>
-      'Este remitente será marcado y etiquetado como spam en la conversación.';
+  String get reportSpamLabel => 'Este remitente será marcado y etiquetado como spam en la conversación.';
 
   @override
   String get reportText => 'Informe';
@@ -1840,12 +1747,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get scan => 'Scanner QR Code';
 
   @override
-  String get scanBtnDescription =>
-      'Scanner les QR codes et effectuer des transactions.';
+  String get scanBtnDescription => 'Scanner les QR codes et effectuer des transactions.';
 
   @override
-  String get scanPayUsingBCTPayApp =>
-      'Scanner et payer à l\'aide de l\'application BCTPay';
+  String get scanPayUsingBCTPayApp => 'Scanner et payer à l\'aide de l\'application BCTPay';
 
   @override
   String get scanQR => 'Scannez le QR Code';
@@ -1869,8 +1774,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get searchMore => 'Buscar números, nombres y más';
 
   @override
-  String get secureEmail =>
-      'Ingrese un correo electrónico alternativo para proteger su cuenta.';
+  String get secureEmail => 'Ingrese un correo electrónico alternativo para proteger su cuenta.';
 
   @override
   String get security => 'Sécurité';
@@ -1882,16 +1786,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get selectAccount => 'Sélectionnez un compte';
 
   @override
-  String get selectAccountToReceiveInto =>
-      'Sélectionnez le compte dans lequel recevoir';
+  String get selectAccountToReceiveInto => 'Sélectionnez le compte dans lequel recevoir';
 
   @override
-  String get selectBankAccountToTransferFrom =>
-      'Sélectionnez le compte bancaire à transférer à partir de';
+  String get selectBankAccountToTransferFrom => 'Sélectionnez le compte bancaire à transférer à partir de';
 
   @override
-  String get selectBankAccountToTransferTo =>
-      'Sélectionnez le compte bancaire pour transférer vers';
+  String get selectBankAccountToTransferTo => 'Sélectionnez le compte bancaire pour transférer vers';
 
   @override
   String get selectCategory => 'Selecciona una categoría';
@@ -1921,23 +1822,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get selfieVerification => 'Vérification des selfies';
 
   @override
-  String get selfieVerificationDesc =>
-      'Afin de compléter votre KYC, veuillez capturer votre selfie';
+  String get selfieVerificationDesc => 'Afin de compléter votre KYC, veuillez capturer votre selfie';
 
   @override
-  String get selfieVerificationPurpose =>
-      'L\'exactitude du selfie est vérifiée. Si ce n\'est pas correct, vous devez soit la recapturer, soit continuer avec l\'image existante.';
+  String get selfieVerificationPurpose => 'L\'exactitude du selfie est vérifiée. Si ce n\'est pas correct, vous devez soit la recapturer, soit continuer avec l\'image existante.';
 
   @override
-  String get selfieVerificationTnC =>
-      'Tenez votre téléphone au niveau des yeux, regardez directement dans l\'appareil photo et appuyez sur le bouton de capture pour prendre une photo.';
+  String get selfieVerificationTnC => 'Tenez votre téléphone au niveau des yeux, regardez directement dans l\'appareil photo et appuyez sur le bouton de capture pour prendre une photo.';
 
   @override
   String get sendMoney => 'Envoyer de l\'argent';
 
   @override
-  String get sendMoneyBtnDescription =>
-      'Vous pouvez effectuer des transactions à vos bénéficiaires supplémentaires et vous pouvez également gérer les bénéficiaires.';
+  String get sendMoneyBtnDescription => 'Vous pouvez effectuer des transactions à vos bénéficiaires supplémentaires et vous pouvez également gérer les bénéficiaires.';
 
   @override
   String get sendSms => 'Enviar SMS';
@@ -1967,8 +1864,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get services => 'Services';
 
   @override
-  String get sessionPleaseLogInAgain =>
-      'La sesión ha expirado. Por favor, vuelva a iniciar sesión.';
+  String get sessionPleaseLogInAgain => 'La sesión ha expirado. Por favor, vuelva a iniciar sesión.';
 
   @override
   String get setActive => 'Activer';
@@ -1983,7 +1879,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get setPrimary => 'Définir le primaire';
 
   @override
-  String get setting => 'Setting';
+  String get setting => 'Ajustes';
+
+  @override
+  String get settings => 'Ajustes';
 
   @override
   String get share => 'Partager';
@@ -2019,16 +1918,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get spamReports => 'Informes de spam';
 
   @override
-  String get spamSMSEmail =>
-      'Bloqueo de llamadas spam, detección de estafas con AI Protect, protección de SMS y correo electrónico';
+  String get spamSMSEmail => 'Bloqueo de llamadas spam, detección de estafas con AI Protect, protección de SMS y correo electrónico';
 
   @override
-  String get spamSMSProtect =>
-      'Bloqueo de llamadas spam, detección de estafas AI Protect y protección de SMS';
+  String get spamSMSProtect => 'Bloqueo de llamadas spam, detección de estafas AI Protect y protección de SMS';
 
   @override
-  String get spamScamDetection =>
-      'Bloqueo de llamadas spam y detección de estafas con AI Protect';
+  String get spamScamDetection => 'Bloqueo de llamadas spam y detección de estafas con AI Protect';
 
   @override
   String get staff => 'Personal';
@@ -2079,7 +1975,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tax => 'IMPÔT';
 
   @override
-  String get tellUsMore => 'Tell us more...';
+  String get tellUsMore => 'Cuéntanos más...';
 
   @override
   String get termsAndConditions => 'Términos y condiciones';
@@ -2091,8 +1987,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get thisFieldShouldNotBeEmpty => 'Ce champ ne devrait pas être vide';
 
   @override
-  String get thisFuctionalityWillAvailableSoon =>
-      'Cette fonctionalité sera bientôt disponible';
+  String get thisFuctionalityWillAvailableSoon => 'Cette fonctionalité sera bientôt disponible';
 
   @override
   String get timeSpammers => 'Tiempo ahorrado frente a los spammers';
@@ -2104,8 +1999,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get toSelfAccount => 'Vers mon compte';
 
   @override
-  String get toSelfAccountBtnDescription =>
-      'Transférer de l\'argent à vos comptes autonomes, même vous pouvez gérer vos comptes à partir d\'ici.';
+  String get toSelfAccountBtnDescription => 'Transférer de l\'argent à vos comptes autonomes, même vous pouvez gérer vos comptes à partir d\'ici.';
 
   @override
   String get topUp => 'Reprise';
@@ -2213,12 +2107,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get upgradePremiumView => 'Actualice a Premium para ver';
 
   @override
-  String get upgradeToPremiumOutWho =>
-      'Actualice a Premium para descubrir quién';
+  String get upgradeToPremiumOutWho => 'Actualice a Premium para descubrir quién';
 
   @override
-  String get upgradeUsersSpamDetectionPremium =>
-      'Actualice para unirse a más de 1 millón de usuarios en detección de spam premium';
+  String get upgradeUsersSpamDetectionPremium => 'Actualice para unirse a más de 1 millón de usuarios en detección de spam premium';
 
   @override
   String get uploadBackImageOfDoc => 'Image de téléchargement du document';
@@ -2233,8 +2125,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get uploadImage => 'Télécharger l\'image';
 
   @override
-  String get uploadYourAddressDocument =>
-      'Téléchargez votre document d\'adresse';
+  String get uploadYourAddressDocument => 'Téléchargez votre document d\'adresse';
 
   @override
   String get upto => 'jusqu\'à';
@@ -2291,15 +2182,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get wasPersonalNumber => '¿Era este un número comercial o personal?';
 
   @override
-  String get wasThisBusinessMessage =>
-      '¿Fue este un mensaje comercial o personal?';
+  String get wasThisBusinessMessage => '¿Fue este un mensaje comercial o personal?';
 
   @override
   String get water => 'Eau';
 
   @override
-  String get weHaveSentTheCodeVerificationToYourMobileNumber =>
-      'Code de vérification envoyé à votre numéro mobile';
+  String get weHaveSentTheCodeVerificationToYourMobileNumber => 'Code de vérification envoyé à votre numéro mobile';
 
   @override
   String get welcome => 'Bienvenido';
@@ -2308,8 +2197,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get welcomeBack => 'Bienvenue';
 
   @override
-  String get welcomeTxt =>
-      '¡Bienvenido a BROADLINK Prosuct, su defensor móvil! Bloquee sin esfuerzo las llamadas y los mensajes no deseados y mantenga limpio su dispositivo. ¡Comencemos y tomemos el control de su comunicación!';
+  String get welcomeTxt => '¡Bienvenido a BROADLINK Prosuct, su defensor móvil! Bloquee sin esfuerzo las llamadas y los mensajes no deseados y mantenga limpio su dispositivo. ¡Comencemos y tomemos el control de su comunicación!';
 
   @override
   String get whatCallAbout => '¿De qué se trataba la llamada?';
@@ -2318,7 +2206,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get whatSpamIt => '¿Qué tipo de spam era?';
 
   @override
-  String get whatTypeOfMessage => 'What type of message was this?';
+  String get whatTypeOfMessage => '¿Qué tipo de mensaje era éste?';
 
   @override
   String get whoViewedMyProfile => '¿Quién vio mi perfil?';
@@ -2342,27 +2230,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get yey => '¡Sí!';
 
   @override
-  String get yoCanUpdateYourProfileFromHere =>
-      'Vous pouvez mettre à jour votre profil à partir d\'ici';
+  String get yoCanUpdateYourProfileFromHere => 'Vous pouvez mettre à jour votre profil à partir d\'ici';
 
   @override
-  String get youAreProtected =>
-      'Estás protegido contra todos los números de teléfono peligrosos de nuestra base de datos de seguridad';
+  String get youAreProtected => 'Estás protegido contra todos los números de teléfono peligrosos de nuestra base de datos de seguridad';
 
   @override
-  String get youCanDoAnyOnlinePaymentFromAnyCardOrAccountJustScanTheQRCodeNEnjoy =>
-      'Vous pouvez effectuer n\'importe quel paiement en ligne à partir de n\'importe quelle carte ou compte.Il suffit de scanner le QR code et de profiter.';
+  String get youCanDoAnyOnlinePaymentFromAnyCardOrAccountJustScanTheQRCodeNEnjoy => 'Vous pouvez effectuer n\'importe quel paiement en ligne à partir de n\'importe quelle carte ou compte.Il suffit de scanner le QR code et de profiter.';
 
   @override
   String get youCanGetUpto => 'Vous pouvez obtenir jusqu\'à';
 
   @override
-  String get youCanManageYourSubscription =>
-      'Puede administrar su suscripción o cancelarla en cualquier momento en la configuración de su cuenta de Google. Se aplican términos específicos.';
+  String get youCanManageYourSubscription => 'Puede administrar su suscripción o cancelarla en cualquier momento en la configuración de su cuenta de Google. Se aplican términos específicos.';
 
   @override
-  String get youCanNotTransferAmountToYourselfSelectOtherAccountToProceed =>
-      'Vous ne pouvez pas transférer de montant à vous-même. Sélectionnez un autre compte pour continuer.';
+  String get youCanNotTransferAmountToYourselfSelectOtherAccountToProceed => 'Vous ne pouvez pas transférer de montant à vous-même. Sélectionnez un autre compte pour continuer.';
 
   @override
   String get youCantRetryYet => 'Vous ne pouvez pas encore réessayer!';
@@ -2371,57 +2254,26 @@ class AppLocalizationsEs extends AppLocalizations {
   String get your => 'Ton';
 
   @override
-  String get yourEmailsAreCurrently =>
-      'Protect AI está analizando actualmente sus correos electrónicos para detectar posibles estafas y proteger sus datos y finanzas.';
+  String get yourEmailsAreCurrently => 'Protect AI está analizando actualmente sus correos electrónicos para detectar posibles estafas y proteger sus datos y finanzas.';
 
   @override
-  String get yourGoalsWillHelpUsToFormulateTheRightRecommendationsForSuccess =>
-      'Vos objectifs nous aideront à formuler les bonnes recommandations de réussite.';
+  String get yourGoalsWillHelpUsToFormulateTheRightRecommendationsForSuccess => 'Vos objectifs nous aideront à formuler les bonnes recommandations de réussite.';
 
   @override
-  String get yourMessagesAreCurrently =>
-      'Detect AI está analizando actualmente tus mensajes para identificar posibles estafas.';
+  String get yourMessagesAreCurrently => 'Detect AI está analizando actualmente tus mensajes para identificar posibles estafas.';
 
   @override
-  String get yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword =>
-      'Votre nouveau mot de passe doit être différent du mot de passe précédemment utilisé.';
+  String get yourNewPasswordMustBeDifferentFromPreviouslyUsedPassword => 'Votre nouveau mot de passe doit être différent du mot de passe précédemment utilisé.';
 
   @override
-  String get yourPasswordHasBeenChangedSuccessfully =>
-      'Votre mot de passe a été changé avec succès .';
+  String get yourPasswordHasBeenChangedSuccessfully => 'Votre mot de passe a été changé avec succès .';
 
   @override
-  String get yourPasswordHasBeenResetSuccessfully =>
-      'Votre mot de passe a été réinitialisé avec succès.';
+  String get yourPasswordHasBeenResetSuccessfully => 'Votre mot de passe a été réinitialisé avec succès.';
 
   @override
-  String get yourPaymentHasBeenSuccessfullyDone =>
-      'Votre paiement a été effectué avec succès.';
+  String get yourPaymentHasBeenSuccessfullyDone => 'Votre paiement a été effectué avec succès.';
 
   @override
   String get zip => 'Código postal';
-
-  @override
-  String get outgoing => 'Extrovertido';
-
-  @override
-  String get incoming => 'Entrante';
-
-  @override
-  String get missed => 'Omitido';
-
-  @override
-  String get deleteText => 'Borrar';
-
-  @override
-  String get defaultPhone => 'Aplicación de teléfono predeterminada';
-
-  @override
-  String get setting => 'Settings';
-
-  @override
-  String get allowNotification => 'Allow Notifications';
-
-  @override
-  String get allowPushNotification => 'Permitir notificaciones push';
 }
