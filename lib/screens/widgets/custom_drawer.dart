@@ -311,7 +311,7 @@ class CustomDrawer extends StatelessWidget {
           _buildListTile(
             context,
             icon: Icons.settings,
-            title: appLocalization(context).setting,
+            title: appLocalization(context).settings,
             onTap: () => Navigator.pushNamed(context, AppRoutes.setting),
           ),
           _buildListTile(

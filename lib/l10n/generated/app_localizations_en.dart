@@ -1879,9 +1879,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get setPrimary => 'Set primary';
 
   @override
-  String get setting => 'Settings';
-
-  @override
   String get settings => 'Settings';
 
   @override

@@ -3827,12 +3827,6 @@ abstract class AppLocalizations {
   /// **'Set primary'**
   String get setPrimary;
 
-  /// No description provided for @setting.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get setting;
-
   /// No description provided for @settings.
   ///
   /// In en, this message translates to:

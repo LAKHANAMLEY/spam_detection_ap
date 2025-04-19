@@ -20,7 +20,7 @@ class _SettingState extends State<Setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: appLocalization(context).setting,
+        title: appLocalization(context).settings,
         actions: [
           PopupMenuButton(
             itemBuilder: (context) => [
