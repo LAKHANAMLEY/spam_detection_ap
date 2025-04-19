@@ -750,5 +750,7 @@
   "missed": "Omitido",
   "deleteText": "Borrar",
   "defaultPhone": "Aplicación de teléfono predeterminada",
-  "setting": "Setting"
+  "settings": "Configuración",
+  "allowNotification": "Allow Notifications",
+  "allowPushNotification": "Permitir notificaciones push"
 }

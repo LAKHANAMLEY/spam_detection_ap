@@ -4592,8 +4592,20 @@ abstract class AppLocalizations {
   /// No description provided for @setting.
   ///
   /// In en, this message translates to:
-  /// **'Setting'**
+  /// **'Settings'**
   String get setting;
+
+  /// No description provided for @allowNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications'**
+  String get allowNotification;
+
+  /// No description provided for @allowPushNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow push notifications'**
+  String get allowPushNotification;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

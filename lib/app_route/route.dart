@@ -53,6 +53,7 @@ class AppRoutes {
   static const transactionList = "/transactionList";
   static const defaultCall = "/defaultCall";
   static const setting = "/setting";
+  static const notificationSetting = "/notificationSetting";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -107,5 +108,6 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.contactUS: (context) => const ContactUS(),
   AppRoutes.transactionList: (context) => const TransactionList(),
   AppRoutes.defaultCall: (context) => const DefaultCall(),
-  AppRoutes.setting: (context) => const Setting()
+  AppRoutes.setting: (context) => const Setting(),
+  AppRoutes.notificationSetting: (context) => const NotificationSetting()
 };

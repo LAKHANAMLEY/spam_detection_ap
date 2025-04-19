@@ -749,5 +749,7 @@
   "missed": "Missed",
   "deleteText": "Delete",
   "defaultPhone": "Default Phone App",
-  "setting": "Setting"
+  "setting": "Settings",
+  "allowNotification": "Allow notifications",
+  "allowPushNotification": "Allow push notifications"
 }

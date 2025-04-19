@@ -72,6 +72,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.2
 
   package_rename: ^1.8.0
+  phone_numbers_parser: ^9.0.3
 
 # flutter_native_splash-development.yaml
 flutter_native_splash:

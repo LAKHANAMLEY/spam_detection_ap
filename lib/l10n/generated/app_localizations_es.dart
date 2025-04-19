@@ -2260,5 +2260,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get defaultPhone => 'Aplicación de teléfono predeterminada';
 
   @override
-  String get setting => 'Setting';
+  String get setting => 'Settings';
+
+  @override
+  String get allowNotification => 'Allow Notifications';
+
+  @override
+  String get allowPushNotification => 'Permitir notificaciones push';
 }

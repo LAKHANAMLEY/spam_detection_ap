@@ -398,7 +398,7 @@ class ClearAllNotificationState extends ApiState {
   List<Object?> get props => [value];
 }
 
-// notification Enabled
+// notification Enabled/disable
 class EnabledNotificationState extends ApiState {
   final EnabledNotificationResponse value;
 

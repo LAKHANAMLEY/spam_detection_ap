@@ -2260,5 +2260,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get defaultPhone => 'Default Phone App';
 
   @override
-  String get setting => 'Setting';
+  String get setting => 'Settings';
+
+  @override
+  String get allowNotification => 'Allow notifications';
+
+  @override
+  String get allowPushNotification => 'Allow push notifications';
 }

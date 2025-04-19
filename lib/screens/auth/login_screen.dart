@@ -560,7 +560,7 @@ class _LoginState extends State<Login> {
                                               5 /
                                               100),
                                     ] else ...[
-                                      10.height(),
+                                      8.height(),
                                       Padding(
                                         padding: const EdgeInsets.only(
                                             left: 18, right: 18),

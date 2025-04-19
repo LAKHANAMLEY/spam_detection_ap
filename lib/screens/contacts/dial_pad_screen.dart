@@ -83,21 +83,22 @@ class _DialPadState extends State<DialPad> {
                     Expanded(
                       child: Text(
                         enteredNumber.isEmpty
-                            ? "Enter a number"
+                            ? "Enter a Number"
                             : enteredNumber,
                         style: textTheme(context).headlineLarge,
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    GestureDetector(
-                      onLongPress: onDeleteLongPressed,
-                      child: IconButton(
-                        onPressed: _onDeletePressed,
-                        icon: const Icon(Icons.backspace),
-                        iconSize: 32,
-                        color: Colors.red,
+                    if (enteredNumber.isNotEmpty)
+                      GestureDetector(
+                        onLongPress: onDeleteLongPressed,
+                        child: IconButton(
+                          onPressed: _onDeletePressed,
+                          icon: const Icon(Icons.backspace),
+                          iconSize: 32,
+                          color: Colors.red,
+                        ),
                       ),
-                    ),
                   ]),
               10.height(),
               GridView.builder(
