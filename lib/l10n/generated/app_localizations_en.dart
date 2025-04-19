@@ -426,7 +426,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get debitedFrom => 'Debited from';
 
   @override
+  String get defaultPhone => 'Default Phone App';
+
+  @override
   String get delete => 'Delete';
+
+  @override
+  String get deleteAll => 'Delete all';
 
   @override
   String get deleteAllCallLogs => 'Delete All Call Logs';
@@ -445,6 +451,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteStaffMember => 'Delete Staff Member';
+
+  @override
+  String get deleteText => 'Delete';
 
   @override
   String get deleteTxt => 'Delete';
@@ -816,6 +825,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get includesALetterDigitAndSpecialCharacter => 'Includes a letter, digit, and special character';
 
   @override
+  String get incoming => 'Incoming';
+
+  @override
   String get incomingCalls => 'Incoming Calls';
 
   @override
@@ -962,6 +974,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String minimumTransferLimitIs(Object code) {
     return 'Minimum transfer limit is $code';
   }
+
+  @override
+  String get missed => 'Missed';
 
   @override
   String get missedCalls => 'Missed Calls';
@@ -1193,6 +1208,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get otpVerification => ' OTP Verification';
+
+  @override
+  String get outgoing => 'Outgoing';
 
   @override
   String get outgoingCalls => 'Outgoing Calls';
@@ -1639,6 +1657,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get renterPassword => 'Re-enter Password';
 
   @override
+  String get replyingIsNotSupportedByThisSender => 'Replying is not supported by this sender';
+
+  @override
   String get reportMessageExperience => 'Report the message to improve the experience for millions users like you';
 
   @override
@@ -1850,6 +1871,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get setPrimary => 'Set primary';
+
+  @override
+  String get setting => 'Setting';
 
   @override
   String get share => 'Share';
@@ -2243,22 +2267,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get zip => 'Zip Code';
-
-  @override
-  String get outgoing => 'Outgoing';
-
-  @override
-  String get incoming => 'Incoming';
-
-  @override
-  String get missed => 'Missed';
-
-  @override
-  String get deleteText => 'Delete';
-
-  @override
-  String get defaultPhone => 'Default Phone App';
-
-  @override
-  String get setting => 'Setting';
 }

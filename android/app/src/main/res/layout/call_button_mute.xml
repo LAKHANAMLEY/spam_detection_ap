@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_columnWeight="1">
+
+    <ImageView
+        android:src="@drawable/ic_mic_off"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:text="Mute"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp" />
+</LinearLayout>

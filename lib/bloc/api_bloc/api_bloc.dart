@@ -529,7 +529,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     if (event is SmsSeenEvent) {
       emit(ApiLoadingState());
       await smsSeen(
-        messageId: event.messageId,
+        sms: event.sms,
       ).then((value) {
         emit(SmsSeenState(value));
       });

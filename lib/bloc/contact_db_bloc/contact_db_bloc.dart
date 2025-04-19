@@ -103,6 +103,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
 
   FutureOr<void> _onDeleteDBContacts(
       DeleteDBContacts event, Emitter<ContactDBState> emit) async {
+    await deleteAllContact();
     await _databaseHelper.deleteDatabase1();
     emit(ContactDBInitial());
   }

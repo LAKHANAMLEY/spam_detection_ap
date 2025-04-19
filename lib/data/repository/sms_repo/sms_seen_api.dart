@@ -2,10 +2,11 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
 Future<Response> smsSeen({
-  required String messageId,
+  required SmsLog sms,
 }) async {
   var body = {
-    '_id': messageId,
+    '_id': sms.id,
+    'address': sms.address,
   };
   final response = await http.post(
     Uri.parse(ApiUrlConstants.smsSeen),

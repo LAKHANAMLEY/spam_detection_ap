@@ -1,9 +1,9 @@
 import 'package:sms_advanced/sms_advanced.dart';
 
-Future<SmsMessage?> sendSms(phone, message) {
+Future<SmsMessage?> sendSmsByDevice(SmsMessage sms) {
   try {
     SmsSender sender = SmsSender();
-    return sender.sendSms(SmsMessage(phone, message));
+    return sender.sendSms(sms);
   } catch (e) {
     throw Exception(e);
   }

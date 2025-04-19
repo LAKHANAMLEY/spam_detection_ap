@@ -96,6 +96,7 @@ class ApiUrlConstants {
   static String addContact = '$baseUrl/contacts/add-contacts';
   static String editContacts = '$baseUrl/contacts/edit-contacts';
   static String deleteContacts = '$baseUrl/contacts/delete-contacts';
+  static String deleteAllContacts = '$baseUrl/contacts/deleteContactlist';
   static String checkSpamContacts = '$baseUrl/contacts/is-phone-number-spam';
   static String contactDetail = '$baseUrl/contacts/contact-details';
 

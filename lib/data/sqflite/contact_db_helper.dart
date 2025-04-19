@@ -101,6 +101,19 @@ class ContactDBHelper {
     return null;
   }
 
+  Future<ContactData?> getContactByPhone(String phone) async {
+    Database db = await instance.database;
+    List<Map<String, dynamic>> results = await db.query(
+      table,
+      where: '$columnMobileNo = ?',
+      whereArgs: [phone],
+    );
+    if (results.isNotEmpty) {
+      return _contactFromMap(results.first);
+    }
+    return null;
+  }
+
   Future<int> update(ContactData contact) async {
     Database db = await instance.database;
     return await db.update(

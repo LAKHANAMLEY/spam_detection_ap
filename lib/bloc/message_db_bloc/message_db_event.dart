@@ -55,3 +55,12 @@ class AddSmsLogsToDB extends MessageDBEvent {
 }
 
 class GetAllSmsFromDB extends MessageDBEvent {}
+
+class ReadDBMessage extends MessageDBEvent {
+  final SmsLog sms;
+
+  const ReadDBMessage({required this.sms});
+
+  @override
+  List<Object> get props => [sms];
+}

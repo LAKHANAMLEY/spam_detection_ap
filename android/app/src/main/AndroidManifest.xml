@@ -204,9 +204,19 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".CallActivity" />
+        <activity android:name=".CallActivity"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen" />
 
         <!-- END OF THE SET DEFAULT APP -->
+
+        <!-- Start for caller activity -->
+
+        <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"
+            android:exported="true"
+        />
+
+        <!-- End of caller activity -->
     </application>
     <!-- Required to query activities that can process text, see:
            https://developer.android.com/training/package-visibility and

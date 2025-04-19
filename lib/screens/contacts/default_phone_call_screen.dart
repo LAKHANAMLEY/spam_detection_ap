@@ -1,10 +1,15 @@
+import 'package:spam_delection_app/data/repository/call_log_repo/call_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class DefaultCall extends StatelessWidget {
-  const DefaultCall({super.key});
+  final CallType? callType;
+  final String? number;
+  final int? duration;
+  const DefaultCall({super.key, this.callType, this.number, this.duration});
 
   @override
   Widget build(BuildContext context) {
+    var arg = args(context) as DefaultCall?;
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -32,7 +37,7 @@ class DefaultCall extends StatelessWidget {
                   5.height(),
                   Text("Calling ① Jio True5G...",
                       style: TextStyle(color: Colors.white70)),
-                  Text("111",
+                  Text("${arg?.number}",
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                   20.height(),
                   CircleAvatar(
@@ -102,7 +107,11 @@ class DefaultCall extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildIconButton(Icons.mic_off, "Mute"),
+                      _buildIconButton(
+                        Icons.mic_off,
+                        "Mute",
+                        onTap: () => CallController.mute(),
+                      ),
                       _buildIconButton(Icons.dialpad, "Keypad"),
                       _buildIconButton(Icons.volume_up, "Speaker"),
                     ],
@@ -111,17 +120,25 @@ class DefaultCall extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildIconButton(Icons.add_ic_call, "Add Call",
-                          disabled: true),
+                      _buildIconButton(
+                        Icons.add_ic_call,
+                        "Add Call",
+                        disabled: true,
+                        onTap: () => CallController.addCall(),
+                      ),
                       _buildIconButton(Icons.sim_card, "Change SIM"),
                       _buildIconButton(Icons.message, "Message"),
                     ],
                   ),
                   10.height(),
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.red,
-                    child: Icon(Icons.call_end, color: Colors.white, size: 30),
+                  InkWell(
+                    onTap: () => CallController.endCall(),
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.red,
+                      child:
+                          Icon(Icons.call_end, color: Colors.white, size: 30),
+                    ),
                   ),
                 ],
               ),
@@ -133,19 +150,22 @@ class DefaultCall extends StatelessWidget {
   }
 
   Widget _buildIconButton(IconData icon, String label,
-      {bool disabled = false}) {
-    return Opacity(
-      opacity: disabled ? 0.4 : 1,
-      child: Column(
-        children: [
-          CircleAvatar(
-            radius: 28,
-            backgroundColor: Colors.grey[800],
-            child: Icon(icon, color: Colors.white, size: 28),
-          ),
-          8.height(),
-          Text(label, style: TextStyle(color: Colors.white)),
-        ],
+      {bool disabled = false, void Function()? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Opacity(
+        opacity: disabled ? 0.4 : 1,
+        child: Column(
+          children: [
+            CircleAvatar(
+              radius: 28,
+              backgroundColor: Colors.grey[800],
+              child: Icon(icon, color: Colors.white, size: 28),
+            ),
+            8.height(),
+            Text(label, style: TextStyle(color: Colors.white)),
+          ],
+        ),
       ),
     );
   }

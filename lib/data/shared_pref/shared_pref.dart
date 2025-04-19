@@ -39,6 +39,7 @@ class SharedPref {
   //     await SharedPreferences.getInstance();
 
   static saveUserData(User? user) async {
+    AppConstants.selectedCountry = user?.countryData;
     var pref = await SharedPreferences.getInstance();
     pref.setBool(_isLogin, true);
     pref.setString(_firstName, user?.firstName ?? "");

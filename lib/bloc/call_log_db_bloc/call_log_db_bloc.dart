@@ -156,31 +156,17 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       // }
 
       syncedCallLogs.add(
-        // CallLogData(
-        //   id: serverLog?.id ?? address,
-        //   countryCode: serverLog?.countryCode,
-        //   name: serverLog?.name ?? localCallLogList.firstOrNull?.name,
-        //   mobileNo: serverLog?.mobileNo,
-        //   callDuration: serverLog?.callDuration?.toString(),
-        //   callDurations: serverLog?.callDurations.toString(),
-        //   callDurationUnit: "1",
-        //   callTime: serverLog?.callTime,
-        //   callType: serverLog?.callType,
-        //   simdisplayname: serverLog?.simdisplayname,
-        //   phoneaccountid: serverLog?.phoneaccountid,
-        //   contactListId: serverLog?.contactListId,
-        //   isBlocked: serverLog?.isBlocked,
-        //   isManually: serverLog?.isManually ?? "",
-        //   isSpam: serverLog?.isSpam,
-        //   markSpamByUser: serverLog?.markSpamByUser,
-        // ),
         CallLogData(
           id: serverLog?.id ?? address,
-          countryCode: serverLog?.countryCode,
+          countryCode: localCallLogList.firstOrNull?.number
+              ?.separatePhoneAndPhoneCode()
+              .phoneCode,
           name: localCallLogList.firstOrNull?.name?.isNotEmpty ?? false
               ? localCallLogList.firstOrNull?.name
               : serverLog?.name, // priority local
-          mobileNo: serverLog?.mobileNo,
+          mobileNo: localCallLogList.firstOrNull?.number
+              ?.separatePhoneAndPhoneCode()
+              .phone,
           callDuration: serverLog?.callDuration?.toString(),
           callDurations: serverLog?.callDurations.toString(),
           callDurationUnit: "1",

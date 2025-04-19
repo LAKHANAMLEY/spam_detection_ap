@@ -426,7 +426,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get debitedFrom => 'Débité de';
 
   @override
+  String get defaultPhone => 'Aplicación de teléfono predeterminada';
+
+  @override
   String get delete => 'Supprimer';
+
+  @override
+  String get deleteAll => 'Eliminar todo';
 
   @override
   String get deleteAllCallLogs => 'Eliminar todos los registros de llamadas';
@@ -445,6 +451,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get deleteStaffMember => 'Eliminar miembro del personal';
+
+  @override
+  String get deleteText => 'Borrar';
 
   @override
   String get deleteTxt => 'Delete';
@@ -816,6 +825,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get includesALetterDigitAndSpecialCharacter => 'Comprend une lettre, un chiffre et un caractère spécial';
 
   @override
+  String get incoming => 'Entrante';
+
+  @override
   String get incomingCalls => 'Llamadas entrantes';
 
   @override
@@ -962,6 +974,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String minimumTransferLimitIs(Object code) {
     return 'La limite minimale de transfert est de $code';
   }
+
+  @override
+  String get missed => 'Omitido';
 
   @override
   String get missedCalls => 'Llamadas perdidas';
@@ -1193,6 +1208,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get otpVerification => 'Verificación de OTP';
+
+  @override
+  String get outgoing => 'Extrovertido';
 
   @override
   String get outgoingCalls => 'Llamadas salientes';
@@ -1639,6 +1657,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get renterPassword => 'Escriba la contraseña otra vez';
 
   @override
+  String get replyingIsNotSupportedByThisSender => 'Este remitente no admite la respuesta';
+
+  @override
   String get reportMessageExperience => 'Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú';
 
   @override
@@ -1850,6 +1871,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get setPrimary => 'Définir le primaire';
+
+  @override
+  String get setting => 'Setting';
 
   @override
   String get share => 'Partager';
@@ -2243,22 +2267,4 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get zip => 'Código postal';
-
-  @override
-  String get outgoing => 'Extrovertido';
-
-  @override
-  String get incoming => 'Entrante';
-
-  @override
-  String get missed => 'Omitido';
-
-  @override
-  String get deleteText => 'Borrar';
-
-  @override
-  String get defaultPhone => 'Aplicación de teléfono predeterminada';
-
-  @override
-  String get setting => 'Setting';
 }

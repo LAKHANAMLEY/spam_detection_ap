@@ -219,8 +219,8 @@ class SmsLogDBHandler {
             where:
                 '$columnLogIdFk = ? AND $columnSmsId = ?', // Example: check by logId and smsId
             whereArgs: [
-              smsLog.address,
-              detail.address
+              smsLog.id,
+              detail.id
             ], // Assuming detail.id is somewhat unique
           );
 
@@ -312,7 +312,7 @@ class SmsLogDBHandler {
     final List<Map<String, dynamic>> detailMaps = await db.query(tableSmsDetail,
         where: '$columnLogIdFk = ?',
         whereArgs: [logId],
-        orderBy: "$columnSendReceiveDatetime DESC");
+        orderBy: "$columnDate DESC");
     return detailMaps
         .map((detailMap) => SmsDetail(
               body: detailMap[columnBody] as String?,

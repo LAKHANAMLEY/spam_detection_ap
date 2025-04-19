@@ -152,7 +152,17 @@ class _ContactListState extends State<ContactList> {
                                             .add(SyncDBContacts());
                                       },
                                       child: Text(appLocalization(context)
-                                          .syncContacts))
+                                          .syncContacts)),
+                                  PopupMenuItem(
+                                      onTap: () {
+                                        // contactListBloc
+                                        //     .add(GetDeviceContactEvent());
+                                        context
+                                            .read<ContactDBBloc>()
+                                            .add(DeleteDBContacts());
+                                      },
+                                      child: Text(
+                                          appLocalization(context).deleteAll))
                                 ],
                               ),
                             ),

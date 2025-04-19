@@ -929,11 +929,23 @@ abstract class AppLocalizations {
   /// **'Debited from'**
   String get debitedFrom;
 
+  /// No description provided for @defaultPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Default Phone App'**
+  String get defaultPhone;
+
   /// No description provided for @delete.
   ///
   /// In en, this message translates to:
   /// **'Delete'**
   String get delete;
+
+  /// No description provided for @deleteAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete all'**
+  String get deleteAll;
 
   /// No description provided for @deleteAllCallLogs.
   ///
@@ -970,6 +982,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete Staff Member'**
   String get deleteStaffMember;
+
+  /// No description provided for @deleteText.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteText;
 
   /// No description provided for @deleteTxt.
   ///
@@ -1709,6 +1727,12 @@ abstract class AppLocalizations {
   /// **'Includes a letter, digit, and special character'**
   String get includesALetterDigitAndSpecialCharacter;
 
+  /// No description provided for @incoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Incoming'**
+  String get incoming;
+
   /// No description provided for @incomingCalls.
   ///
   /// In en, this message translates to:
@@ -1996,6 +2020,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Minimum transfer limit is {code}'**
   String minimumTransferLimitIs(Object code);
+
+  /// No description provided for @missed.
+  ///
+  /// In en, this message translates to:
+  /// **'Missed'**
+  String get missed;
 
   /// No description provided for @missedCalls.
   ///
@@ -2458,6 +2488,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **' OTP Verification'**
   String get otpVerification;
+
+  /// No description provided for @outgoing.
+  ///
+  /// In en, this message translates to:
+  /// **'Outgoing'**
+  String get outgoing;
 
   /// No description provided for @outgoingCalls.
   ///
@@ -3347,6 +3383,12 @@ abstract class AppLocalizations {
   /// **'Re-enter Password'**
   String get renterPassword;
 
+  /// No description provided for @replyingIsNotSupportedByThisSender.
+  ///
+  /// In en, this message translates to:
+  /// **'Replying is not supported by this sender'**
+  String get replyingIsNotSupportedByThisSender;
+
   /// No description provided for @reportMessageExperience.
   ///
   /// In en, this message translates to:
@@ -3772,6 +3814,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Set primary'**
   String get setPrimary;
+
+  /// No description provided for @setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Setting'**
+  String get setting;
 
   /// No description provided for @share.
   ///
@@ -4558,42 +4606,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zip Code'**
   String get zip;
-
-  /// No description provided for @outgoing.
-  ///
-  /// In en, this message translates to:
-  /// **'Outgoing'**
-  String get outgoing;
-
-  /// No description provided for @incoming.
-  ///
-  /// In en, this message translates to:
-  /// **'Incoming'**
-  String get incoming;
-
-  /// No description provided for @missed.
-  ///
-  /// In en, this message translates to:
-  /// **'Missed'**
-  String get missed;
-
-  /// No description provided for @deleteText.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get deleteText;
-
-  /// No description provided for @defaultPhone.
-  ///
-  /// In en, this message translates to:
-  /// **'Default Phone App'**
-  String get defaultPhone;
-
-  /// No description provided for @setting.
-  ///
-  /// In en, this message translates to:
-  /// **'Setting'**
-  String get setting;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

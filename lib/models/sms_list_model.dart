@@ -2,8 +2,6 @@
 //
 //     final smsListResponse = smsListResponseFromJson(jsonString);
 
-import 'dart:convert';
-
 import 'package:spam_delection_app/globals/index.dart';
 
 SmsListResponse smsListResponseFromJson(String str) =>
@@ -83,6 +81,26 @@ class SmsLog {
             : List<dynamic>.from(smsDetails!.map((x) => x.toJson())),
         "is_mark_spam": isMarkSpam,
       };
+
+  SmsLog copyWith({
+    String? id,
+    String? address,
+    String? countryCode,
+    int? unreadReceivedSms,
+    String? name,
+    List<SmsDetail>? smsDetails,
+    int? isMarkSpam,
+  }) {
+    return SmsLog(
+      id: id ?? this.id,
+      address: address ?? this.address,
+      countryCode: countryCode ?? this.countryCode,
+      unreadReceivedSms: unreadReceivedSms ?? this.unreadReceivedSms,
+      name: name ?? this.name,
+      smsDetails: smsDetails ?? this.smsDetails,
+      isMarkSpam: isMarkSpam ?? this.isMarkSpam,
+    );
+  }
 }
 
 class SmsDetail {

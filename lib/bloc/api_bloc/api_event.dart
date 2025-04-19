@@ -595,12 +595,12 @@ class SmsListEvent extends ApiEvent {}
 
 //
 class SmsSeenEvent extends ApiEvent {
-  final String messageId;
+  final SmsLog sms;
 
-  SmsSeenEvent({required this.messageId});
+  SmsSeenEvent({required this.sms});
 
   @override
-  List<Object?> get props => [messageId];
+  List<Object?> get props => [sms];
 }
 
 class SmsDeleteConversationEvent extends ApiEvent {

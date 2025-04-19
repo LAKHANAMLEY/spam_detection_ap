@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
+import 'package:spam_delection_app/data/repository/call_log_repo/call_controller.dart';
 import 'package:spam_delection_app/lib.dart'; // Assuming this imports necessary constants and extensions
 // import 'package:async/async.dart'; // If you use locks
 
@@ -42,7 +43,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     handleAppLifeCycle();
     setDefaultSMSApp().whenComplete(() {
-      setDefaultCallingApp();
+      CallController.setDefaultCallingApp();
     });
   }
 
@@ -174,13 +175,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
             duration: state.duration?.inSeconds ?? 0,
           );
 
-          ///Check ig this is a default phone app
-          // _showCallScreen(
-          //   context: context,
-          //   callType: getCallLogType(state.status.name)!,
-          //   number: state.number ?? "",
-          //   duration: state.duration?.inSeconds ?? 0,
-          // );
+          // /Check ig this is a default phone app
+          _showCallScreen(
+            context: context,
+            callType: getCallLogType(state.status.name)!,
+            number: state.number ?? "",
+            duration: state.duration?.inSeconds ?? 0,
+          );
         }
       } else if (state.status == PhoneStateStatus.NOTHING) {
         _isProcessingCall = false;
@@ -194,20 +195,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
     required String number,
     required int duration,
   }) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => OutSideAppOverlay(
-            // callType: callType,
-            // number: number,
-            // duration: duration,
-            ),
-      ),
-    );
+    Navigator.pushNamed(context, AppRoutes.defaultCall,
+        arguments: DefaultCall(
+          callType: callType,
+          duration: duration,
+          number: number,
+        ));
   }
 
   static const _platform = MethodChannel("com.broadlink.protect/chat");
-  static const _platformCall = MethodChannel("com.broadlink.protect/call");
 
   StreamSubscription<PermissionState>? permissionStreamSubscription;
 
@@ -216,14 +212,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
       await _platform.invokeMethod('setDefaultSms');
     } on PlatformException catch (e) {
       print("Error setting default SMS app: $e");
-    }
-  }
-
-  Future<void> setDefaultCallingApp() async {
-    try {
-      await _platformCall.invokeMethod('requestDefaultDialer');
-    } on PlatformException catch (e) {
-      print("Error setting default Calling app: $e");
     }
   }
 
