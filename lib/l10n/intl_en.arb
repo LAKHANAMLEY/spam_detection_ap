@@ -751,5 +751,13 @@
   "yourPasswordHasBeenChangedSuccessfully": "Your password has been changed successfully .",
   "yourPasswordHasBeenResetSuccessfully": "Your password has been reset successfully .",
   "yourPaymentHasBeenSuccessfullyDone": "Your payment has been successfully done.",
-  "zip": "Zip Code"
+  "zip": "Zip Code",
+  "outgoing": "Outgoing",
+  "incoming": "Incoming",
+  "missed": "Missed",
+  "deleteText": "Delete",
+  "defaultPhone": "Default Phone App",
+  "setting": "Settings",
+  "allowNotification": "Allow notifications",
+  "allowPushNotification": "Allow push notifications"
 }

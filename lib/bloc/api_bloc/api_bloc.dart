@@ -344,7 +344,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
       });
     }
 
-    //notification Enabled
+    //notification Enabled/disable
     if (event is EnabledNotificationEvent) {
       emit(ApiLoadingState());
       await enableNotification(

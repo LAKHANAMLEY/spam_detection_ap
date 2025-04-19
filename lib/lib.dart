@@ -222,6 +222,8 @@ export 'screens/message/spam_message_listitem.dart';
 export 'screens/message/unmark_spam_message_screen.dart';
 export 'screens/notification/notification_list.dart';
 export 'screens/notification/notification_listitem.dart';
+export 'screens/notification/notification_setting_detail.dart';
+export 'screens/notification/notification_type_listItem.dart';
 export 'screens/onboard/bottom_navigation.dart';
 export 'screens/onboard/contact_us_screen.dart';
 export 'screens/onboard/outside_app_overlay.dart';

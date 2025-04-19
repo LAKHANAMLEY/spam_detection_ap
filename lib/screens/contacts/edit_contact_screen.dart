@@ -245,7 +245,7 @@ class _EditContactState extends State<EditContact> {
                                     100,
                               ),
                               AppButton(
-                                  text: appLocalization(context).submit,
+                                  text: appLocalization(context).save,
                                   onPress: () {
                                     if (_formKey.currentState?.validate() ??
                                         false) {

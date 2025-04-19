@@ -62,7 +62,8 @@ import 'app_localizations_es.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,7 +84,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -267,7 +270,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'All spam calls are currently being blocked from calling your telephone number you may miss important call if the caller number is flagged by the network as spam.'**
-  String get allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam;
+  String
+      get allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam;
 
   /// No description provided for @allTransactions.
   ///
@@ -345,7 +349,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'BCTPay can help you reach a wide user-base with targeted campaigns designed to meet your business needs.'**
-  String get bCTPayCanHelpYouReachAWideUserBaseWithTargetedCampaignsDesignedToMeetYourBusinessNeeds;
+  String
+      get bCTPayCanHelpYouReachAWideUserBaseWithTargetedCampaignsDesignedToMeetYourBusinessNeeds;
 
   /// No description provided for @bCTPayIsLocked.
   ///
@@ -1917,7 +1922,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Leave us a message about your questions or inquiries and someone from our team will be in touch soon.'**
-  String get leaveUsAMessageAboutYourQuestionsOrInquiriesAndSomeoneFromOurTeamWillBeInTouchSoon;
+  String
+      get leaveUsAMessageAboutYourQuestionsOrInquiriesAndSomeoneFromOurTeamWillBeInTouchSoon;
 
   /// No description provided for @light.
   ///
@@ -4527,7 +4533,8 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'You can do any online payment from any card or account. Just scan the QR code & enjoy.'**
-  String get youCanDoAnyOnlinePaymentFromAnyCardOrAccountJustScanTheQRCodeNEnjoy;
+  String
+      get youCanDoAnyOnlinePaymentFromAnyCardOrAccountJustScanTheQRCodeNEnjoy;
 
   /// No description provided for @youCanGetUpto.
   ///
@@ -4606,9 +4613,58 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zip Code'**
   String get zip;
+
+  /// No description provided for @outgoing.
+  ///
+  /// In en, this message translates to:
+  /// **'Outgoing'**
+  String get outgoing;
+
+  /// No description provided for @incoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Incoming'**
+  String get incoming;
+
+  /// No description provided for @missed.
+  ///
+  /// In en, this message translates to:
+  /// **'Missed'**
+  String get missed;
+
+  /// No description provided for @deleteText.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteText;
+
+  /// No description provided for @defaultPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Default Phone App'**
+  String get defaultPhone;
+
+  /// No description provided for @setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get setting;
+
+  /// No description provided for @allowNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications'**
+  String get allowNotification;
+
+  /// No description provided for @allowPushNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow push notifications'**
+  String get allowPushNotification;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -4617,25 +4673,25 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en', 'es'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return AppLocalizationsEn();
-    case 'es': return AppLocalizationsEs();
+    case 'en':
+      return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }
