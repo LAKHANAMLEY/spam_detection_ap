@@ -19,7 +19,13 @@ class AddSmsLog extends MessageDBEvent {
   List<Object> get props => [smsLog];
 }
 
-class DeleteAllSmsLogs extends MessageDBEvent {}
+class DeleteAllSmsLogs extends MessageDBEvent {
+  final SmsLog smsLog;
+
+  const DeleteAllSmsLogs({required this.smsLog});
+  @override
+  List<Object> get props => [smsLog];
+}
 
 class DeleteSmsLog extends MessageDBEvent {
   final String id;
@@ -35,6 +41,14 @@ class DeleteMessageDB extends MessageDBEvent {}
 // class LoadDeviceSms extends MessageDBEvent {}
 
 class SyncMessagesWithServer extends MessageDBEvent {}
+
+class SyncMessageDetailsWithServer extends MessageDBEvent {
+  final SmsLog smsLogs;
+
+  const SyncMessageDetailsWithServer({required this.smsLogs});
+  @override
+  List<Object> get props => [smsLogs];
+}
 
 class SyncChangedMessageWithServer extends MessageDBEvent {
   final SmsMessage smsMessage;

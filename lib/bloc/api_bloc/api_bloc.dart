@@ -1,3 +1,4 @@
+import 'package:spam_delection_app/data/repository/sms_repo/sms_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
@@ -506,7 +507,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 
     if (event is GetDeviceMessagesEvent) {
       emit(ApiLoadingState());
-      await getDeviceSms().then((value) {
+      await SMSController.getDeviceSms().then((value) {
         emit(GetDeviceMessagesState(value));
       });
     }
@@ -557,7 +558,8 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     }
     if (event is DeleteConversationEvent) {
       emit(ApiLoadingState());
-      await deleteConversation(address: event.address).then((value) {
+      await deleteConversation(address: event.smsLog.address ?? "")
+          .then((value) {
         emit(DeleteConversationState(value));
       });
     }

@@ -47,6 +47,7 @@ class SmsLog {
   final String? name;
   final List<SmsDetail>? smsDetails;
   final int? isMarkSpam;
+  final DateTime? date;
 
   SmsLog({
     this.id,
@@ -56,19 +57,22 @@ class SmsLog {
     this.smsDetails,
     this.name,
     this.isMarkSpam,
+    this.date,
   });
 
   factory SmsLog.fromJson(Map<String, dynamic> json) => SmsLog(
-      id: json["id"],
-      address: json["address"],
-      name: json["name"],
-      countryCode: json["country_code"],
-      unreadReceivedSms: json["unread_received_sms"],
-      smsDetails: json["sms_details"] == null
-          ? []
-          : List<SmsDetail>.from(
-              json["sms_details"]!.map((x) => SmsDetail.fromJson(x))),
-      isMarkSpam: json["is_mark_spam"]);
+        id: json["id"],
+        address: json["address"],
+        name: json["name"],
+        countryCode: json["country_code"],
+        unreadReceivedSms: json["unread_received_sms"],
+        smsDetails: json["sms_details"] == null
+            ? []
+            : List<SmsDetail>.from(
+                json["sms_details"]!.map((x) => SmsDetail.fromJson(x))),
+        isMarkSpam: json["is_mark_spam"],
+        date: DateTime.tryParse(json["date"]),
+      );
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -80,6 +84,7 @@ class SmsLog {
             ? []
             : List<dynamic>.from(smsDetails!.map((x) => x.toJson())),
         "is_mark_spam": isMarkSpam,
+        "date": date,
       };
 
   SmsLog copyWith({
@@ -90,6 +95,7 @@ class SmsLog {
     String? name,
     List<SmsDetail>? smsDetails,
     int? isMarkSpam,
+    DateTime? date,
   }) {
     return SmsLog(
       id: id ?? this.id,
@@ -99,6 +105,7 @@ class SmsLog {
       name: name ?? this.name,
       smsDetails: smsDetails ?? this.smsDetails,
       isMarkSpam: isMarkSpam ?? this.isMarkSpam,
+      date: date ?? this.date,
     );
   }
 }

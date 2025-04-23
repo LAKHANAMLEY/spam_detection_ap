@@ -50,3 +50,5 @@ class MessageDBError extends MessageDBState {
   @override
   List<Object> get props => [message, exception];
 }
+
+class MessageDBDeletedAllConversation extends MessageDBState {}

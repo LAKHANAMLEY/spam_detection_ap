@@ -8,7 +8,8 @@ class MessageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isSentMessage = sms?.messageKind?.toLowerCase() ==
-        SmsMessageKind.Sent.name.toLowerCase();
+            SmsMessageKind.Sent.name.toLowerCase() ||
+        sms?.messageState?.toLowerCase() == "sending";
     const double radius = 10;
     return Align(
       alignment: isSentMessage ? Alignment.centerRight : Alignment.centerLeft,

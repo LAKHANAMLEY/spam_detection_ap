@@ -13,11 +13,11 @@ Future<Response> syncSmsWithServer({required List<SmsMessage> smsLogs}) async {
       'body': sms.body ?? "",
       'country_code': sms.sender?.separatePhoneAndPhoneCode().phoneCode ?? "",
       'sendreceive_datetime': sms.dateSent?.toString().splitFirstBy(".") ?? "",
-      'date': sms.date?.toString().splitFirstBy(".") ?? "",
-      'is_read': sms.isRead.toString(),
-      'thread_id': sms.threadId.toString(),
-      '_id': sms.id.toString(),
-      'MessageState': sms.state.name ?? "",
+      'date': (sms.date ?? DateTime.now()).toString().splitFirstBy("."),
+      'is_read': sms.isRead ?? false ? "1" : "0",
+      'thread_id': sms.threadId?.toString() ?? "0",
+      '_id': sms.id?.toString() ?? "0",
+      'MessageState': sms.state.name,
       'MessageKind': sms.kind?.name ?? "",
       'QueryKind': sms.kind?.name ?? "",
     });
@@ -38,7 +38,7 @@ Future<Response> syncSmsWithServer({required List<SmsMessage> smsLogs}) async {
     // });
   }
 
-  // log("${ApiUrlConstants.syncSms}: ${jsonEncode(body)}");
+  log("${ApiUrlConstants.syncSms}: ${jsonEncode(body)}");
 
   // var request = http.MultipartRequest(
   //     'POST',

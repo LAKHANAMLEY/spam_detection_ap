@@ -204,7 +204,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                         child: CircleAvatar(
                                           backgroundImage: AssetImage(
                                               contact?.isSpam == 1
-                                                  ? IconConstants.icSpamCall
+                                                  ? IconConstants.icSpamCircle
                                                   : IconConstants.icUsername4X),
                                           radius: 45,
                                         ),

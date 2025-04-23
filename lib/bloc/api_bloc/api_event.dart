@@ -647,15 +647,15 @@ class RemoveSpamSmsEvent extends ApiEvent {
 //class SmsSpamEvent extends ApiEvent {}
 
 class DeleteConversationEvent extends ApiEvent {
-  final SmsLog address;
+  final SmsLog smsLog;
 
   DeleteConversationEvent({
-    required this.address,
+    required this.smsLog,
   });
 
   @override
   List<Object?> get props => [
-        address,
+        smsLog,
       ];
 }
 

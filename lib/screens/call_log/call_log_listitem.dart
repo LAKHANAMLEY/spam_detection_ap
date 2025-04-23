@@ -70,19 +70,20 @@ class CallLogListItem extends StatelessWidget {
       ),
       subtitle: Row(
         children: [
-          if (callLog.markSpamByUser != null && callLog.markSpamByUser != 0)
+          if (callLog.callType?.isNotEmpty ?? false)
+            Icon(
+              getCallTypeIcon(callLog.callType),
+              color: getCallTypeColor(callLog.callType),
+              size: 15,
+            ),
+          5.width(),
+          if ((callLog.markSpamByUser != null && callLog.markSpamByUser != 0) ||
+              (callLog.isSpam != null && callLog.isSpam != 0)) ...[
             Text(
               "${callLog.markSpamByUser ?? 0} ${appLocalization(context).spamReports}",
               style: textTheme(context).bodySmall?.copyWith(color: Colors.red),
             )
-          else ...[
-            if (callLog.callType?.isNotEmpty ?? false)
-              Icon(
-                getCallTypeIcon(callLog.callType),
-                color: getCallTypeColor(callLog.callType),
-                size: 15,
-              ),
-            5.width(),
+          ] else ...[
             Text(
               callLog.callType ?? "",
               style: textTheme(context)
@@ -193,7 +194,7 @@ class CallLogListItem extends StatelessWidget {
 String getCallTypeImage(CallLogData callLog) {
   var callType = getCallLogType(callLog.callType);
   if (callLog.isSpam == 1) {
-    return IconConstants.icSpamCall;
+    return IconConstants.icSpamCircle;
   } else {
     switch (callType) {
       case null:

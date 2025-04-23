@@ -67,7 +67,8 @@ class SmsLogDBHandler {
         $columnCountryCode TEXT,
         $columnUnreadReceivedSms INTEGER,
         $columnName TEXT,
-        $columnIsMarkSpam INTEGER
+        $columnIsMarkSpam INTEGER,
+        $columnDate INTEGER
       )
     ''');
     await db.execute('''
@@ -111,6 +112,7 @@ class SmsLogDBHandler {
       columnUnreadReceivedSms: smsLog.unreadReceivedSms,
       columnName: smsLog.name,
       columnIsMarkSpam: smsLog.isMarkSpam,
+      columnDate: _dateTimeToInt(smsLog.date),
     });
 
     if (smsLog.smsDetails != null) {
@@ -205,6 +207,7 @@ class SmsLogDBHandler {
           columnUnreadReceivedSms: smsLog.unreadReceivedSms,
           columnName: smsLog.name,
           columnIsMarkSpam: smsLog.isMarkSpam,
+          columnDate: _dateTimeToInt(smsLog.date),
         },
         where: '$columnLogId = ?',
         whereArgs: [smsLog.address],
@@ -286,6 +289,7 @@ class SmsLogDBHandler {
         columnUnreadReceivedSms,
         columnName,
         columnIsMarkSpam,
+        columnDate,
       ],
       where: '$columnLogId = ?',
       whereArgs: [id],
@@ -301,6 +305,7 @@ class SmsLogDBHandler {
         unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
         name: logMap[columnName] as String?,
         isMarkSpam: logMap[columnIsMarkSpam] as int?,
+        date: _intToDateTime(logMap[columnDate]),
         smsDetails: details,
       );
     }
@@ -338,7 +343,8 @@ class SmsLogDBHandler {
 
   Future<List<SmsLog>> getAllSmsLogs() async {
     final db = await database;
-    final List<Map<String, dynamic>> logMaps = await db.query(tableSmsLog);
+    final List<Map<String, dynamic>> logMaps =
+        await db.query(tableSmsLog, orderBy: "$columnDate DESC");
     return Future.wait(logMaps.map((logMap) async {
       final String logId = logMap[columnLogId];
       final List<SmsDetail> details = await _getSmsDetailsForLogId(db, logId);
@@ -349,6 +355,7 @@ class SmsLogDBHandler {
         unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
         name: logMap[columnName] as String?,
         isMarkSpam: logMap[columnIsMarkSpam] as int?,
+        date: _intToDateTime(logMap[columnDate] as int?),
         smsDetails: details,
       );
     }).toList());

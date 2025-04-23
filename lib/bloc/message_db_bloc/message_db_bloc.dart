@@ -1,7 +1,10 @@
 // BLoC
 import 'dart:developer';
 
+import 'package:spam_delection_app/data/repository/sms_repo/sms_controller.dart';
+import 'package:spam_delection_app/data/repository/sms_repo/sync_sms_details_api.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/models/sms/sms_log_details_resp.dart';
 
 class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
   final SmsLogDBHandler _databaseHelper = SmsLogDBHandler.instance;
@@ -15,6 +18,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     on<DeleteMessageDB>(_onDeleteDatabase);
     // on<LoadDeviceSms>(_onLoadDeviceSms);
     on<SyncMessagesWithServer>(_onSyncMessagesWithServer);
+    on<SyncMessageDetailsWithServer>(_onSyncMessageDetailsWithServer);
     on<SyncChangedMessageWithServer>(_onSyncChangedMessagesWithServer);
     on<AddSmsLogsToDB>(_onAddSmsLogsToDB);
     on<GetAllSmsFromDB>(_onGetAllSmsFromDB);
@@ -48,10 +52,14 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       DeleteAllSmsLogs event, Emitter<MessageDBState> emit) async {
     emit(MessageDBLoading());
     try {
-      smsDelete(messageId: "");
-      await _databaseHelper.deleteTable();
-      final smsLogs = await _databaseHelper.getAllSmsLogs();
-      emit(MessageDBLoaded(smsLogs));
+      for (SmsDetail sms in event.smsLog.smsDetails ?? []) {
+        var res = await SMSController.deleteDeviceSms(sms);
+        log("Deleted conversation : $res");
+      }
+      await deleteConversation(address: event.smsLog.address ?? "");
+      await _databaseHelper.delete(event.smsLog.id ?? "");
+      // final smsLogs = await _databaseHelper.getAllSmsLogs();
+      emit(MessageDBDeletedAllConversation());
     } catch (e) {
       emit(MessageDBError('Failed to delete all SMS logs from DB: $e', e));
     }
@@ -120,8 +128,12 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       final serverLog = serverMessagesMap[address];
 
       //TODO: getDetailsFromContactDB name etc
-      var contact = await _contactDBHelper.getContactByPhone(address);
-      log(contact?.name ?? "");
+      var contact = await _contactDBHelper
+          .getContactByPhone(address.separatePhoneAndPhoneCode().phone);
+      // if (contact?.name?.isEmpty ?? false) {
+      //   var contact = await _contactDBHelper.getContactByPhone(address);
+      // }
+      // log("Contact name of $address : ${contact?.name}");
 
       List<SmsDetail> smsDetails = [];
 
@@ -153,16 +165,16 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
       syncedSmsLogs.add(
         SmsLog(
-          id: address,
-          address: serverLog?.address ?? address,
-          countryCode: serverLog?.countryCode,
-          unreadReceivedSms: serverLog?.unreadReceivedSms,
-          name: contact?.name ??
-              serverLog?.name ??
-              localSmsList.firstOrNull?.sender,
-          isMarkSpam: serverLog?.isMarkSpam,
-          smsDetails: smsDetails,
-        ),
+            id: address,
+            address: serverLog?.address ?? address,
+            countryCode: serverLog?.countryCode,
+            unreadReceivedSms: serverLog?.unreadReceivedSms,
+            name: contact?.name ??
+                serverLog?.name ??
+                localSmsList.firstOrNull?.sender,
+            isMarkSpam: serverLog?.isMarkSpam,
+            smsDetails: smsDetails,
+            date: localSmsList.firstOrNull?.date),
       );
 
       // Optionally remove from the server map to avoid processing later
@@ -179,10 +191,8 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     emit(MessageDBSyncing());
     try {
       ///1. Get device messages
-      final localSmsLogs = await getDeviceSms();
+      final localSmsLogs = await SMSController.getDeviceSms();
 
-      ///TODO: add name from local db contacts
-      ///TODO: extend a copywith method for SMSMessage
       Map<String, List<SmsMessage>> groupedLocalSms =
           getGroupedLocalSms(localSmsLogs);
 
@@ -211,7 +221,8 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       // }).toList()));
 
       ///2. Sync with server
-      await syncSmsWithServer(smsLogs: localSmsLogs);
+      await syncSmsWithServer(
+          smsLogs: groupedLocalSms.values.map((s) => s.first).toList());
 
       ///3. Get server messages
       final resp = await smsList();
@@ -240,6 +251,36 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     }
   }
 
+  Future<void> _onSyncMessageDetailsWithServer(
+      SyncMessageDetailsWithServer event, Emitter<MessageDBState> emit) async {
+    var smsLog = event.smsLogs;
+
+    var messages = await SMSController.getDeviceSms(address: smsLog.address);
+    log("Message sent: ${messages.first.toMap}");
+    SmsLogDetailsResponse resp = await syncSmsDetailsWithServer(
+        smsLogs: messages, address: smsLog.address ?? "");
+
+    // log(jsonEncode(resp));
+    // var res = await syncSmsDetailsWithServer(
+    //     smsLogs: [], address: smsLog.first.address ?? "");
+    // log(jsonEncode(res));
+
+    // for (SmsDetail smsDetail in resp.smsLogDetails ?? []) {
+
+    ///TODO: get local and mould with server
+    var updatedSmsLog = smsLog.copyWith(
+      smsDetails: smsLog.smsDetails,
+    );
+    final existingCallLog =
+        await _databaseHelper.getSmsLog(updatedSmsLog.id ?? "");
+    if (existingCallLog == null) {
+      await _databaseHelper.insertSmsLog(updatedSmsLog);
+    } else {
+      await _databaseHelper.updateSmsLog(updatedSmsLog);
+    }
+    // }
+  }
+
   Future<void> _onSyncChangedMessagesWithServer(
       SyncChangedMessageWithServer event, Emitter<MessageDBState> emit) async {
     emit(MessageDBSyncing());
@@ -248,15 +289,20 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
       // final resp = await smsList();
       // final serverMessages = resp.smsLog ?? [];
+
       var sms = event.smsMessage;
+      var contact = await _contactDBHelper.getContactByPhone(
+          sms.address?.separatePhoneAndPhoneCode().phone ?? "");
       var smsLog = SmsLog(
           id: sms.address,
           address: sms.address,
           countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
-          name: sms.sender,
+          name: contact?.name,
+          date: sms.date,
+          isMarkSpam: contact?.isSpam ?? 0,
           smsDetails: [
             SmsDetail(
-              id: sms.address?.toString(),
+              id: sms.id?.toString(),
               deviceMessageId: sms.address?.toString(),
               address: sms.address,
               countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
@@ -264,7 +310,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
               date: sms.date,
               messageKind: sms.kind?.name,
               messageState: sms.state.name,
-              name: sms.sender,
+              name: contact?.name,
               threadId: sms.threadId?.toString(),
               sendreceiveDatetime: sms.dateSent,
             )

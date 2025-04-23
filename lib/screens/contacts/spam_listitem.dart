@@ -20,7 +20,7 @@ class SpamListItem extends StatelessWidget {
             ));
       },
       leading: const CircleAvatar(
-        backgroundImage: AssetImage(IconConstants.icSpamCall),
+        backgroundImage: AssetImage(IconConstants.icSpamCircle),
       ),
       title: Row(
         children: [

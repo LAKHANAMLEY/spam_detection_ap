@@ -137,6 +137,7 @@ class ApiUrlConstants {
       '$baseUrl/contacts/sync-call-log-manually';
   static String dashboardStatistics = '$baseUrl/user/dashboard-statistics-data';
   static String syncSms = '$baseUrl/sms/sync-sms';
+  static String syncSmsDetails = '$baseUrl/sms/details';
   static String smsList = '$baseUrl/sms/get-list';
   static String smsSeen = '$baseUrl/sms/sms-seen';
   static String smsSpamList = '$baseUrl/sms/spam-list';

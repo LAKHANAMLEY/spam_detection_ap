@@ -16,7 +16,7 @@ class ContactListItem extends StatelessWidget {
         },
         leading: CircleAvatar(
           backgroundImage: AssetImage(contact.isSpam == 1
-              ? IconConstants.icSpamCall
+              ? IconConstants.icSpamCircle
               : IconConstants.icCallRegular),
         ),
         title: Text(

@@ -41,18 +41,18 @@ class _MessagesScreenState extends State<MessagesScreen> {
           if (state is NewSmsReceived) {
             log("SMS received");
             // messagesBloc.add(GetDeviceMessagesEvent());
-            // context
-            //     .read<MessageDBBloc>()
-            //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
-            context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+            context
+                .read<MessageDBBloc>()
+                .add(SyncChangedMessageWithServer(smsMessage: state.message));
+            // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
           }
           if (state is NewSmsSent) {
             log("SMS delivered");
             // messagesBloc.add(GetDeviceMessagesEvent());
-            // context
-            //     .read<MessageDBBloc>()
-            //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
-            context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+            context
+                .read<MessageDBBloc>()
+                .add(SyncChangedMessageWithServer(smsMessage: state.message));
+            // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
           }
         },
         child: Column(
@@ -114,6 +114,26 @@ class _MessagesScreenState extends State<MessagesScreen> {
               hintText: appLocalization(context).searchMore,
               fillColor: Colors.white,
             ),
+            BlocBuilder(
+                bloc: searchBloc,
+                builder: (context, state) {
+                  if (searchController.text.isNotEmpty &&
+                      searchController.text.isNumber) {
+                    return CustomListTile(
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.messagesDetail,
+                            arguments: MessagesDetail(
+                              sms: SmsLog(
+                                id: searchController.text,
+                                address: searchController.text,
+                              ),
+                            ));
+                      },
+                      title: Text("Send to ${searchController.text}"),
+                    );
+                  }
+                  return SizedBox.shrink();
+                }),
             Expanded(
               child: BlocConsumer<MessageDBBloc, MessageDBState>(
                 listener: (context, state) {
@@ -209,6 +229,21 @@ class _MessagesScreenState extends State<MessagesScreen> {
                       if (filteredMessages.isEmpty &&
                           state is MessageDBLoading) {
                         return Loader();
+                        // } else if (filteredMessages.isEmpty &&
+                        //     searchController.text.isNotEmpty) {
+                        //   return SizedBox(
+                        //     height: 40,
+                        //     child: MessageListItem(
+                        //         sms: SmsLog(
+                        //       id: searchController.text,
+                        //       address: searchController.text,
+
+                        //       // date: DateTime.now(),
+
+                        //       // name: appLocalization(context).unknown,
+                        //       // smsDetails: [SmsDetail(body: "New message")],
+                        //     )),
+                        //   );
                       } else if (filteredMessages.isEmpty) {
                         return Center(
                           child: Text(appLocalization(context).noMessages),
