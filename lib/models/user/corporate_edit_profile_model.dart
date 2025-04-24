@@ -2,7 +2,7 @@
 //
 //     final corporateEditProfileResponse = corporateEditProfileResponseFromJson(jsonString);
 
-import '../lib.dart';
+import '../../lib.dart';
 
 CorporateEditProfileResponse corporateEditProfileResponseFromJson(String str) =>
     CorporateEditProfileResponse.fromJson(json.decode(str));

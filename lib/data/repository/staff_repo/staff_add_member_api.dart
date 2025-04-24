@@ -13,14 +13,14 @@ Future<Response> staffAddMember({
   XFile? photoFile,
 }) async {
   var body = {
-    'first_name': firstname ?? "",
-    'last_name': lastname ?? "",
-    'email': email ?? "",
-    'password': password ?? "",
-    'position': relation ?? "",
-    'support_pin': supportPin ?? "",
-    'phone': phone ?? "",
-    'country_code': countryCode ?? ""
+    'first_name': firstname,
+    'last_name': lastname,
+    'email': email,
+    'password': password,
+    'position': relation,
+    'support_pin': supportPin,
+    'phone': phone,
+    'country_code': countryCode
   };
   // final response = await http.post(
   //   Uri.parse(ApiUrlConstants.endPointFamilyAddMember),
@@ -34,7 +34,7 @@ Future<Response> staffAddMember({
   request.fields.addAll(body);
   if (photoFile != null && photoFile.mimeType != "http") {
     request.files
-        .add(await http.MultipartFile.fromPath("photo", photoFile.path ?? ""));
+        .add(await http.MultipartFile.fromPath("photo", photoFile.path));
   }
   var streamedResponse = await request.send();
   var response = await http.Response.fromStream(streamedResponse);

@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/sms/sms_log_details_resp.dart';
 
 Future<SmsLogDetailsResponse> syncSmsDetailsWithServer({
   required List<SmsMessage> smsLogs,

@@ -1,6 +1,6 @@
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sms_advanced/sms_advanced.dart';
-import 'package:spam_delection_app/models/sms_list_model.dart';
+import 'package:spam_delection_app/models/sms/sms_list_model.dart';
 import 'package:spam_delection_app/utils/api_constants/exception_handling.dart';
 
 class SMSController {

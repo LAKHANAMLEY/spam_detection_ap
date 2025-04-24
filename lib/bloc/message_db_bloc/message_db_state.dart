@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:spam_delection_app/models/sms_list_model.dart';
+import 'package:spam_delection_app/models/sms/sms_list_model.dart';
 
 // Models (Assuming these are in separate files or defined above)
 // ... (SmsLog and SmsDetail classes remain the same)

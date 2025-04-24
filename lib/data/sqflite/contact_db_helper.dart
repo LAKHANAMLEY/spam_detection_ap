@@ -3,8 +3,8 @@ import 'dart:io' as io;
 
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:spam_delection_app/models/call_logs_model.dart';
-import 'package:spam_delection_app/models/contact_list_response.dart';
+import 'package:spam_delection_app/models/call_logs/call_logs_model.dart';
+import 'package:spam_delection_app/models/contact/contact_list_response.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ContactDBHelper {

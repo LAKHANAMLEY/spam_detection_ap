@@ -19,7 +19,6 @@ class _EditFamilyMemberState extends State<EditFamilyMember> {
   final TextEditingController relationController = TextEditingController();
   final TextEditingController supportPinController = TextEditingController();
 
-  final ImagePicker _picker = ImagePicker();
   XFile? _selectedImage;
 
   var familyMemberBloc = ApiBloc(ApiBlocInitialState());

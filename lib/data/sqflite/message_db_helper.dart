@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:spam_delection_app/models/sms_list_model.dart';
+import 'package:spam_delection_app/models/sms/sms_list_model.dart';
 import 'package:sqflite/sqflite.dart'; // For DateTime formatting
 
 class SmsLogDBHandler {
@@ -27,6 +27,7 @@ class SmsLogDBHandler {
   static const String columnSendReceiveDatetime = "send_receive_datetime";
   static const String columnThreadId = "thread_id";
   static const String columnSmsId = "sms_id"; // Renamed from 'id'
+  static const String columnDeviceSmsId = "device_sms_id";
   static const String columnIsSpam = "is_spam";
   static const String columnSpamMessage = "spam_message";
   static const String columnScore = "score";
@@ -83,7 +84,9 @@ class SmsLogDBHandler {
         $columnSendReceiveDatetime INTEGER,
         $columnThreadId TEXT,
         $columnSmsId TEXT,
+        $columnDeviceSmsId TEXT,
         $columnIsSpam TEXT,
+        $columnIsMarkSpam INTEGER,
         $columnSpamMessage TEXT,
         $columnScore TEXT,
         $columnIsManually TEXT,
@@ -117,25 +120,34 @@ class SmsLogDBHandler {
 
     if (smsLog.smsDetails != null) {
       for (final detail in smsLog.smsDetails!) {
-        await db.insert(tableSmsDetail, {
-          columnLogIdFk: smsLog.id, //TODO: logId
-          columnBody: detail.body,
-          columnIsRead: detail.isRead,
-          columnMessageState: detail.messageState,
-          columnMessageKind: detail.messageKind,
-          columnQueryKind: detail.queryKind,
-          columnSendReceiveDatetime: _dateTimeToInt(detail.sendreceiveDatetime),
-          columnThreadId: detail.threadId,
-          columnSmsId: detail.id,
-          columnIsSpam: detail.isSpam,
-          columnSpamMessage: detail.spamMessage,
-          columnScore: detail.score,
-          columnIsManually: detail.isManually,
-          columnDetailAddress: detail.address,
-          columnDetailCountryCode: detail.countryCode,
-          columnDate: _dateTimeToInt(detail.date),
-          columnDetailName: detail.name,
-        });
+        //check exists or not
+        final exists = await _getSmsDetailsForLogId(db, detail.id ?? "");
+        if (exists.isEmpty ?? true) {
+          await db.insert(tableSmsDetail, {
+            columnLogIdFk: smsLog.id, //TODO: logId
+            columnBody: detail.body,
+            columnIsRead: detail.isRead,
+            columnMessageState: detail.messageState,
+            columnMessageKind: detail.messageKind,
+            columnQueryKind: detail.queryKind,
+            columnSendReceiveDatetime:
+                _dateTimeToInt(detail.sendreceiveDatetime),
+            columnThreadId: detail.threadId,
+            columnSmsId: detail.id,
+            columnDeviceSmsId: detail.deviceMessageId,
+            columnIsSpam: detail.isSpam,
+            columnIsMarkSpam: detail.isMarkSpam,
+            columnSpamMessage: detail.spamMessage,
+            columnScore: detail.score,
+            columnIsManually: detail.isManually,
+            columnDetailAddress: detail.address,
+            columnDetailCountryCode: detail.countryCode,
+            columnDate: _dateTimeToInt(detail.date),
+            columnDetailName: detail.name,
+          });
+        } else {
+          await updateSmsDetail(detail);
+        }
       }
     }
     return logId;
@@ -217,49 +229,7 @@ class SmsLogDBHandler {
         // Logic to update or insert SmsDetail records
         for (final detail in smsLog.smsDetails!) {
           // Check if the SmsDetail already exists (you'll need a unique identifier)
-          final existingDetail = await db.query(
-            tableSmsDetail,
-            where:
-                '$columnLogIdFk = ? AND $columnSmsId = ?', // Example: check by logId and smsId
-            whereArgs: [
-              smsLog.id,
-              detail.id
-            ], // Assuming detail.id is somewhat unique
-          );
-
-          final smsDetailMap = {
-            columnLogIdFk: smsLog.address,
-            columnBody: detail.body,
-            columnIsRead: detail.isRead,
-            columnMessageState: detail.messageState,
-            columnMessageKind: detail.messageKind,
-            columnQueryKind: detail.queryKind,
-            columnSendReceiveDatetime:
-                _dateTimeToInt(detail.sendreceiveDatetime),
-            columnThreadId: detail.threadId,
-            columnSmsId: detail.id,
-            columnIsSpam: detail.isSpam,
-            columnSpamMessage: detail.spamMessage,
-            columnScore: detail.score,
-            columnIsManually: detail.isManually,
-            columnDetailAddress: detail.address,
-            columnDetailCountryCode: detail.countryCode,
-            columnDate: _dateTimeToInt(detail.date),
-            columnDetailName: detail.name,
-          };
-
-          if (existingDetail.isNotEmpty) {
-            // Update existing SmsDetail
-            await db.update(
-              tableSmsDetail,
-              smsDetailMap,
-              where: '$columnLogIdFk = ? AND $columnSmsId = ?',
-              whereArgs: [smsLog.id, detail.id],
-            );
-          } else {
-            // Insert new SmsDetail
-            await db.insert(tableSmsDetail, smsDetailMap);
-          }
+          updateSmsDetail(detail);
         }
       }
     } else {
@@ -269,11 +239,77 @@ class SmsLogDBHandler {
     return updatedRows;
   }
 
-  Future<int> delete(String id) async {
+  Future<int> updateSmsDetail(SmsDetail detail) async {
+    final db = await database;
+
+    if (detail != null) {
+      // Logic to update or insert SmsDetail records
+
+      // Check if the SmsDetail already exists (you'll need a unique identifier)
+      final existingDetail = await db.query(
+        tableSmsDetail,
+        where:
+            '$columnLogIdFk = ? AND $columnDeviceSmsId = ?', // Example: check by logId and smsId
+        whereArgs: [
+          detail.address,
+          detail.deviceMessageId
+        ], // Assuming detail.id is somewhat unique
+      );
+
+      final smsDetailMap = {
+        columnLogIdFk: detail.address,
+        columnBody: detail.body,
+        columnIsRead: detail.isRead,
+        columnMessageState: detail.messageState,
+        columnMessageKind: detail.messageKind,
+        columnQueryKind: detail.queryKind,
+        columnSendReceiveDatetime: _dateTimeToInt(detail.sendreceiveDatetime),
+        columnThreadId: detail.threadId,
+        columnSmsId: detail.id,
+        columnDeviceSmsId: detail.deviceMessageId,
+        columnIsSpam: detail.isSpam,
+        columnSpamMessage: detail.spamMessage,
+        columnScore: detail.score,
+        columnIsManually: detail.isManually,
+        columnDetailAddress: detail.address,
+        columnDetailCountryCode: detail.countryCode,
+        columnDate: _dateTimeToInt(detail.date),
+        columnDetailName: detail.name,
+      };
+
+      if (existingDetail.isNotEmpty) {
+        // Update existing SmsDetail
+        return await db.update(
+          tableSmsDetail,
+          smsDetailMap,
+          where: '$columnLogIdFk = ? AND $columnDeviceSmsId = ?',
+          whereArgs: [detail.address, detail.deviceMessageId],
+        );
+      } else {
+        // Insert new SmsDetail
+        return await db.insert(tableSmsDetail, smsDetailMap);
+      }
+    } else {
+      print('Error: Cannot update SmsLog without an ID.');
+      return 0;
+    }
+  }
+
+  Future<int> deleteSmsLog(String id) async {
     Database db = await instance.database;
+    await deleteSmsDetail(id);
     return await db.delete(
       tableSmsLog,
       where: '$columnLogId = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future<int> deleteSmsDetail(String id) async {
+    Database db = await instance.database;
+    return await db.delete(
+      tableSmsDetail,
+      where: '$columnLogIdFk = ?',
       whereArgs: [id],
     );
   }
@@ -329,7 +365,9 @@ class SmsLogDBHandler {
                   _intToDateTime(detailMap[columnSendReceiveDatetime] as int?),
               threadId: detailMap[columnThreadId] as String?,
               id: detailMap[columnSmsId] as String?,
+              deviceMessageId: detailMap[columnDeviceSmsId] as String?,
               isSpam: detailMap[columnIsSpam] as String?,
+              isMarkSpam: detailMap[columnIsMarkSpam] as int?,
               spamMessage: detailMap[columnSpamMessage] as String?,
               score: detailMap[columnScore] as String?,
               isManually: detailMap[columnIsManually] as String?,

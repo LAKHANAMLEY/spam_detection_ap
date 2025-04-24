@@ -1,373 +1,219 @@
-// BLoC
 import 'dart:developer';
 
-import 'package:spam_delection_app/data/repository/sms_repo/sms_controller.dart';
-import 'package:spam_delection_app/data/repository/sms_repo/sync_sms_details_api.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/models/sms/sms_log_details_resp.dart';
 
 class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
-  final SmsLogDBHandler _databaseHelper = SmsLogDBHandler.instance;
-  final ContactDBHelper _contactDBHelper = ContactDBHelper.instance;
+  final SmsLogDBHandler _db = SmsLogDBHandler.instance;
+  final ContactDBHelper _contacts = ContactDBHelper.instance;
 
   MessageDBBloc() : super(MessageDBInitial()) {
-    // on<LoadSmsLogs>(_onLoadSmsLogs);
-    on<AddSmsLog>(_onAddSmsLog);
-    on<DeleteSmsLog>(_onDeleteSmsLog);
-    on<DeleteAllSmsLogs>(_onDeleteAllSmsLogs);
-    on<DeleteMessageDB>(_onDeleteDatabase);
-    // on<LoadDeviceSms>(_onLoadDeviceSms);
-    on<SyncMessagesWithServer>(_onSyncMessagesWithServer);
-    on<SyncMessageDetailsWithServer>(_onSyncMessageDetailsWithServer);
-    on<SyncChangedMessageWithServer>(_onSyncChangedMessagesWithServer);
-    on<AddSmsLogsToDB>(_onAddSmsLogsToDB);
-    on<GetAllSmsFromDB>(_onGetAllSmsFromDB);
-    on<ReadDBMessage>(_onReadDBSms);
+    on<AddSmsLog>(_addSmsLog);
+    on<DeleteSmsLog>(_deleteSmsLog);
+    on<DeleteAllSmsLogs>(_deleteAllSmsLogs);
+    on<DeleteMessageDB>(_deleteDatabase);
+    on<SyncMessagesWithServer>(_syncMessagesWithServer);
+    on<SyncMessageDetailsWithServer>(_syncMessageDetailsWithServer);
+    on<SyncChangedMessageWithServer>(_syncChangedMessagesWithServer);
+    on<AddSmsLogsToDB>(_addSmsLogsToDB);
+    on<GetAllSmsFromDB>(_getAllSmsFromDB);
+    on<ReadDBMessage>(_readDBSms);
   }
 
-  // Future<void> _onLoadSmsLogs(
-  //     LoadSmsLogs event, Emitter<MessageDBState> emit) async {
-  //   emit(MessageDBLoading());
-  //   try {
-  //     final smsLogs = await _databaseHelper.getAllSmsLogs();
-  //     emit(MessageDBLoaded(smsLogs));
-  //   } catch (e) {
-  //     emit(MessageDBError('Failed to load SMS logs from DB: $e'));
-  //   }
-  // }
-
-  Future<void> _onAddSmsLog(
-      AddSmsLog event, Emitter<MessageDBState> emit) async {
-    emit(MessageDBLoading());
-    try {
-      await _databaseHelper.insertSmsLog(event.smsLog);
-      final smsLogs = await _databaseHelper.getAllSmsLogs();
-      emit(MessageDBLoaded(smsLogs));
-    } catch (e) {
-      emit(MessageDBError('Failed to add SMS log to DB: $e', e));
-    }
+  Future<void> _addSmsLog(AddSmsLog event, Emitter<MessageDBState> emit) async {
+    await _handleDbWrite(() async {
+      await _db.insertSmsLog(event.smsLog);
+    }, emit);
   }
 
-  Future<void> _onDeleteAllSmsLogs(
+  Future<void> _deleteAllSmsLogs(
       DeleteAllSmsLogs event, Emitter<MessageDBState> emit) async {
-    emit(MessageDBLoading());
-    try {
-      for (SmsDetail sms in event.smsLog.smsDetails ?? []) {
-        var res = await SMSController.deleteDeviceSms(sms);
-        log("Deleted conversation : $res");
+    await _handleDbWrite(() async {
+      for (final sms in event.smsLog.smsDetails ?? []) {
+        await SMSController.deleteDeviceSms(sms);
       }
       await deleteConversation(address: event.smsLog.address ?? "");
-      await _databaseHelper.delete(event.smsLog.id ?? "");
-      // final smsLogs = await _databaseHelper.getAllSmsLogs();
-      emit(MessageDBDeletedAllConversation());
-    } catch (e) {
-      emit(MessageDBError('Failed to delete all SMS logs from DB: $e', e));
-    }
+      await _db.deleteSmsLog(event.smsLog.id ?? "");
+    }, emit, onSuccess: () => MessageDBDeletedAllConversation());
   }
 
-  Future<void> _onDeleteSmsLog(
+  Future<void> _deleteSmsLog(
       DeleteSmsLog event, Emitter<MessageDBState> emit) async {
-    emit(MessageDBLoading());
-    try {
-      ///TODO: delete sms from server and device
+    await _handleDbWrite(() async {
       await smsDelete(messageId: event.id);
-      await _databaseHelper.delete(event.id);
-      emit(const MessageDBLoaded([]));
-    } catch (e) {
-      emit(MessageDBError('Failed to delete all SMS logs from DB: $e', e));
-    }
+      await _db.deleteSmsLog(event.id);
+    }, emit, onSuccess: () => const MessageDBLoaded([]));
   }
 
-  Future<void> _onDeleteDatabase(
+  Future<void> _deleteDatabase(
       DeleteMessageDB event, Emitter<MessageDBState> emit) async {
-    emit(MessageDBLoading());
-    try {
-      await _databaseHelper.deleteDatabase1();
-      emit(MessageDBInitial());
-    } catch (e) {
-      emit(MessageDBError('Failed to delete the database: $e', e));
-    }
+    await _handleDbWrite(() async => await _db.deleteDatabase1(), emit,
+        onSuccess: () => MessageDBInitial());
   }
 
-  // Future<void> _onLoadDeviceSms(
-  //     LoadDeviceSms event, Emitter<MessageDBState> emit) async {
-  //   emit(MessageDBLoading());
-  //   try {
-  //     final deviceSms = await getSms();
-  //     emit(MessageDBLoaded(deviceSms)); // Emit the device SMS list
-  //   } catch (e) {
-  //     emit(MessageDBError('Failed to load SMS from device: $e'));
-  //   }
-  // }
-
-  Map<String, List<SmsMessage>> getGroupedLocalSms(List<SmsMessage> localSms) {
-    Map<String, List<SmsMessage>> groupedLocalSms = {};
-    for (var sms in localSms) {
-      final address = sms.address;
-      if (address != null) {
-        groupedLocalSms.putIfAbsent(address, () => []).add(sms);
-      }
-    }
-    return groupedLocalSms;
-  }
-
-  Future<List<SmsLog>> syncLocalAndServerMessagesOneLoopLocalPriority(
-      Map<String, List<SmsMessage>> groupedLocalSms,
-      List<SmsLog> serverMessages) async {
-    // Map<String, List<SmsMessage>> groupedLocalSms =
-    //     getGroupedLocalSms(localSms);
-
-    Map<String, SmsLog> serverMessagesMap = {
-      for (var msg in serverMessages) msg.address!: msg
-    };
-
-    List<SmsLog> syncedSmsLogs = [];
-
-    for (final address in groupedLocalSms.keys) {
-      final localSmsList = groupedLocalSms[address]!;
-      final serverLog = serverMessagesMap[address];
-
-      //TODO: getDetailsFromContactDB name etc
-      var contact = await _contactDBHelper
-          .getContactByPhone(address.separatePhoneAndPhoneCode().phone);
-      // if (contact?.name?.isEmpty ?? false) {
-      //   var contact = await _contactDBHelper.getContactByPhone(address);
-      // }
-      // log("Contact name of $address : ${contact?.name}");
-
-      List<SmsDetail> smsDetails = [];
-
-      // Add local SMS details
-      smsDetails.addAll(localSmsList.map((sms) => SmsDetail(
-            id: sms.id?.toString() ?? serverLog?.id,
-            deviceMessageId: sms.id?.toString(),
-            address: serverLog?.address ?? sms.address,
-            countryCode: serverLog?.countryCode ??
-                sms.address?.separatePhoneAndPhoneCode().phoneCode,
-            body: sms.body,
-            date: sms.date,
-            messageKind: sms.kind?.name,
-            messageState: sms.state.name,
-            name: contact?.name ?? serverLog?.name ?? sms.sender,
-            threadId: sms.threadId?.toString(),
-            sendreceiveDatetime: sms.dateSent,
-            isSpam: serverLog?.isMarkSpam.toString(),
-            isRead: serverLog?.smsDetails?.firstOrNull?.isRead,
-            queryKind: serverLog?.smsDetails?.firstOrNull?.queryKind,
-            score: serverLog?.smsDetails?.firstOrNull?.score,
-            spamMessage: serverLog?.smsDetails?.firstOrNull?.spamMessage,
-          )));
-
-      // Add server SMS details if available (and if a local message with this address exists)
-      // if (serverLog?.smsDetails != null) {
-      //   smsDetails.addAll(serverLog!.smsDetails!);
-      // }
-
-      syncedSmsLogs.add(
-        SmsLog(
-            id: address,
-            address: serverLog?.address ?? address,
-            countryCode: serverLog?.countryCode,
-            unreadReceivedSms: serverLog?.unreadReceivedSms,
-            name: contact?.name ??
-                serverLog?.name ??
-                localSmsList.firstOrNull?.sender,
-            isMarkSpam: serverLog?.isMarkSpam,
-            smsDetails: smsDetails,
-            date: localSmsList.firstOrNull?.date),
-      );
-
-      // Optionally remove from the server map to avoid processing later
-      serverMessagesMap.remove(address);
-    }
-
-    // We no longer add any remaining server messages here.
-
-    return syncedSmsLogs;
-  }
-
-  Future<void> _onSyncMessagesWithServer(
+  Future<void> _syncMessagesWithServer(
       SyncMessagesWithServer event, Emitter<MessageDBState> emit) async {
     emit(MessageDBSyncing());
     try {
-      ///1. Get device messages
-      final localSmsLogs = await SMSController.getDeviceSms();
+      final localSms = await SMSController.getDeviceSms();
+      final grouped = _groupSmsByAddress(localSms);
 
-      Map<String, List<SmsMessage>> groupedLocalSms =
-          getGroupedLocalSms(localSmsLogs);
-
-      // emit(MessageDBLoaded(groupedLocalSms.keys.map((key) {
-      //   List<SmsMessage> log = groupedLocalSms[key] ?? [];
-      //   var smsDetail = log
-      //       .map((e) => SmsDetail(
-      //             address: e.address?.separatePhoneAndPhoneCode().phone,
-      //             countryCode: e.address?.separatePhoneAndPhoneCode().phoneCode,
-      //             body: e.body,
-      //             id: e.address,
-      //             deviceMessageId: e.id.toString(),
-      //             date: e.date,
-      //             messageKind: e.kind?.name,
-      //             messageState: e.state.name,
-      //             name: e.sender,
-      //             threadId: e.threadId?.toString(),
-      //             sendreceiveDatetime: e.dateSent,
-      //           ))
-      //       .toList();
-      //   return SmsLog(
-      //       id: log.first.address,
-      //       address: log.first.address,
-      //       name: log.first.sender,
-      //       smsDetails: smsDetail);
-      // }).toList()));
-
-      ///2. Sync with server
       await syncSmsWithServer(
-          smsLogs: groupedLocalSms.values.map((s) => s.first).toList());
+          smsLogs: grouped.values.map((s) => s.first).toList());
 
-      ///3. Get server messages
-      final resp = await smsList();
-      final serverMessages = resp.smsLog ?? [];
+      final serverLogs = (await smsList()).smsLog ?? [];
+      final mergedLogs =
+          await _mergeLocalAndServerMessages(grouped, serverLogs);
 
-      ///4. Merge local and server messages
-      final syncedSmsLogs =
-          await syncLocalAndServerMessagesOneLoopLocalPriority(
-              groupedLocalSms, serverMessages);
-      // log("synced sms : ${syncedSmsLogs.map((e) => e.toJson()).toList()}");
-
-      for (final smsLog in syncedSmsLogs) {
-        final existingCallLog =
-            await _databaseHelper.getSmsLog(smsLog.id ?? "");
-        if (existingCallLog == null) {
-          await _databaseHelper.insertSmsLog(smsLog);
+      for (final log in mergedLogs) {
+        final exists = await _db.getSmsLog(log.id ?? "");
+        if (exists == null) {
+          await _db.insertSmsLog(log);
         } else {
-          await _databaseHelper.updateSmsLog(smsLog);
+          await _db.updateSmsLog(log);
         }
       }
-      final syncedSmsLogsFromDB = await _databaseHelper.getAllSmsLogs();
-      // log(syncedSmsLogsFromDB.map((e) => e.toJson()).toList().toString());
-      emit(MessageDBLoaded(syncedSmsLogsFromDB));
+
+      emit(MessageDBLoaded(await _db.getAllSmsLogs()));
     } catch (e) {
-      emit(MessageDBError('Failed to sync messages with server: $e', e));
+      emit(MessageDBError('Failed to sync messages: $e', e));
     }
   }
 
-  Future<void> _onSyncMessageDetailsWithServer(
+  Future<void> _syncMessageDetailsWithServer(
       SyncMessageDetailsWithServer event, Emitter<MessageDBState> emit) async {
-    var smsLog = event.smsLogs;
+    final address = event.smsLogs.address;
+    final localMsgs = await SMSController.getDeviceSms(address: address);
+    final serverDetails = (await syncSmsDetailsWithServer(
+                smsLogs: localMsgs, address: address ?? ""))
+            .smsLogDetails ??
+        [];
+    final updatedLog = await _mergeMessageDetails(localMsgs, serverDetails);
 
-    var messages = await SMSController.getDeviceSms(address: smsLog.address);
-    log("Message sent: ${messages.first.toMap}");
-    SmsLogDetailsResponse resp = await syncSmsDetailsWithServer(
-        smsLogs: messages, address: smsLog.address ?? "");
+    final exists = await _db.getSmsLog(updatedLog.id ?? "");
+    exists == null
+        ? await _db.insertSmsLog(updatedLog)
+        : await _db.updateSmsLog(updatedLog);
 
-    // log(jsonEncode(resp));
-    // var res = await syncSmsDetailsWithServer(
-    //     smsLogs: [], address: smsLog.first.address ?? "");
-    // log(jsonEncode(res));
-
-    // for (SmsDetail smsDetail in resp.smsLogDetails ?? []) {
-
-    ///TODO: get local and mould with server
-    var updatedSmsLog = smsLog.copyWith(
-      smsDetails: smsLog.smsDetails,
-    );
-    final existingCallLog =
-        await _databaseHelper.getSmsLog(updatedSmsLog.id ?? "");
-    if (existingCallLog == null) {
-      await _databaseHelper.insertSmsLog(updatedSmsLog);
-    } else {
-      await _databaseHelper.updateSmsLog(updatedSmsLog);
-    }
-    // }
+    emit(MessageDBLoaded(await _db.getAllSmsLogs()));
   }
 
-  Future<void> _onSyncChangedMessagesWithServer(
+  Future<void> _syncChangedMessagesWithServer(
       SyncChangedMessageWithServer event, Emitter<MessageDBState> emit) async {
     emit(MessageDBSyncing());
     try {
       await syncSmsWithServer(smsLogs: [event.smsMessage]);
 
-      // final resp = await smsList();
-      // final serverMessages = resp.smsLog ?? [];
+      final contact = await _contacts.getContactByPhone(
+          event.smsMessage.address?.separatePhoneAndPhoneCode().phone ?? "");
+      final log = SmsLog.fromSmsMessage(event.smsMessage, contact, null)
+          .copyWith(smsDetails: [
+        SmsDetail.fromSmsMessage(event.smsMessage, SmsDetail(), contact)
+      ]);
 
-      var sms = event.smsMessage;
-      var contact = await _contactDBHelper.getContactByPhone(
-          sms.address?.separatePhoneAndPhoneCode().phone ?? "");
-      var smsLog = SmsLog(
-          id: sms.address,
-          address: sms.address,
-          countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
-          name: contact?.name,
-          date: sms.date,
-          isMarkSpam: contact?.isSpam ?? 0,
-          smsDetails: [
-            SmsDetail(
-              id: sms.id?.toString(),
-              deviceMessageId: sms.address?.toString(),
-              address: sms.address,
-              countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
-              body: sms.body,
-              date: sms.date,
-              messageKind: sms.kind?.name,
-              messageState: sms.state.name,
-              name: contact?.name,
-              threadId: sms.threadId?.toString(),
-              sendreceiveDatetime: sms.dateSent,
-            )
-          ]);
+      final exists = await _db.getSmsLog(log.id ?? "");
+      exists == null
+          ? await _db.insertSmsLog(log)
+          : await _db.updateSmsLog(log);
 
-      // for (final smsLog in serverMessages) {
-      final existingCallLog = await _databaseHelper.getSmsLog(smsLog.id ?? "");
-      if (existingCallLog == null) {
-        await _databaseHelper.insertSmsLog(smsLog);
-      } else {
-        var updatedLogId = await _databaseHelper.updateSmsLog(smsLog);
-        log("$updatedLogId");
-      }
-      // }
-      final syncedSmsLogs = await _databaseHelper.getAllSmsLogs();
-
-      emit(MessageDBLoaded(syncedSmsLogs));
+      emit(MessageDBLoaded(await _db.getAllSmsLogs()));
     } catch (e) {
-      emit(MessageDBError('Failed to sync messages with server: $e', e));
+      emit(MessageDBError('Failed to sync changed message: $e', e));
     }
   }
 
-  Future<void> _onAddSmsLogsToDB(
+  Future<void> _addSmsLogsToDB(
       AddSmsLogsToDB event, Emitter<MessageDBState> emit) async {
-    emit(MessageDBLoading());
-    try {
-      for (final smsLog in event.smsLogs) {
-        await _databaseHelper.insertSmsLog(smsLog);
+    await _handleDbWrite(() async {
+      for (final log in event.smsLogs) {
+        await _db.insertSmsLog(log);
       }
-      final allSms = await _databaseHelper.getAllSmsLogs();
-      emit(MessageDBLoaded(allSms));
-    } catch (e) {
-      emit(MessageDBError('Failed to add SMS logs to DB: $e', e));
-    }
+    }, emit);
   }
 
-  Future<void> _onGetAllSmsFromDB(
+  Future<void> _getAllSmsFromDB(
       GetAllSmsFromDB event, Emitter<MessageDBState> emit) async {
+    final logs = await _db.getAllSmsLogs(); // <- Await first
+    await _handleDbWrite(() async {
+      log("Get all sms");
+    }, emit, onSuccess: () => MessageDBLoaded(logs)); // <- Sync function
+  }
+
+  Future<void> _readDBSms(
+      ReadDBMessage event, Emitter<MessageDBState> emit) async {
+    await smsSeen(sms: event.sms);
+    final exists = await _db.getSmsLog(event.sms.id ?? "");
+    exists == null
+        ? await _db.insertSmsLog(event.sms)
+        : await _db.updateSmsLog(event.sms);
+  }
+
+  // === UTILITY METHODS ===
+
+  Map<String, List<SmsMessage>> _groupSmsByAddress(List<SmsMessage> messages) {
+    return {
+      for (var sms in messages)
+        if (sms.address != null)
+          sms.address!: [...messages.where((m) => m.address == sms.address)]
+    };
+  }
+
+  Future<List<SmsLog>> _mergeLocalAndServerMessages(
+    Map<String, List<SmsMessage>> groupedLocal,
+    List<SmsLog> serverLogs,
+  ) async {
+    final serverMap = {for (var log in serverLogs) log.address!: log};
+    final result = <SmsLog>[];
+
+    for (final address in groupedLocal.keys) {
+      final local = groupedLocal[address]!;
+      final serverLog = serverMap[address];
+      final contact = await _contacts
+          .getContactByPhone(address.separatePhoneAndPhoneCode().phone);
+
+      final details = local
+          .map((sms) => SmsDetail.fromSmsMessage(
+              sms,
+              serverLog?.smsDetails?.firstWhere(
+                (d) => d.deviceMessageId == sms.id.toString(),
+                orElse: () => SmsDetail(),
+              ),
+              contact))
+          .toList();
+
+      result.add(
+        SmsLog.fromSmsMessage(
+                local.first, contact, SmsDetail.fromSmsLog(serverLog))
+            .copyWith(smsDetails: details),
+      );
+    }
+
+    return result;
+  }
+
+  Future<SmsLog> _mergeMessageDetails(
+      List<SmsMessage> local, List<SmsDetail> serverDetails) async {
+    final contact = await _contacts.getContactByPhone(
+        local.first.address?.separatePhoneAndPhoneCode().phone ?? "");
+    final serverMap = {for (var d in serverDetails) d.deviceMessageId!: d};
+
+    final details = local
+        .map((sms) => SmsDetail.fromSmsMessage(
+            sms, serverMap[sms.id.toString()] ?? SmsDetail(), contact))
+        .toList();
+
+    return SmsLog.fromSmsMessage(local.first, contact, serverDetails.first)
+        .copyWith(smsDetails: details);
+  }
+
+  Future<void> _handleDbWrite(
+      Future<void> Function() action, Emitter<MessageDBState> emit,
+      {MessageDBState Function()? onSuccess}) async {
     emit(MessageDBLoading());
     try {
-      final allSms = await _databaseHelper.getAllSmsLogs();
-      emit(MessageDBLoaded(allSms));
+      await action();
+      emit(onSuccess?.call() ?? MessageDBLoaded(await _db.getAllSmsLogs()));
     } catch (e) {
-      emit(MessageDBError('Failed to get all SMS from DB: $e', e));
-    }
-  }
-
-  Future<void> _onReadDBSms(
-      ReadDBMessage event, Emitter<MessageDBState> emit) async {
-    var smsLog = event.sms;
-    await smsSeen(sms: event.sms);
-    final existingCallLog = await _databaseHelper.getSmsLog(smsLog.id ?? "");
-    if (existingCallLog == null) {
-      await _databaseHelper.insertSmsLog(smsLog);
-    } else {
-      var updatedLogId = await _databaseHelper.updateSmsLog(smsLog);
-      log("$updatedLogId");
+      emit(MessageDBError('DB operation failed: $e', e));
     }
   }
 }

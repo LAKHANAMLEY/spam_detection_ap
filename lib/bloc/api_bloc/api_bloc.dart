@@ -1,4 +1,3 @@
-import 'package:spam_delection_app/data/repository/sms_repo/sms_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
@@ -37,7 +36,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 // Spam call
     if (event is GetSpamEvent) {
       emit(ApiLoadingState());
-      await getSpams().then((value) => emit(GetSpamState(value)));
+      await getSpamContacts().then((value) => emit(GetSpamState(value)));
     }
 // change Password
     if (event is ChangePasswordEvent) {

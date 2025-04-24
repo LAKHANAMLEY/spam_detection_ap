@@ -3,7 +3,7 @@ import 'package:spam_delection_app/lib.dart';
 class NotificationTypeListItem extends StatefulWidget {
   final NotificationTypeData notification;
 
-  NotificationTypeListItem({
+  const NotificationTypeListItem({
     super.key,
     required this.notification,
   });

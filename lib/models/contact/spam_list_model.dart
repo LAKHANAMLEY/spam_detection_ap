@@ -4,21 +4,22 @@
 
 import 'dart:convert';
 
-SpamListResponse spamListResponseFromJson(String str) =>
-    SpamListResponse.fromJson(json.decode(str));
+SpamContactListResponse spamListResponseFromJson(String str) =>
+    SpamContactListResponse.fromJson(json.decode(str));
 
-String spamListResponseToJson(SpamListResponse data) =>
+String spamListResponseToJson(SpamContactListResponse data) =>
     json.encode(data.toJson());
 
-class SpamListResponse {
+class SpamContactListResponse {
   final int? statusCode;
   final List<SpamData>? spamcontactslist;
   final String? message;
 
-  SpamListResponse({this.statusCode, this.spamcontactslist, this.message});
+  SpamContactListResponse(
+      {this.statusCode, this.spamcontactslist, this.message});
 
-  factory SpamListResponse.fromJson(Map<String, dynamic> json) =>
-      SpamListResponse(
+  factory SpamContactListResponse.fromJson(Map<String, dynamic> json) =>
+      SpamContactListResponse(
         statusCode: json["status_code"],
         spamcontactslist: json["spamcontactslist"] == null
             ? []

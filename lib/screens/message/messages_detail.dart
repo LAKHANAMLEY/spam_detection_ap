@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:spam_delection_app/data/repository/sms_repo/sms_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 final TextEditingController messageController = TextEditingController();
@@ -257,11 +256,56 @@ class _MessagesDetailState extends State<MessagesDetail> {
                   );
                 }),
               ]),
-          bottomNavigationBar: sms?.address?.isNumber ?? false
+          bottomNavigationBar: (sms?.address?.isNumber ?? false)
               ? messageField(context, sms)
-              : Text(
-                  appLocalization(context).replyingIsNotSupportedByThisSender,
-                  textAlign: TextAlign.center,
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                    //     OutlinedButton.icon(
+                    //         onPressed: () {
+                    //           showModalBottomSheet(
+                    //             showDragHandle: true,
+                    //             useSafeArea: true,
+                    //             isScrollControlled: true,
+                    //             backgroundColor: AppColor.whiteColor,
+                    //             context: context,
+                    //             shape: const RoundedRectangleBorder(
+                    //               borderRadius: BorderRadius.vertical(
+                    //                   top: Radius.circular(20.0)),
+                    //             ),
+                    //             builder: (BuildContext context) {
+                    //               return BlockSmsView(
+                    //                 sms: SmsDetail(
+                    //                   address: sms?.address,
+                    //                   //spamMessage: SmsDetail().spamMessage,
+                    //                 ),
+                    //               );
+                    //             },
+                    //           );
+                    //         },
+                    //         icon: Icon(
+                    //           Icons.report,
+                    //           color: Colors.red,
+                    //         ),
+                    //         label: Text(appLocalization(context).reportText)),
+                    //     OutlinedButton.icon(
+                    //         onPressed: () {},
+                    //         icon: Icon(
+                    //           Icons.block,
+                    //           color: Colors.red,
+                    //         ),
+                    //         label: Text(appLocalization(context).block))
+                    //   ],
+                    // ),
+                    Text(
+                      appLocalization(context)
+                          .replyingIsNotSupportedByThisSender,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
           body: BlocConsumer(
               bloc: markSpamSmsBloc,
@@ -287,33 +331,86 @@ class _MessagesDetailState extends State<MessagesDetail> {
                 return ModalProgressHUD(
                   progressIndicator: Loader(),
                   inAsyncCall: state is ApiLoadingState,
-                  child: ListView.builder(
-                    reverse: true,
-                    itemCount: (sms?.smsDetails?.length ?? 0),
-                    itemBuilder: (context, index) {
-                      // int index = (sms?.smsDetails?.length ?? 0) - i - 1;//reverse
-                      final currentMessage = sms?.smsDetails![index];
-                      // Since list is reversed, the "previous" message visually is the one with the next index
-                      final isLastMessage =
-                          index == sms!.smsDetails!.length - 1;
-                      final nextMessageDate = !isLastMessage
-                          ? sms?.smsDetails![index + 1].date
-                          : null;
-                      final showDateHeader = (nextMessageDate == null ||
-                          !currentMessage!.date!.isSameDay(nextMessageDate));
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          reverse: true,
+                          itemCount: (sms?.smsDetails?.length ?? 0),
+                          itemBuilder: (context, index) {
+                            // int index = (sms?.smsDetails?.length ?? 0) - i - 1;//reverse
+                            final currentMessage = sms?.smsDetails![index];
+                            // Since list is reversed, the "previous" message visually is the one with the next index
+                            final isLastMessage =
+                                index == sms!.smsDetails!.length - 1;
+                            final nextMessageDate = !isLastMessage
+                                ? sms?.smsDetails![index + 1].date
+                                : null;
+                            final showDateHeader = (nextMessageDate == null ||
+                                !currentMessage!.date!
+                                    .isSameDay(nextMessageDate));
 
-                      return Column(
-                        children: [
-                          if (showDateHeader)
-                            Text(sms?.smsDetails?[index].date
-                                    ?.formatRelativeDay() ??
-                                ""),
-                          MessageView(
-                            sms: sms?.smsDetails?[index],
+                            return Column(
+                              children: [
+                                if (showDateHeader)
+                                  Text(sms?.smsDetails?[index].date
+                                          ?.formatRelativeDay() ??
+                                      ""),
+                                MessageView(
+                                  sms: sms?.smsDetails?[index],
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                      if (!(sms?.address?.isNumber ?? true) ||
+                          (sms?.name?.isEmpty ?? true))
+                        Container(
+                          color: Colors.white,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              OutlinedButton.icon(
+                                  onPressed: () {
+                                    showModalBottomSheet(
+                                      showDragHandle: true,
+                                      useSafeArea: true,
+                                      isScrollControlled: true,
+                                      backgroundColor: AppColor.whiteColor,
+                                      context: context,
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(20.0)),
+                                      ),
+                                      builder: (BuildContext context) {
+                                        return BlockSmsView(
+                                          sms: SmsDetail(
+                                            address: sms?.address,
+                                            //spamMessage: SmsDetail().spamMessage,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  icon: Icon(
+                                    Icons.report,
+                                    color: Colors.red,
+                                  ),
+                                  label: Text(
+                                      appLocalization(context).reportText)),
+                              10.width(),
+                              OutlinedButton.icon(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.block,
+                                    color: Colors.red,
+                                  ),
+                                  label: Text(appLocalization(context).block))
+                            ],
                           ),
-                        ],
-                      );
-                    },
+                        ),
+                    ],
                   ),
                 );
               }));
@@ -333,9 +430,12 @@ class _MessagesDetailState extends State<MessagesDetail> {
     var messages =
         await SMSController.getDeviceSms(address: sms?.address, count: 1);
     log("Message sent: ${messages.first.toMap}");
+    // context
+    //     .read<MessageDBBloc>()
+    //     .add(SyncChangedMessageWithServer(smsMessage: messages.first));
     context
         .read<MessageDBBloc>()
-        .add(SyncChangedMessageWithServer(smsMessage: messages.first));
+        .add(SyncMessageDetailsWithServer(smsLogs: sms!));
     messageController.clear();
   }
 
@@ -351,15 +451,22 @@ class _MessagesDetailState extends State<MessagesDetail> {
         margin:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: CustomTextField(
+            fillColor: Colors.white,
             hintText: appLocalization(context).enterMessage,
             controller: messageController,
-            suffix: IconButton(
-              onPressed: () {
+            suffix: InkWell(
+              onTap: () {
                 send(sms, context);
               },
-              icon: const Icon(
-                Icons.send,
-                color: AppColor.themeOrangeColor,
+              child: Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle, color: AppColor.themeOrangeColor),
+                child: const Icon(
+                  Icons.send,
+                  color: Colors.white,
+                  // color: AppColor.themeOrangeColor,
+                ),
               ),
             )),
       );

@@ -1,4 +1,3 @@
-import 'package:spam_delection_app/data/repository/call_log_repo/call_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class DefaultCall extends StatelessWidget {

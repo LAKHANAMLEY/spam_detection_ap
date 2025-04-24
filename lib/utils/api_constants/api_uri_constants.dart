@@ -88,7 +88,7 @@ class ApiUrlConstants {
   static String unblockContacts = '$baseUrl/contacts/block-unblock-contacts';
 
   // spam
-  static String spamList = '$baseUrl/contacts/spam-contacts-list';
+  static String spamContactList = '$baseUrl/contacts/spam-contacts-list';
   static String markSpamContacts = '$baseUrl/contacts/mark-spam-contacts';
   static String removeSpam = '$baseUrl/contacts/remove-spam-contacts';
 

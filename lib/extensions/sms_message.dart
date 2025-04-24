@@ -17,7 +17,7 @@ extension CopyWith on SmsMessage {
       id: id ?? this.id,
       threadId: threadId ?? this.threadId,
       sim: sim ?? this.sim,
-      read: read ?? this.isRead,
+      read: read ?? isRead,
       date: date ?? this.date,
       dateSent: dateSent ?? this.dateSent,
       kind: kind ?? this.kind,

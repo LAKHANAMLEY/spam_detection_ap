@@ -46,7 +46,7 @@ class GetCategoryListState extends ApiState {
 }
 
 class GetSpamState extends ApiState {
-  final SpamListResponse value;
+  final SpamContactListResponse value;
 
   GetSpamState(this.value);
 
@@ -83,7 +83,7 @@ class ChangeSecurityState extends ApiState {
 }
 
 class MarkSpamState extends ApiState {
-  final MarkSpamResponse value;
+  final Response value;
 
   MarkSpamState(this.value);
 

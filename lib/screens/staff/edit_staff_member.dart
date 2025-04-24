@@ -19,7 +19,6 @@ class _EditStaffMemberState extends State<EditStaffMember> {
   final TextEditingController positionController = TextEditingController();
   final TextEditingController supportPinController = TextEditingController();
 
-  final ImagePicker _picker = ImagePicker();
   XFile? _selectedImage;
 
   var staffMemberBloc = ApiBloc(ApiBlocInitialState());

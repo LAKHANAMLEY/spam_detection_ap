@@ -37,9 +37,3 @@ Future<Response> corporateEditProfile({
     throw Exception(response.body);
   }
 }
-
-extension on String {
-  get mimeType => null;
-
-  get path => null;
-}

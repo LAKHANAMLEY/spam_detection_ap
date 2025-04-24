@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
-import 'package:spam_delection_app/data/repository/call_log_repo/call_controller.dart';
 import 'package:spam_delection_app/lib.dart'; // Assuming this imports necessary constants and extensions
 // import 'package:async/async.dart'; // If you use locks
 

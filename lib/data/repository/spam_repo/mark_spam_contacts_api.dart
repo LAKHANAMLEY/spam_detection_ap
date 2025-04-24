@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<MarkSpamResponse> markSpam({
+Future<Response> markSpam({
   required String contactId,
   required String comment,
   required String numberType,
@@ -26,7 +26,7 @@ Future<MarkSpamResponse> markSpam({
   if (response.statusCode == 200) {
     print(response.body);
     final data = json.decode(response.body);
-    return MarkSpamResponse.fromJson(data);
+    return Response.fromJson(data);
   } else {
     throw Exception(response.body);
   }
