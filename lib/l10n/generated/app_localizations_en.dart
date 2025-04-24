@@ -255,10 +255,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get card => 'Card';
 
   @override
-  String get changeALanguage => 'Change a Language';
+  String get changeALanguage => 'Change a language';
 
   @override
-  String get changeLanguage => 'Change Language';
+  String get changeLanguage => 'Change language';
 
   @override
   String get changePassword => 'Change password';
@@ -693,7 +693,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get failed => 'Failed...';
 
   @override
-  String get familyList => 'Family List';
+  String get familyList => 'Family list';
 
   @override
   String get familySharing => 'Family Sharing';
@@ -1537,7 +1537,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get privacyPolicy => 'Privacy policy';
 
   @override
-  String get privacyPolicyTxt => 'Privacy Policy';
+  String get privacyPolicyTxt => 'Privacy policy';
 
   @override
   String get proceedToPay => 'Proceed to pay';
@@ -2273,4 +2273,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get zip => 'Zip Code';
+
+  @override
+  String get reportSpamSMsDetail => 'Report the message to improve the experience for millions users like you';
+
+  @override
+  String get spamReport => 'Spam Report';
+
+  @override
+  String get usuallyCalls => 'Usually Calls';
+
+  @override
+  String get callActivity => 'Call Activity';
 }

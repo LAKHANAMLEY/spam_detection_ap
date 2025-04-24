@@ -1,7 +1,9 @@
 import 'package:spam_delection_app/lib.dart';
 
 class NotificationSetting extends StatefulWidget {
-  const NotificationSetting({super.key});
+  final NotificationTypeData? notification;
+
+  const NotificationSetting({super.key, this.notification});
 
   @override
   State<NotificationSetting> createState() => _NotificationSettingState();
@@ -18,10 +20,12 @@ class _NotificationSettingState extends State<NotificationSetting> {
 
   @override
   Widget build(BuildContext context) {
-    //var notification
+    var arg = args(context) as NotificationSetting;
+    var notification = arg.notification!;
     return Scaffold(
-      appBar: CustomAppBar(title: "Notification Details"),
+      appBar: CustomAppBar(title: notification.name ?? ""),
       body: Padding(
+
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [

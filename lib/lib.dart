@@ -182,6 +182,7 @@ export 'models/staff_member_list_model.dart';
 export 'models/sync_call_manually_model.dart';
 export 'models/update_profile_model.dart';
 export 'models/user_model.dart';
+export 'models/notification_type_model.dart';
 export 'screens/auth/corporate_login_screen.dart';
 export 'screens/auth/forgot_otp_verify_screen.dart';
 export 'screens/auth/forgot_password_by_otp_screen.dart';

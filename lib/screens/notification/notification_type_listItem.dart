@@ -26,7 +26,9 @@ class _NotificationTypeListItemState extends State<NotificationTypeListItem> {
   Widget build(BuildContext context) {
     return CustomListTile(
       onTap: () {
-        Navigator.pushNamed(context, AppRoutes.notificationSetting);
+        Navigator.pushNamed(context, AppRoutes.notificationSetting,
+            arguments: NotificationSetting(notification: widget.notification));
+
         // if (notification.is == "0") {
         //   ///call read api
         //   notificationListBloc.add(

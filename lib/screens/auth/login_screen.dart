@@ -395,69 +395,6 @@ class _LoginState extends State<Login> {
                                           ],
                                         ),
                                       ),
-
-                                      // Row(
-                                      //   crossAxisAlignment:
-                                      //       CrossAxisAlignment.start,
-                                      //   mainAxisAlignment:
-                                      //       MainAxisAlignment.spaceBetween,
-                                      //   children: [
-                                      //     Row(
-                                      //       crossAxisAlignment:
-                                      //           CrossAxisAlignment.center,
-                                      //       // mainAxisAlignment:
-                                      //       //     MainAxisAlignment.start,
-                                      //       children: [
-                                      //         Checkbox(
-                                      //           value: _isRememberMeChecked,
-                                      //           onChanged: (bool? value) {
-                                      //             setState(() {
-                                      //               _isRememberMeChecked =
-                                      //                   value ?? false;
-                                      //               _saveRememberMeState(
-                                      //                   _isRememberMeChecked);
-                                      //             });
-                                      //           },
-                                      //         ),
-                                      //         Text(
-                                      //           appLocalization(context)
-                                      //               .rememberMe,
-                                      //           style: const TextStyle(
-                                      //             color:
-                                      //                 AppColor.decentBrownColor,
-                                      //             fontFamily:
-                                      //                 AppFont.fontFamily,
-                                      //             fontWeight: FontWeight.normal,
-                                      //             fontSize: 16,
-                                      //           ),
-                                      //         ),
-                                      //       ],
-                                      //     ),
-                                      //     Expanded(
-                                      //       child: TextButton(
-                                      //           child: Text(
-                                      //             appLocalization(context)
-                                      //                 .forgotPasswordText,
-                                      //             overflow:
-                                      //                 TextOverflow.ellipsis,
-                                      //             maxLines: 1,
-                                      //             softWrap: true,
-                                      //             style: const TextStyle(
-                                      //                 fontSize: 14,
-                                      //                 color: AppColor
-                                      //                     .themeYellowColor,
-                                      //                 fontFamily:
-                                      //                     AppFont.fontFamily,
-                                      //                 fontWeight:
-                                      //                     FontWeight.w600),
-                                      //           ),
-                                      //           onPressed: () {
-                                      //             Navigator.pushNamed(context,
-                                      //                 AppRoutes.forgotPassword);
-                                      //           }),
-                                      //     ),
-                                      //   ],
-                                      // ),
                                       SizedBox(
                                         height:
                                             MediaQuery.of(context).size.height *

@@ -6,6 +6,7 @@ Future<NotificationTypeResponse> notificationType() async {
     Uri.parse(ApiUrlConstants.notificationType),
     headers: await ApiUrlConstants.headers(),
   );
+  print(response.body);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
     return NotificationTypeResponse.fromJson(jsonData);

@@ -34,19 +34,25 @@ class _ReportSmsViewState extends State<ReportSmsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // backgroundColor: AppColor.redColor,
+      // backgroundColor: AppColor.redColor,
         backgroundColor: Colors.transparent,
         //extendBody: false,
         bottomNavigationBar: Container(
           padding: const EdgeInsets.only(left: 18, right: 18),
-          height: MediaQuery.of(context).size.height * 20 / 100,
-          width: MediaQuery.of(context).size.width,
+          height: MediaQuery
+              .of(context)
+              .size
+              .height * 20 / 100,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(16),
               topRight: Radius.circular(16),
             ),
-            color: Color(0xffF5F5F5),
+            color: AppColor.greyColor,
           ),
           child: Column(
             children: [
@@ -147,8 +153,14 @@ class _ReportSmsViewState extends State<ReportSmsView> {
                   // );
                 },
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.07,
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height * 0.07,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width * 0.9,
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
@@ -178,12 +190,12 @@ class _ReportSmsViewState extends State<ReportSmsView> {
         ),
         body: Container(
           decoration: const BoxDecoration(
-              //color: Colors.green,
+            //color: Colors.green,
               borderRadius: BorderRadius.zero
-              // topLeft: Radius.circular,
-              // topRight: Radius.circular(00),
-              //),
-              ),
+            // topLeft: Radius.circular,
+            // topRight: Radius.circular(00),
+            //),
+          ),
           child: SafeArea(
             child: Form(
               key: _formKey,
@@ -384,7 +396,7 @@ class _ReportSmsViewState extends State<ReportSmsView> {
                             }
                             return Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              const EdgeInsets.symmetric(horizontal: 16.0),
                               child: BlocBuilder(
                                   bloc: selectCategoryBloc,
                                   builder: (context, state) {
@@ -477,7 +489,10 @@ class _ReportSmsViewState extends State<ReportSmsView> {
                         },
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 2 / 100,
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height * 2 / 100,
                       ),
                       // AppButton(
                       //   text: appLocalization(context).block,

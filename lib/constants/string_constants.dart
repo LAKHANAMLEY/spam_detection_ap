@@ -14,77 +14,77 @@ class StringConstants {
   static const String next = "Next";
   static const String doYouWantToExitAnApp = "Do you want to exit an App?";
   static const String getStarted = 'Get Started';
-  static const String registertext = 'Register';
-  static const String enjoytext =
+  static const String registerText = 'Register';
+  static const String enjoyText =
       'Enjoy all the benifits of being an explorer member';
-  static const String havetext = 'Have an account?';
+  static const String AccountText = 'Have an account?';
 
-  static const String logintext = 'Login';
-  static const String usertext = 'User Name';
-  static const String taketext = 'Take control of your Contact';
-  static const String signUptext = 'SIGN UP';
-  static const String donttext = 'Don\'t have an account?';
-  static const String signIntext = 'Sign In';
-  static const String plztext =
+  static const String loginText = 'Login';
+  static const String userText = 'User Name';
+  static const String takeText = 'Take control of your Contact';
+  static const String signUpText = 'SIGN UP';
+  static const String dontText = 'Don\'t have an account?';
+  static const String signInText = 'Sign In';
+  static const String plzText =
       'Please enter your valid phone number, We will send you a 4 digit code to verify.';
-  static const String phonetext = 'Phone Number';
+  static const String phoneText = 'Phone Number';
   static const String emailText = 'Email';
-  static const String emailaddress = 'Email Address';
-  static const String emaildestext = 'Enter your email address';
-  static const String countrytext = 'Country';
-  static const String phonenumbertext = 'Phone Number';
-  static const String enterphonetext = 'Enter Your Number';
-  static const String francetext = 'France';
-  static const String remembertext = 'Remember me';
-  static const String forgottext = 'Forgot Password';
-  static const String otptext = 'Get OTP';
-  static const String cretetext = 'Create Account';
-  static const String weltext = "WELCOME";
-  static const String emailadresstext = "Email Address";
-  static const String resetext = 'Reset Password';
-  static const String plsvalidtext =
+  static const String emailAddress = 'Email Address';
+  static const String emailEnterText = 'Enter your email address';
+  static const String countryText = 'Country';
+  static const String phoneNumberText = 'Phone Number';
+  static const String enterPhoneText = 'Enter Your Number';
+  static const String franceText = 'France';
+  static const String rememberText = 'Remember me';
+  static const String forgotTxt = 'Forgot Password';
+  static const String otpText = 'Get OTP';
+  static const String creteText = 'Create Account';
+  static const String welText = "WELCOME";
+  static const String emailAddressText = "Email Address";
+  static const String resetText = 'Reset Password';
+  static const String plsValidText =
       'Please enter your valid phone number, We will send you a 4 digit code to verify.';
   static const String emailtext =
       'Enter your email address for the verification process. We will send 4 digite code to your email.';
 
-  static const String checkmailtext = 'Please check your mail';
-  static const String haveActext = 'Have an account?';
-  static const String continutext = 'Continue';
-  static const String welcometext =
+  static const String checkMailText = 'Please check your mail';
+  static const String haveAcText = 'Have an account?';
+  static const String continueText = 'Continue';
+  static const String welcomeText =
       '""Welcome to BROADLINK Prosuct Your Mobile Defender! Effortlessly block unwanted calls, messages and keep your device clean. Let\'s get started and take control of your communication!';
 
   static const String emailMessage = 'Please enter email address';
-  static const String otpverifytext =
+  static const String otpVerifyText =
       'Enter the 4 digit code that you received on your email';
-  static const String emailvalidMessage = 'Please enter valid email address';
+  static const String emailValidMessage = 'Please enter valid email address';
   static const String otpMessage = 'Please enter OTP';
-  static const String otpMinLenthMessage = 'OTP can not be less than 6 digit';
-  static const String didtext = 'Did\'t recieve Code?';
-  static const String resendtext = 'Resend';
-  static const String resetpasstext = 'Reset Password';
+  static const String otpMinLengthMessage = 'OTP can not be less than 6 digit';
+  static const String didText = 'Did\'t recieve Code?';
+  static const String resendText = 'Resend';
+  static const String resetPassText = 'Reset Password';
   static const String resetMessage =
       'Please enter a new password to secure your account.';
-  static const String securitypinMessage =
+  static const String securityPinMessage =
       'Please enter a new pin to secure your account.';
 
-  static const String registerGoogletext = 'Register with Google';
-  static const String registerAppletext = 'Register with Apple';
+  static const String registerGoogleText = 'Register with Google';
+  static const String registerAppleText = 'Register with Apple';
 
-  static const String loginGoogletext = 'Login with Google';
-  static const String loginAppletext = 'Login with Apple';
-  static const String loginusingEmail = 'Login with Email';
-  static const String registerwithEmail = 'Register with Email';
-  static const String successfultext = 'Successful';
-  static const String registersuccessfultext = 'Registration Successful';
-  static const String congratsregistertext =
+  static const String loginGoogleText = 'Login with Google';
+  static const String loginAppleText = 'Login with Apple';
+  static const String loginUsingEmail = 'Login with Email';
+  static const String registerWithEmail = 'Register with Email';
+  static const String successfulText = 'Successful';
+  static const String registerSuccessfulText = 'Registration Successful';
+  static const String congratsRegisterText =
       'Congratulations, your account has been successfully created.';
 
-  static const String yeytext = 'Yey! Lakhan';
-  static const String fromtext = 'from now on, you are part of us!';
-  static const String exploretext = "Explore Home page";
-  static const String reentertext = 'Re-enter Password';
-  static const String passwordtext = 'Password';
-  static const String minimumtext =
+  static const String yeyText = 'Yey! Lakhan';
+  static const String fromText = 'from now on, you are part of us!';
+  static const String exploreText = "Explore Home page";
+  static const String reenterText = 'Re-enter Password';
+  static const String passwordText = 'Password';
+  static const String minimumText =
       '“Minimum 8 characters are required, must include a minimum of one uppercase, one lowercase and one special character';
   static const String currentPass = 'Current password';
   static const String newPass = 'New password';
@@ -92,78 +92,79 @@ class StringConstants {
   static const String changePass = 'Change Password';
   static const String changeSecurity = 'Change Security Pin';
 
-  static const emailValidMessage = "Please enter valid email address";
+  //
+  // static const emailValidMessage = "Please enter valid email address";
   static const descriptionMessage = "Please enter message";
   static const lastNameMessage = "Please enter your last name";
   static const mobileNumberMessage = "Please enter a mobile number";
   static const checkBoxMessage = "Please select checkbox";
-  static const selectLoction = "Please select your location";
+  static const selectLocation = "Please select your location";
   static const passwordMinMessage = "Password cannot be less then 6 characters";
-  static const passwordNameessage = "Please enter your password";
-  static const englishtext = 'English';
-  static const protectiontext = "Protection Type";
-  static const addcontactext = 'Add Contact';
-  static const selectaccountext =
+  static const passwordNameMessage = "Please enter your password";
+  static const englishText = 'English';
+  static const protectionText = "Protection Type";
+  static const addContactText = 'Add Contact';
+  static const selectAccountText =
       'Please select the type of account you will be setting up today.';
-  static const otpverifivcationtext = 'OTP Verification';
-  static const entertext = 'Enter the OTP Sent to';
-  static const resendotptext = 'Resend otp';
-  static const verifyproceedtext = "Verify and Proceed";
-  static const subscriptiontext = 'Please Active Your Subscription';
+  static const otpVerificationText = 'OTP Verification';
+  static const enterText = 'Enter the OTP Sent to';
+  static const resendOtpText = 'Resend otp';
+  static const verifyProceedText = "Verify and Proceed";
+  static const subscriptionText = 'Please Active Your Subscription';
 
   static const blockNumber = 'Block Numbers';
   static const addMember = 'Add Member';
-  static const spamcallstext = 'Spam calls identified';
-  static const timesavestext = 'Time saved from spammers';
-  static const unknowntext = 'Unknown number identified';
-  static const messagestext = 'Messages moved to spam';
+  static const spamCallsText = 'Spam calls identified';
+  static const timeSavesText = 'Time saved from spammers';
+  static const unknownText = 'Unknown number identified';
+  static const messagesText = 'Messages moved to spam';
 
-  static const copyrighttext = '2025 BROADLINK';
-  static const messagescreenedtext =
+  static const copyrightText = '2025 BROADLINK';
+  static const messageScannedText =
       'Your messages are currently being screened by Detect AI to identity potential scams.';
-  static const emailscreenedtext =
+  static const emailScannedText =
       'Your emails are currently being screened by Protect AI to detect potential scam and safe guard yourdata and financials.';
   static const corporateIdtext = 'Corporate ID';
   static const corporateId = 'Please enter your valid Email / Corporate ID';
-  static const corpotateprotectiontext = 'Corporate Protection';
-  static const personalProtectiontext = 'Personal Protection';
-  static const upgradetext = 'Upgrade to Premium';
-  static const spamIdentifiedtext = 'Spam calls identified';
-  static const securitytext =
+  static const corporateProtectionText = 'Corporate Protection';
+  static const personalProtectionText = 'Personal Protection';
+  static const upgradeText = 'Upgrade to Premium';
+  static const spamIdentifiedText = 'Spam calls identified';
+  static const securityText =
       'You Are Protected Against All The Dangerous Phone Numbers From Our Security Database';
-  static const spamCalltext =
+  static const spamCallText =
       'All Spam Calls Are Currently Being Blocked From Calling Your Telephone Number, You May Miss Important Call If The Caller Number Is Flagged By The Network As Spam.';
-  static const smsdisabled = 'Spam SMS protection is disabled';
-  static const smsautomaticallytext =
+  static const smsDisabled = 'Spam SMS protection is disabled';
+  static const smsAutomaticallyText =
       'Set Broadlink Product as default SMS app to filter spam messages automatically ';
-  static const incomingtext = 'incoming';
-  static const outgoingtext = 'outgoing';
-  static const jobspamtext = 'Job fraud 133 spam report';
-  static const blockspamtext =
+  static const incomingText = 'incoming';
+  static const outgoingText = 'outgoing';
+  static const jobSpamText = 'Job fraud 133 spam report';
+  static const blockSpamText =
       'Block All Scam, Telemarketing And Fraud Calls Thanks To AI-Blocking Accuracy.';
-  static const selectionplantext = 'Choose Your Plan';
-  static const dollartext = '\$7.99/mth';
-  static const callblockingtext =
+  static const selectionPlanText = 'Choose Your Plan';
+  static const dollarText = '\$7.99/mth';
+  static const callBlockingText =
       'Spam call blocking and AI Protect scam detection';
-  static const smsblockingtext =
+  static const smsBlockingText =
       'Spam call blocking, AI Protect scam detection and SMS protect';
-  static const emailblockingtext =
+  static const emailBlockingText =
       'Spam call blocking, AI Protect scam detection, SMS protect & Email';
-  static const callbunbletext = 'Call & SMS Bundle';
-  static const dollarpointtext = '\$11.98/mth';
-  static const completebunbletext = 'Complete Protection Bundle';
-  static const dollarhightext = '\$14.99/mth';
-  static const spamdetecttext =
+  static const callBunbleText = 'Call & SMS Bundle';
+  static const dollarPointText = '\$11.98/mth';
+  static const completeBunbleText = 'Complete Protection Bundle';
+  static const dollarHighText = '\$14.99/mth';
+  static const spamDetectText =
       'Spam Call Blocking And AI Protect Scam Detection';
-  static const continuepurchasetext = 'Continue to Purchase';
-  static const editprofiletext = 'Edit Profile';
-  static const identifiedtext = 'IDENTIFIED BY SPAM DETECTOR';
-  static const spamreportext = "Spam Report";
-  static const liketext = "68k 103%";
+  static const continuePurchaseText = 'Continue to Purchase';
+  static const editProfileText = 'Edit Profile';
+  static const identifiedText = 'IDENTIFIED BY SPAM DETECTOR';
+  static const spamReportText = "Spam Report";
+  static const likeText = "68k 103%";
 
-  static const usallytext = "Usually Calls";
-  static const amtext = "11AM-2PM";
+  static const usallyText = "Usually Calls";
+  static const amText = "11AM-2PM";
 
-  static const callactivitytext = "Call Activity";
-  static const milliontext = "5.6M calls/60 days";
+  static const callActivityText = "Call Activity";
+  static const millionText = "5.6M calls/60 days";
 }

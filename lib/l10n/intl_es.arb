@@ -30,7 +30,7 @@
   "allSpamCalls": "Actualmente se están bloqueando todas las llamadas spam a su número de teléfono. Puede perder una llamada importante si la red marca el número de la persona que llama como spam.",
   "allSpamCallsAreCurrentlyBeingBlockedFromCallingYourTelephoneNumberYouMayMissImportantCallIfTheCallerNumberIsFlaggedByTheNetworkAsSpam": "Actualmente se han bloqueado todas las llamadas de spam a su número de teléfono Puede perder una llamada importante si número de la persona que llama está marcado por la red como spam.",
   "allTransactions": "Transactions",
-  "allowNotification": "Allow Notifications",
+  "allowNotification": "Permitir notificaciones",
   "allowPushNotification": "Permitir notificaciones push",
   "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
   "alreadyPaid": "Déjà payé",
@@ -321,7 +321,7 @@
   "male": "Mâle",
   "maximumTransferLimitIs": "La limite maximale de transfert est de {code}",
   "meetYourBusiness": "Rencontrez votre entreprise",
-  "message": "Message",
+  "message": "Mensaje",
   "messagesSpam": "Mensajes movidos a spam",
   "minimumCharactersRequired": "Se requieren un mínimo de 8 caracteres.",
   "minimumOrderValueIs": "La valeur minimale de la commande est",
@@ -756,5 +756,9 @@
   "yourPasswordHasBeenChangedSuccessfully": "Votre mot de passe a été changé avec succès .",
   "yourPasswordHasBeenResetSuccessfully": "Votre mot de passe a été réinitialisé avec succès.",
   "yourPaymentHasBeenSuccessfullyDone": "Votre paiement a été effectué avec succès.",
-  "zip": "Código postal"
+  "zip": "Código postal",
+  "reportSpamSMsDetail": "Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú",
+  "spamReport": "Informe de spam",
+  "usuallyCalls": "Normalmente llama",
+  "callActivity": "Actividad de llamada"
 }

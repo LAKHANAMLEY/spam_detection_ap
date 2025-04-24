@@ -223,7 +223,10 @@ class MessagesDetail extends StatelessWidget {
             ]),
         bottomNavigationBar: sms.address?.isNumber ?? false
             ? messageField(context, sms)
-            : Text(appLocalization(context).replyingIsNotSupportedByThisSender),
+            : Text(
+                appLocalization(context).replyingIsNotSupportedByThisSender,
+                textAlign: TextAlign.center,
+              ),
         body: BlocConsumer(
             bloc: markSpamSmsBloc,
             listener: (context, state) {

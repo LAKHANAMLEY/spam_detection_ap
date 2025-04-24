@@ -39,9 +39,9 @@ class _RegisterFirstState extends State<RegisterGoogle> {
                 var userCredential = await signInWithGoogle();
                 Navigator.pushNamed(context, AppRoutes.register,
                     arguments: Register(
-                      userCredencial: userCredential,
+                      userCredential: userCredential,
                     ));
-                            } catch (e) {
+              } catch (e) {
                 print('Error during Google Sign-In: $e');
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(

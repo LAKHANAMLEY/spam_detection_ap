@@ -54,120 +54,129 @@ class _CorporateLoginState extends State<CorporateLogin> {
                     key: _formKey,
                     child: SingleChildScrollView(
                         child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 8 / 100,
-                        ),
-                        Center(
-                            child: Text(
-                          appLocalization(context).login,
-                          style: const TextStyle(
-                              color: AppColor.lightPurpleColor,
-                              fontSize: 35,
-                              fontFamily: AppFont.fontFamily,
-                              fontWeight: FontWeight.w600),
-                        )),
-                        Padding(
-                          padding: const EdgeInsets.all(18),
-                          child: Text(
-                            appLocalization(context).pleaseCorporateID,
-                            // this one
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                color: AppColor.materialGreyColor,
-                                fontFamily: AppFont.fontFamily,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        10.height(),
-                        CustomTextField(
-                          controller: corporateIdController,
-                          labelText: appLocalization(context).corporateID,
-                          hintText: appLocalization(context).corporateID,
-                          suffixIcon: Image.asset(
-                            IconConstants.icCorporateID,
-                            scale: 3,
-                          ),
-                          validator: (p0) {
-                            if (p0?.isEmpty ?? true) {
-                              return appLocalization(context)
-                                  .pleaseCorporateIDText;
-                            }
-                            return null;
-                          },
-                        ),
-                        10.height(),
-                        CustomTextField(
-                          keyboardType: TextInputType.emailAddress,
-                          controller: emailController,
-                          hintText: appLocalization(context).emailAddress,
-                          labelText: appLocalization(context).emailAddress,
-                          suffixIcon: Image.asset(
-                            IconConstants.icFluentMail,
-                            scale: 3,
-                          ),
-                          validator: (p0) {
-                            if (p0?.isEmpty ?? true) {
-                              return appLocalization(context)
-                                  .pleaseEnterYourEmailAddress;
-                            }
-                            return null;
-                          },
-                        ),
-                        10.height(),
-                        BlocBuilder(
-                            bloc: passwordVisibilityBloc,
-                            builder: (context, state) {
-                              if (state is SelectBoolState) {
-                                return CustomTextField(
-                                  controller: passwordController,
-                                  obscureText: state.value,
-                                  labelText: appLocalization(context).password,
-                                  hintText: appLocalization(context).password,
-                                  suffixIcon: InkWell(
-                                      onTap: () {
-                                        passwordVisibilityBloc
-                                            .add(SelectBoolEvent(!state.value));
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(children: [
+                            SizedBox(
+                              height: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .height * 8 / 100,
+                            ),
+                            Center(
+                                child: Text(
+                                  appLocalization(context).login,
+                                  style: const TextStyle(
+                                      color: AppColor.lightPurpleColor,
+                                      fontSize: 35,
+                                      fontFamily: AppFont.fontFamily,
+                                      fontWeight: FontWeight.w600),
+                                )),
+                            Padding(
+                              padding: const EdgeInsets.all(18),
+                              child: Text(
+                                appLocalization(context).pleaseCorporateID,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    color: AppColor.materialGreyColor,
+                                    fontFamily: AppFont.fontFamily,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            10.height(),
+                            CustomTextField(
+                              controller: corporateIdController,
+                              labelText: appLocalization(context).corporateID,
+                              hintText: appLocalization(context).corporateID,
+                              suffixIcon: Image.asset(
+                                IconConstants.icCorporateID,
+                                scale: 3,
+                              ),
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseCorporateIDText;
+                                }
+                                return null;
+                              },
+                            ),
+                            10.height(),
+                            CustomTextField(
+                              keyboardType: TextInputType.emailAddress,
+                              controller: emailController,
+                              hintText: appLocalization(context).emailAddress,
+                              labelText: appLocalization(context).emailAddress,
+                              suffixIcon: Image.asset(
+                                IconConstants.icFluentMail,
+                                scale: 3,
+                              ),
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseEnterYourEmailAddress;
+                                }
+                                return null;
+                              },
+                            ),
+                            10.height(),
+                            BlocBuilder(
+                                bloc: passwordVisibilityBloc,
+                                builder: (context, state) {
+                                  if (state is SelectBoolState) {
+                                    return CustomTextField(
+                                      controller: passwordController,
+                                      obscureText: state.value,
+                                      labelText: appLocalization(context)
+                                          .password,
+                                      hintText: appLocalization(context)
+                                          .password,
+                                      suffixIcon: InkWell(
+                                          onTap: () {
+                                            passwordVisibilityBloc
+                                                .add(
+                                                SelectBoolEvent(!state.value));
+                                          },
+                                          child: state.value
+                                              ? Image.asset(
+                                            IconConstants.icPassRemove,
+                                            scale: 3,
+                                          )
+                                              : Image.asset(
+                                            IconConstants.icPassLock,
+                                            scale: 3,
+                                          )),
+                                      validator: (p0) {
+                                        if (p0?.isEmpty ?? true) {
+                                          return appLocalization(context)
+                                              .pleaseEnterYourPassword;
+                                        }
+                                        return null;
                                       },
-                                      child: state.value
-                                          ? Image.asset(
-                                              IconConstants.icPassRemove,
-                                              scale: 3,
-                                            )
-                                          : Image.asset(
-                                              IconConstants.icPassLock,
-                                              scale: 3,
-                                            )),
-                                  validator: (p0) {
-                                    if (p0?.isEmpty ?? true) {
-                                      return appLocalization(context)
-                                          .pleaseEnterYourPassword;
-                                    }
-                                    return null;
-                                  },
-                                );
-                              }
-                              return const Loader();
-                            }),
-                        SizedBox(
-                            height:
-                                MediaQuery.of(context).size.height * 3 / 100),
-                        AppButton(
-                          text: appLocalization(context).login,
-                          onPress: () {
-                            if (_formKey.currentState?.validate() ?? false) {
-                              corporateBloc.add(CorporateLoginEvent(
-                                  // selected
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                  corporateId: corporateIdController.text));
-                            }
-                          },
-                        ),
-                      ]),
-                    )),
+                                    );
+                                  }
+                                  return const Loader();
+                                }),
+                            SizedBox(
+                                height:
+                                MediaQuery
+                                    .of(context)
+                                    .size
+                                    .height * 3 / 100),
+                            AppButton(
+                              text: appLocalization(context).login,
+                              onPress: () {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  corporateBloc.add(CorporateLoginEvent(
+                                    // selected
+                                      email: emailController.text,
+                                      password: passwordController.text,
+                                      corporateId: corporateIdController.text));
+                                }
+                              },
+                            ),
+                          ]),
+                        )),
                   ),
                 );
               }),
