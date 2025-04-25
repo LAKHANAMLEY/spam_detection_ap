@@ -24,7 +24,7 @@ Future<Response> markSpamSms({
   log(jsonEncode(body));
   // print('response.body ${response.body}');
   if (response.statusCode == 200) {
-    // print(response.body);
+    log(response.body);
     final data = json.decode(response.body);
     return Response.fromJson(data);
   } else {

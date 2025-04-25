@@ -799,11 +799,9 @@ class _UnMarkSmsViewState extends State<UnMarkSmsView> {
                 20.height(),
                 GestureDetector(
                   onTap: () {
-                    // Navigator.pushNamed(
-                    //   context,
-                    //   AppRoutes.createInvoice,
-                    //   arguments: CreateInvoice(items: cartState.cartItems),
-                    // );
+                    markSpamSmsBloc
+                        .add(RemoveSpamSmsEvent(address: sms?.address ?? ""));
+                    Navigator.pop(context);
                   },
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.07,

@@ -175,12 +175,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
           );
 
           // /Check ig this is a default phone app
-          _showCallScreen(
-            context: context,
-            callType: getCallLogType(state.status.name)!,
-            number: state.number ?? "",
-            duration: state.duration?.inSeconds ?? 0,
-          );
+          // _showCallScreen(
+          //   context: context,
+          //   callType: getCallLogType(state.status.name)!,
+          //   number: state.number ?? "",
+          //   duration: state.duration?.inSeconds ?? 0,
+          // );
+          _isProcessingCall = false;
         }
       } else if (state.status == PhoneStateStatus.NOTHING) {
         _isProcessingCall = false;
