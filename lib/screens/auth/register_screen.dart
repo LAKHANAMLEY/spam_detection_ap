@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class Register extends StatefulWidget {
-  final UserCredential? userCredencial;
+  final UserCredential? userCredential;
 
   const Register({
     super.key,
-    this.userCredencial,
+    this.userCredential,
   });
 
   @override
@@ -393,8 +393,8 @@ class _RegisterState extends State<Register> {
 
   void updateData() {
     var arg = args(context) as Register;
-    var userCredencial = arg.userCredencial;
-    var user = userCredencial?.user;
+    var userCredential = arg.userCredential;
+    var user = userCredential?.user;
     firstnameController.text = user?.displayName?.split(" ").first ?? "";
     lastnameController.text = user?.displayName?.split(" ").last ?? "";
     emailController.text = user?.email ?? "";

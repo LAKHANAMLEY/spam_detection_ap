@@ -16,7 +16,6 @@ extension NotificationExtension on NotificationType {
     NotificationType.profileVisitor: 'profile-visitor',
     NotificationType.default1: 'default',
   };
-
   static const Map<NotificationType, String> values = {
     NotificationType.membership: 'membership',
     NotificationType.profileVisitor: 'profile-visitor',

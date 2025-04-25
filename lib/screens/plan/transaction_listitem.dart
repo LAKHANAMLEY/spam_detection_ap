@@ -467,13 +467,15 @@ class TransactionListItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Txn id: ${transactionData.transactionId ?? ""}',
-                          //print(transactionData.expiredAt??"")
-                          style: TextStyle(
-                              color: AppColor.greyDecent,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16),
+                        Expanded(
+                          child: Text(
+                            'Txn id: ${transactionData.transactionId ?? ""}',
+                            //print(transactionData.expiredAt??"")
+                            style: TextStyle(
+                                color: AppColor.greyDecent,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16),
+                          ),
                         ),
                         Text(
                           transactionData.expiredAt?.formatDateTime() ?? "",
@@ -490,7 +492,7 @@ class TransactionListItem extends StatelessWidget {
                       ]),
                   5.height(),
                   Container(
-                    padding: EdgeInsets.all(4),
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
                       color: (transactionData.status?.toLowerCase() == 'active')

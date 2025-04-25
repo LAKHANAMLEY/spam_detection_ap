@@ -37,7 +37,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   10.height(),
                   Image.asset(
                     IconConstants.icHomeSecurity,
-                    height: MediaQuery.of(context).size.height * 15 / 100,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 15 / 100,
                   ),
                   // 1.height(),
                   Text(
@@ -50,7 +53,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                         fontFamily: AppFont.fontFamily),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 1 / 100,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 1 / 100,
                   ),
                   Text(
                     appLocalization(context).youAreProtected,
@@ -62,7 +68,10 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                         fontFamily: AppFont.fontFamily),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 4 / 100,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 4 / 100,
                   ),
                   // BlocBuilder(
                   //     bloc: subscriptionListBloc,
@@ -106,7 +115,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                                 image: IconConstants.icCallSolar,
                                 title: appLocalization(context).callProtection,
                                 description:
-                                    appLocalization(context).allSpamCalls,
+                                appLocalization(context).allSpamCalls,
                                 isEnabled: plan?.callProtection == "1",
                                 onToggle: (value) {
                                   if (plan?.callProtection != "1") {
@@ -120,7 +129,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                               SecurityOption(
                                 image: IconConstants.icMessageLock,
                                 title:
-                                    appLocalization(context).protectAIMessages,
+                                appLocalization(context).protectAIMessages,
                                 description: appLocalization(context)
                                     .yourMessagesAreCurrently,
                                 isEnabled: plan?.smsProtection == "1",
@@ -206,10 +215,16 @@ class SecurityOption extends StatelessWidget {
                 radius: 28,
                 backgroundColor: AppColor.darkPurpleColor,
                 child: Image.asset(image,
-                    height: MediaQuery.of(context).size.height * 4 / 100),
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 4 / 100),
               ),
             ),
-            SizedBox(width: MediaQuery.of(context).size.width * 4 / 100),
+            SizedBox(width: MediaQuery
+                .of(context)
+                .size
+                .width * 4 / 100),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,12 +248,17 @@ class SecurityOption extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 12 / 100,
-                height: MediaQuery.of(context).size.height * 4 / 100,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width * 12 / 100,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * 4 / 100,
                 child: FittedBox(
                   fit: BoxFit.fill,
                   child: Switch(
-                    //splashRadius: 10,
                     value: isEnabled,
                     onChanged: onToggle,
                     inactiveTrackColor: AppColor.whiteColor,

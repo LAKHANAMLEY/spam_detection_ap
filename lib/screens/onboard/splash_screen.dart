@@ -63,7 +63,7 @@ class SplashState extends State<Splash> {
                     width: MediaQuery.of(context).size.width * 1 / 100,
                   ),
                   const Text(
-                    StringConstants.copyrighttext,
+                    StringConstants.copyrightText,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColor.slatWhiteColor,

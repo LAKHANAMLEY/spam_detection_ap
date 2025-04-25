@@ -590,13 +590,13 @@ abstract class AppLocalizations {
   /// No description provided for @changeALanguage.
   ///
   /// In en, this message translates to:
-  /// **'Change a Language'**
+  /// **'Change a language'**
   String get changeALanguage;
 
   /// No description provided for @changeLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Change Language'**
+  /// **'Change language'**
   String get changeLanguage;
 
   /// No description provided for @changePassword.
@@ -1466,7 +1466,7 @@ abstract class AppLocalizations {
   /// No description provided for @familyList.
   ///
   /// In en, this message translates to:
-  /// **'Family List'**
+  /// **'Family list'**
   String get familyList;
 
   /// No description provided for @familySharing.
@@ -3146,7 +3146,7 @@ abstract class AppLocalizations {
   /// No description provided for @privacyPolicyTxt.
   ///
   /// In en, this message translates to:
-  /// **'Privacy Policy'**
+  /// **'Privacy policy'**
   String get privacyPolicyTxt;
 
   /// No description provided for @proceedToPay.
@@ -4618,6 +4618,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zip Code'**
   String get zip;
+
+  /// No description provided for @reportSpamSMsDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Report the message to improve the experience for millions users like you'**
+  String get reportSpamSMsDetail;
+
+  /// No description provided for @spamReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Spam Report'**
+  String get spamReport;
+
+  /// No description provided for @usuallyCalls.
+  ///
+  /// In en, this message translates to:
+  /// **'Usually Calls'**
+  String get usuallyCalls;
+
+  /// No description provided for @callActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Call Activity'**
+  String get callActivity;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

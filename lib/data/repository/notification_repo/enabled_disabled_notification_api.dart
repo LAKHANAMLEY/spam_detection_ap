@@ -15,6 +15,7 @@ Future<EnabledNotificationResponse> enableNotification({
       'notifications_list[0][is_push_receive]': notificationPush,
     },
   );
+  print(response.body);
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
     return EnabledNotificationResponse.fromJson(jsonData);

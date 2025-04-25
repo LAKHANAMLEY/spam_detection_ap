@@ -149,7 +149,8 @@ class _ContactDetailState extends State<ContactDetail> {
                           backgroundColor: AppColor.whiteColor,
                           actions: [
                             PopupMenuButton(
-                              itemBuilder: (context) => [
+                              itemBuilder: (context) =>
+                              [
                                 PopupMenuItem(
                                   child: Text(
                                       appLocalization(context).editContact),
@@ -213,21 +214,23 @@ class _ContactDetailState extends State<ContactDetail> {
                                         (contact?.name?.isNotEmpty ?? false)
                                             ? contact?.name ?? ""
                                             : contact?.countryCode
-                                                        ?.isNotEmpty ??
-                                                    false
-                                                ? "+${contact?.countryCode} ${contact?.mobileNo ?? ""}"
-                                                : contact?.mobileNo ?? "",
+                                            ?.isNotEmpty ??
+                                            false
+                                            ? "+${contact
+                                            ?.countryCode} ${contact
+                                            ?.mobileNo ?? ""}"
+                                            : contact?.mobileNo ?? "",
                                         style: const TextStyle(
                                             color: AppColor.blackColor,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w400),
                                       ),
                                       if ((contact?.lastSeen?.isNotEmpty ??
-                                              false) ||
+                                          false) ||
                                           contact?.isOnline == "1")
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          MainAxisAlignment.center,
                                           children: [
                                             Circle(
                                               color: contact?.isOnline == "1"
@@ -237,11 +240,12 @@ class _ContactDetailState extends State<ContactDetail> {
                                             Text(
                                               contact?.isOnline == "1"
                                                   ? "Online"
-                                                  : "Last seen ${contact?.lastSeen}",
+                                                  : "Last seen ${contact
+                                                  ?.lastSeen}",
                                               style: textTheme(context)
                                                   .bodySmall
                                                   ?.copyWith(
-                                                      color: Colors.grey),
+                                                  color: Colors.grey),
                                             ),
                                           ],
                                         ),
@@ -250,7 +254,7 @@ class _ContactDetailState extends State<ContactDetail> {
                                       ),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceEvenly,
                                         children: [
                                           ActionButton(
                                             onTap: () {
@@ -263,64 +267,64 @@ class _ContactDetailState extends State<ContactDetail> {
                                           ),
                                           contact?.isSpam == 1
                                               ? ActionButton(
-                                                  onTap: () {
-                                                    markSpamBloc.add(
-                                                        RemoveSpamEvent(
-                                                            contactId: contact
-                                                                    ?.mobileNo ??
-                                                                ""));
-                                                  },
-                                                  label:
-                                                      appLocalization(context)
-                                                          .unmarkSpam,
-                                                  icon: Icons.check_circle)
+                                              onTap: () {
+                                                markSpamBloc.add(
+                                                    RemoveSpamEvent(
+                                                        contactId: contact
+                                                            ?.mobileNo ??
+                                                            ""));
+                                              },
+                                              label:
+                                              appLocalization(context)
+                                                  .unmarkSpam,
+                                              icon: Icons.check_circle)
                                               : ActionButton(
-                                                  onTap: () {
-                                                    showModalBottomSheet(
-                                                      showDragHandle: true,
-                                                      useSafeArea: true,
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          AppColor.whiteColor,
-                                                      context: context,
-                                                      shape:
-                                                          const RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.vertical(
-                                                                top: Radius
-                                                                    .circular(
-                                                                        20.0)),
-                                                      ),
-                                                      builder: (BuildContext
-                                                          context) {
-                                                        return ReportView(
-                                                          // contact: contact!,
-                                                          contact: contact!,
-                                                        );
-                                                      },
+                                              onTap: () {
+                                                showModalBottomSheet(
+                                                  showDragHandle: true,
+                                                  useSafeArea: true,
+                                                  isScrollControlled: true,
+                                                  backgroundColor:
+                                                  AppColor.whiteColor,
+                                                  context: context,
+                                                  shape:
+                                                  const RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.vertical(
+                                                        top: Radius
+                                                            .circular(
+                                                            20.0)),
+                                                  ),
+                                                  builder: (BuildContext
+                                                  context) {
+                                                    return ReportView(
+                                                      // contact: contact!,
+                                                      contact: contact!,
                                                     );
                                                   },
-                                                  label:
-                                                      appLocalization(context)
-                                                          .reportText,
-                                                  icon: Icons.report),
+                                                );
+                                              },
+                                              label:
+                                              appLocalization(context)
+                                                  .reportText,
+                                              icon: Icons.report),
                                           ActionButton(
                                               onTap: () {
                                                 markSpamBloc.add(
                                                     BlockUnBlockEvent(
                                                         contactId:
-                                                            contact?.mobileNo ??
-                                                                "",
+                                                        contact?.mobileNo ??
+                                                            "",
                                                         comments:
-                                                            appLocalization(
-                                                                    context)
-                                                                .unblock));
+                                                        appLocalization(
+                                                            context)
+                                                            .unblock));
                                               },
                                               label: contact?.isBlocked == 1
                                                   ? appLocalization(context)
-                                                      .unblock
+                                                  .unblock
                                                   : appLocalization(context)
-                                                      .block,
+                                                  .block,
                                               icon: Icons.block)
                                         ],
                                       ),
@@ -333,171 +337,185 @@ class _ContactDetailState extends State<ContactDetail> {
                         ),
                         SliverList(
                             delegate: SliverChildListDelegate([
-                          Container(
-                            margin: const EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: AppColor.lightBrownColor,
-                              ),
-                            ),
-                            child: ListTile(
-                              onTap: () async {
-                                await DirectCallPlus.makeCall((contact
-                                            ?.countryCode?.isNotEmpty ??
-                                        false)
-                                    ? "+${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}"
-                                    : contact?.mobileNo ?? "");
-                              },
-                              leading: const Icon(Icons.phone,
-                                  color: AppColor.blackColor),
-                              title: Text(
-                                (contact?.countryCode?.isNotEmpty ?? false)
-                                    ? "+${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}"
-                                    : contact?.mobileNo ?? "",
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              subtitle:
-                                  (contact?.numberType?.isNotEmpty ?? false)
-                                      ? Text(
-                                          contact?.numberType ?? "",
-                                          style: textTheme(context)
-                                              .bodySmall
-                                              ?.copyWith(color: Colors.grey),
-                                        )
-                                      : null,
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                  color: AppColor.lightBrownColor,
-                                )),
-                            child: IntrinsicHeight(
-                              child: Row(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(children: [
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              const Text(StringConstants
-                                                  .spamreportext),
-                                              Text(
-                                                contact?.spamReport ?? "",
-                                                style: const TextStyle(
-                                                    color: AppColor.blackColor,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontFamily:
-                                                        AppFont.fontFamily),
-                                              ),
-                                            ],
-                                          ),
-                                          const Divider(),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                const Text(
-                                                  StringConstants.usallytext,
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                Text(
-                                                  contact?.usuallyCalls ?? "",
-                                                  textAlign: TextAlign.center,
-                                                  style: const TextStyle(
-                                                      color:
-                                                          AppColor.blackColor,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontFamily:
-                                                          AppFont.fontFamily),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ]),
-                                      ),
-                                    ),
-                                    const VerticalDivider(),
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          const Text(
-                                            StringConstants.callactivitytext,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: AppColor.blackColor,
-                                                fontWeight: FontWeight.w600,
-                                                fontFamily: AppFont.fontFamily),
-                                          ),
-                                          Text(contact?.callActivity ?? ""),
-                                        ],
-                                      ),
-                                    ),
-                                  ]),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, AppRoutes.planList);
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.all(10.0),
-                              decoration: BoxDecoration(
+                              Container(
+                                margin: const EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8.0),
                                   border: Border.all(
-                                      color: AppColor.lightBrownColor)),
-                              child: ListTile(
-                                leading: const Icon(Icons.location_on,
-                                    color: AppColor.blackColor),
-                                title: Text(
-                                  appLocalization(context).moreAvailable,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
+                                    color: AppColor.lightBrownColor,
+                                  ),
                                 ),
-                                subtitle: Text(appLocalization(context)
-                                    .upgradePremiumView),
+                                child: ListTile(
+                                  onTap: () async {
+                                    await DirectCallPlus.makeCall((contact
+                                        ?.countryCode?.isNotEmpty ??
+                                        false)
+                                        ? "+${contact?.countryCode ??
+                                        ""} ${contact?.mobileNo ?? ""}"
+                                        : contact?.mobileNo ?? "");
+                                  },
+                                  leading: const Icon(Icons.phone,
+                                      color: AppColor.blackColor),
+                                  title: Text(
+                                    (contact?.countryCode?.isNotEmpty ?? false)
+                                        ? "+${contact?.countryCode ??
+                                        ""} ${contact?.mobileNo ?? ""}"
+                                        : contact?.mobileNo ?? "",
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  subtitle:
+                                  (contact?.numberType?.isNotEmpty ?? false)
+                                      ? Text(
+                                    contact?.numberType ?? "",
+                                    style: textTheme(context)
+                                        .bodySmall
+                                        ?.copyWith(color: Colors.grey),
+                                  )
+                                      : null,
+                                ),
                               ),
-                            ),
-                          ),
-                          10.height(),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              appLocalization(context).callHistoryText,
-                              style: textTheme(context).titleMedium,
-                            ),
-                          ),
-                          if (contact?.callHistory?.isNotEmpty ?? false)
-                            ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: contact?.callHistory?.length,
-                              itemBuilder: (context, index) => CallLogListItem(
-                                  callLog: contact!.callHistory![index],
-                                  showPopupMenuBtn: false,
-                                  onTap: () {}),
-                            )
-                        ])),
+                              Container(
+                                margin: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: AppColor.lightBrownColor,
+                                    )),
+                                child: IntrinsicHeight(
+                                  child: Row(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                      children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                      appLocalization(context)
+                                                          .spamReport),
+                                                  Text(
+                                                    contact?.spamReport ?? "",
+                                                    style: const TextStyle(
+                                                        color: AppColor
+                                                            .blackColor,
+                                                        fontWeight: FontWeight
+                                                            .w600,
+                                                        fontFamily:
+                                                        AppFont.fontFamily),
+                                                  ),
+                                                ],
+                                              ),
+                                              const Divider(),
+                                              Padding(
+                                                padding: const EdgeInsets.all(
+                                                    8.0),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      appLocalization(context)
+                                                          .usuallyCalls,
+                                                      textAlign: TextAlign
+                                                          .center,
+                                                    ),
+                                                    Text(
+                                                      contact?.usuallyCalls ??
+                                                          "",
+                                                      textAlign: TextAlign
+                                                          .center,
+                                                      style: const TextStyle(
+                                                          color:
+                                                          AppColor.blackColor,
+                                                          fontWeight:
+                                                          FontWeight.w600,
+                                                          fontFamily:
+                                                          AppFont.fontFamily),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ]),
+                                          ),
+                                        ),
+                                        const VerticalDivider(),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                appLocalization(context)
+                                                    .callActivity,
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: AppColor.blackColor,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontFamily: AppFont
+                                                        .fontFamily),
+                                              ),
+                                              Text(contact?.callActivity ?? ""),
+                                            ],
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, AppRoutes.planList);
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.all(10.0),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                          color: AppColor.lightBrownColor)),
+                                  child: ListTile(
+                                    leading: const Icon(Icons.location_on,
+                                        color: AppColor.blackColor),
+                                    title: Text(
+                                      appLocalization(context).moreAvailable,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    subtitle: Text(appLocalization(context)
+                                        .upgradePremiumView),
+                                  ),
+                                ),
+                              ),
+                              10.height(),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                  appLocalization(context).callHistoryText,
+                                  style: textTheme(context).titleMedium,
+                                ),
+                              ),
+                              if (contact?.callHistory?.isNotEmpty ?? false)
+                                ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: contact?.callHistory?.length,
+                                  itemBuilder: (context, index) =>
+                                      CallLogListItem(
+                                          callLog: contact!.callHistory![index],
+                                          showPopupMenuBtn: false,
+                                          onTap: () {}),
+                                )
+                            ])),
                       ],
                     ),
                   );

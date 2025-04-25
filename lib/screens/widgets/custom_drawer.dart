@@ -264,8 +264,9 @@ class CustomDrawer extends StatelessWidget {
                     context,
                     icon: Icons.family_restroom_sharp,
                     title: appLocalization(context).familyList,
-                    onTap: () => Navigator.pushNamed(
-                        context, AppRoutes.familyMemberList),
+                    onTap: () =>
+                        Navigator.pushNamed(
+                            context, AppRoutes.familyMemberList),
                   );
                 } else if (role == "corporate") {
                   return _buildListTile(
@@ -288,7 +289,7 @@ class CustomDrawer extends StatelessWidget {
           ),
           _buildListTile(
             context,
-            icon: Icons.privacy_tip,
+            icon: Icons.policy,
             title: appLocalization(context).termsAndConditions,
             onTap: () {
               // Add terms route or dialog
@@ -325,8 +326,7 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  Widget _buildListTile(
-    BuildContext context, {
+  Widget _buildListTile(BuildContext context, {
     required dynamic icon,
     required String title,
     required VoidCallback onTap,
@@ -336,10 +336,10 @@ class CustomDrawer extends StatelessWidget {
       onTap: onTap,
       leading: isImageIcon
           ? Image.asset(
-              icon,
-              scale: 4,
-              color: Colors.white,
-            )
+        icon,
+        scale: 4,
+        color: Colors.white,
+      )
           : Icon(icon, color: AppColor.whiteColor),
       title: Text(
         title,
@@ -362,7 +362,10 @@ class CustomDrawer extends StatelessWidget {
             children: [
               Text(
                 appLocalization(context).changeALanguage,
-                style: Theme.of(context).textTheme.titleLarge,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .titleLarge,
               ),
               const SizedBox(height: 16.0),
               FutureBuilder(
@@ -378,7 +381,7 @@ class CustomDrawer extends StatelessWidget {
                         final lang = languages[index];
                         return ListTile(
                           leading:
-                              const Icon(Icons.language, color: Colors.green),
+                          const Icon(Icons.language, color: Colors.green),
                           title: Text(lang.name ?? ""),
                           onTap: () {
                             localizationBloc.add(

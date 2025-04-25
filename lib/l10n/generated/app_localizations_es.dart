@@ -99,7 +99,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get allTransactions => 'Transactions';
 
   @override
-  String get allowNotification => 'Allow Notifications';
+  String get allowNotification => 'Permitir notificaciones';
 
   @override
   String get allowPushNotification => 'Permitir notificaciones push';
@@ -965,7 +965,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get meetYourBusiness => 'Rencontrez votre entreprise';
 
   @override
-  String get message => 'Message';
+  String get message => 'Mensaje';
 
   @override
   String get messagesSpam => 'Mensajes movidos a spam';
@@ -2273,4 +2273,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get zip => 'Código postal';
+
+  @override
+  String get reportSpamSMsDetail => 'Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú';
+
+  @override
+  String get spamReport => 'Informe de spam';
+
+  @override
+  String get usuallyCalls => 'Normalmente llama';
+
+  @override
+  String get callActivity => 'Actividad de llamada';
 }
