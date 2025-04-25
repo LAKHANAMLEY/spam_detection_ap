@@ -122,7 +122,7 @@ class SmsLogDBHandler {
       for (final detail in smsLog.smsDetails!) {
         //check exists or not
         final exists = await _getSmsDetailsForLogId(db, detail.id ?? "");
-        if (exists.isEmpty ?? true) {
+        if (exists.isEmpty) {
           await db.insert(tableSmsDetail, {
             columnLogIdFk: smsLog.id, //TODO: logId
             columnBody: detail.body,
@@ -242,56 +242,51 @@ class SmsLogDBHandler {
   Future<int> updateSmsDetail(SmsDetail detail) async {
     final db = await database;
 
-    if (detail != null) {
-      // Logic to update or insert SmsDetail records
+    // Logic to update or insert SmsDetail records
 
-      // Check if the SmsDetail already exists (you'll need a unique identifier)
-      final existingDetail = await db.query(
+    // Check if the SmsDetail already exists (you'll need a unique identifier)
+    final existingDetail = await db.query(
+      tableSmsDetail,
+      where:
+          '$columnLogIdFk = ? AND $columnDeviceSmsId = ?', // Example: check by logId and smsId
+      whereArgs: [
+        detail.address,
+        detail.deviceMessageId
+      ], // Assuming detail.id is somewhat unique
+    );
+
+    final smsDetailMap = {
+      columnLogIdFk: detail.address,
+      columnBody: detail.body,
+      columnIsRead: detail.isRead,
+      columnMessageState: detail.messageState,
+      columnMessageKind: detail.messageKind,
+      columnQueryKind: detail.queryKind,
+      columnSendReceiveDatetime: _dateTimeToInt(detail.sendreceiveDatetime),
+      columnThreadId: detail.threadId,
+      columnSmsId: detail.id,
+      columnDeviceSmsId: detail.deviceMessageId,
+      columnIsSpam: detail.isSpam,
+      columnSpamMessage: detail.spamMessage,
+      columnScore: detail.score,
+      columnIsManually: detail.isManually,
+      columnDetailAddress: detail.address,
+      columnDetailCountryCode: detail.countryCode,
+      columnDate: _dateTimeToInt(detail.date),
+      columnDetailName: detail.name,
+    };
+
+    if (existingDetail.isNotEmpty) {
+      // Update existing SmsDetail
+      return await db.update(
         tableSmsDetail,
-        where:
-            '$columnLogIdFk = ? AND $columnDeviceSmsId = ?', // Example: check by logId and smsId
-        whereArgs: [
-          detail.address,
-          detail.deviceMessageId
-        ], // Assuming detail.id is somewhat unique
+        smsDetailMap,
+        where: '$columnLogIdFk = ? AND $columnDeviceSmsId = ?',
+        whereArgs: [detail.address, detail.deviceMessageId],
       );
-
-      final smsDetailMap = {
-        columnLogIdFk: detail.address,
-        columnBody: detail.body,
-        columnIsRead: detail.isRead,
-        columnMessageState: detail.messageState,
-        columnMessageKind: detail.messageKind,
-        columnQueryKind: detail.queryKind,
-        columnSendReceiveDatetime: _dateTimeToInt(detail.sendreceiveDatetime),
-        columnThreadId: detail.threadId,
-        columnSmsId: detail.id,
-        columnDeviceSmsId: detail.deviceMessageId,
-        columnIsSpam: detail.isSpam,
-        columnSpamMessage: detail.spamMessage,
-        columnScore: detail.score,
-        columnIsManually: detail.isManually,
-        columnDetailAddress: detail.address,
-        columnDetailCountryCode: detail.countryCode,
-        columnDate: _dateTimeToInt(detail.date),
-        columnDetailName: detail.name,
-      };
-
-      if (existingDetail.isNotEmpty) {
-        // Update existing SmsDetail
-        return await db.update(
-          tableSmsDetail,
-          smsDetailMap,
-          where: '$columnLogIdFk = ? AND $columnDeviceSmsId = ?',
-          whereArgs: [detail.address, detail.deviceMessageId],
-        );
-      } else {
-        // Insert new SmsDetail
-        return await db.insert(tableSmsDetail, smsDetailMap);
-      }
     } else {
-      print('Error: Cannot update SmsLog without an ID.');
-      return 0;
+      // Insert new SmsDetail
+      return await db.insert(tableSmsDetail, smsDetailMap);
     }
   }
 

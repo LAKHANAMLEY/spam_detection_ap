@@ -181,7 +181,6 @@ export 'models/user/corporate_edit_profile_model.dart';
 export 'models/user/edit_profile_model.dart';
 export 'models/user/update_profile_model.dart';
 export 'models/user/user_model.dart';
-
 export 'screens/auth/corporate_login_screen.dart';
 export 'screens/auth/forgot_otp_verify_screen.dart';
 export 'screens/auth/forgot_password_by_otp_screen.dart';
