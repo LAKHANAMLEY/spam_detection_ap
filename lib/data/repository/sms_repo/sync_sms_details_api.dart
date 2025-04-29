@@ -33,7 +33,7 @@ Future<SmsLogDetailsResponse> syncSmsDetailsWithServer({
   if (smsLogs.isNotEmpty) reqBody["sms_list_details"] = body;
   request.body = jsonEncode(reqBody);
 
-  log("${ApiUrlConstants.syncSmsDetails}: ${(request.body)}");
+  // log("${ApiUrlConstants.syncSmsDetails}: ${(request.body)}");
 
   request.headers.addAll(await ApiUrlConstants.headers());
   // for (var field in body) {

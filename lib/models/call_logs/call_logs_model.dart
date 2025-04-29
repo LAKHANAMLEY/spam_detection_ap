@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:spam_delection_app/models/contact/contact_list_response.dart';
+
 CallLogsListResponse callLogsListResponseFromJson(String str) =>
     CallLogsListResponse.fromJson(json.decode(str));
 
@@ -64,23 +66,28 @@ class CallLogData {
   final int? markSpamByUser;
   final String isManually;
 
-  CallLogData(
-      {this.id,
-      this.phoneaccountid,
-      this.simdisplayname,
-      this.name,
-      this.callType,
-      this.countryCode,
-      this.mobileNo,
-      this.callTime,
-      this.callDuration,
-      this.callDurationUnit,
-      this.contactListId,
-      this.callDurations,
-      this.isSpam,
-      this.isBlocked,
-      this.markSpamByUser,
-      this.isManually = "0"});
+  //Add new params from contactData here
+  final ContactData? contactData;
+
+  CallLogData({
+    this.id,
+    this.phoneaccountid,
+    this.simdisplayname,
+    this.name,
+    this.callType,
+    this.countryCode,
+    this.mobileNo,
+    this.callTime,
+    this.callDuration,
+    this.callDurationUnit,
+    this.contactListId,
+    this.callDurations,
+    this.isSpam,
+    this.isBlocked,
+    this.markSpamByUser,
+    this.isManually = "0",
+    this.contactData,
+  });
 
   CallLogData copyWith({
     String? totalcalllog,
@@ -100,6 +107,7 @@ class CallLogData {
     int? isBlocked,
     String? callDurations,
     String? isManually,
+    ContactData? contactData,
   }) =>
       CallLogData(
         // totalcalllog: totalcalllog ?? this.totalcalllog,
@@ -119,6 +127,7 @@ class CallLogData {
         isBlocked: isBlocked ?? this.isBlocked,
         callDurations: callDurations ?? this.callDurations,
         isManually: isManually ?? this.isManually,
+        contactData: contactData ?? this.contactData,
       );
 
   factory CallLogData.fromJson(Map<String, dynamic> json) => CallLogData(
@@ -143,6 +152,9 @@ class CallLogData {
         isSpam: json["is_spam"],
         isBlocked: json["is_blocked"],
         markSpamByUser: json["markspambyuser"],
+        contactData: json["contact_data"] == null
+            ? null
+            : ContactData.fromJson(json["contact_data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -161,5 +173,21 @@ class CallLogData {
         "is_spam": isSpam,
         "is_blocked": isBlocked,
         "markspambyuser": markSpamByUser,
+        "contactData": contactData?.toJson(),
       };
+
+  // static CallLogData? fromContact(ContactData? contact) =>
+  //     contact?.callHistory?.firstOrNull;
+
+  static CallLogData? fromContact(ContactData? contact) => CallLogData(
+        id: contact?.id,
+        contactListId: contact?.id,
+        countryCode: contact?.countryCode,
+        mobileNo: contact?.mobileNo,
+        name: contact?.name,
+        isSpam: contact?.isSpam,
+        isBlocked: contact?.isBlocked,
+        markSpamByUser: contact?.markspambyuser,
+        // phoneaccountid: contact?.id,
+      );
 }

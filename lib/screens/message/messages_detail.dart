@@ -66,9 +66,12 @@ class _MessagesDetailState extends State<MessagesDetail> {
                         height: 30,
                       ),
                     10.width(),
-                    Text((sms?.name?.isNotEmpty ?? false)
-                        ? sms?.name ?? ""
-                        : sms?.address ?? ""),
+                    Text(
+                      (sms?.name?.isNotEmpty ?? false)
+                          ? sms?.name ?? ""
+                          : sms?.address ?? "",
+                      style: textTheme(context).titleMedium,
+                    ),
                   ],
                 ),
               ),

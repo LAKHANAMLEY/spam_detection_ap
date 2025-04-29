@@ -7,9 +7,6 @@ allprojects {
 
 rootProject.buildDir = "../build"
 
-//android {
-//    namespace 'io.flutter.plugins.firebase.auth'
-//}
 
 subprojects {
     afterEvaluate { project ->

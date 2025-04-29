@@ -216,6 +216,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get call => 'Call';
 
   @override
+  String get callActivity => 'Call Activity';
+
+  @override
   String get callHistory => 'Call history';
 
   @override
@@ -909,6 +912,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lastName => 'Last name';
 
   @override
+  String get lastSeen => 'Last seen';
+
+  @override
   String get lastSixMonths => 'Last 6 months';
 
   @override
@@ -1175,6 +1181,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get oldPassword => 'Old password';
+
+  @override
+  String get online => 'Online';
 
   @override
   String get oopsNoInternet => 'OOPS!\nNo internet';
@@ -1678,6 +1687,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reportSpamLabel => 'This sender will be marked and labeled as spam in the conversation.';
 
   @override
+  String get reportSpamSMsDetail => 'Report the message to improve the experience for millions users like you';
+
+  @override
   String get reportText => 'Report';
 
   @override
@@ -1912,6 +1924,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get spamIdentified => 'Spam calls identified';
 
   @override
+  String get spamReport => 'Spam Report';
+
+  @override
   String get spamReports => 'Spam reports';
 
   @override
@@ -2131,6 +2146,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get userName => 'User name';
 
   @override
+  String get usuallyCalls => 'Usually Calls';
+
+  @override
   String get valid => 'Valid';
 
   @override
@@ -2273,16 +2291,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get zip => 'Zip Code';
-
-  @override
-  String get reportSpamSMsDetail => 'Report the message to improve the experience for millions users like you';
-
-  @override
-  String get spamReport => 'Spam Report';
-
-  @override
-  String get usuallyCalls => 'Usually Calls';
-
-  @override
-  String get callActivity => 'Call Activity';
 }

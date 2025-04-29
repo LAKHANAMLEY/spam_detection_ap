@@ -55,10 +55,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   title ?? "",
                   // style: const TextStyle(color: Colors.white),
                   // style: textTheme.titleMedium,
-                  style: const TextStyle(
-                      color: AppColor.darkPurpleColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
+                  style: textTheme(context).titleMedium,
                 )
               : Image.asset(
                   IconConstants.icBroadLinkLogo,

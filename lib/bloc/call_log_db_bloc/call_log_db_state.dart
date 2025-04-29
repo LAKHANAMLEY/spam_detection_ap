@@ -8,9 +8,17 @@ abstract class CallLogDBState extends Equatable {
   List<Object> get props => [];
 }
 
-class CallLogDBInitial extends CallLogDBState {} // States remain the same
+class CallLogDBInitial extends CallLogDBState {}
 
-class CallLogDBLoading extends CallLogDBState {} // States remain the same
+class CallLogDBLoading extends CallLogDBState {}
+
+class SyncDBCallLogHistoryState extends CallLogDBState {
+  final CheckSpamNumberResponse value;
+  const SyncDBCallLogHistoryState(this.value);
+
+  @override
+  List<Object> get props => [value];
+}
 
 class CallLogDBLoaded extends CallLogDBState {
   // States remain the same
@@ -20,6 +28,16 @@ class CallLogDBLoaded extends CallLogDBState {
 
   @override
   List<Object> get props => [callLogs];
+}
+
+class CallLogDBLoadedById extends CallLogDBState {
+  // States remain the same
+  final CallLogData callLog;
+
+  const CallLogDBLoadedById(this.callLog);
+
+  @override
+  List<Object> get props => [callLog];
 }
 
 class CallLogDBError extends CallLogDBState {

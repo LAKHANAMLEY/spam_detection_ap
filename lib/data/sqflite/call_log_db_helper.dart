@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io' as io;
 
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:spam_delection_app/models/call_logs/call_logs_model.dart';
+import 'package:spam_delection_app/models/contact/contact_list_response.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CallLogDBHelper {
@@ -25,6 +27,7 @@ class CallLogDBHelper {
   static const callLogColumnIsBlocked = 'is_blocked';
   static const callLogColumnMarkSpamByUser = 'markspambyuser';
   static const callLogColumnIsManually = 'is_manually';
+  static const contactData = 'contact_data';
 
   // Make this a singleton class
   CallLogDBHelper._privateConstructor();
@@ -66,7 +69,8 @@ class CallLogDBHelper {
         $callLogColumnIsSpam INTEGER,
         $callLogColumnIsBlocked INTEGER,
         $callLogColumnMarkSpamByUser INTEGER,
-        $callLogColumnIsManually TEXT
+        $callLogColumnIsManually TEXT,
+        $contactData TEXT
       )
     ''');
   }
@@ -152,29 +156,34 @@ class CallLogDBHelper {
       callLogColumnIsBlocked: callLog.isBlocked,
       callLogColumnMarkSpamByUser: callLog.markSpamByUser,
       callLogColumnIsManually: callLog.isManually,
+      contactData: callLog.contactData == null
+          ? null
+          : jsonEncode(callLog.contactData?.toJson()),
     };
   }
 
   CallLogData _callLogFromMap(Map<String, dynamic> map) {
     return CallLogData(
-      id: map[callLogColumnId],
-      phoneaccountid: map[callLogColumnPhoneAccountId],
-      simdisplayname: map[callLogColumnSimDisplayName],
-      name: map[callLogColumnName],
-      callType: map[callLogColumnCallType],
-      countryCode: map[callLogColumnCountryCode],
-      mobileNo: map[callLogColumnMobileNo],
-      callTime: map[callLogColumnCallTime] == null
-          ? null
-          : DateTime.tryParse(map[callLogColumnCallTime]),
-      callDuration: map[callLogColumnCallDuration],
-      callDurationUnit: map[callLogColumnCallDurationUnit],
-      contactListId: map[callLogColumnContactListId],
-      callDurations: map[callLogColumnCallDurations],
-      isSpam: map[callLogColumnIsSpam],
-      isBlocked: map[callLogColumnIsBlocked],
-      markSpamByUser: map[callLogColumnMarkSpamByUser],
-      isManually: map[callLogColumnIsManually] ?? '0',
-    );
+        id: map[callLogColumnId],
+        phoneaccountid: map[callLogColumnPhoneAccountId],
+        simdisplayname: map[callLogColumnSimDisplayName],
+        name: map[callLogColumnName],
+        callType: map[callLogColumnCallType],
+        countryCode: map[callLogColumnCountryCode],
+        mobileNo: map[callLogColumnMobileNo],
+        callTime: map[callLogColumnCallTime] == null
+            ? null
+            : DateTime.tryParse(map[callLogColumnCallTime]),
+        callDuration: map[callLogColumnCallDuration],
+        callDurationUnit: map[callLogColumnCallDurationUnit],
+        contactListId: map[callLogColumnContactListId],
+        callDurations: map[callLogColumnCallDurations],
+        isSpam: map[callLogColumnIsSpam],
+        isBlocked: map[callLogColumnIsBlocked],
+        markSpamByUser: map[callLogColumnMarkSpamByUser],
+        isManually: map[callLogColumnIsManually] ?? '0',
+        contactData: map[contactData] == null
+            ? null
+            : ContactData.fromJson(jsonDecode(map[contactData])));
   }
 }

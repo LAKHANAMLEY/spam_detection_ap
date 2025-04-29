@@ -216,6 +216,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get call => 'Llamar';
 
   @override
+  String get callActivity => 'Actividad de llamada';
+
+  @override
   String get callHistory => 'Historial de llamadas';
 
   @override
@@ -909,6 +912,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get lastName => 'Nom de famille';
 
   @override
+  String get lastSeen => 'Última vez visto';
+
+  @override
   String get lastSixMonths => 'últimos 6 meses';
 
   @override
@@ -1175,6 +1181,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get oldPassword => 'Ancien mot de passe';
+
+  @override
+  String get online => 'En línea';
 
   @override
   String get oopsNoInternet => 'OOPS!\nPas d\'Internet';
@@ -1678,6 +1687,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get reportSpamLabel => 'Este remitente será marcado y etiquetado como spam en la conversación.';
 
   @override
+  String get reportSpamSMsDetail => 'Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú';
+
+  @override
   String get reportText => 'Informe';
 
   @override
@@ -1912,6 +1924,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get spamIdentified => 'Llamadas spam identificadas';
 
   @override
+  String get spamReport => 'Informe de spam';
+
+  @override
   String get spamReports => 'Informes de spam';
 
   @override
@@ -2131,6 +2146,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get userName => 'Nombre de usuario';
 
   @override
+  String get usuallyCalls => 'Normalmente llama';
+
+  @override
   String get valid => 'Valide';
 
   @override
@@ -2273,16 +2291,4 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get zip => 'Código postal';
-
-  @override
-  String get reportSpamSMsDetail => 'Reportar el mensaje para mejorar la experiencia de millones de usuarios como tú';
-
-  @override
-  String get spamReport => 'Informe de spam';
-
-  @override
-  String get usuallyCalls => 'Normalmente llama';
-
-  @override
-  String get callActivity => 'Actividad de llamada';
 }

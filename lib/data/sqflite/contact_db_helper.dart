@@ -92,7 +92,7 @@ class ContactDBHelper {
     Database db = await instance.database;
     List<Map<String, dynamic>> results = await db.query(
       table,
-      where: '$columnId = ?',
+      where: '$columnMobileNo = ?',
       whereArgs: [id],
     );
     if (results.isNotEmpty) {
@@ -119,8 +119,8 @@ class ContactDBHelper {
     return await db.update(
       table,
       _contactToMap(contact),
-      where: '$columnId = ?',
-      whereArgs: [contact.id],
+      where: '$columnMobileNo = ?',
+      whereArgs: [contact.mobileNo],
     );
   }
 
@@ -128,7 +128,7 @@ class ContactDBHelper {
     Database db = await instance.database;
     return await db.delete(
       table,
-      where: '$columnId = ?',
+      where: '$columnMobileNo = ?',
       whereArgs: [id],
     );
   }
@@ -144,7 +144,7 @@ class ContactDBHelper {
   // Helper functions to convert ContactData to and from Map
   Map<String, dynamic> _contactToMap(ContactData contact) {
     return {
-      columnId: contact.id,
+      columnId: contact.mobileNo,
       columnName: contact.name,
       columnCountryCode: contact.countryCode,
       columnNumberType: contact.numberType,

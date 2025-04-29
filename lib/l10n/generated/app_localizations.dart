@@ -509,6 +509,12 @@ abstract class AppLocalizations {
   /// **'Call'**
   String get call;
 
+  /// No description provided for @callActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Call Activity'**
+  String get callActivity;
+
   /// No description provided for @callHistory.
   ///
   /// In en, this message translates to:
@@ -1895,6 +1901,12 @@ abstract class AppLocalizations {
   /// **'Last name'**
   String get lastName;
 
+  /// No description provided for @lastSeen.
+  ///
+  /// In en, this message translates to:
+  /// **'Last seen'**
+  String get lastSeen;
+
   /// No description provided for @lastSixMonths.
   ///
   /// In en, this message translates to:
@@ -2422,6 +2434,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Old password'**
   String get oldPassword;
+
+  /// No description provided for @online.
+  ///
+  /// In en, this message translates to:
+  /// **'Online'**
+  String get online;
 
   /// No description provided for @oopsNoInternet.
   ///
@@ -3425,6 +3443,12 @@ abstract class AppLocalizations {
   /// **'This sender will be marked and labeled as spam in the conversation.'**
   String get reportSpamLabel;
 
+  /// No description provided for @reportSpamSMsDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Report the message to improve the experience for millions users like you'**
+  String get reportSpamSMsDetail;
+
   /// No description provided for @reportText.
   ///
   /// In en, this message translates to:
@@ -3893,6 +3917,12 @@ abstract class AppLocalizations {
   /// **'Spam calls identified'**
   String get spamIdentified;
 
+  /// No description provided for @spamReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Spam Report'**
+  String get spamReport;
+
   /// No description provided for @spamReports.
   ///
   /// In en, this message translates to:
@@ -4331,6 +4361,12 @@ abstract class AppLocalizations {
   /// **'User name'**
   String get userName;
 
+  /// No description provided for @usuallyCalls.
+  ///
+  /// In en, this message translates to:
+  /// **'Usually Calls'**
+  String get usuallyCalls;
+
   /// No description provided for @valid.
   ///
   /// In en, this message translates to:
@@ -4618,30 +4654,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zip Code'**
   String get zip;
-
-  /// No description provided for @reportSpamSMsDetail.
-  ///
-  /// In en, this message translates to:
-  /// **'Report the message to improve the experience for millions users like you'**
-  String get reportSpamSMsDetail;
-
-  /// No description provided for @spamReport.
-  ///
-  /// In en, this message translates to:
-  /// **'Spam Report'**
-  String get spamReport;
-
-  /// No description provided for @usuallyCalls.
-  ///
-  /// In en, this message translates to:
-  /// **'Usually Calls'**
-  String get usuallyCalls;
-
-  /// No description provided for @callActivity.
-  ///
-  /// In en, this message translates to:
-  /// **'Call Activity'**
-  String get callActivity;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

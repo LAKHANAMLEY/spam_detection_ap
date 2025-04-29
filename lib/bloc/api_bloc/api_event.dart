@@ -461,7 +461,7 @@ class SyncCallLogManuallyEvent extends ApiEvent {
 }
 
 class CheckSpamEvent extends ApiEvent {
-  final CallLogData callLogs;
+  final List<CallLogData> callLogs;
 
   CheckSpamEvent({
     required this.callLogs,
@@ -683,11 +683,12 @@ class EditContactEvent extends ApiEvent {
 
 class GetContactDetailEvent extends ApiEvent {
   final String mobileNo;
+  final List<CallLogData>? callLogs;
 
-  GetContactDetailEvent(this.mobileNo);
+  GetContactDetailEvent(this.mobileNo, {this.callLogs});
 
   @override
-  List<Object?> get props => [mobileNo];
+  List<Object?> get props => [mobileNo, callLogs];
 }
 
 class ForgetPasswordPhoneEvent extends ApiEvent {

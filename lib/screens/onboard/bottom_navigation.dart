@@ -142,37 +142,60 @@ class _BottomNavigationState extends State<BottomNavigation> {
   void _phoneStateListener() {
     _phoneStateStreamSubs = PhoneState.stream.listen((state) async {
       log("${state.number} ${state.status.name} ${state.duration}");
-      if (_isProcessingCall) {
-        if (state.status == PhoneStateStatus.NOTHING) {
-          _isProcessingCall = false;
-        }
-        return;
-      }
 
       if (state.status != PhoneStateStatus.NOTHING &&
           state.number?.isNotEmpty == true) {
-        _isProcessingCall = true;
-
         // Optionally, navigate to the full CallScreen as well
         // You might want to do this based on a specific condition or user preference
         if (state.status == PhoneStateStatus.CALL_STARTED ||
             state.status == PhoneStateStatus.CALL_ENDED ||
             state.status == PhoneStateStatus.CALL_INCOMING) {
-          context.read<CallLogDBBloc>().add(SyncManuallyDBCallLog(
-                callLogEntry: CallLogEntry(
-                  number: state.number,
-                  duration: state.duration?.inSeconds ?? 0,
-                  timestamp: DateTime.now().millisecondsSinceEpoch,
-                  callType: getCallLogType(state.status.name),
-                ),
-              ));
+          // context.read<CallLogDBBloc>().add(SyncManuallyDBCallLog(
+          //       callLogEntry: CallLogEntry(
+          //         number: state.number,
+          //         duration: state.duration?.inSeconds ?? 0,
+          //         timestamp: DateTime.now().millisecondsSinceEpoch,
+          //         callType: getCallLogType(state.status.name),
+          //       ),
+          //     ));
+
+          if (state.status == PhoneStateStatus.CALL_INCOMING) {
+            _isProcessingCall = true;
+            context
+                .read<CallLogDBBloc>()
+                .add(SyncDBCallLogHistory(mobileNo: state.number ?? ""));
+            showOverlay(
+              callType: getCallLogType(state.status.name)?.name ?? "",
+              number: state.number ?? "",
+              duration: state.duration?.inSeconds ?? 0,
+            );
+          }
+          if (state.status == PhoneStateStatus.CALL_STARTED) {
+            if (!_isProcessingCall) {
+              context
+                  .read<CallLogDBBloc>()
+                  .add(SyncDBCallLogHistory(mobileNo: state.number ?? ""));
+              showOverlay(
+                callType: getCallLogType(state.status.name)?.name ?? "",
+                number: state.number ?? "",
+                duration: state.duration?.inSeconds ?? 0,
+              );
+            }
+            _isProcessingCall = true;
+          }
+          if (state.status == PhoneStateStatus.CALL_ENDED) {
+            _isProcessingCall = false;
+            context
+                .read<CallLogDBBloc>()
+                .add(SyncDBCallLogHistory(mobileNo: state.number ?? ""));
+            showOverlay(
+              callType: getCallLogType(state.status.name)?.name ?? "",
+              number: state.number ?? "",
+              duration: state.duration?.inSeconds ?? 0,
+            );
+          }
 
           // Call your existing showOverlay function
-          showOverlay(
-            callType: getCallLogType(state.status.name)?.name ?? "",
-            number: state.number ?? "",
-            duration: state.duration?.inSeconds ?? 0,
-          );
 
           // /Check ig this is a default phone app
           // _showCallScreen(
@@ -181,7 +204,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
           //   number: state.number ?? "",
           //   duration: state.duration?.inSeconds ?? 0,
           // );
-          _isProcessingCall = false;
         }
       } else if (state.status == PhoneStateStatus.NOTHING) {
         _isProcessingCall = false;
@@ -189,19 +211,19 @@ class _BottomNavigationState extends State<BottomNavigation> {
     });
   }
 
-  void _showCallScreen({
-    required BuildContext context,
-    required CallType callType,
-    required String number,
-    required int duration,
-  }) {
-    Navigator.pushNamed(context, AppRoutes.defaultCall,
-        arguments: DefaultCall(
-          callType: callType,
-          duration: duration,
-          number: number,
-        ));
-  }
+  // void _showCallScreen({
+  //   required BuildContext context,
+  //   required CallType callType,
+  //   required String number,
+  //   required int duration,
+  // }) {
+  //   Navigator.pushNamed(context, AppRoutes.defaultCall,
+  //       arguments: DefaultCall(
+  //         callType: callType,
+  //         duration: duration,
+  //         number: number,
+  //       ));
+  // }
 
   static const _platform = MethodChannel("com.broadlink.protect/chat");
 

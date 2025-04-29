@@ -36,6 +36,15 @@ class DeleteDBContact extends ContactDBEvent {
 
 class LoadDBContacts extends ContactDBEvent {}
 
+class LoadDBContactById extends ContactDBEvent {
+  final String id;
+
+  const LoadDBContactById({required this.id});
+
+  @override
+  List<Object> get props => [id];
+}
+
 class SyncDBContacts extends ContactDBEvent {}
 
 class DeleteDBContacts extends ContactDBEvent {}

@@ -1,4 +1,5 @@
 import 'package:direct_call_plus/direct_call_plus.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:spam_delection_app/lib.dart';
 import 'package:system_alert_window/system_alert_window.dart';
 
@@ -18,7 +19,8 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
 
   void onData(data) {
     var callLog = CallLogData.fromJson(data);
-    context.read<CallLogDBBloc>().add(GetDBCallLog(callLogData: callLog));
+    context.read<CallLogDBBloc>().add(GetDBCallLog(
+        mobileNo: callLog.mobileNo?.separatePhoneAndPhoneCode().phone ?? ""));
     // callLogDetailBloc.add(GetDeviceCallLogEvent(
     //   number: callLog.mobileNo,
     //   // dateTimeFrom: DateTime.now().subtract(const Duration(days: 1)),
@@ -55,8 +57,8 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
     return Material(
         child: BlocConsumer<CallLogDBBloc, CallLogDBState>(
       listener: (context, state) {
-        if (state is CallLogDBLoaded) {
-          contactData = state.callLogs.first;
+        if (state is CallLogDBLoadedById) {
+          contactData = state.callLog;
         }
       },
       // bloc: callLogDetailBloc,
@@ -128,7 +130,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
           decoration: BoxDecoration(
             color: contactData?.isSpam == 1
                 ? AppColor.redColor
-                : AppColor.darkPurpleColor,
+                : AppColor.themeOrangeColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -138,7 +140,13 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                 children: [
                   if (contactData != null)
                     CircleAvatar(
-                      child: Image.asset(getCallTypeImage(contactData!)),
+                      // child: Image.asset(getCallTypeImage(contactData!)),
+                      child: SvgPicture.asset(
+                        getSvgImageByCallType(contactData!),
+                        errorBuilder: (context, error, stackTrace) =>
+                            Icon(Icons.error),
+                        placeholderBuilder: (context) => Loader(),
+                      ),
                       // backgroundImage: AssetImage(callLog?.isSpam == 1
                       //     ? IconConstants.icspamCircle
                       //     : IconConstants.icCaller),
@@ -177,8 +185,9 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                         ],
                       ),
                       Text(
-                        contactData?.name ??
-                            ((contactData?.countryCode?.isNotEmpty ?? false)
+                        (contactData?.name?.isNotEmpty ?? false)
+                            ? contactData?.name ?? ""
+                            : ((contactData?.countryCode?.isNotEmpty ?? false)
                                 ? ("+${contactData?.countryCode ?? ""} ${contactData?.mobileNo ?? ""}")
                                 : contactData?.mobileNo ?? ""),
                         style: textTheme(context)

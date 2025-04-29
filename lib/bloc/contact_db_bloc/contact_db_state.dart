@@ -20,6 +20,15 @@ class ContactDBLoaded extends ContactDBState {
   List<Object> get props => [contacts];
 }
 
+class ContactDBLoadedById extends ContactDBState {
+  final ContactData contact;
+
+  const ContactDBLoadedById(this.contact);
+
+  @override
+  List<Object> get props => [contact];
+}
+
 class ContactDBError extends ContactDBState {
   final String message;
   final Object exception;

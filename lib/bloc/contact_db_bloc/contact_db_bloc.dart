@@ -8,6 +8,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
     on<UpdateDBContact>(_onUpdateContact);
     on<DeleteDBContact>(_onDeleteContact);
     on<LoadDBContacts>(_onLoadContacts);
+    on<LoadDBContactById>(_onLoadContactsById);
     on<SyncDBContacts>(_onSyncContacts);
     on<DeleteDBContacts>(_onDeleteDBContacts);
   }
@@ -60,6 +61,17 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
     }
   }
 
+  Future<void> _onLoadContactsById(
+      LoadDBContactById event, Emitter<ContactDBState> emit) async {
+    emit(ContactDBLoading());
+    try {
+      final contacts = await _databaseHelper.getContact(event.id);
+      if (contacts != null) emit(ContactDBLoadedById(contacts!));
+    } catch (e) {
+      emit(ContactDBError('Failed to load contacts: $e', e));
+    }
+  }
+
   Future<void> _onSyncContacts(
       SyncDBContacts event, Emitter<ContactDBState> emit) async {
     emit(ContactDBLoading());
@@ -86,7 +98,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
         // );
         // Check if the contact already exists (e.g., by ID) before inserting
         final existingContact =
-            await _databaseHelper.getContact(contactData.id!);
+            await _databaseHelper.getContactByPhone(contactData.mobileNo ?? "");
         if (existingContact == null) {
           await _databaseHelper.insert(contactData);
         } else {

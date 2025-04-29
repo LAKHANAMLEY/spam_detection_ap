@@ -1,16 +1,20 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:phone_state_background/phone_state_background.dart';
+import 'package:spam_delection_app/constants/svg_icons.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class CallLogListItem extends StatelessWidget {
   final CallLogData callLog;
   final bool showPopupMenuBtn;
   final void Function()? onTap;
+  final bool fromDetail;
 
   const CallLogListItem({
     super.key,
     required this.callLog,
     this.showPopupMenuBtn = true,
     this.onTap,
+    this.fromDetail = false,
   });
 
   @override
@@ -29,6 +33,7 @@ class CallLogListItem extends StatelessWidget {
                     isSpam: callLog.isSpam,
                     isBlocked: callLog.isBlocked,
                     markspambyuser: callLog.markSpamByUser,
+                    callHistory: [callLog],
                   ),
                 ));
           },
@@ -37,10 +42,15 @@ class CallLogListItem extends StatelessWidget {
         // backgroundImage: AssetImage(
         //   getIcon(callLog),
         // ),
-        child: Image.asset(
-          getCallTypeImage(callLog),
-          // fit: BoxFit.scaleDown,
+        child: SvgPicture.asset(
+          getSvgImageByCallType(callLog),
+          errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+          placeholderBuilder: (context) => Loader(),
         ),
+        // child: Image.asset(
+        //   getCallTypeImage(callLog),
+        // fit: BoxFit.scaleDown,
+        // ),
       ),
       // leading: Icon(getCallTypeIcon(callLog.callType),
       //     color: getCallTypeColor(callLog.callType)),
@@ -50,11 +60,13 @@ class CallLogListItem extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              (callLog.name?.isNotEmpty ?? false)
-                  ? callLog.name ?? ""
-                  : callLog.countryCode?.isNotEmpty ?? false
-                      ? "+${callLog.countryCode} ${callLog.mobileNo ?? ""}"
-                      : callLog.mobileNo ?? callLog.id ?? "",
+              fromDetail
+                  ? callLog.callTime?.formatRelativeDay() ?? ""
+                  : (callLog.name?.isNotEmpty ?? false)
+                      ? callLog.name ?? ""
+                      : callLog.countryCode?.isNotEmpty ?? false
+                          ? "+${callLog.countryCode} ${callLog.mobileNo ?? ""}"
+                          : callLog.mobileNo ?? callLog.id ?? "",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: textTheme(context).titleMedium,
@@ -73,7 +85,7 @@ class CallLogListItem extends StatelessWidget {
           if (callLog.callType?.isNotEmpty ?? false)
             Icon(
               getCallTypeIcon(callLog.callType),
-              color: getCallTypeColor(callLog.callType),
+              color: getCallTypeIconColor(callLog.callType),
               size: 15,
             ),
           5.width(),
@@ -88,7 +100,7 @@ class CallLogListItem extends StatelessWidget {
               callLog.callType ?? "",
               style: textTheme(context)
                   .bodySmall
-                  ?.copyWith(color: getCallTypeColor(callLog.callType)),
+                  ?.copyWith(color: getCallTypeTextColor(callLog.callType)),
             ),
           ],
           if (callLog.callDuration != null) const Circle(),
@@ -223,7 +235,39 @@ String getCallTypeImage(CallLogData callLog) {
   }
 }
 
-Color getCallTypeColor(String? callLogType) {
+String getSvgImageByCallType(CallLogData callLog) {
+  var callType = getCallLogType(callLog.callType);
+  if (callLog.isSpam == 1) {
+    return SvgIcons.spam;
+  } else {
+    switch (callType) {
+      case null:
+        return SvgIcons.callIncoming;
+      case CallType.incoming:
+        return SvgIcons.callIncoming;
+      case CallType.outgoing:
+        return SvgIcons.callOutgoing;
+      case CallType.missed:
+        return SvgIcons.callMissed;
+      case CallType.voiceMail:
+        return SvgIcons.callIncoming;
+      case CallType.rejected:
+        return SvgIcons.callMissed;
+      case CallType.blocked:
+        return SvgIcons.callBlocked;
+      case CallType.answeredExternally:
+        return SvgIcons.callIncoming;
+      case CallType.unknown:
+        return SvgIcons.callIncoming;
+      case CallType.wifiIncoming:
+        return SvgIcons.callIncoming;
+      case CallType.wifiOutgoing:
+        return SvgIcons.callIncoming;
+    }
+  }
+}
+
+Color getCallTypeTextColor(String? callLogType) {
   var callType = getCallLogType(callLogType);
   switch (callType) {
     case CallType.incoming:
@@ -246,6 +290,34 @@ Color getCallTypeColor(String? callLogType) {
       return Colors.grey;
     case CallType.wifiOutgoing:
       return Colors.grey;
+    case null:
+      return Colors.grey;
+  }
+}
+
+Color getCallTypeIconColor(String? callLogType) {
+  var callType = getCallLogType(callLogType);
+  switch (callType) {
+    case CallType.incoming:
+      return Colors.green;
+    case CallType.outgoing:
+      return Colors.blue;
+    case CallType.missed:
+      return Colors.red;
+    case CallType.voiceMail:
+      return Colors.grey;
+    case CallType.rejected:
+      return Colors.red;
+    case CallType.blocked:
+      return Colors.red;
+    case CallType.answeredExternally:
+      return Colors.green;
+    case CallType.unknown:
+      return Colors.grey;
+    case CallType.wifiIncoming:
+      return Colors.green;
+    case CallType.wifiOutgoing:
+      return Colors.blue;
     case null:
       return Colors.grey;
   }

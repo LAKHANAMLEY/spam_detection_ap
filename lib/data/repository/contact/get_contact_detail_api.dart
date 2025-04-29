@@ -2,11 +2,14 @@ import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
 Future<ContactDetailsResponse> getContactDetail(
-    {required String mobileNo}) async {
+    {required String mobileNo, List<CallLogData>? callLogs}) async {
   final response = await http.post(
     Uri.parse(ApiUrlConstants.contactDetail),
     headers: await ApiUrlConstants.headers(),
-    body: {"mobile_no": mobileNo},
+    body: jsonEncode({
+      "mobile_no": mobileNo,
+      // "call_log": callLogs,
+    }),
   );
   if (response.statusCode == 200) {
     var jsonData = json.decode(response.body);
