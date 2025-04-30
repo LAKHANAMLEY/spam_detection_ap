@@ -59,7 +59,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       if (callLogs != null) {
         emit(CallLogDBLoadedById(callLogs));
       } else {
-        log("Call logs not found");
+        log("Call log not found by mobile no. ${event.mobileNo}");
       }
     } catch (e) {
       emit(CallLogDBError(

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_libphonenumber/flutter_libphonenumber.dart' as lib;
 // import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:phone_numbers_parser/phone_numbers_parser.dart';
@@ -9,24 +11,29 @@ extension StringExt on String {
 
   PhoneData separatePhoneAndPhoneCode() {
     // PhoneNumber number = await PhoneNumber.getRegionInfoFromPhoneNumber(this);
+    if ((replaceAll(AppConstants.specialCharAndSpaceRegex, "")).isNumber) {
+      try {
+        final formattedNumber = lib.formatNumberSync(
+          this,
+          // country: lib.CountryWithPhoneCode.getCountryDataByPhone(this),
+        );
+        // log("Lib phonenumber formatted number: $formattedNumber");
 
-    final formattedNumber = lib.formatNumberSync(
-      this,
-      // country: lib.CountryWithPhoneCode.getCountryDataByPhone(this),
-    );
-    // log("Lib phonenumber formatted number: $formattedNumber");
-
-    try {
-      var phone = PhoneNumber.parse(
-        formattedNumber,
-        callerCountry:
-            IsoCode.fromJson(AppConstants.selectedCountry?.code ?? ""),
-      );
-      // log("Phone number parser number ${phone.countryCode} ${phone.nsn}");
-      // log("$country $this --> $formattedNumber ---> ${phone.countryCode} ${phone.nsn}");
-      return PhoneData(phone: phone.nsn, phoneCode: phone.countryCode);
-    } catch (e) {
-      return PhoneData(phone: formattedNumber, phoneCode: "");
+        var phone = PhoneNumber.parse(
+          formattedNumber,
+          callerCountry:
+              IsoCode.fromJson(AppConstants.selectedCountry?.code ?? ""),
+        );
+        // log("Phone number parser number ${phone.countryCode} ${phone.nsn}");
+        // log("$country $this --> $formattedNumber ---> ${phone.countryCode} ${phone.nsn}");
+        return PhoneData(phone: phone.nsn, phoneCode: phone.countryCode);
+      } catch (e) {
+        log("error on formatting number $e");
+        return PhoneData(phone: this, phoneCode: "");
+      }
+    } else {
+      // log("Not a number $this");
+      return PhoneData(phone: this, phoneCode: "");
     }
 
     // TODO: get countries list by server

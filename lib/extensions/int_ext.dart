@@ -13,4 +13,8 @@ extension IntExt on int {
         height: toDouble(),
         width: toDouble(),
       );
+
+  Color? getColorForBottomNav(int page) {
+    return this == page ? AppColor.whiteColor : AppColor.whiteColor;
+  }
 }

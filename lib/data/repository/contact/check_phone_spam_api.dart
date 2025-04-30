@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
@@ -36,7 +34,7 @@ Future<CheckSpamNumberResponse> checkSpam({
   };
   if (callLogData.isNotEmpty) body["call_log"] = callLogData;
 
-  log("${ApiUrlConstants.checkSpamContacts} ${jsonEncode(body)}");
+  // log("${ApiUrlConstants.checkSpamContacts} ${jsonEncode(body)}");
 
   // var request = http.MultipartRequest(
   //     'POST',

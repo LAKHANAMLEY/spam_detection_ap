@@ -375,6 +375,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get copied => 'Copied';
 
   @override
+  String get copyrightText => '2025 BROADLINK';
+
+  @override
   String get corporateEditProfile => 'Corporate Edit Profile';
 
   @override
@@ -1220,6 +1223,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get otp => 'OTP';
+
+  @override
+  String get otpCanNotBeLessThanSixDigit => 'OTP can not be less than 6 digit';
 
   @override
   String get otpVerification => ' OTP Verification';

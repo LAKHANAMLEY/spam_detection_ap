@@ -50,14 +50,14 @@ class SyncMessageDetailsWithServer extends MessageDBEvent {
   List<Object> get props => [smsLogs];
 }
 
-class SyncChangedMessageWithServer extends MessageDBEvent {
-  final SmsMessage smsMessage;
+// class SyncChangedMessageWithServer extends MessageDBEvent {
+//   final SmsMessage smsMessage;
 
-  const SyncChangedMessageWithServer({required this.smsMessage});
+//   const SyncChangedMessageWithServer({required this.smsMessage});
 
-  @override
-  List<Object> get props => [smsMessage];
-}
+//   @override
+//   List<Object> get props => [smsMessage];
+// }
 
 class AddSmsLogsToDB extends MessageDBEvent {
   final List<SmsLog> smsLogs;

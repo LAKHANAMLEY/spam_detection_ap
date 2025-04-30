@@ -33,7 +33,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocListener<SmsBloc, SmsState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is SmsInitial) {
             log("Initial state");
             context.read<SmsBloc>().add(StartListeningSms());
@@ -45,17 +45,20 @@ class _MessagesScreenState extends State<MessagesScreen> {
             //     .read<MessageDBBloc>()
             //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
 
+            var newMessage = await SMSController.getLastSms(state.message);
             context.read<MessageDBBloc>().add(SyncMessageDetailsWithServer(
                 smsLogs:
-                    SmsLog.fromSmsMessage(state.message, ContactData(), null)));
+                    SmsLog.fromSmsMessage(newMessage!, ContactData(), null)));
             // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
           }
           if (state is NewSmsSent) {
             log("SMS delivered");
             // messagesBloc.add(GetDeviceMessagesEvent());
+            var newMessage = await SMSController.getLastSms(state.message);
+
             context.read<MessageDBBloc>().add(SyncMessageDetailsWithServer(
                 smsLogs:
-                    SmsLog.fromSmsMessage(state.message, ContactData(), null)));
+                    SmsLog.fromSmsMessage(newMessage!, ContactData(), null)));
             // context
             //     .read<MessageDBBloc>()
             //     .add(SyncChangedMessageWithServer(smsMessage: state.message));

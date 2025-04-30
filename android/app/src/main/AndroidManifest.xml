@@ -167,12 +167,11 @@
         <activity
             android:name=".DialerActivity"
             android:windowSoftInputMode="stateAlwaysVisible|adjustResize"
-            android:exported="true"
-        >
-            <intent-filter>
+            android:exported="true">
+            <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter> -->
 
             <intent-filter>
                 <!-- Handle links from other applications -->
@@ -190,11 +189,14 @@
             </intent-filter>
         </activity>
 
+        <!-- END OF THE SET DEFAULT APP -->
+
+        <!-- Start for caller activity -->
+
         <service
             android:name=".CallService"
             android:permission="android.permission.BIND_INCALL_SERVICE"
-            android:exported="true"
-        >
+            android:exported="true">
             <meta-data
                 android:name="android.telecom.IN_CALL_SERVICE_UI"
                 android:value="true"
@@ -207,16 +209,14 @@
         <activity android:name=".CallActivity"
             android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen" />
 
-        <!-- END OF THE SET DEFAULT APP -->
-
-        <!-- Start for caller activity -->
+        <!-- End of caller activity -->
 
         <activity
             android:name="io.flutter.embedding.android.FlutterActivity"
             android:exported="true"
         />
 
-        <!-- End of caller activity -->
+
     </application>
     <!-- Required to query activities that can process text, see:
            https://developer.android.com/training/package-visibility and

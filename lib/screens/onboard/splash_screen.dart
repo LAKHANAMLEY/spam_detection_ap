@@ -62,8 +62,8 @@ class SplashState extends State<Splash> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 1 / 100,
                   ),
-                  const Text(
-                    StringConstants.copyrightText,
+                  Text(
+                    appLocalization(context).copyrightText,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColor.slatWhiteColor,

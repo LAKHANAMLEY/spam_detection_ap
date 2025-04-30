@@ -20,12 +20,18 @@ class ContactListItem extends StatelessWidget {
               : IconConstants.icCallRegular),
         ),
         title: Text(
-          contact.name ?? "",
+          (contact.name?.isNotEmpty ?? false)
+              ? contact.name ?? ""
+              : ((contact.countryCode?.isNotEmpty ?? false)
+                  ? "+${contact.countryCode} ${contact.mobileNo ?? ""}"
+                  : contact.mobileNo ?? ""),
           style: textTheme(context).titleMedium,
         ),
-        subtitle: Text(contact.countryCode?.isNotEmpty ?? false
-            ? "+${contact.countryCode} ${contact.mobileNo ?? ""}"
-            : contact.mobileNo ?? ""),
+        subtitle: contact.name?.isNotEmpty ?? false
+            ? Text(contact.countryCode?.isNotEmpty ?? false
+                ? "+${contact.countryCode} ${contact.mobileNo ?? ""}"
+                : contact.mobileNo ?? "")
+            : null,
         trailing: PopupMenuButton(
             itemBuilder: (context) => [
                   PopupMenuItem(

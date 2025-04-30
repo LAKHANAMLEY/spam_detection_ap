@@ -18,7 +18,7 @@ class MessageListItem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Image.asset(
-            sms.isMarkSpam == 1
+            sms.isSpam == "1"
                 ? IconConstants.icSpamMessage
                 : IconConstants.icMessageLock,
             width: 40,

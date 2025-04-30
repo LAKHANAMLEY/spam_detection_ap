@@ -1,16 +1,8 @@
 import 'dart:developer';
 
-import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
-import 'package:spam_delection_app/lib.dart'; // Assuming this imports necessary constants and extensions
-// import 'package:async/async.dart'; // If you use locks
-
-extension ColorByIndex on int {
-  Color? getColorForBottomNav(int page) {
-    return this == page ? AppColor.whiteColor : AppColor.whiteColor;
-  }
-}
+import 'package:spam_delection_app/lib.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -22,9 +14,8 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
   StreamSubscription<PhoneState>? _phoneStateStreamSubs;
-  bool _isProcessingCall = false; // To avoid showing the screen multiple times
+  bool _isProcessingCall = false;
 
   final List<Widget> _pages = const [
     SubscriptionScreen(),
@@ -41,40 +32,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
     _phoneStateListener();
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     handleAppLifeCycle();
-    setDefaultSMSApp().whenComplete(() {
+    SMSController.setDefaultSMSApp().whenComplete(() {
       CallController.setDefaultCallingApp();
     });
   }
-
-  // Future<void> _checkUpdatedPermissions() async {
-  //   final statuses = await <Permission>[
-  //     Permission.contacts,
-  //     Permission.sms,
-  //     Permission.systemAlertWindow,
-  //     Permission.notification,
-  //     Permission.camera,
-  //     Permission.photos,
-  //     Permission.storage,
-  //   ].request(); // Use .status to check the current state
-
-  //   statuses.forEach((permission, status) {
-  //     log('Updated $permission: $status');
-  //     if (status.isGranted) {
-  //       if (permission == Permission.phone) {
-  //         context.read<CallLogDBBloc>().add(SyncDBCallLogs());
-  //       }
-  //       if (permission == Permission.contacts) {
-  //         context.read<ContactDBBloc>().add(SyncDBContacts());
-  //       }
-  //       if (permission == Permission.sms) {
-  //         context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-  //       }
-  //     } else if (status.isDenied) {
-  //     } else if (status.isPermanentlyDenied) {
-  //       // Permission is still permanently denied, maybe show a message again
-  //     }
-  //   });
-  // }
 
   handleAppLifeCycle() {
     // how to get in flutter user is online and offline
@@ -225,28 +186,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   //       ));
   // }
 
-  static const _platform = MethodChannel("com.broadlink.protect/chat");
-
   StreamSubscription<PermissionState>? permissionStreamSubscription;
-
-  Future<void> setDefaultSMSApp() async {
-    try {
-      await _platform.invokeMethod('setDefaultSms');
-    } on PlatformException catch (e) {
-      print("Error setting default SMS app: $e");
-    }
-  }
-
-  Future<bool> signOutFromGoogle() async {
-    try {
-      await _googleSignIn.disconnect();
-      await _googleSignIn.signOut();
-      return true;
-    } catch (e) {
-      debugPrint('Error signing out from Google: $e');
-      return false;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

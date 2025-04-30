@@ -13,7 +13,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     on<DeleteMessageDB>(_deleteDatabase);
     on<SyncMessagesWithServer>(_syncMessagesWithServer);
     on<SyncMessageDetailsWithServer>(_syncMessageDetailsWithServer);
-    on<SyncChangedMessageWithServer>(_syncChangedMessagesWithServer);
+    // on<SyncChangedMessageWithServer>(_syncChangedMessagesWithServer);
     on<AddSmsLogsToDB>(_addSmsLogsToDB);
     on<GetAllSmsFromDB>(_getAllSmsFromDB);
     on<ReadDBMessage>(_readDBSms);
@@ -52,7 +52,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
   Future<void> _syncMessagesWithServer(
       SyncMessagesWithServer event, Emitter<MessageDBState> emit) async {
-    emit(MessageDBSyncing());
+    emit(MessageDBLoading());
     try {
       final localSms = await SMSController.getDeviceSms();
       final grouped = _groupSmsByAddress(localSms);
@@ -82,7 +82,16 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
   Future<void> _syncMessageDetailsWithServer(
       SyncMessageDetailsWithServer event, Emitter<MessageDBState> emit) async {
     final address = event.smsLogs.address;
-    final localMsgs = await SMSController.getDeviceSms(address: address);
+    final threadId = event.smsLogs.smsDetails?.firstOrNull?.threadId;
+    if (threadId == null) {
+      return;
+    }
+    final localMsgs = await SMSController.getDeviceSms(
+        // address: address,
+        threadId: int.parse(threadId));
+    if (localMsgs.isEmpty) {
+      return;
+    }
     final serverDetails = (await syncSmsDetailsWithServer(
                 smsLogs: localMsgs, address: address ?? ""))
             .smsLogDetails ??
@@ -91,35 +100,35 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
     final exists = await _db.getSmsLog(updatedLog.id ?? "");
     exists == null
-        ? await _db.insertSmsLog(updatedLog)
-        : await _db.updateSmsLog(updatedLog);
+        ? await _db.insertSmsLog(updatedLog.copyWith(name: exists?.name))
+        : await _db.updateSmsLog(updatedLog.copyWith(name: exists.name));
 
     emit(MessageDBLoaded(await _db.getAllSmsLogs()));
   }
 
-  Future<void> _syncChangedMessagesWithServer(
-      SyncChangedMessageWithServer event, Emitter<MessageDBState> emit) async {
-    emit(MessageDBSyncing());
-    try {
-      await syncSmsWithServer(smsLogs: [event.smsMessage]);
+  // Future<void> _syncChangedMessagesWithServer(
+  //     SyncChangedMessageWithServer event, Emitter<MessageDBState> emit) async {
+  //   emit(MessageDBSyncing());
+  //   try {
+  //     await syncSmsWithServer(smsLogs: [event.smsMessage]);
 
-      final contact = await _contacts.getContactByPhone(
-          event.smsMessage.address?.separatePhoneAndPhoneCode().phone ?? "");
-      final log = SmsLog.fromSmsMessage(event.smsMessage, contact, null)
-          .copyWith(smsDetails: [
-        SmsDetail.fromSmsMessage(event.smsMessage, SmsDetail(), contact)
-      ]);
+  //     final contact = await _contacts.getContactByPhone(
+  //         event.smsMessage.address?.separatePhoneAndPhoneCode().phone ?? "");
+  //     final log = SmsLog.fromSmsMessage(event.smsMessage, contact, null)
+  //         .copyWith(smsDetails: [
+  //       SmsDetail.fromSmsMessage(event.smsMessage, SmsDetail(), contact)
+  //     ]);
 
-      final exists = await _db.getSmsLog(log.id ?? "");
-      exists == null
-          ? await _db.insertSmsLog(log)
-          : await _db.updateSmsLog(log);
+  //     final exists = await _db.getSmsLog(log.id ?? "");
+  //     exists == null
+  //         ? await _db.insertSmsLog(log)
+  //         : await _db.updateSmsLog(log);
 
-      emit(MessageDBLoaded(await _db.getAllSmsLogs()));
-    } catch (e) {
-      emit(MessageDBError('Failed to sync changed message: $e', e));
-    }
-  }
+  //     emit(MessageDBLoaded(await _db.getAllSmsLogs()));
+  //   } catch (e) {
+  //     emit(MessageDBError('Failed to sync changed message: $e', e));
+  //   }
+  // }
 
   Future<void> _addSmsLogsToDB(
       AddSmsLogsToDB event, Emitter<MessageDBState> emit) async {
@@ -132,7 +141,8 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
   Future<void> _getAllSmsFromDB(
       GetAllSmsFromDB event, Emitter<MessageDBState> emit) async {
-    final logs = await _db.getAllSmsLogs(); // <- Await first
+    emit(MessageDBLoading());
+    final logs = await _db.getAllSmsLogs();
     await _handleDbWrite(() async {
       log("Get all sms");
     }, emit, onSuccess: () => MessageDBLoaded(logs)); // <- Sync function

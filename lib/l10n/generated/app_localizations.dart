@@ -827,6 +827,12 @@ abstract class AppLocalizations {
   /// **'Copied'**
   String get copied;
 
+  /// No description provided for @copyrightText.
+  ///
+  /// In en, this message translates to:
+  /// **'2025 BROADLINK'**
+  String get copyrightText;
+
   /// No description provided for @corporateEditProfile.
   ///
   /// In en, this message translates to:
@@ -2512,6 +2518,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'OTP'**
   String get otp;
+
+  /// No description provided for @otpCanNotBeLessThanSixDigit.
+  ///
+  /// In en, this message translates to:
+  /// **'OTP can not be less than 6 digit'**
+  String get otpCanNotBeLessThanSixDigit;
 
   /// No description provided for @otpVerification.
   ///

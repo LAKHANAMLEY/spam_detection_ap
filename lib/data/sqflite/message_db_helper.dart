@@ -69,6 +69,7 @@ class SmsLogDBHandler {
         $columnUnreadReceivedSms INTEGER,
         $columnName TEXT,
         $columnIsMarkSpam INTEGER,
+        $columnIsSpam TEXT,
         $columnDate INTEGER
       )
     ''');
@@ -115,6 +116,7 @@ class SmsLogDBHandler {
       columnUnreadReceivedSms: smsLog.unreadReceivedSms,
       columnName: smsLog.name,
       columnIsMarkSpam: smsLog.isMarkSpam,
+      columnIsSpam: smsLog.isSpam,
       columnDate: _dateTimeToInt(smsLog.date),
     });
 
@@ -219,6 +221,7 @@ class SmsLogDBHandler {
           columnUnreadReceivedSms: smsLog.unreadReceivedSms,
           columnName: smsLog.name,
           columnIsMarkSpam: smsLog.isMarkSpam,
+          columnIsSpam: smsLog.isSpam,
           columnDate: _dateTimeToInt(smsLog.date),
         },
         where: '$columnLogId = ?',
@@ -320,6 +323,7 @@ class SmsLogDBHandler {
         columnUnreadReceivedSms,
         columnName,
         columnIsMarkSpam,
+        columnIsSpam,
         columnDate,
       ],
       where: '$columnLogId = ?',
@@ -336,6 +340,7 @@ class SmsLogDBHandler {
         unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
         name: logMap[columnName] as String?,
         isMarkSpam: logMap[columnIsMarkSpam] as int?,
+        isSpam: logMap[columnIsSpam],
         date: _intToDateTime(logMap[columnDate]),
         smsDetails: details,
       );
@@ -388,6 +393,7 @@ class SmsLogDBHandler {
         unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
         name: logMap[columnName] as String?,
         isMarkSpam: logMap[columnIsMarkSpam] as int?,
+        isSpam: logMap[columnIsSpam],
         date: _intToDateTime(logMap[columnDate] as int?),
         smsDetails: details,
       );

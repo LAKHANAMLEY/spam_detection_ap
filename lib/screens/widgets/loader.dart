@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spam_delection_app/globals/colors.dart';
 
 class Loader extends StatelessWidget {
   final double? value;
@@ -11,7 +12,7 @@ class Loader extends StatelessWidget {
     super.key,
     this.value,
     this.backgroundColor,
-    this.color,
+    this.color = AppColor.themeOrangeColor,
     this.valueColor,
     this.semanticsLabel,
     this.semanticsValue,

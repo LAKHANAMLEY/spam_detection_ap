@@ -7,6 +7,7 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    StatisticsDashboardData? data;
     final List<String> imageUrl = [
       IconConstants.icSecurityCall,
       IconConstants.icTimeClock,
@@ -182,31 +183,28 @@ class Profile extends StatelessWidget {
                         Center(
                           child: Text(
                             '${user.email}',
-                            style: const TextStyle(
-                              color: AppColor.magentaColor,
-                              fontFamily: AppFont.fontFamily,
-                              fontSize: 16.0,
-                            ),
+                            style: textTheme(context)
+                                .bodySmall
+                                ?.copyWith(color: AppColor.magentaColor),
                           ),
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
+                        20.height(),
                         GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, AppRoutes.planList);
                             //bottomNavigationBloc.add(SelectIntEvent(3));
                           },
                           child: Container(
-                            margin: const EdgeInsets.only(left: 20, right: 20),
-                            height:
-                                MediaQuery.of(context).size.height * 9 / 100,
-                            width:
-                                MediaQuery.of(context).size.height * 80 / 100,
+                            padding: EdgeInsets.all(20),
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
+                            // height:
+                            //     MediaQuery.of(context).size.height * 9 / 100,
+                            // width:
+                            //     MediaQuery.of(context).size.height * 80 / 100,
                             decoration: const BoxDecoration(
                               color: AppColor.darkPurpleColor,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(6.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -214,18 +212,10 @@ class Profile extends StatelessWidget {
                               children: [
                                 Image.asset(
                                   IconConstants.icPremiumStar,
-                                  height: MediaQuery.of(context).size.height *
-                                      10 /
-                                      100,
-                                  width: MediaQuery.of(context).size.width *
-                                      10 /
-                                      100,
+                                  height: 40,
+                                  width: 40,
                                 ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      4 /
-                                      100,
-                                ),
+                                10.width(),
                                 Text(
                                   appLocalization(context).upgradePremium,
                                   style: const TextStyle(
@@ -238,17 +228,15 @@ class Profile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 5 / 100,
-                        ),
+                        20.height(),
                         Container(
                           // height: MediaQuery.of(context).size.height * 56 / 100,
                           // width: MediaQuery.of(context).size.width * 90 / 100,
                           decoration: BoxDecoration(
                             color: AppColor.snowWhiteColor,
                             borderRadius:
-                                const BorderRadius.all(Radius.circular(6.0)),
-                            border: Border.all(color: AppColor.whiteCreamColor),
+                                const BorderRadius.all(Radius.circular(10.0)),
+                            border: Border.all(color: AppColor.whiteBrownColor),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10),
@@ -269,34 +257,22 @@ class Profile extends StatelessWidget {
                                         if (state is SelectStringState) {
                                           return DropdownButton(
                                             dropdownColor: Color(0xffFFE8E3),
+                                            underline: SizedBox.shrink(),
                                             value: state.value,
-                                            // underline: const SizedBox.shrink(),
-                                            // icon: Image.asset(
-                                            //   IconConstants.icDrop,
-                                            //   // width: MediaQuery.of(context).size.width *
-                                            //   //     3 /
-                                            //   //     100,
-                                            //   // height:
-                                            //   //     MediaQuery.of(context).size.height *
-                                            //   //         3 /
-                                            //   //         100,
-                                            //   color: AppColor.callColor,
-                                            // ),
                                             hint: Text(
                                               appLocalization(context)
                                                   .lastThirtyDays,
-                                              style: const TextStyle(
-                                                  color:
-                                                      AppColor.darkPurpleColor,
-                                                  fontSize: 14,
-                                                  fontFamily:
-                                                      AppFont.fontFamily,
-                                                  fontWeight: FontWeight.w600),
+                                              style:
+                                                  textTheme(context).bodyLarge,
                                             ),
                                             items: items.map((value) {
                                               return DropdownMenuItem<String>(
                                                 value: value['value'],
-                                                child: Text(value['key']),
+                                                child: Text(
+                                                  value['key'],
+                                                  style: textTheme(context)
+                                                      .bodyLarge,
+                                                ),
                                               );
                                             }).toList(),
                                             onChanged: (String? newValue) {
@@ -308,125 +284,101 @@ class Profile extends StatelessWidget {
                                         return const Loader();
                                       }),
                                 ),
-                                BlocBuilder(
+                                BlocConsumer(
                                     bloc: dashboardStatisticsBloc,
-                                    builder: (context, state) {
+                                    listener: (context, state) {
                                       if (state is DashboardStatisticsState) {
-                                        var data =
+                                        data =
                                             state.value.statisticsDashboardData;
-                                        List<String> cardTexts = [
-                                          data?.totalSpamCalls.toString() ??
-                                              "0",
-                                          data?.timeSavedFromSpammers
-                                                  .toString() ??
-                                              "0",
-                                          data?.unknownNumber.toString() ?? "0",
-                                          data?.messageMovedToSpam.toString() ??
-                                              "0"
-                                        ];
-                                        return GridView.builder(
-                                          gridDelegate:
-                                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 2,
-                                            childAspectRatio: 1.2 / 1.2,
-                                          ),
-                                          itemCount: 4,
-                                          primary: false,
-                                          shrinkWrap: true,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return InkWell(
-                                              onTap: () {
-                                                if (index == 0) {
-                                                  Navigator.pushNamed(context,
-                                                      AppRoutes.spamList);
-                                                }
-                                              },
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8),
-                                                child: Container(
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          4)),
-                                                          color: AppColor
-                                                              .whiteColor),
-                                                  child: Container(
-                                                    margin:
-                                                        const EdgeInsets.all(8),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Row(children: [
-                                                          Image.asset(
-                                                            imageUrl[index],
-                                                            height: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height *
-                                                                5 /
-                                                                100,
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width *
-                                                                5 /
-                                                                100,
-                                                          ),
-                                                          SizedBox(
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height *
-                                                                2 /
-                                                                100,
-                                                          ),
-                                                          Text(
-                                                            cardTexts[index],
-                                                            style: const TextStyle(
-                                                                color: AppColor
-                                                                    .magentaColor,
-                                                                fontSize: 20,
-                                                                fontFamily: AppFont
-                                                                    .fontFamily),
-                                                          )
-                                                        ]),
-                                                        Text(spamTexts[index],
-                                                            style: const TextStyle(
-                                                                color: AppColor
-                                                                    .slatWhiteColor,
-                                                                fontFamily: AppFont
-                                                                    .fontFamily,
-                                                                fontSize: 16)),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        );
                                       }
-                                      return const Loader();
+                                    },
+                                    builder: (context, state) {
+                                      // if (state is DashboardStatisticsState) {
+                                      // var data =
+                                      //     state.value.statisticsDashboardData;
+                                      List<String> cardTexts = [
+                                        data?.totalSpamCalls.toString() ?? "0",
+                                        data?.timeSavedFromSpammers
+                                                .toString() ??
+                                            "0",
+                                        data?.unknownNumber.toString() ?? "0",
+                                        data?.messageMovedToSpam.toString() ??
+                                            "0"
+                                      ];
+                                      return GridView.builder(
+                                        gridDelegate:
+                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          childAspectRatio: 1.2 / 1,
+                                        ),
+                                        itemCount: 4,
+                                        primary: false,
+                                        shrinkWrap: true,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return InkWell(
+                                            onTap: () {
+                                              if (index == 0) {
+                                                Navigator.pushNamed(context,
+                                                    AppRoutes.spamList);
+                                              }
+                                            },
+                                            child: Container(
+                                              margin: const EdgeInsets.all(8),
+                                              padding: const EdgeInsets.all(8),
+                                              decoration: const BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(10)),
+                                                  color: AppColor.whiteColor),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Image.asset(
+                                                        imageUrl[index],
+                                                        height: 30,
+                                                        width: 30,
+                                                      ),
+                                                      10.width(),
+                                                      Text(
+                                                        cardTexts[index],
+                                                        style:
+                                                            textTheme(context)
+                                                                .titleLarge,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  5.height(),
+                                                  Text(
+                                                    spamTexts[index],
+                                                    style: textTheme(context)
+                                                        .bodyMedium
+                                                        ?.copyWith(
+                                                            color: AppColor
+                                                                .slatWhiteColor),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                      // }
+                                      // return const Loader();
                                     }),
                               ],
                             ),
                           ),
                         ),
                         if (user.userRole?.toLowerCase() == "user") ...[
-                          SizedBox(
-                            height:
-                                MediaQuery.of(context).size.height * 5 / 100,
-                          ),
+                          // 10.height(),
                           SubMenu(
                             title: appLocalization(context).editProfile,
                             icon: IconConstants.icEdit,
@@ -438,7 +390,7 @@ class Profile extends StatelessWidget {
                           ),
                         ],
                         if (user.userRole?.toLowerCase() == "corporate") ...[
-                          10.height(),
+                          // 10.height(),
                           SubMenu(
                             title:
                                 appLocalization(context).corporateEditProfile,
@@ -450,9 +402,7 @@ class Profile extends StatelessWidget {
                             },
                           )
                         ],
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
+                        // 10.height(),
                         SubMenu(
                           title: appLocalization(context).editSecurityPin,
                           icon: IconConstants.icEditPin,
@@ -462,9 +412,8 @@ class Profile extends StatelessWidget {
                                 context, AppRoutes.changeSecurity);
                           },
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
+                        // 10.height(),
+
                         SubMenu(
                           title: appLocalization(context).changePassword,
                           icon: IconConstants.icChangePass,
@@ -474,9 +423,8 @@ class Profile extends StatelessWidget {
                                 context, AppRoutes.changePassword);
                           },
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
+                        // 10.height(),
+
                         SubMenu(
                           title: appLocalization(context).addAlternativeEmail,
                           icon: IconConstants.icAlternativeEmail,
@@ -486,9 +434,8 @@ class Profile extends StatelessWidget {
                                 context, AppRoutes.alternativeEmail);
                           },
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
+                        // 10.height(),
+
                         SubMenu(
                           title: appLocalization(context).changeLanguage,
                           icon: IconConstants.icLanguage,
@@ -498,7 +445,7 @@ class Profile extends StatelessWidget {
                           },
                         ),
                         if (user.userRole?.toLowerCase() == "user") ...[
-                          10.height(),
+                          // 10.height(),
                           SubMenu(
                             title: appLocalization(context).familyList,
                             icon: IconConstants.icFamilyRest,
@@ -510,7 +457,7 @@ class Profile extends StatelessWidget {
                           ),
                         ],
                         if (user.userRole?.toLowerCase() == "corporate") ...[
-                          10.height(),
+                          // 10.height(),
                           SubMenu(
                             title: appLocalization(context).staffList,
                             iconColor: AppColor.greyDecent,
@@ -521,9 +468,8 @@ class Profile extends StatelessWidget {
                             },
                           ),
                         ],
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
+                        // 10.height(),
+
                         // SubMenu(
                         //   title: appLocalization(context).logout,
                         //   icon: Icons.logout,
@@ -544,9 +490,7 @@ class Profile extends StatelessWidget {
                             //    context, AppRoutes.);
                           },
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 2 / 100,
-                        ),
+                        // 10.height(),
                       ],
                     ),
                   ),
@@ -645,13 +589,13 @@ class SubMenu extends StatelessWidget {
         child: Container(
             //height: MediaQuery.of(context).size.height * 7 / 100,
             // width: MediaQuery.of(context).size.height * 90 / 100,
-            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.symmetric(vertical: 5),
             decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(2.0)),
-                border: Border.all(
-                  color: AppColor.whiteBrownColor,
-                ),
-                color: AppColor.whiteColor),
+              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+              border: Border.all(
+                color: AppColor.whiteBrownColor,
+              ),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -668,15 +612,12 @@ class SubMenu extends StatelessWidget {
 
                           //color: AppColor.constantGraniteColor
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 2 / 100,
-                        ),
+                        10.width(),
                         Expanded(
                           child: Text(
                             title,
-                            style: const TextStyle(
-                                color: AppColor.constantGraniteColor,
-                                fontSize: 18),
+                            style: textTheme(context).bodyMedium?.copyWith(
+                                color: AppColor.constantGraniteColor),
                           ),
                         ),
                       ],
@@ -684,8 +625,8 @@ class SubMenu extends StatelessWidget {
                   ),
                   Image.asset(
                     IconConstants.icEditDetails,
-                    height: MediaQuery.of(context).size.height * 6 / 100,
-                    width: MediaQuery.of(context).size.width * 6 / 100,
+                    height: 20,
+                    width: 20,
                   )
                 ],
               ),

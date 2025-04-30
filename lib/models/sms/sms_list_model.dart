@@ -43,84 +43,192 @@ class SmsLog {
   final String? id;
   final String? address;
   final String? countryCode;
-  final int? unreadReceivedSms;
-  final String? name;
-  final List<SmsDetail>? smsDetails;
-  final int? isMarkSpam;
+  final String? isSpam;
   final DateTime? date;
+  final String? body;
+  final int? unreadReceivedSms;
+  final int? isMarkSpam;
+  final String? name;
+  final String? sendreceiveDatetime;
+  final int? totalMarkSpamCountByUser;
+  final List<SmsDetail>? smsDetails;
 
   SmsLog({
     this.id,
     this.address,
     this.countryCode,
-    this.unreadReceivedSms,
-    this.smsDetails,
-    this.name,
-    this.isMarkSpam,
+    this.isSpam,
     this.date,
+    this.body,
+    this.unreadReceivedSms,
+    this.isMarkSpam,
+    this.name,
+    this.sendreceiveDatetime,
+    this.totalMarkSpamCountByUser,
+    this.smsDetails,
   });
+
+  SmsLog copyWith({
+    String? id,
+    String? address,
+    String? countryCode,
+    String? isSpam,
+    DateTime? date,
+    String? body,
+    int? unreadReceivedSms,
+    int? isMarkSpam,
+    String? name,
+    String? sendreceiveDatetime,
+    int? totalMarkSpamCountByUser,
+    List<SmsDetail>? smsDetails,
+  }) =>
+      SmsLog(
+        id: id ?? this.id,
+        address: address ?? this.address,
+        countryCode: countryCode ?? this.countryCode,
+        isSpam: isSpam ?? this.isSpam,
+        date: date ?? this.date,
+        body: body ?? this.body,
+        unreadReceivedSms: unreadReceivedSms ?? this.unreadReceivedSms,
+        isMarkSpam: isMarkSpam ?? this.isMarkSpam,
+        name: name ?? this.name,
+        sendreceiveDatetime: sendreceiveDatetime ?? this.sendreceiveDatetime,
+        totalMarkSpamCountByUser:
+            totalMarkSpamCountByUser ?? this.totalMarkSpamCountByUser,
+        smsDetails: smsDetails ?? this.smsDetails,
+      );
 
   factory SmsLog.fromJson(Map<String, dynamic> json) => SmsLog(
         id: json["id"],
         address: json["address"],
-        name: json["name"],
         countryCode: json["country_code"],
+        isSpam: json["is_spam"],
+        date: json["date"] == null ? null : DateTime.parse(json["date"]),
+        body: json["body"],
         unreadReceivedSms: json["unread_received_sms"],
+        isMarkSpam: json["is_mark_spam"],
+        name: json["name"],
+        sendreceiveDatetime: json["sendreceive_datetime"],
+        totalMarkSpamCountByUser: json["total_mark_spam_count_by_user"],
         smsDetails: json["sms_details"] == null
             ? []
             : List<SmsDetail>.from(
                 json["sms_details"]!.map((x) => SmsDetail.fromJson(x))),
-        isMarkSpam: json["is_mark_spam"],
-        date: DateTime.tryParse(json["date"]),
+      );
+
+  static SmsLog fromSmsMessage(
+          SmsMessage sms, ContactData? contact, SmsDetail? serverLog) =>
+      SmsLog(
+        id: sms.address?.separatePhoneAndPhoneCode().phone,
+        address: sms.address?.separatePhoneAndPhoneCode().phone,
+        countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
+        name: contact?.name ?? serverLog?.name,
+        date: sms.date,
+        isMarkSpam: serverLog?.isMarkSpam ?? 0,
+        isSpam: serverLog?.isSpam,
+        unreadReceivedSms: serverLog?.unreadReceivedSms,
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "address": address,
         "country_code": countryCode,
+        "is_spam": isSpam,
+        "date": date?.toIso8601String(),
+        "body": body,
         "unread_received_sms": unreadReceivedSms,
+        "is_mark_spam": isMarkSpam,
         "name": name,
+        "sendreceive_datetime": sendreceiveDatetime,
+        "total_mark_spam_count_by_user": totalMarkSpamCountByUser,
         "sms_details": smsDetails == null
             ? []
             : List<dynamic>.from(smsDetails!.map((x) => x.toJson())),
-        "is_mark_spam": isMarkSpam,
-        "date": date,
       };
-
-  SmsLog copyWith({
-    String? id,
-    String? address,
-    String? countryCode,
-    int? unreadReceivedSms,
-    String? name,
-    List<SmsDetail>? smsDetails,
-    int? isMarkSpam,
-    DateTime? date,
-  }) {
-    return SmsLog(
-      id: id ?? this.id,
-      address: address ?? this.address,
-      countryCode: countryCode ?? this.countryCode,
-      unreadReceivedSms: unreadReceivedSms ?? this.unreadReceivedSms,
-      name: name ?? this.name,
-      smsDetails: smsDetails ?? this.smsDetails,
-      isMarkSpam: isMarkSpam ?? this.isMarkSpam,
-      date: date ?? this.date,
-    );
-  }
-
-  static SmsLog fromSmsMessage(
-          SmsMessage sms, ContactData? contact, SmsDetail? serverLog) =>
-      SmsLog(
-        id: sms.address,
-        address: sms.address,
-        countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
-        name: contact?.name ?? serverLog?.name,
-        date: sms.date,
-        isMarkSpam: serverLog?.isMarkSpam ?? 0,
-        unreadReceivedSms: serverLog?.unreadReceivedSms,
-      );
 }
+
+// class SmsLog {
+//   final String? id;
+//   final String? address;
+//   final String? countryCode;
+//   final int? unreadReceivedSms;
+//   final String? name;
+//   final List<SmsDetail>? smsDetails;
+//   final int? isMarkSpam;
+//   final DateTime? date;
+
+//   SmsLog({
+//     this.id,
+//     this.address,
+//     this.countryCode,
+//     this.unreadReceivedSms,
+//     this.smsDetails,
+//     this.name,
+//     this.isMarkSpam,
+//     this.date,
+//   });
+
+//   factory SmsLog.fromJson(Map<String, dynamic> json) => SmsLog(
+//         id: json["id"],
+//         address: json["address"],
+//         name: json["name"],
+//         countryCode: json["country_code"],
+//         unreadReceivedSms: json["unread_received_sms"],
+//         smsDetails: json["sms_details"] == null
+//             ? []
+//             : List<SmsDetail>.from(
+//                 json["sms_details"]!.map((x) => SmsDetail.fromJson(x))),
+//         isMarkSpam: json["is_mark_spam"],
+//         date: DateTime.tryParse(json["date"]),
+//       );
+
+//   Map<String, dynamic> toJson() => {
+//         "id": id,
+//         "address": address,
+//         "country_code": countryCode,
+//         "unread_received_sms": unreadReceivedSms,
+//         "name": name,
+//         "sms_details": smsDetails == null
+//             ? []
+//             : List<dynamic>.from(smsDetails!.map((x) => x.toJson())),
+//         "is_mark_spam": isMarkSpam,
+//         "date": date,
+//       };
+
+//   SmsLog copyWith({
+//     String? id,
+//     String? address,
+//     String? countryCode,
+//     int? unreadReceivedSms,
+//     String? name,
+//     List<SmsDetail>? smsDetails,
+//     int? isMarkSpam,
+//     DateTime? date,
+//   }) {
+//     return SmsLog(
+//       id: id ?? this.id,
+//       address: address ?? this.address,
+//       countryCode: countryCode ?? this.countryCode,
+//       unreadReceivedSms: unreadReceivedSms ?? this.unreadReceivedSms,
+//       name: name ?? this.name,
+//       smsDetails: smsDetails ?? this.smsDetails,
+//       isMarkSpam: isMarkSpam ?? this.isMarkSpam,
+//       date: date ?? this.date,
+//     );
+//   }
+
+//   static SmsLog fromSmsMessage(
+//           SmsMessage sms, ContactData? contact, SmsDetail? serverLog) =>
+//       SmsLog(
+//         id: sms.address,
+//         address: sms.address,
+//         countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
+//         name: contact?.name ?? serverLog?.name,
+//         date: sms.date,
+//         isMarkSpam: serverLog?.isMarkSpam ?? 0,
+//         unreadReceivedSms: serverLog?.unreadReceivedSms,
+//       );
+// }
 
 class SmsDetail {
   final String? body;
@@ -215,9 +323,11 @@ class SmsDetail {
   static SmsDetail fromSmsMessage(
           SmsMessage sms, SmsDetail? serverLog, ContactData? contact) =>
       SmsDetail(
-        id: sms.id?.toString() ?? serverLog?.id,
+        id: serverLog?.address ??
+            sms.address?.separatePhoneAndPhoneCode().phone,
         deviceMessageId: sms.id?.toString(),
-        address: serverLog?.address ?? sms.address,
+        address: serverLog?.address ??
+            sms.address?.separatePhoneAndPhoneCode().phone,
         countryCode: serverLog?.countryCode ??
             sms.address?.separatePhoneAndPhoneCode().phoneCode,
         body: sms.body,
@@ -250,7 +360,7 @@ class SmsDetail {
       name: serverLog?.name,
       threadId: detail?.threadId,
       sendreceiveDatetime: detail?.date,
-      isSpam: detail?.isSpam,
+      isSpam: serverLog?.isSpam,
       isMarkSpam: serverLog?.isMarkSpam,
       isRead: detail?.isRead,
       queryKind: detail?.queryKind,

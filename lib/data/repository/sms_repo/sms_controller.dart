@@ -1,9 +1,23 @@
+import 'dart:developer';
+
+import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sms_advanced/sms_advanced.dart';
 import 'package:spam_delection_app/models/sms/sms_list_model.dart';
 import 'package:spam_delection_app/utils/api_constants/exception_handling.dart';
 
 class SMSController {
+  static const _platform = MethodChannel("com.broadlink.protect/chat");
+
+  static Future<void> setDefaultSMSApp() async {
+    try {
+      var a = await _platform.invokeMethod('setDefaultSms');
+      print("Setting default SMS app: $a");
+    } on PlatformException catch (e) {
+      print("Error setting default SMS app: $e");
+    }
+  }
+
   static Future<SmsMessage?> sendSmsByDevice(SmsMessage sms) {
     try {
       SmsSender sender = SmsSender();
@@ -45,5 +59,13 @@ class SMSController {
     SmsRemover smsRemover = SmsRemover();
     return await smsRemover.removeSmsById(int.tryParse(sms.id ?? "0") ?? 0,
         int.tryParse(sms.threadId ?? "0") ?? 0);
+  }
+
+  static Future<SmsMessage?> getLastSms(SmsMessage message) async {
+    await Future.delayed(Duration(seconds: 1));
+    var messages =
+        await SMSController.getDeviceSms(threadId: message.threadId, count: 1);
+    log("Last Message: ${messages.first.toMap}");
+    return messages.firstOrNull;
   }
 }

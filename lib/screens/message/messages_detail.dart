@@ -37,105 +37,112 @@ class _MessagesDetailState extends State<MessagesDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MessageDBBloc, MessageDBState>(
-        listener: (context, state) {
-      if (state is MessageDBDeletedAllConversation) {
-        sms?.smsDetails?.clear();
-      }
-      if (state is MessageDBLoaded) {
-        sms = state.smsLogs.firstWhere((e) => e.address == sms?.address);
-      }
-    }, builder: (context, state) {
-      return Scaffold(
-          appBar: CustomAppBar(
-              titleWidget: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.contactDetail,
-                      arguments: ContactDetail(
-                        contact: ContactData(
-                          name: sms?.name,
-                          mobileNo: sms?.address,
+    return BlocListener<SmsBloc, SmsState>(
+      listener: (context, state) async {
+        if (state is SmsInitial) {
+          log("Initial state");
+          context.read<SmsBloc>().add(StartListeningSms());
+        }
+        if (state is NewSmsReceived) {
+          log("SMS received");
+          // messagesBloc.add(GetDeviceMessagesEvent());
+          // context
+          //     .read<MessageDBBloc>()
+          //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
+
+          var newMessage = await SMSController.getLastSms(state.message);
+          context.read<MessageDBBloc>().add(SyncMessageDetailsWithServer(
+              smsLogs:
+                  SmsLog.fromSmsMessage(newMessage!, ContactData(), null)));
+          // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+        }
+        if (state is NewSmsSent) {
+          log("SMS delivered");
+          // messagesBloc.add(GetDeviceMessagesEvent());
+          var newMessage = await SMSController.getLastSms(state.message);
+
+          context.read<MessageDBBloc>().add(SyncMessageDetailsWithServer(
+              smsLogs:
+                  SmsLog.fromSmsMessage(newMessage!, ContactData(), null)));
+          // context
+          //     .read<MessageDBBloc>()
+          //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
+          // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+        }
+      },
+      child: BlocConsumer<MessageDBBloc, MessageDBState>(
+          listener: (context, state) {
+        if (state is MessageDBDeletedAllConversation) {
+          sms?.smsDetails?.clear();
+        }
+        if (state is MessageDBLoaded) {
+          sms = state.smsLogs.firstWhere((e) => e.address == sms?.address);
+          log(state.smsLogs.first.body ?? "");
+          log(state.smsLogs.last.body ?? "");
+        }
+      }, builder: (context, state) {
+        return Scaffold(
+            appBar: CustomAppBar(
+                titleWidget: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.contactDetail,
+                        arguments: ContactDetail(
+                          contact: ContactData(
+                            name: sms?.name,
+                            mobileNo: sms?.address,
+                          ),
+                        ));
+                  },
+                  child: Row(
+                    children: [
+                      if (sms?.isSpam == "1")
+                        Image.asset(
+                          IconConstants.icSpamCircle,
+                          height: 30,
                         ),
-                      ));
-                },
-                child: Row(
-                  children: [
-                    if (sms?.isMarkSpam == 1)
-                      Image.asset(
-                        IconConstants.icSpamCircle,
-                        height: 30,
+                      10.width(),
+                      Text(
+                        (sms?.name?.isNotEmpty ?? false)
+                            ? sms?.name ?? ""
+                            : sms?.address ?? "",
+                        style: textTheme(context).titleMedium,
                       ),
-                    10.width(),
-                    Text(
-                      (sms?.name?.isNotEmpty ?? false)
-                          ? sms?.name ?? ""
-                          : sms?.address ?? "",
-                      style: textTheme(context).titleMedium,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              // title: (sms?.name?.isNotEmpty ?? false)
-              //     ? sms?.name ?? ""
-              //     : sms?.address ?? "",
-              actions: [
-                BlocBuilder<MessageDBBloc, MessageDBState>(
-                    // bloc: messagesBloc,
-                    builder: (context, state) {
-                  // if (state is DeletedDBSmsLog) {
-                  //   if (state.value.statusCode == 200) {
-                  //     showCustomDialog(context,
-                  //         dialogType: DialogType.success,
-                  //         subTitle: state.value.message ?? "");
-                  //   } else if (state.value.statusCode ==
-                  //       HTTPStatusCodes.sessionExpired) {
-                  //     sessionExpired(context, state.value.message ?? "");
-                  //   } else {
-                  //     showToast(state.value.message);
-                  //   }
-                  //   messagesBloc.add(SmsListEvent());
-                  // }
-                  return PopupMenuButton(
-                    color: AppColor.lightOrange,
-                    itemBuilder: (context) => [
-                      PopupMenuItem(
-                        onTap: onBlockPressed,
-                        child: Row(
-                          children: [
-                            // Image.asset(
-                            //   IconConstants.icBlockedCall,
-                            //   scale: 2.5,
-                            // ),
-                            Icon(
-                              Icons.block,
-                              color: Colors.red,
-                            ),
-                            SizedBox(
-                              width:
-                                  MediaQuery.of(context).size.width * 5 / 100,
-                            ),
-                            Text(
-                              appLocalization(context).blockSms,
-                              style: const TextStyle(
-                                  color: AppColor.blackColor,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w600),
-                            )
-                          ],
-                        ),
-                      ),
-                      if (sms?.isMarkSpam != 1)
+                // title: (sms?.name?.isNotEmpty ?? false)
+                //     ? sms?.name ?? ""
+                //     : sms?.address ?? "",
+                actions: [
+                  BlocBuilder<MessageDBBloc, MessageDBState>(
+                      // bloc: messagesBloc,
+                      builder: (context, state) {
+                    // if (state is DeletedDBSmsLog) {
+                    //   if (state.value.statusCode == 200) {
+                    //     showCustomDialog(context,
+                    //         dialogType: DialogType.success,
+                    //         subTitle: state.value.message ?? "");
+                    //   } else if (state.value.statusCode ==
+                    //       HTTPStatusCodes.sessionExpired) {
+                    //     sessionExpired(context, state.value.message ?? "");
+                    //   } else {
+                    //     showToast(state.value.message);
+                    //   }
+                    //   messagesBloc.add(SmsListEvent());
+                    // }
+                    return PopupMenuButton(
+                      color: AppColor.lightOrange,
+                      itemBuilder: (context) => [
                         PopupMenuItem(
-                          onTap: onReportPressed,
+                          onTap: onBlockPressed,
                           child: Row(
                             children: [
                               // Image.asset(
-                              //   IconConstants.icReport,
-                              //   color: AppColor.redColor,
-                              //   scale: 4,
+                              //   IconConstants.icBlockedCall,
+                              //   scale: 2.5,
                               // ),
                               Icon(
-                                Icons.report,
+                                Icons.block,
                                 color: Colors.red,
                               ),
                               SizedBox(
@@ -143,7 +150,7 @@ class _MessagesDetailState extends State<MessagesDetail> {
                                     MediaQuery.of(context).size.width * 5 / 100,
                               ),
                               Text(
-                                appLocalization(context).reportText,
+                                appLocalization(context).blockSms,
                                 style: const TextStyle(
                                     color: AppColor.blackColor,
                                     fontSize: 17,
@@ -152,125 +159,156 @@ class _MessagesDetailState extends State<MessagesDetail> {
                             ],
                           ),
                         ),
-                      if (sms?.isMarkSpam == 1)
+                        if (sms?.isMarkSpam != 1)
+                          PopupMenuItem(
+                            onTap: onReportPressed,
+                            child: Row(
+                              children: [
+                                // Image.asset(
+                                //   IconConstants.icReport,
+                                //   color: AppColor.redColor,
+                                //   scale: 4,
+                                // ),
+                                Icon(
+                                  Icons.report,
+                                  color: Colors.red,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                Text(
+                                  appLocalization(context).reportText,
+                                  style: const TextStyle(
+                                      color: AppColor.blackColor,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600),
+                                )
+                              ],
+                            ),
+                          ),
+                        if (sms?.isMarkSpam == 1)
+                          PopupMenuItem(
+                            onTap: unMarkSpamPressed,
+                            child: Row(
+                              children: [
+                                // Image.asset(
+                                //   IconConstants.icReport,
+                                //   color: AppColor.redColor,
+                                //   scale: 3,
+                                // ),
+                                Icon(
+                                  Icons.check_circle_outline_outlined,
+                                  color: Colors.green,
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width *
+                                      5 /
+                                      100,
+                                ),
+                                Text(
+                                  appLocalization(context).unmarkSpam,
+                                  style: const TextStyle(
+                                      color: AppColor.blackColor,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600),
+                                )
+                              ],
+                            ),
+                          ),
                         PopupMenuItem(
-                          onTap: unMarkSpamPressed,
+                          onTap: () {
+                            // messagesBloc.add(DeleteConversationEvent());
+                            context
+                                .read<MessageDBBloc>()
+                                .add(DeleteAllSmsLogs(smsLog: sms!));
+                          },
                           child: Row(
                             children: [
                               // Image.asset(
-                              //   IconConstants.icReport,
+                              //   IconConstants.icDelete,
                               //   color: AppColor.redColor,
-                              //   scale: 3,
+                              //   scale: 1,
                               // ),
                               Icon(
-                                Icons.check_circle_outline_outlined,
-                                color: Colors.green,
+                                Icons.delete_outline_rounded,
+                                color: Colors.red,
                               ),
                               SizedBox(
                                 width:
                                     MediaQuery.of(context).size.width * 5 / 100,
                               ),
                               Text(
-                                appLocalization(context).unmarkSpam,
+                                appLocalization(context).deleteConversation,
                                 style: const TextStyle(
-                                    color: AppColor.blackColor,
+                                    color: AppColor.redColor,
                                     fontSize: 17,
                                     fontWeight: FontWeight.w600),
                               )
                             ],
                           ),
                         ),
-                      PopupMenuItem(
-                        onTap: () {
-                          // messagesBloc.add(DeleteConversationEvent());
-                          context
-                              .read<MessageDBBloc>()
-                              .add(DeleteAllSmsLogs(smsLog: sms!));
-                        },
-                        child: Row(
-                          children: [
-                            // Image.asset(
-                            //   IconConstants.icDelete,
-                            //   color: AppColor.redColor,
-                            //   scale: 1,
-                            // ),
-                            Icon(
-                              Icons.delete_outline_rounded,
-                              color: Colors.red,
-                            ),
-                            SizedBox(
-                              width:
-                                  MediaQuery.of(context).size.width * 5 / 100,
-                            ),
-                            Text(
-                              appLocalization(context).deleteConversation,
-                              style: const TextStyle(
-                                  color: AppColor.redColor,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w600),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    );
+                  }),
+                ]),
+            bottomNavigationBar: (sms?.address?.isNumber ?? false)
+                ? messageField(context, sms)
+                : replyingNotSupportedView(),
+            body: BlocConsumer(
+                bloc: markSpamSmsBloc,
+                listener: (context, state) {
+                  if (state is MarkSpamSmsState) {
+                    if (state.value.statusCode == 200) {
+                      showCustomDialog(context,
+                          dialogType: DialogType.success,
+                          subTitle: state.value.message);
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(context, state.value.message);
+                    } else {
+                      showCustomDialog(context,
+                          dialogType: DialogType.failed,
+                          subTitle: state.value.message);
+                    }
+                    // messagesBloc.add(SmsListEvent());
+                    context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+                  }
+                  if (state is RemoveSmsSpamState) {
+                    if (state.value.statusCode == 200) {
+                      showCustomDialog(context,
+                          dialogType: DialogType.success,
+                          subTitle: state.value.message);
+                    } else if (state.value.statusCode ==
+                        HTTPStatusCodes.sessionExpired) {
+                      sessionExpired(context, state.value.message);
+                    } else {
+                      showCustomDialog(context,
+                          dialogType: DialogType.failed,
+                          subTitle: state.value.message);
+                    }
+                    // messagesBloc.add(SmsListEvent());
+                    context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+                  }
+                },
+                builder: (context, state) {
+                  return ModalProgressHUD(
+                    progressIndicator: Loader(),
+                    inAsyncCall: state is ApiLoadingState,
+                    child: Column(
+                      children: [
+                        messagesListView(),
+                        if (!(sms?.address?.isNumber ?? true) ||
+                            (sms?.name?.isEmpty ?? true) ||
+                            sms?.isMarkSpam == 1)
+                          bottomView(),
+                      ],
+                    ),
                   );
-                }),
-              ]),
-          bottomNavigationBar: (sms?.address?.isNumber ?? false)
-              ? messageField(context, sms)
-              : replyingNotSupportedView(),
-          body: BlocConsumer(
-              bloc: markSpamSmsBloc,
-              listener: (context, state) {
-                if (state is MarkSpamSmsState) {
-                  if (state.value.statusCode == 200) {
-                    showCustomDialog(context,
-                        dialogType: DialogType.success,
-                        subTitle: state.value.message);
-                  } else if (state.value.statusCode ==
-                      HTTPStatusCodes.sessionExpired) {
-                    sessionExpired(context, state.value.message);
-                  } else {
-                    showCustomDialog(context,
-                        dialogType: DialogType.failed,
-                        subTitle: state.value.message);
-                  }
-                  // messagesBloc.add(SmsListEvent());
-                  context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-                }
-                if (state is RemoveSmsSpamState) {
-                  if (state.value.statusCode == 200) {
-                    showCustomDialog(context,
-                        dialogType: DialogType.success,
-                        subTitle: state.value.message);
-                  } else if (state.value.statusCode ==
-                      HTTPStatusCodes.sessionExpired) {
-                    sessionExpired(context, state.value.message);
-                  } else {
-                    showCustomDialog(context,
-                        dialogType: DialogType.failed,
-                        subTitle: state.value.message);
-                  }
-                  // messagesBloc.add(SmsListEvent());
-                  context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-                }
-              },
-              builder: (context, state) {
-                return ModalProgressHUD(
-                  progressIndicator: Loader(),
-                  inAsyncCall: state is ApiLoadingState,
-                  child: Column(
-                    children: [
-                      messagesListView(),
-                      if (!(sms?.address?.isNumber ?? true) ||
-                          (sms?.name?.isEmpty ?? true) ||
-                          sms?.isMarkSpam == 1)
-                        bottomView(),
-                    ],
-                  ),
-                );
-              }));
-    });
+                }));
+      }),
+    );
   }
 
   Future<void> send(SmsLog? sms, BuildContext context) async {
@@ -280,15 +318,15 @@ class _MessagesDetailState extends State<MessagesDetail> {
       date: DateTime.now(),
       kind: SmsMessageKind.Sent,
       read: false,
+      threadId: int.tryParse(sms?.smsDetails?.firstOrNull?.threadId ?? ''),
     );
     await SMSController.sendSmsByDevice(smsMessage).onError(handleError);
-    await Future.delayed(Duration(seconds: 1));
-    var messages =
-        await SMSController.getDeviceSms(address: sms?.address, count: 1);
-    log("Message sent: ${messages.first.toMap}");
+    // await Future.delayed(Duration(seconds: 1));
+    var messages = await SMSController.getLastSms(smsMessage);
     // context
     //     .read<MessageDBBloc>()
     //     .add(SyncChangedMessageWithServer(smsMessage: messages.first));
+
     context
         .read<MessageDBBloc>()
         .add(SyncMessageDetailsWithServer(smsLogs: sms!));

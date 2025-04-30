@@ -66,7 +66,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
     emit(ContactDBLoading());
     try {
       final contacts = await _databaseHelper.getContact(event.id);
-      if (contacts != null) emit(ContactDBLoadedById(contacts!));
+      if (contacts != null) emit(ContactDBLoadedById(contacts));
     } catch (e) {
       emit(ContactDBError('Failed to load contacts: $e', e));
     }

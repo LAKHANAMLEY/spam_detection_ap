@@ -30,7 +30,7 @@ class MessageDBLoaded extends MessageDBState {
   List<Object> get props => [smsLogs];
 }
 
-class MessageDBSyncing extends MessageDBState {}
+// class MessageDBSyncing extends MessageDBState {}
 
 class MessageDBSynced extends MessageDBState {
   final List<SmsLog> syncedSmsLogs;
