@@ -226,6 +226,8 @@ class _RegisterState extends State<Register> {
                                   listener: (context, state) {
                                     if (state is SelectCountryState) {
                                       selectedPhoneCodeCountry = state.value;
+                                      AppConstants.selectedCountry =
+                                          selectedPhoneCodeCountry;
                                     }
                                   },
                                   builder: (context, state) {
@@ -370,7 +372,7 @@ class _RegisterState extends State<Register> {
                                   2.width(),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.pushNamed(
+                                      Navigator.pushReplacementNamed(
                                           context, AppRoutes.login);
                                     },
                                     child: Text(appLocalization(context).login,

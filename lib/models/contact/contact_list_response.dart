@@ -169,4 +169,28 @@ class ContactData {
       email: email ?? this.email,
     );
   }
+
+  static ContactData fromContact(Contact e, {ContactData? serverData}) =>
+      ContactData(
+        id: e.id,
+        countryCode:
+            e.phones.firstOrNull?.number.separatePhoneAndPhoneCode().phoneCode,
+        mobileNo:
+            e.phones.firstOrNull?.number.separatePhoneAndPhoneCode().phone,
+        name: e.displayName,
+        email: e.emails.firstOrNull?.address,
+        numberType: e.phones.firstOrNull?.label,
+        //TODO: update other peoperties from server data
+        isSpam: serverData?.isSpam,
+        isBlocked: serverData?.isBlocked,
+        isOnline: serverData?.isOnline,
+        isRegistered: serverData?.isRegistered,
+        lastSeen: serverData?.lastSeen,
+        category: serverData?.category,
+        markspambyuser: serverData?.markspambyuser,
+        usuallyCalls: serverData?.usuallyCalls,
+        callActivity: serverData?.callActivity,
+        callHistory: serverData?.callHistory,
+        spamReport: serverData?.spamReport,
+      );
 }

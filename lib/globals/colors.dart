@@ -34,7 +34,7 @@ class AppColor {
   static const Color magentaColor = Color(0xff5A6072);
   static const Color whiteLightColor = Color(0xffE1E6EB);
   static const Color yellowDecentColor = Color(0xffFFEAB7);
-  static const Color yellowColor = Color(0xffffe2ab04);
+  static const Color yellowColor = Color(0xffe2ab04);
   static const Color decentGreyColor = Color(0xffD6D3D3);
   static const Color whiteDecentColor = Color(0xffF6F6F6);
   static const Color graphiteColor = Color(0xffE1E6EB);

@@ -8,7 +8,7 @@ class ThemeConstants {
       brightness: Brightness.light,
       scaffoldBackgroundColor: AppColor.whiteLightColor,
       chipTheme: const ChipThemeData(
-        selectedColor: AppColor.yellowColor,
+        selectedColor: AppColor.themeOrangeColor,
         // labelStyle: TextStyle(color: Colors.black),
       )
       // color: Colors.white,

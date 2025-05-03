@@ -76,6 +76,8 @@ dev_dependencies:
 
   package_rename: ^1.8.0
   flutter_logs: ^2.2.1
+  mockito: ^5.4.4
+  build_runner: ^2.4.8
 
 # flutter_native_splash-development.yaml
 flutter_native_splash:

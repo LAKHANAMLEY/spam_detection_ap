@@ -28,7 +28,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   void initState() {
     super.initState();
     // WidgetsBinding.instance.addObserver(this);
-    _syncInitialData(context);
+    _syncInitialData();
     _phoneStateListener();
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     handleAppLifeCycle();
@@ -37,11 +37,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
     });
   }
 
+  late final AppLifecycleListener _appLifecycleListener;
+
   handleAppLifeCycle() {
     // how to get in flutter user is online and offline
-    AppLifecycleListener(
+    _appLifecycleListener = AppLifecycleListener(
       onResume: () {
-        _syncInitialData(context);
+        _syncInitialData();
         userOnlineOfflineStatusBloc
             .add(SetUserOnlineOfflineEvent(isOnline: "1"));
       },
@@ -49,6 +51,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         permissionStreamSubscription?.cancel();
         userOnlineOfflineStatusBloc
             .add(SetUserOnlineOfflineEvent(isOnline: "0"));
+        context.read<SmsBloc>().add(CancelSmsListeningStream());
       },
     );
   }
@@ -59,10 +62,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
     permissionStreamSubscription?.cancel();
     context.read<SmsBloc>().add(CancelSmsListeningStream());
     _phoneStateStreamSubs?.cancel();
+    _appLifecycleListener.dispose();
     super.dispose();
   }
 
-  Future<void> _syncInitialData(BuildContext context) async {
+  Future<void> _syncInitialData() async {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<PermissionBloc>().add(GetMultiplePermissionsStatusEvent([
             Permission.phone,
@@ -84,7 +88,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
             context.read<CallLogDBBloc>().add(SyncDBCallLogs());
           }
           if (state.statuses[Permission.sms] == PermissionStatus.granted) {
-            context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+            // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+            context.read<MessageDBBloc>().add(
+                  PaginateAndSyncMessagesWithServer(
+                    start: 0,
+                    limit: 100,
+                  ),
+                );
           }
           if (state.statuses[Permission.notification] ==
               PermissionStatus.granted) {

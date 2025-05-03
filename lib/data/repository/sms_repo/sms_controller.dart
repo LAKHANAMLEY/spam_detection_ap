@@ -61,11 +61,11 @@ class SMSController {
         int.tryParse(sms.threadId ?? "0") ?? 0);
   }
 
-  static Future<SmsMessage?> getLastSms(SmsMessage message) async {
+  static Future<SmsMessage> getLastSms(SmsMessage message) async {
     await Future.delayed(Duration(seconds: 1));
     var messages =
         await SMSController.getDeviceSms(threadId: message.threadId, count: 1);
     log("Last Message: ${messages.first.toMap}");
-    return messages.firstOrNull;
+    return messages.first;
   }
 }

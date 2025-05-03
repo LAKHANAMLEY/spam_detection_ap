@@ -545,7 +545,9 @@ class _EditProfileState extends State<EditProfile> {
 
   void updateData(User user) {
     SharedPref.saveUserData(user);
-    _selectedImage = XFile(user.photo ?? "", mimeType: "http");
+    _selectedImage = user.photo?.isNotEmpty ?? false
+        ? XFile(user.photo ?? "", mimeType: "http")
+        : null;
     firstnameController.text = user.firstName ?? "";
     lastnameController.text = user.lastName ?? "";
     emailController.text = user.email ?? "";

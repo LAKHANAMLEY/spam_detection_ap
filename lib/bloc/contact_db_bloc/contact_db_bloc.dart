@@ -79,7 +79,18 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       final deviceContacts = await getLocalContacts();
       await syncContacts(deviceContacts!);
       var res = await getContacts();
-      var contacts = res.contactslist ?? [];
+      // var contacts = res.contactslist ?? [];
+      final serverContactsMap = {
+        for (ContactData contact in res.contactslist ?? [])
+          contact.mobileNo: contact
+      };
+
+      var contacts = deviceContacts.map((e) {
+        var phoneNumber = e.phones.firstOrNull?.number;
+        var serverData =
+            phoneNumber != null ? serverContactsMap[phoneNumber] : null;
+        return ContactData.fromContact(e, serverData: serverData);
+      }).toList();
       for (final contactData in contacts) {
         // var contactData = ContactData(
         //   id: contact.id,

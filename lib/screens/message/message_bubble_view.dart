@@ -41,24 +41,29 @@ class MessageView extends StatelessWidget {
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: isSentMessage
+                    ? CrossAxisAlignment.end
+                    : CrossAxisAlignment.start,
                 children: [
                   Text(
                     sms?.body ?? "",
                     softWrap: true,
                   ),
                   const SizedBox(height: 4),
-                  Wrap(
-                    // crossAxisAlignment: WrapCrossAlignment.end,
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    // alignment: WrapAlignment.end,
+                    // runAlignment: WrapAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      if (sms?.isSpam == "1")
-                        Text(
-                          sms?.spamMessage ?? "",
-                          style: textTheme(context)
-                              .bodySmall
-                              ?.copyWith(color: AppColor.redColor),
-                        ),
-                      5.width(),
+                      // if (sms?.isSpam == "1")
+                      //   Text(
+                      //     sms?.spamMessage ?? "",
+                      //     style: textTheme(context)
+                      //         .bodySmall
+                      //         ?.copyWith(color: AppColor.redColor),
+                      //   ),
+                      // 5.width(),
                       Text(
                         sms?.date?.formatTime() ?? "",
                         style: textTheme(context)

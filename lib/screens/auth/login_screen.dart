@@ -507,6 +507,8 @@ class _LoginState extends State<Login> {
                                               if (state is SelectCountryState) {
                                                 selectedPhoneCodeCountry =
                                                     state.value;
+                                                AppConstants.selectedCountry =
+                                                    selectedPhoneCodeCountry;
                                               }
                                             },
                                             builder: (context, state) {
@@ -616,7 +618,7 @@ class _LoginState extends State<Login> {
                                                   100),
                                           InkWell(
                                             onTap: () {
-                                              Navigator.pushNamed(
+                                              Navigator.pushReplacementNamed(
                                                   context, AppRoutes.register);
                                             },
                                             child: Text(

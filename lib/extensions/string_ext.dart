@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter_libphonenumber/flutter_libphonenumber.dart' as lib;
 // import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:phone_numbers_parser/phone_numbers_parser.dart';
@@ -28,7 +26,7 @@ extension StringExt on String {
         // log("$country $this --> $formattedNumber ---> ${phone.countryCode} ${phone.nsn}");
         return PhoneData(phone: phone.nsn, phoneCode: phone.countryCode);
       } catch (e) {
-        log("error on formatting number $e");
+        // log("error on formatting number $e");
         return PhoneData(phone: this, phoneCode: "");
       }
     } else {

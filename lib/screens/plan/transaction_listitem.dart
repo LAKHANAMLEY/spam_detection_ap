@@ -459,7 +459,7 @@ class TransactionListItem extends StatelessWidget {
                         ),
                         Text(transactionData.price ?? '',
                             style: TextStyle(
-                                color: AppColor.yellowColor,
+                                color: AppColor.themeOrangeColor,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16)),
                       ]),

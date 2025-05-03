@@ -60,51 +60,53 @@ class _DeviceCallLogsState extends State<DeviceCallLogs> {
                 if (callLogDBState.exception is UnauthorizedException) {
                   // return Text(callLogDBState.toString());
                   sessionExpired(context, callLogDBState.message);
+                } else {
+                  showToast(callLogDBState.message);
                 }
               }
             }, builder: (context, callLogDBState) {
-              if (callLogDBState is CallLogDBError) {
-                //   if (callLogDBState.exception is PermissionException) {
-                //     return Center(
-                //         child:
-                //             Text(appLocalization(context).permissionNotAllowed));
-                //   }
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        callLogDBState.message,
-                        textAlign: TextAlign.center,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          context.read<CallLogDBBloc>().add(SyncDBCallLogs());
-                        },
-                        child: Text(appLocalization(context).sync),
-                      ),
-                      // ElevatedButton(
-                      //     onPressed: () {
-                      //       context
-                      //           .read<CallLogDBBloc>()
-                      //           .add(DeleteDBCallLogs());
-                      //     },
-                      //     child: Text("Delete DB"))
-                    ],
-                  ),
-                );
-              }
-              if (callLogDBState is CallLogDBInitial) {
-                return Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.read<CallLogDBBloc>().add(SyncDBCallLogs());
-                    },
-                    child: Text("Load call logs"),
-                  ),
-                );
-              }
+              // if (callLogDBState is CallLogDBError) {
+              //   //   if (callLogDBState.exception is PermissionException) {
+              //   //     return Center(
+              //   //         child:
+              //   //             Text(appLocalization(context).permissionNotAllowed));
+              //   //   }
+              //   return Center(
+              //     child: Column(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       crossAxisAlignment: CrossAxisAlignment.center,
+              //       children: [
+              //         Text(
+              //           callLogDBState.message,
+              //           textAlign: TextAlign.center,
+              //         ),
+              //         ElevatedButton(
+              //           onPressed: () {
+              //             context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+              //           },
+              //           child: Text(appLocalization(context).sync),
+              //         ),
+              //         // ElevatedButton(
+              //         //     onPressed: () {
+              //         //       context
+              //         //           .read<CallLogDBBloc>()
+              //         //           .add(DeleteDBCallLogs());
+              //         //     },
+              //         //     child: Text("Delete DB"))
+              //       ],
+              //     ),
+              //   );
+              // }
+              // if (callLogDBState is CallLogDBInitial) {
+              //   return Center(
+              //     child: ElevatedButton(
+              //       onPressed: () {
+              //         context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+              //       },
+              //       child: Text("Load call logs"),
+              //     ),
+              //   );
+              // }
               // if (callLogDBState is CallLogDBLoaded) {
               //   callLogs = callLogDBState.callLogs;
               //   filteredCallLogs = filter("", callLogs);

@@ -54,9 +54,7 @@ class MessageListItem extends StatelessWidget {
           ),
           10.width(),
           Text(
-            sms.smsDetails?.isNotEmpty ?? false
-                ? sms.smsDetails?.first.date?.formatDateTime() ?? ""
-                : "",
+            sms.date?.formatDateTime() ?? "",
             style: textTheme(context).bodySmall?.copyWith(
                 color: Colors.grey,
                 fontWeight:

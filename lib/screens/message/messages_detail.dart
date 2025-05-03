@@ -14,6 +14,25 @@ class MessagesDetail extends StatefulWidget {
 }
 
 class _MessagesDetailState extends State<MessagesDetail> {
+  late final AppLifecycleListener _appLifecycleListener;
+
+  handleAppLifeCycle() {
+    _appLifecycleListener = AppLifecycleListener(
+      onResume: () {
+        context
+            .read<MessageDBBloc>()
+            .add(SyncMessageDetailsWithServer(smsLogs: sms!));
+      },
+      // onInactive: () {},
+    );
+  }
+
+  @override
+  void dispose() {
+    _appLifecycleListener.dispose();
+    super.dispose();
+  }
+
   SmsLog? sms;
   @override
   void initState() {
@@ -32,6 +51,7 @@ class _MessagesDetailState extends State<MessagesDetail> {
       }
       setState(() {});
     });
+    handleAppLifeCycle();
     super.initState();
   }
 
@@ -39,46 +59,47 @@ class _MessagesDetailState extends State<MessagesDetail> {
   Widget build(BuildContext context) {
     return BlocListener<SmsBloc, SmsState>(
       listener: (context, state) async {
-        if (state is SmsInitial) {
-          log("Initial state");
-          context.read<SmsBloc>().add(StartListeningSms());
-        }
-        if (state is NewSmsReceived) {
-          log("SMS received");
-          // messagesBloc.add(GetDeviceMessagesEvent());
-          // context
-          //     .read<MessageDBBloc>()
-          //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
+        // if (state is SmsInitial) {
+        //   log("Initial state");
+        //   context.read<SmsBloc>().add(StartListeningSms());
+        // }
+        // if (state is NewSmsReceived) {
+        //   log("SMS received");
+        //   // messagesBloc.add(GetDeviceMessagesEvent());
+        //   context
+        //       .read<MessageDBBloc>()
+        //       .add(SyncChangedMessageWithServer(smsMessage: state.message));
 
-          var newMessage = await SMSController.getLastSms(state.message);
-          context.read<MessageDBBloc>().add(SyncMessageDetailsWithServer(
-              smsLogs:
-                  SmsLog.fromSmsMessage(newMessage!, ContactData(), null)));
-          // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-        }
-        if (state is NewSmsSent) {
-          log("SMS delivered");
-          // messagesBloc.add(GetDeviceMessagesEvent());
-          var newMessage = await SMSController.getLastSms(state.message);
+        //   // var newMessage = await SMSController.getLastSms(state.message);
+        //   // context.read<MessageDBBloc>().add(SyncMessageDetailsWithServer(
+        //   //     smsLogs:
+        //   //         SmsLog.fromSmsMessage(newMessage!, ContactData(), null)));
+        //   // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+        // }
+        // if (state is NewSmsSent) {
+        //   log("SMS delivered");
+        //   // messagesBloc.add(GetDeviceMessagesEvent());
+        //   // var newMessage = await SMSController.getLastSms(state.message);
 
-          context.read<MessageDBBloc>().add(SyncMessageDetailsWithServer(
-              smsLogs:
-                  SmsLog.fromSmsMessage(newMessage!, ContactData(), null)));
-          // context
-          //     .read<MessageDBBloc>()
-          //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
-          // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-        }
+        //   // context.read<MessageDBBloc>().add(SyncMessageDetailsWithServer(
+        //   //     smsLogs:
+        //   //         SmsLog.fromSmsMessage(newMessage!, ContactData(), null)));
+        //   context
+        //       .read<MessageDBBloc>()
+        //       .add(SyncChangedMessageWithServer(smsMessage: state.message));
+        //   // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+        // }
       },
       child: BlocConsumer<MessageDBBloc, MessageDBState>(
           listener: (context, state) {
         if (state is MessageDBDeletedAllConversation) {
           sms?.smsDetails?.clear();
         }
-        if (state is MessageDBLoaded) {
+        if (state is NewMessageReceived) {
           sms = state.smsLogs.firstWhere((e) => e.address == sms?.address);
-          log(state.smsLogs.first.body ?? "");
-          log(state.smsLogs.last.body ?? "");
+          // log(state.smsLogs.first.body ?? "");
+          // log(state.smsLogs.last.body ?? "");
+          log(sms?.smsDetails?.first.body ?? "");
         }
       }, builder: (context, state) {
         return Scaffold(
@@ -273,7 +294,10 @@ class _MessagesDetailState extends State<MessagesDetail> {
                           subTitle: state.value.message);
                     }
                     // messagesBloc.add(SmsListEvent());
-                    context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+                    // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+                    context
+                        .read<MessageDBBloc>()
+                        .add(SyncMessageDetailsWithServer(smsLogs: sms!));
                   }
                   if (state is RemoveSmsSpamState) {
                     if (state.value.statusCode == 200) {
@@ -289,7 +313,10 @@ class _MessagesDetailState extends State<MessagesDetail> {
                           subTitle: state.value.message);
                     }
                     // messagesBloc.add(SmsListEvent());
-                    context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+                    // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+                    context
+                        .read<MessageDBBloc>()
+                        .add(SyncMessageDetailsWithServer(smsLogs: sms!));
                   }
                 },
                 builder: (context, state) {
@@ -311,7 +338,7 @@ class _MessagesDetailState extends State<MessagesDetail> {
     );
   }
 
-  Future<void> send(SmsLog? sms, BuildContext context) async {
+  send(SmsLog? sms, BuildContext context) async {
     var smsMessage = SmsMessage(
       sms?.address,
       messageController.text,
@@ -320,16 +347,17 @@ class _MessagesDetailState extends State<MessagesDetail> {
       read: false,
       threadId: int.tryParse(sms?.smsDetails?.firstOrNull?.threadId ?? ''),
     );
-    await SMSController.sendSmsByDevice(smsMessage).onError(handleError);
+    var message =
+        await SMSController.sendSmsByDevice(smsMessage).onError(handleError);
     // await Future.delayed(Duration(seconds: 1));
-    var messages = await SMSController.getLastSms(smsMessage);
-    // context
-    //     .read<MessageDBBloc>()
-    //     .add(SyncChangedMessageWithServer(smsMessage: messages.first));
-
+    // await SMSController.getLastSms(smsMessage);
     context
         .read<MessageDBBloc>()
-        .add(SyncMessageDetailsWithServer(smsLogs: sms!));
+        .add(SyncChangedMessageWithServer(smsMessage: message!));
+
+    // context
+    //     .read<MessageDBBloc>()
+    //     .add(SyncMessageDetailsWithServer(smsLogs: sms!));
     messageController.clear();
   }
 

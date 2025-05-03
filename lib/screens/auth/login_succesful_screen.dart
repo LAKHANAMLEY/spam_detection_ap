@@ -1,7 +1,8 @@
 import 'package:spam_delection_app/lib.dart';
 
 class LoginSuccessful extends StatefulWidget {
-  const LoginSuccessful({super.key, this.user});
+  final bool fromSignUp;
+  const LoginSuccessful({super.key, this.user, this.fromSignUp = false});
 
   final User? user;
 
@@ -12,6 +13,8 @@ class LoginSuccessful extends StatefulWidget {
 class _LoginSuccessfulState extends State<LoginSuccessful> {
   @override
   Widget build(BuildContext context) {
+    var arg = args(context) as LoginSuccessful?;
+
     return Scaffold(
         backgroundColor: AppColor.whiteColor,
         appBar: const CustomAppBar(
@@ -62,7 +65,9 @@ class _LoginSuccessfulState extends State<LoginSuccessful> {
               onPress: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
-                  AppRoutes.bottomNavigation,
+                  (arg?.fromSignUp ?? false)
+                      ? AppRoutes.login
+                      : AppRoutes.bottomNavigation,
                   (route) => false,
                 );
               })

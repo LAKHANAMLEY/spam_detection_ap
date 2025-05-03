@@ -400,6 +400,32 @@ class SmsLogDBHandler {
     }).toList());
   }
 
+  Future<List<SmsLog>> getSmsLogsPaginated({int? start, int? limit}) async {
+    final db = await database;
+    final List<Map<String, dynamic>> logMaps = await db.query(
+      tableSmsLog,
+      orderBy: "$columnDate DESC",
+      limit: limit,
+      offset: start,
+    );
+
+    return Future.wait(logMaps.map((logMap) async {
+      final String logId = logMap[columnLogId];
+      final List<SmsDetail> details = await _getSmsDetailsForLogId(db, logId);
+      return SmsLog(
+        id: logMap[columnLogId],
+        address: logMap[columnAddress] as String?,
+        countryCode: logMap[columnCountryCode] as String?,
+        unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
+        name: logMap[columnName] as String?,
+        isMarkSpam: logMap[columnIsMarkSpam] as int?,
+        isSpam: logMap[columnIsSpam],
+        date: _intToDateTime(logMap[columnDate] as int?),
+        smsDetails: details,
+      );
+    }).toList());
+  }
+
   Future<int> deleteTable() async {
     final db = await database;
     return await db.delete(

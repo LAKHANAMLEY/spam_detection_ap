@@ -21,6 +21,15 @@ class MessageDBInitial extends MessageDBState {}
 
 class MessageDBLoading extends MessageDBState {}
 
+class NewMessageReceived extends MessageDBState {
+  final List<SmsLog> smsLogs;
+
+  const NewMessageReceived(this.smsLogs);
+
+  @override
+  List<Object> get props => [smsLogs];
+}
+
 class MessageDBLoaded extends MessageDBState {
   final List<SmsLog> smsLogs;
 
@@ -52,3 +61,13 @@ class MessageDBError extends MessageDBState {
 }
 
 class MessageDBDeletedAllConversation extends MessageDBState {}
+
+class MessageDBDeletedAll extends MessageDBState {}
+
+class MessageDBDeletedById extends MessageDBState {
+  final SmsLog smsLog;
+
+  const MessageDBDeletedById({required this.smsLog});
+  @override
+  List<Object> get props => [smsLog];
+}

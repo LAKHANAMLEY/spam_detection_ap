@@ -14,110 +14,145 @@ class _MessagesScreenState extends State<MessagesScreen> {
   List<SmsLog> messages = [];
   List<SmsLog> filteredMessages = [];
   final searchController = TextEditingController();
+  final scrollController = ScrollController();
   final searchBloc = SelectionBloc(SelectStringState(""));
-  // final messagesBloc = ApiBloc(ApiBlocInitialState());
+  final paginationBloc = SelectionBloc(SelectBoolState(false));
+
+  int startFrom = 0;
+  int limit = 50;
+
+  // void _pagination() {
+  //   if (scrollController.position.atEdge) {
+  //     bool isTop = scrollController.position.pixels == 0;
+  //     final isPaginating = paginationBloc.state is SelectBoolState &&
+  //         (paginationBloc.state as SelectBoolState).value == true;
+
+  //     if (!isTop && !isPaginating) {
+  //       log("Reached bottom, start from : $startFrom, limit : $limit");
+  //       paginationBloc.add(SelectBoolEvent(true)); // show loader
+
+  //       context.read<MessageDBBloc>().add(
+  //             GetAllSmsFromDB(start: startFrom, limit: limit),
+  //           );
+  //       startFrom += limit;
+  //     }
+  //   }
+  // }
+
+  void _pagination() {
+    if (scrollController.position.atEdge) {
+      bool isTop = scrollController.position.pixels == 0;
+      final isPaginating = paginationBloc.state is SelectBoolState &&
+          (paginationBloc.state as SelectBoolState).value == true;
+
+      if (!isTop && !isPaginating) {
+        startFrom += limit;
+        log("Reached bottom, start from : $startFrom, limit : $limit");
+        paginationBloc.add(SelectBoolEvent(true));
+        // Trigger pagination
+        context.read<MessageDBBloc>().add(
+              GetAllSmsFromDB(start: startFrom, limit: limit),
+            );
+        // Start the background sync immediately after fetching from SQLite
+        context.read<MessageDBBloc>().add(
+              PaginateAndSyncMessagesWithServer(start: startFrom, limit: limit),
+            );
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    scrollController.removeListener(_pagination);
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
-    // messagesBloc.add(SmsListEvent());
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   context.read<SmsBloc>().add(StartListeningSms());
-    // });
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<MessageDBBloc>().add(GetAllSmsFromDB());
-    });
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context
+          .read<MessageDBBloc>()
+          .add(GetAllSmsFromDB(start: startFrom, limit: limit));
+      // context.read<MessageDBBloc>().add(
+      //       PaginateAndSyncMessagesWithServer(start: startFrom, limit: limit),
+      //     );
+      scrollController.addListener(_pagination);
+    });
+  }
+
+  void filterSearchResults() {
+    setState(() {
+      filteredMessages = messages
+          .where((e) =>
+              (e.address?.toLowerCase() ?? '')
+                  .contains(searchController.text.toLowerCase()) ||
+              (e.name?.toLowerCase() ?? '')
+                  .contains(searchController.text.toLowerCase()))
+          .toList();
+    });
+    searchBloc.add(SelectStringEvent(searchController.text));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocListener<SmsBloc, SmsState>(
-        listener: (context, state) async {
+        listener: (context, state) {
           if (state is SmsInitial) {
-            log("Initial state");
             context.read<SmsBloc>().add(StartListeningSms());
           }
           if (state is NewSmsReceived) {
-            log("SMS received");
-            // messagesBloc.add(GetDeviceMessagesEvent());
-            // context
-            //     .read<MessageDBBloc>()
-            //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
-
-            var newMessage = await SMSController.getLastSms(state.message);
-            context.read<MessageDBBloc>().add(SyncMessageDetailsWithServer(
-                smsLogs:
-                    SmsLog.fromSmsMessage(newMessage!, ContactData(), null)));
-            // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-          }
-          if (state is NewSmsSent) {
-            log("SMS delivered");
-            // messagesBloc.add(GetDeviceMessagesEvent());
-            var newMessage = await SMSController.getLastSms(state.message);
-
-            context.read<MessageDBBloc>().add(SyncMessageDetailsWithServer(
-                smsLogs:
-                    SmsLog.fromSmsMessage(newMessage!, ContactData(), null)));
-            // context
-            //     .read<MessageDBBloc>()
-            //     .add(SyncChangedMessageWithServer(smsMessage: state.message));
-            // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+            context.read<MessageDBBloc>().add(
+                  SyncChangedMessageWithServer(smsMessage: state.message),
+                );
+          } else if (state is NewSmsSent) {
+            context.read<MessageDBBloc>().add(
+                  SyncChangedMessageWithServer(smsMessage: state.message),
+                );
           }
         },
         child: Column(
           children: [
-            PermissionWidget(
-              permission: Permission.sms,
-            ),
+            PermissionWidget(permission: Permission.sms),
             CustomTextField(
-              onChanged: (value) {
-                // searchBloc.add(SelectStringEvent(value));
-                filterSearchResults();
-              },
-              prefix: const Icon(
-                Icons.search,
-                color: AppColor.redColor,
-              ),
+              onChanged: (_) => filterSearchResults(),
+              prefix: const Icon(Icons.search, color: AppColor.redColor),
               suffix: PopupMenuButton(
+                onSelected: (value) {
+                  switch (value) {
+                    case 'sync':
+                      startFrom = 0;
+                      messages.clear();
+                      context.read<MessageDBBloc>().add(
+                            PaginateAndSyncMessagesWithServer(
+                                start: 0, limit: limit),
+                          );
+                      break;
+                    case 'delete':
+                      context.read<MessageDBBloc>().add(DeleteMessageDB());
+                      break;
+                    case 'blockList':
+                      Navigator.pushNamed(context, AppRoutes.blockList);
+                      break;
+                  }
+                },
                 itemBuilder: (context) => [
                   PopupMenuItem(
-                    child: Text(appLocalization(context).sync),
-                    onTap: () {
-                      // messagesBloc.add(GetDeviceMessagesEvent());
-                      context
-                          .read<MessageDBBloc>()
-                          .add(SyncMessagesWithServer());
-                    },
-                  ),
+                      value: 'sync',
+                      child: Text(appLocalization(context).sync)),
                   PopupMenuItem(
-                    child: Text(appLocalization(context).delete),
-                    onTap: () {
-                      // messagesBloc.add(GetDeviceMessagesEvent());
-                      context.read<MessageDBBloc>().add(DeleteMessageDB());
-                    },
-                  ),
+                      value: 'delete',
+                      child: Text(appLocalization(context).delete)),
                   PopupMenuItem(
-                    onTap: () {
-                      Navigator.pushNamed(context, AppRoutes.blockList);
-                    },
-                    child: Row(
-                      children: [
-                        // Image.asset(
-                        //   IconConstants.icBlockedCall,
-                        //   scale: 2,
-                        // ),
-                        // SizedBox(
-                        //   width: MediaQuery.of(context).size.width * 5 / 100,
-                        // ),
-                        Text(appLocalization(context).myBlockList,
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600))
-                      ],
-                    ),
-                  )
+                    value: 'blockList',
+                    child: Text(appLocalization(context).myBlockList,
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600)),
+                  ),
                 ],
               ),
               controller: searchController,
@@ -125,151 +160,93 @@ class _MessagesScreenState extends State<MessagesScreen> {
               fillColor: Colors.white,
             ),
             BlocBuilder(
-                bloc: searchBloc,
-                builder: (context, state) {
-                  if (searchController.text.isNotEmpty &&
-                      searchController.text.isNumber) {
-                    return CustomListTile(
-                      onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.messagesDetail,
-                            arguments: MessagesDetail(
-                              sms: SmsLog(
-                                id: searchController.text,
-                                address: searchController.text,
-                              ),
-                            ));
-                      },
-                      title: Text("Send to ${searchController.text}"),
-                    );
-                  }
-                  return SizedBox.shrink();
-                }),
+              bloc: searchBloc,
+              builder: (context, state) {
+                if (searchController.text.isNotEmpty &&
+                    searchController.text.isNumber) {
+                  return CustomListTile(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.messagesDetail,
+                        arguments: MessagesDetail(
+                          sms: SmsLog(
+                            id: searchController.text,
+                            address: searchController.text,
+                          ),
+                        ),
+                      );
+                    },
+                    title: Text("Send to ${searchController.text}"),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
             Expanded(
               child: BlocConsumer<MessageDBBloc, MessageDBState>(
                 listener: (context, state) {
                   if (state is MessageDBLoaded) {
-                    messages = state.smsLogs;
+                    paginationBloc.add(SelectBoolEvent(false));
+                    if (startFrom == 0) {
+                      messages = List.from(state.smsLogs);
+                    } else {
+                      messages.addAll(state.smsLogs);
+                    }
                     filterSearchResults();
                   }
-                },
-                // bloc: messagesBloc,
-                // listener: (context, state) {
-                //   if (state is ApiBlocInitialState) {
-                //     messagesBloc.add(GetDeviceMessagesEvent());
-                //   }
-                //   if (state is GetDeviceMessagesState) {
-                //     // messages = state.value;
-                //     messagesBloc.add(SyncSmsEvent(smsLogs: state.value));
-                //   }
-                //   if (state is SyncSmsState) {
-                //     if (state.value.statusCode == 200) {
-                //       showToast(state.value.message);
-                //     } else if (state.value.statusCode ==
-                //         HTTPStatusCodes.sessionExpired) {
-                //       sessionExpired(context, state.value.message);
-                //     } else {
-                //       showToast(state.value.message);
-                //     }
-                //     messagesBloc.add(SmsListEvent());
-                //   }
-                //   if (state is SmsListState) {
-                //     if (state.value.statusCode == 200) {
-                //     } else if (state.value.statusCode ==
-                //         HTTPStatusCodes.sessionExpired) {
-                //       sessionExpired(context, state.value.message);
-                //     } else {
-                //       showToast(state.value.message);
-                //     }
-                //   }
-                //   //if (state is smsDelete) {}
-                // },
-                builder: (context, state) {
+
+                  if (state is NewMessageReceived) {
+                    messages.clear();
+                    startFrom = 0;
+                    context
+                        .read<MessageDBBloc>()
+                        .add(GetAllSmsFromDB(start: startFrom, limit: limit));
+                  }
+
+                  if (state is MessageDBDeletedAll) {
+                    paginationBloc.add(SelectBoolEvent(false));
+                    startFrom = 0;
+                    messages.clear();
+                    filterSearchResults();
+                  }
+
+                  if (state is MessageDBDeletedById) {
+                    paginationBloc.add(SelectBoolEvent(false));
+                    messages.removeWhere((m) => m.id == state.smsLog.id);
+                    filterSearchResults();
+                  }
+
                   if (state is MessageDBError) {
-                    // if (state.exception is PermissionException) {
-                    //   return Center(
-                    //       child: Text(
-                    //           appLocalization(context).permissionNotAllowed));
-                    // }
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            state.message,
-                            textAlign: TextAlign.center,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              context
-                                  .read<MessageDBBloc>()
-                                  .add(SyncMessagesWithServer());
-                            },
-                            child: Text(appLocalization(context).sync),
-                          ),
-                          // ElevatedButton(
-                          //     onPressed: () {
-                          //       context
-                          //           .read<MessageDBBloc>()
-                          //           .add(DeleteMessageDB());
-                          //     },
-                          //     child: Text("Delete DB"))
-                        ],
-                      ),
-                    );
+                    paginationBloc.add(SelectBoolEvent(false));
+                    showToast(state.message);
                   }
-                  if (state is MessageDBInitial) {
+                },
+                builder: (context, state) {
+                  final isPaginating =
+                      paginationBloc.state is SelectBoolState &&
+                          (paginationBloc.state as SelectBoolState).value;
+
+                  if (filteredMessages.isEmpty && state is MessageDBLoading) {
+                    return const Loader();
+                  } else if (filteredMessages.isEmpty) {
                     return Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context
-                              .read<MessageDBBloc>()
-                              .add(SyncMessagesWithServer());
-                        },
-                        child: Text(appLocalization(context).sync),
-                      ),
-                    );
+                        child: Text(appLocalization(context).noMessages));
                   }
-                  // if (state is MessageDBLoaded) {
-                  //   var messages = state.smsLogs;
-                  return BlocBuilder(
-                    bloc: searchBloc,
-                    builder: (context, searchState) {
-                      // if (state is SelectStringState) {
-                      if (filteredMessages.isEmpty &&
-                          state is MessageDBLoading) {
-                        return Loader();
-                        // } else if (filteredMessages.isEmpty &&
-                        //     searchController.text.isNotEmpty) {
-                        //   return SizedBox(
-                        //     height: 40,
-                        //     child: MessageListItem(
-                        //         sms: SmsLog(
-                        //       id: searchController.text,
-                        //       address: searchController.text,
 
-                        //       // date: DateTime.now(),
-
-                        //       // name: appLocalization(context).unknown,
-                        //       // smsDetails: [SmsDetail(body: "New message")],
-                        //     )),
-                        //   );
-                      } else if (filteredMessages.isEmpty) {
-                        return Center(
-                          child: Text(appLocalization(context).noMessages),
+                  return ListView.builder(
+                    controller: scrollController,
+                    itemCount: filteredMessages.length + (isPaginating ? 1 : 0),
+                    itemBuilder: (context, index) {
+                      if (isPaginating && index == filteredMessages.length) {
+                        return const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Loader(),
                         );
                       }
-                      return ListView.builder(
-                        itemCount: filteredMessages.length,
-                        itemBuilder: (context, index) =>
-                            MessageListItem(sms: filteredMessages[index]),
-                      );
-                      // }
-                      // return const Loader();
+                      return MessageListItem(sms: filteredMessages[index]);
                     },
                   );
-                  // }
-                  // return const Loader();
                 },
               ),
             ),
@@ -277,25 +254,5 @@ class _MessagesScreenState extends State<MessagesScreen> {
         ),
       ),
     );
-  }
-
-  List<SmsLog> filterSearchResults() {
-    filteredMessages = messages
-        .where((e) =>
-                (e.address
-                        ?.toLowerCase()
-                        .contains(searchController.text.toLowerCase()) ??
-                    false) ||
-                (e.name
-                        ?.toLowerCase()
-                        .contains(searchController.text.toLowerCase()) ??
-                    false)
-            //&&
-            // (e.?.toLowerCase().contains(searchString.toLowerCase()) ??
-            //     false)
-            )
-        .toList();
-    searchBloc.add(SelectStringEvent(searchController.text));
-    return filteredMessages;
   }
 }

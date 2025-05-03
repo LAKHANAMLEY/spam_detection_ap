@@ -40,7 +40,17 @@ class DeleteMessageDB extends MessageDBEvent {}
 // New Events for Syncing
 // class LoadDeviceSms extends MessageDBEvent {}
 
-class SyncMessagesWithServer extends MessageDBEvent {}
+class PaginateAndSyncMessagesWithServer extends MessageDBEvent {
+  final int start;
+  final int limit;
+
+  const PaginateAndSyncMessagesWithServer(
+      {required this.start, required this.limit});
+  @override
+  List<Object> get props => [start, limit];
+}
+
+// class SyncMessagesWithServer extends MessageDBEvent {}
 
 class SyncMessageDetailsWithServer extends MessageDBEvent {
   final SmsLog smsLogs;
@@ -50,14 +60,14 @@ class SyncMessageDetailsWithServer extends MessageDBEvent {
   List<Object> get props => [smsLogs];
 }
 
-// class SyncChangedMessageWithServer extends MessageDBEvent {
-//   final SmsMessage smsMessage;
+class SyncChangedMessageWithServer extends MessageDBEvent {
+  final SmsMessage smsMessage;
 
-//   const SyncChangedMessageWithServer({required this.smsMessage});
+  const SyncChangedMessageWithServer({required this.smsMessage});
 
-//   @override
-//   List<Object> get props => [smsMessage];
-// }
+  @override
+  List<Object> get props => [smsMessage];
+}
 
 class AddSmsLogsToDB extends MessageDBEvent {
   final List<SmsLog> smsLogs;
@@ -68,7 +78,15 @@ class AddSmsLogsToDB extends MessageDBEvent {
   List<Object> get props => [smsLogs];
 }
 
-class GetAllSmsFromDB extends MessageDBEvent {}
+class GetAllSmsFromDB extends MessageDBEvent {
+  final int start;
+  final int limit;
+
+  const GetAllSmsFromDB({required this.start, required this.limit});
+
+  @override
+  List<Object> get props => [start, limit];
+}
 
 class ReadDBMessage extends MessageDBEvent {
   final SmsLog sms;
