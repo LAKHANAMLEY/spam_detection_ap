@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:spam_delection_app/data/repository/sms_repo/message_service.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
@@ -11,6 +12,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     on<DeleteSmsLog>(_deleteSmsLog);
     on<DeleteAllSmsLogs>(_deleteAllSmsLogs);
     on<DeleteMessageDB>(_deleteDatabase);
+    on<ImportAllDeviceMessages>(_importAllDeviceMessages);
     on<PaginateAndSyncMessagesWithServer>(_paginateAndsyncMessagesWithServer);
     on<SyncMessageDetailsWithServer>(_syncMessageDetailsWithServer);
     on<SyncChangedMessageWithServer>(_syncChangedMessagesWithServer);
@@ -20,9 +22,36 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
   }
 
   Future<void> _addSmsLog(AddSmsLog event, Emitter<MessageDBState> emit) async {
-    await _handleDbWrite(() async {
-      await _db.insertSmsLog(event.smsLog);
-    }, emit);
+    final log = event.smsLog;
+    await _handleDbWrite(
+      () async {
+        final contact = await _contacts.getContactByPhone(
+            event.smsLog.address?.separatePhoneAndPhoneCode().phone ?? "");
+        final exists = await _db.getSmsLog(log.id ?? "");
+        if (exists != null) {
+          // await _db.updateSmsDetail(SmsDetail.fromSmsLog(log)!);
+          await _db.updateSmsLog(log.copyWith(
+            name: contact?.name ?? "",
+            date: getLatestDate(log, exists),
+            body: log.body,
+            isSpam: exists.isSpam,
+            isMarkSpam: exists.isMarkSpam,
+            synced: false,
+            address: exists.address,
+            countryCode: exists.countryCode,
+            id: exists.id,
+            sendreceiveDatetime: exists.sendreceiveDatetime,
+            totalMarkSpamCountByUser: exists.totalMarkSpamCountByUser,
+            unreadReceivedSms: (exists.unreadReceivedSms ?? 0) + 1,
+            // smsDetails: exists.smsDetails?..add(SmsDetail.fromSmsLog(log)!),
+          ));
+        } else {
+          await _db.insertSmsLog(log.copyWith(name: contact?.name ?? ""));
+        }
+      },
+      emit,
+      // onSuccess: () => MessageDBSynced(),
+    );
   }
 
   Future<void> _deleteAllSmsLogs(
@@ -54,8 +83,11 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
   Future<void> _deleteDatabase(
       DeleteMessageDB event, Emitter<MessageDBState> emit) async {
-    await _handleDbWrite(() async => await _db.deleteDatabase1(), emit,
-        onSuccess: () => MessageDBInitial());
+    await _handleDbWrite(() async {
+      await _db.deleteDatabase1();
+      await _db.deleteTable();
+      ;
+    }, emit, onSuccess: () => MessageDBInitial());
   }
 
   // Future<void> _paginateAndsyncMessagesWithServer(
@@ -114,56 +146,113 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
   //     emit(MessageDBError('Pagination sync failed: $e', e));
   //   }
   // }
+
+  Future<void> _importAllDeviceMessages(
+    ImportAllDeviceMessages event,
+    Emitter<MessageDBState> emit,
+  ) async {
+    try {
+      emit(MessageDBLoading());
+
+      final allSms = await SMSController.getDeviceSms(); // fetch all messages
+      if (allSms.isEmpty) {
+        emit(MessageDBSynced([]));
+        return;
+      }
+
+      var groupedMap = _groupSmsByAddress(allSms);
+      // var grouped = groupedMap.values.map((s) => s.first).toList();
+
+      final mergedLogs = await _mergeLocalAndServerMessages(groupedMap, []);
+
+      for (final log in mergedLogs) {
+        // final contact = await _contacts.getContactByPhone(
+        //     sms.address?.separatePhoneAndPhoneCode().phone ?? "");
+        // final log = SmsLog.fromSmsMessage(sms, contact, null);
+        final exists = await _db.getSmsLog(log.id ?? "");
+        if (exists != null) {
+          await _db.updateSmsLog(log.copyWith(
+              name: exists.name,
+              isSpam: exists.isSpam,
+              isMarkSpam: exists.isMarkSpam,
+              address: exists.address,
+              countryCode: exists.countryCode,
+              id: exists.id,
+              synced: exists.synced,
+              totalMarkSpamCountByUser: exists.totalMarkSpamCountByUser,
+              sendreceiveDatetime: exists.sendreceiveDatetime,
+              unreadReceivedSms: exists.unreadReceivedSms,
+              smsDetails: log.smsDetails,
+              body: log.body,
+              // smsDetails: exists.smsDetails,
+
+              date: getLatestDate(log, exists)));
+        } else {
+          await _db.insertSmsLog(log);
+        }
+      }
+
+      emit(MessageDBSynced(await _db.getSmsLogsPaginated(
+        start: 0,
+        limit: 50, // or any reasonable default
+      )));
+    } catch (e) {
+      emit(MessageDBError('Failed to import messages: $e', e));
+    }
+  }
+
   Future<void> _paginateAndsyncMessagesWithServer(
     PaginateAndSyncMessagesWithServer event,
     Emitter<MessageDBState> emit,
   ) async {
     try {
-      // Load messages from SQLite, no loading state here
-      final paginatedSms = await SMSController.getDeviceSms(
-        count: event.limit,
-        start: event.start,
-      );
+      await MessageSyncService.syncMessages();
 
-      if (paginatedSms.isEmpty) {
-        emit(MessageDBSynced(await _db.getSmsLogsPaginated(
-          limit: event.limit,
-          start: event.start,
-        )));
-        return;
-      }
+      //   // Load messages from SQLite, no loading state here
+      //   final paginatedSms = await SMSController.getDeviceSms(
+      //     count: event.limit,
+      //     start: event.start,
+      //   );
 
-      for (final sms in paginatedSms) {
-        final log = SmsLog.fromSmsMessage(sms, ContactData(), null);
-        final exists = await _db.getSmsLog(log.id ?? "");
-        if (exists != null) {
-          await _db
-              .updateSmsLog(log.copyWith(date: _getLatestDate(log, exists)));
-        } else {
-          await _db.insertSmsLog(log);
-        }
-      }
+      //   if (paginatedSms.isEmpty) {
+      //     emit(MessageDBSynced(await _db.getSmsLogsPaginated(
+      //       limit: event.limit,
+      //       start: event.start,
+      //     )));
+      //     return;
+      //   }
 
-      final grouped = _groupSmsByAddress(paginatedSms);
+      //   for (final sms in paginatedSms) {
+      //     final log = SmsLog.fromSmsMessage(sms, ContactData(), null);
+      //     final exists = await _db.getSmsLog(log.id ?? "");
+      //     if (exists != null) {
+      //       await _db
+      //           .updateSmsLog(log.copyWith(date: getLatestDate(log, exists)));
+      //     } else {
+      //       await _db.insertSmsLog(log);
+      //     }
+      //   }
 
-      // Sync messages with the server in the background
-      await syncSmsWithServer(
-        smsLogs: grouped.values.map((s) => s.first).toList(),
-      );
+      //   final grouped = _groupSmsByAddress(paginatedSms);
 
-      final serverLogs = (await smsList()).smsLog ?? [];
-      final mergedLogs =
-          await _mergeLocalAndServerMessages(grouped, serverLogs);
+      //   // Sync messages with the server in the background
+      //   await syncSmsWithServer(
+      //     smsLogs: grouped.values.map((s) => s.first).toList(),
+      //   );
 
-      for (final log in mergedLogs) {
-        final exists = await _db.getSmsLog(log.id ?? "");
-        if (exists != null) {
-          await _db
-              .updateSmsLog(log.copyWith(date: _getLatestDate(log, exists)));
-        } else {
-          await _db.insertSmsLog(log);
-        }
-      }
+      //   final serverLogs = (await smsList()).smsLog ?? [];
+      //   final mergedLogs =
+      //       await _mergeLocalAndServerMessages(grouped, serverLogs);
+
+      //   for (final log in mergedLogs) {
+      //     final exists = await _db.getSmsLog(log.id ?? "");
+      //     if (exists != null) {
+      //       await _db
+      //           .updateSmsLog(log.copyWith(date: getLatestDate(log, exists)));
+      //     } else {
+      //       await _db.insertSmsLog(log);
+      //     }
+      //   }
 
       // After sync, fetch the updated logs from SQLite
       emit(MessageDBSynced(await _db.getSmsLogsPaginated(
@@ -199,7 +288,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
         await _db.insertSmsLog(updatedLog);
       } else {
         await _db.updateSmsLog(
-            updatedLog.copyWith(date: _getLatestDate(updatedLog, exists)));
+            updatedLog.copyWith(date: getLatestDate(updatedLog, exists)));
       }
 
       emit(MessageDBSynced(await _db.getAllSmsLogs()));
@@ -233,7 +322,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
         await _db.insertSmsLog(updatedLog);
       } else {
         await _db.updateSmsLog(updatedLog.copyWith(
-            name: exists.name, date: _getLatestDate(updatedLog, exists)));
+            name: exists.name, date: getLatestDate(updatedLog, exists)));
       }
 
       emit(NewMessageReceived(await _db.getAllSmsLogs()));
@@ -271,7 +360,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       await _db.insertSmsLog(event.sms);
     } else {
       await _db.updateSmsLog(
-          event.sms.copyWith(date: _getLatestDate(event.sms, exists)));
+          event.sms.copyWith(date: getLatestDate(event.sms, exists)));
     }
     // emit(MessageDBUpdated(event.sms)); // <-- Emit update state
   }
@@ -345,10 +434,10 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       emit(MessageDBError('DB operation failed: $e', e));
     }
   }
+}
 
-  DateTime? _getLatestDate(SmsLog log, SmsLog exists) {
-    if (log.date == null) return exists.date;
-    if (exists.date == null) return log.date;
-    return log.date!.isAfter(exists.date!) ? log.date : exists.date;
-  }
+DateTime? getLatestDate(SmsLog log, SmsLog exists) {
+  if (log.date == null) return exists.date;
+  if (exists.date == null) return log.date;
+  return log.date!.isAfter(exists.date!) ? log.date : exists.date;
 }

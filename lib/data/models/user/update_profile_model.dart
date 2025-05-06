@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:spam_delection_app/models/user/user_model.dart';
+import 'package:spam_delection_app/data/models/user/user_model.dart';
 
 UpdateProfileResponse updateProfileResponseFromJson(String str) =>
     UpdateProfileResponse.fromJson(json.decode(str));

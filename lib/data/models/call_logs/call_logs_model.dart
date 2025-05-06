@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:spam_delection_app/models/contact/contact_list_response.dart';
+import 'package:spam_delection_app/data/models/contact/contact_list_response.dart';
 
 CallLogsListResponse callLogsListResponseFromJson(String str) =>
     CallLogsListResponse.fromJson(json.decode(str));

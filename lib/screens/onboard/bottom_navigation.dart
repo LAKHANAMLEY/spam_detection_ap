@@ -89,12 +89,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
           }
           if (state.statuses[Permission.sms] == PermissionStatus.granted) {
             // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-            context.read<MessageDBBloc>().add(
-                  PaginateAndSyncMessagesWithServer(
-                    start: 0,
-                    limit: 100,
-                  ),
-                );
+            context.read<MessageDBBloc>().add(ImportAllDeviceMessages());
+            // context.read<MessageDBBloc>().add(
+            //       PaginateAndSyncMessagesWithServer(
+            //         start: 0,
+            //         limit: 100,
+            //       ),
+            //     );
           }
           if (state.statuses[Permission.notification] ==
               PermissionStatus.granted) {

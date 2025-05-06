@@ -35,6 +35,8 @@ class SharedPref {
   static const String _rememberMe = "rememberMe";
   static const String _password = "password";
 
+  static const String _lastsyncdate = "lastsyncdate";
+
   // static Future<SharedPreferences> get pref async =>
   //     await SharedPreferences.getInstance();
 
@@ -96,6 +98,16 @@ class SharedPref {
     } else {
       return pref.clear();
     }
+  }
+
+  static Future<bool> setLastSyncDate(DateTime date) async {
+    var pref = await SharedPreferences.getInstance();
+    return pref.setInt(_lastsyncdate, date.millisecondsSinceEpoch);
+  }
+
+  static Future<DateTime> getLastSyncDate() async {
+    var pref = await SharedPreferences.getInstance();
+    return DateTime.fromMillisecondsSinceEpoch(pref.getInt(_lastsyncdate) ?? 0);
   }
 
   static Future<bool> getIsRemember() async {

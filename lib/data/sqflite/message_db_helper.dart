@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:spam_delection_app/models/sms/sms_list_model.dart';
+import 'package:spam_delection_app/data/models/sms/sms_list_model.dart';
 import 'package:sqflite/sqflite.dart'; // For DateTime formatting
 
 class SmsLogDBHandler {
@@ -36,6 +36,7 @@ class SmsLogDBHandler {
   static const String columnDetailCountryCode = "country_code";
   static const String columnDate = "date";
   static const String columnDetailName = "name";
+  static const String columnSynced = "synced";
 
   // Singleton instance
   SmsLogDBHandler._privateConstructor();
@@ -65,12 +66,14 @@ class SmsLogDBHandler {
       CREATE TABLE $tableSmsLog (
         $columnLogId TEXT PRIMARY KEY,
         $columnAddress TEXT,
+        $columnBody TEXT,
         $columnCountryCode TEXT,
         $columnUnreadReceivedSms INTEGER,
         $columnName TEXT,
         $columnIsMarkSpam INTEGER,
         $columnIsSpam TEXT,
-        $columnDate INTEGER
+        $columnDate INTEGER,
+        $columnSynced INTEGER
       )
     ''');
     await db.execute('''
@@ -95,6 +98,7 @@ class SmsLogDBHandler {
         $columnDetailCountryCode TEXT,
         $columnDate INTEGER,
         $columnDetailName TEXT,
+        $columnSynced INTEGER,
         FOREIGN KEY ($columnLogIdFk) REFERENCES $tableSmsLog ($columnLogId) ON DELETE CASCADE
       )
     ''');
@@ -112,12 +116,14 @@ class SmsLogDBHandler {
     final logId = await db.insert(tableSmsLog, {
       columnLogId: smsLog.id,
       columnAddress: smsLog.address,
+      columnBody: smsLog.body,
       columnCountryCode: smsLog.countryCode,
       columnUnreadReceivedSms: smsLog.unreadReceivedSms,
       columnName: smsLog.name,
       columnIsMarkSpam: smsLog.isMarkSpam,
       columnIsSpam: smsLog.isSpam,
       columnDate: _dateTimeToInt(smsLog.date),
+      columnSynced: smsLog.synced ? 1 : 0
     });
 
     if (smsLog.smsDetails != null) {
@@ -146,6 +152,7 @@ class SmsLogDBHandler {
             columnDetailCountryCode: detail.countryCode,
             columnDate: _dateTimeToInt(detail.date),
             columnDetailName: detail.name,
+            columnSynced: detail.synced ? 1 : 0
           });
         } else {
           await updateSmsDetail(detail);
@@ -154,58 +161,6 @@ class SmsLogDBHandler {
     }
     return logId;
   }
-
-  // Future<int> updateSmsLog(SmsLog smsLog) async {
-  //   final db = await database;
-
-  //   if (smsLog.smsDetails != null) {
-  //     for (final detail in smsLog.smsDetails!) {
-  //       await db.insert(tableSmsDetail, {
-  //         columnLogIdFk: smsLog.id, //TODO: logId
-  //         columnBody: detail.body,
-  //         columnIsRead: detail.isRead,
-  //         columnMessageState: detail.messageState,
-  //         columnMessageKind: detail.messageKind,
-  //         columnQueryKind: detail.queryKind,
-  //         columnSendReceiveDatetime: _dateTimeToInt(detail.sendreceiveDatetime),
-  //         columnThreadId: detail.threadId,
-  //         columnSmsId: detail.id,
-  //         columnIsSpam: detail.isSpam,
-  //         columnSpamMessage: detail.spamMessage,
-  //         columnScore: detail.score,
-  //         columnIsManually: detail.isManually,
-  //         columnDetailAddress: detail.address,
-  //         columnDetailCountryCode: detail.countryCode,
-  //         columnDate: _dateTimeToInt(detail.date),
-  //         columnDetailName: detail.name,
-  //       });
-  //     }
-  //   }
-
-  //   return await db.update(
-  //     tableSmsLog,
-  //     {
-  //       columnAddress: smsLog.address,
-  //       columnCountryCode: smsLog.countryCode,
-  //       columnUnreadReceivedSms: smsLog.unreadReceivedSms,
-  //       columnName: smsLog.name,
-  //       columnIsMarkSpam: smsLog.isMarkSpam,
-  //     },
-  //     where: '$columnLogId = ?',
-  //     whereArgs: [
-  //       // Assuming your SmsLog object has a way to identify the existing record,
-  //       // ideally by the auto-incremented ID. If not, you might need to update
-  //       // based on a unique field like 'address' (use with caution if not truly unique).
-  //       // For proper updating, ensure your SmsLog object carries the ID.
-  //       // Example assuming SmsLog has an 'id' property:
-  //       // smsLog.id,
-  //       // If you don't have an ID in your SmsLog class, you might need to
-  //       // update based on a unique identifier like address (if it's guaranteed unique).
-  //       // Replace 'smsLog.address' with the actual identifier you want to use.
-  //       smsLog.address,
-  //     ],
-  //   );
-  // }
 
   Future<int> updateSmsLog(SmsLog smsLog) async {
     final db = await database;
@@ -217,12 +172,14 @@ class SmsLogDBHandler {
         tableSmsLog,
         {
           columnAddress: smsLog.address,
+          columnBody: smsLog.body,
           columnCountryCode: smsLog.countryCode,
           columnUnreadReceivedSms: smsLog.unreadReceivedSms,
           columnName: smsLog.name,
           columnIsMarkSpam: smsLog.isMarkSpam,
           columnIsSpam: smsLog.isSpam,
           columnDate: _dateTimeToInt(smsLog.date),
+          columnSynced: smsLog.synced ? 1 : 0,
         },
         where: '$columnLogId = ?',
         whereArgs: [smsLog.address],
@@ -277,6 +234,7 @@ class SmsLogDBHandler {
       columnDetailCountryCode: detail.countryCode,
       columnDate: _dateTimeToInt(detail.date),
       columnDetailName: detail.name,
+      columnSynced: detail.synced ? 1 : 0,
     };
 
     if (existingDetail.isNotEmpty) {
@@ -319,12 +277,14 @@ class SmsLogDBHandler {
       columns: [
         columnLogId,
         columnAddress,
+        columnBody,
         columnCountryCode,
         columnUnreadReceivedSms,
         columnName,
         columnIsMarkSpam,
         columnIsSpam,
         columnDate,
+        columnSynced,
       ],
       where: '$columnLogId = ?',
       whereArgs: [id],
@@ -334,16 +294,17 @@ class SmsLogDBHandler {
       final logMap = maps.first;
       final List<SmsDetail> details = await _getSmsDetailsForLogId(db, id);
       return SmsLog(
-        id: logMap[columnLogId],
-        address: logMap[columnAddress] as String?,
-        countryCode: logMap[columnCountryCode] as String?,
-        unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
-        name: logMap[columnName] as String?,
-        isMarkSpam: logMap[columnIsMarkSpam] as int?,
-        isSpam: logMap[columnIsSpam],
-        date: _intToDateTime(logMap[columnDate]),
-        smsDetails: details,
-      );
+          id: logMap[columnLogId],
+          address: logMap[columnAddress] as String?,
+          body: logMap[columnBody],
+          countryCode: logMap[columnCountryCode] as String?,
+          unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
+          name: logMap[columnName] as String?,
+          isMarkSpam: logMap[columnIsMarkSpam] as int?,
+          isSpam: logMap[columnIsSpam],
+          date: _intToDateTime(logMap[columnDate]),
+          smsDetails: details,
+          synced: logMap[columnSynced] == 1);
     }
     return null;
   }
@@ -356,26 +317,26 @@ class SmsLogDBHandler {
         orderBy: "$columnDate DESC");
     return detailMaps
         .map((detailMap) => SmsDetail(
-              body: detailMap[columnBody] as String?,
-              isRead: detailMap[columnIsRead] as String?,
-              messageState: detailMap[columnMessageState] as String?,
-              messageKind: detailMap[columnMessageKind] as String?,
-              queryKind: detailMap[columnQueryKind] as String?,
-              sendreceiveDatetime:
-                  _intToDateTime(detailMap[columnSendReceiveDatetime] as int?),
-              threadId: detailMap[columnThreadId] as String?,
-              id: detailMap[columnSmsId] as String?,
-              deviceMessageId: detailMap[columnDeviceSmsId] as String?,
-              isSpam: detailMap[columnIsSpam] as String?,
-              isMarkSpam: detailMap[columnIsMarkSpam] as int?,
-              spamMessage: detailMap[columnSpamMessage] as String?,
-              score: detailMap[columnScore] as String?,
-              isManually: detailMap[columnIsManually] as String?,
-              address: detailMap[columnDetailAddress] as String?,
-              countryCode: detailMap[columnDetailCountryCode] as String?,
-              date: _intToDateTime(detailMap[columnDate] as int?),
-              name: detailMap[columnDetailName] as String?,
-            ))
+            body: detailMap[columnBody] as String?,
+            isRead: detailMap[columnIsRead] as String?,
+            messageState: detailMap[columnMessageState] as String?,
+            messageKind: detailMap[columnMessageKind] as String?,
+            queryKind: detailMap[columnQueryKind] as String?,
+            sendreceiveDatetime:
+                _intToDateTime(detailMap[columnSendReceiveDatetime] as int?),
+            threadId: detailMap[columnThreadId] as String?,
+            id: detailMap[columnSmsId] as String?,
+            deviceMessageId: detailMap[columnDeviceSmsId] as String?,
+            isSpam: detailMap[columnIsSpam] as String?,
+            isMarkSpam: detailMap[columnIsMarkSpam] as int?,
+            spamMessage: detailMap[columnSpamMessage] as String?,
+            score: detailMap[columnScore] as String?,
+            isManually: detailMap[columnIsManually] as String?,
+            address: detailMap[columnDetailAddress] as String?,
+            countryCode: detailMap[columnDetailCountryCode] as String?,
+            date: _intToDateTime(detailMap[columnDate] as int?),
+            name: detailMap[columnDetailName] as String?,
+            synced: detailMap[columnSynced] == 1))
         .toList();
   }
 
@@ -387,16 +348,17 @@ class SmsLogDBHandler {
       final String logId = logMap[columnLogId];
       final List<SmsDetail> details = await _getSmsDetailsForLogId(db, logId);
       return SmsLog(
-        id: logMap[columnLogId],
-        address: logMap[columnAddress] as String?,
-        countryCode: logMap[columnCountryCode] as String?,
-        unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
-        name: logMap[columnName] as String?,
-        isMarkSpam: logMap[columnIsMarkSpam] as int?,
-        isSpam: logMap[columnIsSpam],
-        date: _intToDateTime(logMap[columnDate] as int?),
-        smsDetails: details,
-      );
+          id: logMap[columnLogId],
+          address: logMap[columnAddress] as String?,
+          body: logMap[columnBody],
+          countryCode: logMap[columnCountryCode] as String?,
+          unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
+          name: logMap[columnName] as String?,
+          isMarkSpam: logMap[columnIsMarkSpam] as int?,
+          isSpam: logMap[columnIsSpam],
+          date: _intToDateTime(logMap[columnDate] as int?),
+          smsDetails: details,
+          synced: logMap[columnSynced] == 1);
     }).toList());
   }
 
@@ -413,16 +375,17 @@ class SmsLogDBHandler {
       final String logId = logMap[columnLogId];
       final List<SmsDetail> details = await _getSmsDetailsForLogId(db, logId);
       return SmsLog(
-        id: logMap[columnLogId],
-        address: logMap[columnAddress] as String?,
-        countryCode: logMap[columnCountryCode] as String?,
-        unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
-        name: logMap[columnName] as String?,
-        isMarkSpam: logMap[columnIsMarkSpam] as int?,
-        isSpam: logMap[columnIsSpam],
-        date: _intToDateTime(logMap[columnDate] as int?),
-        smsDetails: details,
-      );
+          id: logMap[columnLogId],
+          address: logMap[columnAddress] as String?,
+          body: logMap[columnBody],
+          countryCode: logMap[columnCountryCode] as String?,
+          unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
+          name: logMap[columnName] as String?,
+          isMarkSpam: logMap[columnIsMarkSpam] as int?,
+          isSpam: logMap[columnIsSpam],
+          date: _intToDateTime(logMap[columnDate] as int?),
+          smsDetails: details,
+          synced: logMap[columnSynced] == 1);
     }).toList());
   }
 
@@ -441,4 +404,91 @@ class SmsLogDBHandler {
   }
 
   String join(String path, String databaseName) => path + databaseName;
+
+  Future<List<SmsLog>> getUnsyncedMessages(
+      {required int limit, required int start}) async {
+    final db = await database;
+    final List<Map<String, dynamic>> logMaps = await db.query(
+      tableSmsLog,
+      orderBy: "$columnDate DESC",
+      limit: limit,
+      offset: start,
+      where: '$columnSynced = ?',
+      whereArgs: [0],
+    );
+    return Future.wait(logMaps.map((logMap) async {
+      final String logId = logMap[columnLogId];
+      final List<SmsDetail> details =
+          await _getUnsyncedSmsDetailsForLogId(db, logId);
+      return SmsLog(
+          id: logMap[columnLogId],
+          address: logMap[columnAddress] as String?,
+          body: logMap[columnBody],
+          countryCode: logMap[columnCountryCode] as String?,
+          unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
+          name: logMap[columnName] as String?,
+          isMarkSpam: logMap[columnIsMarkSpam] as int?,
+          isSpam: logMap[columnIsSpam],
+          date: _intToDateTime(logMap[columnDate] as int?),
+          smsDetails: details,
+          synced: logMap[columnSynced] == 1);
+    }).toList());
+  }
+
+  Future<List<SmsDetail>> _getUnsyncedSmsDetailsForLogId(
+      Database db, String logId) async {
+    final List<Map<String, dynamic>> detailMaps = await db.query(tableSmsDetail,
+        where: '$columnLogIdFk = ? AND $columnSynced = ?',
+        whereArgs: [logId, 0],
+        orderBy: "$columnDate DESC");
+    return detailMaps
+        .map((detailMap) => SmsDetail(
+            body: detailMap[columnBody] as String?,
+            isRead: detailMap[columnIsRead] as String?,
+            messageState: detailMap[columnMessageState] as String?,
+            messageKind: detailMap[columnMessageKind] as String?,
+            queryKind: detailMap[columnQueryKind] as String?,
+            sendreceiveDatetime: _intToDateTime(
+                detailMap[columnSendReceiveDatetime] as int? ?? 0),
+            date: _intToDateTime(detailMap[columnDate] as int? ?? 0),
+            threadId: detailMap[columnThreadId] as String?,
+            id: detailMap[columnSmsId] as String?,
+            deviceMessageId: detailMap[columnDeviceSmsId] as String?,
+            isSpam: detailMap[columnIsSpam] as String?,
+            isMarkSpam: detailMap[columnIsMarkSpam] as int?,
+            spamMessage: detailMap[columnSpamMessage] as String?,
+            score: detailMap[columnScore] as String?,
+            isManually: detailMap[columnIsManually] as String?,
+            address: detailMap[columnDetailAddress] as String?,
+            countryCode: detailMap[columnDetailCountryCode] as String?,
+            name: detailMap[columnDetailName] as String?,
+            synced: detailMap[columnSynced] == 1))
+        .toList();
+  }
+
+  Future<int> markMessageAsSynced(String logId) async {
+    final db = await database;
+    int updatedRows = 0;
+
+    if (logId.isNotEmpty) {
+      updatedRows = await db.update(
+        tableSmsLog,
+        {
+          columnSynced: 1, // Set as synced
+        },
+        where: '$columnLogId = ?',
+        whereArgs: [logId],
+      );
+
+      if (updatedRows == 0) {
+        print('⚠️ No rows updated for logId: $logId');
+      } else {
+        print('✅ Marked logId $logId as synced.');
+      }
+    } else {
+      print('❌ Error: Cannot mark as synced without a valid logId.');
+    }
+
+    return updatedRows;
+  }
 }

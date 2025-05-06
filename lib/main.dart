@@ -5,31 +5,36 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_state_background/phone_state_background.dart';
+import 'package:spam_delection_app/data/repository/sms_repo/message_service.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:workmanager/workmanager.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // Bloc.observer = AppBlocObserver();
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   firebaseAnalyticsConfig();
   firebaseCrashlyticsConfig();
-  FlutterNativeSplash.remove();
-  // Workmanager().initialize(
-  //   callbackDispatcher,
-  //   isInDebugMode: true, // Optional: Enable logging for debugging
-  // );
-
+  await Workmanager().initialize(
+    callbackDispatcher,
+    isInDebugMode: true, // Set to false in production
+  );
+  await Workmanager().registerPeriodicTask(
+    "sync_sms_task",
+    "syncSmsWithServer",
+    frequency: Duration(minutes: 15), // Minimum on Android
+    constraints: Constraints(
+      networkType: NetworkType.connected,
+    ),
+  );
   runApp(const MyApp());
+  FlutterNativeSplash.remove(); // Hide splash after app loads
 }
 
-// overlay entry point
 @pragma("vm:entry-point")
 void overlayMain() {
-  runApp(const MyApp(
-    isOverlay: true,
-  ));
+  runApp(const MyApp(isOverlay: true));
 }
 
 @pragma('vm:entry-point')
@@ -38,45 +43,33 @@ Future<void> phoneStateBackgroundCallbackHandler(
   String number,
   int duration,
 ) async {
-  // Workmanager().registerPeriodicTask(
-  //   'periodic-task-identifier',
-  //   'my_background_task',
-  //   frequency: Duration(minutes: 15), // Minimum 15 minutes on Android
-  //   inputData: {'periodic': true},
-  //   constraints: Constraints(
-  //     networkType: NetworkType.connected,
-  //   ),
-  // );
-  // await Workmanager().cancelAll();//To cancel all bg task
-  print('Periodic task scheduled');
-  // if (event != null)
-  // await permissionRequest(Permission.systemAlertWindow);
+  print('📞 Call event captured for $number, duration $duration sec');
+
   showOverlay(
-      callType: getCallTypeStringFromBGPhoneState(event),
-      number: number,
-      duration: duration);
+    callType: getCallTypeStringFromBGPhoneState(event),
+    number: number,
+    duration: duration,
+  );
 }
 
-// @pragma('vm:entry-point') // Required for isolates
-// void callbackDispatcher() {
-//   Workmanager().executeTask((task, inputData) async {
-//     switch (task) {
-//       case 'my_background_task':
-//         // Your background task logic here
-//         print("Running my background task with input: $inputData");
-//         // You can use plugins here, but ensure they are initialized within this isolate.
-//         // For example, for shared_preferences:
-//         // final prefs = await SharedPreferences.getInstance();
-//         // final counter = (prefs.getInt('counter') ?? 0) + 1;
-//         // await prefs.setInt('counter', counter);
-//         return Future.value(true); // Indicate success
-//       case 'another_task':
-//         print("Running another background task");
-//         return Future.value(true);
-//     }
-//     return Future.value(false); // Task not recognized
-//   });
-// }
+@pragma('vm:entry-point')
+void callbackDispatcher() {
+  Workmanager().executeTask((task, inputData) async {
+    try {
+      print("✅ WorkManager Task Started: $task");
+
+      if (task == "syncSmsWithServer") {
+        await MessageSyncService.syncMessages();
+      }
+
+      print("✅ WorkManager Task Completed: $task");
+      return Future.value(true);
+    } catch (e, stack) {
+      print("❌ WorkManager Task Failed: $e\n$stack");
+      return Future.value(false); // Will retry
+    }
+  });
+}
 
 class MyApp extends StatelessWidget {
   final bool isOverlay;

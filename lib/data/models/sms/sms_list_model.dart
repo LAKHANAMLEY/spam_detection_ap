@@ -17,6 +17,7 @@ class SmsLog {
   final String? sendreceiveDatetime;
   final int? totalMarkSpamCountByUser;
   final List<SmsDetail>? smsDetails;
+  final bool synced;
 
   SmsLog({
     this.id,
@@ -31,25 +32,26 @@ class SmsLog {
     this.sendreceiveDatetime,
     this.totalMarkSpamCountByUser,
     this.smsDetails,
+    this.synced = false,
   });
 
   factory SmsLog.fromJson(Map<String, dynamic> json) => SmsLog(
-        id: json["id"],
-        address: json["address"],
-        countryCode: json["country_code"],
-        isSpam: json["is_spam"],
-        date: json["date"] == null ? null : DateTime.parse(json["date"]),
-        body: json["body"],
-        unreadReceivedSms: json["unread_received_sms"],
-        isMarkSpam: json["is_mark_spam"],
-        name: json["name"],
-        sendreceiveDatetime: json["sendreceive_datetime"],
-        totalMarkSpamCountByUser: json["total_mark_spam_count_by_user"],
-        smsDetails: json["sms_details"] == null
-            ? []
-            : List<SmsDetail>.from(
-                json["sms_details"]!.map((x) => SmsDetail.fromJson(x))),
-      );
+      id: json["id"],
+      address: json["address"],
+      countryCode: json["country_code"],
+      isSpam: json["is_spam"],
+      date: json["date"] == null ? null : DateTime.parse(json["date"]),
+      body: json["body"],
+      unreadReceivedSms: json["unread_received_sms"],
+      isMarkSpam: json["is_mark_spam"],
+      name: json["name"],
+      sendreceiveDatetime: json["sendreceive_datetime"],
+      totalMarkSpamCountByUser: json["total_mark_spam_count_by_user"],
+      smsDetails: json["sms_details"] == null
+          ? []
+          : List<SmsDetail>.from(
+              json["sms_details"]!.map((x) => SmsDetail.fromJson(x))),
+      synced: json["synced"] == 1);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -66,23 +68,25 @@ class SmsLog {
         "sms_details": smsDetails == null
             ? []
             : List<dynamic>.from(smsDetails!.map((x) => x.toJson())),
+        "synced": synced ? 1 : 0,
       };
 
   // SQLite integration
-  factory SmsLog.fromMap(Map<String, dynamic> map) => SmsLog(
-        id: map['id'],
-        address: map['address'],
-        countryCode: map['country_code'],
-        isSpam: map['is_spam'],
-        date: map['date'] != null ? DateTime.tryParse(map['date']) : null,
-        body: map['body'],
-        unreadReceivedSms: map['unread_received_sms'],
-        isMarkSpam: map['is_mark_spam'],
-        name: map['name'],
-        sendreceiveDatetime: map['sendreceive_datetime'],
-        totalMarkSpamCountByUser: map['total_mark_spam_count_by_user'],
-        smsDetails: null, // handled separately
-      );
+  // factory SmsLog.fromMap(Map<String, dynamic> map) => SmsLog(
+  //       id: map['id'],
+  //       address: map['address'],
+  //       countryCode: map['country_code'],
+  //       isSpam: map['is_spam'],
+  //       date: map['date'] != null ? DateTime.tryParse(map['date']) : null,
+  //       body: map['body'],
+  //       unreadReceivedSms: map['unread_received_sms'],
+  //       isMarkSpam: map['is_mark_spam'],
+  //       name: map['name'],
+  //       sendreceiveDatetime: map['sendreceive_datetime'],
+  //       totalMarkSpamCountByUser: map['total_mark_spam_count_by_user'],
+  //       smsDetails: null, // handled separately
+  //       synced: map["synced"] == 1,
+  //     );
 
   Map<String, dynamic> toMap() => {
         'id': id,
@@ -96,6 +100,7 @@ class SmsLog {
         'name': name,
         'sendreceive_datetime': sendreceiveDatetime,
         'total_mark_spam_count_by_user': totalMarkSpamCountByUser,
+        'synced': synced ? 1 : 0
       };
 
   SmsLog copyWith({
@@ -111,6 +116,7 @@ class SmsLog {
     String? sendreceiveDatetime,
     int? totalMarkSpamCountByUser,
     List<SmsDetail>? smsDetails,
+    bool? synced,
   }) =>
       SmsLog(
         id: id ?? this.id,
@@ -126,12 +132,15 @@ class SmsLog {
         totalMarkSpamCountByUser:
             totalMarkSpamCountByUser ?? this.totalMarkSpamCountByUser,
         smsDetails: smsDetails ?? this.smsDetails,
+        synced: synced ?? this.synced,
       );
 
   static SmsLog fromSmsMessage(
           SmsMessage sms, ContactData? contact, SmsDetail? serverLog) =>
       SmsLog(
         id: sms.address?.separatePhoneAndPhoneCode().phone,
+        body: sms.body,
+        sendreceiveDatetime: sms.dateSent.toString(),
         address: sms.address?.separatePhoneAndPhoneCode().phone,
         countryCode: sms.address?.separatePhoneAndPhoneCode().phoneCode,
         name: contact?.name ?? serverLog?.name,
@@ -139,6 +148,7 @@ class SmsLog {
         isMarkSpam: serverLog?.isMarkSpam ?? 0,
         isSpam: serverLog?.isSpam,
         unreadReceivedSms: serverLog?.unreadReceivedSms,
+        synced: serverLog?.synced ?? false,
       );
 
   static SmsLog fromSmsLog(SmsLog? serverLog) => SmsLog(
@@ -154,6 +164,7 @@ class SmsLog {
         sendreceiveDatetime: serverLog?.sendreceiveDatetime,
         totalMarkSpamCountByUser: serverLog?.totalMarkSpamCountByUser,
         smsDetails: serverLog?.smsDetails,
+        synced: serverLog?.synced ?? false,
       );
 }
 
@@ -177,55 +188,56 @@ class SmsDetail {
   final DateTime? date;
   final String? name;
   final int? unreadReceivedSms;
+  final bool synced;
 
-  SmsDetail({
-    this.body,
-    this.isRead,
-    this.messageState,
-    this.messageKind,
-    this.queryKind,
-    this.sendreceiveDatetime,
-    this.threadId,
-    this.id,
-    this.deviceMessageId,
-    this.isSpam,
-    this.isMarkSpam,
-    this.spamMessage,
-    this.score,
-    this.isManually,
-    this.address,
-    this.countryCode,
-    this.date,
-    this.name,
-    this.unreadReceivedSms,
-  });
+  SmsDetail(
+      {this.body,
+      this.isRead,
+      this.messageState,
+      this.messageKind,
+      this.queryKind,
+      this.sendreceiveDatetime,
+      this.threadId,
+      this.id,
+      this.deviceMessageId,
+      this.isSpam,
+      this.isMarkSpam,
+      this.spamMessage,
+      this.score,
+      this.isManually,
+      this.address,
+      this.countryCode,
+      this.date,
+      this.name,
+      this.unreadReceivedSms,
+      this.synced = false});
 
   factory SmsDetail.fromJson(Map<String, dynamic> json) => SmsDetail(
-        body: json["body"],
-        isRead: json["is_read"],
-        messageState: json["MessageState"],
-        messageKind: json["MessageKind"],
-        queryKind: json["QueryKind"],
-        sendreceiveDatetime:
-            json["send_receiveDatetime"]?.toString().isEmpty ?? true
-                ? null
-                : DateTime.tryParse(json["send_receiveDatetime"]),
-        threadId: json["thread_id"],
-        id: json["id"],
-        deviceMessageId: json["_id"],
-        isSpam: json["is_spam"],
-        isMarkSpam: json["is_mark_spam"],
-        spamMessage: json["spam_message"],
-        score: json["score"],
-        isManually: json["isManually"],
-        address: json["address"],
-        countryCode: json["countryCode"],
-        date: json["date"]?.toString().isEmpty ?? true
-            ? null
-            : DateTime.tryParse(json["date"]),
-        name: json["name"],
-        unreadReceivedSms: json["unread_received_sms"],
-      );
+      body: json["body"],
+      isRead: json["is_read"],
+      messageState: json["MessageState"],
+      messageKind: json["MessageKind"],
+      queryKind: json["QueryKind"],
+      sendreceiveDatetime:
+          json["send_receiveDatetime"]?.toString().isEmpty ?? true
+              ? null
+              : DateTime.tryParse(json["send_receiveDatetime"]),
+      threadId: json["thread_id"],
+      id: json["id"],
+      deviceMessageId: json["_id"],
+      isSpam: json["is_spam"],
+      isMarkSpam: json["is_mark_spam"],
+      spamMessage: json["spam_message"],
+      score: json["score"],
+      isManually: json["isManually"],
+      address: json["address"],
+      countryCode: json["countryCode"],
+      date: json["date"]?.toString().isEmpty ?? true
+          ? null
+          : DateTime.tryParse(json["date"]),
+      name: json["name"],
+      unreadReceivedSms: json["unread_received_sms"],
+      synced: json["synced"] == 1);
 
   Map<String, dynamic> toJson() => {
         "body": body,
@@ -247,6 +259,7 @@ class SmsDetail {
         "date": date?.toIso8601String(),
         "name": name,
         "unread_received_sms": unreadReceivedSms,
+        "synced": synced ? 1 : 0
       };
 
   // Original fromSmsMessage method
@@ -274,31 +287,32 @@ class SmsDetail {
         score: serverLog?.score,
         spamMessage: serverLog?.spamMessage,
         isManually: serverLog?.isManually,
+        synced: serverLog?.synced ?? false,
       );
 
   // Corrected fromSmsLog method (from your original version)
   static SmsDetail? fromSmsLog(SmsLog? serverLog) {
     var detail = serverLog?.smsDetails?.firstOrNull;
     return SmsDetail(
-      id: serverLog?.id,
-      deviceMessageId: serverLog?.id,
-      address: serverLog?.address,
-      countryCode: serverLog?.countryCode,
-      body: detail?.body,
-      date: serverLog?.date,
-      messageKind: detail?.messageKind,
-      messageState: detail?.messageState,
-      name: serverLog?.name,
-      threadId: detail?.threadId,
-      sendreceiveDatetime: detail?.date,
-      isSpam: serverLog?.isSpam,
-      isMarkSpam: serverLog?.isMarkSpam,
-      isRead: detail?.isRead,
-      queryKind: detail?.queryKind,
-      score: detail?.score,
-      spamMessage: detail?.spamMessage,
-      isManually: detail?.isManually,
-    );
+        id: serverLog?.id,
+        deviceMessageId: serverLog?.id,
+        address: serverLog?.address,
+        countryCode: serverLog?.countryCode,
+        body: detail?.body,
+        date: serverLog?.date,
+        messageKind: detail?.messageKind,
+        messageState: detail?.messageState,
+        name: serverLog?.name,
+        threadId: detail?.threadId,
+        sendreceiveDatetime: detail?.date,
+        isSpam: serverLog?.isSpam,
+        isMarkSpam: serverLog?.isMarkSpam,
+        isRead: detail?.isRead,
+        queryKind: detail?.queryKind,
+        score: detail?.score,
+        spamMessage: detail?.spamMessage,
+        isManually: detail?.isManually,
+        synced: detail?.synced ?? false);
   }
 
   // copyWith method
@@ -322,6 +336,7 @@ class SmsDetail {
     DateTime? date,
     String? name,
     int? unreadReceivedSms,
+    bool? synced,
   }) =>
       SmsDetail(
         body: body ?? this.body,
@@ -343,6 +358,7 @@ class SmsDetail {
         date: date ?? this.date,
         name: name ?? this.name,
         unreadReceivedSms: unreadReceivedSms ?? this.unreadReceivedSms,
+        synced: synced ?? this.synced,
       );
 }
 

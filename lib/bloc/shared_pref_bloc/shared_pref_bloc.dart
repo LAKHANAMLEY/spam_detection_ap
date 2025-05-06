@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_event.dart';
 import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_state.dart';
 import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
-import 'package:spam_delection_app/models/user/user_model.dart';
+import 'package:spam_delection_app/data/models/user/user_model.dart';
 
 class SharedPrefBloc extends Bloc<SharedPrefEvent, SharedPrefState> {
   SharedPrefBloc(super.initialState) {

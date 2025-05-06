@@ -342,7 +342,7 @@ import 'package:styled_text/styled_text.dart';
 
 import '../../globals/app_fonts.dart';
 import '../../globals/colors.dart';
-import '../../models/common/plan_list_model.dart';
+import '../../data/models/common/plan_list_model.dart';
 
 // Color _darken(Color color, [double amount = .1]) {
 //   assert(amount >= 0 && amount <= 1);

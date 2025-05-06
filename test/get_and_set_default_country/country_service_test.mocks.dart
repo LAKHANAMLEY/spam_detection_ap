@@ -6,7 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:spam_delection_app/models/common/country_list_model.dart'
+import 'package:spam_delection_app/data/models/common/country_list_model.dart'
     as _i2;
 
 import 'country_service.dart' as _i3;

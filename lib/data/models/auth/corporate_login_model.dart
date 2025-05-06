@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:spam_delection_app/models/user/user_model.dart';
+import 'package:spam_delection_app/data/models/user/user_model.dart';
 
 CorporateResponse corporateResponseFromJson(String str) =>
     CorporateResponse.fromJson(json.decode(str));

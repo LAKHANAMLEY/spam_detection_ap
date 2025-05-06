@@ -59,6 +59,28 @@ class _MessagesDetailState extends State<MessagesDetail> {
   Widget build(BuildContext context) {
     return BlocListener<SmsBloc, SmsState>(
       listener: (context, state) async {
+        if (state is NewSmsReceived) {
+          context
+              .read<MessageDBBloc>()
+              .add(SyncChangedMessageWithServer(smsMessage: state.message));
+          // context.read<MessageDBBloc>().add(AddSmsLog(
+          //     SmsLog.fromSmsMessage(state.message, ContactData(), null)));
+          // context.read<MessageDBBloc>().add(
+          //       SyncChangedMessageWithServer(smsMessage: state.message),
+          //     );
+        } else if (state is NewSmsSent) {
+          context
+              .read<MessageDBBloc>()
+              .add(SyncChangedMessageWithServer(smsMessage: state.message));
+          // context.read<MessageDBBloc>().add(AddSmsLog(
+          //     SmsLog.fromSmsMessage(state.message, ContactData(), null)));
+          // context
+          //     .read<MessageDBBloc>()
+          //     .add(GetAllSmsFromDB(start: startFrom, limit: limit));
+          // context.read<MessageDBBloc>().add(
+          //       SyncChangedMessageWithServer(smsMessage: state.message),
+          //     );
+        }
         // if (state is SmsInitial) {
         //   log("Initial state");
         //   context.read<SmsBloc>().add(StartListeningSms());
@@ -100,6 +122,18 @@ class _MessagesDetailState extends State<MessagesDetail> {
           // log(state.smsLogs.first.body ?? "");
           // log(state.smsLogs.last.body ?? "");
           log(sms?.smsDetails?.first.body ?? "");
+        }
+        if (state is MessageDBSynced) {
+          sms =
+              state.syncedSmsLogs.firstWhere((e) => e.address == sms?.address);
+          // log(state.smsLogs.first.body ?? "");
+          // log(state.smsLogs.last.body ?? "");
+          log(sms?.smsDetails?.first.body ?? "");
+          // sms =
+          //     state.syncedSmsLogs.firstWhere((e) => e.address == sms?.address);
+          // log(state.smsLogs.first.body ?? "");
+          // log(state.smsLogs.last.body ?? "");
+          // // log(sms?.smsDetails?.first.body ?? "");
         }
       }, builder: (context, state) {
         return Scaffold(

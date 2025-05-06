@@ -54,9 +54,9 @@ class _MessagesScreenState extends State<MessagesScreen> {
               GetAllSmsFromDB(start: startFrom, limit: limit),
             );
         // Start the background sync immediately after fetching from SQLite
-        context.read<MessageDBBloc>().add(
-              PaginateAndSyncMessagesWithServer(start: startFrom, limit: limit),
-            );
+        // context.read<MessageDBBloc>().add(
+        //       PaginateAndSyncMessagesWithServer(start: startFrom, limit: limit),
+        //     );
       }
     }
   }
@@ -104,13 +104,22 @@ class _MessagesScreenState extends State<MessagesScreen> {
             context.read<SmsBloc>().add(StartListeningSms());
           }
           if (state is NewSmsReceived) {
-            context.read<MessageDBBloc>().add(
-                  SyncChangedMessageWithServer(smsMessage: state.message),
-                );
+            startFrom = 0;
+            context.read<MessageDBBloc>().add(AddSmsLog(
+                SmsLog.fromSmsMessage(state.message, ContactData(), null)));
+            // context.read<MessageDBBloc>().add(
+            //       SyncChangedMessageWithServer(smsMessage: state.message),
+            //     );
           } else if (state is NewSmsSent) {
-            context.read<MessageDBBloc>().add(
-                  SyncChangedMessageWithServer(smsMessage: state.message),
-                );
+            startFrom = 0;
+            context.read<MessageDBBloc>().add(AddSmsLog(
+                SmsLog.fromSmsMessage(state.message, ContactData(), null)));
+            // context
+            //     .read<MessageDBBloc>()
+            //     .add(GetAllSmsFromDB(start: startFrom, limit: limit));
+            // context.read<MessageDBBloc>().add(
+            //       SyncChangedMessageWithServer(smsMessage: state.message),
+            //     );
           }
         },
         child: Column(
@@ -123,8 +132,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
                 onSelected: (value) {
                   switch (value) {
                     case 'sync':
-                      startFrom = 0;
-                      messages.clear();
+                      // startFrom = 0;
+                      // messages.clear();
                       context.read<MessageDBBloc>().add(
                             PaginateAndSyncMessagesWithServer(
                                 start: 0, limit: limit),
@@ -197,7 +206,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   }
 
                   if (state is NewMessageReceived) {
-                    messages.clear();
+                    // messages.clear();
                     startFrom = 0;
                     context
                         .read<MessageDBBloc>()
@@ -207,7 +216,10 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   if (state is MessageDBDeletedAll) {
                     paginationBloc.add(SelectBoolEvent(false));
                     startFrom = 0;
-                    messages.clear();
+                    context
+                        .read<MessageDBBloc>()
+                        .add(GetAllSmsFromDB(start: startFrom, limit: limit));
+                    // messages.clear();
                     filterSearchResults();
                   }
 
@@ -220,6 +232,13 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   if (state is MessageDBError) {
                     paginationBloc.add(SelectBoolEvent(false));
                     showToast(state.message);
+                  }
+                  if (state is MessageDBSynced) {
+                    paginationBloc.add(SelectBoolEvent(false));
+                    startFrom = 0;
+                    context
+                        .read<MessageDBBloc>()
+                        .add(GetAllSmsFromDB(start: startFrom, limit: limit));
                   }
                 },
                 builder: (context, state) {

@@ -40,6 +40,8 @@ class DeleteMessageDB extends MessageDBEvent {}
 // New Events for Syncing
 // class LoadDeviceSms extends MessageDBEvent {}
 
+class ImportAllDeviceMessages extends MessageDBEvent {}
+
 class PaginateAndSyncMessagesWithServer extends MessageDBEvent {
   final int start;
   final int limit;

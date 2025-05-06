@@ -65,6 +65,11 @@ dependencies:
   intl_phone_number_input: ^0.7.4
   flutter_svg: ^2.1.0
   # workmanager: ^0.5.2
+  workmanager:
+    git:
+      url: https://github.com/fluttercommunity/flutter_workmanager.git
+      path: workmanager
+      ref: main
 
 dev_dependencies:
   flutter_test:

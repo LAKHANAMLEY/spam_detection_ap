@@ -48,8 +48,9 @@ class MessageListItem extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: textTheme(context).titleMedium?.copyWith(
-                  fontWeight:
-                      sms.unreadReceivedSms == 1 ? FontWeight.bold : null),
+                  fontWeight: (sms.unreadReceivedSms ?? 0) > 0
+                      ? FontWeight.bold
+                      : null),
             ),
           ),
           10.width(),
@@ -58,7 +59,7 @@ class MessageListItem extends StatelessWidget {
             style: textTheme(context).bodySmall?.copyWith(
                 color: Colors.grey,
                 fontWeight:
-                    sms.unreadReceivedSms == 1 ? FontWeight.bold : null),
+                    (sms.unreadReceivedSms ?? 0) > 0 ? FontWeight.bold : null),
           ),
         ],
       ),
@@ -67,14 +68,12 @@ class MessageListItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            sms.smsDetails?.isNotEmpty ?? false
-                ? sms.smsDetails?.first.body ?? ""
-                : "",
+            sms.body ?? "",
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: textTheme(context).bodyMedium?.copyWith(
                 fontWeight:
-                    sms.unreadReceivedSms == 1 ? FontWeight.bold : null),
+                    (sms.unreadReceivedSms ?? 0) > 0 ? FontWeight.bold : null),
           ),
           // if (sms.isMarkSpam == 1)
           //   Text(

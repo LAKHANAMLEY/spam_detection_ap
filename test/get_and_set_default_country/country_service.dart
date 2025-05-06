@@ -4,7 +4,7 @@ import 'package:spam_delection_app/data/repository/setting_repo/countries_api.da
 import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
 import 'package:spam_delection_app/extensions/country_ext.dart';
 import 'package:spam_delection_app/globals/app_constants.dart';
-import 'package:spam_delection_app/models/common/country_list_model.dart';
+import 'package:spam_delection_app/data/models/common/country_list_model.dart';
 
 abstract class CountryService {
   Future<String?> getSavedCountry();
