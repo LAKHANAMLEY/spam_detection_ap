@@ -39,12 +39,15 @@ class _MessagesDetailState extends State<MessagesDetail> {
     WidgetsBinding.instance.addPostFrameCallback((s) {
       var arg = args(context) as MessagesDetail;
       sms = arg.sms!;
-      if (sms?.smsDetails?.isNotEmpty ?? false) {
+      if (sms?.threadId?.isNotEmpty ?? false) {
         context
             .read<MessageDBBloc>()
-            .add(SyncMessageDetailsWithServer(smsLogs: sms!));
+            .add(ImportAllDeviceMessagesDetails(threadId: sms?.threadId ?? ""));
+        // context
+        //     .read<MessageDBBloc>()
+        //     .add(SyncMessageDetailsWithServer(smsLogs: sms!));
       }
-      if (sms?.unreadReceivedSms == 1) {
+      if ((sms?.unreadReceivedSms ?? 0) > 0) {
         context
             .read<MessageDBBloc>()
             .add(ReadDBMessage(sms: sms!.copyWith(unreadReceivedSms: 0)));
@@ -128,7 +131,7 @@ class _MessagesDetailState extends State<MessagesDetail> {
               state.syncedSmsLogs.firstWhere((e) => e.address == sms?.address);
           // log(state.smsLogs.first.body ?? "");
           // log(state.smsLogs.last.body ?? "");
-          log(sms?.smsDetails?.first.body ?? "");
+          // log(sms?.smsDetails?.first.body ?? "");
           // sms =
           //     state.syncedSmsLogs.firstWhere((e) => e.address == sms?.address);
           // log(state.smsLogs.first.body ?? "");
@@ -400,17 +403,40 @@ class _MessagesDetailState extends State<MessagesDetail> {
     return null;
   }
 
-  messageField(context, SmsLog? sms) => Container(
+  Widget messageField(context, SmsLog? sms) => Container(
         height: 80,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        padding: EdgeInsets.all(5),
         margin:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: CustomTextField(
-            fillColor: Colors.white,
-            hintText: appLocalization(context).enterMessage,
-            controller: messageController,
-            suffix: InkWell(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: CustomTextField(
+                fillColor: Colors.white,
+                hintText: appLocalization(context).enterMessage,
+                controller: messageController,
+                borderRadius: BorderRadius.circular(50),
+                // suffix: InkWell(
+                //   onTap: () {
+                //     send(sms, context);
+                //   },
+                //   child: Container(
+                //     padding: EdgeInsets.all(8),
+                //     decoration: BoxDecoration(
+                //         shape: BoxShape.circle, color: AppColor.themeOrangeColor),
+                //     child: const Icon(
+                //       Icons.send,
+                //       color: Colors.white,
+                //       // color: AppColor.themeOrangeColor,
+                //     ),
+                //   ),
+                // ),
+              ),
+            ),
+            InkWell(
               onTap: () {
                 send(sms, context);
               },
@@ -424,7 +450,9 @@ class _MessagesDetailState extends State<MessagesDetail> {
                   // color: AppColor.themeOrangeColor,
                 ),
               ),
-            )),
+            ),
+          ],
+        ),
       );
 
   void onReportPressed() {

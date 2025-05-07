@@ -81,7 +81,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 // Call Log
     if (event is GetDeviceCallLogEvent) {
       emit(ApiLoadingState());
-      await getDeviceCallLogs(
+      await CallController.getDeviceCallLogs(
         number: event.number,
         dateTimeFrom: event.dateTimeFrom,
         dateTimeTo: event.dateTimeTo,
@@ -416,8 +416,8 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
     // check Spam
     if (event is CheckSpamEvent) {
       emit(ApiLoadingState());
-      var callLogs =
-          await getDeviceCallLogs(number: event.callLogs.first.mobileNo);
+      var callLogs = await CallController.getDeviceCallLogs(
+          number: event.callLogs.first.mobileNo);
       await checkSpam(callLogs: callLogs).then((value) {
         emit(CheckSpamState(value));
       });

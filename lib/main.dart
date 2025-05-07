@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_state_background/phone_state_background.dart';
+import 'package:spam_delection_app/data/repository/call_log_repo/call_log_sync_service.dart';
 import 'package:spam_delection_app/data/repository/sms_repo/message_service.dart';
 import 'package:spam_delection_app/lib.dart';
 import 'package:workmanager/workmanager.dart';
@@ -20,6 +21,15 @@ void main() async {
     callbackDispatcher,
     isInDebugMode: true, // Set to false in production
   );
+  await Workmanager().registerPeriodicTask(
+    "sync_call_log_task",
+    "syncCallLogsWithServer",
+    frequency: Duration(minutes: 15),
+    constraints: Constraints(
+      networkType: NetworkType.connected,
+    ),
+  );
+
   await Workmanager().registerPeriodicTask(
     "sync_sms_task",
     "syncSmsWithServer",
@@ -60,13 +70,15 @@ void callbackDispatcher() {
 
       if (task == "syncSmsWithServer") {
         await MessageSyncService.syncMessages();
+      } else if (task == "syncCallLogsWithServer") {
+        await CallLogSyncService.syncCallLogs();
       }
 
       print("✅ WorkManager Task Completed: $task");
       return Future.value(true);
     } catch (e, stack) {
       print("❌ WorkManager Task Failed: $e\n$stack");
-      return Future.value(false); // Will retry
+      return Future.value(false);
     }
   });
 }

@@ -56,6 +56,8 @@ class GetDBCallLog extends CallLogDBEvent {
   List<Object> get props => [mobileNo];
 }
 
+class ImportAllDeviceCallLogs extends CallLogDBEvent {}
+
 // New event for syncing call logs
 class SyncDBCallLogs extends CallLogDBEvent {}
 

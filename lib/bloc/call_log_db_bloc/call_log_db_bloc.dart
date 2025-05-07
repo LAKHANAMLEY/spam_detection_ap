@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:spam_delection_app/data/repository/call_log_repo/call_log_sync_service.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
@@ -9,6 +10,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
 
   CallLogDBBloc() : super(CallLogDBInitial()) {
     // Updated initial state
+    on<ImportAllDeviceCallLogs>(_onImportAllCallLogs);
     on<AddDBCallLog>(_onAddCallLogDB);
     on<UpdateDBCallLog>(_onUpdateCallLogDB);
     on<DeleteDBCallLog>(_onDeleteCallLogDB);
@@ -220,33 +222,35 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     // Updated event and state types
     emit(CallLogDBLoading());
     try {
-      List<CallLogEntry> deviceCallLogs = await getDeviceCallLogs(
-          // dateTimeFrom:
-          //     DateTime.now().subtract(Duration(days: 30 * 6)), //6 months
-          // dateTimeTo: DateTime.now(),
-          );
+      await CallLogSyncService.syncCallLogs();
+      // List<CallLogEntry> deviceCallLogs =
+      //     await CallController.getDeviceCallLogs(
+      //         // dateTimeFrom:
+      //         //     DateTime.now().subtract(Duration(days: 30 * 6)), //6 months
+      //         // dateTimeTo: DateTime.now(),
+      //         );
 
-      Map<String, List<CallLogEntry>> groupedLocalCallLogs =
-          getGroupedLocalCallLogs(deviceCallLogs);
+      // Map<String, List<CallLogEntry>> groupedLocalCallLogs =
+      //     getGroupedLocalCallLogs(deviceCallLogs);
 
-      await syncCallLog(
-          callLogs: groupedLocalCallLogs.values.map((s) => s.first).toList());
-      var res = await getCallLogs();
-      var callLogsData = res.callloglist ?? [];
+      // await syncCallLog(
+      //     callLogs: groupedLocalCallLogs.values.map((s) => s.first).toList());
+      // var res = await getCallLogs();
+      // var callLogsData = res.callloglist ?? [];
 
-      var mouldedLogs = mouldCallLogEntryAsCallLogData(
-          groupedLocalCallLogs, callLogsData, emit);
+      // var mouldedLogs = mouldCallLogEntryAsCallLogData(
+      //     groupedLocalCallLogs, callLogsData, emit);
 
-      // log("Moulded call logs : ${mouldedLogs.map((e) => e.toJson()).toList()}");
+      // // log("Moulded call logs : ${mouldedLogs.map((e) => e.toJson()).toList()}");
 
-      for (final callLog in mouldedLogs) {
-        final existingCallLog = await _databaseHelper.getCallLog(callLog.id!);
-        if (existingCallLog == null) {
-          await _databaseHelper.insertCallLog(callLog);
-        } else {
-          await _databaseHelper.updateCallLog(callLog);
-        }
-      }
+      // for (final callLog in mouldedLogs) {
+      //   final existingCallLog = await _databaseHelper.getCallLog(callLog.id!);
+      //   if (existingCallLog == null) {
+      //     await _databaseHelper.insertCallLog(callLog);
+      //   } else {
+      //     await _databaseHelper.updateCallLog(callLog);
+      //   }
+      // }
 
       final storedCallLogs = await _databaseHelper.getAllCallLogs();
 
@@ -263,7 +267,8 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       SyncDBCallLogHistory event, Emitter<CallLogDBState> emit) async {
     emit(CallLogDBLoading());
     try {
-      var callLogs = await getDeviceCallLogs(number: event.mobileNo);
+      var callLogs =
+          await CallController.getDeviceCallLogs(number: event.mobileNo);
       if (callLogs.isNotEmpty) {
         var resp = await checkSpam(callLogs: callLogs);
         emit(SyncDBCallLogHistoryState(resp));
@@ -373,5 +378,34 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       DeleteDBCallLogs event, Emitter<CallLogDBState> emit) async {
     await _databaseHelper.deleteDatabase1();
     emit(CallLogDBInitial());
+  }
+
+  FutureOr<void> _onImportAllCallLogs(
+      ImportAllDeviceCallLogs event, Emitter<CallLogDBState> emit) async {
+    var deviceCallLogs = await CallController.getDeviceCallLogs();
+    Map<String, List<CallLogEntry>> groupedLocalCallLogs =
+        getGroupedLocalCallLogs(deviceCallLogs);
+    var mouldedCallLogs = groupedLocalCallLogs.values
+        .map((s) => CallLogData.fromCallLogEntry(s.first))
+        .toList();
+    for (final callLog in mouldedCallLogs) {
+      final existingCallLog = await _databaseHelper.getCallLog(callLog.id!);
+      if (existingCallLog == null) {
+        await _databaseHelper.insertCallLog(callLog);
+      } else {
+        await _databaseHelper.updateCallLog(callLog.copyWith(
+            isSpam: existingCallLog.isSpam,
+            isBlocked: existingCallLog.isBlocked,
+            contactListId: existingCallLog.contactListId,
+            markspambyuser: existingCallLog.markSpamByUser,
+            synced: existingCallLog.synced,
+            name: (existingCallLog.name?.isEmpty ?? false)
+                ? callLog.name
+                : existingCallLog.name));
+      }
+    }
+    // emit(CallLogDBLoading());
+    final storedCallLogs = await _databaseHelper.getAllCallLogs();
+    emit(CallLogDBLoaded(storedCallLogs)); // Updated state name
   }
 }

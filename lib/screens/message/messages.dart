@@ -180,7 +180,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                         AppRoutes.messagesDetail,
                         arguments: MessagesDetail(
                           sms: SmsLog(
-                            id: searchController.text,
+                            // id: searchController.text,
                             address: searchController.text,
                           ),
                         ),
@@ -225,7 +225,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
 
                   if (state is MessageDBDeletedById) {
                     paginationBloc.add(SelectBoolEvent(false));
-                    messages.removeWhere((m) => m.id == state.smsLog.id);
+                    messages.removeWhere(
+                        (m) => m.threadId == state.smsLog.threadId);
                     filterSearchResults();
                   }
 

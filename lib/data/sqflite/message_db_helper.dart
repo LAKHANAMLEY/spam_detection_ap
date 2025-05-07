@@ -64,8 +64,9 @@ class SmsLogDBHandler {
     //AUTOINCREMENT
     await db.execute('''
       CREATE TABLE $tableSmsLog (
-        $columnLogId TEXT PRIMARY KEY,
-        $columnAddress TEXT,
+        $columnLogId TEXT,
+        $columnThreadId TEXT,
+        $columnAddress TEXT PRIMARY KEY,
         $columnBody TEXT,
         $columnCountryCode TEXT,
         $columnUnreadReceivedSms INTEGER,
@@ -99,7 +100,7 @@ class SmsLogDBHandler {
         $columnDate INTEGER,
         $columnDetailName TEXT,
         $columnSynced INTEGER,
-        FOREIGN KEY ($columnLogIdFk) REFERENCES $tableSmsLog ($columnLogId) ON DELETE CASCADE
+        FOREIGN KEY ($columnLogIdFk) REFERENCES $tableSmsLog ($columnAddress) ON DELETE CASCADE
       )
     ''');
   }
@@ -115,6 +116,7 @@ class SmsLogDBHandler {
     final db = await database;
     final logId = await db.insert(tableSmsLog, {
       columnLogId: smsLog.id,
+      columnThreadId: smsLog.threadId,
       columnAddress: smsLog.address,
       columnBody: smsLog.body,
       columnCountryCode: smsLog.countryCode,
@@ -171,6 +173,7 @@ class SmsLogDBHandler {
       updatedRows = await db.update(
         tableSmsLog,
         {
+          columnThreadId: smsLog.threadId,
           columnAddress: smsLog.address,
           columnBody: smsLog.body,
           columnCountryCode: smsLog.countryCode,
@@ -181,7 +184,7 @@ class SmsLogDBHandler {
           columnDate: _dateTimeToInt(smsLog.date),
           columnSynced: smsLog.synced ? 1 : 0,
         },
-        where: '$columnLogId = ?',
+        where: '$columnAddress = ?',
         whereArgs: [smsLog.address],
       );
 
@@ -208,10 +211,11 @@ class SmsLogDBHandler {
     final existingDetail = await db.query(
       tableSmsDetail,
       where:
-          '$columnLogIdFk = ? AND $columnDeviceSmsId = ?', // Example: check by logId and smsId
+          '$columnLogIdFk = ? AND $columnDeviceSmsId = ?  AND $columnThreadId = ?', // Example: check by logId and smsId
       whereArgs: [
         detail.address,
-        detail.deviceMessageId
+        detail.deviceMessageId,
+        detail.threadId
       ], // Assuming detail.id is somewhat unique
     );
 
@@ -256,7 +260,7 @@ class SmsLogDBHandler {
     await deleteSmsDetail(id);
     return await db.delete(
       tableSmsLog,
-      where: '$columnLogId = ?',
+      where: '$columnAddress = ?',
       whereArgs: [id],
     );
   }
@@ -276,6 +280,7 @@ class SmsLogDBHandler {
       tableSmsLog,
       columns: [
         columnLogId,
+        columnThreadId,
         columnAddress,
         columnBody,
         columnCountryCode,
@@ -286,7 +291,7 @@ class SmsLogDBHandler {
         columnDate,
         columnSynced,
       ],
-      where: '$columnLogId = ?',
+      where: '$columnAddress = ?',
       whereArgs: [id],
     );
 
@@ -295,7 +300,8 @@ class SmsLogDBHandler {
       final List<SmsDetail> details = await _getSmsDetailsForLogId(db, id);
       return SmsLog(
           id: logMap[columnLogId],
-          address: logMap[columnAddress] as String?,
+          threadId: logMap[columnThreadId],
+          address: logMap[columnLogId] as String?,
           body: logMap[columnBody],
           countryCode: logMap[columnCountryCode] as String?,
           unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
@@ -349,6 +355,7 @@ class SmsLogDBHandler {
       final List<SmsDetail> details = await _getSmsDetailsForLogId(db, logId);
       return SmsLog(
           id: logMap[columnLogId],
+          threadId: logMap[columnThreadId] as String?,
           address: logMap[columnAddress] as String?,
           body: logMap[columnBody],
           countryCode: logMap[columnCountryCode] as String?,
@@ -376,6 +383,7 @@ class SmsLogDBHandler {
       final List<SmsDetail> details = await _getSmsDetailsForLogId(db, logId);
       return SmsLog(
           id: logMap[columnLogId],
+          threadId: logMap[columnThreadId] as String?,
           address: logMap[columnAddress] as String?,
           body: logMap[columnBody],
           countryCode: logMap[columnCountryCode] as String?,
@@ -422,6 +430,7 @@ class SmsLogDBHandler {
           await _getUnsyncedSmsDetailsForLogId(db, logId);
       return SmsLog(
           id: logMap[columnLogId],
+          threadId: logMap[columnThreadId] as String?,
           address: logMap[columnAddress] as String?,
           body: logMap[columnBody],
           countryCode: logMap[columnCountryCode] as String?,
@@ -476,7 +485,7 @@ class SmsLogDBHandler {
         {
           columnSynced: 1, // Set as synced
         },
-        where: '$columnLogId = ?',
+        where: '$columnAddress = ?',
         whereArgs: [logId],
       );
 

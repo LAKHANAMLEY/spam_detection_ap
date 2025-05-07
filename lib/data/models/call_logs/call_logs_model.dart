@@ -2,9 +2,7 @@
 //
 //     final callLogsListResponse = callLogsListResponseFromJson(jsonString);
 
-import 'dart:convert';
-
-import 'package:spam_delection_app/data/models/contact/contact_list_response.dart';
+import 'package:spam_delection_app/lib.dart';
 
 CallLogsListResponse callLogsListResponseFromJson(String str) =>
     CallLogsListResponse.fromJson(json.decode(str));
@@ -65,6 +63,7 @@ class CallLogData {
   final int? isBlocked;
   final int? markSpamByUser;
   final String isManually;
+  final bool synced;
 
   //Add new params from contactData here
   final ContactData? contactData;
@@ -87,6 +86,7 @@ class CallLogData {
     this.markSpamByUser,
     this.isManually = "0",
     this.contactData,
+    this.synced = false,
   });
 
   CallLogData copyWith({
@@ -108,6 +108,7 @@ class CallLogData {
     String? callDurations,
     String? isManually,
     ContactData? contactData,
+    bool? synced,
   }) =>
       CallLogData(
         // totalcalllog: totalcalllog ?? this.totalcalllog,
@@ -128,34 +129,35 @@ class CallLogData {
         callDurations: callDurations ?? this.callDurations,
         isManually: isManually ?? this.isManually,
         contactData: contactData ?? this.contactData,
+        synced: synced ?? this.synced,
       );
 
   factory CallLogData.fromJson(Map<String, dynamic> json) => CallLogData(
-        id: json["id"],
-        phoneaccountid: json["phoneaccountid"].runtimeType == int
-            ? json["phoneaccountid"].toString()
-            : json["phoneaccountid"],
-        simdisplayname: json["simdisplayname"],
-        name: json["name"],
-        callType: json["call_type"],
-        countryCode: json["country_code"],
-        mobileNo: json["mobile_no"],
-        callTime: (json["call_time"]?.toString().isEmpty ?? true)
-            ? null
-            : DateTime.tryParse(json["call_time"]),
-        callDuration: json["call_duration"],
-        callDurationUnit: json["call_duration_unit"],
-        contactListId: json["contact_list_id"] is int
-            ? json["contact_list_id"].toString()
-            : json["contact_list_id"],
-        callDurations: json["call_durations"],
-        isSpam: json["is_spam"],
-        isBlocked: json["is_blocked"],
-        markSpamByUser: json["markspambyuser"],
-        contactData: json["contact_data"] == null
-            ? null
-            : ContactData.fromJson(json["contact_data"]),
-      );
+      id: json["id"],
+      phoneaccountid: json["phoneaccountid"].runtimeType == int
+          ? json["phoneaccountid"].toString()
+          : json["phoneaccountid"],
+      simdisplayname: json["simdisplayname"],
+      name: json["name"],
+      callType: json["call_type"],
+      countryCode: json["country_code"],
+      mobileNo: json["mobile_no"],
+      callTime: (json["call_time"]?.toString().isEmpty ?? true)
+          ? null
+          : DateTime.tryParse(json["call_time"]),
+      callDuration: json["call_duration"],
+      callDurationUnit: json["call_duration_unit"],
+      contactListId: json["contact_list_id"] is int
+          ? json["contact_list_id"].toString()
+          : json["contact_list_id"],
+      callDurations: json["call_durations"],
+      isSpam: json["is_spam"],
+      isBlocked: json["is_blocked"],
+      markSpamByUser: json["markspambyuser"],
+      contactData: json["contact_data"] == null
+          ? null
+          : ContactData.fromJson(json["contact_data"]),
+      synced: json["synced"] == 1);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -174,6 +176,7 @@ class CallLogData {
         "is_blocked": isBlocked,
         "markspambyuser": markSpamByUser,
         "contactData": contactData?.toJson(),
+        "synced": synced,
       };
 
   // static CallLogData? fromContact(ContactData? contact) =>
@@ -189,5 +192,34 @@ class CallLogData {
         isBlocked: contact?.isBlocked,
         markSpamByUser: contact?.markspambyuser,
         // phoneaccountid: contact?.id,
+      );
+
+  static CallLogData fromCallLogEntry(CallLogEntry callLog) => CallLogData(
+        id: callLog.number?.separatePhoneAndPhoneCode().phone,
+        countryCode: callLog.number?.separatePhoneAndPhoneCode().phoneCode,
+        mobileNo: callLog.number?.separatePhoneAndPhoneCode().phone,
+        name: callLog.name,
+        callDuration: callLog.duration.toString(),
+        callDurations: callLog.duration.toString(),
+        callDurationUnit: "1",
+        callTime: callLog.timestamp?.toDateTime(),
+        callType: callLog.callType?.name,
+        isManually: "1",
+        contactListId: callLog.phoneAccountId,
+        phoneaccountid: callLog.phoneAccountId,
+        simdisplayname: callLog.simDisplayName,
+
+        ///other details will update from server
+      );
+
+  CallLogEntry toCallLogEntry() => CallLogEntry(
+        number: mobileNo,
+        name: name,
+        callType: getCallLogType(callType),
+        duration: int.tryParse(callDuration ?? ""),
+        timestamp: callTime?.millisecondsSinceEpoch,
+        simDisplayName: simdisplayname,
+        phoneAccountId: phoneaccountid,
+        formattedNumber: mobileNo,
       );
 }

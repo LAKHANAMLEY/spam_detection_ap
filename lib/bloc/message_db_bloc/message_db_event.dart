@@ -42,6 +42,14 @@ class DeleteMessageDB extends MessageDBEvent {}
 
 class ImportAllDeviceMessages extends MessageDBEvent {}
 
+class ImportAllDeviceMessagesDetails extends MessageDBEvent {
+  final String threadId;
+
+  const ImportAllDeviceMessagesDetails({required this.threadId});
+  @override
+  List<Object> get props => [threadId];
+}
+
 class PaginateAndSyncMessagesWithServer extends MessageDBEvent {
   final int start;
   final int limit;

@@ -85,11 +85,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
             context.read<ContactDBBloc>().add(SyncDBContacts());
           }
           if (state.statuses[Permission.phone] == PermissionStatus.granted) {
+            context.read<CallLogDBBloc>().add(ImportAllDeviceCallLogs());
             context.read<CallLogDBBloc>().add(SyncDBCallLogs());
           }
           if (state.statuses[Permission.sms] == PermissionStatus.granted) {
             // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
             context.read<MessageDBBloc>().add(ImportAllDeviceMessages());
+            context.read<MessageDBBloc>().add(
+                  PaginateAndSyncMessagesWithServer(start: 0, limit: 50),
+                );
             // context.read<MessageDBBloc>().add(
             //       PaginateAndSyncMessagesWithServer(
             //         start: 0,
@@ -133,23 +137,23 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
           if (state.status == PhoneStateStatus.CALL_INCOMING) {
             _isProcessingCall = true;
-            context
-                .read<CallLogDBBloc>()
-                .add(SyncDBCallLogHistory(mobileNo: state.number ?? ""));
+            // context.read<CallLogDBBloc>().add(SyncDBCallLogHistory(
+            //     mobileNo:
+            //         state.number?.separatePhoneAndPhoneCode().phone ?? ""));
             showOverlay(
               callType: getCallLogType(state.status.name)?.name ?? "",
-              number: state.number ?? "",
+              number: state.number?.separatePhoneAndPhoneCode().phone ?? "",
               duration: state.duration?.inSeconds ?? 0,
             );
           }
           if (state.status == PhoneStateStatus.CALL_STARTED) {
             if (!_isProcessingCall) {
-              context
-                  .read<CallLogDBBloc>()
-                  .add(SyncDBCallLogHistory(mobileNo: state.number ?? ""));
+              // context.read<CallLogDBBloc>().add(SyncDBCallLogHistory(
+              //     mobileNo:
+              //         state.number?.separatePhoneAndPhoneCode().phone ?? ""));
               showOverlay(
                 callType: getCallLogType(state.status.name)?.name ?? "",
-                number: state.number ?? "",
+                number: state.number?.separatePhoneAndPhoneCode().phone ?? "",
                 duration: state.duration?.inSeconds ?? 0,
               );
             }
@@ -157,12 +161,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
           }
           if (state.status == PhoneStateStatus.CALL_ENDED) {
             _isProcessingCall = false;
-            context
-                .read<CallLogDBBloc>()
-                .add(SyncDBCallLogHistory(mobileNo: state.number ?? ""));
+            context.read<CallLogDBBloc>().add(SyncDBCallLogHistory(
+                mobileNo:
+                    state.number?.separatePhoneAndPhoneCode().phone ?? ""));
             showOverlay(
               callType: getCallLogType(state.status.name)?.name ?? "",
-              number: state.number ?? "",
+              number: state.number?.separatePhoneAndPhoneCode().phone ?? "",
               duration: state.duration?.inSeconds ?? 0,
             );
           }
@@ -209,6 +213,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           return Scaffold(
             key: _key,
             drawer: const CustomDrawer(),
+            // extendBody: true,
             appBar: CustomAppBar(
               centerTitle: false,
               leading: InkWell(
@@ -277,7 +282,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               ],
               color: AppColor.darkPurpleColor,
               buttonBackgroundColor: AppColor.deepYellowColor,
-              backgroundColor: AppColor.whiteLightColor,
+              backgroundColor: Colors.transparent, // AppColor.whiteLightColor,
               animationCurve: Curves.easeInOut,
               animationDuration: const Duration(milliseconds: 600),
               onTap: (index) => bottomNavigationBloc.add(SelectIntEvent(index)),

@@ -103,396 +103,366 @@ class Profile extends StatelessWidget {
                   color: AppColor.whiteColor,
                   borderRadius: BorderRadius.circular(16.0),
                 ),
-                child: SafeArea(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Center(
-                          child: SizedBox(
-                            child: (user.photo?.isNotEmpty ?? false)
-                                ? InkWell(
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, AppRoutes.imageView,
-                                          arguments: ImageView(
-                                            imageUrl: user.photo,
-                                          ));
-                                    },
-                                    child: CircleAvatar(
-                                      backgroundColor: AppColor.whiteCreamColor
-                                          .withOpacity(0.2),
-                                      radius: 43.0,
-                                      backgroundImage: NetworkImage(
-                                        user.photo ?? "",
-                                      ),
-                                      // child: Align(
-                                      //   alignment: Alignment.bottomRight,
-                                      //   child: CircleAvatar(
-                                      //       backgroundColor: AppColor.callColor,
-                                      //       radius: 12.0,
-                                      //       child: Image.asset(
-                                      //         IconConstants.icCamera,
-                                      //         height: MediaQuery.of(context)
-                                      //                 .size
-                                      //                 .height *
-                                      //             2 /
-                                      //             100,
-                                      //       )),
-                                      // ),
-                                    ),
-                                  )
-                                : CircleAvatar(
-                                    backgroundColor: AppColor.whiteCreamColor
-                                        .withOpacity(0.2),
-                                    radius: 43.0,
-                                    backgroundImage: const AssetImage(
-                                      IconConstants.icCircleAvatar,
-                                    ),
-                                    // child: Align(
-                                    //   alignment: Alignment.bottomRight,
-                                    //   child: CircleAvatar(
-                                    //       backgroundColor: AppColor.callColor,
-                                    //       radius: 12.0,
-                                    //       child: Image.asset(
-                                    //         IconConstants.icCamera,
-                                    //         height: MediaQuery.of(context)
-                                    //                 .size
-                                    //                 .height *
-                                    //             2 /
-                                    //             100,
-                                    //       )),
-                                    // ),
-                                  ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 1 / 100,
-                        ),
-                        Center(
-                          child: Text(
-                            user.name ?? "",
-                            style: const TextStyle(
-                              color: AppColor.blackColor,
-                              fontFamily: AppFont.fontFamily,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 24.0,
-                            ),
-                          ),
-                        ),
-                        Center(
-                          child: Text(
-                            '${user.email}',
-                            style: textTheme(context)
-                                .bodySmall
-                                ?.copyWith(color: AppColor.magentaColor),
-                          ),
-                        ),
-                        20.height(),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, AppRoutes.planList);
-                            //bottomNavigationBloc.add(SelectIntEvent(3));
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(20),
-                            margin: const EdgeInsets.symmetric(horizontal: 20),
-                            // height:
-                            //     MediaQuery.of(context).size.height * 9 / 100,
-                            // width:
-                            //     MediaQuery.of(context).size.height * 80 / 100,
-                            decoration: const BoxDecoration(
-                              color: AppColor.darkPurpleColor,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  IconConstants.icPremiumStar,
-                                  height: 40,
-                                  width: 40,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      (user.photo?.isNotEmpty ?? false)
+                          ? InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, AppRoutes.imageView,
+                                    arguments: ImageView(
+                                      imageUrl: user.photo,
+                                    ));
+                              },
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    AppColor.whiteCreamColor.withOpacity(0.2),
+                                radius: 43.0,
+                                backgroundImage: NetworkImage(
+                                  user.photo ?? "",
                                 ),
-                                10.width(),
-                                Text(
-                                  appLocalization(context).upgradePremium,
-                                  style: const TextStyle(
-                                      color: AppColor.whiteColor,
-                                      fontSize: 20,
-                                      fontFamily: AppFont.fontFamily,
-                                      fontWeight: FontWeight.w700),
-                                )
-                              ],
+                                // child: Align(
+                                //   alignment: Alignment.bottomRight,
+                                //   child: CircleAvatar(
+                                //       backgroundColor: AppColor.callColor,
+                                //       radius: 12.0,
+                                //       child: Image.asset(
+                                //         IconConstants.icCamera,
+                                //         height: MediaQuery.of(context)
+                                //                 .size
+                                //                 .height *
+                                //             2 /
+                                //             100,
+                                //       )),
+                                // ),
+                              ),
+                            )
+                          : CircleAvatar(
+                              backgroundColor:
+                                  AppColor.whiteCreamColor.withOpacity(0.2),
+                              radius: 43.0,
+                              backgroundImage: const AssetImage(
+                                IconConstants.icCircleAvatar,
+                              ),
+                              // child: Align(
+                              //   alignment: Alignment.bottomRight,
+                              //   child: CircleAvatar(
+                              //       backgroundColor: AppColor.callColor,
+                              //       radius: 12.0,
+                              //       child: Image.asset(
+                              //         IconConstants.icCamera,
+                              //         height: MediaQuery.of(context)
+                              //                 .size
+                              //                 .height *
+                              //             2 /
+                              //             100,
+                              //       )),
+                              // ),
                             ),
+                      10.height(),
+                      Text(
+                        user.name ?? "",
+                        style: const TextStyle(
+                          color: AppColor.blackColor,
+                          fontFamily: AppFont.fontFamily,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 24.0,
+                        ),
+                      ),
+                      Text(
+                        '${user.email}',
+                        style: textTheme(context)
+                            .bodySmall
+                            ?.copyWith(color: AppColor.magentaColor),
+                      ),
+                      20.height(),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.planList);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(20),
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: const BoxDecoration(
+                            color: AppColor.darkPurpleColor,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                IconConstants.icPremiumStar,
+                                height: 40,
+                                width: 40,
+                              ),
+                              10.width(),
+                              Text(
+                                appLocalization(context).upgradePremium,
+                                style: const TextStyle(
+                                    color: AppColor.whiteColor,
+                                    fontSize: 20,
+                                    fontFamily: AppFont.fontFamily,
+                                    fontWeight: FontWeight.w700),
+                              )
+                            ],
                           ),
                         ),
-                        20.height(),
-                        Container(
-                          // height: MediaQuery.of(context).size.height * 56 / 100,
-                          // width: MediaQuery.of(context).size.width * 90 / 100,
-                          decoration: BoxDecoration(
-                            color: AppColor.snowWhiteColor,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10.0)),
-                            border: Border.all(color: AppColor.whiteBrownColor),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: BlocConsumer(
-                                      bloc: selectStatisticsDaysBloc,
-                                      listener: (context, state) {
-                                        if (state is SelectStringState) {
-                                          dashboardStatisticsBloc.add(
-                                              DashboardStatisticsEvent(
-                                                  days: state.value ?? "0"));
-                                        }
-                                      },
-                                      builder: (context, state) {
-                                        if (state is SelectStringState) {
-                                          return DropdownButton(
-                                            dropdownColor: Color(0xffFFE8E3),
-                                            underline: SizedBox.shrink(),
-                                            value: state.value,
-                                            hint: Text(
-                                              appLocalization(context)
-                                                  .lastThirtyDays,
+                      ),
+                      20.height(),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: AppColor.snowWhiteColor,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10.0)),
+                          border: Border.all(color: AppColor.whiteBrownColor),
+                        ),
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: BlocConsumer(
+                                  bloc: selectStatisticsDaysBloc,
+                                  listener: (context, state) {
+                                    if (state is SelectStringState) {
+                                      dashboardStatisticsBloc.add(
+                                          DashboardStatisticsEvent(
+                                              days: state.value ?? "0"));
+                                    }
+                                  },
+                                  builder: (context, state) {
+                                    if (state is SelectStringState) {
+                                      return DropdownButton(
+                                        dropdownColor: Color(0xffFFE8E3),
+                                        underline: SizedBox.shrink(),
+                                        value: state.value,
+                                        hint: Text(
+                                          appLocalization(context)
+                                              .lastThirtyDays,
+                                          style: textTheme(context).bodyLarge,
+                                        ),
+                                        items: items.map((value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value['value'],
+                                            child: Text(
+                                              value['key'],
                                               style:
                                                   textTheme(context).bodyLarge,
                                             ),
-                                            items: items.map((value) {
-                                              return DropdownMenuItem<String>(
-                                                value: value['value'],
-                                                child: Text(
-                                                  value['key'],
-                                                  style: textTheme(context)
-                                                      .bodyLarge,
-                                                ),
-                                              );
-                                            }).toList(),
-                                            onChanged: (String? newValue) {
-                                              selectStatisticsDaysBloc.add(
-                                                  SelectStringEvent(newValue));
-                                            },
                                           );
-                                        }
-                                        return const Loader();
-                                      }),
-                                ),
-                                BlocConsumer(
-                                    bloc: dashboardStatisticsBloc,
-                                    listener: (context, state) {
-                                      if (state is DashboardStatisticsState) {
-                                        data =
-                                            state.value.statisticsDashboardData;
-                                      }
-                                    },
-                                    builder: (context, state) {
-                                      // if (state is DashboardStatisticsState) {
-                                      // var data =
-                                      //     state.value.statisticsDashboardData;
-                                      List<String> cardTexts = [
-                                        data?.totalSpamCalls.toString() ?? "0",
-                                        data?.timeSavedFromSpammers
-                                                .toString() ??
-                                            "0",
-                                        data?.unknownNumber.toString() ?? "0",
-                                        data?.messageMovedToSpam.toString() ??
-                                            "0"
-                                      ];
-                                      return GridView.builder(
-                                        gridDelegate:
-                                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          childAspectRatio: 1.2 / 1,
-                                        ),
-                                        itemCount: 4,
-                                        primary: false,
-                                        shrinkWrap: true,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          return InkWell(
-                                            onTap: () {
-                                              if (index == 0) {
-                                                Navigator.pushNamed(context,
-                                                    AppRoutes.spamList);
-                                              }
-                                            },
-                                            child: Container(
-                                              margin: const EdgeInsets.all(8),
-                                              padding: const EdgeInsets.all(8),
-                                              decoration: const BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(10)),
-                                                  color: AppColor.whiteColor),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      Image.asset(
-                                                        imageUrl[index],
-                                                        height: 30,
-                                                        width: 30,
-                                                      ),
-                                                      10.width(),
-                                                      Text(
-                                                        cardTexts[index],
-                                                        style:
-                                                            textTheme(context)
-                                                                .titleLarge,
-                                                      )
-                                                    ],
-                                                  ),
-                                                  5.height(),
-                                                  Text(
-                                                    spamTexts[index],
-                                                    style: textTheme(context)
-                                                        .bodyMedium
-                                                        ?.copyWith(
-                                                            color: AppColor
-                                                                .slatWhiteColor),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          );
+                                        }).toList(),
+                                        onChanged: (String? newValue) {
+                                          selectStatisticsDaysBloc
+                                              .add(SelectStringEvent(newValue));
                                         },
                                       );
-                                      // }
-                                      // return const Loader();
-                                    }),
-                              ],
+                                    }
+                                    return const Loader();
+                                  }),
                             ),
-                          ),
+                            BlocConsumer(
+                                bloc: dashboardStatisticsBloc,
+                                listener: (context, state) {
+                                  if (state is DashboardStatisticsState) {
+                                    data = state.value.statisticsDashboardData;
+                                  }
+                                },
+                                builder: (context, state) {
+                                  // if (state is DashboardStatisticsState) {
+                                  // var data =
+                                  //     state.value.statisticsDashboardData;
+                                  List<String> cardTexts = [
+                                    data?.totalSpamCalls.toString() ?? "0",
+                                    data?.timeSavedFromSpammers.toString() ??
+                                        "0",
+                                    data?.unknownNumber.toString() ?? "0",
+                                    data?.messageMovedToSpam.toString() ?? "0"
+                                  ];
+                                  return GridView.builder(
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      childAspectRatio: 1.2 / 1,
+                                    ),
+                                    itemCount: 4,
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return InkWell(
+                                        onTap: () {
+                                          if (index == 0) {
+                                            Navigator.pushNamed(
+                                                context, AppRoutes.spamList);
+                                          }
+                                        },
+                                        child: Container(
+                                          margin: const EdgeInsets.all(8),
+                                          padding: const EdgeInsets.all(8),
+                                          decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10)),
+                                              color: AppColor.whiteColor),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Image.asset(
+                                                    imageUrl[index],
+                                                    height: 30,
+                                                    width: 30,
+                                                  ),
+                                                  10.width(),
+                                                  Text(
+                                                    cardTexts[index],
+                                                    style: textTheme(context)
+                                                        .titleLarge,
+                                                  )
+                                                ],
+                                              ),
+                                              5.height(),
+                                              Text(
+                                                spamTexts[index],
+                                                style: textTheme(context)
+                                                    .bodyMedium
+                                                    ?.copyWith(
+                                                        color: AppColor
+                                                            .slatWhiteColor),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                  // }
+                                  // return const Loader();
+                                }),
+                          ],
                         ),
-                        if (user.userRole?.toLowerCase() == "user") ...[
-                          // 10.height(),
-                          SubMenu(
-                            title: appLocalization(context).editProfile,
-                            icon: IconConstants.icEdit,
-                            iconColor: AppColor.greyDecent,
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.editProfile);
-                            },
-                          ),
-                        ],
-                        if (user.userRole?.toLowerCase() == "corporate") ...[
-                          // 10.height(),
-                          SubMenu(
-                            title:
-                                appLocalization(context).corporateEditProfile,
-                            icon: IconConstants.icEdit,
-                            iconColor: AppColor.greyDecent,
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.corporateProfile);
-                            },
-                          )
-                        ],
+                      ),
+                      if (user.userRole?.toLowerCase() == "user") ...[
                         // 10.height(),
                         SubMenu(
-                          title: appLocalization(context).editSecurityPin,
-                          icon: IconConstants.icEditPin,
+                          title: appLocalization(context).editProfile,
+                          icon: IconConstants.icEdit,
                           iconColor: AppColor.greyDecent,
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, AppRoutes.changeSecurity);
+                            Navigator.pushNamed(context, AppRoutes.editProfile);
                           },
                         ),
-                        // 10.height(),
-
-                        SubMenu(
-                          title: appLocalization(context).changePassword,
-                          icon: IconConstants.icChangePass,
-                          iconColor: AppColor.greyDecent,
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, AppRoutes.changePassword);
-                          },
-                        ),
-                        // 10.height(),
-
-                        SubMenu(
-                          title: appLocalization(context).addAlternativeEmail,
-                          icon: IconConstants.icAlternativeEmail,
-                          iconColor: AppColor.greyDecent,
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, AppRoutes.alternativeEmail);
-                          },
-                        ),
-                        // 10.height(),
-
-                        SubMenu(
-                          title: appLocalization(context).changeLanguage,
-                          icon: IconConstants.icLanguage,
-                          iconColor: AppColor.greyDecent,
-                          onTap: () {
-                            _showEditOptions(context);
-                          },
-                        ),
-                        if (user.userRole?.toLowerCase() == "user") ...[
-                          // 10.height(),
-                          SubMenu(
-                            title: appLocalization(context).familyList,
-                            icon: IconConstants.icFamilyRest,
-                            iconColor: AppColor.greyDecent.withOpacity(0.8),
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.familyMemberList);
-                            },
-                          ),
-                        ],
-                        if (user.userRole?.toLowerCase() == "corporate") ...[
-                          // 10.height(),
-                          SubMenu(
-                            title: appLocalization(context).staffList,
-                            iconColor: AppColor.greyDecent,
-                            icon: IconConstants.icAlternativeEmail,
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.staffMember);
-                            },
-                          ),
-                        ],
-                        // 10.height(),
-
-                        // SubMenu(
-                        //   title: appLocalization(context).logout,
-                        //   icon: Icons.logout,
-                        //   onTap: () {
-                        //     Navigator.pushNamed(context, AppRoutes.staffMember);
-                        //   },
-                        // ),
-                        // SizedBox(
-                        //   height: MediaQuery.of(context).size.height * 2 / 100,
-                        // ),
-                        SubMenu(
-                          title: appLocalization(context).logout,
-                          icon: IconConstants.icLogoutDataIcon,
-                          iconColor: AppColor.redColor,
-                          onTap: () async {
-                            showLogoutDialog(context);
-                            //  Navigator.pushNamed(
-                            //    context, AppRoutes.);
-                          },
-                        ),
-                        // 10.height(),
                       ],
-                    ),
+                      if (user.userRole?.toLowerCase() == "corporate") ...[
+                        // 10.height(),
+                        SubMenu(
+                          title: appLocalization(context).corporateEditProfile,
+                          icon: IconConstants.icEdit,
+                          iconColor: AppColor.greyDecent,
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, AppRoutes.corporateProfile);
+                          },
+                        )
+                      ],
+                      // 10.height(),
+                      SubMenu(
+                        title: appLocalization(context).editSecurityPin,
+                        icon: IconConstants.icEditPin,
+                        iconColor: AppColor.greyDecent,
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, AppRoutes.changeSecurity);
+                        },
+                      ),
+                      // 10.height(),
+
+                      SubMenu(
+                        title: appLocalization(context).changePassword,
+                        icon: IconConstants.icChangePass,
+                        iconColor: AppColor.greyDecent,
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, AppRoutes.changePassword);
+                        },
+                      ),
+                      // 10.height(),
+
+                      SubMenu(
+                        title: appLocalization(context).addAlternativeEmail,
+                        icon: IconConstants.icAlternativeEmail,
+                        iconColor: AppColor.greyDecent,
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, AppRoutes.alternativeEmail);
+                        },
+                      ),
+                      // 10.height(),
+
+                      SubMenu(
+                        title: appLocalization(context).changeLanguage,
+                        icon: IconConstants.icLanguage,
+                        iconColor: AppColor.greyDecent,
+                        onTap: () {
+                          _showEditOptions(context);
+                        },
+                      ),
+                      if (user.userRole?.toLowerCase() == "user") ...[
+                        // 10.height(),
+                        SubMenu(
+                          title: appLocalization(context).familyList,
+                          icon: IconConstants.icFamilyRest,
+                          iconColor: AppColor.greyDecent.withOpacity(0.8),
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, AppRoutes.familyMemberList);
+                          },
+                        ),
+                      ],
+                      if (user.userRole?.toLowerCase() == "corporate") ...[
+                        // 10.height(),
+                        SubMenu(
+                          title: appLocalization(context).staffList,
+                          iconColor: AppColor.greyDecent,
+                          icon: IconConstants.icAlternativeEmail,
+                          onTap: () {
+                            Navigator.pushNamed(context, AppRoutes.staffMember);
+                          },
+                        ),
+                      ],
+                      // 10.height(),
+
+                      // SubMenu(
+                      //   title: appLocalization(context).logout,
+                      //   icon: Icons.logout,
+                      //   onTap: () {
+                      //     Navigator.pushNamed(context, AppRoutes.staffMember);
+                      //   },
+                      // ),
+                      // SizedBox(
+                      //   height: MediaQuery.of(context).size.height * 2 / 100,
+                      // ),
+                      SubMenu(
+                        title: appLocalization(context).logout,
+                        icon: IconConstants.icLogoutDataIcon,
+                        iconColor: AppColor.redColor,
+                        onTap: () async {
+                          showLogoutDialog(context);
+                          //  Navigator.pushNamed(
+                          //    context, AppRoutes.);
+                        },
+                      ),
+                      // 10.height(),
+                    ],
                   ),
                 ),
               );

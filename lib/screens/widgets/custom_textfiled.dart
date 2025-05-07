@@ -25,6 +25,7 @@ class CustomTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final double? height;
   final Color? fillColor;
+  final BorderRadiusGeometry? borderRadius;
 
   const CustomTextField(
       {super.key,
@@ -48,7 +49,8 @@ class CustomTextField extends StatelessWidget {
       this.autofocus = false,
       this.inputFormatters,
       this.height = 70,
-      this.fillColor});
+      this.fillColor,
+      this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +72,7 @@ class CustomTextField extends StatelessWidget {
                       ? Colors.white
                       : AppColor.lightBrownColor.withOpacity(0.2)),
               border: Border.all(color: AppColor.lightBrownColor, width: 1.5),
-              borderRadius: BorderRadius.circular(5)),
+              borderRadius: borderRadius ?? BorderRadius.circular(5)),
           // // constraints: const BoxConstraints(maxHeight: 60, minHeight: 0),
           margin: const EdgeInsets.all(5),
           child: Row(

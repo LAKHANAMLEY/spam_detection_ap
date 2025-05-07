@@ -18,6 +18,7 @@ class SmsLog {
   final int? totalMarkSpamCountByUser;
   final List<SmsDetail>? smsDetails;
   final bool synced;
+  final String? threadId;
 
   SmsLog({
     this.id,
@@ -33,6 +34,7 @@ class SmsLog {
     this.totalMarkSpamCountByUser,
     this.smsDetails,
     this.synced = false,
+    this.threadId,
   });
 
   factory SmsLog.fromJson(Map<String, dynamic> json) => SmsLog(
@@ -51,7 +53,8 @@ class SmsLog {
           ? []
           : List<SmsDetail>.from(
               json["sms_details"]!.map((x) => SmsDetail.fromJson(x))),
-      synced: json["synced"] == 1);
+      synced: json["synced"] == 1,
+      threadId: json["thread_id"]);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -69,6 +72,7 @@ class SmsLog {
             ? []
             : List<dynamic>.from(smsDetails!.map((x) => x.toJson())),
         "synced": synced ? 1 : 0,
+        "thread_id": threadId,
       };
 
   // SQLite integration
@@ -100,7 +104,8 @@ class SmsLog {
         'name': name,
         'sendreceive_datetime': sendreceiveDatetime,
         'total_mark_spam_count_by_user': totalMarkSpamCountByUser,
-        'synced': synced ? 1 : 0
+        'synced': synced ? 1 : 0,
+        'thread_id': threadId,
       };
 
   SmsLog copyWith({
@@ -117,6 +122,7 @@ class SmsLog {
     int? totalMarkSpamCountByUser,
     List<SmsDetail>? smsDetails,
     bool? synced,
+    String? threadId,
   }) =>
       SmsLog(
         id: id ?? this.id,
@@ -133,12 +139,13 @@ class SmsLog {
             totalMarkSpamCountByUser ?? this.totalMarkSpamCountByUser,
         smsDetails: smsDetails ?? this.smsDetails,
         synced: synced ?? this.synced,
+        threadId: threadId ?? this.threadId,
       );
 
   static SmsLog fromSmsMessage(
           SmsMessage sms, ContactData? contact, SmsDetail? serverLog) =>
       SmsLog(
-        id: sms.address?.separatePhoneAndPhoneCode().phone,
+        id: sms.id.toString(),
         body: sms.body,
         sendreceiveDatetime: sms.dateSent.toString(),
         address: sms.address?.separatePhoneAndPhoneCode().phone,
@@ -149,6 +156,7 @@ class SmsLog {
         isSpam: serverLog?.isSpam,
         unreadReceivedSms: serverLog?.unreadReceivedSms,
         synced: serverLog?.synced ?? false,
+        threadId: sms.threadId.toString(),
       );
 
   static SmsLog fromSmsLog(SmsLog? serverLog) => SmsLog(
@@ -165,6 +173,7 @@ class SmsLog {
         totalMarkSpamCountByUser: serverLog?.totalMarkSpamCountByUser,
         smsDetails: serverLog?.smsDetails,
         synced: serverLog?.synced ?? false,
+        threadId: serverLog?.threadId,
       );
 }
 
@@ -266,8 +275,7 @@ class SmsDetail {
   static SmsDetail fromSmsMessage(
           SmsMessage sms, SmsDetail? serverLog, ContactData? contact) =>
       SmsDetail(
-        id: serverLog?.address ??
-            sms.address?.separatePhoneAndPhoneCode().phone,
+        id: sms.id?.toString() ?? serverLog?.id,
         deviceMessageId: sms.id?.toString(),
         address: serverLog?.address ??
             sms.address?.separatePhoneAndPhoneCode().phone,

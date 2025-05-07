@@ -28,6 +28,7 @@ class CallLogDBHelper {
   static const callLogColumnMarkSpamByUser = 'markspambyuser';
   static const callLogColumnIsManually = 'is_manually';
   static const contactData = 'contact_data';
+  static const callLogColumnSynced = 'synced';
 
   // Make this a singleton class
   CallLogDBHelper._privateConstructor();
@@ -70,7 +71,8 @@ class CallLogDBHelper {
         $callLogColumnIsBlocked INTEGER,
         $callLogColumnMarkSpamByUser INTEGER,
         $callLogColumnIsManually TEXT,
-        $contactData TEXT
+        $contactData TEXT,
+        $callLogColumnSynced INTEGER
       )
     ''');
   }
@@ -93,7 +95,7 @@ class CallLogDBHelper {
     Database db = await instance.database;
     List<Map<String, dynamic>> results = await db.query(
       callLogTable,
-      where: '$callLogColumnId = ?',
+      where: '$callLogColumnMobileNo = ?',
       whereArgs: [id],
     );
     if (results.isNotEmpty) {
@@ -159,6 +161,7 @@ class CallLogDBHelper {
       contactData: callLog.contactData == null
           ? null
           : jsonEncode(callLog.contactData?.toJson()),
+      callLogColumnSynced: callLog.synced ? 1 : 0,
     };
   }
 
@@ -184,6 +187,23 @@ class CallLogDBHelper {
         isManually: map[callLogColumnIsManually] ?? '0',
         contactData: map[contactData] == null
             ? null
-            : ContactData.fromJson(jsonDecode(map[contactData])));
+            : ContactData.fromJson(jsonDecode(map[contactData])),
+        synced: map[callLogColumnSynced] == 1);
+  }
+
+  Future<List<CallLogData>> getUnsyncedCallLogs(
+      {int limit = 100, int start = 0}) async {
+    final db = await instance.database;
+
+    final List<Map<String, dynamic>> result = await db.query(
+      callLogTable,
+      where: '$callLogColumnSynced = ?',
+      whereArgs: [0],
+      orderBy: '$callLogColumnCallTime DESC',
+      limit: limit,
+      offset: start,
+    );
+
+    return result.map((map) => _callLogFromMap(map)).toList();
   }
 }

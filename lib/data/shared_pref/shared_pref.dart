@@ -36,6 +36,7 @@ class SharedPref {
   static const String _password = "password";
 
   static const String _lastsyncdate = "lastsyncdate";
+  static const String _lastCallLogsyncdate = "lastCallLogsyncdate";
 
   // static Future<SharedPreferences> get pref async =>
   //     await SharedPreferences.getInstance();
@@ -105,9 +106,21 @@ class SharedPref {
     return pref.setInt(_lastsyncdate, date.millisecondsSinceEpoch);
   }
 
+  static Future<bool> setLastCallLogSyncDate(DateTime date) async {
+    var pref = await SharedPreferences.getInstance();
+    return pref.setInt(_lastsyncdate, date.millisecondsSinceEpoch);
+  }
+
   static Future<DateTime> getLastSyncDate() async {
     var pref = await SharedPreferences.getInstance();
-    return DateTime.fromMillisecondsSinceEpoch(pref.getInt(_lastsyncdate) ?? 0);
+    return DateTime.fromMillisecondsSinceEpoch(
+        pref.getInt(_lastCallLogsyncdate) ?? 0);
+  }
+
+  static Future<DateTime> getLastCallLogSyncDate() async {
+    var pref = await SharedPreferences.getInstance();
+    return DateTime.fromMillisecondsSinceEpoch(
+        pref.getInt(_lastCallLogsyncdate) ?? 0);
   }
 
   static Future<bool> getIsRemember() async {
