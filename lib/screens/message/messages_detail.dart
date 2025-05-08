@@ -45,9 +45,9 @@ class _MessagesDetailState extends State<MessagesDetail> {
         context
             .read<MessageDBBloc>()
             .add(ImportAllDeviceMessagesDetails(threadId: sms?.threadId ?? ""));
-        // context
-        //     .read<MessageDBBloc>()
-        //     .add(SyncMessageDetailsWithServer(smsLogs: sms!));
+        context
+            .read<MessageDBBloc>()
+            .add(SyncMessageDetailsWithServer(smsLogs: sms!));
       }
       if ((sms?.unreadReceivedSms ?? 0) > 0) {
         context
@@ -64,28 +64,28 @@ class _MessagesDetailState extends State<MessagesDetail> {
   Widget build(BuildContext context) {
     return BlocListener<SmsBloc, SmsState>(
       listener: (context, state) async {
-        if (state is NewSmsReceived) {
-          context
-              .read<MessageDBBloc>()
-              .add(SyncChangedMessageWithServer(smsMessage: state.message));
-          // context.read<MessageDBBloc>().add(AddSmsLog(
-          //     SmsLog.fromSmsMessage(state.message, ContactData(), null)));
-          // context.read<MessageDBBloc>().add(
-          //       SyncChangedMessageWithServer(smsMessage: state.message),
-          //     );
-        } else if (state is NewSmsSent) {
-          context
-              .read<MessageDBBloc>()
-              .add(SyncChangedMessageWithServer(smsMessage: state.message));
-          // context.read<MessageDBBloc>().add(AddSmsLog(
-          //     SmsLog.fromSmsMessage(state.message, ContactData(), null)));
-          // context
-          //     .read<MessageDBBloc>()
-          //     .add(GetAllSmsFromDB(start: startFrom, limit: limit));
-          // context.read<MessageDBBloc>().add(
-          //       SyncChangedMessageWithServer(smsMessage: state.message),
-          //     );
-        }
+        // if (state is NewSmsReceived) {
+        //   context
+        //       .read<MessageDBBloc>()
+        //       .add(SyncChangedMessageWithServer(smsMessage: state.message));
+        //   // context.read<MessageDBBloc>().add(AddSmsLog(
+        //   //     SmsLog.fromSmsMessage(state.message, ContactData(), null)));
+        //   // context.read<MessageDBBloc>().add(
+        //   //       SyncChangedMessageWithServer(smsMessage: state.message),
+        //   //     );
+        // } else if (state is NewSmsSent) {
+        //   context
+        //       .read<MessageDBBloc>()
+        //       .add(SyncChangedMessageWithServer(smsMessage: state.message));
+        //   // context.read<MessageDBBloc>().add(AddSmsLog(
+        //   //     SmsLog.fromSmsMessage(state.message, ContactData(), null)));
+        //   // context
+        //   //     .read<MessageDBBloc>()
+        //   //     .add(GetAllSmsFromDB(start: startFrom, limit: limit));
+        //   // context.read<MessageDBBloc>().add(
+        //   //       SyncChangedMessageWithServer(smsMessage: state.message),
+        //   //     );
+        // }
         // if (state is SmsInitial) {
         //   log("Initial state");
         //   context.read<SmsBloc>().add(StartListeningSms());
@@ -398,9 +398,10 @@ class _MessagesDetailState extends State<MessagesDetail> {
         await SMSController.sendSmsByDevice(smsMessage).onError(handleError);
     // await Future.delayed(Duration(seconds: 1));
     // await SMSController.getLastSms(smsMessage);
-    context
-        .read<MessageDBBloc>()
-        .add(SyncChangedMessageWithServer(smsMessage: message!));
+    context.read<MessageDBBloc>().add(AddSmsLog(message!));
+    // context
+    //     .read<MessageDBBloc>()
+    //     .add(SyncChangedMessageWithServer(smsMessage: message!));
 
     // context
     //     .read<MessageDBBloc>()

@@ -1,4 +1,3 @@
-import 'package:flutter_libphonenumber/flutter_libphonenumber.dart' as lib;
 // import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:phone_numbers_parser/phone_numbers_parser.dart';
 import 'package:spam_delection_app/lib.dart';
@@ -11,14 +10,14 @@ extension StringExt on String {
     // PhoneNumber number = await PhoneNumber.getRegionInfoFromPhoneNumber(this);
     if ((replaceAll(AppConstants.specialCharAndSpaceRegex, "")).isNumber) {
       try {
-        final formattedNumber = lib.formatNumberSync(
-          this,
-          // country: lib.CountryWithPhoneCode.getCountryDataByPhone(this),
-        );
+        // final formattedNumber = lib.formatNumberSync(
+        //   this,
+        //   // country: lib.CountryWithPhoneCode.getCountryDataByPhone(this),
+        // );
         // log("Lib phonenumber formatted number: $formattedNumber");
 
         var phone = PhoneNumber.parse(
-          formattedNumber,
+          this,
           callerCountry:
               IsoCode.fromJson(AppConstants.selectedCountry?.code ?? ""),
         );

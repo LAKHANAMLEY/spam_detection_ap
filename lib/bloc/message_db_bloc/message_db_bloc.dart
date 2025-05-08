@@ -30,11 +30,11 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
         event.smsLog.address?.separatePhoneAndPhoneCode().phone ?? "");
     final log = SmsLog.fromSmsMessage(lastMessage, contact, null).copyWith(
         smsDetails: [SmsDetail.fromSmsMessage(lastMessage, null, contact)]);
-    print(lastMessage.toMap);
+
     await _handleDbWrite(
       () async {
         final exists = await _db.getSmsLog(log.address ?? "");
-        print(exists?.toJson());
+
         if (exists != null) {
           // await _db.updateSmsDetail(SmsDetail.fromSmsLog(log)!);
           await _db.updateSmsLog(log.copyWith(
@@ -54,7 +54,8 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
             // smsDetails: exists.smsDetails?..add(SmsDetail.fromSmsLog(log)!),
           ));
         } else {
-          await _db.insertSmsLog(log.copyWith(name: contact?.name ?? ""));
+          await _db.insertSmsLog(
+              log.copyWith(name: contact?.name ?? "", synced: false));
         }
       },
       emit,
@@ -316,7 +317,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
           id: exists.id,
           sendreceiveDatetime: exists.sendreceiveDatetime,
           totalMarkSpamCountByUser: exists.totalMarkSpamCountByUser,
-          unreadReceivedSms: (exists.unreadReceivedSms ?? 0) + 1,
+          unreadReceivedSms: (exists.unreadReceivedSms ?? 0),
         ));
       }
 
@@ -366,7 +367,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
           id: exists.id,
           sendreceiveDatetime: exists.sendreceiveDatetime,
           totalMarkSpamCountByUser: exists.totalMarkSpamCountByUser,
-          unreadReceivedSms: (exists.unreadReceivedSms ?? 0) + 1,
+          unreadReceivedSms: (exists.unreadReceivedSms ?? 0),
         ));
       }
 
@@ -497,6 +498,18 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
         await _db.insertSmsLog(updatedLog);
       } else {
         await _db.updateSmsLog(updatedLog.copyWith(
+            // threadId: updatedLog.threadId,
+            // name: updatedLog.name ?? "",
+            // body: updatedLog.body,
+            isSpam: exists.isSpam,
+            isMarkSpam: exists.isMarkSpam,
+            synced: false,
+            address: exists.address,
+            countryCode: exists.countryCode,
+            id: exists.id,
+            sendreceiveDatetime: exists.sendreceiveDatetime,
+            totalMarkSpamCountByUser: exists.totalMarkSpamCountByUser,
+            unreadReceivedSms: (exists.unreadReceivedSms ?? 0),
             name: exists.name?.isNotEmpty ?? false
                 ? exists.name
                 : updatedLog.name,

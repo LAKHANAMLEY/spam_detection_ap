@@ -78,40 +78,37 @@ class _BottomNavigationState extends State<BottomNavigation> {
     });
 
     permissionStreamSubscription =
-        context.read<PermissionBloc>().stream.listen((state) {
-      if (state is MultiplePermissionsStatusLoadedState) {
-        if (mounted) {
-          if (state.statuses[Permission.contacts] == PermissionStatus.granted) {
-            context.read<ContactDBBloc>().add(ImportAllContacts());
-            context.read<ContactDBBloc>().add(SyncDBContacts());
-          }
-          if (state.statuses[Permission.phone] == PermissionStatus.granted) {
-            context.read<CallLogDBBloc>().add(ImportAllDeviceCallLogs());
-            context.read<CallLogDBBloc>().add(SyncDBCallLogs());
-          }
-          if (state.statuses[Permission.sms] == PermissionStatus.granted) {
-            // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-            context.read<MessageDBBloc>().add(ImportAllDeviceMessages());
-            context.read<MessageDBBloc>().add(
-                  PaginateAndSyncMessagesWithServer(start: 0, limit: 50),
-                );
-            // context.read<MessageDBBloc>().add(
-            //       PaginateAndSyncMessagesWithServer(
-            //         start: 0,
-            //         limit: 100,
-            //       ),
-            //     );
-          }
-          if (state.statuses[Permission.notification] ==
-              PermissionStatus.granted) {
-            firebase(context);
-          }
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            context.read<SmsBloc>().add(StartListeningSms());
-          });
-        } else {
-          log("Mounted : $mounted");
+        context.read<PermissionBloc>().stream.listen((state) async {
+      if (state is MultiplePermissionsStatusLoadedState && mounted) {
+        final statuses = state.statuses;
+
+        if (statuses[Permission.contacts] == PermissionStatus.granted) {
+          context.read<ContactDBBloc>().add(ImportAllContacts());
+          await Future.delayed(const Duration(milliseconds: 300));
+          context.read<ContactDBBloc>().add(SyncDBContacts());
         }
+
+        if (statuses[Permission.phone] == PermissionStatus.granted) {
+          context.read<CallLogDBBloc>().add(ImportAllDeviceCallLogs());
+          await Future.delayed(const Duration(milliseconds: 300));
+          context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+        }
+
+        if (statuses[Permission.sms] == PermissionStatus.granted) {
+          context.read<MessageDBBloc>().add(ImportAllDeviceMessages());
+          await Future.delayed(const Duration(milliseconds: 300));
+          context.read<MessageDBBloc>().add(
+                PaginateAndSyncMessagesWithServer(start: 0, limit: 50),
+              );
+        }
+
+        if (statuses[Permission.notification] == PermissionStatus.granted) {
+          firebase(context);
+        }
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          context.read<SmsBloc>().add(StartListeningSms());
+        });
       }
     });
   }

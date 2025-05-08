@@ -54,7 +54,7 @@ class ContactSyncService {
           } else {
             // Mark synced anyway if not found, or skip based on logic
             // await db.update(local.copyWith(synced: true));
-            print("✅ Existing contact not found, skipping.");
+            print("✅ Existing contact ${local.mobileNo} not found, skipping.");
           }
         }
 

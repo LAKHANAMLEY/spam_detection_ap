@@ -57,46 +57,46 @@ class _ContactListState extends State<ContactList> {
                   filter();
                 }
               }, builder: (context, contactDBState) {
-                if (contactDBState is ContactDBError) {
-                  // if (contactDBState.exception is PermissionException) {
-                  //   return Center(
-                  //       child: Text(
-                  //           appLocalization(context).permissionNotAllowed));
-                  // }
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          contactDBState.message,
-                          textAlign: TextAlign.center,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            context.read<ContactDBBloc>().add(SyncDBContacts());
-                          },
-                          child: Text(appLocalization(context).sync),
-                        ),
-                        // ElevatedButton(
-                        //     onPressed: () {
-                        //       context.read<ContactDBBloc>().add(DeleteDBContacts());
-                        //     },
-                        //     child: Text("Delete DB"))
-                      ],
-                    ),
-                  );
-                }
-                if (contactDBState is ContactDBInitial) {
-                  return Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        context.read<ContactDBBloc>().add(SyncDBContacts());
-                      },
-                      child: Text("Load contacts"),
-                    ),
-                  );
-                }
+                // if (contactDBState is ContactDBError) {
+                //   // if (contactDBState.exception is PermissionException) {
+                //   //   return Center(
+                //   //       child: Text(
+                //   //           appLocalization(context).permissionNotAllowed));
+                //   // }
+                //   return Center(
+                //     child: Column(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       crossAxisAlignment: CrossAxisAlignment.center,
+                //       children: [
+                //         Text(
+                //           contactDBState.message,
+                //           textAlign: TextAlign.center,
+                //         ),
+                //         ElevatedButton(
+                //           onPressed: () {
+                //             context.read<ContactDBBloc>().add(SyncDBContacts());
+                //           },
+                //           child: Text(appLocalization(context).sync),
+                //         ),
+                //         // ElevatedButton(
+                //         //     onPressed: () {
+                //         //       context.read<ContactDBBloc>().add(DeleteDBContacts());
+                //         //     },
+                //         //     child: Text("Delete DB"))
+                //       ],
+                //     ),
+                //   );
+                // }
+                // if (contactDBState is ContactDBInitial) {
+                //   return Center(
+                //     child: ElevatedButton(
+                //       onPressed: () {
+                //         context.read<ContactDBBloc>().add(SyncDBContacts());
+                //       },
+                //       child: Text("Load contacts"),
+                //     ),
+                //   );
+                // }
                 // if (contactDBState is ContactDBLoaded) {
                 //   contacts = contactDBState.contacts;
                 //   filter();

@@ -1,4 +1,3 @@
-import 'package:spam_delection_app/data/repository/contact/contacts_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class EditContact extends StatefulWidget {
@@ -23,7 +22,7 @@ class _EditContactState extends State<EditContact> {
 
   CountryData? selectedPhoneCodeCountry;
 
-  var editContactBloc = ApiBloc(ApiBlocInitialState());
+  // var editContactBloc = ApiBloc(ApiBlocInitialState());
 
   ContactData? contactData;
   SelectionBloc selectImageBloc = SelectionBloc(SelectionBlocInitialState());
@@ -57,236 +56,238 @@ class _EditContactState extends State<EditContact> {
         backgroundColor: AppColor.whiteColor,
         appBar: CustomAppBar(title: appLocalization(context).editContact),
         body: SafeArea(
-          child: BlocConsumer(
-              bloc: editContactBloc,
-              listener: (context, state) {
-                if (state is GetContactDetailState) {
-                  if (state.value.statusCode == 200) {
-                    if (state.value.contactdetails != null) {
-                      contactData = state.value.contactdetails;
-                      if (contactData != null) {
-                        updateData(contactData!);
-                      }
-                    }
-                  } else if (state.value.statusCode ==
-                      HTTPStatusCodes.sessionExpired) {
-                    sessionExpired(context, state.value.message ?? "");
-                  } else {
-                    showCustomDialog(context,
-                        subTitle: state.value.message,
-                        dialogType: DialogType.failed);
-                  }
+          child: BlocConsumer<ContactDBBloc, ContactDBState>(
+            // bloc: editContactBloc,
+            listener: (context, state) {
+              // if (state is GetContactDetailState) {
+              //   if (state.value.statusCode == 200) {
+              //     if (state.value.contactdetails != null) {
+              //       contactData = state.value.contactdetails;
+              //       if (contactData != null) {
+              //         updateData(contactData!);
+              //       }
+              //     }
+              //   } else if (state.value.statusCode ==
+              //       HTTPStatusCodes.sessionExpired) {
+              //     sessionExpired(context, state.value.message ?? "");
+              //   } else {
+              //     showCustomDialog(context,
+              //         subTitle: state.value.message,
+              //         dialogType: DialogType.failed);
+              //   }
+              // }
+              if (state is ContactUpdated) {
+                if (state.value.statusCode == 200) {
+                  showCustomDialog(context,
+                      subTitle: state.value.message,
+                      dialogType: DialogType.success);
+                } else if (state.value.statusCode ==
+                    HTTPStatusCodes.sessionExpired) {
+                  sessionExpired(context, state.value.message ?? "");
+                } else {
+                  showCustomDialog(context,
+                      subTitle: state.value.message,
+                      dialogType: DialogType.failed);
                 }
-                if (state is EditContactState) {
-                  if (state.value.statusCode == 200) {
-                    showCustomDialog(context,
-                        subTitle: state.value.message,
-                        dialogType: DialogType.success);
-                  } else if (state.value.statusCode ==
-                      HTTPStatusCodes.sessionExpired) {
-                    sessionExpired(context, state.value.message ?? "");
-                  } else {
-                    showCustomDialog(context,
-                        subTitle: state.value.message,
-                        dialogType: DialogType.failed);
-                  }
-                  editContactBloc
-                      .add(GetContactDetailEvent(contactData?.mobileNo ?? ''));
-                  // contactListBloc.add(GetDeviceContactEvent());
-                  context.read<ContactDBBloc>().add(SyncDBContacts());
-                  context.read<CallLogDBBloc>().add(SyncDBCallLogs());
-                }
-              },
-              builder: (context, state) {
-                return ModalProgressHUD(
-                  progressIndicator: const Loader(),
-                  inAsyncCall: state is ApiLoadingState,
-                  child: Form(
-                    key: _formKey,
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              10.height(),
-                              CustomTextField(
-                                controller: fullNameController,
-                                labelText: appLocalization(context).userName,
-                                hintText: appLocalization(context).userName,
-                                suffixIcon: Image.asset(
-                                  IconConstants.icUsername,
-                                  height: AppConstants.suffixIconHeight,
-                                  width: AppConstants.suffixIconWidth,
-                                  // height: MediaQuery.of(context).size.height *
-                                  //     5 /
-                                  //     100,
-                                  // width: MediaQuery.of(context).size.width *
-                                  //     5 /
-                                  //     100
-                                  // scale: 1.5,
-                                ),
-                                validator: (p0) {
-                                  if (p0?.isEmpty ?? true) {
-                                    return appLocalization(context)
-                                        .pleaseEnterYourFullName;
-                                  }
-                                  return null;
-                                },
+                // editContactBloc
+                //     .add(GetContactDetailEvent(contactData?.mobileNo ?? ''));
+                // contactListBloc.add(GetDeviceContactEvent());
+                context.read<ContactDBBloc>().add(LoadDBContacts());
+                // context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+              }
+              if (state is ContactDBError) {
+                showCustomDialog(context,
+                    subTitle: state.message, dialogType: DialogType.failed);
+              }
+            },
+            builder: (context, state) {
+              return ModalProgressHUD(
+                progressIndicator: const Loader(),
+                inAsyncCall:
+                    state is ApiLoadingState || state is ContactDBLoading,
+                child: Form(
+                  key: _formKey,
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            10.height(),
+                            CustomTextField(
+                              controller: fullNameController,
+                              labelText: appLocalization(context).userName,
+                              hintText: appLocalization(context).userName,
+                              suffixIcon: Image.asset(
+                                IconConstants.icUsername,
+                                height: AppConstants.suffixIconHeight,
+                                width: AppConstants.suffixIconWidth,
+                                // height: MediaQuery.of(context).size.height *
+                                //     5 /
+                                //     100,
+                                // width: MediaQuery.of(context).size.width *
+                                //     5 /
+                                //     100
+                                // scale: 1.5,
                               ),
-                              10.height(),
-                              CustomTextField(
-                                keyboardType: TextInputType.emailAddress,
-                                labelText:
-                                    appLocalization(context).emailAddress,
-                                hintText: appLocalization(context).emailAddress,
-                                controller: emailController,
-                                suffixIcon: Image.asset(
-                                  IconConstants.icFluentMail,
-                                  scale: 3,
-                                ),
-                                // validator: (p0) {
-                                //   if (p0?.isEmpty ?? true) {
-                                //     return appLocalization(context)
-                                //         .pleaseEnterYourEmailAddress;
-                                //   }
-                                //   return null;
-                                // },
+                              validator: (p0) {
+                                if (p0?.isEmpty ?? true) {
+                                  return appLocalization(context)
+                                      .pleaseEnterYourFullName;
+                                }
+                                return null;
+                              },
+                            ),
+                            10.height(),
+                            CustomTextField(
+                              keyboardType: TextInputType.emailAddress,
+                              labelText: appLocalization(context).emailAddress,
+                              hintText: appLocalization(context).emailAddress,
+                              controller: emailController,
+                              suffixIcon: Image.asset(
+                                IconConstants.icFluentMail,
+                                scale: 3,
                               ),
-                              10.height(),
-                              BlocBuilder(
-                                  bloc: selectNumberTypeBloc,
-                                  builder: (context, state) {
-                                    if (state is SelectStringState) {
-                                      selectedType = state.value ?? "";
-                                      return Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 6, right: 6),
-                                        child: DropdownButtonFormField<String>(
-                                          value: selectedType,
-                                          items: options.map((String option) {
-                                            return DropdownMenuItem<String>(
-                                              value: option,
-                                              child: Text(option),
-                                            );
-                                          }).toList(),
-                                          onChanged: (String? newValue) {
-                                            selectedType = newValue!;
-                                            selectNumberTypeBloc.add(
-                                                SelectStringEvent(newValue));
-                                          },
-                                          decoration: InputDecoration(
-                                            hintText: appLocalization(context)
-                                                .numberType,
-                                            hintStyle: const TextStyle(
+                              // validator: (p0) {
+                              //   if (p0?.isEmpty ?? true) {
+                              //     return appLocalization(context)
+                              //         .pleaseEnterYourEmailAddress;
+                              //   }
+                              //   return null;
+                              // },
+                            ),
+                            10.height(),
+                            BlocBuilder(
+                                bloc: selectNumberTypeBloc,
+                                builder: (context, state) {
+                                  if (state is SelectStringState) {
+                                    selectedType = state.value ?? "";
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 6, right: 6),
+                                      child: DropdownButtonFormField<String>(
+                                        value: selectedType,
+                                        items: options.map((String option) {
+                                          return DropdownMenuItem<String>(
+                                            value: option,
+                                            child: Text(option),
+                                          );
+                                        }).toList(),
+                                        onChanged: (String? newValue) {
+                                          selectedType = newValue!;
+                                          selectNumberTypeBloc
+                                              .add(SelectStringEvent(newValue));
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText: appLocalization(context)
+                                              .numberType,
+                                          hintStyle: const TextStyle(
+                                              color: AppColor.decentBrownColor),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            borderSide: const BorderSide(
+                                                width: 1.5,
                                                 color:
-                                                    AppColor.decentBrownColor),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              borderSide: const BorderSide(
-                                                  width: 1.5,
-                                                  color:
-                                                      AppColor.lightBrownColor),
-                                            ),
-                                            focusedBorder:
-                                                const OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color:
-                                                      AppColor.lightBrownColor,
-                                                  width: 1.5),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(5)),
-                                            ),
-                                            filled: true,
-                                            fillColor: AppColor.lightBrownColor
-                                                .withOpacity(0.2),
+                                                    AppColor.lightBrownColor),
                                           ),
+                                          focusedBorder:
+                                              const OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: AppColor.lightBrownColor,
+                                                width: 1.5),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5)),
+                                          ),
+                                          filled: true,
+                                          fillColor: AppColor.lightBrownColor
+                                              .withOpacity(0.2),
                                         ),
-                                      );
-                                    }
-                                    return Loader();
-                                  }),
-                              18.height(),
-                              BlocConsumer(
-                                  bloc: selectPhoneCodeBloc,
-                                  listener: (context, state) {
-                                    if (state is SelectCountryState) {
-                                      selectedPhoneCodeCountry = state.value;
-                                    }
-                                  },
-                                  builder: (context, state) {
-                                    return CustomTextField(
-                                      keyboardType: TextInputType.phone,
-                                      readOnly: true,
-                                      controller: phoneController,
-                                      hintText:
-                                          appLocalization(context).phoneNumber,
-                                      labelText:
-                                          appLocalization(context).phoneNumber,
-                                      suffixIcon: Image.asset(
-                                        IconConstants.icCallAdd,
-                                        scale: 1.5,
                                       ),
-                                      prefix: CountryPhoneCodePrefix(
-                                        bloc: selectPhoneCodeBloc,
-                                      ),
-                                      // validator: (p0) {
-                                      //   if (p0?.isEmpty ?? true) {
-                                      //     return appLocalization(context)
-                                      //         .pleaseEnterPhone;
-                                      //   }
-                                      //   return null;
-                                      // },
                                     );
-                                  }),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    3 /
-                                    100,
-                              ),
-                              AppButton(
-                                  text: appLocalization(context).save,
-                                  onPress: () async {
-                                    if (_formKey.currentState?.validate() ??
-                                        false) {
-                                      await ContactsController
-                                          .editDeviceContact(
-                                        contactId: contactData?.id ?? "",
-                                        name: fullNameController.text,
-                                        email: emailController.text,
-                                        numberType: selectedType,
-                                        phone: phoneController.text,
-                                        // countryCode:
-                                        //     selectedPhoneCodeCountry?.phonecode,
-                                      );
-                                      editContactBloc.add(EditContactEvent(
-                                          user: ContactData(
-                                        name: fullNameController.text,
-                                        email: emailController.text,
-                                        numberType: selectedType,
-                                        id: contactData?.id ?? "",
-                                        mobileNo: phoneController.text,
-                                        countryCode:
-                                            selectedPhoneCodeCountry?.phonecode,
-                                        // supportPin:
-                                        //  supportPinController.text,
-                                        //photo: _selectedImage?.path,
-                                        //photoFile: _selectedImage
-                                      )));
-                                    }
-                                  }),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    2 /
-                                    100,
-                              ),
-                            ]),
-                      ),
+                                  }
+                                  return Loader();
+                                }),
+                            18.height(),
+                            BlocConsumer(
+                                bloc: selectPhoneCodeBloc,
+                                listener: (context, state) {
+                                  if (state is SelectCountryState) {
+                                    selectedPhoneCodeCountry = state.value;
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return CustomTextField(
+                                    keyboardType: TextInputType.phone,
+                                    readOnly: true,
+                                    controller: phoneController,
+                                    hintText:
+                                        appLocalization(context).phoneNumber,
+                                    labelText:
+                                        appLocalization(context).phoneNumber,
+                                    suffixIcon: Image.asset(
+                                      IconConstants.icCallAdd,
+                                      scale: 1.5,
+                                    ),
+                                    prefix: CountryPhoneCodePrefix(
+                                      bloc: selectPhoneCodeBloc,
+                                    ),
+                                    // validator: (p0) {
+                                    //   if (p0?.isEmpty ?? true) {
+                                    //     return appLocalization(context)
+                                    //         .pleaseEnterPhone;
+                                    //   }
+                                    //   return null;
+                                    // },
+                                  );
+                                }),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 3 / 100,
+                            ),
+                            AppButton(
+                                text: appLocalization(context).save,
+                                onPress: () {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    // await ContactsController.editDeviceContact(
+                                    //   contactId:
+                                    //       contactData?.deviceContactId ?? "",
+                                    //   name: fullNameController.text,
+                                    //   email: emailController.text,
+                                    //   numberType: selectedType,
+                                    //   phone: phoneController.text,
+                                    //   // countryCode:
+                                    //   //     selectedPhoneCodeCountry?.phonecode,
+                                    // );
+                                    context
+                                        .read<ContactDBBloc>()
+                                        .add(UpdateDBContact(ContactData(
+                                          name: fullNameController.text,
+                                          email: emailController.text,
+                                          numberType: selectedType,
+                                          id: contactData?.id ?? "",
+                                          mobileNo: phoneController.text,
+                                          countryCode: selectedPhoneCodeCountry
+                                              ?.phonecode,
+                                          // supportPin:
+                                          //  supportPinController.text,
+                                          //photo: _selectedImage?.path,
+                                          //photoFile: _selectedImage
+                                        )));
+                                  }
+                                }),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 2 / 100,
+                            ),
+                          ]),
                     ),
                   ),
-                );
-              }),
+                ),
+              );
+            },
+          ),
         ));
   }
 

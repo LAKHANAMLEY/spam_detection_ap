@@ -1,4 +1,3 @@
-import 'package:spam_delection_app/data/repository/contact/contacts_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ContactListItem extends StatelessWidget {
@@ -69,12 +68,9 @@ class ContactListItem extends StatelessWidget {
                               okBtnTxt: appLocalization(context).delete,
                               cancelBtnTxt: appLocalization(context).cancel,
                               okBtnColor: Colors.red, onOkPressed: () {
-                            ContactsController.deleteDeviceContact(
-                                id: contact.id ?? "",
-                                number: contact.mobileNo ?? "");
                             context
                                 .read<ContactDBBloc>()
-                                .add(DeleteDBContact(contact.id ?? ""));
+                                .add(DeleteDBContact(contact));
                             Navigator.pop(context);
                             // familyBloc.add(
                             //     FamilyDeleteMemberEvent(

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:fast_contacts/fast_contacts.dart' as f;
 import 'package:flutter_contacts/flutter_contacts.dart' as fc;
 import 'package:permission_handler/permission_handler.dart';
+import 'package:spam_delection_app/data/models/contact/contact_list_response.dart';
 import 'package:spam_delection_app/utils/api_constants/exception_handling.dart';
 // import 'package:spam_delection_app/lib.dart' hide Contact;
 
@@ -127,17 +128,15 @@ class ContactsController {
     return await contact.delete();
   }
 
-  static Future<fc.Contact> editDeviceContact(
-      {required String name,
-      required String email,
-      required String phone,
-      required String numberType,
-      required String contactId}) async {
+  static Future<fc.Contact> editDeviceContact(ContactData contactData) async {
     fc.Contact contact = fc.Contact(
-      id: contactId,
-      name: fc.Name(first: name),
-      emails: [fc.Email(email)],
-      phones: [fc.Phone(phone, label: getPhoneLabel(numberType))],
+      id: contactData.deviceContactId ?? "",
+      name: fc.Name(first: contactData.name ?? ""),
+      emails: [fc.Email(contactData.email ?? "")],
+      phones: [
+        fc.Phone(contactData.mobileNo ?? "",
+            label: getPhoneLabel(contactData.numberType))
+      ],
     );
     return await contact.update();
   }

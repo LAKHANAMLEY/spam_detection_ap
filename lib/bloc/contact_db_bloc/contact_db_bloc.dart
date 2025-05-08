@@ -32,9 +32,12 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       UpdateDBContact event, Emitter<ContactDBState> emit) async {
     emit(ContactDBLoading());
     try {
+      await ContactsController.editDeviceContact(event.contact);
       await _databaseHelper.update(event.contact);
-      final contacts = await _databaseHelper.getAllContacts();
-      emit(ContactDBLoaded(contacts));
+      var res = await editContact(user: event.contact);
+      emit(ContactUpdated(res));
+      // final contacts = await _databaseHelper.getAllContacts();
+      // emit(ContactDBLoaded(contacts));
     } catch (e) {
       emit(ContactDBError('Failed to update contact: $e', e));
     }
@@ -44,8 +47,11 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       DeleteDBContact event, Emitter<ContactDBState> emit) async {
     emit(ContactDBLoading());
     try {
-      await deleteContact(contact: ContactData(id: event.contactId));
-      await _databaseHelper.delete(event.contactId);
+      ContactsController.deleteDeviceContact(
+          id: event.contact.deviceContactId ?? "",
+          number: event.contact.mobileNo ?? "");
+      await deleteContact(contact: event.contact);
+      await _databaseHelper.delete(event.contact.mobileNo ?? "");
       final contacts = await _databaseHelper.getAllContacts();
       emit(ContactDBLoaded(contacts));
     } catch (e) {
@@ -79,7 +85,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       SyncDBContacts event, Emitter<ContactDBState> emit) async {
     emit(ContactDBLoading());
     try {
-      ContactSyncService.syncContacts();
+      await ContactSyncService.syncContacts();
       // final deviceContacts = await ContactsController.getLocalContacts();
       // await syncContactsWithServer(deviceContacts!);
       // var res = await getContacts();
@@ -132,7 +138,7 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       DeleteDBContacts event, Emitter<ContactDBState> emit) async {
     await deleteAllContact();
     await _databaseHelper.deleteDatabase1();
-    emit(ContactDBInitial());
+    emit(ContactDBLoaded([]));
   }
 
   Future<void> _onImportAllContact(

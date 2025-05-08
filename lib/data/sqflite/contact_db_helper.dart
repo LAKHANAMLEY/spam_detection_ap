@@ -12,6 +12,7 @@ class ContactDBHelper {
   static const _databaseVersion = 1;
   static const table = 'contacts';
   static const columnId = 'id';
+  static const columnDeviceContactId = 'device_contact_id';
   static const columnName = 'name';
   static const columnCountryCode = 'country_code';
   static const columnNumberType = 'number_type';
@@ -56,6 +57,7 @@ class ContactDBHelper {
     await db.execute('''
       CREATE TABLE $table (
         $columnId TEXT PRIMARY KEY,
+        $columnDeviceContactId TEXT,
         $columnName TEXT,
         $columnCountryCode TEXT,
         $columnNumberType TEXT,
@@ -146,6 +148,7 @@ class ContactDBHelper {
   // Helper functions to convert ContactData to and from Map
   Map<String, dynamic> _contactToMap(ContactData contact) {
     return {
+      columnDeviceContactId: contact.deviceContactId,
       columnId: contact.mobileNo,
       columnName: contact.name,
       columnCountryCode: contact.countryCode,
@@ -172,6 +175,7 @@ class ContactDBHelper {
   ContactData _contactFromMap(Map<String, dynamic> map) {
     return ContactData(
         id: map[columnId],
+        deviceContactId: map[columnDeviceContactId],
         name: map[columnName],
         countryCode: map[columnCountryCode],
         numberType: map[columnNumberType],

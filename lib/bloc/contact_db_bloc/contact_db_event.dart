@@ -28,12 +28,12 @@ class UpdateDBContact extends ContactDBEvent {
 }
 
 class DeleteDBContact extends ContactDBEvent {
-  final String contactId;
+  final ContactData contact;
 
-  const DeleteDBContact(this.contactId);
+  const DeleteDBContact(this.contact);
 
   @override
-  List<Object> get props => [contactId];
+  List<Object> get props => [contact];
 }
 
 class LoadDBContacts extends ContactDBEvent {}

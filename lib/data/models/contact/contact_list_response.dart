@@ -64,6 +64,7 @@ class ContactData {
   final List<CallLogData>? callHistory;
   final String? email;
   final bool synced;
+  final String? deviceContactId;
 
   ContactData(
       {this.id,
@@ -83,7 +84,8 @@ class ContactData {
       this.isOnline,
       this.callHistory,
       this.email,
-      this.synced = false});
+      this.synced = false,
+      this.deviceContactId});
 
   factory ContactData.fromJson(Map<String, dynamic> json) => ContactData(
       id: json["id"],
@@ -107,7 +109,8 @@ class ContactData {
               json["call_history"]!.map((x) => CallLogData.fromJson(x)),
             ),
       email: json["email"],
-      synced: json["synced"] == 1);
+      synced: json["synced"] == 1,
+      deviceContactId: json["device_contact_id"]);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -130,6 +133,7 @@ class ContactData {
             : List<dynamic>.from(callHistory!.map((x) => x.toJson())),
         "email": email,
         "synced": synced,
+        "device_contact_id": deviceContactId,
       };
 
   ContactData copyWith({
@@ -151,32 +155,34 @@ class ContactData {
     List<CallLogData>? callHistory,
     String? email,
     bool? synced,
+    String? deviceContactId,
   }) {
     return ContactData(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      countryCode: countryCode ?? this.countryCode,
-      numberType: numberType ?? this.numberType,
-      mobileNo: mobileNo ?? this.mobileNo,
-      isSpam: isSpam ?? this.isSpam,
-      category: category ?? this.category,
-      markspambyuser: markspambyuser ?? this.markspambyuser,
-      isRegistered: isRegistered ?? this.isRegistered,
-      isBlocked: isBlocked ?? this.isBlocked,
-      spamReport: spamReport ?? this.spamReport,
-      callActivity: callActivity ?? this.callActivity,
-      usuallyCalls: usuallyCalls ?? this.usuallyCalls,
-      lastSeen: lastSeen ?? this.lastSeen,
-      isOnline: isOnline ?? this.isOnline,
-      callHistory: callHistory ?? this.callHistory,
-      email: email ?? this.email,
-      synced: synced ?? this.synced,
-    );
+        id: id ?? this.id,
+        name: name ?? this.name,
+        countryCode: countryCode ?? this.countryCode,
+        numberType: numberType ?? this.numberType,
+        mobileNo: mobileNo ?? this.mobileNo,
+        isSpam: isSpam ?? this.isSpam,
+        category: category ?? this.category,
+        markspambyuser: markspambyuser ?? this.markspambyuser,
+        isRegistered: isRegistered ?? this.isRegistered,
+        isBlocked: isBlocked ?? this.isBlocked,
+        spamReport: spamReport ?? this.spamReport,
+        callActivity: callActivity ?? this.callActivity,
+        usuallyCalls: usuallyCalls ?? this.usuallyCalls,
+        lastSeen: lastSeen ?? this.lastSeen,
+        isOnline: isOnline ?? this.isOnline,
+        callHistory: callHistory ?? this.callHistory,
+        email: email ?? this.email,
+        synced: synced ?? this.synced,
+        deviceContactId: deviceContactId ?? this.deviceContactId);
   }
 
   static ContactData fromContact(Contact e, {ContactData? serverData}) =>
       ContactData(
         id: e.id,
+        deviceContactId: e.id,
         countryCode:
             e.phones.firstOrNull?.number.separatePhoneAndPhoneCode().phoneCode,
         mobileNo:
@@ -200,7 +206,7 @@ class ContactData {
       );
 
   Contact toContact() => Contact(
-      id: id ?? "",
+      id: deviceContactId ?? "",
       phones: [Phone(number: mobileNo ?? "", label: numberType ?? "")],
       emails: [Email(address: email ?? "", label: "")],
       organization:
