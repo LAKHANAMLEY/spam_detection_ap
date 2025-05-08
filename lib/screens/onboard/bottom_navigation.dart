@@ -82,6 +82,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       if (state is MultiplePermissionsStatusLoadedState) {
         if (mounted) {
           if (state.statuses[Permission.contacts] == PermissionStatus.granted) {
+            context.read<ContactDBBloc>().add(ImportAllContacts());
             context.read<ContactDBBloc>().add(SyncDBContacts());
           }
           if (state.statuses[Permission.phone] == PermissionStatus.granted) {

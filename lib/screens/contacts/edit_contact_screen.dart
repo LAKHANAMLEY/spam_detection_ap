@@ -1,3 +1,4 @@
+import 'package:spam_delection_app/data/repository/contact/contacts_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class EditContact extends StatefulWidget {
@@ -246,9 +247,19 @@ class _EditContactState extends State<EditContact> {
                               ),
                               AppButton(
                                   text: appLocalization(context).save,
-                                  onPress: () {
+                                  onPress: () async {
                                     if (_formKey.currentState?.validate() ??
                                         false) {
+                                      await ContactsController
+                                          .editDeviceContact(
+                                        contactId: contactData?.id ?? "",
+                                        name: fullNameController.text,
+                                        email: emailController.text,
+                                        numberType: selectedType,
+                                        phone: phoneController.text,
+                                        // countryCode:
+                                        //     selectedPhoneCodeCountry?.phonecode,
+                                      );
                                       editContactBloc.add(EditContactEvent(
                                           user: ContactData(
                                         name: fullNameController.text,

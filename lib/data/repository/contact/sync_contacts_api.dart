@@ -3,7 +3,8 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:spam_delection_app/lib.dart';
 
-Future<ContactListResponse> syncContacts(List<Contact> contacts) async {
+Future<ContactListResponse> syncContactsWithServer(
+    List<Contact> contacts) async {
   var headers = await ApiUrlConstants.headers();
   // var request =
   //     http.MultipartRequest('POST', Uri.parse(ApiUrlConstants.syncContacts));

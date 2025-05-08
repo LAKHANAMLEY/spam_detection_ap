@@ -1,3 +1,4 @@
+import 'package:spam_delection_app/data/repository/contact/contacts_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class AddContact extends StatefulWidget {
@@ -12,8 +13,6 @@ class _AddContactState extends State<AddContact> {
   double scale = 3.5;
 
   List<dynamic> countries = [];
-
-  final TextEditingController phoneController = TextEditingController();
 
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -194,13 +193,20 @@ class _AddContactState extends State<AddContact> {
                         final fullName = fullNameController.text;
                         final numberType = _numberController.text;
                         if (_formKey.currentState?.validate() ?? false) {
-                          await addDeviceContact(
+                          await ContactsController.addDeviceContact(
                             name: fullName,
                             phone: phone,
                             email: email,
                             numberType: numberType,
                           );
-                          context.read<ContactDBBloc>().add(SyncDBContacts());
+                          context.read<ContactDBBloc>().add(AddDBContact(
+                              ContactData(
+                                  name: fullName,
+                                  mobileNo: phone,
+                                  countryCode:
+                                      selectedPhoneCodeCountry?.phonecode,
+                                  email: email,
+                                  numberType: numberType)));
                           // contactListBloc.add(AddContactEvent(
                           //     contact: ContactData(
                           //         mobileNo: phone,

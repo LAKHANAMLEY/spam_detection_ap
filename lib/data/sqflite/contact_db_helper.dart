@@ -28,6 +28,7 @@ class ContactDBHelper {
   static const columnIsOnline = 'is_online';
   static const columnCallHistory = 'call_history'; // Store as JSON
   static const columnEmail = 'email';
+  static const columnSynced = 'synced';
 
   // Make this a singleton class
   ContactDBHelper._privateConstructor();
@@ -70,7 +71,8 @@ class ContactDBHelper {
         $columnLastSeen TEXT,
         $columnIsOnline TEXT,
         $columnCallHistory TEXT,
-        $columnEmail TEXT
+        $columnEmail TEXT,
+        $columnSynced INTEGER
       )
     ''');
   }
@@ -163,32 +165,49 @@ class ContactDBHelper {
           ? jsonEncode(contact.callHistory!.map((e) => e.toJson()).toList())
           : null,
       columnEmail: contact.email,
+      columnSynced: contact.synced ? 1 : 0
     };
   }
 
   ContactData _contactFromMap(Map<String, dynamic> map) {
     return ContactData(
-      id: map[columnId],
-      name: map[columnName],
-      countryCode: map[columnCountryCode],
-      numberType: map[columnNumberType],
-      mobileNo: map[columnMobileNo],
-      isSpam: map[columnIsSpam],
-      category: map[columnCategory],
-      markspambyuser: map[columnMarkSpamByUser],
-      isRegistered: map[columnIsRegistered],
-      isBlocked: map[columnIsBlocked],
-      spamReport: map[columnSpamReport],
-      callActivity: map[columnCallActivity],
-      usuallyCalls: map[columnUsuallyCalls],
-      lastSeen: map[columnLastSeen],
-      isOnline: map[columnIsOnline],
-      callHistory: map[columnCallHistory] != null
-          ? (jsonDecode(map[columnCallHistory]) as List)
-              .map((e) => CallLogData.fromJson(e as Map<String, dynamic>))
-              .toList()
-          : [],
-      email: map[columnEmail],
+        id: map[columnId],
+        name: map[columnName],
+        countryCode: map[columnCountryCode],
+        numberType: map[columnNumberType],
+        mobileNo: map[columnMobileNo],
+        isSpam: map[columnIsSpam],
+        category: map[columnCategory],
+        markspambyuser: map[columnMarkSpamByUser],
+        isRegistered: map[columnIsRegistered],
+        isBlocked: map[columnIsBlocked],
+        spamReport: map[columnSpamReport],
+        callActivity: map[columnCallActivity],
+        usuallyCalls: map[columnUsuallyCalls],
+        lastSeen: map[columnLastSeen],
+        isOnline: map[columnIsOnline],
+        callHistory: map[columnCallHistory] != null
+            ? (jsonDecode(map[columnCallHistory]) as List)
+                .map((e) => CallLogData.fromJson(e as Map<String, dynamic>))
+                .toList()
+            : [],
+        email: map[columnEmail],
+        synced: map[columnSynced] == 1);
+  }
+
+  Future<List<ContactData>> getUnsyncedContacts(
+      {int limit = 100, int start = 0}) async {
+    Database db = await instance.database;
+
+    final List<Map<String, dynamic>> maps = await db.query(
+      table,
+      where: '$columnSynced = ?',
+      whereArgs: [0],
+      limit: limit,
+      offset: start,
+      orderBy: '$columnName ASC',
     );
+
+    return maps.map((map) => _contactFromMap(map)).toList();
   }
 }

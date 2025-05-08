@@ -208,6 +208,7 @@ class CallLogData {
         contactListId: callLog.phoneAccountId,
         phoneaccountid: callLog.phoneAccountId,
         simdisplayname: callLog.simDisplayName,
+        synced: false,
 
         ///other details will update from server
       );

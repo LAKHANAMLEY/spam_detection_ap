@@ -51,7 +51,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
         paginationBloc.add(SelectBoolEvent(true));
         // Trigger pagination
         context.read<MessageDBBloc>().add(
-              GetAllSmsFromDB(start: startFrom, limit: limit),
+              GetSmsFromDB(start: startFrom, limit: limit),
             );
         // Start the background sync immediately after fetching from SQLite
         // context.read<MessageDBBloc>().add(
@@ -74,7 +74,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context
           .read<MessageDBBloc>()
-          .add(GetAllSmsFromDB(start: startFrom, limit: limit));
+          .add(GetSmsFromDB(start: startFrom, limit: limit));
       // context.read<MessageDBBloc>().add(
       //       PaginateAndSyncMessagesWithServer(start: startFrom, limit: limit),
       //     );
@@ -105,15 +105,13 @@ class _MessagesScreenState extends State<MessagesScreen> {
           }
           if (state is NewSmsReceived) {
             startFrom = 0;
-            context.read<MessageDBBloc>().add(AddSmsLog(
-                SmsLog.fromSmsMessage(state.message, ContactData(), null)));
+            context.read<MessageDBBloc>().add(AddSmsLog(state.message));
             // context.read<MessageDBBloc>().add(
             //       SyncChangedMessageWithServer(smsMessage: state.message),
             //     );
           } else if (state is NewSmsSent) {
             startFrom = 0;
-            context.read<MessageDBBloc>().add(AddSmsLog(
-                SmsLog.fromSmsMessage(state.message, ContactData(), null)));
+            context.read<MessageDBBloc>().add(AddSmsLog(state.message));
             // context
             //     .read<MessageDBBloc>()
             //     .add(GetAllSmsFromDB(start: startFrom, limit: limit));
@@ -210,7 +208,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     startFrom = 0;
                     context
                         .read<MessageDBBloc>()
-                        .add(GetAllSmsFromDB(start: startFrom, limit: limit));
+                        .add(GetSmsFromDB(start: startFrom, limit: limit));
                   }
 
                   if (state is MessageDBDeletedAll) {
@@ -218,15 +216,15 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     startFrom = 0;
                     context
                         .read<MessageDBBloc>()
-                        .add(GetAllSmsFromDB(start: startFrom, limit: limit));
+                        .add(GetSmsFromDB(start: startFrom, limit: limit));
                     // messages.clear();
                     filterSearchResults();
                   }
 
                   if (state is MessageDBDeletedById) {
                     paginationBloc.add(SelectBoolEvent(false));
-                    messages.removeWhere(
-                        (m) => m.threadId == state.smsLog.threadId);
+                    messages
+                        .removeWhere((m) => m.address == state.smsLog.address);
                     filterSearchResults();
                   }
 
@@ -239,7 +237,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     startFrom = 0;
                     context
                         .read<MessageDBBloc>()
-                        .add(GetAllSmsFromDB(start: startFrom, limit: limit));
+                        .add(GetSmsFromDB(start: startFrom, limit: limit));
                   }
                 },
                 builder: (context, state) {

@@ -18,22 +18,28 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     on<SyncMessageDetailsWithServer>(_syncMessageDetailsWithServer);
     on<SyncChangedMessageWithServer>(_syncChangedMessagesWithServer);
     on<AddSmsLogsToDB>(_addSmsLogsToDB);
-    on<GetAllSmsFromDB>(_getAllSmsFromDB);
+    on<GetSmsFromDB>(_getSmsFromDB);
+    on<GetSmsDetails>(_getAllSmsDetails);
     on<ReadDBMessage>(_readDBSms);
   }
 
   Future<void> _addSmsLog(AddSmsLog event, Emitter<MessageDBState> emit) async {
-    final log = event.smsLog;
+    final newSms = event.smsLog;
+    final lastMessage = await SMSController.getLastSms(newSms);
+    final contact = await _contacts.getContactByPhone(
+        event.smsLog.address?.separatePhoneAndPhoneCode().phone ?? "");
+    final log = SmsLog.fromSmsMessage(lastMessage, contact, null).copyWith(
+        smsDetails: [SmsDetail.fromSmsMessage(lastMessage, null, contact)]);
+    print(lastMessage.toMap);
     await _handleDbWrite(
       () async {
-        final contact = await _contacts.getContactByPhone(
-            event.smsLog.address?.separatePhoneAndPhoneCode().phone ?? "");
         final exists = await _db.getSmsLog(log.address ?? "");
+        print(exists?.toJson());
         if (exists != null) {
           // await _db.updateSmsDetail(SmsDetail.fromSmsLog(log)!);
           await _db.updateSmsLog(log.copyWith(
             threadId: log.threadId,
-            name: contact?.name ?? "",
+            name: log.name ?? "",
             date: getLatestDate(log, exists),
             body: log.body,
             isSpam: exists.isSpam,
@@ -297,10 +303,21 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
         await _db.insertSmsLog(updatedLog);
       } else {
         await _db.updateSmsLog(updatedLog.copyWith(
-            name: exists.name?.isNotEmpty ?? false
-                ? exists.name
-                : updatedLog.name,
-            date: getLatestDate(updatedLog, exists)));
+          name:
+              exists.name?.isNotEmpty ?? false ? exists.name : updatedLog.name,
+          threadId: updatedLog.threadId,
+          date: getLatestDate(updatedLog, exists),
+          body: updatedLog.body,
+          isSpam: exists.isSpam,
+          isMarkSpam: exists.isMarkSpam,
+          synced: false,
+          address: exists.address,
+          countryCode: exists.countryCode,
+          id: exists.id,
+          sendreceiveDatetime: exists.sendreceiveDatetime,
+          totalMarkSpamCountByUser: exists.totalMarkSpamCountByUser,
+          unreadReceivedSms: (exists.unreadReceivedSms ?? 0) + 1,
+        ));
       }
 
       emit(MessageDBSynced(await _db.getAllSmsLogs()));
@@ -368,8 +385,8 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     }, emit);
   }
 
-  Future<void> _getAllSmsFromDB(
-      GetAllSmsFromDB event, Emitter<MessageDBState> emit) async {
+  Future<void> _getSmsFromDB(
+      GetSmsFromDB event, Emitter<MessageDBState> emit) async {
     emit(MessageDBLoading());
     try {
       final logs =
@@ -489,6 +506,21 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
       emit(MessageDBSynced(await _db.getAllSmsLogs()));
     } catch (e) {
       emit(MessageDBError('Failed to sync message detail: $e', e));
+    }
+  }
+
+  Future<void> _getAllSmsDetails(
+      GetSmsDetails event, Emitter<MessageDBState> emit) async {
+    emit(MessageDBLoading());
+    try {
+      final logs = await _db.getSmsDetailsForLogId(
+        event.id,
+        start: event.start,
+        limit: event.limit,
+      );
+      emit(MessageDetailsLoaded(logs));
+    } catch (e) {
+      emit(MessageDBError('Failed to load messages: $e', e));
     }
   }
 }

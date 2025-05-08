@@ -63,50 +63,51 @@ class ContactData {
   final String? isOnline;
   final List<CallLogData>? callHistory;
   final String? email;
+  final bool synced;
 
-  ContactData({
-    this.id,
-    this.name,
-    this.countryCode,
-    this.numberType,
-    this.mobileNo,
-    this.isSpam,
-    this.category,
-    this.markspambyuser,
-    this.isRegistered,
-    this.isBlocked,
-    this.spamReport,
-    this.callActivity,
-    this.usuallyCalls,
-    this.lastSeen,
-    this.isOnline,
-    this.callHistory,
-    this.email,
-  });
+  ContactData(
+      {this.id,
+      this.name,
+      this.countryCode,
+      this.numberType,
+      this.mobileNo,
+      this.isSpam,
+      this.category,
+      this.markspambyuser,
+      this.isRegistered,
+      this.isBlocked,
+      this.spamReport,
+      this.callActivity,
+      this.usuallyCalls,
+      this.lastSeen,
+      this.isOnline,
+      this.callHistory,
+      this.email,
+      this.synced = false});
 
   factory ContactData.fromJson(Map<String, dynamic> json) => ContactData(
-        id: json["id"],
-        name: json["name"],
-        countryCode: json["country_code"],
-        numberType: json["number_type"],
-        mobileNo: json["mobile_no"],
-        isSpam: json["is_spam"],
-        category: json["category"],
-        markspambyuser: json["markspambyuser"],
-        isRegistered: json["is_registered"].toString(),
-        isBlocked: json["is_blocked"],
-        spamReport: json["spam_report"],
-        callActivity: json["call_activity"],
-        usuallyCalls: json["usually_calls"],
-        lastSeen: json["last_seen"],
-        isOnline: json["is_online"].toString(),
-        callHistory: json["call_history"] == null
-            ? []
-            : List<CallLogData>.from(
-                json["call_history"]!.map((x) => CallLogData.fromJson(x)),
-              ),
-        email: json["email"],
-      );
+      id: json["id"],
+      name: json["name"],
+      countryCode: json["country_code"],
+      numberType: json["number_type"],
+      mobileNo: json["mobile_no"],
+      isSpam: json["is_spam"],
+      category: json["category"],
+      markspambyuser: json["markspambyuser"],
+      isRegistered: json["is_registered"].toString(),
+      isBlocked: json["is_blocked"],
+      spamReport: json["spam_report"],
+      callActivity: json["call_activity"],
+      usuallyCalls: json["usually_calls"],
+      lastSeen: json["last_seen"],
+      isOnline: json["is_online"].toString(),
+      callHistory: json["call_history"] == null
+          ? []
+          : List<CallLogData>.from(
+              json["call_history"]!.map((x) => CallLogData.fromJson(x)),
+            ),
+      email: json["email"],
+      synced: json["synced"] == 1);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -128,6 +129,7 @@ class ContactData {
             ? []
             : List<dynamic>.from(callHistory!.map((x) => x.toJson())),
         "email": email,
+        "synced": synced,
       };
 
   ContactData copyWith({
@@ -148,6 +150,7 @@ class ContactData {
     String? isOnline,
     List<CallLogData>? callHistory,
     String? email,
+    bool? synced,
   }) {
     return ContactData(
       id: id ?? this.id,
@@ -167,6 +170,7 @@ class ContactData {
       isOnline: isOnline ?? this.isOnline,
       callHistory: callHistory ?? this.callHistory,
       email: email ?? this.email,
+      synced: synced ?? this.synced,
     );
   }
 
@@ -192,5 +196,20 @@ class ContactData {
         callActivity: serverData?.callActivity,
         callHistory: serverData?.callHistory,
         spamReport: serverData?.spamReport,
+        synced: serverData?.synced ?? false,
       );
+
+  Contact toContact() => Contact(
+      id: id ?? "",
+      phones: [Phone(number: mobileNo ?? "", label: numberType ?? "")],
+      emails: [Email(address: email ?? "", label: "")],
+      organization:
+          Organization(company: "", department: "", jobDescription: ""),
+      structuredName: StructuredName(
+          displayName: name ?? "",
+          namePrefix: "",
+          givenName: "",
+          middleName: "",
+          familyName: "",
+          nameSuffix: ""));
 }

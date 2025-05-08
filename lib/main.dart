@@ -6,6 +6,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:phone_state_background/phone_state_background.dart';
 import 'package:spam_delection_app/data/repository/call_log_repo/call_log_sync_service.dart';
+import 'package:spam_delection_app/data/repository/contact/contact_sync_service.dart';
 import 'package:spam_delection_app/data/repository/sms_repo/message_service.dart';
 import 'package:spam_delection_app/lib.dart';
 import 'package:workmanager/workmanager.dart';
@@ -21,6 +22,15 @@ void main() async {
     callbackDispatcher,
     isInDebugMode: true, // Set to false in production
   );
+  await Workmanager().registerPeriodicTask(
+    "sync_contacts_task",
+    "syncContactsWithServer",
+    frequency: Duration(minutes: 15),
+    constraints: Constraints(
+      networkType: NetworkType.connected,
+    ),
+  );
+
   await Workmanager().registerPeriodicTask(
     "sync_call_log_task",
     "syncCallLogsWithServer",
@@ -72,6 +82,8 @@ void callbackDispatcher() {
         await MessageSyncService.syncMessages();
       } else if (task == "syncCallLogsWithServer") {
         await CallLogSyncService.syncCallLogs();
+      } else if (task == "syncContactsWithServer") {
+        await ContactSyncService.syncContacts();
       }
 
       print("✅ WorkManager Task Completed: $task");

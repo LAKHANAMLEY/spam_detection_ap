@@ -306,7 +306,7 @@ class SmsDetail {
         deviceMessageId: serverLog?.id,
         address: serverLog?.address,
         countryCode: serverLog?.countryCode,
-        body: detail?.body,
+        body: serverLog?.body,
         date: serverLog?.date,
         messageKind: detail?.messageKind,
         messageState: detail?.messageState,

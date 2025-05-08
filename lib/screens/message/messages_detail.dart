@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:spam_delection_app/lib.dart';
 
 final TextEditingController messageController = TextEditingController();
@@ -34,11 +32,15 @@ class _MessagesDetailState extends State<MessagesDetail> {
   }
 
   SmsLog? sms;
+
+  List<SmsDetail> smsDetails = [];
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((s) {
       var arg = args(context) as MessagesDetail;
       sms = arg.sms!;
+      smsDetails = sms?.smsDetails ?? [];
       if (sms?.threadId?.isNotEmpty ?? false) {
         context
             .read<MessageDBBloc>()
@@ -117,18 +119,26 @@ class _MessagesDetailState extends State<MessagesDetail> {
       },
       child: BlocConsumer<MessageDBBloc, MessageDBState>(
           listener: (context, state) {
+        if (state is MessageDetailsLoaded) {
+          smsDetails = state.smsDetails;
+        }
         if (state is MessageDBDeletedAllConversation) {
           sms?.smsDetails?.clear();
         }
         if (state is NewMessageReceived) {
-          sms = state.smsLogs.firstWhere((e) => e.address == sms?.address);
-          // log(state.smsLogs.first.body ?? "");
-          // log(state.smsLogs.last.body ?? "");
-          log(sms?.smsDetails?.first.body ?? "");
+          // sms = state.smsLogs.firstWhere((e) => e.address == sms?.address);
+          // // log(state.smsLogs.first.body ?? "");
+          // // log(state.smsLogs.last.body ?? "");
+          // log(sms?.smsDetails?.first.body ?? "");
+          context.read<MessageDBBloc>().add(
+              GetSmsDetails(id: sms?.address ?? "", start: 0, limit: 1000));
         }
         if (state is MessageDBSynced) {
-          sms =
-              state.syncedSmsLogs.firstWhere((e) => e.address == sms?.address);
+          context.read<MessageDBBloc>().add(
+              GetSmsDetails(id: sms?.address ?? "", start: 0, limit: 1000));
+
+          // sms =
+          //     state.syncedSmsLogs.firstWhere((e) => e.address == sms?.address);
           // log(state.smsLogs.first.body ?? "");
           // log(state.smsLogs.last.body ?? "");
           // log(sms?.smsDetails?.first.body ?? "");
@@ -564,23 +574,23 @@ class _MessagesDetailState extends State<MessagesDetail> {
   Widget messagesListView() => Expanded(
         child: ListView.builder(
           reverse: true,
-          itemCount: (sms?.smsDetails?.length ?? 0),
+          itemCount: smsDetails.length,
           itemBuilder: (context, index) {
             // int index = (sms?.smsDetails?.length ?? 0) - i - 1;//reverse
-            final currentMessage = sms?.smsDetails![index];
+            final currentMessage = smsDetails[index];
             // Since list is reversed, the "previous" message visually is the one with the next index
-            final isLastMessage = index == sms!.smsDetails!.length - 1;
+            final isLastMessage = index == smsDetails.length - 1;
             final nextMessageDate =
-                !isLastMessage ? sms?.smsDetails![index + 1].date : null;
+                !isLastMessage ? smsDetails[index + 1].date : null;
             final showDateHeader = (nextMessageDate == null ||
-                !currentMessage!.date!.isSameDay(nextMessageDate));
+                !currentMessage.date!.isSameDay(nextMessageDate));
 
             return Column(
               children: [
                 if (showDateHeader)
-                  Text(sms?.smsDetails?[index].date?.formatRelativeDay() ?? ""),
+                  Text(smsDetails[index].date?.formatRelativeDay() ?? ""),
                 MessageView(
-                  sms: sms?.smsDetails?[index],
+                  sms: smsDetails[index],
                 ),
               ],
             );

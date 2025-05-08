@@ -1,3 +1,4 @@
+import 'package:spam_delection_app/data/repository/contact/contacts_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
@@ -8,7 +9,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
   FutureOr<void> eventHandler(ApiEvent event, Emitter<ApiState> emit) async {
     if (event is GetDeviceContactEvent) {
       emit(ApiLoadingState());
-      await getLocalContacts().then((value) {
+      await ContactsController.getLocalContacts().then((value) {
         emit(GetDeviceContactState(value));
       });
     }
@@ -29,7 +30,7 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
 // sync Contact
     if (event is SyncContactEvent) {
       emit(ApiLoadingState());
-      await syncContacts(event.contacts).then((value) {
+      await syncContactsWithServer(event.contacts).then((value) {
         emit(SyncContactState(value));
       });
     }

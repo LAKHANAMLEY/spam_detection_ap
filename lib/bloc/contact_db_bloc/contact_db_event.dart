@@ -7,6 +7,8 @@ abstract class ContactDBEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class ImportAllContacts extends ContactDBEvent {}
+
 class AddDBContact extends ContactDBEvent {
   final ContactData contact;
 

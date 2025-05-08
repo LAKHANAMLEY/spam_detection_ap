@@ -39,6 +39,15 @@ class MessageDBLoaded extends MessageDBState {
   List<Object> get props => [smsLogs];
 }
 
+class MessageDetailsLoaded extends MessageDBState {
+  final List<SmsDetail> smsDetails;
+
+  const MessageDetailsLoaded(this.smsDetails);
+
+  @override
+  List<Object> get props => [smsDetails];
+}
+
 // class MessageDBSyncing extends MessageDBState {}
 
 class MessageDBSynced extends MessageDBState {

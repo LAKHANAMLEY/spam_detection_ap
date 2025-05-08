@@ -35,8 +35,9 @@ class SharedPref {
   static const String _rememberMe = "rememberMe";
   static const String _password = "password";
 
-  static const String _lastsyncdate = "lastsyncdate";
-  static const String _lastCallLogsyncdate = "lastCallLogsyncdate";
+  static const String _lastMessageSyncdate = "lastMessageSyncdate";
+  static const String _lastCallLogSyncdate = "lastCallLogSyncdate";
+  static const String _lastContactSyncdate = "lastContactSyncdate";
 
   // static Future<SharedPreferences> get pref async =>
   //     await SharedPreferences.getInstance();
@@ -103,24 +104,35 @@ class SharedPref {
 
   static Future<bool> setLastSyncDate(DateTime date) async {
     var pref = await SharedPreferences.getInstance();
-    return pref.setInt(_lastsyncdate, date.millisecondsSinceEpoch);
+    return pref.setInt(_lastMessageSyncdate, date.millisecondsSinceEpoch);
   }
 
   static Future<bool> setLastCallLogSyncDate(DateTime date) async {
     var pref = await SharedPreferences.getInstance();
-    return pref.setInt(_lastsyncdate, date.millisecondsSinceEpoch);
+    return pref.setInt(_lastMessageSyncdate, date.millisecondsSinceEpoch);
+  }
+
+  static Future<bool> setLastContactSyncDate(DateTime date) async {
+    var pref = await SharedPreferences.getInstance();
+    return pref.setInt(_lastContactSyncdate, date.millisecondsSinceEpoch);
   }
 
   static Future<DateTime> getLastSyncDate() async {
     var pref = await SharedPreferences.getInstance();
     return DateTime.fromMillisecondsSinceEpoch(
-        pref.getInt(_lastCallLogsyncdate) ?? 0);
+        pref.getInt(_lastCallLogSyncdate) ?? 0);
   }
 
   static Future<DateTime> getLastCallLogSyncDate() async {
     var pref = await SharedPreferences.getInstance();
     return DateTime.fromMillisecondsSinceEpoch(
-        pref.getInt(_lastCallLogsyncdate) ?? 0);
+        pref.getInt(_lastCallLogSyncdate) ?? 0);
+  }
+
+  static Future<DateTime> getLastContactSyncDate() async {
+    var pref = await SharedPreferences.getInstance();
+    return DateTime.fromMillisecondsSinceEpoch(
+        pref.getInt(_lastContactSyncdate) ?? 0);
   }
 
   static Future<bool> getIsRemember() async {

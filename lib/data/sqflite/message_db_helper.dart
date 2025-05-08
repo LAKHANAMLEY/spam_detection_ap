@@ -131,7 +131,7 @@ class SmsLogDBHandler {
     if (smsLog.smsDetails != null) {
       for (final detail in smsLog.smsDetails!) {
         //check exists or not
-        final exists = await _getSmsDetailsForLogId(db, detail.id ?? "");
+        final exists = await getSmsDetailsForLogId(detail.id ?? "");
         if (exists.isEmpty) {
           await db.insert(tableSmsDetail, {
             columnLogIdFk: smsLog.id, //TODO: logId
@@ -211,11 +211,10 @@ class SmsLogDBHandler {
     final existingDetail = await db.query(
       tableSmsDetail,
       where:
-          '$columnLogIdFk = ? AND $columnDeviceSmsId = ?  AND $columnThreadId = ?', // Example: check by logId and smsId
+          '$columnLogIdFk = ? AND $columnDeviceSmsId = ?', // Example: check by logId and smsId
       whereArgs: [
         detail.address,
         detail.deviceMessageId,
-        detail.threadId
       ], // Assuming detail.id is somewhat unique
     );
 
@@ -297,11 +296,11 @@ class SmsLogDBHandler {
 
     if (maps.isNotEmpty) {
       final logMap = maps.first;
-      final List<SmsDetail> details = await _getSmsDetailsForLogId(db, id);
+      final List<SmsDetail> details = await getSmsDetailsForLogId(id);
       return SmsLog(
           id: logMap[columnLogId],
           threadId: logMap[columnThreadId],
-          address: logMap[columnLogId] as String?,
+          address: logMap[columnAddress] as String?,
           body: logMap[columnBody],
           countryCode: logMap[columnCountryCode] as String?,
           unreadReceivedSms: logMap[columnUnreadReceivedSms] as int?,
@@ -315,12 +314,17 @@ class SmsLogDBHandler {
     return null;
   }
 
-  Future<List<SmsDetail>> _getSmsDetailsForLogId(
-      Database db, String logId) async {
-    final List<Map<String, dynamic>> detailMaps = await db.query(tableSmsDetail,
-        where: '$columnLogIdFk = ?',
-        whereArgs: [logId],
-        orderBy: "$columnDate DESC");
+  Future<List<SmsDetail>> getSmsDetailsForLogId(String logId,
+      {int? start, int? limit}) async {
+    final db = await database;
+    final List<Map<String, dynamic>> detailMaps = await db.query(
+      tableSmsDetail,
+      where: '$columnLogIdFk = ?',
+      whereArgs: [logId],
+      orderBy: "$columnDate DESC",
+      limit: limit,
+      offset: start,
+    );
     return detailMaps
         .map((detailMap) => SmsDetail(
             body: detailMap[columnBody] as String?,
@@ -352,7 +356,7 @@ class SmsLogDBHandler {
         await db.query(tableSmsLog, orderBy: "$columnDate DESC");
     return Future.wait(logMaps.map((logMap) async {
       final String logId = logMap[columnLogId];
-      final List<SmsDetail> details = await _getSmsDetailsForLogId(db, logId);
+      final List<SmsDetail> details = await getSmsDetailsForLogId(logId);
       return SmsLog(
           id: logMap[columnLogId],
           threadId: logMap[columnThreadId] as String?,
@@ -379,8 +383,8 @@ class SmsLogDBHandler {
     );
 
     return Future.wait(logMaps.map((logMap) async {
-      final String logId = logMap[columnLogId];
-      final List<SmsDetail> details = await _getSmsDetailsForLogId(db, logId);
+      final String logId = logMap[columnAddress];
+      final List<SmsDetail> details = await getSmsDetailsForLogId(logId);
       return SmsLog(
           id: logMap[columnLogId],
           threadId: logMap[columnThreadId] as String?,

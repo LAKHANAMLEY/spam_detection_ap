@@ -11,7 +11,7 @@ abstract class MessageDBEvent extends Equatable {
 // class LoadSmsLogs extends MessageDBEvent {}
 
 class AddSmsLog extends MessageDBEvent {
-  final SmsLog smsLog;
+  final SmsMessage smsLog;
 
   const AddSmsLog(this.smsLog);
 
@@ -88,11 +88,26 @@ class AddSmsLogsToDB extends MessageDBEvent {
   List<Object> get props => [smsLogs];
 }
 
-class GetAllSmsFromDB extends MessageDBEvent {
+class GetSmsFromDB extends MessageDBEvent {
   final int start;
   final int limit;
 
-  const GetAllSmsFromDB({required this.start, required this.limit});
+  const GetSmsFromDB({required this.start, required this.limit});
+
+  @override
+  List<Object> get props => [start, limit];
+}
+
+class GetSmsDetails extends MessageDBEvent {
+  final int start;
+  final int limit;
+  final String id;
+
+  const GetSmsDetails({
+    required this.id,
+    required this.start,
+    required this.limit,
+  });
 
   @override
   List<Object> get props => [start, limit];
