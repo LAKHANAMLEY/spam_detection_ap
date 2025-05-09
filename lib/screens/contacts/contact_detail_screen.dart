@@ -454,7 +454,7 @@ class ContactDetail extends StatelessWidget {
           icon: Icons.message,
           color: contact?.isSpam == 1 ? Colors.red : AppColor.themeOrangeColor,
         ),
-        contact?.isSpam == 1
+        contact?.markspambyuser == 1
             ? ActionButton(
                 onTap: () {
                   markSpamBloc

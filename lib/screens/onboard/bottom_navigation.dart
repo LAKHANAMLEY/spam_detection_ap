@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/utils/call_type_helper/call_type_helpers.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -75,41 +76,41 @@ class _BottomNavigationState extends State<BottomNavigation> {
             Permission.notification,
             Permission.systemAlertWindow,
           ]));
-    });
 
-    permissionStreamSubscription =
-        context.read<PermissionBloc>().stream.listen((state) async {
-      if (state is MultiplePermissionsStatusLoadedState && mounted) {
-        final statuses = state.statuses;
+      permissionStreamSubscription =
+          context.read<PermissionBloc>().stream.listen((state) async {
+        if (state is MultiplePermissionsStatusLoadedState && mounted) {
+          final statuses = state.statuses;
 
-        if (statuses[Permission.contacts] == PermissionStatus.granted) {
-          context.read<ContactDBBloc>().add(ImportAllContacts());
-          await Future.delayed(const Duration(milliseconds: 300));
-          context.read<ContactDBBloc>().add(SyncDBContacts());
+          if (statuses[Permission.contacts] == PermissionStatus.granted) {
+            context.read<ContactDBBloc>().add(ImportAllContacts());
+            await Future.delayed(const Duration(milliseconds: 300));
+            context.read<ContactDBBloc>().add(SyncDBContacts());
+          }
+
+          if (statuses[Permission.phone] == PermissionStatus.granted) {
+            context.read<CallLogDBBloc>().add(ImportAllDeviceCallLogs());
+            await Future.delayed(const Duration(milliseconds: 300));
+            context.read<CallLogDBBloc>().add(SyncDBCallLogs());
+          }
+
+          if (statuses[Permission.sms] == PermissionStatus.granted) {
+            context.read<MessageDBBloc>().add(ImportAllDeviceMessages());
+            await Future.delayed(const Duration(milliseconds: 300));
+            context.read<MessageDBBloc>().add(
+                  PaginateAndSyncMessagesWithServer(start: 0, limit: 50),
+                );
+          }
+
+          if (statuses[Permission.notification] == PermissionStatus.granted) {
+            firebase(context);
+          }
+
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.read<SmsBloc>().add(StartListeningSms());
+          });
         }
-
-        if (statuses[Permission.phone] == PermissionStatus.granted) {
-          context.read<CallLogDBBloc>().add(ImportAllDeviceCallLogs());
-          await Future.delayed(const Duration(milliseconds: 300));
-          context.read<CallLogDBBloc>().add(SyncDBCallLogs());
-        }
-
-        if (statuses[Permission.sms] == PermissionStatus.granted) {
-          context.read<MessageDBBloc>().add(ImportAllDeviceMessages());
-          await Future.delayed(const Duration(milliseconds: 300));
-          context.read<MessageDBBloc>().add(
-                PaginateAndSyncMessagesWithServer(start: 0, limit: 50),
-              );
-        }
-
-        if (statuses[Permission.notification] == PermissionStatus.granted) {
-          firebase(context);
-        }
-
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          context.read<SmsBloc>().add(StartListeningSms());
-        });
-      }
+      });
     });
   }
 
@@ -139,7 +140,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
             //     mobileNo:
             //         state.number?.separatePhoneAndPhoneCode().phone ?? ""));
             showOverlay(
-              callType: getCallLogType(state.status.name)?.name ?? "",
+              callType:
+                  CallTypeHelper.getCallLogType(state.status.name)?.name ?? "",
               number: state.number?.separatePhoneAndPhoneCode().phone ?? "",
               duration: state.duration?.inSeconds ?? 0,
             );
@@ -150,7 +152,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
               //     mobileNo:
               //         state.number?.separatePhoneAndPhoneCode().phone ?? ""));
               showOverlay(
-                callType: getCallLogType(state.status.name)?.name ?? "",
+                callType:
+                    CallTypeHelper.getCallLogType(state.status.name)?.name ??
+                        "",
                 number: state.number?.separatePhoneAndPhoneCode().phone ?? "",
                 duration: state.duration?.inSeconds ?? 0,
               );
@@ -163,7 +167,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 mobileNo:
                     state.number?.separatePhoneAndPhoneCode().phone ?? ""));
             showOverlay(
-              callType: getCallLogType(state.status.name)?.name ?? "",
+              callType:
+                  CallTypeHelper.getCallLogType(state.status.name)?.name ?? "",
               number: state.number?.separatePhoneAndPhoneCode().phone ?? "",
               duration: state.duration?.inSeconds ?? 0,
             );

@@ -3,6 +3,7 @@
 //     final callLogsListResponse = callLogsListResponseFromJson(jsonString);
 
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/utils/call_type_helper/call_type_helpers.dart';
 
 CallLogsListResponse callLogsListResponseFromJson(String str) =>
     CallLogsListResponse.fromJson(json.decode(str));
@@ -216,7 +217,7 @@ class CallLogData {
   CallLogEntry toCallLogEntry() => CallLogEntry(
         number: mobileNo,
         name: name,
-        callType: getCallLogType(callType),
+        callType: CallTypeHelper.getCallLogType(callType),
         duration: int.tryParse(callDuration ?? ""),
         timestamp: callTime?.millisecondsSinceEpoch,
         simDisplayName: simdisplayname,

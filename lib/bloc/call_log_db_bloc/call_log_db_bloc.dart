@@ -43,7 +43,23 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
     // Updated event and state types
     emit(CallLogDBLoading()); // Updated state name
     try {
-      await _databaseHelper.updateCallLog(event.callLog);
+      final callLog = event.callLog;
+      final existingCallLog = await _databaseHelper.getCallLog(callLog.id!);
+      if (existingCallLog == null) {
+        await _databaseHelper.insertCallLog(callLog);
+      } else {
+        await _databaseHelper.updateCallLog(callLog.copyWith(
+          isSpam: existingCallLog.isSpam,
+          isBlocked: existingCallLog.isBlocked,
+          contactListId: existingCallLog.contactListId,
+          markspambyuser: existingCallLog.markSpamByUser,
+          synced: existingCallLog.synced,
+          name: (existingCallLog.name?.isEmpty ?? false)
+              ? callLog.name
+              : existingCallLog.name,
+          contactData: existingCallLog.contactData,
+        ));
+      }
       final callLogs = await _databaseHelper.getAllCallLogs();
       emit(CallLogDBLoaded(callLogs)); // Updated state name
     } catch (e) {
@@ -312,7 +328,17 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
           if (existingCallLog == null) {
             await _databaseHelper.insertCallLog(callLog);
           } else {
-            await _databaseHelper.updateCallLog(callLog);
+            await _databaseHelper.updateCallLog(callLog.copyWith(
+              isSpam: existingCallLog.isSpam,
+              isBlocked: existingCallLog.isBlocked,
+              contactListId: existingCallLog.contactListId,
+              markspambyuser: existingCallLog.markSpamByUser,
+              synced: existingCallLog.synced,
+              name: (existingCallLog.name?.isEmpty ?? false)
+                  ? callLog.name
+                  : existingCallLog.name,
+              // contactData: existingCallLog.contactData,
+            ));
           }
         }
       } else {
@@ -362,7 +388,17 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       if (existingCallLog == null) {
         await _databaseHelper.insertCallLog(callLog);
       } else {
-        await _databaseHelper.updateCallLog(callLog);
+        await _databaseHelper.updateCallLog(callLog.copyWith(
+          isSpam: existingCallLog.isSpam,
+          isBlocked: existingCallLog.isBlocked,
+          contactListId: existingCallLog.contactListId,
+          markspambyuser: existingCallLog.markSpamByUser,
+          synced: existingCallLog.synced,
+          name: (existingCallLog.name?.isEmpty ?? false)
+              ? callLog.name
+              : existingCallLog.name,
+          contactData: existingCallLog.contactData,
+        ));
       }
       // }
       // emit(CallLogDBLoading());
@@ -393,7 +429,8 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
       if (existingCallLog == null) {
         await _databaseHelper.insertCallLog(callLog);
       } else {
-        await _databaseHelper.updateCallLog(callLog.copyWith(
+        await _databaseHelper.updateCallLog(
+          callLog.copyWith(
             isSpam: existingCallLog.isSpam,
             isBlocked: existingCallLog.isBlocked,
             contactListId: existingCallLog.contactListId,
@@ -401,7 +438,17 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
             synced: existingCallLog.synced,
             name: (existingCallLog.name?.isEmpty ?? false)
                 ? callLog.name
-                : existingCallLog.name));
+                : existingCallLog.name,
+            contactData: existingCallLog.contactData,
+            // callDuration: existingCallLog.callDuration,
+            // callDurationUnit: existingCallLog.callDurationUnit,
+            // callDurations: existingCallLog.callDuration,
+            // callTime: existingCallLog.callTime,
+            // callType: existingCallLog.callType,
+            // countryCode: existingCallLog.countryCode,
+            // totalcalllog: existingCallLog.totalCallLog,
+          ),
+        );
       }
     }
     // emit(CallLogDBLoading());

@@ -1,6 +1,7 @@
 import 'package:direct_call_plus/direct_call_plus.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/utils/call_type_helper/call_type_helpers.dart';
 import 'package:system_alert_window/system_alert_window.dart';
 
 class OutSideAppOverlay extends StatefulWidget {
@@ -142,7 +143,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                     CircleAvatar(
                       // child: Image.asset(getCallTypeImage(contactData!)),
                       child: SvgPicture.asset(
-                        getSvgImageByCallType(contactData!),
+                        CallTypeHelper.getSvgImageByCallType(contactData!),
                         errorBuilder: (context, error, stackTrace) =>
                             Icon(Icons.error),
                         placeholderBuilder: (context) => Loader(),

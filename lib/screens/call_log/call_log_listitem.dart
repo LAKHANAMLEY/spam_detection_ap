@@ -1,7 +1,6 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:phone_state_background/phone_state_background.dart';
-import 'package:spam_delection_app/constants/svg_icons.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/utils/call_type_helper/call_type_helpers.dart';
 
 class CallLogListItem extends StatelessWidget {
   final CallLogData callLog;
@@ -43,7 +42,7 @@ class CallLogListItem extends StatelessWidget {
         //   getIcon(callLog),
         // ),
         child: SvgPicture.asset(
-          getSvgImageByCallType(callLog),
+          CallTypeHelper.getSvgImageByCallType(callLog),
           errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
           placeholderBuilder: (context) => Loader(),
         ),
@@ -54,78 +53,72 @@ class CallLogListItem extends StatelessWidget {
       ),
       // leading: Icon(getCallTypeIcon(callLog.callType),
       //     color: getCallTypeColor(callLog.callType)),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Text(
-              fromDetail
-                  ? callLog.callTime?.formatRelativeDay() ?? ""
-                  : (callLog.name?.isNotEmpty ?? false)
-                      ? callLog.name ?? ""
-                      : callLog.countryCode?.isNotEmpty ?? false
-                          ? "+${callLog.countryCode} ${callLog.mobileNo ?? ""}"
-                          : callLog.mobileNo ?? callLog.id ?? "",
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: textTheme(context).titleMedium,
-            ),
-          ),
-          // 10.width(),
-          // Text(
-          //   callLog.callTime?.formatRelativeDateTime() ?? "",
-          //   style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
-          // ),
-          //
-        ],
+      title: Text(
+        fromDetail
+            ? callLog.callTime?.formatRelativeDay() ?? ""
+            : (callLog.name?.isNotEmpty ?? false)
+                ? callLog.name ?? ""
+                : callLog.countryCode?.isNotEmpty ?? false
+                    ? "+${callLog.countryCode} ${callLog.mobileNo ?? ""}"
+                    : callLog.mobileNo ?? callLog.id ?? "",
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: textTheme(context).titleMedium,
       ),
-      subtitle: Row(
-        children: [
-          if (callLog.callType?.isNotEmpty ?? false)
-            Icon(
-              getCallTypeIcon(callLog.callType),
-              color: getCallTypeIconColor(callLog.callType),
-              size: 15,
-            ),
-          5.width(),
-          if ((callLog.markSpamByUser != null && callLog.markSpamByUser != 0) ||
-              (callLog.isSpam != null && callLog.isSpam != 0)) ...[
-            Text(
-              "${callLog.markSpamByUser ?? 0} ${appLocalization(context).spamReports}",
-              style: textTheme(context).bodySmall?.copyWith(color: Colors.red),
-            )
-          ] else ...[
-            Text(
-              callLog.callType ?? "",
-              style: textTheme(context)
-                  .bodySmall
-                  ?.copyWith(color: getCallTypeTextColor(callLog.callType)),
-            ),
-          ],
-          if (callLog.callDuration != null) const Circle(),
-          // 2.width(),
-          Text(
-            callLog.callDuration?.convertInMinSec() ?? "",
-            style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
-          ),
-          if (callLog.callTime != null) const Circle(),
+      subtitle: (callLog.callType?.isEmpty ?? true) &&
+              (callLog.markSpamByUser == null || callLog.markSpamByUser == 0) &&
+              (callLog.isSpam == null || callLog.isSpam == 0) &&
+              (callLog.callDuration == null || callLog.callDuration!.isEmpty) &&
+              (callLog.callTime == null)
+          ? null
+          : Row(
+              children: [
+                if (callLog.callType?.isNotEmpty ?? false)
+                  Icon(
+                    CallTypeHelper.getCallTypeIcon(callLog.callType),
+                    color:
+                        CallTypeHelper.getCallTypeIconColor(callLog.callType),
+                    size: 15,
+                  ),
+                5.width(),
+                if ((callLog.markSpamByUser != null &&
+                        callLog.markSpamByUser != 0) ||
+                    (callLog.isSpam != null && callLog.isSpam != 0)) ...[
+                  Text(
+                    "${callLog.markSpamByUser ?? 0} ${appLocalization(context).spamReports}",
+                    style: textTheme(context)
+                        .bodySmall
+                        ?.copyWith(color: Colors.red),
+                  )
+                ] else ...[
+                  Text(
+                    callLog.callType ?? "",
+                    style: textTheme(context).bodySmall?.copyWith(
+                        color: CallTypeHelper.getCallTypeTextColor(
+                            callLog.callType)),
+                  ),
+                ],
+                if (callLog.callDuration != null) const Circle(),
+                // 2.width(),
+                Text(
+                  callLog.callDuration?.convertInMinSec() ?? "",
+                  style: textTheme(context)
+                      .bodySmall
+                      ?.copyWith(color: Colors.grey),
+                ),
+                if (callLog.callTime != null) const Circle(),
 
-          Text(
-            callLog.callTime?.formatTime() ?? "",
-            style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
-          ),
-        ],
-      ),
-      trailing: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          // Text(
-          //   callLog.callTime?.formatDateTime() ?? "",
-          //   style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
-          // ),
-          if (showPopupMenuBtn)
-            PopupMenuButton(
+                Text(
+                  callLog.callTime?.formatTime() ?? "",
+                  style: textTheme(context)
+                      .bodySmall
+                      ?.copyWith(color: Colors.grey),
+                ),
+              ],
+            ),
+      trailing: !showPopupMenuBtn
+          ? null
+          : PopupMenuButton(
               menuPadding: EdgeInsets.zero,
               padding: EdgeInsets.zero,
               style: const ButtonStyle(visualDensity: VisualDensity.compact),
@@ -133,36 +126,45 @@ class CallLogListItem extends StatelessWidget {
               itemBuilder: (context) => [
                 PopupMenuItem(
                     onTap: () {
-                      showModalBottomSheet(
-                        showDragHandle: true,
-                        // enableDrag: false,
-                        isScrollControlled: true,
-                        backgroundColor: AppColor.whiteColor,
-                        context: context,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.vertical(top: Radius.circular(20.0)),
-                        ),
-                        useSafeArea: true,
-                        builder: (BuildContext context) {
-                          return ReportView(
-                            contact: ContactData(
-                              id: callLog.contactListId,
-                              mobileNo: callLog.mobileNo,
-                              name: callLog.name,
-                              isSpam: callLog.isSpam,
-                              countryCode: callLog.countryCode,
-                            ),
-                          );
-                        },
-                      );
+                      if (callLog.markSpamByUser == 1) {
+                        markSpamBloc.add(
+                            RemoveSpamEvent(contactId: callLog.mobileNo ?? ""));
+                      } else {
+                        showModalBottomSheet(
+                          showDragHandle: true,
+                          // enableDrag: false,
+                          isScrollControlled: true,
+                          backgroundColor: AppColor.whiteColor,
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(20.0)),
+                          ),
+                          useSafeArea: true,
+                          builder: (BuildContext context) {
+                            return ReportView(
+                              contact: ContactData(
+                                id: callLog.contactListId,
+                                mobileNo: callLog.mobileNo,
+                                name: callLog.name,
+                                isSpam: callLog.isSpam,
+                                countryCode: callLog.countryCode,
+                              ),
+                            );
+                          },
+                        );
+                      }
                     },
-                    child: Text(appLocalization(context).reportText)),
+                    child: Text(callLog.markSpamByUser == 1
+                        ? appLocalization(context).unmarkSpam
+                        : appLocalization(context).reportText)),
                 PopupMenuItem(
                     onTap: () {
                       markSpamBloc.add(BlockUnBlockEvent(
                           contactId: callLog.mobileNo ?? "",
-                          comments: appLocalization(context).block));
+                          comments: callLog.isBlocked == 1
+                              ? appLocalization(context).unblock
+                              : appLocalization(context).block));
                     },
                     child: Text(callLog.isBlocked == 1
                         ? appLocalization(context).unblock
@@ -193,241 +195,10 @@ class CallLogListItem extends StatelessWidget {
                       //     .read<CallLogDBBloc>()
                       //     .add(DeleteDBCallLog(callLog.id ?? ""));
                     },
-                    child: Text(appLocalization(context).deleteCallLogs))
+                    child: Text(appLocalization(context).delete))
               ],
             ),
-        ],
-      ),
       // trailing: Text(callLog.callTime?.formatDateTime() ?? ""),
     );
   }
 }
-
-String getCallTypeImage(CallLogData callLog) {
-  var callType = getCallLogType(callLog.callType);
-  if (callLog.isSpam == 1) {
-    return IconConstants.icSpamCircle;
-  } else {
-    switch (callType) {
-      case null:
-        return IconConstants.icCallRegular;
-      case CallType.incoming:
-        return IconConstants.icIncoming;
-      case CallType.outgoing:
-        return IconConstants.icOutgoing;
-      case CallType.missed:
-        return IconConstants.icMissCall1;
-      case CallType.voiceMail:
-        return IconConstants.icFluentMail;
-      case CallType.rejected:
-        return IconConstants.icMissCall1;
-      case CallType.blocked:
-        return IconConstants.icBlockCall;
-      case CallType.answeredExternally:
-        return IconConstants.icCallRegular;
-      case CallType.unknown:
-        return IconConstants.icCallRegular;
-      case CallType.wifiIncoming:
-        return IconConstants.icIncoming;
-      case CallType.wifiOutgoing:
-        return IconConstants.icOutgoing;
-    }
-  }
-}
-
-String getSvgImageByCallType(CallLogData callLog) {
-  var callType = getCallLogType(callLog.callType);
-  if (callLog.isSpam == 1) {
-    return SvgIcons.spam;
-  } else {
-    switch (callType) {
-      case null:
-        return SvgIcons.callIncoming;
-      case CallType.incoming:
-        return SvgIcons.callIncoming;
-      case CallType.outgoing:
-        return SvgIcons.callOutgoing;
-      case CallType.missed:
-        return SvgIcons.callMissed;
-      case CallType.voiceMail:
-        return SvgIcons.callIncoming;
-      case CallType.rejected:
-        return SvgIcons.callMissed;
-      case CallType.blocked:
-        return SvgIcons.callBlocked;
-      case CallType.answeredExternally:
-        return SvgIcons.callIncoming;
-      case CallType.unknown:
-        return SvgIcons.callIncoming;
-      case CallType.wifiIncoming:
-        return SvgIcons.callIncoming;
-      case CallType.wifiOutgoing:
-        return SvgIcons.callIncoming;
-    }
-  }
-}
-
-Color getCallTypeTextColor(String? callLogType) {
-  var callType = getCallLogType(callLogType);
-  switch (callType) {
-    case CallType.incoming:
-      return Colors.grey;
-    case CallType.outgoing:
-      return Colors.grey;
-    case CallType.missed:
-      return Colors.red;
-    case CallType.voiceMail:
-      return Colors.grey;
-    case CallType.rejected:
-      return Colors.red;
-    case CallType.blocked:
-      return Colors.red;
-    case CallType.answeredExternally:
-      return Colors.grey;
-    case CallType.unknown:
-      return Colors.grey;
-    case CallType.wifiIncoming:
-      return Colors.grey;
-    case CallType.wifiOutgoing:
-      return Colors.grey;
-    case null:
-      return Colors.grey;
-  }
-}
-
-Color getCallTypeIconColor(String? callLogType) {
-  var callType = getCallLogType(callLogType);
-  switch (callType) {
-    case CallType.incoming:
-      return Colors.green;
-    case CallType.outgoing:
-      return Colors.blue;
-    case CallType.missed:
-      return Colors.red;
-    case CallType.voiceMail:
-      return Colors.grey;
-    case CallType.rejected:
-      return Colors.red;
-    case CallType.blocked:
-      return Colors.red;
-    case CallType.answeredExternally:
-      return Colors.green;
-    case CallType.unknown:
-      return Colors.grey;
-    case CallType.wifiIncoming:
-      return Colors.green;
-    case CallType.wifiOutgoing:
-      return Colors.blue;
-    case null:
-      return Colors.grey;
-  }
-}
-
-IconData getCallTypeIcon(String? callLogType) {
-  var callType = getCallLogType(callLogType);
-  switch (callType) {
-    case CallType.incoming:
-      return Icons.call_received;
-    case CallType.outgoing:
-      return Icons.call_made;
-    case CallType.missed:
-      return Icons.call_missed;
-    case CallType.voiceMail:
-      return Icons.voicemail_sharp;
-    case CallType.rejected:
-      return Icons.call_end;
-    case CallType.blocked:
-      return Icons.block;
-    case CallType.answeredExternally:
-      return Icons.call_received;
-    case CallType.unknown:
-      return Icons.device_unknown;
-    case CallType.wifiIncoming:
-      return Icons.wifi_calling;
-    case CallType.wifiOutgoing:
-      return Icons.wifi_calling_3;
-    case null:
-      return Icons.call_received;
-  }
-}
-
-CallType? getCallLogType(String? callLogType) {
-  switch (callLogType) {
-    case null:
-      return null;
-    case "incoming":
-      return CallType.incoming;
-    case "outgoing":
-      return CallType.outgoing;
-    case "missed":
-      return CallType.missed;
-    case "voiceMail":
-      return CallType.voiceMail;
-    case "rejected":
-      return CallType.rejected;
-    case "blocked":
-      return CallType.blocked;
-    case "answeredExternally":
-      return CallType.answeredExternally;
-    case "unknown":
-      return CallType.unknown;
-    case "wifiIncoming":
-      return CallType.wifiIncoming;
-    case "wifiOutgoing":
-      return CallType.wifiOutgoing;
-//Phone state background cases
-    case "incomingstart":
-      return CallType.incoming;
-    case "incomingmissed":
-      return CallType.missed;
-    case "incomingreceived":
-      return CallType.incoming;
-    case "incomingend":
-      return CallType.incoming;
-    case "outgoingend":
-      return CallType.outgoing;
-    case "outgoingstart":
-      return CallType.outgoing;
-
-    case "NOTHING":
-      return CallType.unknown;
-    case "CALL_INCOMING":
-      return CallType.incoming;
-    case "CALL_STARTED":
-      return CallType.incoming;
-    case "CALL_ENDED":
-      return CallType.rejected;
-    default:
-      return null;
-  }
-}
-
-String getCallTypeStringFromBGPhoneState(PhoneStateBackgroundEvent phoneState) {
-  switch (phoneState) {
-    case PhoneStateBackgroundEvent.incomingstart:
-      return "Incoming call";
-    case PhoneStateBackgroundEvent.incomingmissed:
-      return "Missed call";
-    case PhoneStateBackgroundEvent.incomingreceived:
-      return "Ongoing call";
-    case PhoneStateBackgroundEvent.incomingend:
-      return "Call end";
-    case PhoneStateBackgroundEvent.outgoingend:
-      return "Call end";
-    case PhoneStateBackgroundEvent.outgoingstart:
-      return "Ongoing call";
-  }
-}
-
-// String getCallTypeByPhoneState(PhoneState phoneState) {
-//   switch (phoneState.status) {
-//     case PhoneStateStatus.NOTHING:
-//       return "Unknown";
-//     case PhoneStateStatus.CALL_INCOMING:
-//       return "Incoming call";
-//     case PhoneStateStatus.CALL_STARTED:
-//       return "Ongoing call";
-//     case PhoneStateStatus.CALL_ENDED:
-//       return "Call end";
-//   }
-// }

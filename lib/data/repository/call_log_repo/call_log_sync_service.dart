@@ -51,6 +51,7 @@ class CallLogSyncService {
               name: (sentLog.name?.isEmpty ?? true)
                   ? serverLog.name
                   : sentLog.name,
+              contactData: serverLog.contactData,
             ));
           } else {
             print(

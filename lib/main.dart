@@ -9,6 +9,7 @@ import 'package:spam_delection_app/data/repository/call_log_repo/call_log_sync_s
 import 'package:spam_delection_app/data/repository/contact/contact_sync_service.dart';
 import 'package:spam_delection_app/data/repository/sms_repo/message_service.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/utils/call_type_helper/call_type_helpers.dart';
 import 'package:workmanager/workmanager.dart';
 
 void main() async {
@@ -66,7 +67,7 @@ Future<void> phoneStateBackgroundCallbackHandler(
   print('📞 Call event captured for $number, duration $duration sec');
 
   showOverlay(
-    callType: getCallTypeStringFromBGPhoneState(event),
+    callType: CallTypeHelper.getCallTypeStringFromBGPhoneState(event),
     number: number,
     duration: duration,
   );
