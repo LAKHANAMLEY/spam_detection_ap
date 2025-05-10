@@ -53,6 +53,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
           isBlocked: existingCallLog.isBlocked,
           contactListId: existingCallLog.contactListId,
           markspambyuser: existingCallLog.markSpamByUser,
+          isMarkedSpamByMe: existingCallLog.isMarkSpamByMe,
           synced: existingCallLog.synced,
           name: (existingCallLog.name?.isEmpty ?? false)
               ? callLog.name
@@ -220,6 +221,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
           isManually: serverLog?.isManually ?? "",
           isSpam: serverLog?.isSpam,
           markSpamByUser: serverLog?.markSpamByUser,
+          isMarkSpamByMe: serverLog?.isMarkSpamByMe ?? false,
           contactData: serverLog?.contactData,
         ),
       );
@@ -309,13 +311,12 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
             groupedLocalCallLogs,
             serverContactData?.callHistory
                     ?.map((e) => e.copyWith(
-                          isSpam: serverContactData.isSpam,
-                          isBlocked: serverContactData.isBlocked,
-                          markspambyuser: serverContactData.markspambyuser,
-                          contactData: serverContactData.copyWith(
-                              // name: e.name,
-                              ),
-                          //Copy with is due to not getting these params in call history
+                        isSpam: serverContactData.isSpam,
+                        isBlocked: serverContactData.isBlocked,
+                        markspambyuser: serverContactData.markspambyuser,
+                        isMarkedSpamByMe: serverContactData.isMarkedSpamByMe,
+                        contactData: serverContactData
+                        //Copy with is due to not getting these params in call history
                         ))
                     .toList() ??
                 [],
@@ -328,16 +329,18 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
           if (existingCallLog == null) {
             await _databaseHelper.insertCallLog(callLog);
           } else {
+            // log("Call log detail synced ${callLog.toJson()}");
             await _databaseHelper.updateCallLog(callLog.copyWith(
-              isSpam: existingCallLog.isSpam,
-              isBlocked: existingCallLog.isBlocked,
-              contactListId: existingCallLog.contactListId,
-              markspambyuser: existingCallLog.markSpamByUser,
-              synced: existingCallLog.synced,
+              // isSpam: existingCallLog.isSpam,
+              // isBlocked: existingCallLog.isBlocked,
+              // contactListId: existingCallLog.contactListId,
+              // markspambyuser: existingCallLog.markSpamByUser,
+              // isMarkedSpamByMe: existingCallLog.isMarkSpamByMe,
+              // synced: existingCallLog.synced,
               name: (existingCallLog.name?.isEmpty ?? false)
                   ? callLog.name
                   : existingCallLog.name,
-              // contactData: existingCallLog.contactData,
+              contactData: callLog.contactData,
             ));
           }
         }
@@ -393,6 +396,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
           isBlocked: existingCallLog.isBlocked,
           contactListId: existingCallLog.contactListId,
           markspambyuser: existingCallLog.markSpamByUser,
+          isMarkedSpamByMe: existingCallLog.isMarkSpamByMe,
           synced: existingCallLog.synced,
           name: (existingCallLog.name?.isEmpty ?? false)
               ? callLog.name
@@ -435,6 +439,7 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
             isBlocked: existingCallLog.isBlocked,
             contactListId: existingCallLog.contactListId,
             markspambyuser: existingCallLog.markSpamByUser,
+            isMarkedSpamByMe: existingCallLog.isMarkSpamByMe,
             synced: existingCallLog.synced,
             name: (existingCallLog.name?.isEmpty ?? false)
                 ? callLog.name

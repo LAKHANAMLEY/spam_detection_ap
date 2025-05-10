@@ -30,6 +30,7 @@ class ContactDBHelper {
   static const columnCallHistory = 'call_history'; // Store as JSON
   static const columnEmail = 'email';
   static const columnSynced = 'synced';
+  static const columnIsMarkedSpamByMe = 'ismarkbyme';
 
   // Make this a singleton class
   ContactDBHelper._privateConstructor();
@@ -74,7 +75,8 @@ class ContactDBHelper {
         $columnIsOnline TEXT,
         $columnCallHistory TEXT,
         $columnEmail TEXT,
-        $columnSynced INTEGER
+        $columnSynced INTEGER,
+        $columnIsMarkedSpamByMe INTEGER
       )
     ''');
   }
@@ -92,12 +94,15 @@ class ContactDBHelper {
     return maps.map((map) => _contactFromMap(map)).toList();
   }
 
-  Future<ContactData?> getContact(String id) async {
+  Future<ContactData?> getContact(String id, {int? limit, int? start}) async {
     Database db = await instance.database;
     List<Map<String, dynamic>> results = await db.query(
       table,
       where: '$columnMobileNo = ?',
       whereArgs: [id],
+      limit: limit,
+      offset: start,
+      orderBy: '$columnName ASC',
     );
     if (results.isNotEmpty) {
       return _contactFromMap(results.first);
@@ -105,12 +110,16 @@ class ContactDBHelper {
     return null;
   }
 
-  Future<ContactData?> getContactByPhone(String phone) async {
+  Future<ContactData?> getContactByPhone(String phone,
+      {int? limit, int? start}) async {
     Database db = await instance.database;
     List<Map<String, dynamic>> results = await db.query(
       table,
       where: '$columnMobileNo = ?',
       whereArgs: [phone],
+      limit: limit,
+      offset: start,
+      orderBy: '$columnName ASC',
     );
     if (results.isNotEmpty) {
       return _contactFromMap(results.first);
@@ -168,39 +177,42 @@ class ContactDBHelper {
           ? jsonEncode(contact.callHistory!.map((e) => e.toJson()).toList())
           : null,
       columnEmail: contact.email,
-      columnSynced: contact.synced ? 1 : 0
+      columnSynced: contact.synced ? 1 : 0,
+      columnIsMarkedSpamByMe: contact.isMarkedSpamByMe ? 1 : 0
     };
   }
 
   ContactData _contactFromMap(Map<String, dynamic> map) {
     return ContactData(
-        id: map[columnId],
-        deviceContactId: map[columnDeviceContactId],
-        name: map[columnName],
-        countryCode: map[columnCountryCode],
-        numberType: map[columnNumberType],
-        mobileNo: map[columnMobileNo],
-        isSpam: map[columnIsSpam],
-        category: map[columnCategory],
-        markspambyuser: map[columnMarkSpamByUser],
-        isRegistered: map[columnIsRegistered],
-        isBlocked: map[columnIsBlocked],
-        spamReport: map[columnSpamReport],
-        callActivity: map[columnCallActivity],
-        usuallyCalls: map[columnUsuallyCalls],
-        lastSeen: map[columnLastSeen],
-        isOnline: map[columnIsOnline],
-        callHistory: map[columnCallHistory] != null
-            ? (jsonDecode(map[columnCallHistory]) as List)
-                .map((e) => CallLogData.fromJson(e as Map<String, dynamic>))
-                .toList()
-            : [],
-        email: map[columnEmail],
-        synced: map[columnSynced] == 1);
+      id: map[columnId],
+      deviceContactId: map[columnDeviceContactId],
+      name: map[columnName],
+      countryCode: map[columnCountryCode],
+      numberType: map[columnNumberType],
+      mobileNo: map[columnMobileNo],
+      isSpam: map[columnIsSpam],
+      category: map[columnCategory],
+      markspambyuser: map[columnMarkSpamByUser],
+      isRegistered: map[columnIsRegistered],
+      isBlocked: map[columnIsBlocked],
+      spamReport: map[columnSpamReport],
+      callActivity: map[columnCallActivity],
+      usuallyCalls: map[columnUsuallyCalls],
+      lastSeen: map[columnLastSeen],
+      isOnline: map[columnIsOnline],
+      callHistory: map[columnCallHistory] != null
+          ? (jsonDecode(map[columnCallHistory]) as List)
+              .map((e) => CallLogData.fromJson(e as Map<String, dynamic>))
+              .toList()
+          : [],
+      email: map[columnEmail],
+      synced: map[columnSynced] == 1,
+      isMarkedSpamByMe: map[columnIsMarkedSpamByMe] == 1,
+    );
   }
 
   Future<List<ContactData>> getUnsyncedContacts(
-      {int limit = 100, int start = 0}) async {
+      {int? limit, int? start}) async {
     Database db = await instance.database;
 
     final List<Map<String, dynamic>> maps = await db.query(

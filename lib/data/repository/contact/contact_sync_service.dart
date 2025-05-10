@@ -40,6 +40,8 @@ class ContactSyncService {
               synced: true,
               isSpam: matched.isSpam,
               markspambyuser: matched.markspambyuser,
+              isMarkedSpamByMe: matched.isMarkedSpamByMe,
+              spamComments: matched.spamComments,
               isBlocked: matched.isBlocked,
               callActivity: matched.callActivity,
               callHistory: matched.callHistory,

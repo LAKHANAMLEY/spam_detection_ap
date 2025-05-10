@@ -65,6 +65,7 @@ class CallLogData {
   final int? markSpamByUser;
   final String isManually;
   final bool synced;
+  final bool isMarkSpamByMe;
 
   //Add new params from contactData here
   final ContactData? contactData;
@@ -88,6 +89,7 @@ class CallLogData {
     this.isManually = "0",
     this.contactData,
     this.synced = false,
+    this.isMarkSpamByMe = false,
   });
 
   CallLogData copyWith({
@@ -110,6 +112,7 @@ class CallLogData {
     String? isManually,
     ContactData? contactData,
     bool? synced,
+    bool? isMarkedSpamByMe,
   }) =>
       CallLogData(
         // totalcalllog: totalcalllog ?? this.totalcalllog,
@@ -131,34 +134,37 @@ class CallLogData {
         isManually: isManually ?? this.isManually,
         contactData: contactData ?? this.contactData,
         synced: synced ?? this.synced,
+        isMarkSpamByMe: isMarkedSpamByMe ?? this.isMarkSpamByMe,
       );
 
   factory CallLogData.fromJson(Map<String, dynamic> json) => CallLogData(
-      id: json["id"],
-      phoneaccountid: json["phoneaccountid"].runtimeType == int
-          ? json["phoneaccountid"].toString()
-          : json["phoneaccountid"],
-      simdisplayname: json["simdisplayname"],
-      name: json["name"],
-      callType: json["call_type"],
-      countryCode: json["country_code"],
-      mobileNo: json["mobile_no"],
-      callTime: (json["call_time"]?.toString().isEmpty ?? true)
-          ? null
-          : DateTime.tryParse(json["call_time"]),
-      callDuration: json["call_duration"],
-      callDurationUnit: json["call_duration_unit"],
-      contactListId: json["contact_list_id"] is int
-          ? json["contact_list_id"].toString()
-          : json["contact_list_id"],
-      callDurations: json["call_durations"],
-      isSpam: json["is_spam"],
-      isBlocked: json["is_blocked"],
-      markSpamByUser: json["markspambyuser"],
-      contactData: json["contact_data"] == null
-          ? null
-          : ContactData.fromJson(json["contact_data"]),
-      synced: json["synced"] == 1);
+        id: json["id"],
+        phoneaccountid: json["phoneaccountid"].runtimeType == int
+            ? json["phoneaccountid"].toString()
+            : json["phoneaccountid"],
+        simdisplayname: json["simdisplayname"],
+        name: json["name"],
+        callType: json["call_type"],
+        countryCode: json["country_code"],
+        mobileNo: json["mobile_no"],
+        callTime: (json["call_time"]?.toString().isEmpty ?? true)
+            ? null
+            : DateTime.tryParse(json["call_time"]),
+        callDuration: json["call_duration"],
+        callDurationUnit: json["call_duration_unit"],
+        contactListId: json["contact_list_id"] is int
+            ? json["contact_list_id"].toString()
+            : json["contact_list_id"],
+        callDurations: json["call_durations"],
+        isSpam: json["is_spam"],
+        isBlocked: json["is_blocked"],
+        markSpamByUser: json["markspambyuser"],
+        contactData: json["contact_data"] == null
+            ? null
+            : ContactData.fromJson(json["contact_data"]),
+        synced: json["synced"] == 1,
+        isMarkSpamByMe: json["markspambyme"] == 1,
+      );
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -178,6 +184,7 @@ class CallLogData {
         "markspambyuser": markSpamByUser,
         "contactData": contactData?.toJson(),
         "synced": synced,
+        "ismarkbyme": isMarkSpamByMe,
       };
 
   // static CallLogData? fromContact(ContactData? contact) =>
@@ -210,6 +217,7 @@ class CallLogData {
         phoneaccountid: callLog.phoneAccountId,
         simdisplayname: callLog.simDisplayName,
         synced: false,
+        isMarkSpamByMe: false,
 
         ///other details will update from server
       );

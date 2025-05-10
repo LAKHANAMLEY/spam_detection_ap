@@ -19,21 +19,21 @@ class AddSmsLog extends MessageDBEvent {
   List<Object> get props => [smsLog];
 }
 
-class DeleteAllSmsLogs extends MessageDBEvent {
+class DeleteAllSmsDetails extends MessageDBEvent {
   final SmsLog smsLog;
 
-  const DeleteAllSmsLogs({required this.smsLog});
+  const DeleteAllSmsDetails({required this.smsLog});
   @override
   List<Object> get props => [smsLog];
 }
 
-class DeleteSmsLog extends MessageDBEvent {
-  final String id;
+// class DeleteSmsLog extends MessageDBEvent {
+//   final String id;
 
-  const DeleteSmsLog({required this.id});
-  @override
-  List<Object> get props => [id];
-}
+//   const DeleteSmsLog({required this.id});
+//   @override
+//   List<Object> get props => [id];
+// }
 
 class DeleteMessageDB extends MessageDBEvent {}
 

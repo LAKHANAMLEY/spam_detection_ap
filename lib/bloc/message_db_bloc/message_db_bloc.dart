@@ -9,8 +9,8 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
 
   MessageDBBloc() : super(MessageDBInitial()) {
     on<AddSmsLog>(_addSmsLog);
-    on<DeleteSmsLog>(_deleteSmsLog);
-    on<DeleteAllSmsLogs>(_deleteAllSmsLogs);
+    // on<DeleteSmsLog>(_deleteSmsLog);
+    on<DeleteAllSmsDetails>(_deleteAllSmsDetails);
     on<DeleteMessageDB>(_deleteDatabase);
     on<ImportAllDeviceMessages>(_importAllDeviceMessages);
     on<ImportAllDeviceMessagesDetails>(_importAllDeviceMessagesDetails);
@@ -63,8 +63,8 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     );
   }
 
-  Future<void> _deleteAllSmsLogs(
-    DeleteAllSmsLogs event,
+  Future<void> _deleteAllSmsDetails(
+    DeleteAllSmsDetails event,
     Emitter<MessageDBState> emit,
   ) async {
     try {
@@ -81,22 +81,21 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
     }
   }
 
-  Future<void> _deleteSmsLog(
-      DeleteSmsLog event, Emitter<MessageDBState> emit) async {
-    final smsLog = await _db.getSmsLog(event.id);
-    await _handleDbWrite(() async {
-      await smsDelete(messageId: event.id);
-      await _db.deleteSmsLog(event.id);
-    }, emit, onSuccess: () => MessageDBDeletedById(smsLog: smsLog!));
-  }
+  // Future<void> _deleteSmsLog(
+  //     DeleteSmsLog event, Emitter<MessageDBState> emit) async {
+  //   final smsLog = await _db.getSmsLog(event.id);
+  //   await _handleDbWrite(() async {
+  //     await smsDelete(messageId: event.id);
+  //     await _db.deleteSmsLog(event.id);
+  //   }, emit, onSuccess: () => MessageDBDeletedById(smsLog: smsLog!));
+  // }
 
   Future<void> _deleteDatabase(
       DeleteMessageDB event, Emitter<MessageDBState> emit) async {
     await _handleDbWrite(() async {
       await _db.deleteDatabase1();
       await _db.deleteTable();
-      ;
-    }, emit, onSuccess: () => MessageDBInitial());
+    }, emit, onSuccess: () => MessageDBDeletedAll());
   }
 
   // Future<void> _paginateAndsyncMessagesWithServer(

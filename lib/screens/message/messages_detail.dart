@@ -290,7 +290,7 @@ class _MessagesDetailState extends State<MessagesDetail> {
                             // messagesBloc.add(DeleteConversationEvent());
                             context
                                 .read<MessageDBBloc>()
-                                .add(DeleteAllSmsLogs(smsLog: sms!));
+                                .add(DeleteAllSmsDetails(smsLog: sms!));
                           },
                           child: Row(
                             children: [

@@ -29,6 +29,7 @@ class CallLogDBHelper {
   static const callLogColumnIsManually = 'is_manually';
   static const contactData = 'contact_data';
   static const callLogColumnSynced = 'synced';
+  static const callLogColumnIsMarkedSpamByMe = 'ismarkbyme';
 
   // Make this a singleton class
   CallLogDBHelper._privateConstructor();
@@ -72,7 +73,8 @@ class CallLogDBHelper {
         $callLogColumnMarkSpamByUser INTEGER,
         $callLogColumnIsManually TEXT,
         $contactData TEXT,
-        $callLogColumnSynced INTEGER
+        $callLogColumnSynced INTEGER,
+        $callLogColumnIsMarkedSpamByMe INTEGER
       )
     ''');
   }
@@ -162,33 +164,36 @@ class CallLogDBHelper {
           ? null
           : jsonEncode(callLog.contactData?.toJson()),
       callLogColumnSynced: callLog.synced ? 1 : 0,
+      callLogColumnIsMarkedSpamByMe: callLog.isMarkSpamByMe ? 1 : 0,
     };
   }
 
   CallLogData _callLogFromMap(Map<String, dynamic> map) {
     return CallLogData(
-        id: map[callLogColumnId],
-        phoneaccountid: map[callLogColumnPhoneAccountId],
-        simdisplayname: map[callLogColumnSimDisplayName],
-        name: map[callLogColumnName],
-        callType: map[callLogColumnCallType],
-        countryCode: map[callLogColumnCountryCode],
-        mobileNo: map[callLogColumnMobileNo],
-        callTime: map[callLogColumnCallTime] == null
-            ? null
-            : DateTime.tryParse(map[callLogColumnCallTime]),
-        callDuration: map[callLogColumnCallDuration],
-        callDurationUnit: map[callLogColumnCallDurationUnit],
-        contactListId: map[callLogColumnContactListId],
-        callDurations: map[callLogColumnCallDurations],
-        isSpam: map[callLogColumnIsSpam],
-        isBlocked: map[callLogColumnIsBlocked],
-        markSpamByUser: map[callLogColumnMarkSpamByUser],
-        isManually: map[callLogColumnIsManually] ?? '0',
-        contactData: map[contactData] == null
-            ? null
-            : ContactData.fromJson(jsonDecode(map[contactData])),
-        synced: map[callLogColumnSynced] == 1);
+      id: map[callLogColumnId],
+      phoneaccountid: map[callLogColumnPhoneAccountId],
+      simdisplayname: map[callLogColumnSimDisplayName],
+      name: map[callLogColumnName],
+      callType: map[callLogColumnCallType],
+      countryCode: map[callLogColumnCountryCode],
+      mobileNo: map[callLogColumnMobileNo],
+      callTime: map[callLogColumnCallTime] == null
+          ? null
+          : DateTime.tryParse(map[callLogColumnCallTime]),
+      callDuration: map[callLogColumnCallDuration],
+      callDurationUnit: map[callLogColumnCallDurationUnit],
+      contactListId: map[callLogColumnContactListId],
+      callDurations: map[callLogColumnCallDurations],
+      isSpam: map[callLogColumnIsSpam],
+      isBlocked: map[callLogColumnIsBlocked],
+      markSpamByUser: map[callLogColumnMarkSpamByUser],
+      isManually: map[callLogColumnIsManually] ?? '0',
+      contactData: map[contactData] == null
+          ? null
+          : ContactData.fromJson(jsonDecode(map[contactData])),
+      synced: map[callLogColumnSynced] == 1,
+      isMarkSpamByMe: map[callLogColumnIsMarkedSpamByMe] == 1,
+    );
   }
 
   Future<List<CallLogData>> getUnsyncedCallLogs(
