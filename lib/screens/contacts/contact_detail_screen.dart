@@ -695,28 +695,13 @@ class ContactDetail extends StatelessWidget {
       BuildContext context, ContactData? contact, ApiBloc markSpamBloc) {
     return SliverList(
       delegate: SliverChildListDelegate([
-        _commentsView(contact),
         contactInfoTile(context, contact),
         contactStatsCard(context, contact),
+        if (contact?.spamComments?.isNotEmpty ?? false)
+          _commentsView(contact, context),
         premiumSuggestionTile(context),
         10.height(),
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(appLocalization(context).callHistoryText,
-              style: textTheme(context).titleMedium),
-        ),
-        if (contact?.callHistory?.isNotEmpty ?? false)
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: contact?.callHistory?.length,
-            itemBuilder: (context, index) => CallLogListItem(
-              callLog: contact!.callHistory![index],
-              showPopupMenuBtn: false,
-              fromDetail: true,
-              onTap: () {},
-            ),
-          ),
+        _callHistory(contact, context)
       ]),
     );
   }
@@ -738,7 +723,7 @@ class ContactDetail extends StatelessWidget {
           contact?.countryCode?.isNotEmpty ?? false
               ? "+${contact?.countryCode} ${contact?.mobileNo}"
               : contact?.mobileNo ?? "",
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          // style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: (contact?.numberType?.isNotEmpty ?? false)
             ? Text(contact!.numberType!,
@@ -892,17 +877,60 @@ class ContactDetail extends StatelessWidget {
     );
   }
 
-  Widget _commentsView(ContactData? contact) => Column(
-        children: [
-          Text("Comments (${contact?.spamComments?.length ?? 0})"),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: contact?.spamComments?.length,
-            itemBuilder: (context, index) =>
-                CommentListItem(comment: contact?.spamComments?[index]),
-          ),
-        ],
+  Widget _commentsView(ContactData? contact, context) => Container(
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColor.lightBrownColor),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+                "${appLocalization(context).comment} (${contact?.spamComments?.length ?? 0})"),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: contact?.spamComments?.length,
+              itemBuilder: (context, index) =>
+                  CommentListItem(comment: contact?.spamComments?[index]),
+            ),
+          ],
+        ),
+      );
+
+  _callHistory(ContactData? contact, BuildContext context) => Container(
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColor.lightBrownColor),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                appLocalization(context).callHistoryText,
+                // style: textTheme(context).titleMedium,
+              ),
+            ),
+            if (contact?.callHistory?.isNotEmpty ?? false)
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: contact?.callHistory?.length,
+                itemBuilder: (context, index) => CallLogListItem(
+                  callLog: contact!.callHistory![index],
+                  showPopupMenuBtn: false,
+                  fromDetail: true,
+                  onTap: () {},
+                ),
+              ),
+          ],
+        ),
       );
 }
 

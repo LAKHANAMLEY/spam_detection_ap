@@ -7,7 +7,24 @@ class CommentListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
-      title: Text(comment?.comments ?? ""),
+      title: Row(
+        children: [
+          Text(
+            comment?.reportByUsername ?? "",
+            style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
+          ),
+          Circle(),
+          Text(
+            comment?.markdate?.formatRelativeDateTime() ?? "",
+            style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
+          ),
+        ],
+      ),
+      subtitle: Text(comment?.comments ?? ""),
+      // trailing: Text(
+      //   comment?.markdate?.formatRelativeDateTime() ?? "",
+      //   style: textTheme(context).bodySmall?.copyWith(color: Colors.grey),
+      // ),
     );
   }
 }

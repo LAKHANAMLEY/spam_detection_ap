@@ -253,6 +253,7 @@ class SpamComment {
   final String? reportsByUser;
   final String? name;
   final String? reportByUsername;
+  final DateTime? markdate;
 
   SpamComment({
     this.id,
@@ -264,6 +265,7 @@ class SpamComment {
     this.reportsByUser,
     this.name,
     this.reportByUsername,
+    this.markdate,
   });
 
   SpamComment copyWith({
@@ -276,6 +278,7 @@ class SpamComment {
     String? reportsByUser,
     String? name,
     String? reportByUsername,
+    DateTime? markdate,
   }) =>
       SpamComment(
         id: id ?? this.id,
@@ -287,6 +290,7 @@ class SpamComment {
         reportsByUser: reportsByUser ?? this.reportsByUser,
         name: name ?? this.name,
         reportByUsername: reportByUsername ?? this.reportByUsername,
+        markdate: markdate ?? this.markdate,
       );
 
   factory SpamComment.fromJson(Map<String, dynamic> json) => SpamComment(
@@ -299,6 +303,7 @@ class SpamComment {
         reportsByUser: json["reports_by_user"],
         name: json["name"],
         reportByUsername: json["report_by_username"],
+        markdate: DateTime.tryParse(json["markdate"] ?? ""),
       );
 
   Map<String, dynamic> toJson() => {
@@ -311,5 +316,6 @@ class SpamComment {
         "reports_by_user": reportsByUser,
         "name": name,
         "report_by_username": reportByUsername,
+        "markdate": markdate?.toIso8601String(),
       };
 }
