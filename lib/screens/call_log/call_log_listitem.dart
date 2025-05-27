@@ -1,6 +1,5 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/utils/call_type_helper/call_type_helpers.dart';
 
 class CallLogListItem extends StatelessWidget {
   final CallLogData callLog;
@@ -173,6 +172,7 @@ class CallLogListItem extends StatelessWidget {
                           subTitle: appLocalization(context).areYouWantDelete,
                           showCancelBtn: true,
                           okBtnTxt: appLocalization(context).delete,
+                          okBtnTxtColor: Colors.white,
                           cancelBtnTxt: appLocalization(context).cancel,
                           okBtnColor: Colors.redAccent,
                           onOkPressed: () {

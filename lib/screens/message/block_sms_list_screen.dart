@@ -16,7 +16,7 @@ class _BlockListState extends State<BlockList> {
   @override
   void initState() {
     super.initState();
-    markSpamSmsBloc.add(SmsSpamListEvent());
+    context.read<MessageDBBloc>().add(SmsSpamListEvent());
   }
 
   void filterSearchResults(String query) {
@@ -46,62 +46,65 @@ class _BlockListState extends State<BlockList> {
             hintText: appLocalization(context).searchMore,
           ),
           Expanded(
-              child: BlocConsumer(
-                  bloc: markSpamSmsBloc,
-                  listener: (context, state) {
-                    if (state is SmsSpamListState) {
-                      sms = state.value.smsSpamList ?? [];
-                      filterSearchResults("");
-                    }
-                    if (state is MarkSpamSmsState) {
-                      if (state.value.statusCode == 200) {
-                        showCustomDialog(context,
-                            dialogType: DialogType.success,
-                            subTitle: state.value.message);
-                      } else if (state.value.statusCode ==
-                          HTTPStatusCodes.sessionExpired) {
-                        sessionExpired(context, state.value.message);
-                      } else {
-                        showCustomDialog(context,
-                            dialogType: DialogType.failed,
-                            subTitle: state.value.message);
-                      }
-                      markSpamSmsBloc.add(SmsSpamListEvent());
-                    }
-                    if (state is RemoveSmsSpamState) {
-                      if (state.value.statusCode == 200) {
-                        showCustomDialog(context,
-                            dialogType: DialogType.success,
-                            subTitle: state.value.message);
-                      } else if (state.value.statusCode ==
-                          HTTPStatusCodes.sessionExpired) {
-                        sessionExpired(context, state.value.message);
-                      } else {
-                        showCustomDialog(context,
-                            dialogType: DialogType.failed,
-                            subTitle: state.value.message);
-                      }
-                      markSpamSmsBloc.add(SmsSpamListEvent());
-                    }
+              child: BlocConsumer<MessageDBBloc, MessageDBState>(
+            // bloc: markSpamSmsBloc,
+            listener: (context, state) {
+              if (state is SmsSpamListState) {
+                sms = state.value.smsSpamList ?? [];
+                filterSearchResults("");
+              }
+              if (state is MarkedSpamMessage) {
+                if (state.value.statusCode == 200) {
+                  showCustomDialog(context,
+                      dialogType: DialogType.success,
+                      subTitle: state.value.message);
+                } else if (state.value.statusCode ==
+                    HTTPStatusCodes.sessionExpired) {
+                  sessionExpired(context, state.value.message);
+                } else {
+                  showCustomDialog(context,
+                      dialogType: DialogType.failed,
+                      subTitle: state.value.message);
+                }
+                context.read<MessageDBBloc>().add(SmsSpamListEvent());
+              }
+              if (state is UnMarkedSpamMessage) {
+                if (state.value.statusCode == 200) {
+                  showCustomDialog(context,
+                      dialogType: DialogType.success,
+                      subTitle: state.value.message);
+                } else if (state.value.statusCode ==
+                    HTTPStatusCodes.sessionExpired) {
+                  sessionExpired(context, state.value.message);
+                } else {
+                  showCustomDialog(context,
+                      dialogType: DialogType.failed,
+                      subTitle: state.value.message);
+                }
+                context.read<MessageDBBloc>().add(SmsSpamListEvent());
+              }
+            },
+            builder: (context, state) {
+              // if (state is SmsSpamListState) {
+              // SmsDetail = state.value.smsLog ?? ;
+              if (filteredContacts.isEmpty) {
+                return Center(
+                  child: Text(appLocalization(context).noContacts),
+                );
+              }
+              return ModalProgressHUD(
+                inAsyncCall: state is MessageDBLoading,
+                child: ListView.builder(
+                  itemCount: filteredContacts.length,
+                  itemBuilder: (context, index) {
+                    return SmsSpamListItem(spamSms: filteredContacts[index]);
                   },
-                  builder: (context, state) {
-                    if (state is SmsSpamListState) {
-                      // SmsDetail = state.value.smsLog ?? ;
-                      if (filteredContacts.isEmpty) {
-                        return Center(
-                          child: Text(appLocalization(context).noContacts),
-                        );
-                      }
-                      return ListView.builder(
-                        itemCount: filteredContacts.length,
-                        itemBuilder: (context, index) {
-                          return SmsSpamListItem(
-                              spamSms: filteredContacts[index]);
-                        },
-                      );
-                    }
-                    return const Loader();
-                  }))
+                ),
+              );
+              // }
+              // return const Loader();
+            },
+          ))
         ],
       )),
     );

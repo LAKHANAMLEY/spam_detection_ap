@@ -1,4 +1,3 @@
-import 'package:spam_delection_app/data/repository/contact/contacts_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class AddContact extends StatefulWidget {
@@ -17,16 +16,14 @@ class _AddContactState extends State<AddContact> {
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
-  final TextEditingController _numberController = TextEditingController();
   var selectPhoneCodeBloc =
       SelectionBloc(SelectCountryState(AppConstants.selectedCountry));
-  CountryData? selectedPhoneCodeCountry;
+  CountryData? selectedPhoneCodeCountry = AppConstants.selectedCountry;
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    _numberController.dispose();
     super.dispose();
   }
 
@@ -40,36 +37,41 @@ class _AddContactState extends State<AddContact> {
       appLocalization(context).workFax,
       appLocalization(context).other,
     ];
-    String selectedType = appLocalization(context).mobile;
+    String selectedNumberType = appLocalization(context).mobile;
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: CustomAppBar(title: appLocalization(context).addContact),
       body: SafeArea(
-        child: Builder(
+        child: BlocConsumer<ContactDBBloc, ContactDBState>(
             // bloc: contactListBloc,
-            // listener: (context, state) {
-            //   if (state is AddContactState) {
-            //     if (state.value.statusCode == 200) {
-            //       showCustomDialog(
-            //         context,
-            //         dialogType: DialogType.success,
-            //         subTitle: state.value.message,
-            //       );
-            //     } else if (state.value.statusCode ==
-            //         HTTPStatusCodes.sessionExpired) {
-            //       sessionExpired(context, state.value.message);
-            //     } else {
-            //       showCustomDialog(context,
-            //           dialogType: DialogType.failed,
-            //           subTitle: state.value.message.toString());
-            //     }
-            //     contactListBloc.add(GetContactEvent());
-            //   }
-            // },
-            builder: (context) {
+            listener: (context, state) {
+          if (state is ContactAdded) {
+            if (state.value.statusCode == 200) {
+              showCustomDialog(
+                context,
+                dialogType: DialogType.success,
+                subTitle: state.value.message,
+              );
+              context.read<ContactDBBloc>().add(LoadDBContacts());
+            } else if (state.value.statusCode ==
+                HTTPStatusCodes.sessionExpired) {
+              sessionExpired(context, state.value.message);
+            } else {
+              showCustomDialog(context,
+                  dialogType: DialogType.failed,
+                  subTitle: state.value.message.toString());
+            }
+            // contactListBloc.add(GetContactEvent());
+          }
+          if (state is ContactDBError) {
+            showCustomDialog(context,
+                dialogType: DialogType.failed,
+                subTitle: state.message.toString());
+          }
+        }, builder: (context, state) {
           return ModalProgressHUD(
             progressIndicator: const Loader(),
-            inAsyncCall: false, //state is ApiLoadingState,
+            inAsyncCall: state is ContactDBLoading,
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(10),
               child: Form(
@@ -122,7 +124,7 @@ class _AddContactState extends State<AddContact> {
                     Padding(
                       padding: const EdgeInsets.only(left: 6, right: 6),
                       child: DropdownButtonFormField<String>(
-                        value: selectedType,
+                        value: selectedNumberType,
                         items: options.map((String option) {
                           return DropdownMenuItem<String>(
                             value: option,
@@ -131,7 +133,7 @@ class _AddContactState extends State<AddContact> {
                         }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
-                            selectedType = newValue!;
+                            selectedNumberType = newValue!;
                           });
                         },
                         decoration: InputDecoration(
@@ -191,14 +193,8 @@ class _AddContactState extends State<AddContact> {
                         final email = emailController.text;
                         final phone = phoneNumberController.text;
                         final fullName = fullNameController.text;
-                        final numberType = _numberController.text;
+
                         if (_formKey.currentState?.validate() ?? false) {
-                          await ContactsController.addDeviceContact(
-                            name: fullName,
-                            phone: phone,
-                            email: email,
-                            numberType: numberType,
-                          );
                           context.read<ContactDBBloc>().add(AddDBContact(
                               ContactData(
                                   name: fullName,
@@ -206,7 +202,7 @@ class _AddContactState extends State<AddContact> {
                                   countryCode:
                                       selectedPhoneCodeCountry?.phonecode,
                                   email: email,
-                                  numberType: numberType)));
+                                  numberType: selectedNumberType)));
                           // contactListBloc.add(AddContactEvent(
                           //     contact: ContactData(
                           //         mobileNo: phone,

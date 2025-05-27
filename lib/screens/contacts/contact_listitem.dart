@@ -61,11 +61,12 @@ class ContactListItem extends StatelessWidget {
                         Future.delayed(Duration.zero, () {
                           showCustomDialog(context,
                               dialogType: DialogType.delete,
-                              title: appLocalization(context).deleteMember,
+                              title: appLocalization(context).delete,
                               subTitle:
                                   appLocalization(context).areYouWantDelete,
                               showCancelBtn: true,
                               okBtnTxt: appLocalization(context).delete,
+                              okBtnTxtColor: Colors.white,
                               cancelBtnTxt: appLocalization(context).cancel,
                               okBtnColor: Colors.red, onOkPressed: () {
                             context

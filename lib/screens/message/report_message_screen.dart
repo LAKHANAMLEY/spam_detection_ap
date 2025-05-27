@@ -13,7 +13,7 @@ class _ReportSmsViewState extends State<ReportSmsView> {
   SmsDetail? sms;
 
   String? numberType;
-  bool _isRememberMeChecked = false;
+  bool _isRememberMeChecked = true;
 
   var commentController = TextEditingController();
   var selectedTabBloc = SelectionBloc(SelectStringState("business"));
@@ -129,12 +129,12 @@ class _ReportSmsViewState extends State<ReportSmsView> {
                       );
                       return;
                     }
-                    markSpamSmsBloc.add(MarkSpamSmsEvent(
-                      address: sms?.address ?? "",
-                      comment: commentController.text,
-                      numberType: numberType ?? "",
-                      category: selectedCategory?.cateId ?? "",
-                    ));
+                    context.read<MessageDBBloc>().add(MarkSpamDBSmsEvent(
+                          address: sms?.address ?? "",
+                          comment: commentController.text,
+                          numberType: numberType ?? "",
+                          category: selectedCategory?.cateId ?? "",
+                        ));
                     Navigator.pop(context);
                     // Navigator.pushNamed(
                     //     context, AppRoutes.bottomNavigation);

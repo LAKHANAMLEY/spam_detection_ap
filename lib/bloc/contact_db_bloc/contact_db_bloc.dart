@@ -1,5 +1,3 @@
-import 'package:spam_delection_app/data/repository/contact/contact_sync_service.dart';
-import 'package:spam_delection_app/data/repository/contact/contacts_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
@@ -20,9 +18,22 @@ class ContactDBBloc extends Bloc<ContactDBEvent, ContactDBState> {
       AddDBContact event, Emitter<ContactDBState> emit) async {
     emit(ContactDBLoading());
     try {
-      await _databaseHelper.insert(event.contact);
-      final contacts = await _databaseHelper.getAllContacts();
-      emit(ContactDBLoaded(contacts));
+      final contact = event.contact;
+
+      var res = await addContact(contact: contact);
+      if (res.statusCode == 200) {
+        await ContactsController.addDeviceContact(
+          name: contact.name ?? "",
+          phone: contact.mobileNo ?? "",
+          email: contact.email ?? "",
+          numberType: contact.numberType ?? "",
+        );
+        await _databaseHelper.insert(event.contact);
+        emit(ContactAdded(res));
+      } else {
+        emit(ContactDBError('Failed to add contact: ${res.message}', res));
+      }
+      // final contacts = await _databaseHelper.getAllContacts();
     } catch (e) {
       emit(ContactDBError('Failed to add contact: $e', e));
     }

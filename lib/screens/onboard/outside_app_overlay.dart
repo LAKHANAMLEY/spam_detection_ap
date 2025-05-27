@@ -1,7 +1,6 @@
 import 'package:direct_call_plus/direct_call_plus.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/utils/call_type_helper/call_type_helpers.dart';
 import 'package:system_alert_window/system_alert_window.dart';
 
 class OutSideAppOverlay extends StatefulWidget {
@@ -18,10 +17,12 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
 
   CallLogData? contactData;
 
+  CallLogData? callLog;
+
   void onData(data) {
-    var callLog = CallLogData.fromJson(data);
+    callLog = CallLogData.fromJson(data);
     context.read<CallLogDBBloc>().add(GetDBCallLog(
-        mobileNo: callLog.mobileNo?.separatePhoneAndPhoneCode().phone ?? ""));
+        mobileNo: callLog?.mobileNo?.separatePhoneAndPhoneCode().phone ?? ""));
     // callLogDetailBloc.add(GetDeviceCallLogEvent(
     //   number: callLog.mobileNo,
     //   // dateTimeFrom: DateTime.now().subtract(const Duration(days: 1)),
@@ -59,7 +60,10 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
         child: BlocConsumer<CallLogDBBloc, CallLogDBState>(
       listener: (context, state) {
         if (state is CallLogDBLoadedById) {
-          contactData = state.callLog;
+          contactData = state.callLog.copyWith(
+            callType: callLog?.callType,
+            callDuration: callLog?.callDuration,
+          );
         }
       },
       // bloc: callLogDetailBloc,

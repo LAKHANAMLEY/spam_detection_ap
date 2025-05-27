@@ -47,3 +47,12 @@ class ContactDBError extends ContactDBState {
   @override
   List<Object> get props => [message, exception];
 }
+
+class ContactAdded extends ContactDBState {
+  final AddContactResponse value;
+
+  const ContactAdded(this.value);
+
+  @override
+  List<Object> get props => [value];
+}

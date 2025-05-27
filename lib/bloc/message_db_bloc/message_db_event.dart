@@ -5,7 +5,7 @@ abstract class MessageDBEvent extends Equatable {
   const MessageDBEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 // class LoadSmsLogs extends MessageDBEvent {}
@@ -70,14 +70,14 @@ class SyncMessageDetailsWithServer extends MessageDBEvent {
   List<Object> get props => [smsLogs];
 }
 
-class SyncChangedMessageWithServer extends MessageDBEvent {
-  final SmsMessage smsMessage;
+// class SyncChangedMessageWithServer extends MessageDBEvent {
+//   final SmsMessage smsMessage;
 
-  const SyncChangedMessageWithServer({required this.smsMessage});
+//   const SyncChangedMessageWithServer({required this.smsMessage});
 
-  @override
-  List<Object> get props => [smsMessage];
-}
+//   @override
+//   List<Object> get props => [smsMessage];
+// }
 
 class AddSmsLogsToDB extends MessageDBEvent {
   final List<SmsLog> smsLogs;
@@ -121,3 +121,33 @@ class ReadDBMessage extends MessageDBEvent {
   @override
   List<Object> get props => [sms];
 }
+
+class MarkSpamDBSmsEvent extends MessageDBEvent {
+  final String address;
+  final String comment;
+  final String numberType;
+  final String category;
+
+  const MarkSpamDBSmsEvent({
+    required this.address,
+    required this.comment,
+    required this.numberType,
+    required this.category,
+  });
+
+  @override
+  List<Object?> get props => [address, comment, numberType, category];
+}
+
+class RemoveSpamDBSmsEvent extends MessageDBEvent {
+  final String address;
+
+  const RemoveSpamDBSmsEvent({
+    required this.address,
+  });
+
+  @override
+  List<Object?> get props => [address];
+}
+
+class SmsSpamListEvent extends MessageDBEvent {}

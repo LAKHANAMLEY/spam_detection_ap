@@ -4,8 +4,8 @@ import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_event.dart';
 import 'package:spam_delection_app/bloc/shared_pref_bloc/shared_pref_state.dart';
-import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
 import 'package:spam_delection_app/data/models/user/user_model.dart';
+import 'package:spam_delection_app/data/shared_pref/shared_pref.dart';
 
 class SharedPrefBloc extends Bloc<SharedPrefEvent, SharedPrefState> {
   SharedPrefBloc(super.initialState) {
@@ -37,6 +37,7 @@ class SharedPrefBloc extends Bloc<SharedPrefEvent, SharedPrefState> {
       final address = await SharedPref.getAddress();
       final address2 = await SharedPref.getAddress2();
       final userRole = await SharedPref.getUserRole();
+      final planDetails = await SharedPref.getPlanDetails();
       var user = User(
         userId: userId,
         corporateId: corporateId,
@@ -60,6 +61,7 @@ class SharedPrefBloc extends Bloc<SharedPrefEvent, SharedPrefState> {
         countryId: countryId,
         token: token,
         userRole: userRole,
+        planDetails: planDetails,
       );
       log("access token : $token");
       emit(GetUserDataFromLocalState(user));

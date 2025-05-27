@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:spam_delection_app/data/repository/call_log_repo/call_log_sync_service.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {

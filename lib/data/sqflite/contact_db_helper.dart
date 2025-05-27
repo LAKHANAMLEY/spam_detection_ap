@@ -88,9 +88,14 @@ class ContactDBHelper {
     return await db.insert(table, _contactToMap(contact));
   }
 
-  Future<List<ContactData>> getAllContacts() async {
+  Future<List<ContactData>> getAllContacts({int? limit, int? start}) async {
     Database db = await instance.database;
-    final List<Map<String, dynamic>> maps = await db.query(table);
+    final List<Map<String, dynamic>> maps = await db.query(
+      table,
+      limit: limit,
+      offset: start,
+      orderBy: '$columnName ASC',
+    );
     return maps.map((map) => _contactFromMap(map)).toList();
   }
 

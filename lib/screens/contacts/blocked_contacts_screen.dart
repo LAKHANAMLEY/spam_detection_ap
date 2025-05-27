@@ -1,13 +1,13 @@
 import 'package:spam_delection_app/lib.dart';
 
-class BlockedCalls extends StatefulWidget {
-  const BlockedCalls({super.key});
+class BlockedContactsScreen extends StatefulWidget {
+  const BlockedContactsScreen({super.key});
 
   @override
-  State<BlockedCalls> createState() => _BlockedCallsState();
+  State<BlockedContactsScreen> createState() => _BlockedContactsScreenState();
 }
 
-class _BlockedCallsState extends State<BlockedCalls> {
+class _BlockedContactsScreenState extends State<BlockedContactsScreen> {
   var selectTabBloc = SelectionBloc(SelectIntState(0));
 
   @override

@@ -84,6 +84,7 @@ Future<void> showCustomDialog(
   Color? okBtnColor,
   Color? cancelBtnColor,
   bool barrierDismissible = true,
+  Color? okBtnTxtColor,
 }) {
   return showDialog(
     context: context,
@@ -107,7 +108,10 @@ Future<void> showCustomDialog(
                 backgroundColor: okBtnColor,
               ),
               onPressed: onOkPressed ?? () => Navigator.pop(context),
-              child: Text(okBtnTxt ?? 'Ok'),
+              child: Text(
+                okBtnTxt ?? 'Ok',
+                style: TextStyle(color: okBtnTxtColor),
+              ),
             ),
           ],
     ),

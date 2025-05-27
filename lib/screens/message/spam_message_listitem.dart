@@ -9,13 +9,13 @@ class SmsSpamListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomListTile(
       onTap: () {
-        Navigator.of(context).pushNamed(AppRoutes.messagesDetail,
-            arguments: MessagesDetail(
-              sms: SmsLog(address: spamSms.address),
-              // spamMessage: spamSms.spamMessage,
-              // name: spamSms.name,
-              //  isSpam: '1',
-            ));
+        // Navigator.of(context).pushNamed(AppRoutes.messagesDetail,
+        //     arguments: MessagesDetail(
+        //       sms: SmsLog(address: spamSms.address),
+        //       // spamMessage: spamSms.spamMessage,
+        //       // name: spamSms.name,
+        //       //  isSpam: '1',
+        //     ));
       },
       leading: Card(
         // shape: BoxShape.circle,
@@ -69,8 +69,9 @@ class SmsSpamListItem extends StatelessWidget {
           PopupMenuItem(
               child: Text(appLocalization(context).removeSpam),
               onTap: () {
-                markSpamSmsBloc
-                    .add(RemoveSpamSmsEvent(address: spamSms.address ?? ""));
+                context
+                    .read<MessageDBBloc>()
+                    .add(RemoveSpamDBSmsEvent(address: spamSms.address ?? ""));
               }),
         ],
       ),

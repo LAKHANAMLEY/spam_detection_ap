@@ -27,6 +27,7 @@ class SharedPref {
   static const String _dob = "dob";
   static const String _relation = "relation";
   static const String _position = "position";
+  static const String _planDetails = "planDetails";
 
   // corparte
   static const String _company = "company";
@@ -72,6 +73,7 @@ class SharedPref {
     pref.setString(_dob, user?.dob.toString() ?? "");
 // corpoarte
     pref.setString(_company, user?.companyName ?? "");
+    pref.setString(_planDetails, jsonEncode(user?.planDetails ?? ""));
   }
 
   static saveRememberMeData(bool isRemember, String? email, String? password,
@@ -268,5 +270,12 @@ class SharedPref {
   static Future<String> getPosition() async {
     var pref = await SharedPreferences.getInstance();
     return pref.getString(_position) ?? "";
+  }
+
+  static Future<Planslist> getPlanDetails() async {
+    var pref = await SharedPreferences.getInstance();
+    var plan = pref.getString(_planDetails) ?? "";
+    final planDetails = Planslist.fromJson(jsonDecode(plan));
+    return planDetails;
   }
 }

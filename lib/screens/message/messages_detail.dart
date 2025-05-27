@@ -134,6 +134,8 @@ class _MessagesDetailState extends State<MessagesDetail> {
               GetSmsDetails(id: sms?.address ?? "", start: 0, limit: 1000));
         }
         if (state is MessageDBSynced) {
+          sms =
+              state.syncedSmsLogs.firstWhere((e) => e.address == sms?.address);
           context.read<MessageDBBloc>().add(
               GetSmsDetails(id: sms?.address ?? "", start: 0, limit: 1000));
 
@@ -324,63 +326,64 @@ class _MessagesDetailState extends State<MessagesDetail> {
             bottomNavigationBar: (sms?.address?.isNumber ?? false)
                 ? messageField(context, sms)
                 : replyingNotSupportedView(),
-            body: BlocConsumer(
-                bloc: markSpamSmsBloc,
-                listener: (context, state) {
-                  if (state is MarkSpamSmsState) {
-                    if (state.value.statusCode == 200) {
-                      showCustomDialog(context,
-                          dialogType: DialogType.success,
-                          subTitle: state.value.message);
-                    } else if (state.value.statusCode ==
-                        HTTPStatusCodes.sessionExpired) {
-                      sessionExpired(context, state.value.message);
-                    } else {
-                      showCustomDialog(context,
-                          dialogType: DialogType.failed,
-                          subTitle: state.value.message);
-                    }
-                    // messagesBloc.add(SmsListEvent());
-                    // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-                    context
-                        .read<MessageDBBloc>()
-                        .add(SyncMessageDetailsWithServer(smsLogs: sms!));
+            body: BlocConsumer<MessageDBBloc, MessageDBState>(
+              // bloc: markSpamSmsBloc,
+              listener: (context, state) {
+                if (state is MarkedSpamMessage) {
+                  if (state.value.statusCode == 200) {
+                    showCustomDialog(context,
+                        dialogType: DialogType.success,
+                        subTitle: state.value.message);
+                  } else if (state.value.statusCode ==
+                      HTTPStatusCodes.sessionExpired) {
+                    sessionExpired(context, state.value.message);
+                  } else {
+                    showCustomDialog(context,
+                        dialogType: DialogType.failed,
+                        subTitle: state.value.message);
                   }
-                  if (state is RemoveSmsSpamState) {
-                    if (state.value.statusCode == 200) {
-                      showCustomDialog(context,
-                          dialogType: DialogType.success,
-                          subTitle: state.value.message);
-                    } else if (state.value.statusCode ==
-                        HTTPStatusCodes.sessionExpired) {
-                      sessionExpired(context, state.value.message);
-                    } else {
-                      showCustomDialog(context,
-                          dialogType: DialogType.failed,
-                          subTitle: state.value.message);
-                    }
-                    // messagesBloc.add(SmsListEvent());
-                    // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
-                    context
-                        .read<MessageDBBloc>()
-                        .add(SyncMessageDetailsWithServer(smsLogs: sms!));
+                  // messagesBloc.add(SmsListEvent());
+                  // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+                  context
+                      .read<MessageDBBloc>()
+                      .add(SyncMessageDetailsWithServer(smsLogs: sms!));
+                }
+                if (state is UnMarkedSpamMessage) {
+                  if (state.value.statusCode == 200) {
+                    showCustomDialog(context,
+                        dialogType: DialogType.success,
+                        subTitle: state.value.message);
+                  } else if (state.value.statusCode ==
+                      HTTPStatusCodes.sessionExpired) {
+                    sessionExpired(context, state.value.message);
+                  } else {
+                    showCustomDialog(context,
+                        dialogType: DialogType.failed,
+                        subTitle: state.value.message);
                   }
-                },
-                builder: (context, state) {
-                  return ModalProgressHUD(
-                    progressIndicator: Loader(),
-                    inAsyncCall: state is ApiLoadingState,
-                    child: Column(
-                      children: [
-                        messagesListView(),
-                        if (!(sms?.address?.isNumber ?? true) ||
-                            (sms?.name?.isEmpty ?? true) ||
-                            sms?.isMarkSpam == 1)
-                          bottomView(),
-                      ],
-                    ),
-                  );
-                }));
+                  // messagesBloc.add(SmsListEvent());
+                  // context.read<MessageDBBloc>().add(SyncMessagesWithServer());
+                  context
+                      .read<MessageDBBloc>()
+                      .add(SyncMessageDetailsWithServer(smsLogs: sms!));
+                }
+              },
+              builder: (context, state) {
+                return ModalProgressHUD(
+                  progressIndicator: Loader(),
+                  inAsyncCall: state is MessageDBLoading,
+                  child: Column(
+                    children: [
+                      messagesListView(),
+                      if (!(sms?.address?.isNumber ?? true) ||
+                          (sms?.name?.isEmpty ?? true) ||
+                          sms?.isMarkSpam == 1)
+                        bottomView(),
+                    ],
+                  ),
+                );
+              },
+            ));
       }),
     );
   }

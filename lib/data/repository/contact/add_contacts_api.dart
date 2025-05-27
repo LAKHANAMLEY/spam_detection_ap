@@ -13,11 +13,11 @@ Future<AddContactResponse> addContact({
     Uri.parse(ApiUrlConstants.addContact),
     headers: await ApiUrlConstants.headers(),
     body: {
-      'name': contact.name,
-      'email': contact.email,
-      'number_type': contact.numberType,
-      'country_code': contact.countryCode,
-      'phone': contact.mobileNo,
+      'name': contact.name ?? "",
+      'email': contact.email ?? "",
+      'number_type': contact.numberType ?? "",
+      'country_code': contact.countryCode ?? "",
+      'phone': contact.mobileNo ?? "",
     },
   );
   if (response.statusCode == 200) {

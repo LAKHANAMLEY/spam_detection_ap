@@ -1,4 +1,3 @@
-import 'package:spam_delection_app/data/repository/contact/contacts_controller.dart';
 import 'package:spam_delection_app/lib.dart';
 
 class ApiBloc extends Bloc<ApiEvent, ApiState> {
@@ -546,18 +545,18 @@ class ApiBloc extends Bloc<ApiEvent, ApiState> {
         category: event.category,
       ).then((value) => emit(MarkSpamSmsState(value)));
     }
-    if (event is RemoveSpamSmsEvent) {
-      emit(ApiLoadingState());
-      await removeSpamSms(address: event.address).then((value) {
-        emit(RemoveSmsSpamState(value));
-      });
-    }
-    if (event is SmsSpamListEvent) {
-      emit(ApiLoadingState());
-      await smsSpamList().then((value) {
-        emit(SmsSpamListState(value));
-      });
-    }
+    // if (event is RemoveSpamSmsEvent) {
+    //   emit(ApiLoadingState());
+    //   await removeSpamSms(address: event.address).then((value) {
+    //     emit(RemoveSmsSpamState(value));
+    //   });
+    // }
+    // if (event is SmsSpamListEvent) {
+    //   emit(ApiLoadingState());
+    //   await smsSpamList().then((value) {
+    //     emit(SmsSpamListState(value));
+    //   });
+    // }
     if (event is DeleteConversationEvent) {
       emit(ApiLoadingState());
       await deleteConversation(address: event.smsLog.address ?? "")

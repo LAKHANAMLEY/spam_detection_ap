@@ -5,8 +5,8 @@ class ApiUrlConstants {
         "X-API-KEY": ApiKeyConstants.apiKey,
         "Authorization": await SharedPref.getToken()
       };
-  // static String baseUrl = 'https://portal.broadlinkprotect.com/api/v1';
-  static String baseUrl = 'https://admin-spam-detection.impetrosys.com/api/v1';
+  static String baseUrl = 'https://portal.broadlinkprotect.com/api/v1';
+  // static String baseUrl = 'https://admin-spam-detection.impetrosys.com/api/v1';
 
   static String loginWithEmailPassword =
       '$baseUrl/auth/login-with-email?lang=${AppConstants.selectedLanguage}';

@@ -71,6 +71,8 @@ dependencies:
       path: workmanager
       ref: main
 
+  path: any
+  # another_telephony: ^0.4.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

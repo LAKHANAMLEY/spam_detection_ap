@@ -46,6 +46,7 @@ class _PlanDetailState extends State<PlanDetail> {
                   },
                 );
                 arg.planListBloc?.add(GetPlanListEvent());
+                userBloc.add(GetUserProfileEvent());
               } else if (code == HTTPStatusCodes.sessionExpired) {
                 sessionExpired(context, msg);
               } else {
@@ -73,6 +74,7 @@ class _PlanDetailState extends State<PlanDetail> {
                   },
                 );
                 arg.planListBloc?.add(GetPlanListEvent());
+                userBloc.add(GetUserProfileEvent());
               } else if (code == HTTPStatusCodes.sessionExpired) {
                 sessionExpired(context, msg);
               } else {

@@ -30,26 +30,59 @@ class MainActivity : FlutterFragmentActivity() {
         super.configureFlutterEngine(flutterEngine)
 
         // SMS Default App Setting
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
-            flutterResult = result
-            if (call.method == "setDefaultSms") {
-                try {
-                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                        val roleManager: RoleManager = getSystemService(RoleManager::class.java)
+        // MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
+        //     flutterResult = result
+        //     if (call.method == "setDefaultSms") {
+        //         try {
+        //             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+        //                 val roleManager: RoleManager = getSystemService(RoleManager::class.java)
+        //                 val intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_SMS)
+        //                 startActivityForResult(intent, 12)
+        //             } else {
+        //                 val intent = Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT)
+        //                 intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, "com.broadlink.protect")
+        //                 startActivity(intent)
+        //             }
+        //         } catch (ex: Exception) {
+        //             result.error("UNAVAILABLE", "Setting default sms.", null)
+        //         }
+        //     } else {
+        //         result.notImplemented()
+        //     }
+        // }
+
+        // SMS Default App Setting
+MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
+    flutterResult = result
+
+    if (call.method == "setDefaultSms") {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) { // Q is Android 10
+                val roleManager = getSystemService(RoleManager::class.java)
+                if (roleManager.isRoleAvailable(RoleManager.ROLE_SMS)) {
+                    if (!roleManager.isRoleHeld(RoleManager.ROLE_SMS)) {
                         val intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_SMS)
                         startActivityForResult(intent, 12)
                     } else {
-                        val intent = Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT)
-                        intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, "com.broadlink.protect")
-                        startActivity(intent)
+                        // Already default, respond to Flutter
+                        result.success(true)
                     }
-                } catch (ex: Exception) {
-                    result.error("UNAVAILABLE", "Setting default sms.", null)
+                } else {
+                    result.error("UNAVAILABLE", "ROLE_SMS not available", null)
                 }
             } else {
-                result.notImplemented()
+                val intent = Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT)
+                intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, "com.broadlink.protect")
+                startActivity(intent)
             }
+        } catch (ex: Exception) {
+            result.error("UNAVAILABLE", "Failed to set default SMS: ${ex.message}", null)
         }
+    } else {
+        result.notImplemented()
+    }
+}
+
 
         // Calling App Logic (End Call, Add Call, Mute, Unmute)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CALL_CHANNEL).setMethodCallHandler { call, result ->

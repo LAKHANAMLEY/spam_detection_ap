@@ -151,7 +151,9 @@ class _MessagesScreenState extends State<MessagesScreen> {
                       child: Text(appLocalization(context).sync)),
                   PopupMenuItem(
                       value: 'delete',
-                      child: Text(appLocalization(context).delete)),
+                      child: Text(
+                        appLocalization(context).delete,
+                      )),
                   PopupMenuItem(
                     value: 'blockList',
                     child: Text(appLocalization(context).myBlockList,

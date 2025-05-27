@@ -35,10 +35,21 @@ class _ChangePasswordState extends State<ChangePassword> {
                 listener: (context, state) {
                   if (state is ChangePasswordState) {
                     if (state.value.statusCode == 200) {
-                      Navigator.pushNamed(context, AppRoutes.profile);
+                      showCustomDialog(
+                        context,
+                        dialogType: DialogType.success,
+                        subTitle: state.value.message.toString(),
+                        onOkPressed: () {
+                          Navigator.popUntil(
+                              context,
+                              (route) =>
+                                  route.settings.name ==
+                                  AppRoutes.bottomNavigation);
+                        },
+                      );
                     } else {
                       showCustomDialog(context,
-                          dialogType: DialogType.success,
+                          dialogType: DialogType.failed,
                           subTitle: state.value.message.toString());
                     }
                   }
@@ -153,7 +164,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                                         if (p0?.isEmpty ?? true) {
                                           return appLocalization(context)
                                               .pleaseNewPass;
-                                        } else if (p0 !=
+                                        } else if (p0 ==
                                             currentPasswordController.text) {
                                           return "New password should not be same from previous one";
                                         }

@@ -612,7 +612,7 @@ class SmsDeleteConversationEvent extends ApiEvent {
   List<Object?> get props => [address];
 }
 
-class SmsSpamListEvent extends ApiEvent {}
+// class SmsSpamListEvent extends ApiEvent {}
 
 class MarkSpamSmsEvent extends ApiEvent {
   final String address;
@@ -631,18 +631,18 @@ class MarkSpamSmsEvent extends ApiEvent {
   List<Object?> get props => [address, comment, numberType, category];
 }
 
-class RemoveSpamSmsEvent extends ApiEvent {
-  final String address;
+// class RemoveSpamSmsEvent extends ApiEvent {
+//   final String address;
 
-  RemoveSpamSmsEvent({
-    required this.address,
-  });
+//   RemoveSpamSmsEvent({
+//     required this.address,
+//   });
 
-  @override
-  List<Object?> get props => [
-        address,
-      ];
-}
+//   @override
+//   List<Object?> get props => [
+//         address,
+//       ];
+// }
 
 //class SmsSpamEvent extends ApiEvent {}
 

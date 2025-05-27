@@ -608,7 +608,7 @@ class _UnMarkSmsViewState extends State<UnMarkSmsView> {
   SmsDetail? sms;
 
   String? numberType;
-  bool _isRememberMeChecked = false;
+  bool _isRememberMeChecked = true;
 
   var commentController = TextEditingController();
   var selectedTabBloc = SelectionBloc(SelectStringState("business"));
@@ -799,9 +799,14 @@ class _UnMarkSmsViewState extends State<UnMarkSmsView> {
                 20.height(),
                 GestureDetector(
                   onTap: () {
-                    markSpamSmsBloc
-                        .add(RemoveSpamSmsEvent(address: sms?.address ?? ""));
+                    // if (_isRememberMeChecked) {
+                    context
+                        .read<MessageDBBloc>()
+                        .add(RemoveSpamDBSmsEvent(address: sms?.address ?? ""));
                     Navigator.pop(context);
+                    // } else {
+                    //   showToast("Please check the checkbox");
+                    // }
                   },
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.07,
@@ -818,9 +823,9 @@ class _UnMarkSmsViewState extends State<UnMarkSmsView> {
                         ),
                       ],
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        'Not Spam',
+                        appLocalization(context).notSpam,
                         style: TextStyle(
                           color: AppColor.whiteColor,
                           fontWeight: FontWeight.w500,

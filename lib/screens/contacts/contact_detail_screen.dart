@@ -525,7 +525,6 @@
 
 import 'package:direct_call_plus/direct_call_plus.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/screens/contacts/comment_listitem.dart';
 
 class ContactDetail extends StatelessWidget {
   final ContactData? contact;

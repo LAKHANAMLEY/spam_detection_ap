@@ -3,7 +3,6 @@
 //     final callLogsListResponse = callLogsListResponseFromJson(jsonString);
 
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/utils/call_type_helper/call_type_helpers.dart';
 
 CallLogsListResponse callLogsListResponseFromJson(String str) =>
     CallLogsListResponse.fromJson(json.decode(str));
@@ -134,7 +133,7 @@ class CallLogData {
         isManually: isManually ?? this.isManually,
         contactData: contactData ?? this.contactData,
         synced: synced ?? this.synced,
-        isMarkSpamByMe: isMarkedSpamByMe ?? this.isMarkSpamByMe,
+        isMarkSpamByMe: isMarkedSpamByMe ?? isMarkSpamByMe,
       );
 
   factory CallLogData.fromJson(Map<String, dynamic> json) => CallLogData(

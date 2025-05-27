@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:spam_delection_app/data/models/common/response.dart';
 import 'package:spam_delection_app/data/models/sms/sms_list_model.dart';
+import 'package:spam_delection_app/data/models/sms/sms_spam_list_model.dart';
 
 // Models (Assuming these are in separate files or defined above)
 // ... (SmsLog and SmsDetail classes remain the same)
@@ -14,7 +16,7 @@ abstract class MessageDBState extends Equatable {
   const MessageDBState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class MessageDBInitial extends MessageDBState {}
@@ -79,4 +81,29 @@ class MessageDBDeletedById extends MessageDBState {
   const MessageDBDeletedById({required this.smsLog});
   @override
   List<Object> get props => [smsLog];
+}
+
+class MarkedSpamMessage extends MessageDBState {
+  final Response value;
+
+  const MarkedSpamMessage(this.value);
+  @override
+  List<Object> get props => [value];
+}
+
+class UnMarkedSpamMessage extends MessageDBState {
+  final Response value;
+
+  const UnMarkedSpamMessage(this.value);
+  @override
+  List<Object> get props => [value];
+}
+
+class SmsSpamListState extends MessageDBState {
+  final SmsSpamListResponse value;
+
+  const SmsSpamListState(this.value);
+
+  @override
+  List<Object?> get props => [value];
 }

@@ -356,12 +356,14 @@ class _BlockSmsViewState extends State<BlockSmsView> {
                               );
                               return;
                             }
-                            markSpamSmsBloc.add(MarkSpamSmsEvent(
-                              address: sms?.address ?? "",
-                              comment: commentController.text,
-                              numberType: numberType ?? "",
-                              category: selectedCategory?.cateId ?? "",
-                            ));
+                            context
+                                .read<MessageDBBloc>()
+                                .add(MarkSpamDBSmsEvent(
+                                  address: sms?.address ?? "",
+                                  comment: commentController.text,
+                                  numberType: numberType ?? "",
+                                  category: selectedCategory?.cateId ?? "",
+                                ));
                             Navigator.pop(context);
                             // Navigator.pushNamed(
                             //     context, AppRoutes.bottomNavigation);

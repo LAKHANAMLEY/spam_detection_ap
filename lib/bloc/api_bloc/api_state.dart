@@ -607,14 +607,14 @@ class SmsDeleteConversationState extends ApiState {
   List<Object?> get props => [value];
 }
 
-class SmsSpamListState extends ApiState {
-  final SmsSpamListResponse value;
+// class SmsSpamListState extends ApiState {
+//   final SmsSpamListResponse value;
 
-  SmsSpamListState(this.value);
+//   SmsSpamListState(this.value);
 
-  @override
-  List<Object?> get props => [value];
-}
+//   @override
+//   List<Object?> get props => [value];
+// }
 
 class MarkSpamSmsState extends ApiState {
   final Response value;
@@ -625,14 +625,14 @@ class MarkSpamSmsState extends ApiState {
   List<Object?> get props => [value];
 }
 
-class RemoveSmsSpamState extends ApiState {
-  final Response value;
+// class RemoveSmsSpamState extends ApiState {
+//   final Response value;
 
-  RemoveSmsSpamState(this.value);
+//   RemoveSmsSpamState(this.value);
 
-  @override
-  List<Object?> get props => [value];
-}
+//   @override
+//   List<Object?> get props => [value];
+// }
 
 class SmsSpamState extends ApiState {
   final SmsListResponse value;

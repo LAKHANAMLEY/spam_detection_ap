@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerHelper {
-  static final ImagePicker _picker = ImagePicker();
-
   static Future<XFile?> _pickImage(ImageSource source) async {
     try {
+      final ImagePicker _picker = ImagePicker();
       final XFile? pickedFile = await _picker.pickImage(source: source);
       if (pickedFile != null) {
         debugPrint("Image picked from $source: ${pickedFile.path}");
