@@ -13,11 +13,13 @@ class SplashState extends State<Splash> {
   void initState() {
     super.initState();
     context.read<PermissionBloc>().add(RequestMultiplePermissionsEvent([
-          Permission.phone,
           Permission.contacts,
-          Permission.sms,
           Permission.notification,
-          Permission.systemAlertWindow,
+          if (Platform.isAndroid) ...[
+            Permission.phone,
+            Permission.sms,
+            Permission.systemAlertWindow,
+          ],
         ]));
     getAndSetDefaultCountry();
     SharedPref.getIsLogin().then((isLogin) {

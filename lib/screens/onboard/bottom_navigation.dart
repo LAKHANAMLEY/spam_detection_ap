@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phone_state/phone_state.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/utils/call_kit_helper/call_kit_helper.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key});
@@ -114,6 +115,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   }
 
   void _phoneStateListener() {
+    CallKitHelper.listenCallEvent();
     _phoneStateStreamSubs = PhoneState.stream.listen((state) async {
       log("${state.number} ${state.status.name} ${state.duration}");
 

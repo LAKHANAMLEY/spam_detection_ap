@@ -1,5 +1,6 @@
 import 'package:direct_call_plus/direct_call_plus.dart';
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/utils/call_kit_helper/call_kit_helper.dart';
 
 class DialPad extends StatefulWidget {
   const DialPad({super.key});
@@ -39,20 +40,20 @@ class _DialPadState extends State<DialPad> {
     }
   }
 
-  void onCallPressed() async {
-    if (enteredNumber.isEmpty) {
-      print("Error: No number entered.");
-      return;
-    }
+  // void onCallPressed() async {
+  //   if (enteredNumber.isEmpty) {
+  //     print("Error: No number entered.");
+  //     return;
+  //   }
 
-    String phoneNumber = enteredNumber;
-    try {
-      await DirectCallPlus.makeCall(phoneNumber);
-      print("Calling $phoneNumber");
-    } catch (e) {
-      print("Failed to make the call: $e");
-    }
-  }
+  //   String phoneNumber = enteredNumber;
+  //   try {
+  //     await DirectCallPlus.makeCall(phoneNumber);
+  //     print("Calling $phoneNumber");
+  //   } catch (e) {
+  //     print("Failed to make the call: $e");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +129,14 @@ class _DialPadState extends State<DialPad> {
               FloatingActionButton.extended(
                 backgroundColor: AppColor.greenColor,
                 onPressed: () async {
-                  await DirectCallPlus.makeCall(enteredNumber);
+                  if (Platform.isIOS) {
+                    CallKitHelper.showCallerID(
+                      enteredNumber,
+                      enteredNumber,
+                    );
+                  } else {
+                    await DirectCallPlus.makeCall(enteredNumber);
+                  }
                 },
                 icon: const Icon(Icons.call, size: 32, color: Colors.white),
                 label: Text(

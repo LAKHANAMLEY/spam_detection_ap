@@ -483,7 +483,7 @@ class MessageDBBloc extends Bloc<MessageDBEvent, MessageDBState> {
   Future<void> _handleDbWrite(
       Future<void> Function() action, Emitter<MessageDBState> emit,
       {MessageDBState Function()? onSuccess}) async {
-    emit(MessageDBLoading());
+    // emit(MessageDBLoading());
     try {
       await action();
       emit(onSuccess?.call() ?? MessageDBSynced(await _db.getAllSmsLogs()));
