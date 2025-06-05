@@ -33,9 +33,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
     _phoneStateListener();
     sharedPrefBloc.add(GetUserDataFromLocalEvent());
     handleAppLifeCycle();
-    SMSController.setDefaultSMSApp().whenComplete(() {
-      CallController.setDefaultCallingApp();
-    });
+    if (Platform.isAndroid) {
+      SMSController.setDefaultSMSApp().whenComplete(() {
+        CallController.setDefaultCallingApp();
+      });
+    }
   }
 
   late final AppLifecycleListener _appLifecycleListener;
@@ -115,7 +117,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   }
 
   void _phoneStateListener() {
-    CallKitHelper.listenCallEvent();
+    CallKitHelper.listenCallEvent(context);
     _phoneStateStreamSubs = PhoneState.stream.listen((state) async {
       log("${state.number} ${state.status.name} ${state.duration}");
 
@@ -146,6 +148,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
               number: state.number?.separatePhoneAndPhoneCode().phone ?? "",
               duration: state.duration?.inSeconds ?? 0,
             );
+            CallKitHelper.showCallerID(
+              state.number ?? "",
+              state.number ?? "",
+              state.duration?.inSeconds ?? 0,
+            );
           }
           if (state.status == PhoneStateStatus.CALL_STARTED) {
             if (!_isProcessingCall) {
@@ -159,19 +166,36 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 number: state.number?.separatePhoneAndPhoneCode().phone ?? "",
                 duration: state.duration?.inSeconds ?? 0,
               );
+              CallKitHelper.showCallerID(
+                state.number ?? "",
+                state.number ?? "",
+                state.duration?.inSeconds ?? 0,
+              );
             }
             _isProcessingCall = true;
           }
           if (state.status == PhoneStateStatus.CALL_ENDED) {
             _isProcessingCall = false;
             context.read<CallLogDBBloc>().add(SyncDBCallLogHistory(
-                mobileNo:
-                    state.number?.separatePhoneAndPhoneCode().phone ?? ""));
+                  mobileNo:
+                      state.number?.separatePhoneAndPhoneCode().phone ?? "",
+                  callLog: CallLogEntry(
+                    number: state.number,
+                    callType: CallTypeHelper.getCallLogType(state.status.name),
+                    timestamp: DateTime.now().millisecondsSinceEpoch,
+                    duration: state.duration?.inSeconds,
+                  ),
+                ));
             showOverlay(
               callType:
                   CallTypeHelper.getCallLogType(state.status.name)?.name ?? "",
               number: state.number?.separatePhoneAndPhoneCode().phone ?? "",
               duration: state.duration?.inSeconds ?? 0,
+            );
+            CallKitHelper.showCallerID(
+              state.number ?? "",
+              state.number ?? "",
+              state.duration?.inSeconds ?? 0,
             );
           }
 

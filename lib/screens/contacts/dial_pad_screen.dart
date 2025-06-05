@@ -133,6 +133,7 @@ class _DialPadState extends State<DialPad> {
                     CallKitHelper.showCallerID(
                       enteredNumber,
                       enteredNumber,
+                      30000, // Duration in milliseconds
                     );
                   } else {
                     await DirectCallPlus.makeCall(enteredNumber);

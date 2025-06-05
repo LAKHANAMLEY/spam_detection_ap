@@ -2179,6 +2179,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get viewAccount => 'Voir le compte';
 
   @override
+  String get viewAll => 'Ver todo';
+
+  @override
   String get viewPlan => 'Voir le plan';
 
   @override

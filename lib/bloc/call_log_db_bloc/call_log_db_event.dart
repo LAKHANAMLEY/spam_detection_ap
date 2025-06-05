@@ -2,9 +2,8 @@ import 'package:spam_delection_app/lib.dart';
 
 abstract class CallLogDBEvent extends Equatable {
   const CallLogDBEvent();
-
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class AddDBCallLog extends CallLogDBEvent {
@@ -63,11 +62,15 @@ class SyncDBCallLogs extends CallLogDBEvent {}
 
 class SyncDBCallLogHistory extends CallLogDBEvent {
   final String mobileNo;
+  final CallLogEntry callLog;
 
-  const SyncDBCallLogHistory({required this.mobileNo});
+  const SyncDBCallLogHistory({
+    required this.mobileNo,
+    required this.callLog,
+  });
 
   @override
-  List<Object> get props => [mobileNo];
+  List<Object> get props => [mobileNo, callLog];
 }
 
 class SyncManuallyDBCallLog extends CallLogDBEvent {

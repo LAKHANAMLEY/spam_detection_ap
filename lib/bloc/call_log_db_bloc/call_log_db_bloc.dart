@@ -283,69 +283,77 @@ class CallLogDBBloc extends Bloc<CallLogDBEvent, CallLogDBState> {
   FutureOr<void> _onSyncDBCallLogHistory(
       SyncDBCallLogHistory event, Emitter<CallLogDBState> emit) async {
     emit(CallLogDBLoading());
+    List<CallLogEntry> callLogs = [];
     try {
-      var callLogs =
-          await CallController.getDeviceCallLogs(number: event.mobileNo);
-      if (callLogs.isNotEmpty) {
-        var resp = await checkSpam(callLogs: callLogs);
-        emit(SyncDBCallLogHistoryState(resp));
-
-        var serverContactData = resp.phonespamdetails;
-
-        //TODO: Add in call log db not in contact db
-
-        // update The Contact DB With Latest Details
-        // var exist =
-        //     await _contactDBHelper.getContact(serverContactData?.mobileNo ?? "");
-        // if (exist == null) {
-        //   await _contactDBHelper.insert(serverContactData!);
-        // } else {
-        //   await _contactDBHelper.update(serverContactData!);
-        // }
-
-        ///Insert in contact db and call log db also after mounding
-        ///
-        var groupedLocalCallLogs = getGroupedLocalCallLogs(callLogs);
-        var mouldedLogs = mouldCallLogEntryAsCallLogData(
-            groupedLocalCallLogs,
-            serverContactData?.callHistory
-                    ?.map((e) => e.copyWith(
-                        isSpam: serverContactData.isSpam,
-                        isBlocked: serverContactData.isBlocked,
-                        markspambyuser: serverContactData.markspambyuser,
-                        isMarkedSpamByMe: serverContactData.isMarkedSpamByMe,
-                        contactData: serverContactData
-                        //Copy with is due to not getting these params in call history
-                        ))
-                    .toList() ??
-                [],
-            emit);
-
-        // log("Moulded call logs : ${mouldedLogs.map((e) => e.toJson()).toList()}");
-
-        for (final callLog in mouldedLogs) {
-          final existingCallLog = await _databaseHelper.getCallLog(callLog.id!);
-          if (existingCallLog == null) {
-            await _databaseHelper.insertCallLog(callLog);
-          } else {
-            // log("Call log detail synced ${callLog.toJson()}");
-            await _databaseHelper.updateCallLog(callLog.copyWith(
-              // isSpam: existingCallLog.isSpam,
-              // isBlocked: existingCallLog.isBlocked,
-              // contactListId: existingCallLog.contactListId,
-              // markspambyuser: existingCallLog.markSpamByUser,
-              // isMarkedSpamByMe: existingCallLog.isMarkSpamByMe,
-              // synced: existingCallLog.synced,
-              name: (existingCallLog.name?.isEmpty ?? false)
-                  ? callLog.name
-                  : existingCallLog.name,
-              contactData: callLog.contactData,
-            ));
-          }
-        }
+      if (Platform.isAndroid) {
+        callLogs =
+            await CallController.getDeviceCallLogs(number: event.mobileNo);
       } else {
-        log("No call logs history $callLogs");
+        callLogs = [event.callLog];
       }
+      // if (callLogs.isNotEmpty) {
+      var resp = await checkSpam(callLogs: callLogs);
+      emit(SyncDBCallLogHistoryState(resp));
+
+      var serverContactData = resp.phonespamdetails;
+
+      //TODO: Add in call log db not in contact db
+
+      // update The Contact DB With Latest Details
+      // var exist =
+      //     await _contactDBHelper.getContact(serverContactData?.mobileNo ?? "");
+      // if (exist == null) {
+      //   await _contactDBHelper.insert(serverContactData!);
+      // } else {
+      //   await _contactDBHelper.update(serverContactData!);
+      // }
+
+      ///Insert in contact db and call log db also after mounding
+      ///
+      var groupedLocalCallLogs = getGroupedLocalCallLogs(callLogs);
+      var mouldedLogs = mouldCallLogEntryAsCallLogData(
+          groupedLocalCallLogs,
+          serverContactData?.callHistory
+                  ?.map((e) => e.copyWith(
+                      name: e.name?.isNotEmpty ?? false
+                          ? e.name
+                          : serverContactData.name,
+                      isSpam: serverContactData.isSpam,
+                      isBlocked: serverContactData.isBlocked,
+                      markspambyuser: serverContactData.markspambyuser,
+                      isMarkedSpamByMe: serverContactData.isMarkedSpamByMe,
+                      contactData: serverContactData
+                      //Copy with is due to not getting these params in call history
+                      ))
+                  .toList() ??
+              [],
+          emit);
+
+      // log("Moulded call logs : ${mouldedLogs.map((e) => e.toJson()).toList()}");
+
+      for (final callLog in mouldedLogs) {
+        final existingCallLog = await _databaseHelper.getCallLog(callLog.id!);
+        if (existingCallLog == null) {
+          await _databaseHelper.insertCallLog(callLog);
+        } else {
+          // log("Call log detail synced ${callLog.toJson()}");
+          await _databaseHelper.updateCallLog(callLog.copyWith(
+            // isSpam: existingCallLog.isSpam,
+            // isBlocked: existingCallLog.isBlocked,
+            // contactListId: existingCallLog.contactListId,
+            // markspambyuser: existingCallLog.markSpamByUser,
+            // isMarkedSpamByMe: existingCallLog.isMarkSpamByMe,
+            // synced: existingCallLog.synced,
+            name: (existingCallLog.name?.isEmpty ?? false)
+                ? callLog.name
+                : existingCallLog.name,
+            contactData: callLog.contactData,
+          ));
+        }
+      }
+      // } else {
+      //   log("No call logs history $callLogs");
+      // }
 
       final storedCallLogs = await _databaseHelper.getAllCallLogs();
 

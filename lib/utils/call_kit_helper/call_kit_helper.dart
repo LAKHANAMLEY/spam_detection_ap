@@ -5,9 +5,13 @@ import 'package:flutter_callkit_incoming/entities/call_event.dart';
 import 'package:flutter_callkit_incoming/entities/call_kit_params.dart';
 import 'package:flutter_callkit_incoming/entities/ios_params.dart';
 import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
+import 'package:spam_delection_app/data/models/call_logs/ios_call_data.dart';
+import 'package:spam_delection_app/lib.dart';
+import 'package:uuid/uuid.dart';
 
 class CallKitHelper {
   showCallKitIncoming() async {
+    FlutterCallkitIncoming.getDevicePushTokenVoIP();
     await FlutterCallkitIncoming.showCallkitIncoming(CallKitParams(
       id: 'unique-call-id',
       nameCaller: 'John Doe',
@@ -18,18 +22,21 @@ class CallKitHelper {
     ));
   }
 
-  static Future<void> showCallerID(String phoneNumber, String callerName,
+  static Future<void> showCallerID(
+      String phoneNumber, String callerName, int duration,
       {bool isSpam = false}) async {
     try {
+      FlutterCallkitIncoming.getDevicePushTokenVoIP();
       var params = CallKitParams(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
+        // id: DateTime.now().millisecondsSinceEpoch.toString(),
+        id: const Uuid().v4(), // Generates a valid UUID
         // id: uuid.v4(), // <-- this generates a valid UUID
         nameCaller: isSpam ? '⚠️ SPAM: $callerName' : callerName,
         handle: phoneNumber,
         type: 0, // 0 = audio call
         textAccept: 'Accept',
         textDecline: 'Decline',
-        duration: 30000,
+        duration: duration,
         android: AndroidParams(
           isCustomNotification: true,
           isShowLogo: true,
@@ -42,18 +49,34 @@ class CallKitHelper {
         ),
       );
 
-      // await FlutterCallkitIncoming.showCallkitIncoming(params);
-      await FlutterCallkitIncoming.startCall(params);
+      await FlutterCallkitIncoming.showCallkitIncoming(params);
+      // await FlutterCallkitIncoming.startCall(params);
     } catch (e) {
       print("Error showing caller ID: $e");
     }
   }
 
-  static listenCallEvent() {
+  static listenCallEvent(BuildContext context) {
+    FlutterCallkitIncoming.getDevicePushTokenVoIP();
     FlutterCallkitIncoming.onEvent.listen((event) {
       log(event?.event.name ?? "");
-      log(event?.body ?? "");
-      showCallerID(event?.body.toString() ?? "", "John doe");
+      log(jsonEncode(event?.body ?? ""));
+      final CallData callData = CallData.fromJson(event?.body);
+      context.read<CallLogDBBloc>().add(SyncDBCallLogHistory(
+            mobileNo:
+                callData.nameCaller.separatePhoneAndPhoneCode().phone ?? "",
+            callLog: CallLogEntry(
+              number:
+                  callData.nameCaller.separatePhoneAndPhoneCode().phone ?? "",
+              callType: CallTypeHelper.getCallLogType(
+                  callData?.type == 0 ? "incoming" : "outgoing"),
+              timestamp: DateTime.now().millisecondsSinceEpoch,
+              duration: callData.duration,
+            ),
+          ));
+      showCallerID(callData.nameCaller, callData.nameCaller,
+          callData.ios.audioSessionPreferredIOBufferDuration.toInt(),
+          isSpam: true); // Example usage, replace with actual data
       switch (event?.event) {
         case Event.actionCallAccept:
           break;

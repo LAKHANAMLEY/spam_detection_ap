@@ -1,4 +1,5 @@
 import 'package:spam_delection_app/lib.dart';
+import 'package:spam_delection_app/screens/contacts/comments_list.dart';
 
 class AppRoutes {
   static const splash = "/splash";
@@ -54,6 +55,7 @@ class AppRoutes {
   static const defaultCall = "/defaultCall";
   static const setting = "/setting";
   static const notificationSetting = "/notificationSetting";
+  static const comments = "/comments";
 }
 
 final Map<String, WidgetBuilder> routes = {
@@ -109,5 +111,6 @@ final Map<String, WidgetBuilder> routes = {
   AppRoutes.transactionList: (context) => const TransactionList(),
   AppRoutes.defaultCall: (context) => const DefaultCall(),
   AppRoutes.setting: (context) => const Setting(),
-  AppRoutes.notificationSetting: (context) => const NotificationSetting()
+  AppRoutes.notificationSetting: (context) => const NotificationSetting(),
+  AppRoutes.comments: (context) => const CommentsList()
 };

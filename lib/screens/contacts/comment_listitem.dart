@@ -7,6 +7,9 @@ class CommentListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
+      leading: CircleAvatar(
+        child: Text(comment?.reportByUsername?.substring(0, 1) ?? "U"),
+      ),
       title: Row(
         children: [
           Text(

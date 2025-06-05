@@ -2179,6 +2179,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get viewAccount => 'View account';
 
   @override
+  String get viewAll => 'View all';
+
+  @override
   String get viewPlan => 'View plan';
 
   @override

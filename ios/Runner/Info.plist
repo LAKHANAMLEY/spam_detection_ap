@@ -31,6 +31,12 @@
 			<dict>
 				<key>CFBundleTypeRole</key>
 				<string>Editor</string>
+				<key>CFBundleURLName</key>
+				<string>app-1-1036303425157-ios-2eefef07a598c87a8713ec</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>app-1-1036303425157-ios-2eefef07a598c87a8713ec</string>
+				</array>
 			</dict>
 		</array>
 		<key>CFBundleVersion</key>

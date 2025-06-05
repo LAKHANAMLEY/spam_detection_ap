@@ -20,7 +20,7 @@ class PermissionWidget extends StatelessWidget {
         if (state.statuses.containsKey(permission)) {
           final isAllowed =
               state.statuses[permission] == PermissionStatus.granted;
-          if (isAllowed) {
+          if (isAllowed || Platform.isIOS) {
             return const SizedBox.shrink();
           }
           return Container(

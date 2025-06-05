@@ -4427,6 +4427,12 @@ abstract class AppLocalizations {
   /// **'View account'**
   String get viewAccount;
 
+  /// No description provided for @viewAll.
+  ///
+  /// In en, this message translates to:
+  /// **'View all'**
+  String get viewAll;
+
   /// No description provided for @viewPlan.
   ///
   /// In en, this message translates to:
