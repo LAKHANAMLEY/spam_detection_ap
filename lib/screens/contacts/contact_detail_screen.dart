@@ -217,7 +217,7 @@ class ContactDetail extends StatelessWidget {
         border: Border.all(color: AppColor.lightBrownColor),
       ),
       child: ListTile(
-        onTap: () => DirectCallPlus.makeCall(
+        onTap: () => CallController.makeCall(
             contact?.countryCode?.isNotEmpty ?? false
                 ? "+${contact?.countryCode ?? ""} ${contact?.mobileNo ?? ""}"
                 : contact?.mobileNo ?? ""),

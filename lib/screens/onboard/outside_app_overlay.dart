@@ -1,4 +1,3 @@
-import 'package:direct_call_plus/direct_call_plus.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:spam_delection_app/lib.dart';
 import 'package:system_alert_window/system_alert_window.dart';
@@ -244,7 +243,7 @@ class _OutSideAppOverlayState extends State<OutSideAppOverlay> {
                     icon: Icons.phone,
                     text: "CALL",
                     onTap: () async {
-                      await DirectCallPlus.makeCall(
+                      await CallController.makeCall(
                           contactData?.mobileNo ?? "");
                     },
                   ),

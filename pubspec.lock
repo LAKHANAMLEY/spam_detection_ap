@@ -217,6 +217,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
+  connectycube_flutter_call_kit:
+    dependency: "direct main"
+    description:
+      name: connectycube_flutter_call_kit
+      sha256: "77211ce996657b3369805340cdeeeff11a2eeb131fd1d7f09d633217d9919419"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.8.0"
   convert:
     dependency: transitive
     description:

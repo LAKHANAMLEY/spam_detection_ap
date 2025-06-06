@@ -9,6 +9,8 @@ PODS:
     - GoogleUtilities/Environment (~> 8.0)
     - GoogleUtilities/UserDefaults (~> 8.0)
     - PromisesObjC (~> 2.4)
+  - connectycube_flutter_call_kit (2.7.0):
+    - Flutter
   - CryptoSwift (1.8.4)
   - direct_call_plus (0.0.1):
     - Flutter
@@ -250,6 +252,7 @@ PODS:
   - ZIPFoundation (0.9.19)
 
 DEPENDENCIES:
+  - connectycube_flutter_call_kit (from `.symlinks/plugins/connectycube_flutter_call_kit/ios`)
   - direct_call_plus (from `.symlinks/plugins/direct_call_plus/ios`)
   - fast_contacts (from `.symlinks/plugins/fast_contacts/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
@@ -310,6 +313,8 @@ SPEC REPOS:
     - ZIPFoundation
 
 EXTERNAL SOURCES:
+  connectycube_flutter_call_kit:
+    :path: ".symlinks/plugins/connectycube_flutter_call_kit/ios"
   direct_call_plus:
     :path: ".symlinks/plugins/direct_call_plus/ios"
   fast_contacts:
@@ -368,6 +373,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
   AppCheckCore: cc8fd0a3a230ddd401f326489c99990b013f0c4f
+  connectycube_flutter_call_kit: 7dec0cade7f6c8bf4da40bae6bdc77a5ce766e5a
   CryptoSwift: e64e11850ede528a02a0f3e768cec8e9d92ecb90
   direct_call_plus: d5b8b2622b2d71d584ac5a2d43487cea72720d1a
   fast_contacts: dd81973c756255b622b9f272a8432ba230bcf13d

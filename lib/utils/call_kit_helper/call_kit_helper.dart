@@ -60,6 +60,7 @@ class CallKitHelper {
     FlutterCallkitIncoming.getDevicePushTokenVoIP();
     FlutterCallkitIncoming.onEvent.listen((event) {
       log(event?.event.name ?? "");
+      showToast(event?.body.toString());
       log(jsonEncode(event?.body ?? ""));
       final CallData callData = CallData.fromJson(event?.body);
       context.read<CallLogDBBloc>().add(SyncDBCallLogHistory(

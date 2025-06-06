@@ -3,7 +3,8 @@ import 'package:spam_delection_app/lib.dart';
 
 Future<Response> sendVoipPush(String mobileNumber) async {
   var body = {
-    "mode": "sandbox",
+    "mode": "sandbox", //live
+    "receiver_no": mobileNumber,
     "payload": {
       "aps": {
         "content-available": 1,
@@ -18,7 +19,7 @@ Future<Response> sendVoipPush(String mobileNumber) async {
   final response = await http.post(
     Uri.parse(ApiUrlConstants.sendVoipPush),
     headers: await ApiUrlConstants.headers(),
-    body: body,
+    body: jsonEncode(body),
   );
   // log(ApiUrlConstants.getCallLogs);
   // log(jsonEncode(await ApiUrlConstants.headers()));
