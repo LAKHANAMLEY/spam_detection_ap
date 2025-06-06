@@ -11,6 +11,7 @@ Future<SignUpResponse> signup(
     required countryCode}) async {
   String? deviceToken = await getDeviceToken();
   String deviceType = getDeviceType();
+  String? voipToken = await getVoipToken();
 
   var body = {
     'email': email,
@@ -21,6 +22,7 @@ Future<SignUpResponse> signup(
     'dob': dateOfBirth,
     'country_code': countryCode,
     'device_token': deviceToken ?? '',
+    'voip_token': voipToken ?? '',
     'device_type': deviceType,
     'user_role': "user"
   };

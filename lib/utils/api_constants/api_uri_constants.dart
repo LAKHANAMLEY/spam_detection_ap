@@ -152,4 +152,6 @@ class ApiUrlConstants {
   static String readNotification = '$baseUrl/notifications/seen-notification';
   static String clearAllNotification =
       '$baseUrl/notifications/clearallnotification';
+
+  static String sendVoipPush = "$baseUrl/voippush/send_ios_voip";
 }

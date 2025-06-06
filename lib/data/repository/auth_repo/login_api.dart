@@ -5,11 +5,13 @@ Future<LoginResponse> login(
     {required String email, required String password}) async {
   String? deviceToken = await getDeviceToken();
   String deviceType = getDeviceType();
+  String? voipToken = await getVoipToken();
 
   var body = {
     'email': email,
     'password': password,
     'device_token': deviceToken ?? '',
+    'voip_token': voipToken ?? '',
     'device_type': deviceType,
     'user_role': "user"
   };

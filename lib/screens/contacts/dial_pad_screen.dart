@@ -1,6 +1,4 @@
-import 'package:direct_call_plus/direct_call_plus.dart';
 import 'package:spam_delection_app/lib.dart';
-import 'package:spam_delection_app/utils/call_kit_helper/call_kit_helper.dart';
 
 class DialPad extends StatefulWidget {
   const DialPad({super.key});
@@ -129,15 +127,7 @@ class _DialPadState extends State<DialPad> {
               FloatingActionButton.extended(
                 backgroundColor: AppColor.greenColor,
                 onPressed: () async {
-                  if (Platform.isIOS) {
-                    CallKitHelper.showCallerID(
-                      enteredNumber,
-                      enteredNumber,
-                      30000, // Duration in milliseconds
-                    );
-                  } else {
-                    await DirectCallPlus.makeCall(enteredNumber);
-                  }
+                  CallController.makeCall(enteredNumber);
                 },
                 icon: const Icon(Icons.call, size: 32, color: Colors.white),
                 label: Text(

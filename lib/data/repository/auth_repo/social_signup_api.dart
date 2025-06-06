@@ -9,12 +9,15 @@ Future<SignUpResponse> socialSignUp({
 }) async {
   String? deviceToken = await getDeviceToken();
   String deviceType = getDeviceType();
+  String? voipToken = await getVoipToken();
+
   var body = {
     'email': email,
     'signup_method': signupMethod,
     'first_name': firstName,
     'last_name': lastName,
     'device_token': deviceToken ?? '',
+    'voip_token': voipToken ?? '',
     'device_type': deviceType,
   };
 

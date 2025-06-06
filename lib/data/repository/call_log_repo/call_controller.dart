@@ -1,9 +1,11 @@
 import 'dart:developer';
 
-import 'package:call_e_log/call_log.dart';
+import 'package:direct_call_plus/direct_call_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:spam_delection_app/utils/api_constants/exception_handling.dart';
+import 'package:spam_delection_app/data/repository/call_log_repo/send_voip_push.dart';
+import 'package:spam_delection_app/lib.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CallController {
   static const callChannel = MethodChannel('com.broadlink.protect/call');
@@ -88,6 +90,20 @@ class CallController {
       print(result); // Handle the result
     } catch (e) {
       print("Error unmuting: $e");
+    }
+  }
+
+  static Future<bool?> makeCall(String mobileNumber) async {
+    try {
+      if (Platform.isIOS) {
+        await sendVoipPush(mobileNumber);
+        return launchUrl(Uri.parse('tel:$mobileNumber'));
+      } else {
+        return await DirectCallPlus.makeCall(mobileNumber);
+      }
+    } catch (e) {
+      showToast("Error making call: $e");
+      return false;
     }
   }
 }

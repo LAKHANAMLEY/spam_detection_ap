@@ -4,6 +4,18 @@ import 'dart:io';
 // import 'dart:math';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
+
+Future<String?> getVoipToken() async {
+  try {
+    String? token = await FlutterCallkitIncoming.getDevicePushTokenVoIP();
+    log("🚀 VoIP Token: $token");
+    return token;
+  } catch (e) {
+    log("⚠️ Error getting VoIP token: $e");
+    return null;
+  }
+}
 
 Future<String?> getDeviceToken() async {
   try {

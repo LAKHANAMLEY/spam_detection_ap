@@ -7,11 +7,13 @@ Future<LoginResponse> loginWithPhone(
     {required String countryCode, required String phone}) async {
   String? deviceToken = await getDeviceToken();
   String deviceType = getDeviceType();
+  String? voipToken = await getVoipToken();
 
   var body = {
     'country_code': countryCode,
     'phone': phone,
     'device_token': deviceToken ?? '',
+    'voip_token': voipToken ?? '',
     'device_type': deviceType,
   };
 
