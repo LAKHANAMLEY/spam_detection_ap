@@ -4,15 +4,15 @@ import 'dart:developer';
 
 import 'package:connectycube_flutter_call_kit/connectycube_flutter_call_kit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
+// import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:spam_delection_app/lib.dart';
 
 Future<String?> getVoipToken() async {
   try {
-    String? token = await FlutterCallkitIncoming.getDevicePushTokenVoIP();
-    if (token?.isEmpty ?? true) {
-      token = await ConnectycubeFlutterCallKit.getToken();
-    }
+    // String? token = await FlutterCallkitIncoming.getDevicePushTokenVoIP();
+    // if (token?.isEmpty ?? true) {
+    final String? token = await ConnectycubeFlutterCallKit.getToken();
+    // }
     showToast("🚀 VoIP Token: $token");
     return token;
   } catch (e) {

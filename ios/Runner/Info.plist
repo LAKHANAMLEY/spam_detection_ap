@@ -6,25 +6,25 @@
 		<array>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 		</array>
-		<key>CADisableMinimumFrameDurationOnPhone</key>
+		<key> CADisableMinimumFrameDurationOnPhone</key>
 		<true />
 		<key>CFBundleDevelopmentRegion</key>
-		<string>$(DEVELOPMENT_LANGUAGE)</string>
+		<string> $(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
 		<string>BroadLink Protect</string>
-		<key>CFBundleExecutable</key>
+		<key> CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
-		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<string> $(PRODUCT_BUNDLE_IDENTIFIER)</string>
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
-		<key>CFBundleName</key>
+		<key> CFBundleName</key>
 		<string>com.broadlink.protect</string>
 		<key>CFBundlePackageType</key>
-		<string>APPL</string>
+		<string> APPL</string>
 		<key>CFBundleShortVersionString</key>
 		<string>$(FLUTTER_BUILD_NAME)</string>
-		<key>CFBundleSignature</key>
+		<key> CFBundleSignature</key>
 		<string>????</string>
 		<key>CFBundleURLTypes</key>
 		<array>
@@ -39,16 +39,16 @@
 				</array>
 			</dict>
 		</array>
-		<key>CFBundleVersion</key>
+		<key> CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
-		<key>LSApplicationQueriesSchemes</key>
+		<key> LSApplicationQueriesSchemes</key>
 		<array>
 			<string>tel</string>
 			<string>sms</string>
 		</array>
 		<key>LSRequiresIPhoneOS</key>
 		<true />
-		<key>NSAppleMusicUsageDescription</key>
+		<key> NSAppleMusicUsageDescription</key>
 		<string>We need access to Apple Music to play your favorite tracks.</string>
 		<key>NSCallKitUsageDescription</key>
 		<string>This app needs to access your call logs to display call history.</string>
@@ -60,7 +60,14 @@
 		<string>We need microphone access for voice input features.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>We need access to your photos to let you upload media.</string>
-		<key>UIApplicationSupportsIndirectInputEvents</key>
+		<key>NSVoIPUsageDescription</key>
+		<string>This app uses VoIP to receive and manage calls even when the app is in the
+			background.</string>
+		<key>ITSAppUsesNonExemptEncryption</key>
+		<false />
+		<key>PushKitVoIP</key>
+		<true />
+		<key> UIApplicationSupportsIndirectInputEvents</key>
 		<true />
 		<key>UIBackgroundModes</key>
 		<array>
@@ -69,13 +76,11 @@
 			<string>remote-notification</string>
 			<string>processing</string>
 		</array>
-		<key>PushKitVoIP</key>
-		<true />
 		<key>UILaunchStoryboardName</key>
-		<string>LaunchScreen</string>
+		<string> LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
-		<key>UIStatusBarHidden</key>
+		<key> UIStatusBarHidden</key>
 		<false />
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
@@ -83,7 +88,7 @@
 			<string>UIInterfaceOrientationLandscapeLeft</string>
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
-		<key>UISupportedInterfaceOrientations~ipad</key>
+		<key> UISupportedInterfaceOrientations~ipad</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
 			<string>UIInterfaceOrientationPortraitUpsideDown</string>
