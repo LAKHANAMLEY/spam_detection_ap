@@ -1,4 +1,3 @@
-import 'package:direct_call_plus/direct_call_plus.dart';
 import 'package:spam_delection_app/lib.dart';
 import 'package:spam_delection_app/screens/contacts/comments_list.dart';
 

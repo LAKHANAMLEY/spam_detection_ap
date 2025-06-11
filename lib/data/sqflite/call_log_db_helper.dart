@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io' as io;
 
 import 'package:path/path.dart';
@@ -46,6 +47,7 @@ class CallLogDBHelper {
   Future<Database> _initDatabase() async {
     io.Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
+    log("Database path:😂 $path");
     return await openDatabase(
       path,
       version: _databaseVersion,

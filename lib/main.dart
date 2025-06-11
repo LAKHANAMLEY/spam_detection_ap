@@ -17,7 +17,7 @@ void main() async {
   firebaseCrashlyticsConfig();
   await Workmanager().initialize(
     callbackDispatcher,
-    isInDebugMode: true, // Set to false in production
+    isInDebugMode: false, // Set to false in production
   );
   await Workmanager().registerPeriodicTask(
     "sync_contacts_task",

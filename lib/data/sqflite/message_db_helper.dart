@@ -1,5 +1,7 @@
+import 'dart:developer';
 import 'dart:io';
 
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:spam_delection_app/data/models/sms/sms_list_model.dart';
 import 'package:sqflite/sqflite.dart'; // For DateTime formatting
@@ -53,6 +55,7 @@ class SmsLogDBHandler {
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
+    log("Database path:😂 $path");
     return await openDatabase(
       path,
       version: _databaseVersion,
@@ -415,7 +418,7 @@ class SmsLogDBHandler {
     _database = null; // Reset the database instance
   }
 
-  String join(String path, String databaseName) => path + databaseName;
+  // String join(String path, String databaseName) => path + databaseName;
 
   Future<List<SmsLog>> getUnsyncedMessages(
       {required int limit, required int start}) async {
